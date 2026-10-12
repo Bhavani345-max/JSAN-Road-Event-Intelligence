@@ -1,0 +1,43 @@
+{
+  "version": "2026-10-09",
+  "report_window_days": 14,
+  "period_slack_hours": 24,
+  "same_time_tolerance_hours": 1,
+  "same_spot_km": 0.3,
+  "nearby_km": 1.0,
+  "far_km": 2.0,
+  "similar_headlines": 0.15,
+  "levels": {
+    "high": 0.75,
+    "medium": 0.45
+  },
+  "propose_from_level": "MEDIUM",
+  "weights": {
+    "same_article": 0.6,
+    "shared_place": 0.2,
+    "shared_road": 0.15,
+    "same_spot": 0.2,
+    "nearby": 0.1,
+    "same_period": 0.3,
+    "same_start": 0.15,
+    "same_type": 0.15,
+    "similar_headlines": 0.25,
+    "same_stage": 0.05
+  },
+  "conflict_penalty": 0.1,
+  "stage_cues": {
+    "PROPOSAL": [
+      "\\bplans?\\b", "\\bplanned\\b", "\\bproposals?\\b", "\\bproposed\\b", "\\bprojects?\\b",
+      "\\bdpr\\b", "\\btenders?\\b", "\\bsanction(?:ed|s)?\\b", "\\bcrore\\b", "\\bredesign(?:s|ed)?\\b",
+      "\\brethink\\b", "\\breassess(?:ed|es|ment)?\\b", "\\bmulls?\\b", "\\bto be (?:built|constructed|developed)\\b",
+      "\\bfoundation stone\\b", "\\bfeasibility\\b", "\\balignment\\b"
+    ],
+    "MEASURE": [
+      "\\bclosed\\b", "\\bclosures?\\b", "\\bshut\\b", "\\bdivert(?:ed|s|ing)?\\b", "\\bdiversions?\\b",
+      "\\brestrictions?\\b", "\\bcurbs?\\b", "\\bblocked\\b", "\\bbarricaded\\b", "\\bwaterlogg(?:ed|ing)\\b",
+      "\\btraffic (?:jam|snarl|advisory|alert)s?\\b",
+      "\\bone[- ]way\\b[^.]{0,40}?\\b(?:introduced|in place|continues?|permanent|imposed|enforced)\\b",
+      "\\bmade permanent\\b"
+    ]
+  }
+}

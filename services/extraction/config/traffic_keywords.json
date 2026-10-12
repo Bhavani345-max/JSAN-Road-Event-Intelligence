@@ -1,0 +1,675 @@
+{
+  "version": "2026-10-07",
+  "description": "Rule-based detection of road/traffic articles. Each matched rule adds its weight; an article is RELEVANT_TRAFFIC_ARTICLE when the total reaches the threshold, at least one matched rule weighs 'strong_signal_weight' or more, and it is within the location scope. 'term' is matched as whole words, case-insensitively, with an optional plural 's'; 'pattern' is a regular expression. Longer terms win over the shorter terms they contain. Rules sharing a 'group' count once (the heaviest). Rules of weight 1 are supporting context only: together they add at most 'max_supporting_score', so they can never make an article relevant by themselves. 'event_type' is the type suggested when that rule is the strongest typed match. An article is out of scope when its headline names another city and not the scope city; it is in scope when its headline names a known Hyderabad locality or junction (checked by the place resolver, when one is given) even if the city itself is not written. A rule with 'names_event' names what the event is (a marathon, a VIP visit, an accident) rather than the measure on the road; its type wins over measure types.",
+  "threshold": 3,
+  "strong_signal_weight": 3,
+  "max_supporting_score": 1,
+  "fields": [
+    "title",
+    "summary"
+  ],
+  "scope": {
+    "city": "Hyderabad",
+    "terms": [
+      "Hyderabad",
+      "Secunderabad",
+      "Cyberabad"
+    ],
+    "other_cities": [
+      "Delhi",
+      "New Delhi",
+      "Bengaluru",
+      "Bangalore",
+      "Mumbai",
+      "Navi Mumbai",
+      "Thane",
+      "Chennai",
+      "Pune",
+      "Kolkata",
+      "Gurgaon",
+      "Gurugram",
+      "Noida",
+      "Ghaziabad",
+      "Patna",
+      "Lucknow",
+      "Ahmedabad",
+      "Jaipur",
+      "Kochi",
+      "Bhopal",
+      "Indore",
+      "Nagpur",
+      "Vijayawada",
+      "Visakhapatnam",
+      "Vizag",
+      "Warangal",
+      "Karimnagar",
+      "Nizamabad",
+      "Khammam",
+      "Tirupati",
+      "Guntur",
+      "Mysuru",
+      "Mysore",
+      "Coimbatore",
+      "Chandigarh",
+      "Surat",
+      "Bhubaneswar",
+      "Dehradun",
+      "Varanasi",
+      "Kanpur",
+      "Goa",
+      "Mangaluru",
+      "Madurai",
+      "Thiruvananthapuram",
+      "Kozhikode",
+      "Nashik",
+      "Raipur",
+      "Ranchi",
+      "Guwahati",
+      "Jammu",
+      "Amritsar",
+      "Ludhiana",
+      "Agra",
+      "Prayagraj",
+      "Meerut",
+      "Faridabad",
+      "Vadodara",
+      "Rajkot",
+      "Hubballi",
+      "Belagavi",
+      "Shimla",
+      "Puducherry",
+      "Trichy",
+      "Salem",
+      "Vellore",
+      "Nellore",
+      "Kurnool",
+      "Kakinada",
+      "Rajahmundry",
+      "Mahabubnagar"
+    ]
+  },
+  "exclude_phrases": [
+    "air traffic",
+    "passenger traffic",
+    "web traffic",
+    "internet traffic",
+    "data traffic",
+    "cargo traffic",
+    "footfall traffic"
+  ],
+  "keywords": [
+    {
+      "term": "traffic diversion",
+      "weight": 3,
+      "event_type": "TRAFFIC_DIVERSION"
+    },
+    {
+      "term": "traffic restriction",
+      "weight": 3
+    },
+    {
+      "term": "traffic advisory",
+      "weight": 3
+    },
+    {
+      "term": "traffic curb",
+      "weight": 3
+    },
+    {
+      "term": "vehicle restriction",
+      "weight": 3
+    },
+    {
+      "term": "road closure",
+      "weight": 3
+    },
+    {
+      "term": "closed for traffic",
+      "weight": 3
+    },
+    {
+      "term": "closed to traffic",
+      "weight": 3
+    },
+    {
+      "pattern": "\\btraffic\\s+police\\b[^.]{0,30}?\\badvisor(?:y|ies)\\b",
+      "label": "traffic police advisory",
+      "weight": 3
+    },
+    {
+      "pattern": "\\b(?:closed|shut|blocked|cordoned off)\\b[^.]{0,40}?\\b(?:after|following|due to)\\b[^.]{0,40}?\\b(?:accident|crash|collision|fire|collapse|cave-?in|gas leak|pipe(?:line)? burst|landslide|tree fall|fallen tree)s?\\b",
+      "label": "closed after an accident/collapse",
+      "weight": 3,
+      "event_type": "EMERGENCY_ROAD_CLOSURE",
+      "names_event": true
+    },
+    {
+      "pattern": "\\b(?:lanes?|carriageways?)\\s+(?:closures?|closed|restrictions?|restricted|shut|blocked)\\b|\\b(?:one|single|two)[- ]lane\\s+(?:traffic|closure|movement)\\b",
+      "label": "lane closed",
+      "weight": 3,
+      "event_type": "LANE_RESTRICTION"
+    },
+    {
+      "pattern": "\\b(?:u-?turns?|free[- ]left(?:\\s+turns?)?|right[- ]turns?|left[- ]turns?)\\b[^.]{0,40}?\\b(?:closed|banned|prohibited|not (?:be )?allowed|restricted|blocked|shut)\\b|\\bno\\s+(?:right|left|u)[- ]?turns?\\b",
+      "label": "turn closed",
+      "weight": 3,
+      "event_type": "TURN_RESTRICTION"
+    },
+    {
+      "pattern": "\\b(?:flyovers?|bridges?|underpass(?:es)?|tunnels?|ROBs?|RUBs?|skyways?|elevated corridors?)\\b[^.]{0,60}?\\b(?:closed|shut|sealed off|shut down|cordoned off)\\b",
+      "label": "flyover/bridge/tunnel closed",
+      "weight": 3,
+      "event_type": "BRIDGE_TUNNEL_RESTRICTION"
+    },
+    {
+      "pattern": "\\b(?:roads?|streets?|underpass(?:es)?|colon(?:y|ies)|stretch(?:es)?|lanes?)\\b[^.]{0,40}?\\b(?:flooded|inundated|submerged|under water)\\b|\\bflooded\\s+(?:roads?|streets?|underpass(?:es)?)\\b",
+      "label": "road flooded",
+      "weight": 3,
+      "event_type": "FLOODING",
+      "names_event": true
+    },
+    {
+      "pattern": "\\b(?:roads?|flyovers?|underpass(?:es)?|bridges?|stretch(?:es)?|lanes?|carriageways?|junctions?|routes?)\\b[^.]{0,60}?\\b(?:closed|shut|sealed off|shut down|cordoned off)\\b",
+      "label": "road … closed",
+      "weight": 3
+    },
+    {
+      "term": "waterlogging",
+      "weight": 3,
+      "event_type": "FLOODING",
+      "names_event": true
+    },
+    {
+      "term": "water-logging",
+      "weight": 3,
+      "event_type": "FLOODING",
+      "names_event": true
+    },
+    {
+      "term": "water logging",
+      "weight": 3,
+      "event_type": "FLOODING",
+      "names_event": true
+    },
+    {
+      "term": "waterlogged",
+      "weight": 3,
+      "event_type": "FLOODING",
+      "names_event": true
+    },
+    {
+      "term": "traffic jam",
+      "weight": 3
+    },
+    {
+      "term": "traffic snarl",
+      "weight": 3
+    },
+    {
+      "term": "traffic gridlock",
+      "weight": 3
+    },
+    {
+      "term": "traffic gridlocked",
+      "weight": 3
+    },
+    {
+      "term": "traffic disruption",
+      "weight": 3
+    },
+    {
+      "pattern": "\\bdisrupt(s|ed|ing)?\\s+traffic\\b",
+      "label": "disrupts traffic",
+      "weight": 3
+    },
+    {
+      "pattern": "\\btraffic\\s+(?:(?:will|to|would|shall)\\s+be\\s+|is\\s+being\\s+|was\\s+|were\\s+)?(?:regulated|restricted|diverted|stopped|blocked|suspended)\\b",
+      "label": "traffic regulated",
+      "weight": 3
+    },
+    {
+      "pattern": "\\b(?:flyover|underpass|bridge|road|pipeline)\\s+(?:works?|repairs?|construction)\\b",
+      "label": "road/flyover works",
+      "weight": 3,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "term": "traffic alert",
+      "weight": 3
+    },
+    {
+      "term": "traffic regulation",
+      "weight": 3
+    },
+    {
+      "term": "traffic arrangement",
+      "weight": 3
+    },
+    {
+      "term": "route diversion",
+      "weight": 3,
+      "event_type": "TRAFFIC_DIVERSION"
+    },
+    {
+      "term": "alternative route",
+      "weight": 3,
+      "group": "alternate route"
+    },
+    {
+      "term": "alternate route",
+      "weight": 3,
+      "group": "alternate route"
+    },
+    {
+      "term": "no entry",
+      "weight": 3
+    },
+    {
+      "pattern": "\\bone[- ]way\\b",
+      "label": "one-way",
+      "weight": 3
+    },
+    {
+      "pattern": "\\b(?:roads?|stretch|routes?|lanes?|junctions?)\\b[^.]{0,40}?\\b(?:blocked|barricaded)\\b|\\b(?:block(?:ed|s|ing)?|barricad(?:ed|es|ing))\\s+(?:the\\s+|off\\s+|several\\s+|all\\s+|key\\s+|main\\s+)?(?:roads?|routes?|stretch|lanes?|junctions?)\\b",
+      "label": "road blocked",
+      "weight": 3
+    },
+    {
+      "pattern": "\\bclosed\\s+for\\s+(?:repairs?|maintenance|works?|re-?laying|strengthening)\\b",
+      "label": "closed for repairs",
+      "weight": 3,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "pattern": "\\b(?:roads?|stretch|lanes?)\\b[^.]{0,40}?\\bdug\\s+up\\b|\\bdug\\s+up\\b[^.]{0,30}?\\b(?:roads?|stretch|lanes?)\\b",
+      "label": "road dug up",
+      "weight": 3,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "pattern": "\\b(?:cave-?ins?|caved?\\s+in|caves\\s+in|sinkholes?|road\\s+collaps(?:e|es|ed))\\b",
+      "label": "road cave-in",
+      "weight": 3
+    },
+    {
+      "pattern": "\\b(?:vehicles?|vehicular\\s+(?:traffic|movement)|entry|heavy\\s+vehicles?|two-?wheelers?|lorries|trucks)\\s+(?:(?:will|to|would|shall)\\s+be\\s+|is\\s+|are\\s+|was\\s+|were\\s+|being\\s+)?(?:barred|prohibited|not\\s+allowed|banned|not\\s+permitted|restricted|stopped)\\b",
+      "label": "vehicles barred",
+      "weight": 3
+    },
+    {
+      "pattern": "\\bavoid(?:ing)?\\b[^.]{0,40}?\\b(?:routes?|roads?|stretch(?:es)?|junctions?|area|flyover)\\b",
+      "label": "avoid the route",
+      "weight": 3
+    },
+    {
+      "pattern": "\\b(?:traffic\\s+)?(?:curbs?|restrictions?)\\s+(?:in\\s+place|imposed|announced|to\\s+continue|will\\s+continue|lifted)\\b",
+      "label": "restrictions imposed",
+      "weight": 3
+    },
+    {
+      "term": "traffic congestion",
+      "weight": 2,
+      "group": "traffic"
+    },
+    {
+      "term": "traffic",
+      "weight": 2,
+      "group": "traffic"
+    },
+    {
+      "term": "diversion",
+      "weight": 2,
+      "event_type": "TRAFFIC_DIVERSION"
+    },
+    {
+      "term": "diverted",
+      "weight": 2,
+      "event_type": "TRAFFIC_DIVERSION"
+    },
+    {
+      "term": "road work",
+      "weight": 2,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "term": "road repair",
+      "weight": 2,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "term": "road widening",
+      "weight": 2,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "term": "procession",
+      "weight": 2,
+      "event_type": "PUBLIC_PROCESSION",
+      "names_event": true
+    },
+    {
+      "term": "marathon",
+      "weight": 2,
+      "event_type": "MARATHON",
+      "names_event": true
+    },
+    {
+      "term": "rally",
+      "weight": 2,
+      "event_type": "PUBLIC_PROCESSION",
+      "names_event": true
+    },
+    {
+      "term": "immersion",
+      "weight": 2,
+      "event_type": "PUBLIC_PROCESSION",
+      "names_event": true
+    },
+    {
+      "term": "construction",
+      "weight": 1
+    },
+    {
+      "term": "closed",
+      "weight": 1
+    },
+    {
+      "term": "flyover",
+      "weight": 1
+    },
+    {
+      "term": "underpass",
+      "weight": 1
+    },
+    {
+      "term": "motorists",
+      "weight": 1
+    },
+    {
+      "term": "commuters",
+      "weight": 1
+    },
+    {
+      "term": "roadblock",
+      "weight": 1,
+      "group": "roadblock"
+    },
+    {
+      "term": "road block",
+      "weight": 1,
+      "group": "roadblock"
+    },
+    {
+      "term": "vehicular movement",
+      "weight": 2,
+      "group": "traffic"
+    },
+    {
+      "term": "barricade",
+      "weight": 2
+    },
+    {
+      "term": "VIP movement",
+      "weight": 2,
+      "event_type": "VIP_MOVEMENT",
+      "names_event": true
+    },
+    {
+      "pattern": "\\bmetro\\s+(?:rail\\s+)?(?:works?|construction|pillar|piling)\\b",
+      "label": "metro works",
+      "weight": 2,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "term": "pothole",
+      "weight": 1
+    },
+    {
+      "term": "protest",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "dharna",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "festival",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "yatra",
+      "weight": 2,
+      "event_type": "PUBLIC_PROCESSION",
+      "names_event": true
+    },
+    {
+      "term": "shobha yatra",
+      "weight": 2,
+      "event_type": "PUBLIC_PROCESSION",
+      "names_event": true
+    },
+    {
+      "term": "half marathon",
+      "weight": 2,
+      "event_type": "MARATHON",
+      "names_event": true
+    },
+    {
+      "term": "cyclothon",
+      "weight": 2,
+      "event_type": "MARATHON",
+      "names_event": true
+    },
+    {
+      "term": "walkathon",
+      "weight": 2,
+      "event_type": "MARATHON",
+      "names_event": true
+    },
+    {
+      "pattern": "\\b\\d+\\s?k\\s+(?:run|race|walk)\\b",
+      "label": "10K run",
+      "weight": 2,
+      "event_type": "MARATHON",
+      "names_event": true
+    },
+    {
+      "pattern": "\\bparades?\\b(?!\\s+grounds?)",
+      "label": "parade",
+      "weight": 2,
+      "event_type": "PUBLIC_PROCESSION",
+      "names_event": true
+    },
+    {
+      "term": "IPL",
+      "weight": 2,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "cricket match",
+      "weight": 2,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "football match",
+      "weight": 2,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "T20",
+      "weight": 2,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "Formula E",
+      "weight": 2,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "Uppal stadium",
+      "weight": 2,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "stadium",
+      "weight": 1,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "match",
+      "weight": 1,
+      "event_type": "SPORTING_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "convoy",
+      "weight": 2,
+      "event_type": "VIP_MOVEMENT",
+      "names_event": true
+    },
+    {
+      "pattern": "\\b(?:PM|Prime Minister|President|Vice[- ]President|Chief Minister|CM|Governor|Union (?:Home )?Minister)\\b[^.]{0,40}?\\b(?:visits?|visiting|tour|convoy|movement|arrival|arrives)\\b",
+      "label": "VIP visit",
+      "weight": 2,
+      "event_type": "VIP_MOVEMENT",
+      "names_event": true
+    },
+    {
+      "term": "concert",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "exhibition",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "Numaish",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "celebrations",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "Bathukamma",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "Bonalu",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "New Year",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "pattern": "\\btrees?\\s+(?:fell|falls?|fallen|uprooted|collapsed|came down)\\b|\\b(?:fallen|uprooted)\\s+trees?\\b",
+      "label": "tree fall",
+      "weight": 2,
+      "event_type": "WEATHER_CLOSURE",
+      "names_event": true
+    },
+    {
+      "term": "heavy rain",
+      "weight": 1,
+      "event_type": "WEATHER_CLOSURE",
+      "group": "weather"
+    },
+    {
+      "term": "rainfall",
+      "weight": 1,
+      "event_type": "WEATHER_CLOSURE",
+      "group": "weather"
+    },
+    {
+      "term": "downpour",
+      "weight": 1,
+      "event_type": "WEATHER_CLOSURE",
+      "group": "weather"
+    },
+    {
+      "term": "cyclone",
+      "weight": 1,
+      "event_type": "WEATHER_CLOSURE",
+      "group": "weather"
+    },
+    {
+      "term": "fog",
+      "weight": 1,
+      "event_type": "WEATHER_CLOSURE",
+      "group": "weather"
+    },
+    {
+      "pattern": "\\b(?:thunder)?storms?\\b(?!\\s*-?\\s*(?:water|drain))",
+      "label": "storm",
+      "weight": 1,
+      "event_type": "WEATHER_CLOSURE",
+      "group": "weather"
+    },
+    {
+      "pattern": "\\b(?:after|following|due to|owing to)\\s+(?:an?\\s+|the\\s+)?(?:[\\w-]+\\s+){0,2}(?:accident|crash|collision|pile-?up)s?\\b",
+      "label": "after an accident",
+      "weight": 2,
+      "event_type": "ACCIDENT",
+      "names_event": true
+    },
+    {
+      "pattern": "\\b(?:public|political|party|election|campaign|mass|praja)\\s+meetings?\\b",
+      "label": "public meeting",
+      "weight": 2,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "sabha",
+      "weight": 2,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "roadshow",
+      "weight": 2,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "road show",
+      "weight": 2,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    },
+    {
+      "term": "speech",
+      "weight": 1,
+      "event_type": "SPECIAL_EVENT",
+      "names_event": true
+    }
+  ]
+}

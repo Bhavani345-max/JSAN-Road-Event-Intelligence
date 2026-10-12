@@ -1,0 +1,12 @@
+{
+ "_about": "REGRESSION FIXTURE. A real Deccan Chronicle article of 29 June 2026, taken from the publisher's article page because it is no longer in the RSS feed. The category is the section path Deccan Chronicle puts in its feed. Used only by automated tests; never loaded into the application database.",
+ "source_id": "deccan-chronicle",
+ "url": "https://www.deccanchronicle.com/southern-states/telangana/traffic-curbs-near-iiit-junction-from-july-1-for-flyover-works-1967063",
+ "published": "2026-06-29T17:18:36+05:30",
+ "title": "Traffic Curbs Near IIIT Junction from July 1 for Flyover Works",
+ "summary": "DLF Gate No.1 to Gachibowli Traffic PS stretch to remain closed for 90 days; commuters advised to take alternate routes",
+ "categories": [
+  "Southern States,Telangana"
+ ],
+ "body": "Hyderabad: The Cyberabad Police have issued a traffic advisory in view of the ongoing multi-level flyover and underpass construction at IIIT Junction, which is expected to continue for nearly a year.To expedite the works, authorities have decided to close the road stretch from DLF Gate No.1 to Gachibowli Traffic Police Station for a period of 90 days starting from July 1, 2026. The road may be partially reopened in phases depending on the progress of construction and availability of space.According to the advisory, traffic from Radisson Hotel towards IIIT Junction will be allowed only up to DLF Gate No.1 and will be diverted thereafter. Commuters are advised to take alternate routes via Gachibowli Junction and Indiranagar.Similarly, vehicles coming from Lingampally towards DLF Road will be diverted at Gachibowli Traffic Police Station via IIIT Junction and Gachibowli Junction to reach their destination.Officials said the construction activity may lead to traffic congestion in and around IIIT Junction. Regular commuters, including IT employees, have been urged to plan their travel in advance and use alternative routes.The Cyberabad Traffic Police have requested the public to cooperate in ensuring smooth traffic flow during the construction period."
+}

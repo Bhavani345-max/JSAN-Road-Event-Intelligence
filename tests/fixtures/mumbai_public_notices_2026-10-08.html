@@ -1,0 +1,1810 @@
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+
+
+<script src='/resources/js/jQuery.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'></script>
+<script src='/resources/js/jquery-ui.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'></script>
+<script type="text/javascript"
+	src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAd9LORFIwo5oeNCvV0yo15oprbEdrK1rk&libraries=places&callback=initAutocomplete' async defer></script>
+	
+<link rel = "icon" type="image/x-icon" href = '/resources/favicon.ico;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+	
+<link rel="stylesheet"
+	href='/resources/css/font-awesome.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<link rel="stylesheet"
+	href='/resources/css/bootstrap.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<link rel="stylesheet"
+	href='/resources/css/Menu.min.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<link rel="stylesheet"
+	href='/resources/css/NavBar.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<script
+	src='/resources/js/bootstrap/bootstrap.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'></script>
+<script
+	src='/resources/js/bootstrap/jquery.bootpag.min.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'></script>
+
+<link rel="stylesheet"
+	href='/resources/css/jquery-ui.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<link rel="stylesheet"
+	href='/resources/css/jquery.timepicker.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+
+<script src='/resources/js/jquery.timepicker.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'></script>
+
+<link rel="stylesheet"
+	href='/resources/css/common.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<link rel="stylesheet"
+	href='/resources/css/jquery.dataTables.min.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+
+<script type="text/javascript"
+	src='/resources/js/Menu.min.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+	
+</script>
+<script type="text/javascript"
+	src='/resources/js/NavBar.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+	
+</script>
+<script type="text/javascript"
+	src='/resources/js/datatable/jquery.dataTables.min.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+	
+</script>
+<script type="text/javascript"
+	src='/resources/js/Home.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+	
+</script>
+
+
+	
+
+	
+
+	
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+
+	
+
+	
+		<script type="text/javascript"
+			src='/resources/js/masters/Masters.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+			
+		</script>
+	
+
+<link rel="stylesheet"
+	href='/resources/fullcalendar/fullcalendar.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<script
+	src='/resources/fullcalendar/moment.min.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'></script>
+<script
+	src='/resources/fullcalendar/fullcalendar.js;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'></script>
+
+<link rel="stylesheet"
+	href='/resources/css/common.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'>
+<!-- Common Css -->
+ <link rel="stylesheet"
+	href='/resources/css/style.css;jsessionid=6BE387A0B94AC3C9F2C05B7D63CD480E'> 
+	
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	});
+	function del(span) {
+		$(span).prev('input').remove();
+		$(span).next('br').remove();
+		$(span).remove();
+	}
+	function goBackCancel(){
+		location.href = "https://trafficpolicemumbai.maharashtra.gov.in/";
+	}
+		
+</script>
+<body>
+	
+
+	
+	<div class="container">
+		
+
+
+
+<!DOCTYPE html">
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Public Notice List</title>
+<script>
+$(document).ready(
+		function() {
+
+			$('#menuTable').DataTable();
+			
+
+			$(".datepicker").datepicker({
+				dateFormat : "dd/mm/yy",
+				changeMonth : true,
+				changeYear : true
+			});	
+			
+		});
+
+
+
+
+
+function getList(link) {
+	location.href = link;
+}
+
+
+
+</script>
+</head>
+<body>
+	<div class="col-sm-12 container">
+		<h3 class="h3" align="center">Public Notice List</h3>
+
+		<hr>
+		<h4 style="margin-left:855px">Total :50</h4>
+		
+			
+			
+			
+			
+			<form id="publicNotice" name="rallyDetailsForm" class="form-inline" role="form" action="PublicNotice.htm" method="post">
+			
+			
+			
+			<div class="form-group">
+						<label class="control-label col-sm-4">From Date<span
+							class="required"></span>
+						</label>
+						<div class="col-sm-8">
+							<input id="fDate" name="fDate" class="form-control datepicker" name="fDate" placeholder="DD/MM/YYYY" type="text" value=""/>
+						</div>
+ 					</div>
+		
+		
+			<div class="form-group">
+						<label class="control-label col-sm-4">To Date<span
+							class="required"></span>
+						</label>
+						<div class="col-sm-8">
+							<input id="tDate" name="tDate" class="form-control datepicker" name="tDate" placeholder="DD/MM/YYYY" type="text" value=""/>
+						</div>
+ 					</div>
+		
+		
+			<div class="form-group">
+				<div class="col-sm-6">
+						<button class="btn bg-green">Submit</button>
+						</div>
+ 					</div>
+		</form>
+		
+		<hr>
+			
+			
+		
+		
+			
+			
+			
+		
+	
+		
+		
+		
+		
+		<form id="publicNotice" name="rallyDetailsForm" class="form-horizontal form_top_margin" role="form" action="PublicNoticeHandler.htm" method="post">
+			<input name="Action" id="Action" type="hidden" />
+			
+			<div class="col-sm-12 table-responsive">
+					<table class="table table-bordered" id="menuTable">
+					<thead>
+						<tr class="info">
+							<th>Sr. No.</th>
+							<th>Notice Id</th>
+							<th>Date</th>
+							<th>Valid Till</th>
+							<th>Subject</th>
+							<th>Notice</th>
+							<th>Download</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody id="tableBody">
+						
+
+	
+		
+			<tr class="data">
+				<td>1</td>
+				<td>Notification No 209/DCP/West/Traffic/Temp/2026</td>
+				<td>05/10/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Restrictions and Alternative Routes </td>
+				<td>Traffic Restrictions and Alternative Routes</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823622/202610050000_823622_DocScanner 6 Oct 2026 10-51â¯am.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>2</td>
+				<td>Notification No 208/DCP/South/Traffic/Temp/2026</td>
+				<td>02/10/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Changes in transportation routes </td>
+				<td>Changes in transportation routes becouse a large number are runners for the Air Force Marathon, Parking facilities are not available in the marathon area; therefore, competiors should use public transport </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823621/202610020000_823621_Airforce Marathon Notification0001.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>3</td>
+				<td>Notification No 207/ADD-Cp/Traffic/Permanent/2026</td>
+				<td>30/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Parking</td>
+				<td>There is 24 hours no parking on both sides of the road (North-South channel) of Sagarpark Road from The Amrut Nagar circle Junction, to 100 meter Natioan muton shop, sagar park, Ghatkopar (W) Mumbai.</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823588/202609300000_823588_Permanent Notification _207 Ghatkopar Div No Parking_compressed.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>4</td>
+				<td>Notification No 206/DCP/South/Traffic/temp/2026 </td>
+				<td>22/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>The roads will remain closed to traffic until the procession ends.</td>
+				<td>The roads will remain closed to traffic until the procession ends.</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823489/202609220000_823489_Gausiya 2026_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>5</td>
+				<td>Notification No 204/DCP/Cental HQ/Traff/Temp/2026</td>
+				<td>19/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arrangement </td>
+				<td>Traffic Arrangement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823456/202609190000_823456_51. Worli - G.M. Bhosale rd. no parking & odd even parking notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>6</td>
+				<td>Notification No 203/DCP/CentralHQ/Traff/Temp/2026</td>
+				<td>19/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arrangement / odd Parking </td>
+				<td>Traffic Arrangement / odd Parking </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823423/202609190000_823423_50. Mahim - old cadel rd. s.v. rd. odd even parking notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>7</td>
+				<td>Notification No 205/DCP/Central HQ/Traff/Temp/2026</td>
+				<td>19/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Closure of roads in Dadar Division</td>
+				<td>Closure of roads in Dadar Divisionsure of roads </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823457/202609190000_823457_52. Dadar - angarki sankashti chaturthi notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>8</td>
+				<td>Notification No 201/DCP/East/Traff/Temp/2026</td>
+				<td>16/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Roads closed as required for heavy vehicle traffic an Alternate Route </td>
+				<td>Roads closed as required for heavy vehicle traffic an Alternate Route </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823391/202609160000_823391_Notification No. 201, Ghatkopar Div.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>9</td>
+				<td>Notification No 200/DCP/East/Traff/Temp/2026</td>
+				<td>16/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Parking </td>
+				<td>No Parking </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823390/202609160000_823390_Notification No 200, Sakinaka Div_compressed.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>10</td>
+				<td>Notification No 202/DCP/CentralHQ/Traff/Temp/2026</td>
+				<td>16/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic arrangement </td>
+				<td>Traffic arrangement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823392/202609160000_823392_49. BKC - Tata Colony rd. Nse Jnct. to mithi river no parking & 1 side parking notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>11</td>
+				<td>Notification No 199/DCP/CentHQ/Traff/Temp/2025</td>
+				<td>09/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Dr B A Road(South Bound), Mahadeo Palav Marg ( Currey Road) Closed. Alteranativ routes, No Parking Roads</td>
+				<td>Dr B A Road(South Bound), Mahadeo Palav Marg ( Currey Road) Closed. Alteranativ routes, No Parking Roads</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823358/202609090000_823358_LALBAUGCHA RAJA NOTIFICATION 2026.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>12</td>
+				<td>Notification No 198/DCP/South/Traffic /Temp/2026</td>
+				<td>07/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Temporary Suspension of Pay & Park Facility </td>
+				<td>Temporary Suspension of Pay & Park Facility </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823357/202609070000_823357_colaba notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>13</td>
+				<td>Notification No 196/DCP/Cental-HQ/Traff/Temp/2026</td>
+				<td>04/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Orders Regarding changes in the traffic system and Alternative Route </td>
+				<td>Orders Regarding changes in the traffic system and Alternative Route </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823324/202609040000_823324_47. Worli - Privartan Dahihandi Utsav 2026   Notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>14</td>
+				<td>Notification No 197/DCP/Central-HQ/Traff/Temp/2026</td>
+				<td>04/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Orders regarding changes in the traffic system </td>
+				<td>Orders regarding changes in the traffic system </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823325/202609040000_823325_48. Bandra - Mount Mary Yatra 2026   Notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>15</td>
+				<td>Notification No 195/ADD-CP/Traff/Temp/2026</td>
+				<td>04/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>The notification regarding the said traffic rules will be implemented on the required route during Ganesh Visarjana as per the requirement.</td>
+				<td>The notification regarding the said traffic rules will be implemented on the required route during Ganesh Visarjana as per the requirement.</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823555/202609040000_823555_Notification No 195_compressed.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>16</td>
+				<td>Notification No 194/DCP/East/Traff/Temp/2026</td>
+				<td>02/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Road Closed, Alternate Route </td>
+				<td>Road Closed, Alternate Route </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823394/202609020000_823394_Notification No. 194, Vikroli Div (1)_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>17</td>
+				<td>Notification No 192/DCP/South/Traffic/Temp/2026</td>
+				<td>01/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Road Closed, No Entry, Diverted Route </td>
+				<td>Road Closed, No Entry, Diverted Route </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823292/202609010000_823292_KALA GHODA NOTIFICATION.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>18</td>
+				<td>Notification No 193/DCP/West/Traffic/Temp/2026</td>
+				<td>01/09/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Parking Zone, No Entry Restrictions, One Way Restriction </td>
+				<td>No Parking Zone, No Entry Restrictions, One Way Restriction </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823293/202609010000_823293_DocScanner 1 Sept 2026 5-30â¯pm.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>19</td>
+				<td>Notification No 191/DCP/CentHQ/Traff/Temp/2026</td>
+				<td>31/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Regarding changes in the traffic system</td>
+				<td>Regarding changes in the traffic system</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823291/202608310000_823291_46. Bandra - Jarimari rd. closed for dahihandi notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>20</td>
+				<td>Notification No 190/DCP/South/Traffic/Temp/2026</td>
+				<td>29/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Excavation Route, Alternative Routes </td>
+				<td>Excavation Route, Alternative Routes For transportation </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823258/202608290000_823258_Y Bridge.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>21</td>
+				<td>Notification No 187/ADD-CP/Traffic/Permanent/2026</td>
+				<td>25/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Restrictions apply on Dharmveer Swarajya Rakshak Chhatrpati Sambhaji Maharaj Mumabai costal Road and Rajiv Gandhi Sea Link regarding Entry and Exit Points, vehicles restricted from entry, speed limits, and restrictions on stopping or filming.</td>
+				<td>Restrictions apply on Dharmveer Swarajya Rakshak Chhatrpati Sambhaji Maharaj Mumabai costal Road and Rajiv Gandhi Sea Link regarding Entry and Exit Points, vehicles restricted from entry, speed limits, and restrictions on stopping or filming.</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823227/202608250000_823227_Costal Road  permanent Notification -187_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>22</td>
+				<td>Notification No 189/DCP/East/Traffic/Temp/2026</td>
+				<td>25/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Raod Close and Alternate Route </td>
+				<td>Raod Close and Alternate Route </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823226/202608250000_823226_Notification No 189, Ghatkopar Div_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>23</td>
+				<td>Notification No 188/DCP/East/Traff/Temp/2026</td>
+				<td>25/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Road Close and Traffic Diversion </td>
+				<td>Road Close and Traffic Diversion </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823225/202608250000_823225_Notification No 188, Ghatkopar Div_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>24</td>
+				<td>Notification No 186/DCP/West/Traff/Temp/2026</td>
+				<td>22/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Entry/Road Closure </td>
+				<td>No Entry/Road Closure </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823192/202608220000_823192_DocScanner 22 Aug 2026 2-23â¯pm_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>25</td>
+				<td>Notification No 185/DCP/South/Traff/Temp/2026</td>
+				<td>20/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Routes shall be Closed on 26/08/2026 </td>
+				<td>Routes shall be Closed on 26/08/2026 </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823159/202608200000_823159_Eid E Milad Notification_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>26</td>
+				<td>Notification No 183/DCP/East/Traff/Temp/2026</td>
+				<td>19/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Parking </td>
+				<td>No Parking </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823126/202608190000_823126_Notification No. 183, Sakinaka Division_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>27</td>
+				<td>Notification No 184/DCP/East/Traff/Temp/2026</td>
+				<td>19/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Road Closed of heavy vehicles </td>
+				<td>Road Closed of heavy vehicles </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823127/202608190000_823127_Notification No. 184, Mankhurd Division_2.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>28</td>
+				<td>Notification No 182/DCP/CentHQ/Traff/Temp/2026</td>
+				<td>17/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arrangement </td>
+				<td>Traffic Arrangement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823095/202608170000_823095_45. BKC - walmiki ngr to vakola bridge heavy vehicle no entry notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>29</td>
+				<td>Notification No 181/DCP/CentHQ/Traff/Temp/2026</td>
+				<td>17/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arrangement </td>
+				<td>Traffic Arrangement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823094/202608170000_823094_44. BANDRA - Rangsharda hotel lane no Parking Notifiacation.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>30</td>
+				<td>Notification No 180/DCP/West/Traff/Temp/2026</td>
+				<td>14/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Odd-Even Parking System</td>
+				<td>Odd-Even Parking System</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823060/202608140000_823060_TEMPORARY NOTIFICATION, DCP WEST TRAFFIC_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>31</td>
+				<td>Notification No 179/DCP/CentHQ/Traff/Temp/2026</td>
+				<td>14/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arragement </td>
+				<td>Traffic Arragement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823093/202608140000_823093_43. Bandra trf. div. - sent andruz road odd even Parking Notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>32</td>
+				<td>Notification No 178/DCP/South/Traff/Temp/2026</td>
+				<td>13/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Road Closed/ No Parking,  Alternate Route, invitees ror Mantralaya Function, Parking Restriction </td>
+				<td>Road Closed/ No Parking,  Alternate Route, invitees ror Mantralaya Function, Parking Restriction </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/823027/202608130000_823027_15 AUG NOTIFICATION.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>33</td>
+				<td>Notification No 177/DCP/CentHQ/Traff/Temp/2026</td>
+				<td>11/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arragement </td>
+				<td>Traffic Arragement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822994/202608110000_822994_42. bandra trf. div. - 33rd rd. khar west odd even 1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>34</td>
+				<td>Pressnote/DCPEAST/Traffic/Temp/2026</td>
+				<td>10/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Special Drive on Dazzling Lights </td>
+				<td>Special Drive on Dazzling Lights </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822961/202608100000_822961_Mumbai Traffic Special Drive on Dazzling Lights Press Note_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>35</td>
+				<td>Notification No 176/DCP/South/Traffic/Temp/2026</td>
+				<td>07/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Road Closed, Alteranative Road, One way, No Parking </td>
+				<td>Road Closed, Alteranative Road, One way, No Parking </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822895/202608070000_822895_BHOIWADA NOTIFICATION.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>36</td>
+				<td>Notification No 175/DCP/CentHQ/Traff/Temp/2026</td>
+				<td>07/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arrangement </td>
+				<td>Traffic Arrangement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822928/202608070000_822928_101 Part III Traffic hq  cen notification mahim.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>37</td>
+				<td>Notification No 174/DCP/South/Traff/Temp/2026</td>
+				<td>07/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Roads Closed to Traffic And Alteranative routes </td>
+				<td>Roads Closed to Traffic And Alteranative routes </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822862/202608070000_822862_GANPATI AGAMAN NOTIFICATION 2026.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>38</td>
+				<td>Notification No 173/DCP/South/Traff/Temp/2026</td>
+				<td>06/08/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Alternate Roote For VVIP Vehicles Only </td>
+				<td>Alternate Roote For VVIP Vehicles Only </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822829/202608060000_822829_VVIP NOTIFICATION.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>39</td>
+				<td>Notification No 172/DCP/South/Traff/Temp/2026</td>
+				<td>30/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Alterneate Routs and No Parking </td>
+				<td>Alterneate Routs and No Parking </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822798/202607300000_822798_CHELAM NOTIFICATION-1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>40</td>
+				<td>Notification No 171/DCP/CentHQ/Traff/Temp/2026</td>
+				<td>28/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic Arrangement </td>
+				<td>Traffic Arrangement </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822797/202607280000_822797_40. Dadar - J. Bhatankar marg closed Notiication (1).pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>41</td>
+				<td>Notification No 170/DCP/South/Traff/Temp/2026</td>
+				<td>23/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Traffic restrictions </td>
+				<td>Traffic restrictions in Nagpada Traffic Division </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822796/202607230000_822796_Nagpada Y Bridge signed.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>42</td>
+				<td>Notification No 169/DCP/Centralhqtraffic/Temp/2026</td>
+				<td>18/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Entry</td>
+				<td>No Entry</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822774/202607180000_822774_39. Matunga - Ashadhi Ekadashi Notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>43</td>
+				<td>Notification No 168/DCP/Southtraffic/Temp/2026</td>
+				<td>18/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Bridge closed for traffic</td>
+				<td>Poonya Shlok Ahilyabai Bridge (Belasis ROB), South bound- Mumbai Central Junction to Poonya Shlok Ahilyabai Bridge closed for traffic.</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822776/202607180000_822776_BELASIS ROAD signed.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>44</td>
+				<td>Notification No 167/DCP/EastTraffic /Temp/2026</td>
+				<td>17/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Parking </td>
+				<td>Parking of all types of vehicles (exmluding essential service vehicles such as ambulanaces, Police vehicles, and Fire Brigade vehicles) is prohibited 24 hours a day on both sides of the road from Mansukh Naka to Kanjurmarg Railway Station(East)</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822763/202607170000_822763_Notification No 167, Kanjurmarg Div_compressed.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>45</td>
+				<td>Notification No 166/DCP/Centralhqtraffic/Permanent/2026</td>
+				<td>16/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Reverse Lane</td>
+				<td>Reverse Lane Started From BKC Connector Bridge North Bound Upword Slope Up To South Bound Nehru Nagar Kurla Bride.</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822775/202607160000_822775_38. BKC - connector bridge north upto nehru ngr. kurla bridge reverse lane notification.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>46</td>
+				<td>Notification No 165/Dcp/Southtraffic/Temp/2026</td>
+				<td>14/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Road Closed</td>
+				<td>Road Closed To Traffic And Alternative Route Of Traffic </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822772/202607140000_822772_WADALA DIVISION CREEK BRIDGE - Copy.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>47</td>
+				<td>Notification No 164/DCP/EAsttraffic/Temp/2026</td>
+				<td>09/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Parking</td>
+				<td>No PArking During Peak-hours</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822771/202607090000_822771_Notification No. 164, Sakinaka Div1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>48</td>
+				<td>Notification No 163/DCP/Westtraffic/Temp/2026</td>
+				<td>08/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Order</td>
+				<td>All Heavy Vehicles Shall Be Prohibited From Entering And Plying Between 08:00 hrs And 21:00hrs Every Day.</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822770/202607220000_822770_Temporary Notification_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>49</td>
+				<td>Notification No 162/Dcp/Westtraffic/Temp/2026</td>
+				<td>07/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>Odd Even Parking System</td>
+				<td>Mhada Road NOC 1,2 And 3 At Lokhandwala Complex, Kandivali East Mumbai Falling Within The Jurisdiction Of Samta Nagar Traffic Division, are East West Oriented Roads</td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822769/202607070000_822769_Temporary notification order 162_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+			<tr class="data">
+				<td>50</td>
+				<td>Notification No 160/Dcp/Easttraffic/Temp/2026</td>
+				<td>03/07/2026</td>
+				<td>
+				
+				
+				
+				Till Next Order
+				
+				</td>
+				<td>No Parking During Peak-Hours</td>
+				<td>Sakinaka Junction To Disha Hospital, Andheri-Ghatkopar Link Road, Ghatkopar Mumbai. The Road On North And South Channel Here Is Declared As No Parking For All Vehicles During PeakHours. </td>
+				<td>
+						
+							
+								<a href="GetPublicNotice/822768/202607030000_822768_Notification No. 160, Sakinaka Div_1.pdf"
+									target="blank"> <span
+									class="glyphicon glyphicon-download-alt"></span>
+								</a> &nbsp;
+		
+		
+		
+						
+						
+
+					</td>
+					
+				
+			</tr>
+		
+	
+	
+
+
+
+					</tbody>
+				</table>
+			</div>
+			<ul id="pagination-branches" class="pagination pull-right"></ul>
+		</form>
+
+	</div>
+</body>
+</html>
+
+
+	</div>
+	<div class="row">
+								
+ 	</div>
+</body>
+</html>

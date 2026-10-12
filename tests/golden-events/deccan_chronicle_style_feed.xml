@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  TEST FIXTURE. Synthetic feed modelled on the structure of Deccan Chronicle's
+  section feeds: Title Case headlines, permalink GUIDs, one <category> holding
+  a comma-separated list, an enclosure image, content:encoded bodies, GMT
+  dates. The articles and place names are invented and describe no real event.
+-->
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+<channel>
+	<title><![CDATA[Telangana news | Example Chronicle]]></title>
+	<description><![CDATA[Test feed]]></description>
+	<link>https://chronicle.example.net/southern-states/telangana</link>
+
+	<item>
+		<link>https://chronicle.example.net/southern-states/telangana/traffic-diversions-at-lakeview-junction-2001</link>
+		<title><![CDATA[Traffic Diversions At Lakeview Junction In Hyderabad From Monday]]></title>
+		<description><![CDATA[Vehicles heading to Station Road will be diverted at Lakeview Junction for 30 days.]]></description>
+		<enclosure length="81272" type="image/webp" url="https://chronicle.example.net/h-upload/2001.webp"/>
+		<content:encoded><![CDATA[<figure> <img width='1500' height='900' src='https://chronicle.example.net/h-upload/2001.webp'/> </figure><p>Vehicles heading to Station Road will be diverted at Lakeview Junction for 30 days.</p><p>The traffic police asked motorists to plan their journeys.</p>]]></content:encoded>
+		<guid isPermaLink="true">https://chronicle.example.net/southern-states/telangana/traffic-diversions-at-lakeview-junction-2001</guid>
+		<category><![CDATA[Southern States,Telangana,Trending]]></category>
+		<dc:creator><![CDATA[DC Correspondent]]></dc:creator>
+		<pubDate>Thu, 01 Oct 2026 07:00:00 GMT</pubDate>
+	</item>
+
+	<item>
+		<link>https://chronicle.example.net/southern-states/telangana/road-closure-near-orchard-flyover-2002</link>
+		<title><![CDATA[Hyderabad: Road Closure Near Orchard Flyover This Weekend]]></title>
+		<description><![CDATA[The stretch will remain shut for bridge repairs, officials said.]]></description>
+		<content:encoded><![CDATA[<p>The stretch will remain shut for bridge repairs, officials said.</p>]]></content:encoded>
+		<guid isPermaLink="true">https://chronicle.example.net/southern-states/telangana/road-closure-near-orchard-flyover-2002</guid>
+		<category><![CDATA[Southern States,Telangana]]></category>
+		<dc:creator><![CDATA[DC Correspondent]]></dc:creator>
+		<pubDate>Thu, 01 Oct 2026 05:30:00 GMT</pubDate>
+	</item>
+
+	<item>
+		<link>https://chronicle.example.net/southern-states/telangana/warangal-traffic-diversions-2003</link>
+		<title><![CDATA[Warangal: Traffic Diversions For Flyover Works]]></title>
+		<description><![CDATA[Vehicles will be diverted for two weeks, the traffic police said.]]></description>
+		<guid isPermaLink="true">https://chronicle.example.net/southern-states/telangana/warangal-traffic-diversions-2003</guid>
+		<category><![CDATA[Southern States,Telangana]]></category>
+		<pubDate>Wed, 30 Sep 2026 17:00:00 GMT</pubDate>
+	</item>
+
+	<item>
+		<link>https://chronicle.example.net/southern-states/telangana/gst-collection-2004</link>
+		<title><![CDATA[Telangana Records Highest GST Collection]]></title>
+		<description><![CDATA[Collections rose 12 per cent over last year.]]></description>
+		<guid isPermaLink="true">https://chronicle.example.net/southern-states/telangana/gst-collection-2004</guid>
+		<category><![CDATA[Southern States,Telangana,Top Stories]]></category>
+		<pubDate>Wed, 30 Sep 2026 15:00:00 GMT</pubDate>
+	</item>
+
+	<item>
+		<link>https://chronicle.example.net/southern-states/telangana/trafficking-racket-2005</link>
+		<title><![CDATA[Human Trafficking Racket Busted In Hyderabad]]></title>
+		<description><![CDATA[Three people were detained for trafficking, officials said.]]></description>
+		<guid isPermaLink="true">https://chronicle.example.net/southern-states/telangana/trafficking-racket-2005</guid>
+		<category><![CDATA[Southern States,Telangana,News,Crime]]></category>
+		<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+	</item>
+
+	<item>
+		<link>https://chronicle.example.net/southern-states/telangana/untitled-2006</link>
+		<description><![CDATA[An item with no title cannot become an event.]]></description>
+		<guid isPermaLink="true">https://chronicle.example.net/southern-states/telangana/untitled-2006</guid>
+		<category><![CDATA[Southern States,Telangana]]></category>
+		<pubDate>Wed, 30 Sep 2026 11:00:00 GMT</pubDate>
+	</item>
+</channel>
+</rss>

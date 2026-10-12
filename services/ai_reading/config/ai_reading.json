@@ -1,0 +1,69 @@
+{
+  "version": "2026-10-09",
+  "triage": {
+    "batch_size": 20,
+    "summary_chars": 350,
+    "body_chars": 300,
+    "max_tokens": 6000,
+    "system": "You screen news articles for a road-event monitoring service. For each article decide whether it reports a ROAD EVENT: something that closes, restricts, diverts, blocks or seriously disrupts road traffic at a place the article names, now, recently or in the future. Road events include road closures, traffic diversions, road works, lane or turn restrictions, one-way changes, vehicle bans, processions, rallies, marathons, sports or public events with traffic arrangements, VIP convoys, flooding or waterlogging on roads, fallen trees, cave-ins, and accidents that block a road. NOT road events: crime, courts, politics, business, rail, metro, bus or flight services (unless a road is closed or traffic diverted), statistics, policy or budget announcements without a stated place and measure, opinion, and events in a city other than the one the feed covers. Judge only by the article's own words. Never guess. Reply with JSON only."
+  },
+  "full": {
+    "batch_size": 4,
+    "body_chars": 6000,
+    "max_tokens": 9000,
+    "system": "You extract road events from news articles for a road-event monitoring service. A ROAD EVENT is something that closes, restricts, diverts, blocks or seriously disrupts road traffic at a place the article names, now, recently or in the future. An accident, crime, fire or protest counts only when the article says it blocked, closed or disrupted a road or traffic; a report of casualties alone is not a road event. An event announcement (expo, festival, match) counts only when the article states traffic arrangements, restrictions or diversions for it. Read each article and describe the road event it reports, using ONLY what the article states. Rules: (1) Copy every place name exactly as the article writes it, letter for letter. Never add a place, road, date or time the article does not state, and never translate or correct a name. (2) A quote must be copied word for word from the article. (3) Use null or an empty list when the article does not state something. (4) Dates: read them only from explicit wording in the article; use the article's publication date to choose the year when the article leaves it out. start_date is when the road measure began or begins; end_date is when it ends. Use null for end_date when the article says the measure continues (\"remain shut\", \"until further orders\") or states no end; never repeat the start date as the end of a measure that continues. The period quote must state when the road measure applies, not the date of an unrelated incident. (5) Give each place one role: the place that is closed or restricted, the start or end of an affected stretch, the venue of an event, a place merely near the event, or a route traffic is sent to instead. Reply with JSON only.",
+    "version": "2026-10-09b"
+  },
+  "intents": {
+    "PLANNED_ROAD_CLOSURE": "a road closed on purpose for a stated period, with no more specific type below",
+    "EMERGENCY_ROAD_CLOSURE": "a road closed suddenly because of an accident, fire, collapse, gas leak or similar",
+    "TRAFFIC_DIVERSION": "traffic diverted or rerouted, when no more specific cause type fits",
+    "ROAD_CONSTRUCTION": "building or widening a road, flyover, underpass or metro on the road",
+    "ROAD_WORKS": "repairs, relaying, pipeline, drainage or utility works on or under a road",
+    "LANE_RESTRICTION": "some lanes or a carriageway closed or restricted",
+    "TURN_RESTRICTION": "a U-turn, free left or right turn closed or banned",
+    "BRIDGE_TUNNEL_RESTRICTION": "a flyover, bridge, underpass or tunnel closed or restricted",
+    "FLOODING": "a road flooded or submerged",
+    "WATERLOGGING": "water standing on a road after rain",
+    "WEATHER_CLOSURE": "rain, storm or fallen trees closing or blocking a road",
+    "ACCIDENT": "a crash or collision blocking or disrupting a road",
+    "ROAD_HAZARD": "a fault or obstruction on a road: failed signals, debris, cave-in, pothole",
+    "PUBLIC_PROCESSION": "a procession, rally, yatra, immersion or parade on the roads",
+    "MARATHON": "a marathon, run, walkathon or cyclothon on the roads",
+    "SPORTING_EVENT": "a match or race with traffic arrangements around a venue",
+    "VIP_MOVEMENT": "a VIP convoy or visit with traffic restrictions",
+    "SPECIAL_EVENT": "another public event (meeting, festival, exhibition, concert, protest) affecting traffic"
+  },
+  "impacts": {
+    "CLOSURE": "the road is fully closed to traffic",
+    "PARTIAL_CLOSURE": "part of the road or some lanes are closed",
+    "DIVERSION": "traffic is diverted to other roads",
+    "LANE_RESTRICTION": "lanes are restricted but the road stays open",
+    "TURN_RESTRICTION": "a turn or U-turn is closed",
+    "ONE_WAY": "the road is made one-way",
+    "VEHICLE_RESTRICTION": "some vehicles (heavy vehicles, buses, two-wheelers) are barred",
+    "CONGESTION": "heavy traffic or jams, with no closure",
+    "WATERLOGGING": "water on the road slows or blocks traffic",
+    "HAZARD": "an obstruction or danger on the road",
+    "ADVISORY": "an advisory to avoid an area, with no stated closure",
+    "OTHER": "anything else"
+  },
+  "roles": {
+    "CLOSED": "the place that is closed, blocked or restricted",
+    "AFFECTED": "a place where traffic is affected, when it is not said to be closed",
+    "STRETCH_FROM": "the start of an affected stretch of road",
+    "STRETCH_TO": "the end of an affected stretch of road",
+    "VENUE": "where the procession, match or event takes place",
+    "NEAR": "a place the article says the event is near, not the event itself",
+    "DIVERSION_ROUTE": "a road or place traffic is diverted through",
+    "ALTERNATE_ROUTE": "a road the article advises motorists to use instead"
+  },
+  "role_priority": [
+    "CLOSED",
+    "AFFECTED",
+    "STRETCH_FROM",
+    "VENUE",
+    "STRETCH_TO",
+    "NEAR"
+  ]
+}

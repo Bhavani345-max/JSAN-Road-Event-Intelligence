@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TEST FIXTURE. Synthetic feed modelled on the structure of The Hindu's city
+  feeds: non-permalink "article-<id>" GUIDs, +0530 dates, a media:content
+  image, mostly empty descriptions, statewide items mixed into a city feed.
+  The articles and place names are invented and describe no real event.
+-->
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<channel>
+	<atom:link href="https://city.example.org/news/cities/Hyderabad/feeder/default.rss" rel="self" type="application/rss+xml"/>
+	<title>Hyderabad Latest News | Example City Edition</title>
+	<link>https://city.example.org/news/cities/Hyderabad/</link>
+	<description><![CDATA[Test feed]]></description>
+
+	<item>
+		<title><![CDATA[Traffic restrictions around Lakeview Stadium for Sunday’s marathon]]></title>
+		<description><![CDATA[]]></description>
+		<link>https://city.example.org/news/cities/Hyderabad/traffic-restrictions-lakeview-stadium/article1001.ece</link>
+		<guid isPermaLink="false">article-1001</guid>
+		<category><![CDATA[Hyderabad]]></category>
+		<pubDate><![CDATA[Thu, 01 Oct 2026 12:00:00 +0530]]></pubDate>
+		<media:content height="675" medium="image" url="https://img.example.org/1001.jpg" width="1200"/>
+	</item>
+
+	<item>
+		<title><![CDATA[Heavy rain leaves roads waterlogged in Secunderabad]]></title>
+		<description><![CDATA[Commuters were stranded on Station Road for over an hour on Wednesday evening.]]></description>
+		<link>https://city.example.org/news/national/telangana/heavy-rain-waterlogged/article1002.ece</link>
+		<guid isPermaLink="false">article-1002</guid>
+		<category><![CDATA[Telangana]]></category>
+		<pubDate><![CDATA[Thu, 01 Oct 2026 09:30:00 +0530]]></pubDate>
+	</item>
+
+	<item>
+		<title><![CDATA[State cabinet approves two instalments of dearness allowance]]></title>
+		<description><![CDATA[]]></description>
+		<link>https://city.example.org/news/national/telangana/cabinet-da/article1003.ece</link>
+		<guid isPermaLink="false">article-1003</guid>
+		<category><![CDATA[Telangana]]></category>
+		<pubDate><![CDATA[Wed, 30 Sep 2026 21:10:00 +0530]]></pubDate>
+	</item>
+
+	<item>
+		<title><![CDATA[Traffic diversions in Warangal for flyover works]]></title>
+		<description><![CDATA[]]></description>
+		<link>https://city.example.org/news/national/telangana/warangal-diversions/article1004.ece</link>
+		<guid isPermaLink="false">article-1004</guid>
+		<category><![CDATA[Telangana]]></category>
+		<pubDate><![CDATA[Wed, 30 Sep 2026 18:00:00 +0530]]></pubDate>
+	</item>
+
+	<item>
+		<title><![CDATA[‘Sample’ movie review: a sharp satire that plays too safe]]></title>
+		<description><![CDATA[The film is carried by its two leads.]]></description>
+		<link>https://city.example.org/entertainment/movies/sample-review/article1005.ece</link>
+		<guid isPermaLink="false">article-1005</guid>
+		<category><![CDATA[Movies]]></category>
+		<pubDate><![CDATA[Wed, 30 Sep 2026 16:00:00 +0530]]></pubDate>
+	</item>
+
+	<item>
+		<title><![CDATA[An item with neither a link nor a GUID cannot be identified]]></title>
+		<description><![CDATA[]]></description>
+		<category><![CDATA[Telangana]]></category>
+		<pubDate><![CDATA[Wed, 30 Sep 2026 15:00:00 +0530]]></pubDate>
+	</item>
+</channel>
+</rss>

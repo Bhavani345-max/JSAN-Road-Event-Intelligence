@@ -1,0 +1,644 @@
+{
+ "_note": "REAL records returned by https://api.tfl.gov.uk/Road/all/Disruption on 2026-10-06, kept unchanged as a regression fixture. Powered by TfL Open Data.",
+ "records": [
+  {
+   "$type": "Tfl.Api.Presentation.Entities.RoadDisruption, Tfl.Api.Presentation.Entities",
+   "id": "TIMS-235979",
+   "url": "/Road/All/Disruption/TIMS-235979",
+   "point": "[0.009084,51.515677]",
+   "severity": "Serious",
+   "ordinal": 1,
+   "category": "Collisions",
+   "subCategory": "Vehicle collision",
+   "comments": "[A13] Newham Way (Westbound) at the junction of Rathbone Street - Lane three (of three) is closed due to a collision. ",
+   "currentUpdate": "Approach with caution. Traffic is slow on A13 with tailbacks beyond Alfred Way. Expect delays. ",
+   "currentUpdateDateTime": "2026-10-06T09:31:25Z",
+   "corridorIds": [
+    "a13"
+   ],
+   "startDateTime": "2026-10-06T07:56:15Z",
+   "endDateTime": "2026-10-06T23:59:59Z",
+   "lastModifiedTime": "2026-10-06T09:31:25Z",
+   "levelOfInterest": "High",
+   "location": "[A13] NEWHAM WAY (E14 ,E16 ) (Newham)",
+   "status": "Active",
+   "geography": {
+    "type": "Point",
+    "coordinates": [
+     0.009084,
+     51.515677
+    ],
+    "crs": {
+     "type": "name",
+     "properties": {
+      "name": "EPSG:4326"
+     }
+    }
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       0.0073095042,
+       51.5153918989
+      ],
+      [
+       0.0073868132,
+       51.5151899025
+      ],
+      [
+       0.0076014284,
+       51.5150311605
+      ],
+      [
+       0.0078663733,
+       51.514954768
+      ],
+      [
+       0.0081992239,
+       51.5149556573
+      ],
+      [
+       0.0128106695,
+       51.5158310888
+      ],
+      [
+       0.0130129895,
+       51.5159187111
+      ],
+      [
+       0.0131561713,
+       51.5160437365
+      ],
+      [
+       0.0132234751,
+       51.5161915485
+      ],
+      [
+       0.0132070318,
+       51.5163448665
+      ],
+      [
+       0.0130886033,
+       51.5165038864
+      ],
+      [
+       0.0128816514,
+       51.516622526
+      ],
+      [
+       0.0126176823,
+       51.5166827234
+      ],
+      [
+       0.012336883,
+       51.5166753142
+      ],
+      [
+       0.0077656167,
+       51.5158105399
+      ],
+      [
+       0.0074507201,
+       51.5156597162
+      ],
+      [
+       0.0073455786,
+       51.5155328958
+      ],
+      [
+       0.0073095042,
+       51.5153918989
+      ]
+     ]
+    ],
+    "crs": {
+     "type": "name",
+     "properties": {
+      "name": "EPSG:4326"
+     }
+    }
+   },
+   "streets": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Street, Tfl.Api.Presentation.Entities",
+     "name": "[A13] NEWHAM WAY (E14 ,E16)",
+     "closure": "Open",
+     "directions": "Westbound",
+     "segments": [
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[0.011611,51.515979],[0.011533,51.515952]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[0.012507,51.516239],[0.011656,51.516082]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[0.008374,51.515458],[0.00803,51.515392]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[0.011656,51.516082],[0.008374,51.515458]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[0.011652,51.51599],[0.011611,51.515979]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[0.012507,51.516239],[0.011652,51.51599]]",
+       "sourceSystemId": 0
+      }
+     ],
+     "sourceSystemId": 235979,
+     "sourceSystemKey": "TIMS"
+    }
+   ],
+   "isProvisional": false,
+   "hasClosures": false,
+   "roadDisruptionLines": [],
+   "roadDisruptionImpactAreas": [],
+   "recurringSchedules": []
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.RoadDisruption, Tfl.Api.Presentation.Entities",
+   "id": "TIMS-235412",
+   "url": "/Road/All/Disruption/TIMS-235412",
+   "point": "[-0.117126,51.371285]",
+   "severity": "Serious",
+   "ordinal": 2,
+   "category": "Works",
+   "subCategory": "Utility works",
+   "comments": "[A23] Purley Way (All approaches) at the junction of Waddon Road - Three-way temporary traffic signals in place to facilitate SGN works. Waddon Road is also closed.",
+   "currentUpdate": "Use an alterative route. Traffic is queuing northbound on Purley way with tailbacks reportedly to Coldharbour Road. Expect delays. ",
+   "currentUpdateDateTime": "2026-10-06T09:27:07Z",
+   "corridorIds": [
+    "a23"
+   ],
+   "startDateTime": "2026-10-05T07:00:00Z",
+   "endDateTime": "2026-11-07T18:00:00Z",
+   "lastModifiedTime": "2026-10-06T09:27:07Z",
+   "levelOfInterest": "High",
+   "location": "[A23] PURLEY WAY (CR0 ) (Croydon)",
+   "status": "Active",
+   "geography": {
+    "type": "Point",
+    "coordinates": [
+     -0.117126,
+     51.371285
+    ],
+    "crs": {
+     "type": "name",
+     "properties": {
+      "name": "EPSG:4326"
+     }
+    }
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -0.1179519241,
+       51.3712689705
+      ],
+      [
+       -0.1178798149,
+       51.371082815
+      ],
+      [
+       -0.1177194955,
+       51.3709481891
+      ],
+      [
+       -0.1174550779,
+       51.3708517504
+      ],
+      [
+       -0.1171505155,
+       51.3708329891
+      ],
+      [
+       -0.1158584617,
+       51.3709689728
+      ],
+      [
+       -0.1156371393,
+       51.3710167296
+      ],
+      [
+       -0.1154755305,
+       51.371091429
+      ],
+      [
+       -0.1153374953,
+       51.3712097759
+      ],
+      [
+       -0.1152638695,
+       51.3714544905
+      ],
+      [
+       -0.1153381514,
+       51.3716151284
+      ],
+      [
+       -0.1155267259,
+       51.3717612592
+      ],
+      [
+       -0.1157942602,
+       51.3718463822
+      ],
+      [
+       -0.1160799464,
+       51.3718583872
+      ],
+      [
+       -0.1175381578,
+       51.3716864798
+      ],
+      [
+       -0.117745739,
+       51.3715946587
+      ],
+      [
+       -0.1178604911,
+       51.3714990285
+      ],
+      [
+       -0.1179519241,
+       51.3712689705
+      ]
+     ]
+    ],
+    "crs": {
+     "type": "name",
+     "properties": {
+      "name": "EPSG:4326"
+     }
+    }
+   },
+   "streets": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Street, Tfl.Api.Presentation.Entities",
+     "name": "WADDON ROAD (CR0)",
+     "closure": "Closed",
+     "directions": "Eastbound",
+     "segments": [
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.117234,51.371279],[-0.116735,51.371333]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.116735,51.371333],[-0.115979,51.371412]]",
+       "sourceSystemId": 0
+      }
+     ],
+     "sourceSystemId": 235412,
+     "sourceSystemKey": "TIMS"
+    }
+   ],
+   "isProvisional": false,
+   "hasClosures": false,
+   "roadDisruptionLines": [],
+   "roadDisruptionImpactAreas": [],
+   "recurringSchedules": []
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.RoadDisruption, Tfl.Api.Presentation.Entities",
+   "id": "TIMS-235733",
+   "url": "/Road/All/Disruption/TIMS-235733",
+   "point": "[-0.364872,51.442279]",
+   "severity": "Minimal",
+   "ordinal": 23,
+   "category": "Works",
+   "subCategory": "Utility works",
+   "comments": "[B358] Hospital Bridge Road (All approaches) at the junction of [A316] Chertsey Road - Due to Cadent Gas works on Hospital Bridge Road, there are lane closures on the approach on the A316 at the Hospital Bridge Roundabout. Additionally, Hospital Bridge Road is closed southbound.",
+   "currentUpdate": "Use an alternative route. There are no reported delays on diversion routes. ",
+   "currentUpdateDateTime": "2026-10-06T08:24:31Z",
+   "corridorIds": [
+    "a316"
+   ],
+   "startDateTime": "2026-10-01T08:30:00Z",
+   "endDateTime": "2026-10-07T22:59:00Z",
+   "lastModifiedTime": "2026-10-06T08:24:53Z",
+   "levelOfInterest": "Medium",
+   "location": "[B358] HOSPITAL BRIDGE ROAD (TW2 ) (Richmond upon Thames)",
+   "status": "Active",
+   "geography": {
+    "type": "Point",
+    "coordinates": [
+     -0.364872,
+     51.442279
+    ],
+    "crs": {
+     "type": "name",
+     "properties": {
+      "name": "EPSG:4326"
+     }
+    }
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -0.3653845729,
+        51.4410156921
+       ],
+       [
+        -0.3653042709,
+        51.4408190136
+       ],
+       [
+        -0.3650936896,
+        51.4406644761
+       ],
+       [
+        -0.3648314059,
+        51.4405882861
+       ],
+       [
+        -0.3644506354,
+        51.4405734542
+       ],
+       [
+        -0.3641887125,
+        51.4406076839
+       ],
+       [
+        -0.3639649474,
+        51.4406993894
+       ],
+       [
+        -0.3637970507,
+        51.4408551919
+       ],
+       [
+        -0.3637451982,
+        51.4410192511
+       ],
+       [
+        -0.3638056997,
+        51.4412032467
+       ],
+       [
+        -0.3639812593,
+        51.4413557157
+       ],
+       [
+        -0.3642094778,
+        51.4414430335
+       ],
+       [
+        -0.3645485084,
+        51.4414824724
+       ],
+       [
+        -0.3648810864,
+        51.4414543565
+       ],
+       [
+        -0.3651389736,
+        51.4413639162
+       ],
+       [
+        -0.3653301621,
+        51.4411973422
+       ],
+       [
+        -0.3653845729,
+        51.4410156921
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -0.3658272765,
+        51.4423146857
+       ],
+       [
+        -0.3657928163,
+        51.442188723
+       ],
+       [
+        -0.3656831188,
+        51.4420565357
+       ],
+       [
+        -0.3655382187,
+        51.4419663654
+       ],
+       [
+        -0.3653262333,
+        51.441898372
+       ],
+       [
+        -0.364865116,
+        51.4418868924
+       ],
+       [
+        -0.3646654267,
+        51.4419293045
+       ],
+       [
+        -0.364424354,
+        51.4420278445
+       ],
+       [
+        -0.3641656033,
+        51.442230251
+       ],
+       [
+        -0.3639952587,
+        51.4425509929
+       ],
+       [
+        -0.364027647,
+        51.4427988131
+       ],
+       [
+        -0.3642362917,
+        51.4430633417
+       ],
+       [
+        -0.364440371,
+        51.4431816304
+       ],
+       [
+        -0.3647550279,
+        51.4432543556
+       ],
+       [
+        -0.3650624885,
+        51.4432372753
+       ],
+       [
+        -0.3652905713,
+        51.4431621272
+       ],
+       [
+        -0.365508755,
+        51.4429838905
+       ],
+       [
+        -0.3655651321,
+        51.4428266604
+       ],
+       [
+        -0.3655385116,
+        51.4426866652
+       ],
+       [
+        -0.3657591396,
+        51.4425179517
+       ],
+       [
+        -0.3658272765,
+        51.4423146857
+       ]
+      ]
+     ]
+    ],
+    "crs": {
+     "type": "name",
+     "properties": {
+      "name": "EPSG:4326"
+     }
+    }
+   },
+   "streets": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Street, Tfl.Api.Presentation.Entities",
+     "name": "[B358] HOSPITAL BRIDGE ROAD (TW2)",
+     "closure": "Closed",
+     "directions": "Southbound",
+     "segments": [
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364666,51.441026],[-0.364819,51.441551]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364819,51.441551],[-0.364958,51.442028]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364565,51.441033],[-0.364666,51.441026]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.365047,51.442266],[-0.365108,51.442327]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364464,51.441023],[-0.364565,51.441033]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364817,51.442422],[-0.365108,51.442327]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364709,51.442618],[-0.364817,51.442422]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364958,51.442028],[-0.365047,51.442266]]",
+       "sourceSystemId": 0
+      },
+      {
+       "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+       "toid": "0",
+       "lineString": "[[-0.364847,51.442809],[-0.364709,51.442618]]",
+       "sourceSystemId": 0
+      }
+     ],
+     "sourceSystemId": 235733,
+     "sourceSystemKey": "TIMS"
+    }
+   ],
+   "isProvisional": false,
+   "hasClosures": false,
+   "roadDisruptionLines": [],
+   "roadDisruptionImpactAreas": [],
+   "recurringSchedules": []
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.RoadDisruption, Tfl.Api.Presentation.Entities",
+   "id": "TIMS-235973",
+   "url": "/Road/All/Disruption/TIMS-235973",
+   "point": "[-0.142386,51.495948]",
+   "severity": "Minimal",
+   "ordinal": 33,
+   "category": "Emergency service incidents",
+   "subCategory": "Police activity",
+   "comments": "[A202] Vauxhall Bridge Road (Southbound) at the junction of [A302] Victoria Street - Lane restrictions in place due to an ongoing incident",
+   "currentUpdate": "Traffic is flowing well. ",
+   "currentUpdateDateTime": "2026-10-06T09:40:24Z",
+   "corridorIds": [
+    "inner ring"
+   ],
+   "startDateTime": "2026-10-06T03:34:38Z",
+   "endDateTime": "2026-10-06T23:59:59Z",
+   "lastModifiedTime": "2026-10-06T09:40:24Z",
+   "levelOfInterest": "Medium",
+   "location": "[A202] VAUXHALL BRIDGE ROAD (SW1E ,SW1P ,SW1V ) (Westminster)",
+   "status": "Active",
+   "geography": {
+    "type": "Point",
+    "coordinates": [
+     -0.142386,
+     51.495948
+    ],
+    "crs": {
+     "type": "name",
+     "properties": {
+      "name": "EPSG:4326"
+     }
+    }
+   },
+   "isProvisional": false,
+   "hasClosures": false,
+   "roadDisruptionLines": [],
+   "roadDisruptionImpactAreas": [],
+   "recurringSchedules": []
+  }
+ ]
+}

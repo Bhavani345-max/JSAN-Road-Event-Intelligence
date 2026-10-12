@@ -1,0 +1,55 @@
+{
+  "id": "toronto",
+  "name": "Toronto",
+  "area_name": "the City of Toronto",
+  "country": "CA",
+  "region": "Ontario",
+  "timezone": "America/Toronto",
+  "language": "en",
+  "bbox": [
+    43.58,
+    -79.64,
+    43.86,
+    -79.11
+  ],
+  "map": {
+    "center": [
+      -79.3832,
+      43.6532
+    ],
+    "zoom": 10.5
+  },
+  "scope_terms": [
+    "Toronto",
+    "GTA"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "London",
+    "Montreal",
+    "Vancouver",
+    "Ottawa",
+    "Calgary",
+    "Edmonton",
+    "Hamilton",
+    "Mississauga",
+    "Brampton",
+    "Winnipeg"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Toronto \"road closure\" OR \"road closed\" OR \"roads closed\"",
+      "Toronto traffic diversion OR detour OR detours",
+      "Toronto roadwork OR \"road work\" OR \"lane closure\" OR \"lane closures\"",
+      "Toronto flooding OR \"flooded road\" roads",
+      "Toronto collision OR crash \"road closed\"",
+      "Gardiner OR DVP OR \"Don Valley Parkway\" closure OR closed"
+    ]
+  },
+  "official_sources": [
+    "toronto-road-restrictions"
+  ],
+  "gis_sources": []
+}

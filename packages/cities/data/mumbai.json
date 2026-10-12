@@ -1,0 +1,66 @@
+{
+  "id": "mumbai",
+  "name": "Mumbai",
+  "area_name": "Greater Mumbai",
+  "country": "IN",
+  "region": "Maharashtra",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    18.88,
+    72.76,
+    19.3,
+    73.0
+  ],
+  "map": {
+    "center": [
+      72.8777,
+      19.076
+    ],
+    "zoom": 10.5
+  },
+  "scope_terms": [
+    "Mumbai",
+    "Bombay",
+    "Brihanmumbai",
+    "BMC",
+    "MMRDA",
+    "Mumbai Traffic Police"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Navi Mumbai",
+    "Thane",
+    "Kalyan",
+    "Dombivli",
+    "Vasai",
+    "Virar",
+    "Bhiwandi",
+    "Panvel",
+    "Mira Road",
+    "Bhayandar",
+    "Nashik",
+    "Nagpur",
+    "Aurangabad",
+    "Solapur",
+    "Kolhapur"
+  ],
+  "gazetteer": "mumbai_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Mumbai traffic diversions OR restrictions OR closure",
+      "Mumbai \"road closed\" OR \"roads closed\" OR \"road blocked\" OR \"no entry\"",
+      "Mumbai Traffic Police notification OR advisory OR diversion",
+      "Mumbai flyover OR bridge OR ROB closed OR closure OR repairs",
+      "Mumbai waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Mumbai marathon OR procession OR visarjan OR rally OR festival traffic diversions",
+      "Mumbai metro OR \"Coastal Road\" OR BMC works traffic diversions OR restrictions",
+      "Mumbai \"heavy vehicles\" banned OR prohibited OR \"one-way\" OR \"no parking\""
+    ]
+  },
+  "official_sources": [
+    "mumbai-traffic-police-notifications"
+  ],
+  "gis_sources": []
+}

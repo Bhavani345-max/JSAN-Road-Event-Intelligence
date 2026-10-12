@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TEST FIXTURE. Synthetic feed modelled on the structure of a WordPress news
+  feed (guid, category tags, description, content:encoded). The articles and
+  place names are invented for testing and describe no real event.
+-->
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+	<title>Example Daily</title>
+	<link>https://news.example.com</link>
+	<description>Test feed</description>
+
+	<item>
+		<title>Traffic diversions at Lakeview Junction for 30 days from Monday</title>
+		<link>https://news.example.com/traffic-diversions-lakeview-junction</link>
+		<dc:creator><![CDATA[Staff Reporter]]></dc:creator>
+		<pubDate>Thu, 01 Oct 2026 06:30:00 +0000</pubDate>
+		<category><![CDATA[Hyderabad]]></category>
+		<category><![CDATA[News]]></category>
+		<guid isPermaLink="false">https://news.example.com/?p=1001</guid>
+		<description><![CDATA[<p>Motorists heading towards Station Road will be diverted at Lakeview Junction while a storm drain is rebuilt, police said.</p>]]></description>
+		<content:encoded><![CDATA[<figure><img src="https://news.example.com/a.jpg" /></figure><p>Motorists heading towards Station Road will be diverted at Lakeview Junction while a storm drain is rebuilt, police said.</p><p>The work is expected to take 30 days.</p>]]></content:encoded>
+	</item>
+
+	<item>
+		<title>Heavy rain leaves several Hyderabad colonies waterlogged</title>
+		<link>https://news.example.com/heavy-rain-waterlogged</link>
+		<pubDate>Thu, 01 Oct 2026 05:00:00 +0000</pubDate>
+		<category><![CDATA[Hyderabad]]></category>
+		<guid isPermaLink="false">https://news.example.com/?p=1002</guid>
+		<description><![CDATA[Overnight rain left low-lying areas waterlogged and slowed traffic on arterial routes.]]></description>
+	</item>
+
+	<item>
+		<title>City cricket team lifts state trophy</title>
+		<link>https://news.example.com/cricket-trophy</link>
+		<pubDate>Wed, 30 Sep 2026 15:00:00 +0000</pubDate>
+		<category><![CDATA[Hyderabad]]></category>
+		<category><![CDATA[Sport]]></category>
+		<guid isPermaLink="false">https://news.example.com/?p=1003</guid>
+		<description><![CDATA[The home side won the final by six wickets.]]></description>
+	</item>
+
+	<item>
+		<title>Police bust human trafficking racket in Hyderabad</title>
+		<link>https://news.example.com/trafficking-racket</link>
+		<pubDate>Wed, 30 Sep 2026 12:00:00 +0000</pubDate>
+		<category><![CDATA[Hyderabad]]></category>
+		<category><![CDATA[Crime]]></category>
+		<guid isPermaLink="false">https://news.example.com/?p=1004</guid>
+		<description><![CDATA[Three people were detained for trafficking, officials said.]]></description>
+	</item>
+
+	<item>
+		<title>Traffic diversions announced in Warangal for flyover works</title>
+		<link>https://news.example.com/warangal-diversions</link>
+		<pubDate>Wed, 30 Sep 2026 10:00:00 +0000</pubDate>
+		<category><![CDATA[Warangal]]></category>
+		<category><![CDATA[Telangana]]></category>
+		<guid isPermaLink="false">https://news.example.com/?p=1005</guid>
+		<description><![CDATA[Vehicles will be diverted for two weeks, the traffic police said.]]></description>
+	</item>
+
+	<item>
+		<link>https://news.example.com/untitled</link>
+		<pubDate>Wed, 30 Sep 2026 09:00:00 +0000</pubDate>
+		<guid isPermaLink="false">https://news.example.com/?p=1006</guid>
+		<description><![CDATA[An item with no title cannot become an event.]]></description>
+	</item>
+
+	<item>
+		<title>Road closure near Orchard Flyover in Hyderabad this weekend</title>
+		<link>https://news.example.com/orchard-flyover-closure</link>
+		<pubDate>not a date</pubDate>
+		<category><![CDATA[Hyderabad]]></category>
+	</item>
+
+	<item>
+		<title>Traffic diversions at Lakeview Junction for 30 days from Monday</title>
+		<link>https://news.example.com/traffic-diversions-lakeview-junction</link>
+		<pubDate>Thu, 01 Oct 2026 06:30:00 +0000</pubDate>
+		<category><![CDATA[Hyderabad]]></category>
+		<guid isPermaLink="false">https://news.example.com/?p=1001</guid>
+		<description><![CDATA[<p>Motorists heading towards Station Road will be diverted at Lakeview Junction while a storm drain is rebuilt, police said.</p>]]></description>
+	</item>
+</channel>
+</rss>

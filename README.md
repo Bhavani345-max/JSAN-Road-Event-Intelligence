@@ -1,0 +1,219 @@
+# JSAN Road Event Intelligence (REI) v1.0
+
+REI collects road events (closures, diversions, processions, flooding, road
+works) from external sources, turns them into one canonical event format,
+and shows them on a map for human review.
+
+**Current state — Hyderabad PoC, six connected news sources, real data only:**
+
+```
+Telangana Today, The Hindu, Deccan Chronicle,
+The Siasat Daily, NewsMeter, The Hans India
+   → generic RSS connector → ingestion → evidence stored
+   → keyword detection + Hyderabad scope + a named place
+   → REI event (VALIDATION_REQUIRED), located and dated from the article's own words
+   → FastAPI → Next.js console → map
+```
+
+- Real articles are fetched from six news feeds, stored as evidence, and the
+  traffic-related ones become events awaiting human review. Reports of the
+  same real-world event from different sources are kept separate, not merged.
+- Nothing is invented: an event only carries what the article states. It is
+  placed on the map at the Hyderabad place its headline or summary names
+  (position from OpenStreetMap, shown as approximate), and dated only when the
+  article states a period in so many words ("for 60 days from September 26",
+  "from October 10 to 18", "till October 18").
+  Severity and confidence stay empty. An event that names no known place is
+  listed as "Not located" and not drawn.
+- An article becomes an event only when it carries a clear road signal
+  (diversion, restriction, closure, waterlogging, road or flyover works) and
+  names a road or place. Everything else is kept as evidence only.
+- There is **no demo data**. Every event comes from a connected source.
+- The console shows upcoming, ongoing and recently reported events only.
+  Rejected events, ones whose stated end has passed, and reports that state no
+  dates and are older than seven days (thirty for road works) are not shown
+  anywhere in the console, whatever the filters say. They remain stored and
+  are still returned by the API.
+- A reviewer can **extend** an event that runs longer than its article said,
+  and **add an event by hand** that no source reported. Both need the
+  reviewer's reason, which is kept and shown with the event; see
+  [decision 0007](docs/decisions/0007-reviewer-extensions-and-manual-entries.md).
+- An event in QC is **approved** with the console's Approve button, which is
+  enabled only when every QC requirement passes and otherwise lists why
+  approval is blocked. The approval (reviewer, time, reason, version) is kept
+  with the event and in its history; see
+  [decision 0013](docs/decisions/0013-qc-approval-in-the-console.md).
+- With a Serper.dev key (`SERPER_API_KEY` in `.env`), a **Google News search**
+  source runs twelve Hyderabad road searches every eight hours (36 Serper
+  credits a day) and reads each new article from its own page;
+  `python apps/api/search_sweep.py` searches the past month or year by hand.
+  See [the source notes](docs/data-sources/google-news-search.md).
+- When the headline names a locality and the headline or summary also names
+  a junction, flyover or landmark inside it, the event is placed at that spot
+  and the console says so ("within Gachibowli"); see
+  [decision 0008](docs/decisions/0008-wider-search-and-more-exact-places.md).
+- A further 23 sources (police, GHMC, HYDRAA, weather, commercial traffic
+  APIs) have been researched and are recorded as not connected; see
+  [the source research](docs/data-sources/hyderabad-source-research.md).
+
+**Since 6 October 2026: several cities, official sources.**
+
+- Cities are configuration (`packages/cities/data/*.json`): Hyderabad (the
+  default, unchanged), London and Toronto. The console opens on **All cities**
+  (every city's events on one map, each event's times in its own city's zone);
+  the header narrows it to one city (`/?city=london` opens one directly).
+- **Official sources** build events from their own fields and keep their own
+  geometry: Transport for London road disruptions and City of Toronto road
+  restrictions, both keyless, tier 1. They are connected but run by hand
+  during the test phase (`python apps/api/ingest_source.py <source_id>`).
+- Every source states its class (official, open data, partner, publisher,
+  discovery, commercial), cost, limits, licence and terms. News and search are
+  never authoritative.
+- Every event states how it was located: approximate (a named place, drawn
+  as a hollow marker, and not approvable until a reviewer places it), source
+  provided, GIS resolved, corrected by a reviewer, QC approved, or
+  not located. An event may affect several places.
+- Google News RSS is built but blocked by its own terms.
+- When an official source revises a record, the new version is kept beside
+  the original and an event still in review follows it; a decided event is
+  only flagged ([decision 0010](docs/decisions/0010-official-source-revisions.md)).
+- Reports of the same event from several sources are matched. Clear
+  duplicates (the same article twice) are merged automatically. Possible
+  matches wait for a reviewer ("Same event: merge" / "Different events").
+  Merging links events and never deletes evidence; the canonical event shows
+  every source and which source gave which field, and keeps disagreeing
+  values side by side. An official record missing from its feed is counted
+  and, after three refreshes, flagged for review, never ended
+  ([decision 0011](docs/decisions/0011-cross-source-merging-and-feed-absence.md)).
+  `python apps/api/match_events.py` matches everything held.
+- **GIS Resolution Engine (Hyderabad):** junction, crossing and road-stretch
+  names in a report are looked up in the OpenStreetMap road network (PostGIS)
+  and, when exactly one place fits, proposed as the event's location with the
+  OSM ids, the method, a confidence and the reasons. Ambiguous names are left
+  unresolved with every candidate shown. Source geometry and reviewer
+  placements are never replaced, and a GIS location needs a reviewer's
+  approval. Not navigation-grade: no routing and no map matching
+  ([the engine](docs/gis-resolution-engine.md),
+  [decision 0012](docs/decisions/0012-gis-resolution-engine.md)).
+- See [decision 0009](docs/decisions/0009-multi-city-official-sources-and-location-classes.md),
+  [the global source research](docs/global-free-source-research.md),
+  [the cost model](docs/data-source-cost-model.md) and
+  [the international test report](docs/international-source-test-report.md).
+
+## Run it locally
+
+**On Windows, the everyday way:** double-click `start-rei.cmd` in the project
+folder. It starts the API (port 8000) and the web console (port 3000), each
+kept running by a watchdog that restarts it within seconds if it stops or
+stops answering, and opens http://localhost:3000. `stop-rei.cmd` stops
+everything. `scripts\windows\install-autostart.ps1` registers two hidden
+scheduled tasks that start the watchdogs at logon and revive them within 5
+minutes if they ever stop (`remove-autostart.ps1` undoes it). Logs: `apps\api\.data\logs\`.
+If the API is briefly down, the console says so and reconnects by itself.
+
+The manual way, for development:
+
+Requirements: Python 3.12+, Node.js 22+.
+
+```bash
+# 1. API (terminal 1) — from the repository root
+python -m venv .venv
+.venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
+pip install -r apps/api/requirements-dev.txt
+python apps/api/run.py            # http://127.0.0.1:8000  (API docs at /api/docs)
+
+# 2. Web app (terminal 2)
+cd apps/web
+npm install
+npm run dev                       # http://localhost:3000
+```
+
+With no configuration the API uses a local SQLite file and starts polling
+the six feeds immediately, so real events appear within a few seconds.
+
+### With PostgreSQL/PostGIS (the target database)
+
+```bash
+cp .env.example .env              # set POSTGRES_PASSWORD
+docker compose up -d db           # PostGIS on localhost:5432 (REI_DB_PORT to change)
+# in .env: DATABASE_URL=postgresql+psycopg://rei:<password>@localhost:5432/rei
+python apps/api/run.py
+```
+
+`docker compose up --build` runs the database, API and web app together.
+
+### GIS road network (optional)
+
+The API runs without it; only GIS resolution needs it.
+
+```bash
+docker compose up -d db
+docker compose exec db createdb -U rei rei_gis                 # once: a database for the road network
+# in .env: GIS_DATABASE_URL=postgresql+psycopg://rei:<password>@localhost:5432/rei_gis
+python -m services.gis_resolution.import_osm --city hyderabad --snapshot 2026-10-06T00:00:00Z   # one pinned OSM snapshot; validated before loading
+python apps/api/gis.py status                                   # what is loaded
+python apps/api/gis.py resolve EVT-... --dry-run                # what the engine would propose
+```
+
+### Maintenance commands
+
+```bash
+python apps/api/reprocess.py                    # re-derive events from stored articles after a rule change
+python apps/api/retention.py [--apply [--vacuum]]   # drop the text of old non-road articles (preview by default)
+python apps/api/backfill.py <source_id> <url>   # bring in one article its feed no longer carries
+python apps/api/search_sweep.py --window month  # search Google News over a longer window (12 credits)
+python apps/api/ingest_source.py tfl-road-disruptions   # run one connected source now (official feeds)
+python -m services.geo_resolution.build_gazetteer --city hyderabad   # a city's place list
+python -m services.geo_resolution.build_gazetteer   # refresh the place list from OpenStreetMap
+python apps/api/gis.py propose-junction "NAME" --crossing "ROAD A" "ROAD B"   # a junction reference, UNCONFIRMED
+```
+
+### AI reading of articles (optional)
+
+With `OPENROUTER_API_KEY` and `AI_MODEL` in `.env`, a language model on
+OpenRouter reads each news article in batches and returns its intent, impact,
+cause and places with their roles as JSON. REI keeps only what the article
+itself contains, places names through the OpenStreetMap place list, and never
+takes a position from the model. The API reads in the background every five
+minutes within `AI_DAILY_REQUEST_LIMIT`. Details: `docs/decisions/0020-ai-reading-of-articles.md`.
+
+```bash
+python apps/api/ai_read.py --status        # waiting articles and requests used today
+python apps/api/ai_read.py                 # read what is waiting now
+python apps/api/ai_read.py --days 7        # also older articles
+```
+
+Markers are placed by OpenStreetMap first and, with `SERPER_API_KEY`, Google
+Maps for names OSM cannot place; the method and its scores are in
+`docs/placement-evaluation-2026-10-09.md`. Rerun the rubric with
+`python tools/placement_eval/placement_eval.py PROD`.
+
+## Tests
+
+```bash
+pytest                            # backend: connectors, detection, pipeline, database, API
+# PostGIS loader tests run only with REI_GIS_TEST_DATABASE_URL (a test database, never the real one)
+cd apps/web && npm test           # frontend: API mapping, filters, map data
+cd apps/web && npm run typecheck && npm run lint && npm run build
+```
+
+## Repository layout
+
+| Path | What it is |
+| --- | --- |
+| `apps/web` | Next.js console: event list, filters, map, review actions, extending and adding events |
+| `apps/api` | FastAPI service: events, sources, ingestion trigger, review; database models |
+| `connectors/` | One sub-package per acquisition method. `rss/` is implemented; `html/` reads single article pages |
+| `services/` | Pipeline stages: `ingestion`, `extraction`, `geo_resolution` (named places), `lifecycle` implemented; others reserved |
+| `packages/` | Shared models: `event_schema`, `source_models`, `geo_models`, `common` |
+| `database/` | Alembic migrations. Nothing is seeded |
+| `infrastructure/` | Dockerfiles; placeholders for Kubernetes and monitoring |
+| `tests/` | `unit`, `integration`, `geospatial`, `golden-events`, `fixtures` (API tests live in `apps/api/tests`) |
+| `docs/` | Architecture, API, data sources, decisions |
+
+Python folders use underscores (`geo_resolution`, `event_schema`) because
+Python cannot import names containing hyphens.
+
+More detail: [architecture](docs/architecture/overview.md) ·
+[API](docs/api/endpoints.md) · [data sources](docs/data-sources/README.md) ·
+[decisions](docs/decisions/).

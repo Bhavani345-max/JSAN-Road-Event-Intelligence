@@ -1,0 +1,26 @@
+{
+ "_about": "REGRESSION FIXTURE. A real Telangana Today article exactly as REI retrieved it from the publisher's RSS feed on 2 October 2026. Used only by automated tests; never loaded into the application database.",
+ "source_id": "telangana-today",
+ "external_id": "https://telanganatoday.com/?p=1592956",
+ "url": "https://telanganatoday.com/traffic-diversions-at-khajaguda-junction-for-60-days-from-september-26",
+ "published": "Thu, 24 Sep 2026 06:25:13 +0000",
+ "raw": {
+  "guid": "https://telanganatoday.com/?p=1592956",
+  "link": "https://telanganatoday.com/traffic-diversions-at-khajaguda-junction-for-60-days-from-september-26",
+  "title": "Traffic diversions at Khajaguda junction for 60 days from September 26",
+  "published": "Thu, 24 Sep 2026 06:25:13 +0000",
+  "author": "Telangana Today",
+  "categories": [
+   "Hyderabad",
+   "News",
+   "Cyberabad Police",
+   "Khajaguda junction",
+   "KIMS Hospital",
+   "Shaikpet flyover",
+   "traffic diversions",
+   "water pipeline works"
+  ],
+  "summary_html": "Cyberabad police have announced 60-day traffic diversions and restrictions at Khajaguda Junction from Sept. 26 due to water pipeline works, affecting several routes connecting Shaikpet, Gachibowli, Biodiversity Junction and Nanakramguda. Motorists have been advised to use designated alternative routes and plan travel in advance.",
+  "content_html": "<figure><img alt=\"Traffic diversions at Khajaguda junction for 60 days from September 26\" class=\"attachment-large size-large wp-post-image\" decoding=\"async\" height=\"450\" loading=\"lazy\" src=\"https://media.telanganatoday.com/wp-content/uploads/2026/09/Traffic-Advisory-1-768x450.jpg\" width=\"768\" /></figure><p><strong>Hyderabad:</strong> The Cyberabad police announced traffic restrictions and diversions at Khajaguda Junction for 60 days from September 26 in view of water pipeline works.</p>\n<p>The restrictions are expected to affect traffic movement on the service road and free-left movement from KIMS Hospital towards Nanakramguda Road. Right-turn movement from the Biodiversity side towards Nanakramguda Road will also be affected.</p>\n<p>The police advised motorists to take alternative routes to avoid congestion. Traffic moving from Shaikpet Flyover towards Khajaguda can take Timberlake Colony Road, proceed before KIMS Hospital and join Nanakramguda Road.</p>\n<p>Traffic coming from beneath Shaikpet Flyover can use High-Tension Road. Motorists coming from Gachibowli and Biodiversity Level-1 Flyover can take the Pakwan U-Turn, proceed via Khajaguda Lake Road and reach Khajaguda.</p>\n<p>The police warned that traffic congestion is likely in and around Khajaguda Junction during the works and urged commuters to plan their journeys in advance and use alternative routes.</p>"
+ }
+}

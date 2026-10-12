@@ -1,0 +1,57 @@
+{
+  "id": "hyderabad",
+  "name": "Hyderabad",
+  "area_name": "Greater Hyderabad",
+  "country": "IN",
+  "region": "Telangana",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    17.18,
+    78.15,
+    17.68,
+    78.75
+  ],
+  "map": {
+    "center": [
+      78.4747,
+      17.4065
+    ],
+    "zoom": 10.5
+  },
+  "scope_terms": [
+    "Hyderabad",
+    "Secunderabad",
+    "Cyberabad",
+    "Rachakonda"
+  ],
+  "other_cities": [],
+  "gazetteer": "hyderabad_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Hyderabad traffic diversions OR restrictions OR closure",
+      "Hyderabad marathon OR run OR IPL OR match OR stadium traffic restrictions OR diversions OR advisory",
+      "Cyberabad OR Rachakonda traffic diversions OR restrictions OR advisory",
+      "Secunderabad traffic diversions OR restrictions OR \"road closed\"",
+      "Hyderabad \"road closed\" OR \"roads closed\" OR \"roads blocked\" OR \"road blocked\" OR \"no entry\"",
+      "Hyderabad waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Hyderabad flyover OR underpass OR ORR OR \"Outer Ring Road\" closed OR closure OR works OR repairs",
+      "GHMC OR HYDRAA OR HMWSSB \"road works\" OR \"dug up\" OR cave-in OR repairs OR relaying Hyderabad",
+      "Hyderabad procession OR parade OR immersion OR rally OR festival OR celebrations traffic diversions OR restrictions",
+      "Hyderabad VIP OR \"Prime Minister\" OR \"Chief Minister\" OR President OR convoy visit traffic restrictions",
+      "Hyderabad metro OR \"Metro Rail\" works OR pillar traffic diversions OR restrictions",
+      "Hyderabad \"one-way\" OR \"U-turn\" OR \"lane closed\" OR \"traffic alert\" OR \"alternative routes\" OR avoid roads"
+    ]
+  },
+  "official_sources": [
+    "hyderabad-traffic-police",
+    "cyberabad-police",
+    "rachakonda-police",
+    "ghmc",
+    "hydraa",
+    "hmda",
+    "nhai"
+  ],
+  "gis_sources": []
+}

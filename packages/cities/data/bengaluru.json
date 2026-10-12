@@ -1,0 +1,68 @@
+{
+  "id": "bengaluru",
+  "name": "Bengaluru",
+  "area_name": "Greater Bengaluru",
+  "country": "IN",
+  "region": "Karnataka",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    12.78,
+    77.4,
+    13.2,
+    77.85
+  ],
+  "map": {
+    "center": [
+      77.5946,
+      12.9716
+    ],
+    "zoom": 10.5
+  },
+  "scope_terms": [
+    "Bengaluru",
+    "Bangalore",
+    "BBMP",
+    "Greater Bengaluru Authority",
+    "Bengaluru Traffic Police",
+    "Namma Metro"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Mysuru",
+    "Mysore",
+    "Mangaluru",
+    "Mangalore",
+    "Hubballi",
+    "Dharwad",
+    "Belagavi",
+    "Mandya",
+    "Tumakuru",
+    "Tumkur",
+    "Shivamogga",
+    "Davangere",
+    "Ballari",
+    "Kalaburagi",
+    "Udupi",
+    "Hassan",
+    "Ramanagara"
+  ],
+  "gazetteer": "bengaluru_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Bengaluru traffic diversions OR restrictions OR closure",
+      "Bengaluru \"road closed\" OR \"roads closed\" OR \"road blocked\" OR \"no entry\"",
+      "Bengaluru Traffic Police advisory OR diversion OR \"one-way\"",
+      "Bengaluru flyover OR underpass closed OR closure OR repairs OR \"white-topping\"",
+      "Bengaluru waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Bengaluru marathon OR procession OR rally OR festival traffic diversions OR restrictions",
+      "Bengaluru metro OR \"Namma Metro\" OR BBMP works traffic diversions OR restrictions",
+      "Bengaluru \"heavy vehicles\" banned OR prohibited OR \"no parking\" OR \"traffic alert\""
+    ]
+  },
+  "official_sources": [
+    "bengaluru-traffic-police-website"
+  ],
+  "gis_sources": []
+}

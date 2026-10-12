@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Traffic diversions at Lakeview Junction for 30 days from Monday",
+    "source_reference": "https://news.example.com/traffic-diversions-lakeview-junction",
+    "event_type": "TRAFFIC_DIVERSION",
+    "city": "Hyderabad",
+    "affected_road": "Lakeview Junction; Station Road",
+    "status": "VALIDATION_REQUIRED",
+    "start_time": null,
+    "end_time": null,
+    "severity": null,
+    "direction": null,
+    "geometry": null,
+    "confidence": null,
+    "matched_keywords": [
+      "traffic diversion",
+      "motorists",
+      "diverted"
+    ]
+  },
+  {
+    "title": "Heavy rain leaves several Hyderabad colonies waterlogged",
+    "source_reference": "https://news.example.com/heavy-rain-waterlogged",
+    "event_type": "FLOODING",
+    "city": "Hyderabad",
+    "affected_road": null,
+    "status": "VALIDATION_REQUIRED",
+    "start_time": null,
+    "end_time": null,
+    "severity": null,
+    "direction": null,
+    "geometry": null,
+    "confidence": null,
+    "matched_keywords": [
+      "waterlogged",
+      "heavy rain",
+      "traffic"
+    ]
+  },
+  {
+    "title": "Road closure near Orchard Flyover in Hyderabad this weekend",
+    "source_reference": "https://news.example.com/orchard-flyover-closure",
+    "event_type": null,
+    "city": "Hyderabad",
+    "affected_road": "Orchard Flyover",
+    "status": "VALIDATION_REQUIRED",
+    "start_time": null,
+    "end_time": null,
+    "severity": null,
+    "direction": null,
+    "geometry": null,
+    "confidence": null,
+    "matched_keywords": [
+      "road closure",
+      "flyover"
+    ]
+  }
+]

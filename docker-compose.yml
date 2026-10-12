@@ -1,0 +1,56 @@
+# Local development stack: PostgreSQL/PostGIS + REI API + REI web app.
+#
+#   cp .env.example .env        # then set POSTGRES_PASSWORD
+#   docker compose up --build
+#
+# Only the database:  docker compose up -d db
+# (then run the API and web app directly; see README.md)
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: rei
+      POSTGRES_USER: rei
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      # Host port; set REI_DB_PORT in .env when 5432 is taken by another database.
+      - "${REI_DB_PORT:-5432}:5432"
+    volumes:
+      - rei-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rei -d rei"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/api.Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://rei:${POSTGRES_PASSWORD}@db:5432/rei
+      CORS_ORIGINS: http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: apps/web
+      dockerfile: ../../infrastructure/docker/web.Dockerfile
+      args:
+        API_BASE_URL: http://api:8000
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+  # Not needed yet. Add when background jobs or caching require it:
+  # redis:
+  #   image: redis:7-alpine
+
+volumes:
+  rei-db:

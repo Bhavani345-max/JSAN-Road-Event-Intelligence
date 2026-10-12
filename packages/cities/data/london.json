@@ -1,0 +1,65 @@
+{
+  "id": "london",
+  "name": "London",
+  "area_name": "Greater London",
+  "country": "GB",
+  "region": "Greater London",
+  "timezone": "Europe/London",
+  "language": "en",
+  "bbox": [
+    51.28,
+    -0.51,
+    51.69,
+    0.33
+  ],
+  "map": {
+    "center": [
+      -0.1276,
+      51.5072
+    ],
+    "zoom": 10
+  },
+  "scope_terms": [
+    "London",
+    "Greater London",
+    "TfL",
+    "Transport for London"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Birmingham",
+    "Manchester",
+    "Leeds",
+    "Glasgow",
+    "Edinburgh",
+    "Liverpool",
+    "Bristol",
+    "Sheffield",
+    "Newcastle",
+    "Nottingham",
+    "Cardiff",
+    "Belfast",
+    "Oxford",
+    "Cambridge"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "London \"road closure\" OR \"road closed\" OR \"roads closed\"",
+      "London traffic diversion OR diversions OR \"diversion route\"",
+      "London roadworks OR \"road works\" OR \"lane closure\" OR \"lane closures\"",
+      "London traffic restrictions OR \"traffic restriction\" OR \"road restrictions\"",
+      "London flooding OR \"flooded road\" OR \"flash flooding\" roads",
+      "London \"road accident\" OR crash OR collision \"road closed\"",
+      "London \"road construction\" OR \"carriageway\" closed OR closure",
+      "TfL OR \"Transport for London\" road closure OR diversion OR disruption",
+      "London bridge OR tunnel closed OR closure OR restrictions traffic",
+      "London marathon OR parade OR protest OR demonstration road closures"
+    ]
+  },
+  "official_sources": [
+    "tfl-road-disruptions"
+  ],
+  "gis_sources": []
+}

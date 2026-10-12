@@ -1,0 +1,18 @@
+{
+  "version": "2026-10-09",
+  "junction_words": ["junction", "jn", "x road", "x roads", "cross road", "cross roads", "crossroads", "circle", "rotary", "chowrasta", "statue", "crossing"],
+  "structure_words": ["main road", "road", "rd", "railway underpass", "underpass", "rub", "rob", "flyover", "bridge", "stretch", "lane"],
+  "specific_endings": ["colony", "nagar", "gundu", "station", "market", "gate"],
+  "extend_words": ["railway station", "metro station", "railway underpass", "underpass", "flyover", "junction", "x roads", "x road", "cross roads", "road", "bus stop", "rub", "rob", "circle"],
+  "generic_tokens": ["road", "rd", "main", "the", "of", "to", "near", "junction", "jn", "x", "cross", "roads", "circle", "rotary", "statue", "flyover", "underpass", "rub", "railway", "lane", "street", "colony", "nagar", "area", "stretch"],
+  "organisations": [
+    "mmrda", "mumbai metropolitan region development authority", "ghmc", "greater hyderabad municipal corporation",
+    "hmwssb", "hmda", "hydraa", "cmc", "cyberabad municipal corporation", "nhai", "bbmp", "gba", "bmc",
+    "brihanmumbai municipal corporation", "msrdc", "mmrcl", "bmrcl", "bda", "bwssb", "tgsrtc", "bmtc"
+  ],
+  "role_priority": ["CLOSED", "AFFECTED", "STRETCH_FROM", "VENUE", "STRETCH_TO", "NEAR"],
+  "route_roles": ["DIVERSION_ROUTE", "ALTERNATE_ROUTE"],
+  "outlier_km": 5.0,
+  "weak_support_km": 3.0,
+  "within_km": 2.5
+}
