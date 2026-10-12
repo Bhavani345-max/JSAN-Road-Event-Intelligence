@@ -51,7 +51,7 @@ def client(engine, session):
 
 
 def events(client):
-    return client.get("/api/events", params={"limit": 500}).json()["items"]
+    return client.get("/api/events?view=validation", params={"limit": 500}).json()["items"]
 
 
 def event_titled(client, title):
@@ -162,7 +162,7 @@ def test_reprocessing_never_touches_a_reviewers_severity(client, session):
 def test_the_severity_filter_uses_rei_severity_only(client):
     london = event_titled(client, "Vehicle collision")
     # TfL says "Serious"; nothing maps that to REI's HIGH.
-    assert client.get("/api/events", params={"severity": "HIGH"}).json()["total"] == 0
+    assert client.get("/api/events?view=validation", params={"severity": "HIGH"}).json()["total"] == 0
     client.post(f"/api/events/{london['event_id']}/severity", json={"severity": "HIGH"})
-    found = client.get("/api/events", params={"severity": "HIGH"}).json()
+    found = client.get("/api/events?view=validation", params={"severity": "HIGH"}).json()
     assert [e["event_id"] for e in found["items"]] == [london["event_id"]]

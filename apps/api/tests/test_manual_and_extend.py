@@ -63,7 +63,7 @@ def client(engine, session):
 
 
 def event_titled(client, title):
-    items = client.get("/api/events", params={"limit": 500}).json()["items"]
+    items = client.get("/api/events?view=validation", params={"limit": 500}).json()["items"]
     return next(item for item in items if item["title"] == title)
 
 
@@ -214,9 +214,9 @@ def test_a_reviewer_can_add_an_event_no_source_reported(client, session):
 
 def test_a_manual_event_is_listed_filtered_and_searched_like_any_other(client):
     event = client.post("/api/events", json=MANUAL).json()
-    listed = client.get("/api/events", params={"source_id": "manual-entry"}).json()
+    listed = client.get("/api/events?view=validation", params={"source_id": "manual-entry"}).json()
     assert [item["event_id"] for item in listed["items"]] == [event["event_id"]]
-    found = client.get("/api/events", params={"q": "barricades gate"}).json()
+    found = client.get("/api/events?view=validation", params={"q": "barricades gate"}).json()
     assert [item["event_id"] for item in found["items"]] == [event["event_id"]]
     # And it can be reviewed and extended like any other.
     assert client.post(
@@ -266,7 +266,7 @@ def test_a_place_can_be_given_in_a_phrase(client):
 def test_an_incomplete_or_inconsistent_entry_is_refused(client, change):
     body = {key: value for key, value in {**MANUAL, **change}.items() if value is not None}
     assert client.post("/api/events", json=body).status_code == 422
-    assert client.get("/api/events", params={"source_id": "manual-entry"}).json()["total"] == 0
+    assert client.get("/api/events?view=validation", params={"source_id": "manual-entry"}).json()["total"] == 0
 
 
 def test_reprocessing_never_touches_a_manual_entry(client, session):

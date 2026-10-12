@@ -15,11 +15,11 @@ import EventList, { type EventListState } from "@/features/events/components/Eve
 import StatsBar from "@/features/events/components/StatsBar";
 import {
   DEFAULT_FILTERS,
+  EVENT_LIST_VIEWS,
   filterEvents,
   hasActiveFilters,
-  inCity,
-  keepCurrent,
   matchesLocally,
+  type EventListView,
   type EventFilters as Filters,
 } from "@/features/events/filters";
 import { useEventSearch } from "@/features/events/hooks/useEventSearch";
@@ -52,7 +52,6 @@ const subscribeToNothing = () => () => {};
 const NO_IDS: ReadonlySet<string> = new Set();
 
 export default function Dashboard() {
-  const { state, reload, refresh: refreshEvents } = useEvents();
   const { sources: allSources, refresh: refreshSources } = useConnectedSources();
   const cities = useCities();
   // A link can open the console on a city (/?city=london); choosing one in
@@ -69,6 +68,9 @@ export default function Dashboard() {
   const city = cityOptions.find((candidate) => candidate.id === cityId) ?? ALL_CITIES;
   const allCities = city.id === ALL_CITIES_ID;
   const isDefaultCity = city.id === DEFAULT_CITY_ID;
+  const cityFilter = allCities ? null : city.id;
+  const [view, setView] = useState<EventListView>("current_upcoming");
+  const { state, reload, refresh: refreshEvents } = useEvents(view, cityFilter);
   // Each event's times are shown in its own city's zone; times with no city
   // (filters) in the selected city's, or India Standard Time for all cities.
   // Set before anything below renders a time.
@@ -95,22 +97,13 @@ export default function Dashboard() {
     setPickedPoint(null);
   }, []);
   // The API's search also covers the full article text behind each event.
-  const serverMatches = useEventSearch(filters.search);
+  const serverMatches = useEventSearch(filters.search, view, cityFilter);
 
   const loadedEvents = state.status === "ready" ? state.events : NO_EVENTS;
   const loadedAt = state.status === "ready" ? state.loadedAt : null;
-  // By default completed, rejected and old events do not reach the list, the
-  // map or the counts: the console shows upcoming, ongoing and recently
-  // reported events. "Show history" brings the rest back.
-  const allEvents = useMemo(
-    () =>
-      loadedAt
-        ? keepCurrent(loadedEvents, loadedAt, filters.showHistory).filter(
-            (event) => allCities || inCity(event, city.name, isDefaultCity),
-          )
-        : NO_EVENTS,
-    [loadedEvents, loadedAt, city.name, isDefaultCity, allCities, filters.showHistory],
-  );
+  // The API classifies and filters events before counts, list rendering, or
+  // map rendering. The same returned page is the source for each surface.
+  const allEvents = loadedAt ? loadedEvents : NO_EVENTS;
   const visibleEvents = useMemo(
     () => filterEvents(allEvents, filters, serverMatches),
     [allEvents, filters, serverMatches],
@@ -157,7 +150,7 @@ export default function Dashboard() {
           status: "ready",
           events: visibleEvents,
           now: state.loadedAt,
-          isFiltered: hasActiveFilters(filters),
+          isFiltered: hasActiveFilters(filters) || view !== "current_upcoming",
         }
       : state;
 
@@ -193,6 +186,37 @@ export default function Dashboard() {
               stats={state.status === "ready" ? stats : null}
               unfilteredTotal={allEvents.length}
             />
+            <div className="grid grid-cols-2 gap-1.5" role="tablist" aria-label="Event views">
+              {EVENT_LIST_VIEWS.map((option) => {
+                const label = {
+                  current_upcoming: "Current + upcoming",
+                  current: "Current",
+                  upcoming: "Upcoming",
+                  validation: "Needs validation",
+                  history: "Expired / history",
+                  rejected: "Rejected",
+                }[option];
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    role="tab"
+                    aria-selected={view === option}
+                    onClick={() => {
+                      setView(option);
+                      setSelectedEventId(null);
+                    }}
+                    className={`min-h-9 rounded-lg px-2 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
+                      view === option
+                        ? "bg-white text-brand-700"
+                        : "bg-white/10 text-white hover:bg-white/20"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
             <SourceStatusBar sources={sources} onChecked={refreshAll} />
             <EventFilters
               filters={filters}

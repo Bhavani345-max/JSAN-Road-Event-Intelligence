@@ -65,7 +65,7 @@ def located_client(engine, session):
 
 
 def events_by_title(client):
-    items = client.get("/api/events", params={"limit": 500}).json()["items"]
+    items = client.get("/api/events?view=validation", params={"limit": 500}).json()["items"]
     return {item["title"]: item for item in items}
 
 

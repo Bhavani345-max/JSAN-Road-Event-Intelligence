@@ -261,15 +261,6 @@ export default function EventFilters({
           onChange={(to) => onChange({ ...filters, to })}
         />
       </div>
-      <label className="flex cursor-pointer items-center gap-2 text-xs text-white/80">
-        <input
-          type="checkbox"
-          checked={filters.showHistory}
-          onChange={(e) => onChange({ ...filters, showHistory: e.target.checked })}
-          className="h-3.5 w-3.5 rounded border-white/40 bg-white/10 accent-white"
-        />
-        Show history (ended, rejected and old events)
-      </label>
     </div>
   );
 }

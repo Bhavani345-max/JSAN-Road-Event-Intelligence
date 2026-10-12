@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { toEventMapData } from "@/features/map/geojson";
 import type { ApiEvent } from "@/types/api";
 import { mapApiEvent } from "./api/eventRepository";
-import { inCity, isCurrent } from "./filters";
+import { getTimeState, inCity } from "./filters";
 import {
   DEFAULT_TIME_ZONE,
   describeSourceAuthority,
@@ -344,18 +344,14 @@ describe("merged events", () => {
   });
 });
 
-describe("an event the source reports ended", () => {
-  it("is no longer current, whatever its stated end", () => {
-    const now = new Date("2026-10-06T12:00:00Z");
-    const live = mapApiEvent({ ...realApiEvent, start_time: "2026-10-01T00:00:00Z", end_time: "2026-12-01T00:00:00Z" })!;
-    const cleared = mapApiEvent({
+describe("international event time labels", () => {
+  it("labels a stated period in absolute time independent of city display timezone", () => {
+    const live = mapApiEvent({
       ...realApiEvent,
       start_time: "2026-10-01T00:00:00Z",
       end_time: "2026-12-01T00:00:00Z",
-      detection: { ...realApiEvent.detection!, source_reports_ended: true },
     })!;
-    expect(isCurrent(live, now)).toBe(true);
-    expect(isCurrent(cleared, now)).toBe(false);
+    expect(getTimeState(live, new Date("2026-10-06T12:00:00Z"))).toBe("ongoing");
   });
 });
 

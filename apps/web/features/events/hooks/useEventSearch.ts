@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { searchEventIds } from "../api/eventRepository";
+import type { EventListView } from "../filters";
 
 const DEBOUNCE_MS = 300;
 const MIN_LENGTH = 2;
@@ -13,7 +14,11 @@ const MIN_LENGTH = 2;
  * Returns null until a result for exactly this search text has arrived, so
  * the caller can fall back to what it can match itself in the meantime.
  */
-export function useEventSearch(search: string): ReadonlySet<string> | null {
+export function useEventSearch(
+  search: string,
+  view: EventListView,
+  cityId: string | null,
+): ReadonlySet<string> | null {
   const query = search.trim();
   const [result, setResult] = useState<{ query: string; ids: Set<string> } | null>(null);
 
@@ -21,7 +26,7 @@ export function useEventSearch(search: string): ReadonlySet<string> | null {
     if (query.length < MIN_LENGTH) return;
     let cancelled = false;
     const timer = setTimeout(() => {
-      searchEventIds(query)
+      searchEventIds(query, view, cityId)
         .then((ids) => {
           if (!cancelled) setResult({ query, ids });
         })
@@ -32,7 +37,7 @@ export function useEventSearch(search: string): ReadonlySet<string> | null {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [query]);
+  }, [query, view, cityId]);
 
   return query.length >= MIN_LENGTH && result?.query === query ? result.ids : null;
 }

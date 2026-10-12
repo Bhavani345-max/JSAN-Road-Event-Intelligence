@@ -19,6 +19,7 @@ from app.services import review_service
 from app.services.manual_event_service import create_manual_event
 from packages.cities import load_cities
 from packages.event_schema import EventSeverity, EventStatus
+from services.lifecycle.current import EventListView
 from services.lifecycle import InvalidTransition
 
 router = APIRouter(prefix="/events", tags=["events"])
@@ -36,6 +37,15 @@ def list_events(
     include_merged: Annotated[
         bool, Query(description="Also list events merged into another (shown as part of it)")
     ] = False,
+    view: Annotated[
+        EventListView,
+        Query(
+            description=(
+                "Server-side view: current_upcoming (default), current, upcoming, "
+                "validation, history, or rejected."
+            )
+        ),
+    ] = EventListView.CURRENT_UPCOMING,
     q: Annotated[
         str | None,
         Query(
@@ -58,6 +68,7 @@ def list_events(
         source_id=source_id,
         city=city_name,
         include_merged=include_merged,
+        view=view,
         q=q,
         limit=limit,
         offset=offset,

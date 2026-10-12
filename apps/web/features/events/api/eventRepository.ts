@@ -1,6 +1,7 @@
 import { getRepresentativePoint } from "@/features/map/geometry";
 import { apiFetch } from "@/lib/apiClient";
 import type { ApiAiReading, ApiEvent, ApiEventList, ApiGeometry } from "@/types/api";
+import type { EventListView } from "../filters";
 import {
   type AiReadingView,
   EVENT_DIRECTIONS,
@@ -14,7 +15,7 @@ import {
 
 /** The single entry point the UI uses to obtain events. */
 export interface EventRepository {
-  listEvents(): Promise<RoadEvent[]>;
+  listEvents(view: EventListView, cityId?: string | null): Promise<RoadEvent[]>;
 }
 
 /** `value` if it is one of `allowed`, otherwise null. */
@@ -279,11 +280,27 @@ function toAiReading(ai: ApiAiReading | null): AiReadingView | null {
   };
 }
 
-/** Events from the REI API, most recently published first. */
+async function fetchEventPages(path: string, params: URLSearchParams): Promise<ApiEvent[]> {
+  const items: ApiEvent[] = [];
+  let total = 0;
+  do {
+    params.set("limit", "500");
+    params.set("offset", String(items.length));
+    const page = await apiFetch<ApiEventList>(`${path}?${params.toString()}`);
+    total = page.total;
+    items.push(...page.items);
+    if (page.items.length === 0) break;
+  } while (items.length < total);
+  return items;
+}
+
+/** Events from the server-classified view, most recently published first. */
 export const apiEventRepository: EventRepository = {
-  async listEvents() {
-    const list = await apiFetch<ApiEventList>("/events?limit=500");
-    return list.items.map(mapApiEvent).filter((event) => event !== null);
+  async listEvents(view, cityId = null) {
+    const params = new URLSearchParams({ view });
+    if (cityId) params.set("city", cityId);
+    const list = await fetchEventPages("/events", params);
+    return list.map(mapApiEvent).filter((event) => event !== null);
   },
 };
 
@@ -291,9 +308,13 @@ export const apiEventRepository: EventRepository = {
  * Ids of the events matching a text search. The API searches each event, its
  * source, and the full text of the article it came from.
  */
-export async function searchEventIds(query: string): Promise<Set<string>> {
-  const list = await apiFetch<ApiEventList>(
-    `/events?limit=500&q=${encodeURIComponent(query.trim())}`,
-  );
-  return new Set(list.items.map((event) => event.event_id));
+export async function searchEventIds(
+  query: string,
+  view: EventListView,
+  cityId?: string | null,
+): Promise<Set<string>> {
+  const params = new URLSearchParams({ view, q: query.trim() });
+  if (cityId) params.set("city", cityId);
+  const list = await fetchEventPages("/events", params);
+  return new Set(list.map((event) => event.event_id));
 }

@@ -1,4 +1,6 @@
-from sqlalchemy import func, select
+from datetime import datetime
+
+from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session, contains_eager
 
 from app.models import Event, EventMergeCandidate, EventVersion, Source, SourceArtifact
@@ -11,8 +13,10 @@ from app.schemas.event import (
 )
 from packages.common.text import html_to_text
 from packages.common.time import utc_now
+from packages.cities import default_city
 from packages.event_schema import EventSeverity, EventStatus, ReiEvent
 from services.lifecycle import approval_blockers
+from services.lifecycle.current import EventListView, matches_event_view
 
 # Columns that are copied one-to-one between the canonical event and its row.
 _CANONICAL_FIELDS = tuple(ReiEvent.model_fields)
@@ -119,9 +123,11 @@ class EventRepository:
         source_id: str | None = None,
         city: str | None = None,
         include_merged: bool = False,
+        view: EventListView = EventListView.CURRENT_UPCOMING,
         q: str | None = None,
         limit: int = 200,
         offset: int = 0,
+        now: datetime | None = None,
     ) -> tuple[list[Event], int]:
         filters = []
         if status is not None:
@@ -133,7 +139,10 @@ class EventRepository:
             filters.append(Event.source_id == source_id)
         if city is not None:
             # The city's display name, as event creation records it.
-            filters.append(Event.city == city)
+            city_filter = Event.city == city
+            if city == default_city().name:
+                city_filter = or_(city_filter, Event.city.is_(None))
+            filters.append(city_filter)
         if not include_merged:
             # An event merged into another is shown as part of it.
             filters.append(Event.merged_into.is_(None))
@@ -149,19 +158,18 @@ class EventRepository:
                 Event.event_id,
             )
         )
+        # Apply view and text eligibility before pagination. At current REI
+        # volumes this keeps totals and pages correct without dialect-specific
+        # JSON timestamp/status expressions.
         terms = (q or "").lower().split()
-        if terms:
-            # Text search runs in Python over the event and its stored evidence.
-            # That is adequate for the PoC's event volume; a full-text index
-            # replaces it when volumes grow.
-            matches = [
-                row for row in self.session.scalars(query).unique() if _matches(row, terms)
-            ]
-            return matches[offset : offset + limit], len(matches)
-
-        total = self.session.scalar(select(func.count()).select_from(Event).where(*filters)) or 0
-        rows = self.session.scalars(query.limit(limit).offset(offset)).unique()
-        return list(rows), total
+        now = now or utc_now()
+        matched = [
+            row
+            for row in self.session.scalars(query).unique()
+            if (not terms or _matches(row, terms))
+            and matches_event_view(to_rei_event(row), view, now=now)
+        ]
+        return matched[offset : offset + limit], len(matched)
 
     def get(self, event_id: str) -> Event | None:
         return self.session.get(Event, event_id)

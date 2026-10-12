@@ -146,7 +146,7 @@ def test_reprocessing_keeps_what_the_ai_reading_found(app, tmp_path):
 def test_the_api_returns_the_reading_with_each_place_role(app, tmp_path):
     reader(app, tmp_path, model()).run()
     with TestClient(app) as client:
-        listed = client.get("/api/events").json()["items"]
+        listed = client.get("/api/events?view=validation").json()["items"]
         cycling = next(item for item in listed if item["title"] == TITLE)
         ai = cycling["detection"]["ai"]
         assert ai["intent"] == "MARATHON" and ai["impact"] == "CLOSURE"

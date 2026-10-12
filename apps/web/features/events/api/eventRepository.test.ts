@@ -74,9 +74,12 @@ describe("searchEventIds", () => {
   it("asks the API to search and returns the ids it found", async () => {
     const fetchMock = stubFetch(json({ items: [locatedApiEvent], total: 1 }));
 
-    const ids = await searchEventIds("  DLF Gate ");
+    const ids = await searchEventIds("  DLF Gate ", "current_upcoming", "hyderabad");
 
-    expect(fetchMock).toHaveBeenCalledWith("/api/events?limit=500&q=DLF%20Gate", expect.anything());
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/events?view=current_upcoming&q=DLF+Gate&city=hyderabad&limit=500&offset=0",
+      expect.anything(),
+    );
     expect([...ids]).toEqual(["EVT-LOCATED00001"]);
   });
 });
@@ -85,30 +88,47 @@ describe("apiEventRepository.listEvents", () => {
   it("loads events from the API in the order the API returns them", async () => {
     const fetchMock = stubFetch(json({ items: [realApiEvent, locatedApiEvent], total: 2 }));
 
-    const events = await apiEventRepository.listEvents();
+    const events = await apiEventRepository.listEvents("current_upcoming");
 
-    expect(fetchMock).toHaveBeenCalledWith("/api/events?limit=500", expect.anything());
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/events?view=current_upcoming&limit=500&offset=0",
+      expect.anything(),
+    );
     expect(events.map((event) => event.id)).toEqual(["EVT-0123456789AB", "EVT-LOCATED00001"]);
   });
 
   it("returns an empty list when there are no events", async () => {
     stubFetch(json({ items: [], total: 0 }));
-    expect(await apiEventRepository.listEvents()).toEqual([]);
+    expect(await apiEventRepository.listEvents("current_upcoming")).toEqual([]);
+  });
+
+  it("loads every server-filtered page instead of truncating map and counts at 500", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(json({ items: Array(500).fill(realApiEvent), total: 501 }))
+      .mockResolvedValueOnce(json({ items: [locatedApiEvent], total: 501 }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const events = await apiEventRepository.listEvents("history");
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[1][0]).toBe("/api/events?view=history&limit=500&offset=500");
+    expect(events).toHaveLength(501);
   });
 
   it("explains how to start the API when it cannot be reached", async () => {
     stubFetch(new TypeError("Failed to fetch"));
-    await expect(apiEventRepository.listEvents()).rejects.toThrow(/REI API is not reachable/);
+    await expect(apiEventRepository.listEvents("current_upcoming")).rejects.toThrow(/REI API is not reachable/);
   });
 
   it("treats a proxy error (API server down) as unreachable", async () => {
     stubFetch(new Response("Internal Server Error", { status: 500 }));
-    await expect(apiEventRepository.listEvents()).rejects.toThrow(/REI API is not reachable/);
+    await expect(apiEventRepository.listEvents("current_upcoming")).rejects.toThrow(/REI API is not reachable/);
   });
 
   it("surfaces the API's own error message", async () => {
     stubFetch(json({ detail: "Event not found" }, 404));
-    await expect(apiEventRepository.listEvents()).rejects.toThrow("Event not found");
+    await expect(apiEventRepository.listEvents("current_upcoming")).rejects.toThrow("Event not found");
   });
 });
 

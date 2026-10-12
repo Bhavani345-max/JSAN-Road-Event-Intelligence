@@ -40,7 +40,7 @@ def client(engine, session):
 
 
 def event_titled(client, title):
-    items = client.get("/api/events", params={"limit": 500}).json()["items"]
+    items = client.get("/api/events?view=validation", params={"limit": 500}).json()["items"]
     return next(item for item in items if item["title"] == title)
 
 

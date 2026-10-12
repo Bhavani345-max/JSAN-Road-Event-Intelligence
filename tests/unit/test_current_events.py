@@ -2,11 +2,13 @@
 (apps/web/features/events/filters.ts; its cases are in events.test.ts)."""
 
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 import pytest
 
 from packages.event_schema import EventDetection, EventStatus, EventType, ReiEvent
 from services.lifecycle import is_current
+from services.lifecycle.current import EventListView, event_time_state, matches_event_view
 
 NOW = datetime(2026, 10, 7, 12, 0, tzinfo=timezone.utc)
 DAY = timedelta(days=1)
@@ -68,3 +70,65 @@ def test_an_official_record_with_no_stated_end_stays_current_whatever_its_age():
     closed = event(status=EventStatus.REJECTED)
     closed.detection.method = "source_provided"
     assert is_current(closed, reported_at=NOW, now=NOW) is False
+
+
+def test_server_views_require_reviewed_operational_status_and_stated_timing():
+    ongoing = event(status=EventStatus.APPROVED, start=NOW - DAY, end=NOW + DAY)
+    upcoming = event(status=EventStatus.SCHEDULED, start=NOW + DAY, end=NOW + 3 * DAY)
+    pending = event(start=NOW + DAY, end=NOW + 3 * DAY)
+    untimed_approved = event(status=EventStatus.APPROVED)
+
+    assert matches_event_view(ongoing, EventListView.CURRENT_UPCOMING, now=NOW)
+    assert matches_event_view(ongoing, EventListView.CURRENT, now=NOW)
+    assert not matches_event_view(ongoing, EventListView.UPCOMING, now=NOW)
+    assert matches_event_view(upcoming, EventListView.UPCOMING, now=NOW)
+    assert matches_event_view(pending, EventListView.VALIDATION, now=NOW)
+    assert not matches_event_view(pending, EventListView.CURRENT_UPCOMING, now=NOW)
+    assert matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW)
+    assert not matches_event_view(untimed_approved, EventListView.CURRENT_UPCOMING, now=NOW)
+
+
+def test_server_views_keep_ended_records_accessible_without_changing_status():
+    ended = event(status=EventStatus.APPROVED, start=NOW - 3 * DAY, end=NOW - DAY)
+    rejected = event(status=EventStatus.REJECTED, start=NOW + DAY)
+
+    assert event_time_state(ended, now=NOW) == "ended"
+    assert not matches_event_view(ended, EventListView.CURRENT_UPCOMING, now=NOW)
+    assert matches_event_view(ended, EventListView.HISTORY, now=NOW)
+    assert matches_event_view(rejected, EventListView.REJECTED, now=NOW)
+    assert not matches_event_view(rejected, EventListView.CURRENT_UPCOMING, now=NOW)
+    # Classification is read-only; no lifecycle transition is performed here.
+    assert ended.status is EventStatus.APPROVED
+
+
+def test_time_view_boundaries_are_utc_and_end_time_equal_to_now_is_current():
+    from datetime import timedelta
+
+    local_now = NOW.astimezone(timezone(timedelta(hours=5, minutes=30)))
+    event_at_boundary = event(
+        status=EventStatus.ACTIVE,
+        start=local_now - timedelta(hours=1),
+        end=local_now,
+    )
+    event_ended = event(
+        status=EventStatus.ACTIVE,
+        start=local_now - timedelta(hours=1),
+        end=local_now - timedelta(microseconds=1),
+    )
+
+    assert event_time_state(event_at_boundary, now=NOW) == "current"
+    assert event_time_state(event_ended, now=NOW) == "ended"
+
+
+@pytest.mark.parametrize("zone_name", ["Asia/Kolkata", "Europe/London", "America/Toronto"])
+def test_timezone_local_boundary_is_compared_as_the_same_utc_instant(zone_name):
+    from datetime import timedelta
+
+    local_now = NOW.astimezone(ZoneInfo(zone_name))
+    event_at_boundary = event(
+        status=EventStatus.ACTIVE,
+        start=local_now - timedelta(minutes=1),
+        end=local_now,
+    )
+
+    assert event_time_state(event_at_boundary, now=NOW) == "current"

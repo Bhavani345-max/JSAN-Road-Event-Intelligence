@@ -29,9 +29,19 @@ places they name).
 
 ## GET /api/events
 
-Query parameters: `status`, `severity` (REI's own severity: LOW, MEDIUM, HIGH or
-CRITICAL; never the source's words), `source_id`, `q` (text search), `limit`
-(1–500, default 200), `offset`.
+Query parameters: `view` (`current_upcoming` by default; also `current`,
+`upcoming`, `validation`, `history`, or `rejected`), `city`, `status`,
+`severity` (REI's own severity: LOW, MEDIUM, HIGH or CRITICAL; never the
+source's words), `source_id`, `q` (text search), `limit` (1–500, default 200),
+`offset`.
+
+The server applies the selected event view before search, total counts, and
+pagination. Current/upcoming views require a lifecycle status that represents
+an accepted or operational event and at least one stated event time. Events
+that need review remain in `validation`; records whose stated end has passed,
+which their source reports ended, or which are closed by lifecycle status are
+available in `history`. Rejected records have their own view. These views do
+not change event statuses or alter source evidence.
 
 `q` finds events containing every word given, searching the event (title,
 description, road, city, type), its source, and the stored article it came

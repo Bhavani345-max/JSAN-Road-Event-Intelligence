@@ -1,8 +1,18 @@
 import type { EventSeverity, EventStatus, EventType, RoadEvent } from "./model";
-import { getStatusPhase, zonedInputToTime } from "./presentation";
+import { zonedInputToTime } from "./presentation";
 
 export const ALL = "ALL";
 export type All = typeof ALL;
+
+export const EVENT_LIST_VIEWS = [
+  "current_upcoming",
+  "current",
+  "upcoming",
+  "validation",
+  "history",
+  "rejected",
+] as const;
+export type EventListView = (typeof EVENT_LIST_VIEWS)[number];
 
 /** The choice that selects events with no type. */
 export const UNCLASSIFIED = "UNCLASSIFIED";
@@ -23,11 +33,6 @@ export interface EventFilters {
    */
   from: string;
   to: string;
-  /**
-   * Also show history: ended, rejected and old events. Off by default; they
-   * stay in the database and are reachable here (brief of 8 October 2026, s.17).
-   */
-  showHistory: boolean;
 }
 
 export const DEFAULT_FILTERS: EventFilters = {
@@ -38,7 +43,6 @@ export const DEFAULT_FILTERS: EventFilters = {
   sourceId: ALL,
   from: "",
   to: "",
-  showHistory: false,
 };
 
 export function hasDateRange(filters: EventFilters): boolean {
@@ -52,18 +56,11 @@ export function hasActiveFilters(filters: EventFilters): boolean {
     filters.status !== ALL ||
     filters.severity !== ALL ||
     filters.sourceId !== ALL ||
-    filters.showHistory ||
     hasDateRange(filters)
   );
 }
 
-/** How long an event whose source gave no times stays in the default view. */
-export const RECENT_REPORT_DAYS = 7;
-/** Road works run for months, so a report of them stays longer. */
-export const RECENT_WORKS_REPORT_DAYS = 30;
-
 const MINUTE_MS = 60_000;
-const DAY_MS = 24 * 60 * MINUTE_MS;
 
 function toTime(iso: string | null | undefined): number | null {
   if (!iso) return null;
@@ -76,59 +73,25 @@ function inputToTime(value: string): number | null {
   return zonedInputToTime(value);
 }
 
-/** When the event was reported; the only time known for an event whose source gave no times. */
+/** Report time is used only by explicit date-range filtering, not current status. */
 function getReportedTime(event: RoadEvent): number | null {
   return toTime(event.evidence?.publishedAt) ?? toTime(event.evidence?.retrievedAt);
 }
 
 export type TimeState = "upcoming" | "ongoing" | "ended";
 
-/** Where `now` falls in the period the source states; null when it states none. */
+/** Display label derived from stated event times; API filtering remains authoritative. */
 export function getTimeState(event: RoadEvent, now: Date): TimeState | null {
   const start = toTime(event.startTime);
   const end = toTime(event.endTime);
   if (start === null && end === null) return null;
   if (end !== null && end < now.getTime()) return "ended";
-  // A stated start with no end runs until further notice.
   return start !== null && start > now.getTime() ? "upcoming" : "ongoing";
 }
 
-/**
- * Whether an event is still of interest: upcoming, ongoing or recently
- * reported. Ended, rejected and cancelled events are not, nor are old reports
- * that state no times.
- */
-export function isCurrent(event: RoadEvent, now: Date): boolean {
-  if (getStatusPhase(event.status) === "closed") return false;
-  // The source itself says it is over (cleared, cancelled, expired).
-  if (event.detection?.sourceReportsEnded) return false;
-  const state = getTimeState(event, now);
-  if (state !== null) return state !== "ended";
-  // An official record that states no end ("Till Next Order") is in force
-  // until its source reports it ended or a reviewer closes it; no expiry is
-  // invented from its age (brief of 8 October 2026, s.16).
-  if (event.detection?.method === "source_provided") return true;
-  const reported = getReportedTime(event);
-  const days =
-    event.eventType === "ROAD_CONSTRUCTION" ? RECENT_WORKS_REPORT_DAYS : RECENT_REPORT_DAYS;
-  return reported === null || now.getTime() - reported <= days * DAY_MS;
-}
-
-/**
- * Whether an event belongs to a city. Events whose source gave no city are
- * the default city's (Hyderabad's), as all events were before there were cities.
- */
+/** Whether the event belongs to a city; legacy records without a city are Hyderabad's. */
 export function inCity(event: RoadEvent, cityName: string, isDefaultCity: boolean): boolean {
   return event.city === null ? isDefaultCity : event.city === cityName;
-}
-
-/**
- * The events the console works with by default: upcoming, ongoing and
- * recently reported. Completed, rejected and old ones are left out unless
- * history is asked for; they remain in the database either way.
- */
-export function keepCurrent(events: RoadEvent[], now: Date, showHistory = false): RoadEvent[] {
-  return showHistory ? events : events.filter((event) => isCurrent(event, now));
 }
 
 /** Whether the event's type is among the chosen ones (none chosen: every type). */
