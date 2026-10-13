@@ -452,6 +452,11 @@ export default function EventMap({
       addSatelliteLayer(map);
       addEventLayers(map);
       addLocationPointLayer(map);
+      // Keep the event's selectable marker above GIS point features. A GIS
+      // candidate or resolved junction can share its coordinates and would
+      // otherwise paint over the selected event marker.
+      map.moveLayer(LAYERS.anchorHalo);
+      map.moveLayer(LAYERS.anchor);
       loaded = true;
       setLoadedMap(map);
       setStatus("ready");

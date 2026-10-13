@@ -15,7 +15,6 @@ import EventList, { type EventListState } from "@/features/events/components/Eve
 import StatsBar from "@/features/events/components/StatsBar";
 import {
   DEFAULT_FILTERS,
-  EVENT_LIST_VIEWS,
   filterEvents,
   hasActiveFilters,
   matchesLocally,
@@ -186,36 +185,20 @@ export default function Dashboard() {
               stats={state.status === "ready" ? stats : null}
               unfilteredTotal={allEvents.length}
             />
-            <div className="grid grid-cols-2 gap-1.5" role="tablist" aria-label="Event views">
-              {EVENT_LIST_VIEWS.map((option) => {
-                const label = {
-                  current_upcoming: "Current + upcoming",
-                  current: "Current",
-                  upcoming: "Upcoming",
-                  validation: "Needs validation",
-                  history: "Expired / history",
-                  rejected: "Rejected",
-                }[option];
-                return (
-                  <button
-                    key={option}
-                    type="button"
-                    role="tab"
-                    aria-selected={view === option}
-                    onClick={() => {
-                      setView(option);
-                      setSelectedEventId(null);
-                    }}
-                    className={`min-h-9 rounded-lg px-2 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
-                      view === option
-                        ? "bg-white text-brand-700"
-                        : "bg-white/10 text-white hover:bg-white/20"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
+            <div className="flex min-h-9 items-center justify-between gap-3">
+              <h2 className="text-xs font-semibold text-white">
+                {view === "validation" ? "Needs validation" : "Current and upcoming road events"}
+              </h2>
+              <button
+                type="button"
+                onClick={() => {
+                  setView(view === "validation" ? "current_upcoming" : "validation");
+                  setSelectedEventId(null);
+                }}
+                className="shrink-0 rounded px-1.5 py-1 text-xs font-semibold text-white/90 underline decoration-white/50 underline-offset-2 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              >
+                {view === "validation" ? "Back to operations" : "Open review queue"}
+              </button>
             </div>
             <SourceStatusBar sources={sources} onChecked={refreshAll} />
             <EventFilters
