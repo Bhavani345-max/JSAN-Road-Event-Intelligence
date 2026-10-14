@@ -24,15 +24,21 @@ from .discovery.google_news_rss import GoogleNewsRssConnector, google_news_rss_s
 from .official import (
     BengaluruTrafficPoliceConnector,
     BisonFuteRoadEventsConnector,
+    DialogTrafficOrdersConnector,
     FinlandDigitrafficConnector,
+    LyonDisruptiveWorksConnector,
     MumbaiTrafficPoliceConnector,
+    NycPermittedEventsConnector,
     NycStreetClosuresConnector,
     TflRoadDisruptionsConnector,
     TorontoRoadRestrictionsConnector,
     bengaluru_source,
     bison_fute_source,
+    dialog_source,
     finland_source,
+    lyon_source,
     mumbai_source,
+    nyc_events_source,
     nyc_source,
     tfl_source,
     toronto_source,
@@ -116,7 +122,10 @@ def _official_sources(
     mumbai = mumbai_source(scheduled=scheduled)
     bengaluru = bengaluru_source(scheduled=scheduled)
     nyc = nyc_source(scheduled=scheduled)
+    nyc_events = nyc_events_source(scheduled=scheduled)
     france = bison_fute_source(scheduled=scheduled)
+    dialog = dialog_source(scheduled=scheduled)
+    lyon = lyon_source(scheduled=scheduled)
     finland = finland_source(scheduled=scheduled)
     return (
         RegisteredSource(
@@ -149,9 +158,22 @@ def _official_sources(
             nyc,
             lambda user_agent: NycStreetClosuresConnector(nyc, user_agent),
         ),
+        # NYC permitted events, DiaLog and Lyon: connected 14 October 2026 (decision 0027).
+        RegisteredSource(
+            nyc_events,
+            lambda user_agent: NycPermittedEventsConnector(nyc_events, user_agent),
+        ),
         RegisteredSource(
             france,
             lambda user_agent: BisonFuteRoadEventsConnector(france, user_agent),
+        ),
+        RegisteredSource(
+            dialog,
+            lambda user_agent: DialogTrafficOrdersConnector(dialog, user_agent),
+        ),
+        RegisteredSource(
+            lyon,
+            lambda user_agent: LyonDisruptiveWorksConnector(lyon, user_agent),
         ),
         RegisteredSource(
             finland,

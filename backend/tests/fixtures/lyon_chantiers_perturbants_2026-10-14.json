@@ -1,0 +1,182 @@
+{
+ "_note": "REAL features returned by the Métropole de Lyon WFS layer pvo_patrimoine_voirie.pvochantierperturbant (https://data.grandlyon.com/geoserver/metropole-de-lyon/ows) on 2026-10-14 (about 16:00 UTC), kept unchanged as a regression fixture. Source: Métropole de Lyon, Licence Ouverte 2.0.",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "pvo_patrimoine_voirie.pvochantierperturbant.416244",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        4.83828299,
+        45.74568223
+       ],
+       [
+        4.8385472,
+        45.74575111
+       ],
+       [
+        4.83859086,
+        45.7456974
+       ],
+       [
+        4.8383265,
+        45.74562429
+       ],
+       [
+        4.83828299,
+        45.74568223
+       ]
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "the_geom",
+   "properties": {
+    "nom": "Rue Raoul Servant",
+    "nomchantier": "Travaux voirie",
+    "commune1": "Lyon 7e Arrondissement",
+    "insee": "69387",
+    "precisionlocalisation": null,
+    "debutchantier": "2026-10-01",
+    "finchantier": "2026-10-30",
+    "descripchantierinternet": null,
+    "avancement": "Chantier en cours",
+    "importance": "Chantier très perturbant",
+    "typeperturbation": "Circulation interdite",
+    "intervenant": "Autre",
+    "validite": "A vérifier",
+    "codeimportance": 1,
+    "document_joint": "",
+    "url_document": "",
+    "gid": 416244
+   },
+   "bbox": [
+    4.83828299,
+    45.74562429,
+    4.83859086,
+    45.74575111
+   ]
+  },
+  {
+   "type": "Feature",
+   "id": "pvo_patrimoine_voirie.pvochantierperturbant.414328",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        4.88484757,
+        45.70019538
+       ],
+       [
+        4.88444453,
+        45.70015798
+       ],
+       [
+        4.88443767,
+        45.70019507
+       ],
+       [
+        4.88484853,
+        45.7002238
+       ],
+       [
+        4.88484757,
+        45.70019538
+       ]
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "the_geom",
+   "properties": {
+    "nom": "Rue Paul Bert",
+    "nomchantier": "Travaux de voirie",
+    "commune1": "Vénissieux",
+    "insee": "69259",
+    "precisionlocalisation": null,
+    "debutchantier": "2026-04-13",
+    "finchantier": "2027-04-13",
+    "descripchantierinternet": null,
+    "avancement": "Chantier en cours",
+    "importance": "Chantier perturbant",
+    "typeperturbation": "Circulation réduite",
+    "intervenant": "Autre",
+    "validite": "A vérifier",
+    "codeimportance": 2,
+    "document_joint": "",
+    "url_document": "",
+    "gid": 414328
+   },
+   "bbox": [
+    4.88443767,
+    45.70015798,
+    4.88484853,
+    45.7002238
+   ]
+  },
+  {
+   "type": "Feature",
+   "id": "pvo_patrimoine_voirie.pvochantierperturbant.416338",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        4.76300431,
+        45.5880872
+       ],
+       [
+        4.76334922,
+        45.58810834
+       ],
+       [
+        4.76334876,
+        45.5880458
+       ],
+       [
+        4.76302474,
+        45.58801692
+       ],
+       [
+        4.76300431,
+        45.5880872
+       ]
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "the_geom",
+   "properties": {
+    "nom": "Rue du Moulin",
+    "nomchantier": "Travaux de réseau telecom",
+    "commune1": "Givors",
+    "insee": "69091",
+    "precisionlocalisation": null,
+    "debutchantier": "2026-10-12",
+    "finchantier": "2027-01-09",
+    "descripchantierinternet": "De 8h à 17h",
+    "avancement": "Chantier en cours",
+    "importance": "Chantier perturbant",
+    "typeperturbation": "Circulation alternée de jour",
+    "intervenant": "Autre",
+    "validite": "A vérifier",
+    "codeimportance": 2,
+    "document_joint": "",
+    "url_document": "",
+    "gid": 416338
+   },
+   "bbox": [
+    4.76300431,
+    45.58801692,
+    4.76334922,
+    45.58810834
+   ]
+  }
+ ]
+}

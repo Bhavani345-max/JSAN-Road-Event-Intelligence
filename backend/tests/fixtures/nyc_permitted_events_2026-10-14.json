@@ -1,0 +1,75 @@
+{
+ "_note": "REAL rows returned by https://data.cityofnewyork.us/resource/tvpp-9vvx.json on 2026-10-14 (15:25 UTC), kept unchanged as a regression fixture. NYC Open Data: 'There are no restrictions on the use of Open Data.'",
+ "rows": [
+  {
+   "event_id": "976387",
+   "event_name": "Breakthrough T1D Walk",
+   "start_date_time": "2026-10-17T08:30:00.000",
+   "end_date_time": "2026-10-17T11:30:00.000",
+   "event_agency": "Police Department",
+   "event_type": "Parade",
+   "event_borough": "Manhattan",
+   "event_location": "Thomas Paine Park (Foley Square): Thomas Paine Park (Foley Square) ,Brooklyn Bridge: Brooklyn Bridge Pedestrian: 1  between Park Row (S) and Tillary Street, Thomas Paine Park (Foley Square): Thomas Paine Park (Foley Square) , CENTRE STREET between DUANE STREET and PARK ROW",
+   "street_closure_type": "Full Street Closure",
+   "community_board": "1, 2, 3,",
+   "police_precinct": "1, 5, 84,",
+   "cemsid": "82, 431, 431, 0,"
+  },
+  {
+   "event_id": "970602",
+   "event_name": "TEAM WEPA 5K  10K",
+   "start_date_time": "2026-10-18T07:30:00.000",
+   "end_date_time": "2026-10-18T10:00:00.000",
+   "event_agency": "Police Department",
+   "event_type": "Athletic Race / Tour",
+   "event_borough": "Queens",
+   "event_location": "ASTORIA PARK SOUTH between SHORE BOULEVARD and 14 STREET,  SHORE BOULEVARD between ASTORIA PARK SOUTH and 20 AVENUE,  ASTORIA PARK SOUTH between 14 STREET and SHORE BOULEVARD",
+   "event_street_side": "East",
+   "street_closure_type": "Full Street Closure",
+   "community_board": "1,",
+   "police_precinct": "114,"
+  },
+  {
+   "event_id": "934014",
+   "event_name": "Afterschool Fun",
+   "start_date_time": "2026-10-14T08:00:00.000",
+   "end_date_time": "2026-10-14T20:00:00.000",
+   "event_agency": "Street Activity Permit Office",
+   "event_type": "Open Street Partner Event",
+   "event_borough": "Queens",
+   "event_location": "34 AVENUE between 93 STREET and 94 STREET",
+   "event_street_side": "Full",
+   "street_closure_type": "Full Street Closure",
+   "community_board": "3,",
+   "police_precinct": "115,"
+  },
+  {
+   "event_id": "965106",
+   "event_name": "Staten Island SAFE disposal Event",
+   "start_date_time": "2026-10-17T10:00:00.000",
+   "end_date_time": "2026-10-17T16:00:00.000",
+   "event_agency": "Street Activity Permit Office",
+   "event_type": "Street Event",
+   "event_borough": "Staten Island",
+   "event_location": "FATHER CAPODANNO BOULEVARD between SLATER BOULEVARD and GREELEY AVENUE",
+   "event_street_side": "East",
+   "street_closure_type": "Sidewalk and Street Closure",
+   "community_board": "2, 95,",
+   "police_precinct": "122,"
+  },
+  {
+   "event_id": "910046",
+   "event_name": "Street Health Outreach Wellness Program",
+   "start_date_time": "2026-01-08T09:00:00.000",
+   "end_date_time": "2026-10-22T16:30:00.000",
+   "event_agency": "Street Activity Permit Office",
+   "event_type": "Street Event",
+   "event_borough": "Queens",
+   "event_location": "UNION HALL STREET between JAMAICA AVENUE and ARCHER AVENUE",
+   "event_street_side": "West",
+   "street_closure_type": "Sidewalk and Curb Lane Closure",
+   "community_board": "12,",
+   "police_precinct": "103,"
+  }
+ ]
+}

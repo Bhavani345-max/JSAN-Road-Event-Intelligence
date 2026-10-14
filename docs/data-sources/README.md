@@ -39,6 +39,13 @@ connected but run by hand during the test phase:
 | City of Toronto road restrictions | Toronto | Official | 1 | [toronto-road-restrictions.md](toronto-road-restrictions.md) |
 | Mumbai Traffic Police notifications (no coordinates; events located by named place) | Mumbai | Official | 1 | [mumbai-traffic-police-notifications.md](mumbai-traffic-police-notifications.md) |
 | Bengaluru Traffic Police website: upcoming events and works (no coordinates) | Bengaluru | Official | 1 | [bengaluru-traffic-police-website.md](bengaluru-traffic-police-website.md) |
+| NYC permitted events closing streets (no coordinates; unlocated) | New York | Official | 1 | [source-research-2026-10-14.md](source-research-2026-10-14.md) |
+| DiaLog temporary traffic orders | France | Official | 1 | [source-research-2026-10-14.md](source-research-2026-10-14.md) |
+| Métropole de Lyon works disrupting traffic | France | Official | 1 | [source-research-2026-10-14.md](source-research-2026-10-14.md) |
+
+Research of 14 October 2026 for every location, including the candidates
+that need a key, are disallowed by robots.txt or restrict REI's use:
+[source-research-2026-10-14.md](source-research-2026-10-14.md).
 
 Google News RSS is built but **blocked by its own terms**; see
 [google-news-rss.md](google-news-rss.md). Every source's class, cost, limits

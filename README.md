@@ -73,7 +73,9 @@ The Hans India (removed 14 Oct 2026, decision 0026)
   console opens on **All cities**; the header narrows it to one city
   (`/?city=london` opens one directly).
 - Connected official feeds now include Transport for London, City of Toronto,
-  NYC DOT, France's Bison Futé / Interdepartmental Road Directorate feed and Finland's Digitraffic.
+  NYC DOT, NYC permitted events, France's Bison Futé / Interdepartmental Road
+  Directorate feed, DiaLog traffic orders, the Métropole de Lyon's works and
+  Finland's Digitraffic ([decision 0027](docs/decisions/0027-more-official-sources.md)).
   NYC, France and Finland were fetched from live, keyless endpoints and keep the
   source's road geometry. Official feeds run by hand by default:
   `python backend/cli/ingest_source.py <source_id>`. Set

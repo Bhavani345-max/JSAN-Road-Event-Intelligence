@@ -1,0 +1,367 @@
+{
+ "_note": "REAL traffic orders returned by https://dialog.beta.gouv.fr/api/regulations/json (status=current and upcoming, category=temporaryRegulation) on 2026-10-14 (about 15:50 UTC), kept unchanged as a regression fixture. Source: DiaLog, Licence Ouverte 2.0.",
+ "regulations": [
+  {
+   "uuid": "019851f7-87b8-7d0b-ba09-de8315903c98",
+   "identifier": "2024T11570",
+   "status": "published",
+   "category": "temporaryRegulation",
+   "subject": "other",
+   "otherCategoryText": "Temporaire",
+   "title": "Modifiant, à titre provisoire, les règles de stationnement, de circulation générale et des cycles boulevard Voltaire et rue Gobert à Paris 11ème.",
+   "startDate": "2024-04-12T22:00:00+00:00",
+   "endDate": "2026-10-30T23:00:00+00:00",
+   "documentUrl": null,
+   "organization": {
+    "uuid": "018b60cd-c261-7619-af21-15913eeac249",
+    "name": "Paris"
+   },
+   "measures": [
+    {
+     "uuid": "019851f7-8ab9-76b9-a8f5-30634d6bfc26",
+     "type": "noEntry",
+     "maxSpeed": null,
+     "vehicleSet": {
+      "restrictedTypes": [],
+      "exemptedTypes": [],
+      "maxCharacteristics": []
+     },
+     "periods": [
+      {
+       "recurrenceType": "everyDay",
+       "startDateTime": "2024-04-12T22:00:00+00:00",
+       "endDateTime": "2026-10-30T23:00:00+00:00",
+       "dailyRange": null,
+       "timeSlots": []
+      }
+     ],
+     "locations": [
+      {
+       "uuid": "019851f7-9a34-758f-9280-12b3ffd7c504",
+       "roadType": "lane",
+       "namedStreet": {
+        "cityLabel": "Paris",
+        "roadName": "Boulevard Voltaire",
+        "fromHouseNumber": "",
+        "fromRoadName": "Rue de Belfort",
+        "toHouseNumber": "",
+        "toRoadName": "Rue de Charonne"
+       },
+       "numberedRoad": null,
+       "rawGeoJSON": null,
+       "storageArea": null,
+       "zone": null,
+       "wholeCity": null,
+       "geometry": "{\"type\":\"GeometryCollection\",\"geometries\":[{\"type\":\"LineString\",\"coordinates\":[[2.384290114,48.855309242],[2.385327677,48.854697623]]},{\"type\":\"LineString\",\"coordinates\":[[2.382833713,48.8561849],[2.382833713,48.8561849]]},{\"type\":\"LineString\",\"coordinates\":[[2.382833713,48.8561849],[2.383308617,48.855903154]]},{\"type\":\"LineString\",\"coordinates\":[[2.383308617,48.855903154],[2.383876899,48.855561631]]},{\"type\":\"LineString\",\"coordinates\":[[2.383876899,48.855561631],[2.38421597,48.855355627],[2.384290114,48.855309242]]}]}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "uuid": "01a03951-d989-7242-893b-dec49ea7feb3",
+   "identifier": "26-1555_D62",
+   "status": "published",
+   "category": "temporaryRegulation",
+   "subject": "roadMaintenance",
+   "otherCategoryText": null,
+   "title": "Travaux de remise en peinture du pont de Cassagnas",
+   "startDate": "2026-10-08T06:00:00+00:00",
+   "endDate": "2026-10-16T15:00:00+00:00",
+   "documentUrl": "https://dialog.oos.cloudgouv-eu-west-1.outscale.com/regulationOrder/01a03951-d989-7182-893b-dec49db6fae7/26-1555.pdf",
+   "organization": {
+    "uuid": "019b31a0-8fc0-72c1-9233-dd945ac1b8bf",
+    "name": "Lozère (département)"
+   },
+   "measures": [
+    {
+     "uuid": "01a03951-d998-73ee-bb5e-e0614f396b76",
+     "type": "noEntry",
+     "maxSpeed": null,
+     "vehicleSet": {
+      "restrictedTypes": [],
+      "exemptedTypes": [],
+      "maxCharacteristics": []
+     },
+     "periods": [
+      {
+       "recurrenceType": "certainDays",
+       "startDateTime": "2026-10-08T06:00:00+00:00",
+       "endDateTime": "2026-10-16T15:00:00+00:00",
+       "dailyRange": {
+        "dayRanges": [
+         {
+          "firstDay": "monday",
+          "lastDay": "friday"
+         }
+        ]
+       },
+       "timeSlots": [
+        {
+         "startTime": "1970-01-01T08:00:00+01:00",
+         "endTime": "1970-01-01T12:00:00+01:00"
+        },
+        {
+         "startTime": "1970-01-01T13:00:00+01:00",
+         "endTime": "1970-01-01T17:00:00+01:00"
+        }
+       ]
+      }
+     ],
+     "locations": [
+      {
+       "uuid": "01a03951-d9a8-78ff-b12b-b3dae9d88f18",
+       "roadType": "departmentalRoad",
+       "namedStreet": null,
+       "numberedRoad": {
+        "administrator": "Lozère",
+        "roadNumber": "D62",
+        "fromPointNumber": "22",
+        "fromAbscissa": 400,
+        "fromSide": "U",
+        "toPointNumber": "22",
+        "toAbscissa": 580,
+        "toSide": "U"
+       },
+       "rawGeoJSON": null,
+       "storageArea": null,
+       "zone": null,
+       "wholeCity": null,
+       "geometry": "{\"type\":\"LineString\",\"coordinates\":[[3.730707069,44.270135488],[3.730655811,44.270204523],[3.730582969,44.270287822],[3.730544496,44.270315983],[3.730464997,44.27036872],[3.730326622,44.270421849],[3.73017717,44.270490354],[3.730098969,44.270546684],[3.730059474,44.270592854],[3.730037493,44.270637108],[3.730032133,44.270707356],[3.730051699,44.270767537],[3.730079699,44.270801557],[3.730086066,44.270809616],[3.730134236,44.270853404],[3.730240782,44.270955314],[3.730304181,44.271014303],[3.730347306,44.271055424],[3.73035365,44.271061683],[3.73039551,44.271101912],[3.730434738,44.271132256],[3.730506918,44.271192087],[3.730628266,44.271275896],[3.730718019,44.27133831],[3.730730913,44.271362338]]}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "uuid": "019f190f-9e1d-79aa-a9d1-e86e6e592abb",
+   "identifier": "2026PJ001",
+   "status": "published",
+   "category": "temporaryRegulation",
+   "subject": "roadMaintenance",
+   "otherCategoryText": null,
+   "title": "Rénovation et remplacement des clôtures du parc Henri Barbusse : grilles, portails et maçonneries rue de l'Égalité, rue de la Défense et rue Maximilien Robespierre",
+   "startDate": "2026-06-01T06:00:00+00:00",
+   "endDate": "2026-11-27T16:00:00+00:00",
+   "documentUrl": "https://dialog.oos.cloudgouv-eu-west-1.outscale.com/regulationOrder/019f190f-9e1d-778e-a9d1-e86e6e0815bd/PanneauRenovationcloturesParcHBarbusseILM.pdf",
+   "organization": {
+    "uuid": "019bc138-7168-7489-b7fd-23ebd98f62ea",
+    "name": "Grand Paris Seine Ouest"
+   },
+   "measures": [
+    {
+     "uuid": "019f190f-9e25-748f-84af-890f9453efc8",
+     "type": "parkingProhibited",
+     "maxSpeed": null,
+     "vehicleSet": {
+      "restrictedTypes": [],
+      "exemptedTypes": [],
+      "maxCharacteristics": []
+     },
+     "periods": [
+      {
+       "recurrenceType": "everyDay",
+       "startDateTime": "2026-06-01T06:00:00+00:00",
+       "endDateTime": "2026-11-27T16:00:00+00:00",
+       "dailyRange": null,
+       "timeSlots": []
+      }
+     ],
+     "locations": [
+      {
+       "uuid": "019f3690-b1db-75bf-a1f1-3780b5a08bba",
+       "roadType": "rawGeoJSON",
+       "namedStreet": null,
+       "numberedRoad": null,
+       "rawGeoJSON": {
+        "label": "rues de l'Egalité et de la Défense à proximité immédiate",
+        "exceptions": []
+       },
+       "storageArea": null,
+       "zone": null,
+       "wholeCity": null,
+       "geometry": "{\"type\":\"LineString\",\"coordinates\":[[2.263055502,48.819632196],[2.264309403,48.819343233],[2.264434793,48.819290158],[2.264855745,48.819360924],[2.265348349,48.819419897],[2.265670781,48.819508355],[2.266037995,48.819537841],[2.266217123,48.819596813]]}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "uuid": "019f651b-02b0-73ae-b76f-fc9349c8de34",
+   "identifier": "2026-102",
+   "status": "published",
+   "category": "temporaryRegulation",
+   "subject": "roadMaintenance",
+   "otherCategoryText": null,
+   "title": "Modification temporaire de la circulation des véhicule et occupation du domaine public. chemin de la renarde",
+   "startDate": "2026-09-07T05:00:00+00:00",
+   "endDate": "2026-10-30T17:00:00+00:00",
+   "documentUrl": "https://dialog.oos.cloudgouv-eu-west-1.outscale.com/regulationOrder/019f651b-02b0-729a-b76f-fc934943c8ac/2026-101 RAMELHABITAT - circu +odp renarde.pdf",
+   "organization": {
+    "uuid": "019ef35e-cd13-7abc-8140-4c513af4919e",
+    "name": "Brison-Saint-Innocent"
+   },
+   "measures": [
+    {
+     "uuid": "019f651c-b516-75c7-a365-f8c9ceae3910",
+     "type": "alternateRoad",
+     "maxSpeed": null,
+     "vehicleSet": {
+      "restrictedTypes": [],
+      "exemptedTypes": [],
+      "maxCharacteristics": []
+     },
+     "periods": [
+      {
+       "recurrenceType": "everyDay",
+       "startDateTime": "2026-09-07T05:00:00+00:00",
+       "endDateTime": "2026-10-30T17:00:00+00:00",
+       "dailyRange": null,
+       "timeSlots": []
+      }
+     ],
+     "locations": [
+      {
+       "uuid": "019f651c-b86b-79eb-a2a4-af0010d57e11",
+       "roadType": "lane",
+       "namedStreet": {
+        "cityLabel": "Brison-Saint-Innocent (73100)",
+        "roadName": "Chemin de la renarde",
+        "fromHouseNumber": "2",
+        "fromRoadName": null,
+        "toHouseNumber": "6",
+        "toRoadName": null
+       },
+       "numberedRoad": null,
+       "rawGeoJSON": null,
+       "storageArea": null,
+       "zone": null,
+       "wholeCity": null,
+       "geometry": "{\"type\":\"LineString\",\"coordinates\":[[5.892599454,45.716088158],[5.892821352,45.716063535],[5.893024462,45.716061023],[5.893093937,45.716063525]]}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "uuid": "01a13753-5e68-78df-8780-f0cee2bb50a5",
+   "identifier": "89536#26-AT-0594",
+   "status": "published",
+   "category": "temporaryRegulation",
+   "subject": "event",
+   "otherCategoryText": null,
+   "title": "l'organisation d'un déménagement au 19 rue Tamisier et d'un emménagement au 15 rue des Ecoles (URL : https://dl.sogelink.fr/?l94pRIqX)",
+   "startDate": "2026-10-17T22:00:00+00:00",
+   "endDate": "2026-10-18T21:59:00+00:00",
+   "documentUrl": "https://dl.sogelink.fr/?l94pRIqX",
+   "organization": {
+    "uuid": "01938ba1-2454-7b08-a372-432bc7cabdd4",
+    "name": "Lons Le Saunier"
+   },
+   "measures": [
+    {
+     "uuid": "01a13753-6183-7b06-9b12-92760c7d0f63",
+     "type": "parkingProhibited",
+     "maxSpeed": null,
+     "vehicleSet": {
+      "restrictedTypes": [],
+      "exemptedTypes": [
+       {
+        "name": "véhicules relevant de l'organisation de l'événement",
+        "isOther": true
+       }
+      ],
+      "maxCharacteristics": []
+     },
+     "periods": [
+      {
+       "recurrenceType": "everyDay",
+       "startDateTime": "2026-10-17T22:00:00+00:00",
+       "endDateTime": "2026-10-18T21:59:00+00:00",
+       "dailyRange": null,
+       "timeSlots": [
+        {
+         "startTime": "1970-01-01T07:00:00+01:00",
+         "endTime": "1970-01-01T17:00:00+01:00"
+        }
+       ]
+      }
+     ],
+     "locations": [
+      {
+       "uuid": "01a13753-6872-70f8-83a8-146146a15e0c",
+       "roadType": "rawGeoJSON",
+       "namedStreet": null,
+       "numberedRoad": null,
+       "rawGeoJSON": {
+        "label": "19 RUE TAMISIER;FACE AU 15 RUE DES ECOLES",
+        "exceptions": []
+       },
+       "storageArea": null,
+       "zone": null,
+       "wholeCity": null,
+       "geometry": "{\"type\":\"MultiPoint\",\"coordinates\":[[5.552601475,46.674850254],[5.549612219,46.672525468]]}"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "uuid": "019bd587-f5cd-7ac7-a1f3-49b0285ddde3",
+   "identifier": "ville de Mayenne 2025/ST/607",
+   "status": "published",
+   "category": "temporaryRegulation",
+   "subject": "incident",
+   "otherCategoryText": null,
+   "title": "risque potentiel",
+   "startDate": "2026-01-01T07:00:00+00:00",
+   "endDate": "2026-12-31T17:00:00+00:00",
+   "documentUrl": null,
+   "organization": {
+    "uuid": "018fc9e3-c634-7f71-b98c-fdef5de629f0",
+    "name": "Mayenne communauté"
+   },
+   "measures": [
+    {
+     "uuid": "019bd589-cf0f-740e-b4df-3a2c670ad296",
+     "type": "noEntry",
+     "maxSpeed": null,
+     "vehicleSet": {
+      "restrictedTypes": [],
+      "exemptedTypes": [],
+      "maxCharacteristics": []
+     },
+     "periods": [
+      {
+       "recurrenceType": "everyDay",
+       "startDateTime": "2026-01-01T07:00:00+00:00",
+       "endDateTime": "2026-12-31T17:00:00+00:00",
+       "dailyRange": null,
+       "timeSlots": []
+      }
+     ],
+     "locations": [
+      {
+       "uuid": "019bd589-d1ea-7704-ae7b-456136223f71",
+       "roadType": "lane",
+       "namedStreet": {
+        "cityLabel": "Mayenne (53100)",
+        "roadName": "Rue  Henri Gandais",
+        "fromHouseNumber": "26",
+        "fromRoadName": null,
+        "toHouseNumber": null,
+        "toRoadName": "Rue du 130ème RI"
+       },
+       "numberedRoad": null,
+       "rawGeoJSON": null,
+       "storageArea": null,
+       "zone": null,
+       "wholeCity": null,
+       "geometry": "{\"type\":\"LineString\",\"coordinates\":[[-0.620748637,48.304905174],[-0.620780944,48.304864556],[-0.620995523,48.304588686],[-0.621047654,48.304522242],[-0.621048864,48.304500588],[-0.621015586,48.304482605]]}"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
