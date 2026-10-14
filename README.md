@@ -11,7 +11,7 @@ Hyderabad proof of concept began with six publisher feeds:
 ```
 Telangana Today, The Hindu, Deccan Chronicle,
 The Siasat Daily (disconnected 14 Oct 2026, decision 0024), NewsMeter,
-The Hans India (disconnected 14 Oct 2026 until the publisher agrees, decision 0026)
+The Hans India (removed 14 Oct 2026, decision 0026)
    → generic RSS connector → ingestion → evidence stored
    → keyword detection + Hyderabad scope + a named place
    → REI event (VALIDATION_REQUIRED), located and dated from the article's own words

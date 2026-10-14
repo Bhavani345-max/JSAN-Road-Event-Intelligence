@@ -52,7 +52,7 @@ def test_registry_separates_connected_from_researched_sources(news_client):
         "telangana-today", "the-hindu", "deccan-chronicle", "newsmeter",
     }
     # Siasat's terms forbid automated access (decision 0024), and The Hans India
-    # waits for its publisher's agreement (decision 0026): listed, not connected.
+    # was removed (decision 0026): listed, not connected.
     assert not {"siasat", "siasat-mumbai", "the-hans-india"} & {s["source_id"] for s in connected}
     assert len(others) >= 15
     for source in others:

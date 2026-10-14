@@ -82,9 +82,9 @@ RESTRICTED_SOURCES: tuple[RegisteredSource, ...] = (
     RegisteredSource(SIASAT_MUMBAI),
 )
 
-# Feeds disconnected until their publisher agrees to REI's use (decision 0026):
-# registered without a connector, like the restricted ones, and never fetched.
-AWAITING_PUBLISHER_SOURCES: tuple[RegisteredSource, ...] = (RegisteredSource(THE_HANS_INDIA),)
+# Feeds the user removed from REI (decision 0026): registered without a
+# connector, like the restricted ones, and never fetched.
+REMOVED_SOURCES: tuple[RegisteredSource, ...] = (RegisteredSource(THE_HANS_INDIA),)
 
 
 def _google_news_rss_sources(enabled: bool) -> tuple[RegisteredSource, ...]:
@@ -186,7 +186,7 @@ def registered_sources(
     return (
         CONNECTED_SOURCES
         + RESTRICTED_SOURCES
-        + AWAITING_PUBLISHER_SOURCES
+        + REMOVED_SOURCES
         + (search,)
         + _official_sources(
             official_feeds_scheduled, official_feed_max_records or None, tfl_app_key

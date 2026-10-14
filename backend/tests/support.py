@@ -45,7 +45,7 @@ TEST_SOURCE = news_rss_source(
 
 # Each connected Hyderabad RSS source, with a synthetic feed in a matching format.
 # Siasat is not here: its terms forbid automated access (decision 0024). Nor is
-# The Hans India: disconnected until its publisher agrees (decision 0026).
+# The Hans India: removed from REI (decision 0026).
 SOURCE_FIXTURES: tuple[tuple[SourceDefinition, str], ...] = (
     (TELANGANA_TODAY, "news_feed_sample.xml"),
     (THE_HINDU, "the_hindu_style_feed.xml"),

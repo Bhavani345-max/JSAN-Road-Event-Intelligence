@@ -4,15 +4,15 @@ Verified live on 2 October 2026: 29 items covering under three hours. This is
 the feed the Hyderabad section page itself declares. Every item is tagged
 Hyderabad and carries a summary and the full article body.
 
-Not read since 14 October 2026, until The Hans India agrees to REI's use
-(decision 0026): its terms allow personal, non-commercial use only, and its
-Cloudflare protection refuses REI's production server. The source stays
-registered so the articles stored before then keep their source.
+Removed from REI on 14 October 2026 by the user's decision (decision 0026):
+its terms allow personal, non-commercial use only, and its Cloudflare
+protection refuses REI's production server. The source stays registered so
+the articles stored before then keep their source.
 """
 
-from .models import awaiting_publisher, news_rss_source
+from .models import news_rss_source, removed_from_rei
 
-THE_HANS_INDIA = awaiting_publisher(
+THE_HANS_INDIA = removed_from_rei(
     news_rss_source(
         source_id="the-hans-india",
         source_name="The Hans India",
@@ -34,10 +34,8 @@ THE_HANS_INDIA = awaiting_publisher(
         "'We permit the use of materials on this website subject to due credit is given to HMHL.'"
     ),
     reason=(
-        "Disconnected on 14 October 2026 until The Hans India agrees to REI's use: its terms "
-        "allow personal, non-commercial use only, and its Cloudflare protection refuses REI's "
-        "production server (HTTP 403 from Railway since 12 October; an office connection gets "
-        "200). Reconnecting needs the publisher's permission and, for production, a fixed "
-        "server address they allow."
+        "Removed from REI on 14 October 2026 by the user's decision: its terms allow personal, "
+        "non-commercial use only, and its Cloudflare protection refuses REI's production server "
+        "(HTTP 403 from Railway since 12 October; an office connection gets 200)."
     ),
 )

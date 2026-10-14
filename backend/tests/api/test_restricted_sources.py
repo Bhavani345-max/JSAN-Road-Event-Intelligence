@@ -1,5 +1,5 @@
 """A source REI may not read cannot be run, even by hand: one whose terms forbid automated
-access (decision 0024), or one waiting for its publisher's agreement (decision 0026)."""
+access (decision 0024), or one the user removed from REI (decision 0026)."""
 
 import pytest
 from fastapi.testclient import TestClient
@@ -32,16 +32,16 @@ def test_a_restricted_source_cannot_be_run_and_says_why(registry_client, source_
     assert source["commercial_use"] == "NOT_PERMITTED"
 
 
-def test_a_source_awaiting_its_publisher_cannot_be_run_and_says_why(registry_client):
+def test_a_removed_source_cannot_be_run_and_says_why(registry_client):
     assert "the-hans-india" not in registry_client.app.state.ingestion_service.connector_factories
     response = registry_client.post("/api/ingestion/run", params={"source_id": "the-hans-india"})
     assert response.status_code == 404
 
     source = registry_client.get("/api/sources/the-hans-india").json()
-    assert source["integration_status"] == "TERMS_REVIEW_REQUIRED"
+    assert source["integration_status"] == "NOT_USABLE"
     assert source["active"] is False
-    # Read, not restricted: whether they cover REI's use is the publisher's answer.
+    # Read, not formally reviewed: not marked restricted.
     assert source["terms_status"] == "REVIEW_REQUIRED"
     assert source["terms_reviewed"] is False
     assert source["commercial_use"] == "NOT_PERMITTED"
-    assert "agrees to REI's use" in source["notes"]
+    assert "Removed from REI" in source["notes"]

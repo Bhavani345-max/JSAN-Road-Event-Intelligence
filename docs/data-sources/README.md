@@ -24,11 +24,11 @@ its article pages (also when a Google search result links to one) or sends its
 articles to an AI model. The articles stored before then are kept as evidence.
 See [decision 0024](../decisions/0024-siasat-disconnected-by-its-terms.md).
 
-**Disconnected on 14 October 2026, until the publisher agrees:** The Hans India
-(Hyderabad section). Its terms allow personal, non-commercial use only, and its
+**Removed on 14 October 2026:** The Hans India (Hyderabad section), by the
+user's decision. Its terms allow personal, non-commercial use only, and its
 Cloudflare protection refuses REI's production server. REI no longer reads its
 feed; the articles stored before then are kept as evidence. See
-[decision 0026](../decisions/0026-hans-india-awaits-its-publisher.md).
+[decision 0026](../decisions/0026-hans-india-removed.md).
 
 Official sources of the international test cities (since 6 October 2026),
 connected but run by hand during the test phase:
