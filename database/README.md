@@ -29,9 +29,18 @@ that is committed.
 Migrations so far: `0001` initial schema; `0002` removes the demo events and
 the `is_demo` flag and extends the source registry.
 
-## No seed data
+## Seeded accounts and live data
 
-Nothing is seeded. The database holds only what connected sources provided:
-`sources` is filled from the code registry on start-up, and every row in
-`source_artifacts`, `events` and `event_versions` comes from ingestion or
-review. Test fixtures live under `tests/` and never reach this database.
+There are no sample or synthetic road events. `sources` is filled from the
+code registry on start-up, and every row in `source_artifacts`, `events` and
+`event_versions` comes from a connected source or a reviewer action. Test
+fixtures live under `tests/` and never reach this database.
+
+The first reviewer account is provisioned once when both
+`SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` are set. The password is stored as
+a salted PBKDF2 hash. Existing accounts are never reset by startup. To create
+the account manually, run `python apps/api/seed_user.py` from the repository
+root. To ingest a current snapshot from all connected feeds while the API is
+running, run `python apps/api/seed_worldwide.py`; set `REI_API_URL` to the API
+origin to target a remote deployment. New events remain in the validation
+queue until a reviewer accepts them.

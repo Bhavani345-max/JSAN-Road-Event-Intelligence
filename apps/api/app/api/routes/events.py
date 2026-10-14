@@ -2,6 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, Query
 
+from app.api.auth_deps import CurrentUserDep
 from app.api.deps import ResolverDep, SessionDep
 from app.repositories.events import EventRepository, to_event_out, to_event_outs
 from app.schemas.event import (
@@ -77,7 +78,9 @@ def list_events(
 
 
 @router.post("", response_model=EventOut, status_code=201)
-def add_event(body: ManualEventIn, session: SessionDep, resolver: ResolverDep) -> EventOut:
+def add_event(
+    body: ManualEventIn, session: SessionDep, resolver: ResolverDep, user: CurrentUserDep
+) -> EventOut:
     """Enter a road event that no connected source reported.
 
     The entry is stored as evidence under the "Manual entry" source, with the
@@ -85,7 +88,7 @@ def add_event(body: ManualEventIn, session: SessionDep, resolver: ResolverDep) -
     located only if `place` is a known Hyderabad place name.
     """
     row = create_manual_event(
-        session, resolver, entered_by=review_service.LOCAL_REVIEWER, **body.model_dump()
+        session, resolver, entered_by=user.email, **body.model_dump()
     )
     return to_event_outs(session, [row])[0]
 
@@ -111,11 +114,14 @@ def get_event(event_id: str, session: SessionDep) -> EventDetailOut:
 
 
 @router.post("/{event_id}/status", response_model=EventOut)
-def update_event_status(event_id: str, body: StatusUpdateIn, session: SessionDep) -> EventOut:
+def update_event_status(
+    event_id: str, body: StatusUpdateIn, session: SessionDep, user: CurrentUserDep
+) -> EventOut:
     """Record a human review decision, e.g. VALIDATION_REQUIRED -> QC_PENDING or REJECTED."""
     try:
         row = review_service.update_event_status(
-            session, event_id, body.status, body.reason, body.severity, force=body.force
+            session, event_id, body.status, body.reason, body.severity,
+            reviewer=user.email, force=body.force
         )
     except review_service.EventNotFound:
         raise HTTPException(status_code=404, detail="Event not found") from None
@@ -127,10 +133,14 @@ def update_event_status(event_id: str, body: StatusUpdateIn, session: SessionDep
 
 
 @router.post("/{event_id}/severity", response_model=EventOut)
-def set_event_severity(event_id: str, body: SeverityIn, session: SessionDep) -> EventOut:
+def set_event_severity(
+    event_id: str, body: SeverityIn, session: SessionDep, user: CurrentUserDep
+) -> EventOut:
     """Record a reviewer's REI severity (LOW, MEDIUM, HIGH or CRITICAL) for an event."""
     try:
-        row = review_service.set_event_severity(session, event_id, body.severity, body.reason)
+        row = review_service.set_event_severity(
+            session, event_id, body.severity, body.reason, reviewer=user.email
+        )
     except review_service.EventNotFound:
         raise HTTPException(status_code=404, detail="Event not found") from None
     except review_service.InvalidSeverity as error:
@@ -139,10 +149,12 @@ def set_event_severity(event_id: str, body: SeverityIn, session: SessionDep) -> 
 
 
 @router.post("/{event_id}/extend", response_model=EventOut)
-def extend_event(event_id: str, body: ExtendIn, session: SessionDep) -> EventOut:
+def extend_event(event_id: str, body: ExtendIn, session: SessionDep, user: CurrentUserDep) -> EventOut:
     """Record that an event runs longer than recorded, on a reviewer's knowledge."""
     try:
-        row = review_service.extend_event(session, event_id, body.end_date, body.reason)
+        row = review_service.extend_event(
+            session, event_id, body.end_date, body.reason, reviewer=user.email
+        )
     except review_service.EventNotFound:
         raise HTTPException(status_code=404, detail="Event not found") from None
     except review_service.InvalidExtension as error:
@@ -152,11 +164,14 @@ def extend_event(event_id: str, body: ExtendIn, session: SessionDep) -> EventOut
 
 @router.post("/{event_id}/location", response_model=EventOut)
 def set_event_location(
-    event_id: str, body: LocationIn, session: SessionDep, resolver: ResolverDep
+    event_id: str, body: LocationIn, session: SessionDep, resolver: ResolverDep,
+    user: CurrentUserDep,
 ) -> EventOut:
     """Put an event at the spot a reviewer picked on the map."""
     try:
-        row = review_service.set_event_location(session, resolver, event_id, **body.model_dump())
+        row = review_service.set_event_location(
+            session, resolver, event_id, reviewer=user.email, **body.model_dump()
+        )
     except review_service.EventNotFound:
         raise HTTPException(status_code=404, detail="Event not found") from None
     except review_service.InvalidLocation as error:

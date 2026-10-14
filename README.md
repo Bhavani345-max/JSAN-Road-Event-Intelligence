@@ -4,7 +4,9 @@ REI collects road events (closures, diversions, processions, flooding, road
 works) from external sources, turns them into one canonical event format,
 and shows them on a map for human review.
 
-**Current state — Hyderabad PoC, six connected news sources, real data only:**
+**Current coverage:** real-source news for Hyderabad, with official road feeds
+in London, Toronto, Mumbai, Bengaluru, New York City, France and Finland. The original
+Hyderabad proof of concept began with six publisher feeds:
 
 ```
 Telangana Today, The Hindu, Deccan Chronicle,
@@ -29,6 +31,13 @@ The Siasat Daily, NewsMeter, The Hans India
   (diversion, restriction, closure, waterlogging, road or flyover works) and
   names a road or place. Everything else is kept as evidence only.
 - There is **no demo data**. Every event comes from a connected source.
+- Reviewer access is protected by a sign-in page. Configure
+  `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` in the ignored root `.env` to
+  provision the first administrator; see [database setup](database/README.md).
+- To pull a current snapshot from all connected live feeds, run
+  `python apps/api/seed_worldwide.py` while the API is running. Set `REI_API_URL`
+  to the API origin to seed a remote deployment. New source events enter the
+  review queue and are never treated as approved by default.
 - The console shows upcoming, ongoing and recently reported events only.
   Rejected events, ones whose stated end has passed, and reports that state no
   dates and are older than seven days (thirty for road works) are not shown
@@ -56,16 +65,24 @@ The Siasat Daily, NewsMeter, The Hans India
   APIs) have been researched and are recorded as not connected; see
   [the source research](docs/data-sources/hyderabad-source-research.md).
 
-**Since 6 October 2026: several cities, official sources.**
+**Global source expansion (13 October 2026).**
 
-- Cities are configuration (`packages/cities/data/*.json`): Hyderabad (the
-  default, unchanged), London and Toronto. The console opens on **All cities**
-  (every city's events on one map, each event's times in its own city's zone);
-  the header narrows it to one city (`/?city=london` opens one directly).
-- **Official sources** build events from their own fields and keep their own
-  geometry: Transport for London road disruptions and City of Toronto road
-  restrictions, both keyless, tier 1. They are connected but run by hand
-  during the test phase (`python apps/api/ingest_source.py <source_id>`).
+- Cities are configuration (`packages/cities/data/*.json`), including
+  Hyderabad, London, Toronto, Mumbai, Bengaluru, New York City and France. The
+  console opens on **All cities**; the header narrows it to one city
+  (`/?city=london` opens one directly).
+- Connected official feeds now include Transport for London, City of Toronto,
+  NYC DOT and France's Bison Futé / Interdepartmental Road Directorate feed.
+  NYC and France were fetched from live, keyless endpoints and keep the
+  source's road geometry. Official feeds run by hand by default:
+  `python apps/api/ingest_source.py <source_id>`. Set
+  `OFFICIAL_FEEDS_SCHEDULED=true` to poll every connected official feed on its
+  own schedule.
+- Additional sources are catalogued with their access and terms state,
+  including Queensland QLDTraffic, Spain's National Access Point and Germany's
+  Autobahn API. API keys, regional coverage or licence review still prevent
+  those sources from being fetched. See the
+  [global source research](docs/global-free-source-research.md).
 - Every source states its class (official, open data, partner, publisher,
   discovery, commercial), cost, limits, licence and terms. News and search are
   never authoritative.
@@ -206,7 +223,7 @@ cd apps/web && npm run typecheck && npm run lint && npm run build
 | `connectors/` | One sub-package per acquisition method. `rss/` is implemented; `html/` reads single article pages |
 | `services/` | Pipeline stages: `ingestion`, `extraction`, `geo_resolution` (named places), `lifecycle` implemented; others reserved |
 | `packages/` | Shared models: `event_schema`, `source_models`, `geo_models`, `common` |
-| `database/` | Alembic migrations. Nothing is seeded |
+| `database/` | Alembic migrations; no synthetic event seed data |
 | `infrastructure/` | Dockerfiles; placeholders for Kubernetes and monitoring |
 | `tests/` | `unit`, `integration`, `geospatial`, `golden-events`, `fixtures` (API tests live in `apps/api/tests`) |
 | `docs/` | Architecture, API, data sources, decisions |

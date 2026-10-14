@@ -10,6 +10,7 @@ from app.api.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.database import create_db_engine, create_session_factory, run_migrations
 from app.services.bootstrap import sync_reference_data
+from app.services.auth_service import seed_admin_user
 from app.services.ingestion_service import IngestionService
 from app.services.ai_reading_service import AiReadingService
 from app.services.scheduler import poll_sources_forever, read_articles_forever
@@ -26,6 +27,20 @@ def create_app(settings: Settings | None = None, engine: Engine | None = None) -
         if settings.auto_migrate:
             run_migrations(settings.database_url)
         with app.state.session_factory() as session:
+            if settings.seed_admin_email and settings.seed_admin_password:
+                user, created = seed_admin_user(
+                    session, settings.seed_admin_email, settings.seed_admin_password
+                )
+                session.commit()
+                logging.getLogger(__name__).info(
+                    "Bootstrap reviewer %s (%s)",
+                    user.email,
+                    "created" if created else "already present",
+                )
+            elif settings.seed_admin_email or settings.seed_admin_password:
+                logging.getLogger(__name__).warning(
+                    "Bootstrap reviewer skipped: set both SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD."
+                )
             sync_reference_data(session, app.state.ingestion_service.sources)
 
         poller = None
@@ -71,6 +86,7 @@ def create_app(settings: Settings | None = None, engine: Engine | None = None) -
         allow_origins=settings.cors_origin_list,
         allow_methods=["GET", "POST"],
         allow_headers=["Content-Type"],
+        allow_credentials=True,
     )
     app.include_router(api_router)
     return app

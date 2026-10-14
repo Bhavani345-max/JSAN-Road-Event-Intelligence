@@ -1,0 +1,41 @@
+{
+  "id": "finland",
+  "name": "Finland",
+  "area_name": "Finland",
+  "country": "FI",
+  "region": "National",
+  "timezone": "Europe/Helsinki",
+  "language": "fi",
+  "bbox": [
+    59.3,
+    19.0,
+    70.1,
+    31.6
+  ],
+  "map": {
+    "center": [
+      24.9384,
+      60.1699
+    ],
+    "zoom": 5.2
+  },
+  "scope_terms": [
+    "Finland",
+    "Suomi"
+  ],
+  "other_cities": [
+    "Sweden",
+    "Norway",
+    "Russia",
+    "Estonia"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "finland-digitraffic-road-events"
+  ],
+  "gis_sources": []
+}

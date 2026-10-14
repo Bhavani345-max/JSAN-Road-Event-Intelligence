@@ -23,11 +23,17 @@ from .discovered import DISCOVERED_SOURCES
 from .discovery.google_news_rss import GoogleNewsRssConnector, google_news_rss_source
 from .official import (
     BengaluruTrafficPoliceConnector,
+    BisonFuteRoadEventsConnector,
+    FinlandDigitrafficConnector,
     MumbaiTrafficPoliceConnector,
+    NycStreetClosuresConnector,
     TflRoadDisruptionsConnector,
     TorontoRoadRestrictionsConnector,
     bengaluru_source,
+    bison_fute_source,
+    finland_source,
     mumbai_source,
+    nyc_source,
     tfl_source,
     toronto_source,
 )
@@ -96,11 +102,14 @@ def _google_news_rss_sources(enabled: bool) -> tuple[RegisteredSource, ...]:
 def _official_sources(
     scheduled: bool, max_records: int | None, tfl_app_key: str | None
 ) -> tuple[RegisteredSource, ...]:
-    """Official sources of the test cities. Connected; scheduled or by hand."""
+    """Connected official/open-data sources; scheduled or run by hand."""
     tfl = tfl_source(scheduled=scheduled)
     toronto = toronto_source(scheduled=scheduled)
     mumbai = mumbai_source(scheduled=scheduled)
     bengaluru = bengaluru_source(scheduled=scheduled)
+    nyc = nyc_source(scheduled=scheduled)
+    france = bison_fute_source(scheduled=scheduled)
+    finland = finland_source(scheduled=scheduled)
     return (
         RegisteredSource(
             mumbai,
@@ -125,6 +134,20 @@ def _official_sources(
             lambda user_agent: TorontoRoadRestrictionsConnector(
                 toronto, user_agent, max_records=max_records
             ),
+        ),
+        # These public national/municipal feeds are larger than the initial
+        # four-city test feeds, so retain every current/upcoming record.
+        RegisteredSource(
+            nyc,
+            lambda user_agent: NycStreetClosuresConnector(nyc, user_agent),
+        ),
+        RegisteredSource(
+            france,
+            lambda user_agent: BisonFuteRoadEventsConnector(france, user_agent),
+        ),
+        RegisteredSource(
+            finland,
+            lambda user_agent: FinlandDigitrafficConnector(finland, user_agent),
         ),
     )
 

@@ -1,5 +1,46 @@
 @import "tailwindcss";
 
+@keyframes rei-login-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rei-login-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.login-reveal {
+  animation: rei-login-reveal 720ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.login-float-slow {
+  animation: rei-login-float 8s ease-in-out infinite;
+}
+
+.login-float-delayed {
+  animation: rei-login-float 9s ease-in-out 1.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-reveal,
+  .login-float-slow,
+  .login-float-delayed {
+    animation: none;
+  }
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);

@@ -1,0 +1,49 @@
+{
+  "id": "france",
+  "name": "France",
+  "area_name": "mainland France",
+  "country": "FR",
+  "region": "National",
+  "timezone": "Europe/Paris",
+  "language": "fr",
+  "bbox": [
+    41.2,
+    -5.2,
+    51.2,
+    9.7
+  ],
+  "map": {
+    "center": [
+      2.3522,
+      48.8566
+    ],
+    "zoom": 5
+  },
+  "scope_terms": [
+    "France",
+    "réseau routier national",
+    "Bison Futé",
+    "DIR"
+  ],
+  "other_cities": [
+    "London",
+    "Brussels",
+    "Luxembourg",
+    "Geneva",
+    "Barcelona",
+    "Milan"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "France fermeture route travaux déviation accident",
+      "Bison Futé route fermée travaux déviation",
+      "France road closure roadworks traffic diversion"
+    ]
+  },
+  "official_sources": [
+    "france-bison-fute-road-events"
+  ],
+  "gis_sources": []
+}

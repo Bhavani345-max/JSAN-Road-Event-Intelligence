@@ -1,0 +1,134 @@
+"""Local password authentication and opaque, revocable server sessions."""
+
+import base64
+import hashlib
+import hmac
+import secrets
+import uuid
+from datetime import timedelta
+
+from sqlalchemy import delete, select
+from sqlalchemy.orm import Session
+
+from app.models import AuthSession, User
+from packages.common.time import utc_now
+
+PASSWORD_ROUNDS = 600_000
+MIN_PASSWORD_LENGTH = 12
+
+
+def normalize_email(email: str) -> str:
+    return email.strip().lower()
+
+
+def hash_password(password: str) -> str:
+    if len(password) < MIN_PASSWORD_LENGTH:
+        raise ValueError(f"Passwords must contain at least {MIN_PASSWORD_LENGTH} characters")
+    salt = secrets.token_bytes(16)
+    digest = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, PASSWORD_ROUNDS)
+    return "pbkdf2_sha256${}${}${}".format(
+        PASSWORD_ROUNDS,
+        base64.urlsafe_b64encode(salt).decode("ascii").rstrip("="),
+        base64.urlsafe_b64encode(digest).decode("ascii").rstrip("="),
+    )
+
+
+def verify_password(password: str, encoded: str) -> bool:
+    try:
+        scheme, rounds, salt_text, digest_text = encoded.split("$", 3)
+        if scheme != "pbkdf2_sha256":
+            return False
+        salt = base64.urlsafe_b64decode(salt_text + "=" * (-len(salt_text) % 4))
+        expected = base64.urlsafe_b64decode(digest_text + "=" * (-len(digest_text) % 4))
+        actual = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, int(rounds))
+        return hmac.compare_digest(actual, expected)
+    except (ValueError, TypeError):
+        return False
+
+
+def seed_admin_user(session: Session, email: str, password: str) -> tuple[User, bool]:
+    """Create the bootstrap admin once; never reset an existing user's password."""
+    email = normalize_email(email)
+    existing = session.scalar(select(User).where(User.email == email))
+    if existing:
+        return existing, False
+    local_name = email.partition("@")[0].replace(".", " ").replace("_", " ").replace("-", " ")
+    display_name = " ".join(part.capitalize() for part in local_name.split()) or "REI Admin"
+    now = utc_now()
+    user = User(
+        user_id=str(uuid.uuid4()),
+        email=email,
+        display_name=display_name,
+        password_hash=hash_password(password),
+        role="admin",
+        is_active=True,
+        created_at=now,
+        updated_at=now,
+    )
+    session.add(user)
+    session.flush()
+    return user, True
+
+
+def authenticate(session: Session, email: str, password: str) -> User | None:
+    user = session.scalar(select(User).where(User.email == normalize_email(email)))
+    # Spend comparable time for missing emails without revealing account existence.
+    if user is None:
+        verify_password(password, _DUMMY_PASSWORD_HASH)
+        return None
+    if not user.is_active or not verify_password(password, user.password_hash):
+        return None
+    return user
+
+
+def create_session(session: Session, user: User, lifetime_hours: int) -> str:
+    now = utc_now()
+    session.execute(delete(AuthSession).where(AuthSession.expires_at <= now))
+    token = secrets.token_urlsafe(48)
+    session.add(
+        AuthSession(
+            token_hash=hashlib.sha256(token.encode("ascii")).hexdigest(),
+            user_id=user.user_id,
+            created_at=now,
+            expires_at=now + timedelta(hours=lifetime_hours),
+        )
+    )
+    session.flush()
+    return token
+
+
+def user_for_token(session: Session, token: str | None) -> User | None:
+    if not token or len(token) > 200:
+        return None
+    digest = hashlib.sha256(token.encode("ascii", errors="ignore")).hexdigest()
+    row = session.scalar(
+        select(AuthSession).where(AuthSession.token_hash == digest, AuthSession.expires_at > utc_now())
+    )
+    if row is None:
+        return None
+    user = session.get(User, row.user_id)
+    return user if user and user.is_active else None
+
+
+def revoke_session(session: Session, token: str | None) -> None:
+    if token and len(token) <= 200:
+        digest = hashlib.sha256(token.encode("ascii", errors="ignore")).hexdigest()
+        session.execute(delete(AuthSession).where(AuthSession.token_hash == digest))
+
+
+def user_public(user: User) -> dict[str, str]:
+    return {
+        "id": user.user_id,
+        "email": user.email,
+        "display_name": user.display_name,
+        "role": user.role,
+    }
+
+
+_DUMMY_SALT = b"REI login timing salt"
+_DUMMY_DIGEST = hashlib.pbkdf2_hmac("sha256", b"unused", _DUMMY_SALT, PASSWORD_ROUNDS)
+_DUMMY_PASSWORD_HASH = "pbkdf2_sha256${}${}${}".format(
+    PASSWORD_ROUNDS,
+    base64.urlsafe_b64encode(_DUMMY_SALT).decode("ascii").rstrip("="),
+    base64.urlsafe_b64encode(_DUMMY_DIGEST).decode("ascii").rstrip("="),
+)

@@ -1,0 +1,49 @@
+{
+  "id": "new-york",
+  "name": "New York City",
+  "area_name": "New York City",
+  "country": "US",
+  "region": "New York",
+  "timezone": "America/New_York",
+  "language": "en",
+  "bbox": [
+    40.4774,
+    -74.2591,
+    40.9176,
+    -73.7004
+  ],
+  "map": {
+    "center": [
+      -73.9857,
+      40.7484
+    ],
+    "zoom": 10.5
+  },
+  "scope_terms": [
+    "New York City",
+    "NYC",
+    "New York"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "London",
+    "Toronto",
+    "Los Angeles",
+    "Chicago",
+    "Boston",
+    "Washington"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "New York City road closures and construction",
+      "NYC DOT street closures road works",
+      "New York traffic diversions and road closures"
+    ]
+  },
+  "official_sources": [
+    "nyc-street-closures"
+  ],
+  "gis_sources": []
+}

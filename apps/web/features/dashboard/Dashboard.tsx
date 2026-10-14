@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
 import Header from "@/components/layout/Header";
+import { useAuth } from "@/features/auth/AuthGate";
 import {
   ALL_CITIES,
   ALL_CITIES_ID,
@@ -51,6 +52,7 @@ const subscribeToNothing = () => () => {};
 const NO_IDS: ReadonlySet<string> = new Set();
 
 export default function Dashboard() {
+  const { user, signOut } = useAuth();
   const { sources: allSources, refresh: refreshSources } = useConnectedSources();
   const cities = useCities();
   // A link can open the console on a city (/?city=london); choosing one in
@@ -175,6 +177,8 @@ export default function Dashboard() {
           setIsAdding(false);
           setFilters(DEFAULT_FILTERS);
         }}
+        user={user}
+        onSignOut={signOut}
       />
       <main className="flex min-h-0 flex-1 flex-col-reverse md:flex-row">
         {/* The whole sidebar scrolls when the window is too short to show it all;

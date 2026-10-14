@@ -3,12 +3,12 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException, Query, Request
 from sqlalchemy import select
 
+from app.api.auth_deps import CurrentUserDep
 from app.api.deps import SessionDep
 from app.models import JunctionReference
 from app.repositories.events import EventRepository, to_event_outs
 from app.schemas.event import EventOut, GisChoiceIn, GisDecisionIn, JunctionOut
 from app.services import gis_service
-from app.services.review_service import LOCAL_REVIEWER
 
 router = APIRouter(tags=["gis"])
 
@@ -28,10 +28,12 @@ def list_junctions(
     return [_junction_out(row) for row in session.scalars(query)]
 
 
-def _decide_junction(session, junction_id: int, body: GisDecisionIn, confirm: bool) -> JunctionOut:
+def _decide_junction(
+    session, junction_id: int, body: GisDecisionIn, confirm: bool, reviewer: str
+) -> JunctionOut:
     try:
         row = gis_service.decide_junction(
-            session, junction_id, confirm=confirm, reviewer=LOCAL_REVIEWER, reason=body.reason,
+            session, junction_id, confirm=confirm, reviewer=reviewer, reason=body.reason,
             method="reviewer, in the REI console",
         )  # fmt: skip
     except gis_service.JunctionNotFound:
@@ -42,13 +44,17 @@ def _decide_junction(session, junction_id: int, body: GisDecisionIn, confirm: bo
 
 
 @router.post("/junctions/{junction_id}/confirm", response_model=JunctionOut)
-def confirm_junction(junction_id: int, body: GisDecisionIn, session: SessionDep) -> JunctionOut:
-    return _decide_junction(session, junction_id, body, True)
+def confirm_junction(
+    junction_id: int, body: GisDecisionIn, session: SessionDep, user: CurrentUserDep
+) -> JunctionOut:
+    return _decide_junction(session, junction_id, body, True, user.email)
 
 
 @router.post("/junctions/{junction_id}/reject", response_model=JunctionOut)
-def reject_junction(junction_id: int, body: GisDecisionIn, session: SessionDep) -> JunctionOut:
-    return _decide_junction(session, junction_id, body, False)
+def reject_junction(
+    junction_id: int, body: GisDecisionIn, session: SessionDep, user: CurrentUserDep
+) -> JunctionOut:
+    return _decide_junction(session, junction_id, body, False, user.email)
 
 
 def _gis_action(session, action) -> EventOut:
@@ -62,28 +68,36 @@ def _gis_action(session, action) -> EventOut:
 
 
 @router.post("/events/{event_id}/gis/approve", response_model=EventOut)
-def approve_gis(event_id: str, body: GisDecisionIn, session: SessionDep) -> EventOut:
+def approve_gis(
+    event_id: str, body: GisDecisionIn, session: SessionDep, user: CurrentUserDep
+) -> EventOut:
     """A reviewer accepts the GIS location proposed for the event."""
-    return _gis_action(session, lambda: gis_service.approve(session, event_id, reviewer=LOCAL_REVIEWER, reason=body.reason))
+    return _gis_action(session, lambda: gis_service.approve(session, event_id, reviewer=user.email, reason=body.reason))
 
 
 @router.post("/events/{event_id}/gis/reject", response_model=EventOut)
-def reject_gis(event_id: str, body: GisDecisionIn, session: SessionDep) -> EventOut:
+def reject_gis(
+    event_id: str, body: GisDecisionIn, session: SessionDep, user: CurrentUserDep
+) -> EventOut:
     """A reviewer rejects the GIS location; the previous location is restored."""
-    return _gis_action(session, lambda: gis_service.reject(session, event_id, reviewer=LOCAL_REVIEWER, reason=body.reason))
+    return _gis_action(session, lambda: gis_service.reject(session, event_id, reviewer=user.email, reason=body.reason))
 
 
 @router.post("/events/{event_id}/gis/choose", response_model=EventOut)
-def choose_gis(event_id: str, body: GisChoiceIn, session: SessionDep) -> EventOut:
+def choose_gis(
+    event_id: str, body: GisChoiceIn, session: SessionDep, user: CurrentUserDep
+) -> EventOut:
     """A reviewer picks one GIS candidate (e.g. of an ambiguous result) as the location."""
     return _gis_action(session, lambda: gis_service.choose(
         session, event_id, result_index=body.result_index, alternative_index=body.alternative_index,
-        reviewer=LOCAL_REVIEWER, reason=body.reason,
+        reviewer=user.email, reason=body.reason,
     ))  # fmt: skip
 
 
 @router.post("/events/{event_id}/gis/resolve", response_model=EventOut)
-def resolve_gis(event_id: str, request: Request, session: SessionDep) -> EventOut:
+def resolve_gis(
+    event_id: str, request: Request, session: SessionDep
+) -> EventOut:
     """Run the GIS resolver on one event now (needs the road network database)."""
     row = EventRepository(session).get(event_id)
     if row is None:

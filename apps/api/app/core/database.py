@@ -22,7 +22,7 @@ def create_db_engine(database_url: str) -> Engine:
         Path(url.database).parent.mkdir(parents=True, exist_ok=True)
     engine = create_engine(
         url,
-        connect_args={"check_same_thread": False},
+        connect_args={"check_same_thread": False, "timeout": 30},
         # One shared connection keeps an in-memory database alive across sessions.
         **({"poolclass": StaticPool} if in_memory else {}),
     )
@@ -30,6 +30,7 @@ def create_db_engine(database_url: str) -> Engine:
     @event.listens_for(engine, "connect")
     def _enable_foreign_keys(dbapi_connection, _record) -> None:
         dbapi_connection.execute("PRAGMA foreign_keys=ON")
+        dbapi_connection.execute("PRAGMA busy_timeout=30000")
 
     return engine
 

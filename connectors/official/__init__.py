@@ -12,17 +12,26 @@ whose events are located by a named place, marked approximate.
 """
 
 from .bengaluru_traffic_police import BengaluruTrafficPoliceConnector, bengaluru_source
+from .bison_fute import BisonFuteRoadEventsConnector, bison_fute_source
+from .finland import FinlandDigitrafficConnector, finland_source
 from .mumbai_traffic_police import MumbaiTrafficPoliceConnector, mumbai_source
+from .nyc import NycStreetClosuresConnector, nyc_source
 from .tfl import TflRoadDisruptionsConnector, tfl_source
 from .toronto import TorontoRoadRestrictionsConnector, toronto_source
 
 __all__ = [
     "BengaluruTrafficPoliceConnector",
+    "BisonFuteRoadEventsConnector",
+    "FinlandDigitrafficConnector",
     "MumbaiTrafficPoliceConnector",
+    "NycStreetClosuresConnector",
     "TflRoadDisruptionsConnector",
     "TorontoRoadRestrictionsConnector",
     "bengaluru_source",
+    "bison_fute_source",
+    "finland_source",
     "mumbai_source",
+    "nyc_source",
     "tfl_source",
     "toronto_source",
 ]

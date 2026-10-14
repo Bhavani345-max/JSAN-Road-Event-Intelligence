@@ -25,6 +25,14 @@ class Settings(BaseSettings):
     # Comma-separated origins allowed to call the API from a browser.
     cors_origins: str = "http://localhost:3000"
 
+    # Local reviewer authentication. The bootstrap account is created only if
+    # both seed values are present, and an existing account is never reset.
+    seed_admin_email: str | None = None
+    seed_admin_password: str | None = None
+    auth_cookie_name: str = "rei_session"
+    auth_cookie_secure: bool = False
+    auth_session_hours: int = 12
+
     # Poll active sources in the background, at each source's own frequency.
     ingestion_scheduler_enabled: bool = True
     ingestion_scheduler_tick_seconds: int = 60
@@ -39,9 +47,9 @@ class Settings(BaseSettings):
     # each feed says it is for personal, non-commercial use only. Switch on only
     # with written permission (docs/data-sources/google-news-rss.md).
     google_news_rss_enabled: bool = False
-    # Official feeds of the international test cities (Transport for London,
-    # City of Toronto). Connected, but run by hand during the test phase; set
-    # true to poll them on their schedules.
+    # Connected government feeds (including TfL, Toronto, NYC and France).
+    # Run by hand by default; set true to poll all connected official feeds on
+    # their source-specific schedules.
     official_feeds_scheduled: bool = False
     # Records one run of an official feed keeps (in effect now or within a
     # week, most recent first). Keeps each test city to a small number of

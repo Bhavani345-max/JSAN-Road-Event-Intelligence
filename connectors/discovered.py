@@ -464,35 +464,9 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
             "partnership was found."
         ),
     ),
-    # --- International official sources, researched 6 October 2026 ---------
-    # Connected ones (Transport for London, City of Toronto) live in
-    # connectors/official/. These were researched and not connected; the full
-    # record is docs/global-free-source-research.md.
-    SourceDefinition(
-        source_id="nyc-street-closures",
-        source_class=SourceClass.GOVERNMENT_OPEN_DATA, country="US", region="New York",
-        source_name="NYC street closures due to construction (NYC Open Data)",
-        organization="New York City Department of Transportation",
-        authority_type="TRANSPORT_AUTHORITY",
-        source_tier=1,
-        source_type=SourceType.API,
-        source_url="https://data.cityofnewyork.us/d/i6b5-j7bu",
-        endpoint="https://data.cityofnewyork.us/resource/i6b5-j7bu.json",
-        access_method="Socrata open data API (JSON, GeoJSON, CSV); no key, optional free app token",
-        integration_status=S.VALIDATED,
-        cost_category=CostCategory.FREE_PUBLIC,
-        rate_limit="None published; requests without an app token may be throttled",
-        provides_geometry=True,
-        provides_segments=True,
-        events_supported=("PLANNED_ROAD_CLOSURE", "ROAD_WORKS"),
-        notes=(
-            "Real data fetched without a key on 6 October 2026: full street closures by "
-            "block with a multi-line geometry, a segment id, the street and its cross "
-            "streets, and work start and end dates. Updated weekly; no direction or "
-            "incident category. The licence is not stated in the dataset's metadata and "
-            "NYC's terms pages could not be reached, so its terms need review before use."
-        ),
-    ),
+    # --- International sources researched 6–13 October 2026 ---------------
+    # NYC and France are now connected in connectors/official/; new regional
+    # discoveries below remain inactive until access and terms are resolved.
     SourceDefinition(
         source_id="511ny",
         source_class=SourceClass.AUTHORITATIVE_OFFICIAL, country="US", region="New York",
@@ -515,6 +489,97 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
             "not be read directly (they run only as a web application) and the Developers "
             "Access Agreement could not be retrieved; facts come from search results and a "
             "third-party mirror. Not connected."
+        ),
+    ),
+    SourceDefinition(
+        source_id="511-sf-bay-wzdx",
+        source_class=SourceClass.GOVERNMENT_OPEN_DATA, country="US", region="San Francisco Bay Area",
+        source_name="511 SF Bay work-zone and closure feed (WZDx)",
+        organization="Metropolitan Transportation Commission / 511 SF Bay",
+        authority_type="REGIONAL_TRANSPORT_AUTHORITY",
+        source_tier=1,
+        source_type=SourceType.API,
+        source_url="https://511.org/open-data/faqs",
+        endpoint="https://api.511.org/traffic/wzdx",
+        access_method="WZDx feed; requires a free 511 Open Data API key",
+        integration_status=S.REQUIRES_ACCESS,
+        cost_category=CostCategory.REGISTRATION_REQUIRED,
+        rate_limit="No numeric limit established in the feed FAQ.",
+        provides_geometry=True,
+        provides_segments=True,
+        real_time=True,
+        notes=(
+            "511 states its WZDx feed covers local streets, freeways and state highways "
+            "in participating Bay Area jurisdictions. Individual feed terms and exact "
+            "coverage should be confirmed after API-key registration."
+        ),
+    ),
+    SourceDefinition(
+        source_id="qld-traffic-geojson",
+        source_class=SourceClass.AUTHORITATIVE_OFFICIAL, country="AU", region="Queensland",
+        source_name="Queensland QLDTraffic GeoJSON feeds",
+        organization="Queensland Department of Transport and Main Roads",
+        authority_type="STATE_ROAD_AUTHORITY",
+        source_tier=1,
+        source_type=SourceType.API,
+        source_url="https://www.data.qld.gov.au/dataset/131940-traffic-and-travel-information-geojson-api",
+        endpoint="https://qldtraffic.qld.gov.au/",
+        access_method="GeoJSON API; API access key described in the developer specification",
+        integration_status=S.REQUIRES_ACCESS,
+        cost_category=CostCategory.REGISTRATION_REQUIRED,
+        licence="Creative Commons Attribution 4.0 (dataset listing)",
+        attribution="State of Queensland (Department of Transport and Main Roads)",
+        commercial_use=CommercialUse.PERMITTED_WITH_ATTRIBUTION,
+        provides_geometry=True,
+        real_time=True,
+        notes=(
+            "The Queensland Open Data listing documents GeoJSON feeds for hazards, crashes, "
+            "congestion, flooding, roadworks and special events, and lists CC BY 4.0. The "
+            "developer guide specifies API access keys; the public endpoint and its current "
+            "key conditions need validation before integration."
+        ),
+    ),
+    SourceDefinition(
+        source_id="germany-autobahn-traffic",
+        source_class=SourceClass.AUTHORITATIVE_OFFICIAL, country="DE", region="Germany",
+        source_name="Autobahn GmbH roadworks, warnings and closures API",
+        organization="Die Autobahn GmbH des Bundes",
+        authority_type="NATIONAL_ROAD_AUTHORITY",
+        source_tier=1,
+        source_type=SourceType.API,
+        source_url="https://www.autobahn.de/betrieb-verkehr/verkehrsmeldungen",
+        endpoint="https://verkehr.autobahn.de/o/autobahn",
+        access_method="Public REST API, organized by autobahn route",
+        integration_status=S.TERMS_REVIEW_REQUIRED,
+        cost_category=CostCategory.UNKNOWN,
+        terms_status=TermsStatus.REVIEW_REQUIRED,
+        provides_geometry=True,
+        real_time=True,
+        notes=(
+            "The public service exposes current roadworks, traffic warnings and closures "
+            "by route. It requires route enumeration and several requests per route. The "
+            "official re-use licence, rate limit and commercial terms were not established."
+        ),
+    ),
+    SourceDefinition(
+        source_id="dgt-spain-incidents",
+        source_class=SourceClass.AUTHORITATIVE_OFFICIAL, country="ES", region="Spain",
+        source_name="DGT national road incidents (DATEX II 3.7)",
+        organization="Dirección General de Tráfico",
+        authority_type="NATIONAL_ROAD_AUTHORITY",
+        source_tier=1,
+        source_type=SourceType.API,
+        source_url="https://nap.dgt.es/en/dataset?organization=dgt&tags=incidents",
+        access_method="National Access Point DATEX II 3.7 dataset; access conditions need confirmation",
+        integration_status=S.TERMS_REVIEW_REQUIRED,
+        cost_category=CostCategory.UNKNOWN,
+        terms_status=TermsStatus.REVIEW_REQUIRED,
+        provides_geometry=True,
+        real_time=True,
+        notes=(
+            "The DGT National Access Point lists a live DATEX II incident feed for the "
+            "Spanish national road network, excluding the Basque Country and Catalonia. "
+            "The live feed URL and re-use terms were not validated in this pass."
         ),
     ),
     SourceDefinition(

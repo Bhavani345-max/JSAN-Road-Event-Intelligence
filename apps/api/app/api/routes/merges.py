@@ -3,12 +3,12 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException, Query
 from sqlalchemy import select
 
+from app.api.auth_deps import CurrentUserDep
 from app.api.deps import SessionDep
 from app.models import Event, EventMergeCandidate
 from app.repositories.events import source_summary, to_event_outs
 from app.schemas.event import EventOut, MergeCandidateOut, MergeDecisionIn, MergeGroupDecisionIn
 from app.services import merge_service
-from app.services.review_service import LOCAL_REVIEWER
 from packages.cities import load_cities
 
 router = APIRouter(prefix="/merge-candidates", tags=["merging"])
@@ -57,11 +57,11 @@ def list_candidates(
 
 
 @router.post("/confirm-all", response_model=EventOut)
-def confirm_all(body: MergeGroupDecisionIn, session: SessionDep) -> EventOut:
+def confirm_all(body: MergeGroupDecisionIn, session: SessionDep, user: CurrentUserDep) -> EventOut:
     """A reviewer says all these candidates of one event are the same event: merge them all."""
     try:
         canonical = merge_service.confirm_all(
-            session, body.candidate_ids, reviewer=LOCAL_REVIEWER, reason=body.reason
+            session, body.candidate_ids, reviewer=user.email, reason=body.reason
         )
     except merge_service.CandidateNotFound:
         raise HTTPException(status_code=404, detail="Candidate not found") from None
@@ -73,10 +73,14 @@ def confirm_all(body: MergeGroupDecisionIn, session: SessionDep) -> EventOut:
 
 
 @router.post("/{candidate_id}/confirm", response_model=EventOut)
-def confirm(candidate_id: int, body: MergeDecisionIn, session: SessionDep) -> EventOut:
+def confirm(
+    candidate_id: int, body: MergeDecisionIn, session: SessionDep, user: CurrentUserDep
+) -> EventOut:
     """A reviewer says the two are the same event: merge them, keeping all evidence."""
     try:
-        canonical = merge_service.confirm(session, candidate_id, reviewer=LOCAL_REVIEWER, reason=body.reason)
+        canonical = merge_service.confirm(
+            session, candidate_id, reviewer=user.email, reason=body.reason
+        )
     except merge_service.CandidateNotFound:
         raise HTTPException(status_code=404, detail="Candidate not found") from None
     except merge_service.CandidateDecided as error:
@@ -85,10 +89,14 @@ def confirm(candidate_id: int, body: MergeDecisionIn, session: SessionDep) -> Ev
 
 
 @router.post("/{candidate_id}/reject", response_model=MergeCandidateOut)
-def reject(candidate_id: int, body: MergeDecisionIn, session: SessionDep) -> MergeCandidateOut:
+def reject(
+    candidate_id: int, body: MergeDecisionIn, session: SessionDep, user: CurrentUserDep
+) -> MergeCandidateOut:
     """A reviewer says they are different events: they stay apart."""
     try:
-        candidate = merge_service.reject(session, candidate_id, reviewer=LOCAL_REVIEWER, reason=body.reason)
+        candidate = merge_service.reject(
+            session, candidate_id, reviewer=user.email, reason=body.reason
+        )
     except merge_service.CandidateNotFound:
         raise HTTPException(status_code=404, detail="Candidate not found") from None
     except merge_service.CandidateDecided as error:

@@ -25,7 +25,7 @@ from services.lifecycle.transitions import (
     approval_blockers,
 )
 
-# There is no authentication yet, so every change is attributed to this name.
+# Fallback for internal maintenance tools; authenticated API actions use the reviewer email.
 LOCAL_REVIEWER = "local-reviewer"
 
 
@@ -51,7 +51,9 @@ class InvalidSeverity(Exception):
     pass
 
 
-def _assess_severity(row: Event, severity: EventSeverity, reason: str | None, now) -> None:
+def _assess_severity(
+    row: Event, severity: EventSeverity, reason: str | None, now, reviewer: str
+) -> None:
     """Put a reviewer's REI severity on the event, with who, when and why.
 
     The value is the reviewer's own judgment. The source's severity words
@@ -62,7 +64,7 @@ def _assess_severity(row: Event, severity: EventSeverity, reason: str | None, no
         **(row.detection or {}),
         "severity_assessment": SeverityAssessment(
             severity=severity,
-            assessed_by=LOCAL_REVIEWER,
+            assessed_by=reviewer,
             assessed_at=now,
             reason=reason,
             version=row.version + 1,
@@ -71,7 +73,8 @@ def _assess_severity(row: Event, severity: EventSeverity, reason: str | None, no
 
 
 def set_event_severity(
-    session: Session, event_id: str, severity: EventSeverity, reason: str | None
+    session: Session, event_id: str, severity: EventSeverity, reason: str | None,
+    *, reviewer: str = LOCAL_REVIEWER,
 ) -> Event:
     """Record a reviewer's REI severity for an event as a new version.
 
@@ -84,14 +87,14 @@ def set_event_severity(
     if EventStatus(row.status) in _NOT_EXTENDABLE:
         raise InvalidSeverity(f"An event that is {row.status} cannot be given a severity.")
     now = utc_now()
-    _assess_severity(row, severity, reason, now)
+    _assess_severity(row, severity, reason, now, reviewer)
     row.version += 1
     row.updated_at = now
     events.record_version(
         row,
         change_reason=f"REI severity set to {severity.value} by a reviewer."
         + (f" {reason}" if reason else ""),
-        changed_by=LOCAL_REVIEWER,
+        changed_by=reviewer,
     )
     session.commit()
     return row
@@ -116,6 +119,8 @@ def update_event_status(
     reason: str | None,
     severity: EventSeverity | None = None,
     force: bool = False,
+    *,
+    reviewer: str = LOCAL_REVIEWER,
 ) -> Event:
     """Apply a human review decision and record it as a new event version.
 
@@ -146,7 +151,7 @@ def update_event_status(
 
     now = utc_now()
     if severity is not None:
-        _assess_severity(row, severity, reason, now)
+        _assess_severity(row, severity, reason, now, reviewer)
         reason = (
             f"{reason} REI severity {severity.value}." if reason else f"REI severity {severity.value}."
         )
@@ -162,7 +167,7 @@ def update_event_status(
         if row.geometry is not None and not location_overridden:
             detection["location_class"] = LocationClass.QC_APPROVED.value
         detection["qc_approval"] = QcApproval(
-            approved_by=LOCAL_REVIEWER,
+            approved_by=reviewer,
             approved_at=now,
             reason=reason,
             version=row.version + 1,
@@ -175,7 +180,7 @@ def update_event_status(
     row.status = new_status.value
     row.version += 1
     row.updated_at = now
-    events.record_version(row, change_reason=reason, changed_by=LOCAL_REVIEWER)
+    events.record_version(row, change_reason=reason, changed_by=reviewer)
     session.commit()
     return row
 
@@ -185,7 +190,10 @@ def _city_of(row: Event):
     return next((c for c in load_cities().values() if c.name == row.city), None) or default_city()
 
 
-def extend_event(session: Session, event_id: str, end_date: date | None, reason: str) -> Event:
+def extend_event(
+    session: Session, event_id: str, end_date: date | None, reason: str,
+    *, reviewer: str = LOCAL_REVIEWER,
+) -> Event:
     """Record a reviewer's knowledge that an event runs longer than recorded.
 
     `end_date` is the new last day (a whole day in the event's city's time zone;
@@ -224,7 +232,7 @@ def extend_event(session: Session, event_id: str, end_date: date | None, reason:
 
     now = utc_now()
     revision = PeriodRevision(
-        previous_end=event.end_time, reason=reason, revised_by=LOCAL_REVIEWER, revised_at=now
+        previous_end=event.end_time, reason=reason, revised_by=reviewer, revised_at=now
     )
     # A new dict, so the JSON column is seen to have changed.
     row.detection = {**(row.detection or {}), "period_revision": revision.model_dump(mode="json")}
@@ -233,7 +241,7 @@ def extend_event(session: Session, event_id: str, end_date: date | None, reason:
     row.updated_at = now
     until = end_date.isoformat() if end_date else "further notice"
     events.record_version(
-        row, change_reason=f"Extended until {until}. {reason}", changed_by=LOCAL_REVIEWER
+        row, change_reason=f"Extended until {until}. {reason}", changed_by=reviewer
     )
     session.commit()
     return row
@@ -248,6 +256,7 @@ def set_event_location(
     latitude: float,
     place_name: str,
     reason: str,
+    reviewer: str = LOCAL_REVIEWER,
 ) -> Event:
     """Put an event at the spot a reviewer picked on the map.
 
@@ -289,7 +298,7 @@ def set_event_location(
         precision="place",
         mention=place_name,
         found_in="review",
-        reference=f"placed on the map by {LOCAL_REVIEWER}",
+        reference=f"placed on the map by {reviewer}",
     ).model_dump(mode="json")
     detection["location_class"] = LocationClass.HUMAN_CORRECTED.value
     # A reviewer's own placement outranks any GIS proposal.
@@ -299,7 +308,7 @@ def set_event_location(
     detection["location_revision"] = LocationRevision(
         previous_place_name=previous.get("place_name"),
         reason=reason,
-        revised_by=LOCAL_REVIEWER,
+        revised_by=reviewer,
         revised_at=now,
     ).model_dump(mode="json")
     row.detection = detection
@@ -311,7 +320,7 @@ def set_event_location(
         change_reason=(
             f"Located at {place_name} ({latitude:.5f}, {longitude:.5f}) by a reviewer. {reason}"
         ),
-        changed_by=LOCAL_REVIEWER,
+        changed_by=reviewer,
     )
     session.commit()
     return row
