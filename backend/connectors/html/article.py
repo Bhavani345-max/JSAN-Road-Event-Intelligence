@@ -16,7 +16,7 @@ from typing import Any
 
 import httpx
 
-from connectors.base import ConnectorError
+from connectors.base import ConnectorError, refusal_detail
 from connectors.restricted import restricted_publisher
 from packages.common.hashing import sha256_hex
 from packages.common.text import html_to_text
@@ -119,6 +119,12 @@ def download_page(
         else:
             raise ConnectorError(f"Could not fetch {url}: more than {MAX_REDIRECTS} redirects")
         response.raise_for_status()
+    except httpx.HTTPStatusError as error:
+        refused = error.response
+        raise ConnectorError(
+            f"Could not fetch {url}: HTTP {refused.status_code} {refused.reason_phrase}"
+            + refusal_detail(refused)
+        ) from error
     except httpx.HTTPError as error:
         raise ConnectorError(f"Could not fetch {url}: {error}") from error
     if len(response.content) > MAX_RESPONSE_BYTES:

@@ -103,6 +103,11 @@ The Siasat Daily (disconnected 14 Oct 2026, decision 0024), NewsMeter, The Hans 
   and, after three refreshes, flagged for review, never ended
   ([decision 0011](docs/decisions/0011-cross-source-merging-and-feed-absence.md)).
   `python backend/cli/match_events.py` matches everything held.
+- NYC DOT lists a block's closure once per permit purpose; rows with the same
+  segment and work period are merged into one event, every row kept as
+  evidence ([decision 0025](docs/decisions/0025-one-closure-listed-in-several-rows.md)).
+  Events that still share a map point are listed, with their dates, when the
+  point is clicked.
 - **GIS Resolution Engine (Hyderabad):** junction, crossing and road-stretch
   names in a report are looked up in the OpenStreetMap road network (PostGIS)
   and, when exactly one place fits, proposed as the event's location with the

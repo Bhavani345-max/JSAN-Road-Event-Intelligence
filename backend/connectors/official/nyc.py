@@ -2,6 +2,12 @@
 
 The GeoJSON dataset is public and keyless. It covers full street closures for
 construction, with a road-segment geometry and work start/end dates.
+
+It lists a block's closure once per permit purpose ("place crane or shovel on
+street", "occupancy of roadway as stipulated" ...), each row with its own id:
+on 14 October 2026, 3,568 rows described 2,277 closures. Every row is kept as
+evidence; rows of one closure are merged into one event (see
+`same_closure_key` and app/services/merge_service.py).
 """
 
 from datetime import datetime
@@ -13,8 +19,8 @@ import httpx
 from connectors.base import ConnectorError
 from packages.cities import get_city
 from packages.common.hashing import sha256_hex
-from packages.common.time import utc_now
-from packages.event_schema import EventType
+from packages.common.time import ensure_utc, utc_now
+from packages.event_schema import EventType, ReiEvent
 from packages.source_models import (
     CommercialUse,
     CostCategory,
@@ -94,6 +100,25 @@ def _time(value: Any) -> datetime | None:
         return None
     # NYC publishes local permit times without an offset.
     return parsed.replace(tzinfo=NYC_TIME_ZONE) if parsed.tzinfo is None else parsed
+
+
+def same_closure_key(event: ReiEvent) -> str | None:
+    """What the dataset's rows for one closure share: the block's segment and the work period.
+
+    Rows with the same street segment and the same work start and end are one
+    closure of that block, whatever their permit purpose or the cross streets
+    they name. None when an event states no segment or no full period.
+    """
+    if event.start_time is None or event.end_time is None or event.detection is None:
+        return None
+    locations = event.detection.affected_locations
+    segments = sorted({location.reference for location in locations if location.reference})
+    if not segments:
+        return None
+    start, end = (
+        ensure_utc(time).strftime("%Y-%m-%d %H:%M") for time in (event.start_time, event.end_time)
+    )
+    return f"{'; '.join(segments)}, work period {start} to {end} UTC"
 
 
 def to_record(feature: dict[str, Any], retrieved_at: datetime) -> RawSourceRecord | None:

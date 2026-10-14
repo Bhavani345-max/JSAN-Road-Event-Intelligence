@@ -16,7 +16,7 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import { HYDERABAD_VIEW, mapConfig, satelliteConfig, type Basemap } from "@/lib/config";
 import { isLocated, type Position, type RoadEvent } from "@/features/events/model";
-import { distinctEvents, toEventMapData } from "../geojson";
+import { distinctEvents, toEventMapData, type StackedEvent } from "../geojson";
 import { getBoundingBox } from "../geometry";
 
 interface EventMapProps {
@@ -290,15 +290,12 @@ function pickEvent(map: MapLibreMap, e: MapMouseEvent): { id: string; title: str
 }
 
 /** Every event whose marker is under the pointer: several when markers share a spot. */
-function pickMarkers(map: MapLibreMap, e: MapMouseEvent): { id: string; title: string }[] {
+function pickMarkers(map: MapLibreMap, e: MapMouseEvent): StackedEvent[] {
   return distinctEvents(map.queryRenderedFeatures(hitBox(e), { layers: [LAYERS.anchor] }));
 }
 
-/** A list of the events at one spot, to choose which to open. */
-function stackChooser(
-  events: { id: string; title: string }[],
-  onChoose: (eventId: string) => void,
-): HTMLElement {
+/** The events at one spot, each with its type, period and source, to choose which to open. */
+function stackChooser(events: StackedEvent[], onChoose: (eventId: string) => void): HTMLElement {
   const root = document.createElement("div");
   root.className = "max-w-72 text-xs";
   const heading = document.createElement("p");
@@ -306,7 +303,7 @@ function stackChooser(
   heading.textContent = `${events.length} events at this spot`;
   const note = document.createElement("p");
   note.className = "mb-2 text-[11px] leading-snug text-slate-500";
-  note.textContent = "They name the same place. Choose one to open.";
+  note.textContent = "Separate events at the same spot. Choose one to open.";
   const list = document.createElement("ul");
   list.className = "max-h-56 space-y-1 overflow-y-auto";
   for (const event of events) {
@@ -315,7 +312,16 @@ function stackChooser(
     button.type = "button";
     button.className =
       "w-full cursor-pointer rounded-md px-2 py-1.5 text-left leading-snug text-slate-700 ring-1 ring-inset ring-slate-200 hover:bg-slate-50";
-    button.textContent = event.title;
+    const title = document.createElement("span");
+    title.className = "block";
+    title.textContent = event.title;
+    button.append(title);
+    if (event.detail) {
+      const detail = document.createElement("span");
+      detail.className = "mt-0.5 block text-[11px] text-slate-500";
+      detail.textContent = event.detail;
+      button.append(detail);
+    }
     button.addEventListener("click", () => onChoose(event.id));
     item.append(button);
     list.append(item);

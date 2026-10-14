@@ -46,14 +46,29 @@ describe("markers that share a spot", () => {
 describe("the events under a click", () => {
   it("are listed once each, top-most first", () => {
     const hits = [
-      { properties: { eventId: "EVT-B", title: "B" } },
+      { properties: { eventId: "EVT-B", title: "B", detail: "Road closure · NYC DOT" } },
       { properties: { eventId: "EVT-A", title: "A" } },
-      { properties: { eventId: "EVT-B", title: "B" } },
+      { properties: { eventId: "EVT-B", title: "B", detail: "Road closure · NYC DOT" } },
       { properties: null },
     ];
     expect(distinctEvents(hits)).toEqual([
-      { id: "EVT-B", title: "B" },
-      { id: "EVT-A", title: "A" },
+      { id: "EVT-B", title: "B", detail: "Road closure · NYC DOT" },
+      { id: "EVT-A", title: "A", detail: "" },
     ]);
+  });
+});
+
+describe("events at one spot with the same title", () => {
+  it("are told apart by their stated periods", () => {
+    const first = { ...at("EVT-A", KBR_PARK), title: "Same title" };
+    const second = { ...at("EVT-B", KBR_PARK), title: "Same title" };
+    first.startTime = "2026-09-15T04:00:00Z";
+    first.endTime = "2026-10-15T04:00:00Z";
+    second.startTime = "2026-09-26T04:00:00Z";
+    second.endTime = "2026-12-25T05:00:00Z";
+    const { anchors } = toEventMapData([first, second], null);
+    const [a, b] = anchors.features.map((f) => f.properties.detail);
+    expect(a).not.toEqual(b);
+    expect(a).toContain(first.source.name);
   });
 });

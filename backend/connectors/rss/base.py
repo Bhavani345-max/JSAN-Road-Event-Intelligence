@@ -6,7 +6,7 @@ from typing import Any
 import feedparser
 import httpx
 
-from connectors.base import ConnectorError
+from connectors.base import ConnectorError, refusal_detail
 from packages.common.hashing import sha256_hex
 from packages.common.text import html_to_text
 from packages.common.time import utc_now
@@ -44,6 +44,12 @@ class RssConnector:
                 follow_redirects=True,
             )
             response.raise_for_status()
+        except httpx.HTTPStatusError as error:
+            refused = error.response
+            raise ConnectorError(
+                f"Could not fetch {url}: HTTP {refused.status_code} {refused.reason_phrase}"
+                + refusal_detail(refused)
+            ) from error
         except httpx.HTTPError as error:
             raise ConnectorError(f"Could not fetch {url}: {error}") from error
         if len(response.content) > self.config.max_response_bytes:

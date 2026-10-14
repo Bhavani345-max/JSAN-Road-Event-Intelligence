@@ -165,6 +165,7 @@ been formally reviewed for any of them; see "Licensing" at the end.
 - **Licensing/terms notes:** No terms page was found at the usual addresses. Not reviewed.
 - **Integration status:** CONNECTED
 - **Reason:** Reachable and Hyderabad-specific. The very short feed window means articles published while REI is not running are lost.
+- **Production (Railway), 14 October 2026:** the feed is behind Cloudflare, which answers HTTP 403 to Railway's servers. Every deployment since 12 October was refused (about 400 polls), except one on 14 October, 10:01-12:33 UTC, which got through 11 times out of 11; from an office connection the same request gets 200. Cloudflare judges the network address a request comes from, and Railway's address changes between deployments. robots.txt allows the feed and no terms page was found, so this is the site's bot protection, not a ban on REI. It is not worked around (no browser disguise, no proxies). A fixed outbound address (Railway Static Outbound IPs) that The Hans India allows would fix it; that needs their agreement. Since 14 October a refusal is reported as Cloudflare's (`connectors/base.py`, `refusal_detail`).
 
 ---
 

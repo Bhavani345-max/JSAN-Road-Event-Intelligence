@@ -9,7 +9,7 @@ from typing import Any, TypeVar
 
 import httpx
 
-from connectors.base import ConnectorError
+from connectors.base import ConnectorError, refusal_detail
 
 MAX_RESPONSE_BYTES = 20 * 1024 * 1024
 # A test run keeps records in effect now or starting within this long.
@@ -42,7 +42,9 @@ def fetch_json(
             "retried at the next run"
         )
     if response.status_code != 200:
-        raise ConnectorError(f"Could not fetch {url}: HTTP {response.status_code}")
+        raise ConnectorError(
+            f"Could not fetch {url}: HTTP {response.status_code}" + refusal_detail(response)
+        )
     if len(response.content) > MAX_RESPONSE_BYTES:
         raise ConnectorError(f"Response from {url} is larger than the allowed maximum")
     try:
@@ -83,7 +85,9 @@ def fetch_text(
             "retried at the next run"
         )
     if response.status_code != 200:
-        raise ConnectorError(f"Could not fetch {url}: HTTP {response.status_code}")
+        raise ConnectorError(
+            f"Could not fetch {url}: HTTP {response.status_code}" + refusal_detail(response)
+        )
     if len(response.content) > MAX_RESPONSE_BYTES:
         raise ConnectorError(f"Response from {url} is larger than the allowed maximum")
     return response.text

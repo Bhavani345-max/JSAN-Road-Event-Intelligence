@@ -109,3 +109,30 @@ def test_telangana_today_is_a_connected_rss_source():
     assert TELANGANA_TODAY.endpoint == "https://telanganatoday.com/hyderabad/feed"
     assert TELANGANA_TODAY.active is True
     assert isinstance(create_rss_connector(TELANGANA_TODAY), RssConnector)
+
+
+def test_a_cloudflare_refusal_says_who_refused(rss_connector, monkeypatch):
+    # The Hans India's feed from Railway's servers, 12-14 October 2026.
+    def refused(url, **kwargs):
+        headers = {
+            "server": "cloudflare", "cf-ray": "a4a70e417f0469ae-SJC", "cf-mitigated": "challenge",
+        }  # fmt: skip
+        return httpx.Response(403, headers=headers, request=httpx.Request("GET", url))
+
+    monkeypatch.setattr(httpx, "get", refused)
+    with pytest.raises(ConnectorError) as error:
+        rss_connector.fetch()
+    message = str(error.value)
+    assert "HTTP 403 Forbidden" in message
+    assert "Cloudflare protection asked for a browser check" in message
+    assert "a4a70e417f0469ae-SJC" in message
+
+
+def test_a_refusal_from_anyone_else_is_reported_as_it_is(rss_connector, monkeypatch):
+    def refused(url, **kwargs):
+        return httpx.Response(403, headers={"server": "nginx"}, request=httpx.Request("GET", url))
+
+    monkeypatch.setattr(httpx, "get", refused)
+    with pytest.raises(ConnectorError) as error:
+        rss_connector.fetch()
+    assert str(error.value).endswith("HTTP 403 Forbidden")

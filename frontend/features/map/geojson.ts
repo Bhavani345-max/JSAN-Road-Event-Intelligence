@@ -5,17 +5,26 @@ import {
   type RoadEvent,
 } from "@/features/events/model";
 import {
+  formatEventPeriod,
   getEventTypeColor,
+  getEventTypeLabel,
   getStatusMapStyle,
+  isWholeDayPeriod,
   PLACE_ROLE_COLORS,
   PLACE_ROLE_LABELS,
   ROUTE_ROLES,
+  timeZoneOf,
 } from "@/features/events/presentation";
 
 /** Properties the map layers style by. Kept flat for style expressions. */
 export interface EventFeatureProperties {
   eventId: string;
   title: string;
+  /**
+   * What tells the event apart from others at its spot: its type, its stated
+   * period and its source ("Planned road closure · 15 Sep 2026 → 15 Oct 2026 · …").
+   */
+  detail: string;
   color: string;
   dashed: boolean;
   opacity: number;
@@ -116,6 +125,7 @@ export function toEventMapData(events: RoadEvent[], selectedEventId: string | nu
     const properties: EventFeatureProperties = {
       eventId: event.id,
       title: event.title,
+      detail: describeForStack(event),
       color: getEventTypeColor(event.eventType),
       ...getStatusMapStyle(event.status),
       selected: event.id === selectedEventId,
@@ -170,6 +180,19 @@ export function toEventMapData(events: RoadEvent[], selectedEventId: string | nu
   };
 }
 
+/** Type, stated period (in the event's city's zone) and source, joined for one line. */
+export function describeForStack(event: RoadEvent): string {
+  const parts = [getEventTypeLabel(event.eventType)];
+  if (event.startTime || event.endTime) {
+    const zone = timeZoneOf(event.city);
+    const wholeDays = isWholeDayPeriod(event.startTime, event.endTime, zone);
+    const { start, end } = formatEventPeriod(event.startTime, event.endTime, wholeDays, zone);
+    parts.push(event.startTime ? `${start} → ${end}` : `until ${end}`);
+  }
+  parts.push(event.source.name);
+  return parts.join(" · ");
+}
+
 /** Markers closer than this (about 10 cm) are at the same point. */
 const SAME_POINT_DIGITS = 6;
 
@@ -196,15 +219,26 @@ export function stackAnchors(
   return anchors;
 }
 
+/** An event under a click: enough to choose it from a list. */
+export interface StackedEvent {
+  id: string;
+  title: string;
+  detail: string;
+}
+
 /** One entry per event among features hit by a click, in the order given (top-most first). */
 export function distinctEvents(
   features: { properties: Record<string, unknown> | null }[],
-): { id: string; title: string }[] {
-  const seen = new Map<string, string>();
+): StackedEvent[] {
+  const seen = new Map<string, StackedEvent>();
   for (const feature of features) {
     const id = feature.properties?.eventId;
     if (id === undefined || id === null || seen.has(String(id))) continue;
-    seen.set(String(id), String(feature.properties?.title ?? ""));
+    seen.set(String(id), {
+      id: String(id),
+      title: String(feature.properties?.title ?? ""),
+      detail: String(feature.properties?.detail ?? ""),
+    });
   }
-  return [...seen].map(([id, title]) => ({ id, title }));
+  return [...seen.values()];
 }

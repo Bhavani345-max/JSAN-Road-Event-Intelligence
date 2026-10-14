@@ -1,0 +1,155 @@
+{
+ "note": "Five real features of NYC Open Data dataset i6b5-j7bu (Street Closures due to Construction Activities by Block), as stored by REI on 13-14 October 2026: one block of Vanderbilt Avenue (segment 35822) in two work periods, listed once per permit purpose.",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -73.97651569424282,
+       40.75497426243738
+      ],
+      [
+       -73.9760593429855,
+       40.755599893620115
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "fromstreetname": "EAST   46 STREET",
+    "uniqueid": "2061911785f92588930edcc3df67f990cf1fb16ead99f20c384676c790b83aff",
+    "purpose": "OCCUPANCY OF ROADWAY AS STIPULATED",
+    "tostreetname": "EAST   47 STREET",
+    "onstreetname": "VANDERBILT AVENUE",
+    "work_end_date": "2026-10-15T00:00:00.000",
+    "borough_code": "M",
+    "segmentid": "35822",
+    "work_start_date": "2026-09-15T00:00:00.000",
+    "oft": "132670117910117930"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -73.97651569424282,
+       40.75497426243738
+      ],
+      [
+       -73.9760593429855,
+       40.755599893620115
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "fromstreetname": "EAST   46 STREET",
+    "uniqueid": "dc19e2386fa6fcd3d83748c96fdae64cf790d3f5fbb7aa33d6d453d8c9cdb2e0",
+    "purpose": "OCCUPANCY OF SIDEWALK AS STIPULATED",
+    "tostreetname": "EAST   47 STREET",
+    "onstreetname": "VANDERBILT AVENUE",
+    "work_end_date": "2026-10-15T00:00:00.000",
+    "borough_code": "M",
+    "segmentid": "35822",
+    "work_start_date": "2026-09-15T00:00:00.000",
+    "oft": "132670117910117930"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -73.97651569424282,
+       40.75497426243738
+      ],
+      [
+       -73.9760593429855,
+       40.755599893620115
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "fromstreetname": "EAST   46 STREET",
+    "uniqueid": "2e2baa92fd424c63c22917419d85bf04100895ffa25eb53cfbf5ae2c32fa15af",
+    "purpose": "PLACE CRANE OR SHOVEL ON STREET",
+    "tostreetname": "EAST   47 STREET",
+    "onstreetname": "VANDERBILT AVENUE",
+    "work_end_date": "2026-10-15T00:00:00.000",
+    "borough_code": "M",
+    "segmentid": "35822",
+    "work_start_date": "2026-09-15T00:00:00.000",
+    "oft": "132670117910117930"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -73.97651569424282,
+       40.75497426243738
+      ],
+      [
+       -73.9760593429855,
+       40.755599893620115
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "fromstreetname": "EAST   46 STREET",
+    "uniqueid": "9789f37b46ebfa3b16274455f0d2ed846540477b61ee320c7b27b7956337d96c",
+    "purpose": "OCCUPANCY OF ROADWAY AS STIPULATED",
+    "tostreetname": "EAST   47 STREET",
+    "onstreetname": "VANDERBILT AVENUE",
+    "work_end_date": "2026-12-25T00:00:00.000",
+    "borough_code": "M",
+    "segmentid": "35822",
+    "work_start_date": "2026-09-26T00:00:00.000",
+    "oft": "132670117910117930"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -73.97651569424282,
+       40.75497426243738
+      ],
+      [
+       -73.9760593429855,
+       40.755599893620115
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "fromstreetname": "EAST   46 STREET",
+    "uniqueid": "fdde4f3ad57ce894dadda98f5ccb3b700541218d5be8790046a142d60426d531",
+    "purpose": "OCCUPANCY OF SIDEWALK AS STIPULATED",
+    "tostreetname": "EAST   47 STREET",
+    "onstreetname": "VANDERBILT AVENUE",
+    "work_end_date": "2026-12-25T00:00:00.000",
+    "borough_code": "M",
+    "segmentid": "35822",
+    "work_start_date": "2026-09-26T00:00:00.000",
+    "oft": "132670117910117930"
+   }
+  }
+ ]
+}

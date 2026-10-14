@@ -19,9 +19,14 @@ A merge links, it never deletes or rewrites:
 The canonical event is the one from the most authoritative source; among
 equals, the one furthest through review, then the better located, then the
 first reported.
+
+Two records of one official source are separate events, except where the
+source lists one event in several rows (`LISTED_IN_SEVERAL_ROWS`: NYC DOT
+lists a block's closure once per permit purpose). Those rows are merged in the
+same way, by `merge_listed_rows`.
 """
 
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -31,7 +36,9 @@ from sqlalchemy.orm import Session
 from app.models import Event, EventMergeCandidate
 from app.repositories.events import EventRepository, to_rei_event
 from packages.common.time import ensure_utc, utc_now
-from packages.event_schema import EventStatus
+from connectors.official.nyc import SOURCE_ID as NYC_SOURCE_ID
+from connectors.official.nyc import same_closure_key
+from packages.event_schema import EventStatus, ReiEvent
 from packages.geo_models import positions_of
 from services.merging import EventFacts, MatchClass, compare
 from services.lifecycle import is_current
@@ -54,6 +61,12 @@ _LOCATION_RANK = {
     "QC_APPROVED": 5, "SOURCE_PROVIDED": 4, "GIS_RESOLVED": 4, "HUMAN_CORRECTED": 3,
     "APPROXIMATE": 1, "UNRESOLVED": 0,
 }  # fmt: skip
+# Official sources that list one event in several rows, and what the rows of
+# one event share (None: the row cannot be grouped and stays on its own).
+LISTED_IN_SEVERAL_ROWS: dict[str, Callable[[ReiEvent], str | None]] = {
+    # A block's closure, once per permit purpose: same segment and work period.
+    NYC_SOURCE_ID: same_closure_key,
+}
 
 
 class CandidateNotFound(Exception):
@@ -230,23 +243,102 @@ def find_candidates(
     return run
 
 
+def merge_listed_rows(session: Session, source_id: str) -> MatchRun:
+    """Merge the rows a source lists for one event (`LISTED_IN_SEVERAL_ROWS`). Commits nothing.
+
+    Rows with the same key are one event. Those nobody has reviewed are merged
+    into one of them: linked, never deleted, like any automatic merge. A row a
+    reviewer has acted on is not merged automatically; it becomes a candidate
+    for review beside the event. A pair a reviewer has decided stays decided.
+    """
+    run = MatchRun()
+    key_of = LISTED_IN_SEVERAL_ROWS.get(source_id)
+    if key_of is None:
+        return run
+    rows = session.scalars(
+        select(Event)
+        .where(
+            Event.source_id == source_id,
+            Event.merged_into.is_(None),
+            Event.status.not_in(_CLOSED),
+        )
+        .order_by(Event.created_at, Event.event_id)
+    ).unique()
+    groups: dict[str, list[Event]] = {}
+    for row in rows:
+        if key := key_of(to_rei_event(row)):
+            groups.setdefault(key, []).append(row)
+    known = {(c.event_a, c.event_b): c for c in session.scalars(select(EventMergeCandidate))}
+    now = utc_now()
+
+    for key, rows_of_event in groups.items():
+        if len(rows_of_event) < 2:
+            continue
+        reason = f"The source lists one event in several rows: {key}"
+        notes = ["a reviewer has acted on one of them: merged only by a reviewer"]
+        untouched = [row for row in rows_of_event if not reviewed(row)]
+        canonical = min(untouched or rows_of_event, key=_canonical_rank)
+        for row in rows_of_event:
+            if row is canonical:
+                continue
+            pair = _pair(canonical.event_id, row.event_id)
+            automatic = row in untouched and canonical in untouched
+            candidate = known.get(pair)
+            if candidate is None:
+                candidate = EventMergeCandidate(
+                    event_a=pair[0],
+                    event_b=pair[1],
+                    classification=MatchClass.SAME.value,
+                    reasons=[reason] + ([] if automatic else notes),
+                    conflicts=[],
+                    status="PENDING",
+                    created_at=now,
+                )
+                session.add(candidate)
+                known[pair] = candidate
+                if not automatic:
+                    run.candidates += 1  # left for a reviewer
+            elif candidate.status in ("PENDING", "REJECTED") or not automatic:
+                # Awaiting or decided by a reviewer.
+                continue
+            # Otherwise the pair was merged before and separated by a source
+            # revision; with the same key again, it is merged again.
+            run.compared += 1
+            if not automatic:
+                continue
+            merge(
+                session, canonical, row, decided_by=AUTOMATIC, how="automatic", reason=reason,
+                conflicts=[],
+            )  # fmt: skip
+            candidate.status = "AUTO_MERGED"
+            candidate.decided_at = now
+            candidate.decided_by = AUTOMATIC
+            candidate.decision_reason = "One event the source lists in several rows"
+            run.auto_merged += 1
+            if len(run.examples) < 20:
+                run.examples.append(f"{canonical.title} <- {row.event_id}")
+    session.flush()
+    return run
+
+
 # --- merging ---------------------------------------------------------------------
+
+
+def _canonical_rank(row: Event):
+    """Lowest first: most authoritative, then furthest in review, better located, first."""
+    detection = row.detection or {}
+    return (
+        row.source.source_tier or 9,
+        -_STATUS_RANK.get(row.status, 2),
+        -_LOCATION_RANK.get(detection.get("location_class") or "UNRESOLVED", 0),
+        ensure_utc(row.created_at),
+        row.event_id,
+    )
 
 
 def choose_canonical(a: Event, b: Event) -> tuple[Event, Event]:
     """(canonical, merged): most authoritative, then furthest in review, better located, first."""
-
-    def rank(row: Event):
-        detection = row.detection or {}
-        return (
-            row.source.source_tier or 9,
-            -_STATUS_RANK.get(row.status, 2),
-            -_LOCATION_RANK.get(detection.get("location_class") or "UNRESOLVED", 0),
-            ensure_utc(row.created_at),
-            row.event_id,
-        )
-
-    return (a, b) if rank(a) <= rank(b) else (b, a)
+    return (a, b) if _canonical_rank(a) <= _canonical_rank(b) else (b, a)
 
 
 def _value(row: Event, name: str):

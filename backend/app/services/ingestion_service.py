@@ -276,12 +276,22 @@ class IngestionService:
         return self._to_out(result)
 
     def _match(self, session: Session, result: IngestionResult) -> None:
-        """Compare the run's new events with the open events of their city."""
-        if not self._match_after or not result.event_ids:
+        """Merge the rows the source lists for one event, then compare the run's
+        new events with the open events of their city."""
+        if not self._match_after:
             return
-        from app.services.merge_service import find_candidates
+        from app.services.merge_service import find_candidates, merge_listed_rows
 
         try:
+            listed = merge_listed_rows(session, result.source_id)
+            session.commit()
+            if listed.auto_merged:
+                logger.info(
+                    "%s: %d rows merged into the event the source lists them for",
+                    result.source_id, listed.auto_merged,
+                )  # fmt: skip
+            if not result.event_ids:
+                return
             run = find_candidates(session, event_ids=result.event_ids)
             session.commit()
             if run.candidates:

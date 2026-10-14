@@ -13,9 +13,15 @@ cancelled closure. The revision is stored as evidence (append-only, see
   reviewer to act on.
 - Every applied or pending revision is a new event version, with what changed
   in plain words.
+- Rows a source lists for one event (merge_service.LISTED_IN_SEVERAL_ROWS)
+  stay merged only while their periods agree. A revision that changes a row's
+  period lists it, and the rows of its source merged with it, on their own
+  again; the next run merges again the rows that still share a period.
 """
 
 from datetime import datetime
+
+from sqlalchemy import select
 
 from app.models import Event
 from app.repositories.events import EventRepository, column_values, to_rei_event
@@ -98,6 +104,51 @@ def describe_changes(before: ReiEvent, after: ReiEvent) -> list[str]:
     return changes
 
 
+def _period(start: datetime | None, end: datetime | None) -> tuple[str | None, str | None]:
+    return (_time(start) if start else None, _time(end) if end else None)
+
+
+def _separate_if_period_changed(
+    events: EventRepository, row: Event, before: ReiEvent, *, now: datetime
+) -> str:
+    """List a row whose period the source changed apart from rows of its source merged with it.
+
+    Returns a note for the row's version ("" when nothing was separated).
+    """
+    if _period(row.start_time, row.end_time) == _period(before.start_time, before.end_time):
+        return ""
+    session = events.session
+    notes = []
+    if row.merged_into:
+        canonical = session.get(Event, row.merged_into)
+        if canonical is not None and canonical.source_id == row.source_id:
+            notes.append(
+                f"It no longer has the period of {canonical.event_id}: listed on its own again."
+            )
+            row.merged_into = None
+    members = session.scalars(
+        select(Event).where(Event.merged_into == row.event_id, Event.source_id == row.source_id)
+    ).all()
+    for member in members:
+        member.merged_into = None
+        member.version += 1
+        member.updated_at = now
+        events.record_version(
+            member,
+            change_reason=(
+                f"The source revised the period of {row.event_id}, which this row was merged into: "
+                "listed on its own again."
+            ),
+            changed_by=CHANGED_BY,
+        )
+    if members:
+        notes.append(
+            f"{len(members)} rows of the source merged into it no longer share its period and are "
+            "listed on their own again."
+        )
+    return "".join(" " + note for note in notes)
+
+
 def apply_source_revision(
     events: EventRepository, row: Event, derived: ReiEvent, *, revision: int, now: datetime
 ) -> list[str]:
@@ -142,6 +193,7 @@ def apply_source_revision(
         merged["source_revision"] = note
         detection = merged
         reason = f"The source revised its record (revision {revision}): " + "; ".join(changes)
+        reason += _separate_if_period_changed(events, row, before, now=now)
 
     row.detection = detection
     row.version += 1
