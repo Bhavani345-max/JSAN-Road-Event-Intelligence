@@ -3,11 +3,10 @@ from pathlib import Path
 
 from alembic import context
 
-# Make the API's models importable when Alembic is run from the command line.
-REPO_ROOT = Path(__file__).resolve().parents[2]
-for path in (REPO_ROOT, REPO_ROOT / "apps" / "api"):
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
+# Make the API's models (backend/app) importable when Alembic is run from the command line.
+BACKEND_DIR = Path(__file__).resolve().parents[2] / "backend"
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
 
 from app.core.config import get_settings  # noqa: E402
 from app.core.database import create_db_engine  # noqa: E402

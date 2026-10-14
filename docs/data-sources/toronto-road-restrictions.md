@@ -4,7 +4,7 @@
 - **Endpoint:** `GET https://secure.toronto.ca/opendata/cart/road_restrictions/v3?format=json` (no key)
 - **Connector:** `connectors/official/toronto.py`
 - **Status:** CONNECTED, run by hand in the test phase:
-  `python apps/api/ingest_source.py toronto-road-restrictions`.
+  `python backend/cli/ingest_source.py toronto-road-restrictions`.
 
 ## What it gives
 

@@ -1,3 +1,5 @@
+# Build context of the API image (docker build -f backend/Dockerfile .).
+# The web image builds from frontend/ and has its own frontend/.dockerignore.
 .git
 .env
 .env.*
@@ -6,7 +8,10 @@
 **/.pytest_cache
 **/node_modules
 **/.next
-apps/api/.data
-apps/web
-tests
+backend/.data
+backend/tests
+backend/tools
+frontend
 docs
+scripts
+infrastructure

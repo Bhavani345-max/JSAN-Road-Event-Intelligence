@@ -9,7 +9,7 @@
     again within seconds. A copy already running (started by hand) is watched,
     not replaced. Only one watchdog per service runs at a time.
 
-    Logs: apps\api\.data\logs\  (watchdog-<service>.log, <service>-<date>.log)
+    Logs: backend\.data\logs\  (watchdog-<service>.log, <service>-<date>.log)
 
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File scripts\windows\rei-watchdog.ps1 -Service api
@@ -22,7 +22,7 @@ param(
 
 $ErrorActionPreference = "Continue"
 $Root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$LogDir = Join-Path $Root "apps\api\.data\logs"
+$LogDir = Join-Path $Root "backend\.data\logs"
 New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
 
 # One watchdog per service, however often start-rei.cmd is run.
@@ -35,7 +35,7 @@ if (-not $mutex.WaitOne(0)) {
 if ($Service -eq "api") {
     $Port = 8000
     $HealthUrl = "http://127.0.0.1:8000/api/health"
-    $Command = '"' + (Join-Path $Root ".venv\Scripts\python.exe") + '" apps\api\run.py'
+    $Command = '"' + (Join-Path $Root ".venv\Scripts\python.exe") + '" backend\run.py'
     $WorkDir = $Root
     # One process instead of a reloader and a worker: less memory, and a
     # restart always runs the current code.
@@ -46,7 +46,7 @@ if ($Service -eq "api") {
     $Port = 3000
     $HealthUrl = "http://127.0.0.1:3000/"
     $Command = '"' + (Get-Command npm.cmd -ErrorAction Stop).Source + '" run dev'
-    $WorkDir = Join-Path $Root "apps\web"
+    $WorkDir = Join-Path $Root "frontend"
 }
 $Host.UI.RawUI.WindowTitle = "JSAN REI $Service watchdog - keep this window open"
 

@@ -10,8 +10,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Local development database (used when DATABASE_URL is not set)
-apps/api/.data/
+# Local runtime data: SQLite database (used when DATABASE_URL is not set), logs, caches
+backend/.data/
 
 # Node / Next.js
 node_modules/
@@ -22,8 +22,8 @@ coverage/
 next-env.d.ts
 npm-debug.log*
 
-# Copied from node_modules by apps/web/scripts/copy-maplibre-worker.mjs
-apps/web/public/maplibre/
+# Copied from node_modules by frontend/scripts/copy-maplibre-worker.mjs
+frontend/public/maplibre/
 
 # OS / editors
 .DS_Store

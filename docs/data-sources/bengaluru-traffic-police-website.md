@@ -4,7 +4,7 @@
 - **Endpoint:** `GET https://btp.karnataka.gov.in/en` (no key, no login)
 - **Connector:** `connectors/official/bengaluru_traffic_police.py`
 - **Status:** CONNECTED, run by hand in the test phase:
-  `python apps/api/ingest_source.py bengaluru-traffic-police-website`.
+  `python backend/cli/ingest_source.py bengaluru-traffic-police-website`.
 - **Research:** [docs/cities/bengaluru-source-research.md](../cities/bengaluru-source-research.md)
 
 ## What it gives
@@ -70,7 +70,7 @@ never ended (decision 0011).
 
 ## Verified 8 October 2026
 
-39 lines on the live page (saved as `tests/fixtures/btp_homepage_2026-10-08.html`):
+39 lines on the live page (saved as `backend/tests/fixtures/btp_homepage_2026-10-08.html`):
 26 records (13 "None near None" lines left out), all with a start and an
 end, 15 located by a named place. A run keeps the items in effect or starting
 within a week, so later-October venue events wait for a later run. Live run

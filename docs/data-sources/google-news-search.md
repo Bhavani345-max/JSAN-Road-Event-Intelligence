@@ -2,7 +2,7 @@
 
 - **Source id:** `google-news-serper` · **Type:** API · **Tier:** 4, discovery-only
 - **Endpoint:** `POST https://google.serper.dev/news` (key in `SERPER_API_KEY`)
-- **Connector:** `connectors/api/serper_news.py` · **Deeper sweep:** `apps/api/search_sweep.py`
+- **Connector:** `connectors/api/serper_news.py` · **Deeper sweep:** `backend/cli/search_sweep.py`
 - **Status:** CONNECTED when `SERPER_API_KEY` is set in `.env`; otherwise listed
   as REQUIRES ACCESS and never called.
 
@@ -15,7 +15,7 @@ Times of India, Hyderabad Mail, The New Indian Express, Urban Acres, …). It is
 not a source of road events itself.
 
 For each new result REI reads the article from the publisher's page (the
-schema.org NewsArticle data, as for `apps/api/backfill.py`) and stores that
+schema.org NewsArticle data, as for `backend/cli/backfill.py`) and stores that
 article as evidence, with the search result that led to it. If the page
 carries no readable article, the search result alone is stored. Either way the
 article then goes through the same detection, place and review steps as a
@@ -33,7 +33,7 @@ Checked on 6 October 2026 against Serper's published pricing:
 
 REI's settings: 12 searches of the past week, every 8 hours — **36 credits a
 day**, so the free credits last about two months of polling. A month-wide
-sweep (`python apps/api/search_sweep.py`) costs 12 credits each time it is
+sweep (`python backend/cli/search_sweep.py`) costs 12 credits each time it is
 run. With a paid pack the same polling costs about a dollar a month.
 
 ## Verified on 5 and 6 October 2026
@@ -73,7 +73,7 @@ or if its headline is not in Latin script.
 
 - Scheduled polls search the **past week**: enough to catch a new advisory
   within a day of publication.
-- `python apps/api/search_sweep.py --window month` runs the same searches
+- `python backend/cli/search_sweep.py --window month` runs the same searches
   over the **past month** (or `year`, `week`, `day`), for measures announced
   earlier but still running. `--results 20` asks for 20 results a search at
   two credits each. Articles already held are not stored again.

@@ -14,38 +14,51 @@ Data sources
   → Publishing / adapters → customers
 ```
 
-## What exists today
+## What exists today (14 October 2026)
+
+The repository has three parts: `backend/` (all Python), `frontend/` (the
+Next.js console) and `database/` (migrations). Module paths below are inside
+`backend/`.
 
 ```
-connectors/rss            fetch + parse a feed → RawSourceRecord
+connectors/               rss, api (Google News via Serper), official feeds,
+                          html (one article page) → RawSourceRecord
         ↓
 services/ingestion        skip items already stored; store every new item as evidence
         ↓
-services/extraction       keyword rules → RELEVANT_TRAFFIC_ARTICLE / NOT_RELEVANT
+services/extraction       keyword rules for text; the source's own fields for official records
+services/ai_reading       optional: a model reads articles, every answer checked against the text
         ↓                 relevant → canonical ReiEvent, status VALIDATION_REQUIRED
-apps/api                  persists sources, source_artifacts, events, event_versions
-        ↓                 REST API
-apps/web                  console: list, filters, details, review actions, map
+services/geo_resolution   placed at a named place: OpenStreetMap first, Google fallback
+services/merging          reports of the same event matched; possible matches asked of a reviewer
+        ↓
+app/ (FastAPI)            persists sources, evidence, events and versions; reviewer sign-in;
+        ↓                 REST API under /api
+frontend/ (Next.js)       sign-in, list, filters, details, review actions, map;
+                          calls /api on its own origin, proxied to the API
 ```
 
 | Stage | Module | Status |
 | --- | --- | --- |
-| Source acquisition | `connectors/rss` | Implemented: six news feeds |
+| Source acquisition | `connectors/rss`, `connectors/api`, `connectors/official`, `connectors/html` | Implemented: news feeds and Google News search on a schedule; official feeds run by hand unless `OFFICIAL_FEEDS_SCHEDULED=true` |
 | Source registry | `connectors/registry.py`, `connectors/discovered.py` | Connected and researched sources |
-| | `connectors/api`, `html`, `pdf`, `email` | Reserved |
+| | `connectors/pdf`, `connectors/email` | Reserved |
 | Ingestion | `services/ingestion` | Implemented |
-| Extraction | `services/extraction` | Rule-based keyword detection; no AI |
+| Extraction | `services/extraction`, `services/ai_reading` | Keyword rules, structured official records, optional AI reading ([0020](../decisions/0020-ai-reading-of-articles.md)) |
 | Canonical event | `packages/event_schema` | Implemented |
-| GIS resolution | `services/geo_resolution` | Named-place location from an OpenStreetMap gazetteer; no road-network matching yet |
+| Placing events | `services/geo_resolution` | OpenStreetMap place lists (Hyderabad, Mumbai, Bengaluru), Google fallback ([0021](../decisions/0021-placement-osm-first-google-fallback.md)) |
+| GIS resolution | `services/gis_resolution` | Hyderabad road network in PostGIS, run on demand; proposals need a reviewer ([0012](../decisions/0012-gis-resolution-engine.md)) |
+| Merging | `services/merging` | Cross-source matching ([0011](../decisions/0011-cross-source-merging-and-feed-absence.md)) |
 | Confidence | `services/confidence` | Reserved — confidence stays empty |
-| Human review | `services/lifecycle`, `apps/web/features/qc` | Basic: confirm / reject / reopen |
-| Lifecycle monitoring | `services/lifecycle` | Transition rules only |
+| Human review | `services/lifecycle`, `app/services/review_service.py`, `frontend/features/qc` | Confirm, reject, QC approval (and approve anyway), severity, extend, correct location, add by hand |
+| Sign-in | `app/services/auth_service.py`, `frontend/features/auth` | Reviewer accounts; every API route except health and sign-in needs a session |
+| Lifecycle monitoring | `services/lifecycle` | Transition rules and list views; no automatic status changes |
 | Publishing, notifications | `services/publishing`, `services/notifications` | Reserved |
 
 ## Design rules
 
 1. **Dependencies point inwards.** `packages` depends on nothing. `connectors`
-   and `services` depend on `packages`. `apps/api` depends on all three.
+   and `services` depend on `packages`. The API (`backend/app`) depends on all three.
    Services never import from the API: the ingestion pipeline is given a
    connector and a store (`IngestionStore`) and knows nothing about RSS or SQL.
 2. **Evidence before interpretation.** Every fetched item is written to

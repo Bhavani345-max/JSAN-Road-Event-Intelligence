@@ -4,7 +4,7 @@
 - **Endpoint:** `GET https://mtperp.mahatrafficechallan.gov.in/PublicNotice.htm` (no key, no login)
 - **Connector:** `connectors/official/mumbai_traffic_police.py`
 - **Status:** CONNECTED, run by hand in the test phase:
-  `python apps/api/ingest_source.py mumbai-traffic-police-notifications`.
+  `python backend/cli/ingest_source.py mumbai-traffic-police-notifications`.
 - **Research:** [docs/cities/mumbai-source-research.md](../cities/mumbai-source-research.md)
 
 ## What it gives
@@ -69,7 +69,7 @@ The connector reports no `observed_ids`; nothing is ever counted missing.
 ## Verified 8 October 2026
 
 50 rows parsed from the live page (saved as
-`tests/fixtures/mumbai_public_notices_2026-10-08.html`): 41 road notices and
+`backend/tests/fixtures/mumbai_public_notices_2026-10-08.html`): 41 road notices and
 9 parking-only. Of the 41, 23 state a type in their English words, 5 name a
 known place, 1 states a date. The rest need the PDF. Live run result: see the
 [decision record](../decisions/0017-mumbai-and-bengaluru-official-listings.md).
@@ -82,7 +82,7 @@ known place, 1 states a date. The rest need the PDF. Live run result: see the
   when the English summary names no known place, approximately, with the
   file-name words kept. With it, 16 of 26 stored notices have a point.
 - **Re-reading.** `rebuild_structured(raw)` redoes the connector's reading of
-  a stored row, so `apps/api/reprocess.py` applies rule changes to stored
+  a stored row, so `backend/cli/reprocess.py` applies rule changes to stored
   notices too. The row itself is never altered.
 - **Why the map may still be empty.** Undated notices show for seven days
   after their date (decision 0014). Dates come only from the English summary,

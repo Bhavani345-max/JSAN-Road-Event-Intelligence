@@ -1,6 +1,8 @@
 # 0001 — Repository layout
 
-**Status:** accepted, 2 October 2026
+**Status:** accepted, 2 October 2026. The folder layout was replaced on
+14 October 2026 by [0023](0023-backend-frontend-database-layout.md)
+(`backend/`, `frontend/`, `database/`); the other rules here still apply.
 
 ## Decision
 

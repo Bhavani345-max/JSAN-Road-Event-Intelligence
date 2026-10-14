@@ -204,7 +204,7 @@ America, Europe and India, plus Finland's national road network. No single
 public feed provides complete worldwide coverage. TomTom and account-key
 sources remain unconfigured; TomTom also needs service-term review before REI
 stores its incident data. Run one source with
-`python apps/api/ingest_source.py <source_id>`, or seed a current snapshot from
-all connected, non-discovery sources with `python apps/api/seed_worldwide.py`;
+`python backend/cli/ingest_source.py <source_id>`, or seed a current snapshot from
+all connected, non-discovery sources with `python backend/cli/seed_worldwide.py`;
 set `REI_API_URL` to the API origin when seeding a remote deployment.
 `OFFICIAL_FEEDS_SCHEDULED=true` enables the sources' individual schedules.

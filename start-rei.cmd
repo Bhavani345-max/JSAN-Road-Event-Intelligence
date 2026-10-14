@@ -13,7 +13,7 @@ rem
 rem    start-rei.cmd               start, then open http://localhost:3000
 rem    start-rei.cmd --no-browser  start only
 rem
-rem  Stop everything with stop-rei.cmd. Logs: apps\api\.data\logs\
+rem  Stop everything with stop-rei.cmd. Logs: backend\.data\logs\
 rem ---------------------------------------------------------------------------
 setlocal
 set "ROOT=%~dp0"

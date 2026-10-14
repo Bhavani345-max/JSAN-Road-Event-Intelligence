@@ -4,7 +4,7 @@
 - **Endpoint:** `GET https://api.tfl.gov.uk/Road/all/Disruption` (no key; optional `TFL_APP_KEY`)
 - **Connector:** `connectors/official/tfl.py`
 - **Status:** CONNECTED, run by hand in the test phase:
-  `python apps/api/ingest_source.py tfl-road-disruptions`, or the source's
+  `python backend/cli/ingest_source.py tfl-road-disruptions`, or the source's
   "Check" button in the console with London selected.
 
 ## What it gives

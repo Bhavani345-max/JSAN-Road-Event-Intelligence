@@ -4,11 +4,20 @@ Base URL in development: `http://127.0.0.1:8000`. Interactive documentation
 (generated from the code) is at `/api/docs`; the OpenAPI document is at
 `/api/openapi.json`.
 
-There is no authentication yet. Do not expose the API beyond a trusted network.
+Every route except `/api/health` and `/api/auth/*` needs a signed-in
+reviewer (since 14 October 2026, migration 0007). Signing in sets an
+HTTP-only `rei_session` cookie (path `/api`, 12 hours by default); without it
+a route answers 401. A change (`POST`) sent from a browser origin that is not
+in `CORS_ORIGINS` answers 403. Review decisions record the signed-in
+reviewer's e-mail. Sign-in attempts are limited to 8 per 15 minutes per
+client address. `/api/docs` and `/api/openapi.json` stay open.
 
 | Method | Path | Purpose |
 | --- | --- | --- |
 | GET | `/api/health` | Liveness, including a database check |
+| POST | `/api/auth/login` | Sign in with `email` and `password`; sets the session cookie |
+| GET | `/api/auth/me` | The signed-in reviewer, or 401 |
+| POST | `/api/auth/logout` | End the session and clear the cookie |
 | GET | `/api/cities` | Configured cities: country, time zone, area, map view |
 | GET | `/api/cities/{city_id}` | One city |
 | GET | `/api/events` | List events |

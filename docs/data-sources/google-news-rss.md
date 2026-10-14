@@ -21,7 +21,7 @@ commercial use `NOT_PERMITTED`.
 ## What was built anyway
 
 The connector is complete and tested on a saved feed
-(`tests/fixtures/google_news_rss_sample.xml`):
+(`backend/tests/fixtures/google_news_rss_sample.xml`):
 
 - one feed per search from the city's configuration, in its country and
   language;

@@ -35,7 +35,7 @@ event text ──> mentions (junctions, crossings, stretches, roads, places)
 |---|---|
 | Road network | OpenStreetMap, drivable public road classes (motorway to residential, living streets, links). Service roads, tracks and paths are left out. |
 | Named points | OSM features named as junctions: junction tags, named traffic signals, names ending in Junction, Jn, X Road(s), Cross Road(s), Circle, Chowrasta, Rotary. Bus stops are excluded. |
-| Fetched from | overpass-api.de only, every query pinned to one OSM snapshot (Overpass `[date:…]`); Hyderabad: **OSM snapshot: 2026-10-06T00:00:00Z**. The city's area in a 6 × 6 grid of tiles; a tile too heavy for the server is fetched in quarters. Every answer is verified (no Overpass remark, every element's own timestamp at or before the snapshot). Files are named with the snapshot, under `apps/api/.data/osm/<city>/snapshot-<stamp>/`, so the import repeats from saved data with `--from-cache` and gives the same result. |
+| Fetched from | overpass-api.de only, every query pinned to one OSM snapshot (Overpass `[date:…]`); Hyderabad: **OSM snapshot: 2026-10-06T00:00:00Z**. The city's area in a 6 × 6 grid of tiles; a tile too heavy for the server is fetched in quarters. Every answer is verified (no Overpass remark, every element's own timestamp at or before the snapshot). Files are named with the snapshot, under `backend/.data/osm/<city>/snapshot-<stamp>/`, so the import repeats from saved data with `--from-cache` and gives the same result. |
 | Stored in | PostGIS (`gis` schema of a separate database, `GIS_DATABASE_URL`): `osm_roads` (one row per OSM way, geometry, names, ref, one-way, lanes, node ids), `osm_named_points`, `osm_junction_nodes` (every node two or more road ways share, derived in SQL) and `import_runs` (what was loaded, when, from which OSM data date). |
 | Junction references | `junction_references` in the REI database: a reviewer-maintained list of junction names OSM does not carry (for example "IIIT Junction"), each with its aliases, OSM node, roads and status. |
 | Licence | © OpenStreetMap contributors, Open Database Licence 1.0. The console shows the attribution with every GIS result. |
@@ -61,7 +61,7 @@ S=2026-10-06T00:00:00Z
 python -m services.gis_resolution.import_osm --city hyderabad --snapshot $S --download-only  # download + validate
 python -m services.gis_resolution.import_osm --city hyderabad --snapshot $S --validate       # validate saved files
 python -m services.gis_resolution.import_osm --city hyderabad --snapshot $S --from-cache     # validate, then load
-python apps/api/gis.py status                 # what is loaded
+python backend/cli/gis.py status                 # what is loaded
 ```
 
 Nothing is loaded unless validation passes: all 36 tiles present, every file
@@ -75,7 +75,7 @@ city's rows in one transaction; running it twice gives the same tables.
 between three public Overpass servers. They answered from different
 databases, dated 6 May to 6 October 2026, and 62 roads had a different shape
 on each side of a tile edge. Those 28 tiles were never loaded; they are kept
-in `apps/api/.data/osm/archive/`.
+in `backend/.data/osm/archive/`.
 
 ## How a mention is resolved
 
@@ -160,10 +160,10 @@ typed in.
 ## Commands and API
 
 ```bash
-python apps/api/gis.py status
-python apps/api/gis.py junctions
-python apps/api/gis.py propose-junction "IIIT Junction" --crossing "DLF road" "Old Bombay Road" --alias "IIIT Jn"
-python apps/api/gis.py resolve EVT-... [EVT-...] [--dry-run]
+python backend/cli/gis.py status
+python backend/cli/gis.py junctions
+python backend/cli/gis.py propose-junction "IIIT Junction" --crossing "DLF road" "Old Bombay Road" --alias "IIIT Jn"
+python backend/cli/gis.py resolve EVT-... [EVT-...] [--dry-run]
 ```
 
 | Endpoint | |

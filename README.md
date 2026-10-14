@@ -10,7 +10,7 @@ Hyderabad proof of concept began with six publisher feeds:
 
 ```
 Telangana Today, The Hindu, Deccan Chronicle,
-The Siasat Daily, NewsMeter, The Hans India
+The Siasat Daily (disconnected 14 Oct 2026, decision 0024), NewsMeter, The Hans India
    → generic RSS connector → ingestion → evidence stored
    → keyword detection + Hyderabad scope + a named place
    → REI event (VALIDATION_REQUIRED), located and dated from the article's own words
@@ -35,7 +35,7 @@ The Siasat Daily, NewsMeter, The Hans India
   `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` in the ignored root `.env` to
   provision the first administrator; see [database setup](database/README.md).
 - To pull a current snapshot from all connected live feeds, run
-  `python apps/api/seed_worldwide.py` while the API is running. Set `REI_API_URL`
+  `python backend/cli/seed_worldwide.py` while the API is running. Set `REI_API_URL`
   to the API origin to seed a remote deployment. New source events enter the
   review queue and are never treated as approved by default.
 - The console shows upcoming, ongoing and recently reported events only.
@@ -55,7 +55,7 @@ The Siasat Daily, NewsMeter, The Hans India
 - With a Serper.dev key (`SERPER_API_KEY` in `.env`), a **Google News search**
   source runs twelve Hyderabad road searches every eight hours (36 Serper
   credits a day) and reads each new article from its own page;
-  `python apps/api/search_sweep.py` searches the past month or year by hand.
+  `python backend/cli/search_sweep.py` searches the past month or year by hand.
   See [the source notes](docs/data-sources/google-news-search.md).
 - When the headline names a locality and the headline or summary also names
   a junction, flyover or landmark inside it, the event is placed at that spot
@@ -67,15 +67,15 @@ The Siasat Daily, NewsMeter, The Hans India
 
 **Global source expansion (13 October 2026).**
 
-- Cities are configuration (`packages/cities/data/*.json`), including
-  Hyderabad, London, Toronto, Mumbai, Bengaluru, New York City and France. The
+- Cities are configuration (`backend/packages/cities/data/*.json`), including
+  Hyderabad, London, Toronto, Mumbai, Bengaluru, New York City, France and Finland. The
   console opens on **All cities**; the header narrows it to one city
   (`/?city=london` opens one directly).
 - Connected official feeds now include Transport for London, City of Toronto,
-  NYC DOT and France's Bison Futé / Interdepartmental Road Directorate feed.
-  NYC and France were fetched from live, keyless endpoints and keep the
+  NYC DOT, France's Bison Futé / Interdepartmental Road Directorate feed and Finland's Digitraffic.
+  NYC, France and Finland were fetched from live, keyless endpoints and keep the
   source's road geometry. Official feeds run by hand by default:
-  `python apps/api/ingest_source.py <source_id>`. Set
+  `python backend/cli/ingest_source.py <source_id>`. Set
   `OFFICIAL_FEEDS_SCHEDULED=true` to poll every connected official feed on its
   own schedule.
 - Additional sources are catalogued with their access and terms state,
@@ -102,7 +102,7 @@ The Siasat Daily, NewsMeter, The Hans India
   values side by side. An official record missing from its feed is counted
   and, after three refreshes, flagged for review, never ended
   ([decision 0011](docs/decisions/0011-cross-source-merging-and-feed-absence.md)).
-  `python apps/api/match_events.py` matches everything held.
+  `python backend/cli/match_events.py` matches everything held.
 - **GIS Resolution Engine (Hyderabad):** junction, crossing and road-stretch
   names in a report are looked up in the OpenStreetMap road network (PostGIS)
   and, when exactly one place fits, proposed as the event's location with the
@@ -125,7 +125,7 @@ kept running by a watchdog that restarts it within seconds if it stops or
 stops answering, and opens http://localhost:3000. `stop-rei.cmd` stops
 everything. `scripts\windows\install-autostart.ps1` registers two hidden
 scheduled tasks that start the watchdogs at logon and revive them within 5
-minutes if they ever stop (`remove-autostart.ps1` undoes it). Logs: `apps\api\.data\logs\`.
+minutes if they ever stop (`remove-autostart.ps1` undoes it). Logs: `backend\.data\logs\`.
 If the API is briefly down, the console says so and reconnects by itself.
 
 The manual way, for development:
@@ -136,11 +136,11 @@ Requirements: Python 3.12+, Node.js 22+.
 # 1. API (terminal 1) — from the repository root
 python -m venv .venv
 .venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
-pip install -r apps/api/requirements-dev.txt
-python apps/api/run.py            # http://127.0.0.1:8000  (API docs at /api/docs)
+pip install -r backend/requirements-dev.txt
+python backend/run.py             # http://127.0.0.1:8000  (API docs at /api/docs)
 
-# 2. Web app (terminal 2)
-cd apps/web
+# 2. Web console (terminal 2)
+cd frontend
 npm install
 npm run dev                       # http://localhost:3000
 ```
@@ -154,7 +154,7 @@ the six feeds immediately, so real events appear within a few seconds.
 cp .env.example .env              # set POSTGRES_PASSWORD
 docker compose up -d db           # PostGIS on localhost:5432 (REI_DB_PORT to change)
 # in .env: DATABASE_URL=postgresql+psycopg://rei:<password>@localhost:5432/rei
-python apps/api/run.py
+python backend/run.py
 ```
 
 `docker compose up --build` runs the database, API and web app together.
@@ -167,22 +167,27 @@ The API runs without it; only GIS resolution needs it.
 docker compose up -d db
 docker compose exec db createdb -U rei rei_gis                 # once: a database for the road network
 # in .env: GIS_DATABASE_URL=postgresql+psycopg://rei:<password>@localhost:5432/rei_gis
+cd backend
 python -m services.gis_resolution.import_osm --city hyderabad --snapshot 2026-10-06T00:00:00Z   # one pinned OSM snapshot; validated before loading
-python apps/api/gis.py status                                   # what is loaded
-python apps/api/gis.py resolve EVT-... --dry-run                # what the engine would propose
+python cli/gis.py status                                        # what is loaded
+python cli/gis.py resolve EVT-... --dry-run                     # what the engine would propose
 ```
 
 ### Maintenance commands
 
+Run from `backend/` (the scripts in `backend/cli/` also run from anywhere).
+
 ```bash
-python apps/api/reprocess.py                    # re-derive events from stored articles after a rule change
-python apps/api/retention.py [--apply [--vacuum]]   # drop the text of old non-road articles (preview by default)
-python apps/api/backfill.py <source_id> <url>   # bring in one article its feed no longer carries
-python apps/api/search_sweep.py --window month  # search Google News over a longer window (12 credits)
-python apps/api/ingest_source.py tfl-road-disruptions   # run one connected source now (official feeds)
+cd backend
+python cli/reprocess.py                    # re-derive events from stored articles after a rule change
+python cli/retention.py [--apply [--vacuum]]   # drop the text of old non-road articles (preview by default)
+python cli/backfill.py <source_id> <url>   # bring in one article its feed no longer carries
+python cli/search_sweep.py --window month  # search Google News over a longer window (12 credits)
+python cli/ingest_source.py tfl-road-disruptions   # run one connected source now (official feeds)
+python cli/seed_user.py                    # create the first reviewer from SEED_ADMIN_* in .env
 python -m services.geo_resolution.build_gazetteer --city hyderabad   # a city's place list
 python -m services.geo_resolution.build_gazetteer   # refresh the place list from OpenStreetMap
-python apps/api/gis.py propose-junction "NAME" --crossing "ROAD A" "ROAD B"   # a junction reference, UNCONFIRMED
+python cli/gis.py propose-junction "NAME" --crossing "ROAD A" "ROAD B"   # a junction reference, UNCONFIRMED
 ```
 
 ### AI reading of articles (optional)
@@ -195,39 +200,55 @@ takes a position from the model. The API reads in the background every five
 minutes within `AI_DAILY_REQUEST_LIMIT`. Details: `docs/decisions/0020-ai-reading-of-articles.md`.
 
 ```bash
-python apps/api/ai_read.py --status        # waiting articles and requests used today
-python apps/api/ai_read.py                 # read what is waiting now
-python apps/api/ai_read.py --days 7        # also older articles
+python backend/cli/ai_read.py --status        # waiting articles and requests used today
+python backend/cli/ai_read.py                 # read what is waiting now
+python backend/cli/ai_read.py --days 7        # also older articles
 ```
 
 Markers are placed by OpenStreetMap first and, with `SERPER_API_KEY`, Google
 Maps for names OSM cannot place; the method and its scores are in
 `docs/placement-evaluation-2026-10-09.md`. Rerun the rubric with
-`python tools/placement_eval/placement_eval.py PROD`.
+`python backend/tools/placement_eval/placement_eval.py PROD`.
 
 ## Tests
 
 ```bash
-pytest                            # backend: connectors, detection, pipeline, database, API
+cd backend && pytest              # backend: connectors, detection, pipeline, database, sign-in, API
 # PostGIS loader tests run only with REI_GIS_TEST_DATABASE_URL (a test database, never the real one)
-cd apps/web && npm test           # frontend: API mapping, filters, map data
-cd apps/web && npm run typecheck && npm run lint && npm run build
+cd frontend && npm test           # frontend: API mapping, filters, map data
+cd frontend && npm run typecheck && npm run lint && npm run build
 ```
 
 ## Repository layout
 
+```
+backend/     Python: the API and everything behind it
+frontend/    Next.js web console
+database/    Database migrations (Alembic)
+docs/        Architecture, API, data sources, decisions
+scripts/     Windows start/stop watchdogs (start-rei.cmd, stop-rei.cmd at the root)
+```
+
 | Path | What it is |
 | --- | --- |
-| `apps/web` | Next.js console: event list, filters, map, review actions, extending and adding events |
-| `apps/api` | FastAPI service: events, sources, ingestion trigger, review; database models |
-| `connectors/` | One sub-package per acquisition method. `rss/` is implemented; `html/` reads single article pages |
-| `services/` | Pipeline stages: `ingestion`, `extraction`, `geo_resolution` (named places), `lifecycle` implemented; others reserved |
-| `packages/` | Shared models: `event_schema`, `source_models`, `geo_models`, `common` |
-| `database/` | Alembic migrations; no synthetic event seed data |
-| `infrastructure/` | Dockerfiles; placeholders for Kubernetes and monitoring |
-| `tests/` | `unit`, `integration`, `geospatial`, `golden-events`, `fixtures` (API tests live in `apps/api/tests`) |
+| `backend/app/` | FastAPI service: routes, sign-in, database models, repositories, application services |
+| `backend/connectors/` | One sub-package per acquisition method: `rss/`, `api/` (Serper), `official/` (city and national feeds), `html/` (single article pages), `discovery/`; `discovered.py` catalogues sources not connected |
+| `backend/services/` | Pipeline stages: `ingestion`, `extraction`, `ai_reading`, `geo_resolution` (placing events), `gis_resolution` (road network), `lifecycle`, `merging`; `publishing`, `notifications`, `confidence`, `qc` are reserved |
+| `backend/packages/` | Shared models and data: `event_schema`, `source_models`, `geo_models`, `cities` (city configuration), `common` |
+| `backend/cli/` | Command-line tools: reprocess, retention, backfill, search sweep, one-source ingestion, AI reading, GIS, reviewer and snapshot seeding |
+| `backend/tools/` | Developer tools: the placement evaluation rubric |
+| `backend/tests/` | `unit`, `integration`, `geospatial`, `golden-events`, `fixtures`, `api` (the HTTP API) |
+| `backend/run.py` | Starts the API for development |
+| `backend/.data/` | Local runtime files, never committed: the SQLite database `rei.db`, backups, logs, caches, OSM snapshots |
+| `backend/Dockerfile` | API image (built from the repository root, as it also needs `database/`) |
+| `frontend/` | Next.js console: sign-in, event list, filters, map, review actions, extending and adding events; `frontend/Dockerfile` |
+| `database/` | Alembic migrations and configuration; no synthetic event seed data |
+| `infrastructure/` | Placeholders for Kubernetes and monitoring |
 | `docs/` | Architecture, API, data sources, decisions |
 
+Paths in the docs such as `services/...`, `connectors/...` or `packages/...`
+are inside `backend/` (layout since 14 October 2026, see
+[decision 0023](docs/decisions/0023-backend-frontend-database-layout.md)).
 Python folders use underscores (`geo_resolution`, `event_schema`) because
 Python cannot import names containing hyphens.
 

@@ -26,8 +26,9 @@ services:
 
   api:
     build:
+      # The API image also needs database/ (migrations), so it builds from the root.
       context: .
-      dockerfile: infrastructure/docker/api.Dockerfile
+      dockerfile: backend/Dockerfile
     environment:
       DATABASE_URL: postgresql+psycopg://rei:${POSTGRES_PASSWORD}@db:5432/rei
       CORS_ORIGINS: http://localhost:3000
@@ -39,8 +40,7 @@ services:
 
   web:
     build:
-      context: apps/web
-      dockerfile: ../../infrastructure/docker/web.Dockerfile
+      context: frontend
       args:
         API_BASE_URL: http://api:8000
     depends_on:

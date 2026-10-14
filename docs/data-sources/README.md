@@ -11,14 +11,19 @@ from it.
 | Telangana Today (Hyderabad section) | RSS | 4 | about two weeks | [telangana-today.md](telangana-today.md) |
 | The Hindu (Hyderabad city feed) | RSS | 4 | about two days | [the-hindu.md](the-hindu.md) |
 | Deccan Chronicle (Telangana section) | RSS | 4 | under a day | [deccan-chronicle.md](deccan-chronicle.md) |
-| The Siasat Daily (Hyderabad section) | RSS | 4 | about 30 hours | [hyderabad-source-research.md](hyderabad-source-research.md) |
 | NewsMeter (Hyderabad section) | RSS | 4 | about ten days | [hyderabad-source-research.md](hyderabad-source-research.md) |
 | The Hans India (Hyderabad section) | RSS | 4 | under three hours | [hyderabad-source-research.md](hyderabad-source-research.md) |
 | Mid-Day (Mumbai section) | RSS | 4 | about 20 hours | [../cities/mumbai-source-research.md](../cities/mumbai-source-research.md) |
-| The Siasat Daily (Mumbai tag) | RSS | 4 | about six weeks | [../cities/mumbai-source-research.md](../cities/mumbai-source-research.md) |
 | The Hindu (Bengaluru city feed) | RSS | 4 | about five days | [../cities/bengaluru-source-research.md](../cities/bengaluru-source-research.md) |
 
 | Google News search (Serper.dev) | API | 4 | past week | [google-news-search.md](google-news-search.md) |
+
+**Disconnected on 14 October 2026:** The Siasat Daily (Hyderabad section and
+Mumbai tag). Its terms allow personal, non-commercial use only and forbid
+automated access without written permission, so REI no longer reads its feeds,
+its article pages (also when a Google search result links to one) or sends its
+articles to an AI model. The articles stored before then are kept as evidence.
+See [decision 0024](../decisions/0024-siasat-disconnected-by-its-terms.md).
 
 Official sources of the international test cities (since 6 October 2026),
 connected but run by hand during the test phase:
