@@ -21,7 +21,7 @@ The same sources are recorded in the source registry
 | Deccan Chronicle | Tier 4 (news) | RSS | CONNECTED |
 | The Siasat Daily | Tier 4 (news) | RSS | CONNECTED |
 | NewsMeter | Tier 4 (news) | RSS | CONNECTED |
-| The Hans India | Tier 4 (news) | RSS | CONNECTED |
+| The Hans India | Tier 4 (news) | RSS | CONNECTED until 14 Oct 2026; awaiting the publisher (decision 0026) |
 | The Times of India (Hyderabad) | Tier 4 (news) | RSS | DISCOVERED |
 | Hyderabad Mail | Tier 4 (news) | RSS | DISCOVERED |
 | Telangana Tribune | Tier 4 (news) | RSS | DISCOVERED |
@@ -162,10 +162,10 @@ been formally reviewed for any of them; see "Licensing" at the end.
 - **Data provided:** Title, link, publication time, author, tags, summary, full article body.
 - **Update frequency:** About 30 items covering under three hours. Polled every 15 minutes for that reason.
 - **Access requirements:** None.
-- **Licensing/terms notes:** No terms page was found at the usual addresses. Not reviewed.
-- **Integration status:** CONNECTED
+- **Licensing/terms notes:** No terms page was found at the usual addresses. Not reviewed. **Correction, 14 October 2026:** the terms are at https://www.thehansindia.com/pages/terms-conditions (found by the research of 8 October, `docs/cities/hyderabad-source-research.md`; read again 14 October): "HMHL grants you a limited license to access and make personal use of this site but not for commercial purposes. We permit the use of materials on this website subject to due credit is given to HMHL."
+- **Integration status:** CONNECTED until 14 October 2026; since then registered without a connector until The Hans India agrees to REI's use ([decision 0026](../decisions/0026-hans-india-awaits-its-publisher.md)).
 - **Reason:** Reachable and Hyderabad-specific. The very short feed window means articles published while REI is not running are lost.
-- **Production (Railway), 14 October 2026:** the feed is behind Cloudflare, which answers HTTP 403 to Railway's servers. Every deployment since 12 October was refused (about 400 polls), except one on 14 October, 10:01-12:33 UTC, which got through 11 times out of 11; from an office connection the same request gets 200. Cloudflare judges the network address a request comes from, and Railway's address changes between deployments. robots.txt allows the feed and no terms page was found, so this is the site's bot protection, not a ban on REI. It is not worked around (no browser disguise, no proxies). A fixed outbound address (Railway Static Outbound IPs) that The Hans India allows would fix it; that needs their agreement. Since 14 October a refusal is reported as Cloudflare's (`connectors/base.py`, `refusal_detail`).
+- **Production (Railway), 14 October 2026:** the feed is behind Cloudflare, which answers HTTP 403 to Railway's servers. Every deployment since 12 October was refused (about 400 polls), except one on 14 October, 10:01-12:33 UTC, which got through 11 times out of 11; from an office connection the same request gets 200. Cloudflare judges the network address a request comes from, and Railway's address changes between deployments. robots.txt allows the feed, so this is the site's bot protection, not a ban on REI. It is not worked around (no browser disguise, no proxies). A fixed outbound address (Railway Static Outbound IPs) that The Hans India allows would fix it; that needs their agreement. Since 14 October a refusal is reported as Cloudflare's (`connectors/base.py`, `refusal_detail`).
 
 ---
 
@@ -607,4 +607,5 @@ internal evidence and shows the headline, a summary and a link back to the
 publisher. Before any commercial use or redistribution, each publisher's terms
 need to be read by someone qualified to judge them. Terms pages could not be
 located at the usual addresses for The Siasat Daily, NewsMeter and The Hans
-India.
+India. (Corrections: Siasat's terms were found on 14 October 2026, decision
+0024; The Hans India's at `/pages/terms-conditions`, decision 0026.)

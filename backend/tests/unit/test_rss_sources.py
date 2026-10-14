@@ -44,14 +44,14 @@ def test_three_rss_sources_are_registered_with_distinct_identities():
         "the-hindu",
         "deccan-chronicle",
         "newsmeter",
-        "the-hans-india",
         # Mumbai and Bengaluru, 8 October 2026.
         "mid-day-mumbai",
         "the-hindu-bengaluru",
     ]
-    # The two Siasat feeds were disconnected on 14 October 2026 (decision 0024).
-    assert len({source.definition.endpoint for source in RSS_SOURCES}) == 7
-    assert len({source.definition.source_name for source in RSS_SOURCES}) == 7
+    # Disconnected on 14 October 2026: the two Siasat feeds (decision 0024) and
+    # The Hans India (decision 0026).
+    assert len({source.definition.endpoint for source in RSS_SOURCES}) == 6
+    assert len({source.definition.source_name for source in RSS_SOURCES}) == 6
 
 
 def test_the_hindu_is_registered_correctly():

@@ -20,7 +20,6 @@ from connectors.rss.deccan_chronicle import DECCAN_CHRONICLE
 from connectors.rss.models import news_rss_source
 from connectors.rss.newsmeter import NEWSMETER
 from connectors.rss.telangana_today import TELANGANA_TODAY
-from connectors.rss.the_hans_india import THE_HANS_INDIA
 from connectors.rss.the_hindu import THE_HINDU
 from packages.common.hashing import sha256_hex
 from packages.common.text import html_to_text
@@ -45,14 +44,14 @@ TEST_SOURCE = news_rss_source(
 )
 
 # Each connected Hyderabad RSS source, with a synthetic feed in a matching format.
-# Siasat is not here: its terms forbid automated access (decision 0024).
+# Siasat is not here: its terms forbid automated access (decision 0024). Nor is
+# The Hans India: disconnected until its publisher agrees (decision 0026).
 SOURCE_FIXTURES: tuple[tuple[SourceDefinition, str], ...] = (
     (TELANGANA_TODAY, "news_feed_sample.xml"),
     (THE_HINDU, "the_hindu_style_feed.xml"),
     (DECCAN_CHRONICLE, "deccan_chronicle_style_feed.xml"),
     # Same publishing system, and so the same feed format, as Deccan Chronicle.
     (NEWSMETER, "deccan_chronicle_style_feed.xml"),
-    (THE_HANS_INDIA, "deccan_chronicle_style_feed.xml"),
 )
 
 

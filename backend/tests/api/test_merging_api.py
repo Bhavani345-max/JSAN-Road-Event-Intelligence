@@ -269,15 +269,15 @@ def merging_client(engine, session):
         yield sign_in(client)
 
 
-def test_the_same_articles_from_five_sources_are_listed_once_with_every_source(merging_client):
-    """The fixture feeds carry the same articles under five publishers: duplicate ingestion."""
+def test_the_same_articles_from_four_sources_are_listed_once_with_every_source(merging_client):
+    """The fixture feeds carry the same articles under four publishers: duplicate ingestion."""
     merging_client.post("/api/ingestion/run")
     every = merging_client.get("/api/events", params={"view": "validation", "include_merged": "true"}).json()
     listed = merging_client.get("/api/events?view=validation").json()
-    assert every["total"] == 11
+    assert every["total"] == 9
     assert listed["total"] < every["total"]
-    # Nothing was deleted: listed events plus their merged evidence account for all 11.
-    assert sum(1 + len(e["other_evidence"]) for e in listed["items"]) == 11
+    # Nothing was deleted: listed events plus their merged evidence account for all 9.
+    assert sum(1 + len(e["other_evidence"]) for e in listed["items"]) == 9
     merged = [e for e in listed["items"] if e["other_evidence"]]
     assert merged
     for event in merged:

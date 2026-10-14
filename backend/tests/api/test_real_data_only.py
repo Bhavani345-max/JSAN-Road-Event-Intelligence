@@ -49,10 +49,11 @@ def test_registry_separates_connected_from_researched_sources(news_client):
     others = [s for s in sources if s["integration_status"] != "CONNECTED"]
 
     assert {s["source_id"] for s in connected} >= {
-        "telangana-today", "the-hindu", "deccan-chronicle", "newsmeter", "the-hans-india",
+        "telangana-today", "the-hindu", "deccan-chronicle", "newsmeter",
     }
-    # Siasat's terms forbid automated access (decision 0024): listed, never connected.
-    assert not {"siasat", "siasat-mumbai"} & {s["source_id"] for s in connected}
+    # Siasat's terms forbid automated access (decision 0024), and The Hans India
+    # waits for its publisher's agreement (decision 0026): listed, not connected.
+    assert not {"siasat", "siasat-mumbai", "the-hans-india"} & {s["source_id"] for s in connected}
     assert len(others) >= 15
     for source in others:
         # A researched source is never polled and is never presented as active.

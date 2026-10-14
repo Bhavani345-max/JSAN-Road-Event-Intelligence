@@ -98,3 +98,28 @@ def restricted_by_terms(definition: SourceDefinition, *, terms: str) -> SourceDe
             "notes": f"{definition.notes} Disconnected on 14 October 2026: {terms}",
         }
     )
+
+
+def awaiting_publisher(
+    definition: SourceDefinition, *, licence: str, attribution: str, reason: str
+) -> SourceDefinition:
+    """`definition`, disconnected until its publisher agrees to REI's use (decision 0026).
+
+    Registered without a connector like a source restricted by its terms, so it
+    is never fetched while its stored evidence keeps its source. Its terms were
+    read; whether they cover REI's use is for the publisher and the user to
+    settle, so they are under review, not restricted.
+    """
+    return SourceDefinition.model_validate(
+        definition.model_dump()
+        | {
+            "integration_status": IntegrationStatus.TERMS_REVIEW_REQUIRED,
+            "active": False,
+            "terms_status": TermsStatus.REVIEW_REQUIRED,
+            "commercial_use": CommercialUse.NOT_PERMITTED,
+            "licence": licence,
+            "attribution": attribution,
+            "access_method": "Not accessed: disconnected until the publisher agrees to REI's use",
+            "notes": f"{definition.notes} {reason}",
+        }
+    )

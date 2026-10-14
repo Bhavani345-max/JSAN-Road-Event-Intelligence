@@ -68,7 +68,6 @@ CONNECTED_SOURCES: tuple[RegisteredSource, ...] = (
     _rss(THE_HINDU),
     _rss(DECCAN_CHRONICLE),
     _rss(NEWSMETER),
-    _rss(THE_HANS_INDIA),
     # Mumbai and Bengaluru (8 October 2026): the feeds verified in
     # docs/cities/*-source-research.md whose items carry text.
     _rss(MID_DAY_MUMBAI),
@@ -83,6 +82,9 @@ RESTRICTED_SOURCES: tuple[RegisteredSource, ...] = (
     RegisteredSource(SIASAT_MUMBAI),
 )
 
+# Feeds disconnected until their publisher agrees to REI's use (decision 0026):
+# registered without a connector, like the restricted ones, and never fetched.
+AWAITING_PUBLISHER_SOURCES: tuple[RegisteredSource, ...] = (RegisteredSource(THE_HANS_INDIA),)
 
 
 def _google_news_rss_sources(enabled: bool) -> tuple[RegisteredSource, ...]:
@@ -184,6 +186,7 @@ def registered_sources(
     return (
         CONNECTED_SOURCES
         + RESTRICTED_SOURCES
+        + AWAITING_PUBLISHER_SOURCES
         + (search,)
         + _official_sources(
             official_feeds_scheduled, official_feed_max_records or None, tfl_app_key

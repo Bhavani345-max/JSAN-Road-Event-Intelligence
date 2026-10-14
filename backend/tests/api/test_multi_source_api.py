@@ -8,7 +8,6 @@ EXPECTED = {
     "the-hindu": (5, 2),
     "deccan-chronicle": (5, 2),
     "newsmeter": (5, 2),
-    "the-hans-india": (5, 2),
 }
 TOTAL_EVENTS = sum(events for _, events in EXPECTED.values())
 SOURCE_NAMES = {
@@ -16,7 +15,6 @@ SOURCE_NAMES = {
     "the-hindu": "The Hindu",
     "deccan-chronicle": "Deccan Chronicle",
     "newsmeter": "NewsMeter",
-    "the-hans-india": "The Hans India",
 }
 
 

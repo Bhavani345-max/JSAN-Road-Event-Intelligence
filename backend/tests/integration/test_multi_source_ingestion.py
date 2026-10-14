@@ -16,7 +16,6 @@ EXPECTED = {
     "the-hindu": (5, 2),
     "deccan-chronicle": (5, 2),
     "newsmeter": (5, 2),
-    "the-hans-india": (5, 2),
 }
 
 
@@ -105,10 +104,9 @@ def test_similar_reports_from_different_sources_are_not_merged(news_session, cla
         "deccan-chronicle",
         "newsmeter",
         "telangana-today",
-        "the-hans-india",
     ]
-    assert len({event.event_id for event in lakeview}) == 4
-    assert len({event.source_artifact_id for event in lakeview}) == 4
+    assert len({event.event_id for event in lakeview}) == 3
+    assert len({event.source_artifact_id for event in lakeview}) == 3
 
 
 def test_the_same_item_id_in_two_sources_is_two_separate_artifacts(news_session, classifier):

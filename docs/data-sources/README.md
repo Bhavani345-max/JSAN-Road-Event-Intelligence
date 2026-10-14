@@ -12,7 +12,6 @@ from it.
 | The Hindu (Hyderabad city feed) | RSS | 4 | about two days | [the-hindu.md](the-hindu.md) |
 | Deccan Chronicle (Telangana section) | RSS | 4 | under a day | [deccan-chronicle.md](deccan-chronicle.md) |
 | NewsMeter (Hyderabad section) | RSS | 4 | about ten days | [hyderabad-source-research.md](hyderabad-source-research.md) |
-| The Hans India (Hyderabad section) | RSS | 4 | under three hours | [hyderabad-source-research.md](hyderabad-source-research.md) |
 | Mid-Day (Mumbai section) | RSS | 4 | about 20 hours | [../cities/mumbai-source-research.md](../cities/mumbai-source-research.md) |
 | The Hindu (Bengaluru city feed) | RSS | 4 | about five days | [../cities/bengaluru-source-research.md](../cities/bengaluru-source-research.md) |
 
@@ -24,6 +23,12 @@ automated access without written permission, so REI no longer reads its feeds,
 its article pages (also when a Google search result links to one) or sends its
 articles to an AI model. The articles stored before then are kept as evidence.
 See [decision 0024](../decisions/0024-siasat-disconnected-by-its-terms.md).
+
+**Disconnected on 14 October 2026, until the publisher agrees:** The Hans India
+(Hyderabad section). Its terms allow personal, non-commercial use only, and its
+Cloudflare protection refuses REI's production server. REI no longer reads its
+feed; the articles stored before then are kept as evidence. See
+[decision 0026](../decisions/0026-hans-india-awaits-its-publisher.md).
 
 Official sources of the international test cities (since 6 October 2026),
 connected but run by hand during the test phase:
