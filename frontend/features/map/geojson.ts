@@ -299,6 +299,30 @@ export function spreadStacks(
   };
 }
 
+/**
+ * Up to this zoom, markers near each other are drawn as one numbered circle
+ * (MapLibre clustering); zooming in splits it.
+ */
+export const CLUSTER_MAX_ZOOM = 13;
+/** From this zoom, markers sharing an exact spot are spread around it. */
+export const SPREAD_FROM_ZOOM = CLUSTER_MAX_ZOOM + 1;
+
+/**
+ * The markers to draw at `zoom`: as they are while clusters gather them, and
+ * spread around a shared spot once zoomed in past clustering. Zoomed out, a
+ * ring of lines would only clutter the map; there a numbered circle says how
+ * many events are there.
+ */
+export function markersAtZoom(
+  anchors: EventFeatureCollection<PointGeometry>,
+  zoom: number,
+): SpreadMarkers {
+  if (zoom < SPREAD_FROM_ZOOM) {
+    return { anchors, leaders: { type: "FeatureCollection", features: [] } };
+  }
+  return spreadStacks(anchors, zoom);
+}
+
 /** An event under a click: enough to choose it from a list. */
 export interface StackedEvent {
   id: string;

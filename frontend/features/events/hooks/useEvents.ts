@@ -19,13 +19,17 @@ interface UseEvents {
   refresh: () => void;
 }
 
-/** Loads events from the repository, whatever backs it. */
-export function useEvents(view: EventListView, cityId: string | null): UseEvents {
+/**
+ * Loads events from the repository, whatever backs it. While `enabled` is
+ * false (the overview of all cities is on screen) nothing is loaded.
+ */
+export function useEvents(view: EventListView, cityId: string | null, enabled = true): UseEvents {
   const [state, setState] = useState<EventsState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
   const queryKey = `${view}|${cityId ?? "all"}`;
 
   useEffect(() => {
+    if (!enabled) return;
     let cancelled = false;
     let retry: ReturnType<typeof setTimeout> | undefined;
     apiEventRepository
@@ -47,7 +51,7 @@ export function useEvents(view: EventListView, cityId: string | null): UseEvents
       cancelled = true;
       if (retry) clearTimeout(retry);
     };
-  }, [attempt, view, cityId, queryKey]);
+  }, [attempt, view, cityId, queryKey, enabled]);
 
   const refresh = useCallback(() => setAttempt((n) => n + 1), []);
   const reload = useCallback(() => {

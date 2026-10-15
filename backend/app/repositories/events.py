@@ -1,3 +1,4 @@
+from collections import Counter
 from datetime import datetime
 
 from sqlalchemy import func, or_, select
@@ -208,6 +209,29 @@ class EventRepository:
             ).unique()
         }
         return [rows[event_id] for event_id in page], len(ids)
+
+    def count_shown_by_city(
+        self, view: EventListView, *, now: datetime | None = None
+    ) -> "dict[str | None, dict[str, Counter]]":
+        """What a console view lists, counted per city (by status and by type).
+
+        The same rules as `list` for that view, without loading the events.
+        """
+        if view not in _CONSOLE_VIEWS:
+            raise ValueError(f"{view} is not a console view")
+        counts: dict[str | None, dict[str, Counter]] = {}
+        rows = self.session.execute(
+            select(Event.city, Event.status, Event.event_type, Event.detection).where(
+                Event.merged_into.is_(None), *_shown_filters(view, now or utc_now())
+            )
+        )
+        for city, status, event_type, detection in rows:
+            if (detection or {}).get("source_reports_ended"):
+                continue
+            found = counts.setdefault(city, {"status": Counter(), "type": Counter()})
+            found["status"][status] += 1
+            found["type"][event_type or "UNCLASSIFIED"] += 1
+        return counts
 
     def get(self, event_id: str) -> Event | None:
         return self.session.get(Event, event_id)

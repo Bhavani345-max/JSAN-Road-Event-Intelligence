@@ -90,3 +90,20 @@ def test_the_database_filtered_list_pages_without_losing_or_repeating_events(mix
     flat = [event_id for page in pages for event_id in page]
     assert len(flat) == len(set(flat)) == total
     assert pages[-1] == []
+
+
+def test_the_overview_counts_per_city_what_each_view_lists(mixed, client):
+    """GET /api/events/summary: per city, the list's own total, by status and type."""
+    canada = mixed.get(Event, "EVT-LIST000000")
+    canada.city = "Canada"
+    mixed.commit()
+    for view in ("current_upcoming", "validation"):
+        summary = client.get("/api/events/summary", params={"view": view}).json()
+        by_city = {entry["city_id"]: entry for entry in summary["cities"]}
+        assert {"canada", "australia", "south-africa", "hyderabad"} <= set(by_city)
+        for city_id, entry in by_city.items():
+            listed = client.get("/api/events", params={"view": view, "city": city_id, "limit": 500}).json()
+            assert entry["total"] == listed["total"], (view, city_id)
+            assert sum(entry["by_status"].values()) == entry["total"]
+            assert sorted(entry["by_status"]) == sorted({item["status"] for item in listed["items"]})
+    assert client.get("/api/events/summary", params={"view": "history"}).status_code == 422

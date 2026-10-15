@@ -296,6 +296,20 @@ export interface ApiCity {
   has_gazetteer: boolean;
 }
 
+/** GET /api/events/summary: what a console view lists, per configured city. */
+export interface ApiCityEventCount {
+  city_id: string;
+  city_name: string;
+  total: number;
+  by_status: Record<string, number>;
+  by_type: Record<string, number>;
+}
+
+export interface ApiEventSummary {
+  view: string;
+  cities: ApiCityEventCount[];
+}
+
 /** The source of an event, as events carry it. */
 export interface ApiSourceSummary {
     source_id: string;

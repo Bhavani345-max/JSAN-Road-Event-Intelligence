@@ -92,6 +92,23 @@ class EventListOut(BaseModel):
     total: int
 
 
+class CityEventCountOut(BaseModel):
+    """How many events a console view lists for one configured city."""
+
+    city_id: str
+    city_name: str
+    total: int
+    by_status: dict[str, int]
+    by_type: dict[str, int]
+
+
+class EventSummaryOut(BaseModel):
+    """Per city, what a console view lists: for the overview of all cities."""
+
+    view: str
+    cities: list[CityEventCountOut]
+
+
 class GisDecisionIn(BaseModel):
     reason: str = Field(min_length=5, max_length=500)
 

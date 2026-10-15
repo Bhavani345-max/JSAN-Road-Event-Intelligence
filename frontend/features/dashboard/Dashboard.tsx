@@ -10,6 +10,8 @@ import {
   DEFAULT_CITY_ID,
   useCities,
 } from "@/features/cities/cities";
+import CityOverviewList from "@/features/cities/CityOverviewList";
+import { sumStats, toCityBubbles, useCityCounts } from "@/features/cities/overview";
 import EventDetailsPanel from "@/features/events/components/EventDetailsPanel";
 import EventFilters from "@/features/events/components/EventFilters";
 import EventList, { type EventListState } from "@/features/events/components/EventList";
@@ -71,7 +73,15 @@ export default function Dashboard() {
   const isDefaultCity = city.id === DEFAULT_CITY_ID;
   const cityFilter = allCities ? null : city.id;
   const [view, setView] = useState<EventListView>("current_upcoming");
-  const { state, reload, refresh: refreshEvents } = useEvents(view, cityFilter);
+  // All cities: an overview of counts and one bubble per city; a city's events
+  // are loaded and drawn only once it is chosen.
+  const overview = allCities;
+  const { state, reload, refresh: refreshEvents } = useEvents(view, cityFilter, !overview);
+  const { state: countsState, refresh: refreshCounts } = useCityCounts(view, overview);
+  const cityBubbles = useMemo(
+    () => (overview && countsState.status === "ready" ? toCityBubbles(cities, countsState.counts) : null),
+    [overview, countsState, cities],
+  );
   // Each event's times are shown in its own city's zone; times with no city
   // (filters) in the selected city's, or India Standard Time for all cities.
   // Set before anything below renders a time.
@@ -158,8 +168,16 @@ export default function Dashboard() {
   // After a source check or a review decision, reload without a loading flash.
   const refreshAll = useCallback(() => {
     refreshEvents();
+    refreshCounts();
     refreshSources();
-  }, [refreshEvents, refreshSources]);
+  }, [refreshEvents, refreshCounts, refreshSources]);
+
+  const changeCity = useCallback((id: string) => {
+    setCityId(id);
+    setSelectedEventId(null);
+    setIsAdding(false);
+    setFilters(DEFAULT_FILTERS);
+  }, []);
 
   const selectEvent = useCallback((eventId: string | null) => {
     setSelectedEventId(eventId);
@@ -171,12 +189,7 @@ export default function Dashboard() {
       <Header
         cities={cityOptions}
         city={city}
-        onCityChange={(id) => {
-          setCityId(id);
-          setSelectedEventId(null);
-          setIsAdding(false);
-          setFilters(DEFAULT_FILTERS);
-        }}
+        onCityChange={changeCity}
         user={user}
         onSignOut={signOut}
       />
@@ -185,10 +198,17 @@ export default function Dashboard() {
             the source list and the event list keep their own scrollbars inside it. */}
         <aside className="rei-sidebar-scroll flex min-h-0 flex-1 flex-col overflow-y-auto bg-linear-to-b from-brand-600 to-brand-700 md:w-[420px] md:flex-none">
           <div className="space-y-3 border-b border-white/15 p-4 md:shrink-0">
-            <StatsBar
-              stats={state.status === "ready" ? stats : null}
-              unfilteredTotal={allEvents.length}
-            />
+            {overview ? (
+              <StatsBar
+                stats={countsState.status === "ready" ? sumStats(countsState.counts) : null}
+                unfilteredTotal={countsState.status === "ready" ? sumStats(countsState.counts).total : 0}
+              />
+            ) : (
+              <StatsBar
+                stats={state.status === "ready" ? stats : null}
+                unfilteredTotal={allEvents.length}
+              />
+            )}
             <div className="flex min-h-9 items-center justify-between gap-3">
               <h2 className="text-xs font-semibold text-white">
                 {view === "validation" ? "Needs validation" : "Current and upcoming road events"}
@@ -205,14 +225,16 @@ export default function Dashboard() {
               </button>
             </div>
             <SourceStatusBar sources={sources} onChecked={refreshAll} />
-            <EventFilters
-              filters={filters}
-              statusOptions={statusOptions}
-              sourceOptions={sourceOptions}
-              onChange={setFilters}
-            />
+            {!overview && (
+              <EventFilters
+                filters={filters}
+                statusOptions={statusOptions}
+                sourceOptions={sourceOptions}
+                onChange={setFilters}
+              />
+            )}
             {/* Manual entries are located with Hyderabad's place list: for its city only. */}
-            {(isDefaultCity || allCities) && (
+            {isDefaultCity && (
             <button
               type="button"
               onClick={() => {
@@ -232,18 +254,30 @@ export default function Dashboard() {
               from the edge so its scrollbar is not mistaken for the sidebar's. */}
           <div className="md:flex md:min-h-[26rem] md:flex-1 md:flex-col md:pr-2">
             <div className="rei-sidebar-scroll p-4 md:min-h-0 md:flex-1 md:overflow-y-auto md:pr-2">
-              <EventList
-                state={listState}
-                selectedEventId={selectedEvent?.id ?? null}
-                articleMatchIds={articleMatchIds}
-                onSelect={selectEvent}
-                onClearFilters={() => setFilters(DEFAULT_FILTERS)}
-                cityName={allCities ? "any city" : city.name}
-                onRetry={() => {
-                  reload();
-                  refreshSources();
-                }}
-              />
+              {overview ? (
+                <CityOverviewList
+                  state={countsState}
+                  view={view}
+                  onSelect={changeCity}
+                  onRetry={() => {
+                    refreshCounts();
+                    refreshSources();
+                  }}
+                />
+              ) : (
+                <EventList
+                  state={listState}
+                  selectedEventId={selectedEvent?.id ?? null}
+                  articleMatchIds={articleMatchIds}
+                  onSelect={selectEvent}
+                  onClearFilters={() => setFilters(DEFAULT_FILTERS)}
+                  cityName={city.name}
+                  onRetry={() => {
+                    reload();
+                    refreshSources();
+                  }}
+                />
+              )}
             </div>
           </div>
         </aside>
@@ -258,13 +292,15 @@ export default function Dashboard() {
             picking={picking}
             pickedPoint={pickedPoint}
             onPickPoint={setPickedPoint}
+            cityBubbles={cityBubbles}
+            onSelectCity={changeCity}
           />
           <div className="pointer-events-none absolute left-3 top-3 flex flex-col items-start gap-2">
             <div className="pointer-events-auto">
               <BasemapToggle value={basemap} onChange={setBasemap} />
             </div>
             <div className="hidden md:block">
-              <MapLegend eventTypes={visibleTypes} />
+              <MapLegend eventTypes={visibleTypes} overview={overview} />
             </div>
           </div>
           {state.status === "ready" && visibleEvents.length > 0 && locatedCount === 0 && (

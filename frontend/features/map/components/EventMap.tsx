@@ -13,10 +13,19 @@ import {
   type PointLike,
   type SymbolLayerSpecification,
 } from "maplibre-gl";
+
+type SymbolLayout = NonNullable<SymbolLayerSpecification["layout"]>;
 import "maplibre-gl/dist/maplibre-gl.css";
 import { HYDERABAD_VIEW, mapConfig, satelliteConfig, type Basemap } from "@/lib/config";
 import { isLocated, type Position, type RoadEvent } from "@/features/events/model";
-import { distinctEvents, spreadStacks, toEventMapData, type StackedEvent } from "../geojson";
+import type { CityBubbleCollection } from "@/features/cities/overview";
+import {
+  CLUSTER_MAX_ZOOM,
+  distinctEvents,
+  markersAtZoom,
+  toEventMapData,
+  type StackedEvent,
+} from "../geojson";
 import { getBoundingBox } from "../geometry";
 
 interface EventMapProps {
@@ -36,6 +45,12 @@ interface EventMapProps {
   /** The spot chosen so far, shown as a pin. */
   pickedPoint?: Position | null;
   onPickPoint?: (point: Position) => void;
+  /**
+   * The overview of all cities: one bubble per city with its count, drawn
+   * instead of events; clicking one opens that city.
+   */
+  cityBubbles?: CityBubbleCollection | null;
+  onSelectCity?: (cityId: string) => void;
 }
 
 type MapStatus = "loading" | "ready" | "error";
@@ -45,6 +60,10 @@ const ANCHOR_SOURCE = "rei-event-anchors";
 const PLACE_SOURCE = "rei-event-places";
 // Lines from markers spread around a shared spot back to the spot.
 const LEADER_SOURCE = "rei-event-leaders";
+// The overview's bubbles, one per city.
+const CITY_SOURCE = "rei-city-bubbles";
+// Nearby markers drawn as one numbered circle while zoomed out (in pixels).
+const CLUSTER_RADIUS = 46;
 
 const SATELLITE_SOURCE = "rei-satellite";
 const SATELLITE_LAYER = "rei-satellite";
@@ -58,6 +77,11 @@ const LAYERS = {
   leaders: "rei-event-leaders",
   anchorHalo: "rei-event-anchor-halo",
   anchor: "rei-event-anchor",
+  clusters: "rei-event-clusters",
+  clusterCount: "rei-event-cluster-count",
+  cityBubble: "rei-city-bubble",
+  cityCount: "rei-city-count",
+  cityName: "rei-city-name",
   locationPoints: "rei-event-location-points",
   places: "rei-event-places",
   placeLabels: "rei-event-place-labels",
@@ -132,9 +156,23 @@ function applyBasemap(map: MapLibreMap, labelLayers: LabelLayerPaint[], basemap:
   }
 }
 
+/** The basemap's own label font, so map text needs no other glyphs. */
+function labelFont(map: MapLibreMap): SymbolLayout["text-font"] | undefined {
+  const layer = map
+    .getStyle()
+    .layers.find((candidate) => candidate.type === "symbol" && candidate.layout?.["text-font"]);
+  return layer?.type === "symbol" ? layer.layout?.["text-font"] : undefined;
+}
+
 function addEventLayers(map: MapLibreMap) {
   map.addSource(GEOMETRY_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
-  map.addSource(ANCHOR_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
+  map.addSource(ANCHOR_SOURCE, {
+    type: "geojson",
+    data: EMPTY_COLLECTION,
+    cluster: true,
+    clusterMaxZoom: CLUSTER_MAX_ZOOM,
+    clusterRadius: CLUSTER_RADIUS,
+  });
 
   map.addLayer({
     id: LAYERS.fill,
@@ -237,13 +275,14 @@ function addEventLayers(map: MapLibreMap) {
     id: LAYERS.anchorHalo,
     type: "circle",
     source: ANCHOR_SOURCE,
-    filter: ["get", "selected"],
+    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "selected"], true]],
     paint: { "circle-color": ["get", "color"], "circle-radius": 17, "circle-opacity": 0.22 },
   });
   map.addLayer({
     id: LAYERS.anchor,
     type: "circle",
     source: ANCHOR_SOURCE,
+    filter: ["!", ["has", "point_count"]],
     // How the location was obtained shows in the marker: source geometry a
     // solid dot with a white ring; GIS-resolved a solid dot with a teal ring;
     // corrected by a reviewer a solid dot with a black ring; approximate (a
@@ -272,6 +311,82 @@ function addEventLayers(map: MapLibreMap) {
         2.5,
       ],
     },
+  });
+}
+
+/** Numbered circles for nearby markers while zoomed out, and the overview's city bubbles. */
+function addGroupLayers(map: MapLibreMap) {
+  const font = labelFont(map);
+  const text = (size: number): SymbolLayout => ({
+    "text-size": size,
+    ...(font ? { "text-font": font } : {}),
+  });
+  map.addLayer({
+    id: LAYERS.clusters,
+    type: "circle",
+    source: ANCHOR_SOURCE,
+    filter: ["has", "point_count"],
+    paint: {
+      "circle-color": "#00558c",
+      "circle-opacity": 0.92,
+      "circle-stroke-color": "#ffffff",
+      "circle-stroke-width": 2,
+      "circle-radius": ["step", ["get", "point_count"], 13, 10, 16, 50, 20, 250, 25, 1000, 30],
+    },
+  });
+  map.addLayer({
+    id: LAYERS.clusterCount,
+    type: "symbol",
+    source: ANCHOR_SOURCE,
+    filter: ["has", "point_count"],
+    layout: {
+      ...text(11),
+      "text-field": ["get", "point_count_abbreviated"],
+      "text-allow-overlap": true,
+      "text-ignore-placement": true,
+    },
+    paint: { "text-color": "#ffffff" },
+  });
+  map.addSource(CITY_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
+  map.addLayer({
+    id: LAYERS.cityBubble,
+    type: "circle",
+    source: CITY_SOURCE,
+    // Where bubbles overlap (Toronto by New York), the smaller is drawn on top.
+    layout: { "circle-sort-key": ["-", 0, ["get", "count"]] },
+    paint: {
+      "circle-color": ["case", [">", ["get", "count"], 0], "#00558c", "#94a3b8"],
+      "circle-opacity": 0.92,
+      "circle-stroke-color": "#ffffff",
+      "circle-stroke-width": 2.5,
+      "circle-radius": ["interpolate", ["linear"], ["sqrt", ["get", "count"]], 0, 14, 80, 32],
+    },
+  });
+  map.addLayer({
+    id: LAYERS.cityCount,
+    type: "symbol",
+    source: CITY_SOURCE,
+    layout: {
+      ...text(12),
+      "text-field": ["get", "countLabel"],
+      "symbol-sort-key": ["get", "count"],
+      "text-allow-overlap": true,
+      "text-ignore-placement": true,
+    },
+    paint: { "text-color": "#ffffff" },
+  });
+  map.addLayer({
+    id: LAYERS.cityName,
+    type: "symbol",
+    source: CITY_SOURCE,
+    layout: {
+      ...text(12),
+      "text-field": ["get", "name"],
+      "text-anchor": "top",
+      "text-offset": [0, 2.3],
+      "text-optional": true,
+    },
+    paint: { "text-color": "#0f172a", "text-halo-color": "#ffffff", "text-halo-width": 1.8 },
   });
 }
 
@@ -397,6 +512,8 @@ export default function EventMap({
   picking = false,
   pickedPoint = null,
   onPickPoint,
+  cityBubbles = null,
+  onSelectCity,
 }: EventMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -411,10 +528,12 @@ export default function EventMap({
   const onSelectEventRef = useRef(onSelectEvent);
   const pickingRef = useRef(picking);
   const onPickPointRef = useRef(onPickPoint);
+  const onSelectCityRef = useRef(onSelectCity);
   useEffect(() => {
     onSelectEventRef.current = onSelectEvent;
     pickingRef.current = picking;
     onPickPointRef.current = onPickPoint;
+    onSelectCityRef.current = onSelectCity;
   });
 
   // Id of an event the user just picked on the map itself; the camera should
@@ -466,12 +585,16 @@ export default function EventMap({
       addSatelliteLayer(map);
       addEventLayers(map);
       addLocationPointLayer(map);
+      addGroupLayers(map);
       // Keep the event's selectable marker above GIS point features. A GIS
       // candidate or resolved junction can share its coordinates and would
       // otherwise paint over the selected event marker.
       map.moveLayer(LAYERS.leaders);
       map.moveLayer(LAYERS.anchorHalo);
       map.moveLayer(LAYERS.anchor);
+      for (const id of [LAYERS.clusters, LAYERS.clusterCount, LAYERS.cityBubble, LAYERS.cityCount, LAYERS.cityName]) {
+        map.moveLayer(id);
+      }
       loaded = true;
       setLoadedMap(map);
       setStatus("ready");
@@ -494,6 +617,24 @@ export default function EventMap({
         return;
       }
       chooserPopup.remove();
+      // The overview: a city's bubble opens that city.
+      const [bubble] = map.queryRenderedFeatures(hitBox(e), { layers: [LAYERS.cityBubble] });
+      if (bubble) {
+        hoverPopup.remove();
+        onSelectCityRef.current?.(String(bubble.properties.cityId));
+        return;
+      }
+      // A numbered circle: zoom in until its markers come apart.
+      const [cluster] = map.queryRenderedFeatures(hitBox(e), { layers: [LAYERS.clusters] });
+      if (cluster && cluster.geometry.type === "Point") {
+        const center = cluster.geometry.coordinates as [number, number];
+        map
+          .getSource<GeoJSONSource>(ANCHOR_SOURCE)
+          ?.getClusterExpansionZoom(Number(cluster.properties.cluster_id))
+          .then((zoom) => map.easeTo({ center, zoom: Math.min(zoom, CLUSTER_MAX_ZOOM + 1.5) }))
+          .catch(() => map.easeTo({ center, zoom: map.getZoom() + 2 }));
+        return;
+      }
       const stacked = pickMarkers(map, e);
       if (stacked.length > 1) {
         // Several events at this spot: the reviewer chooses which, rather
@@ -522,6 +663,25 @@ export default function EventMap({
         map.getCanvas().style.cursor = "crosshair";
         hoveredId = null;
         hoverPopup.remove();
+        return;
+      }
+      const [group] = map.queryRenderedFeatures(hitBox(e), {
+        layers: [LAYERS.cityBubble, LAYERS.clusters],
+      });
+      if (group) {
+        map.getCanvas().style.cursor = "pointer";
+        const key = `group:${group.properties.cityId ?? group.properties.cluster_id}`;
+        hoverPopup.setLngLat(e.lngLat);
+        if (key !== hoveredId) {
+          hoveredId = key;
+          hoverPopup
+            .setText(
+              group.layer.id === LAYERS.cityBubble
+                ? `${group.properties.name}: ${group.properties.countLabel} events. Click to open`
+                : `${group.properties.point_count_abbreviated} events here. Click to zoom in`,
+            )
+            .addTo(map);
+        }
         return;
       }
       const picked = pickEvent(map, e);
@@ -559,7 +719,7 @@ export default function EventMap({
     () => toEventMapData(events, selectedEventId),
     [events, selectedEventId],
   );
-  const markers = useMemo(() => spreadStacks(mapData.anchors, spreadZoom), [mapData, spreadZoom]);
+  const markers = useMemo(() => markersAtZoom(mapData.anchors, spreadZoom), [mapData, spreadZoom]);
 
   useEffect(() => {
     const map = loadedMap;
@@ -594,6 +754,39 @@ export default function EventMap({
     map.getSource<GeoJSONSource>(ANCHOR_SOURCE)?.setData(markers.anchors);
     map.getSource<GeoJSONSource>(LEADER_SOURCE)?.setData(markers.leaders);
   }, [loadedMap, markers]);
+
+  // The overview's city bubbles (none once a city is open).
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    map.getSource<GeoJSONSource>(CITY_SOURCE)?.setData(cityBubbles ?? EMPTY_COLLECTION);
+  }, [loadedMap, cityBubbles]);
+
+  // Frame every city's bubble when the overview opens (not again when only counts change).
+  const bubbleKey = cityBubbles ? cityBubbles.features.map((f) => f.properties.cityId).join("|") : "";
+  const framedBubblesRef = useRef("");
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    if (!bubbleKey || !cityBubbles) {
+      framedBubblesRef.current = "";
+      return;
+    }
+    if (framedBubblesRef.current === bubbleKey) return;
+    framedBubblesRef.current = bubbleKey;
+    const positions = cityBubbles.features.map((f) => f.geometry.coordinates);
+    const lngs = positions.map(([lng]) => lng);
+    const lats = positions.map(([, lat]) => lat);
+    const { clientWidth } = map.getContainer();
+    const isWide = clientWidth >= 720;
+    map.fitBounds(
+      [
+        [Math.min(...lngs), Math.min(...lats)],
+        [Math.max(...lngs), Math.max(...lats)],
+      ],
+      { padding: { top: 70, bottom: 70, left: isWide ? 260 : 48, right: 70 }, maxZoom: 4, duration: 700 },
+    );
+  }, [loadedMap, bubbleKey, cityBubbles]);
 
   // Bring a newly selected event into view.
   useEffect(() => {

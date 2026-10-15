@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, Query
@@ -6,6 +7,8 @@ from app.api.auth_deps import CurrentUserDep
 from app.api.deps import ResolverDep, SessionDep
 from app.repositories.events import EventRepository, to_event_out, to_event_outs
 from app.schemas.event import (
+    CityEventCountOut,
+    EventSummaryOut,
     EventDetailOut,
     EventListOut,
     EventOut,
@@ -18,7 +21,7 @@ from app.schemas.event import (
 )
 from app.services import review_service
 from app.services.manual_event_service import create_manual_event
-from packages.cities import load_cities
+from packages.cities import default_city, load_cities
 from packages.event_schema import EventSeverity, EventStatus
 from services.lifecycle.current import EventListView
 from services.lifecycle import InvalidTransition
@@ -101,6 +104,40 @@ def add_event(
         session, resolver, entered_by=user.email, **body.model_dump()
     )
     return to_event_outs(session, [row])[0]
+
+
+@router.get("/summary", response_model=EventSummaryOut)
+def summarize_events(
+    session: SessionDep,
+    view: Annotated[
+        EventListView,
+        Query(description="current_upcoming (default) or validation: the console view counted"),
+    ] = EventListView.CURRENT_UPCOMING,
+) -> EventSummaryOut:
+    """Per configured city, how many events the console's view lists, by status and type.
+
+    For the overview of all cities: no event is loaded or returned.
+    """
+    if view not in (EventListView.CURRENT_UPCOMING, EventListView.VALIDATION):
+        raise HTTPException(status_code=422, detail="Only current_upcoming and validation are counted")
+    counts = EventRepository(session).count_shown_by_city(view)
+    # Events stored before cities existed are Hyderabad's (as the list treats them).
+    legacy = counts.pop(None, None)
+    cities = []
+    for city in load_cities().values():
+        found = counts.get(city.name) or {"status": Counter(), "type": Counter()}
+        if legacy and city.name == default_city().name:
+            found = {key: found[key] + legacy[key] for key in ("status", "type")}
+        cities.append(
+            CityEventCountOut(
+                city_id=city.id,
+                city_name=city.name,
+                total=sum(found["status"].values()),
+                by_status=dict(found["status"]),
+                by_type=dict(found["type"]),
+            )
+        )
+    return EventSummaryOut(view=view.value, cities=cities)
 
 
 @router.get("/{event_id}", response_model=EventDetailOut)

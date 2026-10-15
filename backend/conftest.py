@@ -1,5 +1,7 @@
 """Fixtures shared by the repository-level tests and the API tests."""
 
+import os
+
 import pytest
 from sqlalchemy.orm import Session, sessionmaker
 
@@ -26,9 +28,23 @@ def records(rss_connector: RssConnector, feed_bytes: bytes) -> list[RawSourceRec
     return rss_connector.parse(feed_bytes, retrieved_at=RETRIEVED_AT)
 
 
+# Optional: run the tests on PostgreSQL, production's database, which enforces
+# what SQLite lets through (column lengths, types). A throwaway database only:
+# every test empties it.
+TEST_POSTGRES_URL = os.environ.get("REI_TEST_POSTGRES_URL")
+
+
 @pytest.fixture
 def engine():
-    """An empty in-memory database with the current schema."""
+    """An empty database with the current schema: in memory, or the throwaway
+    PostgreSQL database named by REI_TEST_POSTGRES_URL."""
+    if TEST_POSTGRES_URL:
+        engine = create_db_engine(TEST_POSTGRES_URL)
+        Base.metadata.drop_all(engine)
+        Base.metadata.create_all(engine)
+        yield engine
+        engine.dispose()
+        return
     engine = create_db_engine("sqlite://")
     Base.metadata.create_all(engine)
     yield engine

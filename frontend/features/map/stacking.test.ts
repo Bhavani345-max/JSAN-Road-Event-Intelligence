@@ -3,7 +3,14 @@ import { mapApiEvent } from "@/features/events/api/eventRepository";
 import type { RoadEvent } from "@/features/events/model";
 import { locatedApiEvent } from "@/features/events/testing/fixtures";
 import type { ApiEvent } from "@/types/api";
-import { distinctEvents, spreadStacks, toEventMapData } from "./geojson";
+import {
+  CLUSTER_MAX_ZOOM,
+  SPREAD_FROM_ZOOM,
+  distinctEvents,
+  markersAtZoom,
+  spreadStacks,
+  toEventMapData,
+} from "./geojson";
 
 const KBR_PARK: [number, number] = [78.420104, 17.420234];
 
@@ -106,5 +113,24 @@ describe("markers spread around a spot they share", () => {
     spreadStacks(data.anchors, 15);
     expect(data.anchors.features.map((f) => f.geometry.coordinates)).toEqual([KBR_PARK, KBR_PARK]);
     expect(data.geometries.features.map((f) => f.geometry)).toEqual(events.map((e) => e.geometry));
+  });
+});
+
+describe("markers at a zoom", () => {
+  it("are not spread while zoomed out: nearby markers are grouped in a numbered circle instead", () => {
+    const anchors = toEventMapData([at("EVT-A", KBR_PARK), at("EVT-B", KBR_PARK)], null).anchors;
+    for (const zoom of [3, 7, 10, SPREAD_FROM_ZOOM - 0.25]) {
+      const { anchors: drawn, leaders } = markersAtZoom(anchors, zoom);
+      expect(drawn.features.map((f) => f.geometry.coordinates)).toEqual([KBR_PARK, KBR_PARK]);
+      expect(leaders.features).toEqual([]);
+    }
+  });
+
+  it("are spread around a shared spot from street level on", () => {
+    const anchors = toEventMapData([at("EVT-A", KBR_PARK), at("EVT-B", KBR_PARK)], null).anchors;
+    const { anchors: drawn, leaders } = markersAtZoom(anchors, SPREAD_FROM_ZOOM);
+    expect(new Set(drawn.features.map((f) => f.geometry.coordinates.join(","))).size).toBe(2);
+    expect(leaders.features).toHaveLength(2);
+    expect(SPREAD_FROM_ZOOM).toBe(CLUSTER_MAX_ZOOM + 1);
   });
 });
