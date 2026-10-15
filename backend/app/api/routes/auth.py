@@ -6,37 +6,88 @@ from fastapi import APIRouter, HTTPException, Request, Response
 
 from app.api.deps import SessionDep
 from app.schemas.auth import LoginIn, UserOut
-from app.services.auth_service import authenticate, create_session, revoke_session, user_for_token, user_public
+from app.services.auth_service import (
+    authenticate,
+    create_session,
+    normalize_email,
+    revoke_session,
+    user_for_token,
+    user_public,
+)
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
+# Failed sign-ins in the last window, per account and per visitor's address.
 _LOGIN_ATTEMPTS: dict[str, deque[float]] = defaultdict(deque)
 _ATTEMPT_LOCK = Lock()
 _ATTEMPT_WINDOW_SECONDS = 15 * 60
+# Failed sign-ins one account may have in the window.
 _ATTEMPT_LIMIT = 8
+# Failed sign-ins one address may have in the window, across accounts.
+_ADDRESS_ATTEMPT_LIMIT = 30
+# Accounts and addresses tracked before aged-out ones are swept.
+_MAX_TRACKED_KEYS = 10_000
 
 
-def _client_key(request: Request) -> str:
+def _client_address(request: Request) -> str:
+    """The visitor's address.
+
+    In production the connection comes from a proxy (Railway's edge, then the
+    console's /api proxy), so every visitor would share the proxy's address.
+    The edge appends the address it saw to X-Forwarded-For; its last entry is
+    the visitor's (earlier entries can be written by the visitor and are ignored).
+    """
+    forwarded = [part.strip() for part in request.headers.get("x-forwarded-for", "").split(",")]
+    forwarded = [part for part in forwarded if part]
+    if forwarded:
+        return forwarded[-1]
     return request.client.host if request.client else "unknown"
 
 
-def _check_rate_limit(key: str) -> None:
+def _recent_failures(key: str, now: float) -> int:
+    """Failures of `key` in the window; a key with none left is forgotten."""
+    attempts = _LOGIN_ATTEMPTS.get(key)
+    if not attempts:
+        return 0
+    while attempts and now - attempts[0] >= _ATTEMPT_WINDOW_SECONDS:
+        attempts.popleft()
+    if not attempts:
+        del _LOGIN_ATTEMPTS[key]
+    return len(attempts)
+
+
+def _refuse_if_limited(account: str, address: str) -> None:
     now = monotonic()
     with _ATTEMPT_LOCK:
-        attempts = _LOGIN_ATTEMPTS[key]
-        while attempts and now - attempts[0] >= _ATTEMPT_WINDOW_SECONDS:
-            attempts.popleft()
-        if len(attempts) >= _ATTEMPT_LIMIT:
+        if (
+            _recent_failures(account, now) >= _ATTEMPT_LIMIT
+            or _recent_failures(address, now) >= _ADDRESS_ATTEMPT_LIMIT
+        ):
             raise HTTPException(status_code=429, detail="Too many sign-in attempts. Try again in 15 minutes.")
-        attempts.append(now)
+
+
+def _record_failure(account: str, address: str) -> None:
+    now = monotonic()
+    with _ATTEMPT_LOCK:
+        for key in (account, address):
+            _recent_failures(key, now)
+            _LOGIN_ATTEMPTS[key].append(now)
+        # Made-up emails each add a key: forget those whose failures have aged out.
+        if len(_LOGIN_ATTEMPTS) > _MAX_TRACKED_KEYS:
+            for key in list(_LOGIN_ATTEMPTS):
+                _recent_failures(key, now)
 
 
 @router.post("/login", response_model=UserOut)
 def login(body: LoginIn, request: Request, response: Response, session: SessionDep) -> UserOut:
-    key = _client_key(request)
-    _check_rate_limit(key)
+    # One account's failures do not lock out the others (they share the proxy's
+    # connection), and one visitor cannot try many accounts.
+    account = f"account:{normalize_email(body.email)}"
+    address = f"address:{_client_address(request)}"
+    _refuse_if_limited(account, address)
     user = authenticate(session, body.email, body.password)
     if user is None:
         session.rollback()
+        _record_failure(account, address)
         raise HTTPException(status_code=401, detail="The email or password is incorrect.")
 
     settings = request.app.state.settings
@@ -53,7 +104,7 @@ def login(body: LoginIn, request: Request, response: Response, session: SessionD
         path="/api",
     )
     with _ATTEMPT_LOCK:
-        _LOGIN_ATTEMPTS.pop(key, None)
+        _LOGIN_ATTEMPTS.pop(account, None)
     return UserOut(**user_public(user))
 
 

@@ -69,8 +69,10 @@ def create_app(settings: Settings | None = None, engine: Engine | None = None) -
         title="JSAN Road Event Intelligence API",
         version="1.0.0",
         lifespan=lifespan,
-        docs_url="/api/docs",
-        openapi_url="/api/openapi.json",
+        # Served behind sign-in by app/api/routes/api_docs.py, not publicly.
+        docs_url=None,
+        redoc_url=None,
+        openapi_url=None,
     )
     app.state.session_factory = create_session_factory(
         engine or create_db_engine(settings.database_url)
