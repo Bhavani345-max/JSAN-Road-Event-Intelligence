@@ -108,6 +108,16 @@ def test_a_user_account_is_not_created_from_unsafe_configuration(engine, session
     assert {email: user.role for email, user in accounts(session).items()} == {ADMIN[0]: "admin"}
 
 
+def test_a_password_needs_at_least_eight_characters(engine, session):
+    # Seven characters: the User is not created; the API still starts.
+    with TestClient(create_app(settings(seed_user_password="Abcd@03"), engine=engine)):
+        pass
+    assert USER[0] not in accounts(session)
+    # Eight characters: created, and it signs in.
+    with TestClient(create_app(settings(seed_user_password="Abcd@034"), engine=engine)) as client:
+        assert sign_in(client, (USER[0], "Abcd@034")).json()["role"] == "user"
+
+
 def test_there_is_no_registration(client):
     for path in ("/api/auth/register", "/api/auth/signup", "/api/users", "/api/auth/users"):
         assert client.post(path, json={"email": "new@example.com", "password": "a new password 1"}).status_code in (

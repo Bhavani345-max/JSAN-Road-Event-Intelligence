@@ -14,7 +14,8 @@ from app.models import AuthSession, User
 from packages.common.time import utc_now
 
 PASSWORD_ROUNDS = 600_000
-MIN_PASSWORD_LENGTH = 12
+# Lowered from 12 at the user's request on 15 October 2026 (decision 0032).
+MIN_PASSWORD_LENGTH = 8
 
 
 def normalize_email(email: str) -> str:

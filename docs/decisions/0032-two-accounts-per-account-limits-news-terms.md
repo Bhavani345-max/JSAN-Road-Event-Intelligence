@@ -30,9 +30,11 @@ step below waits for the user's approval.
   X-Forwarded-For, X-Real-IP and similar headers are not read at all.
 - Memory stays bounded: an account whose failures have aged out is forgotten,
   and above 10,000 tracked accounts every aged-out one is swept.
-- Unchanged: PBKDF2-SHA256 with 600,000 rounds, 12-character minimum,
-  HttpOnly session cookie, same-origin check on changes, the same answer for
+- Unchanged: PBKDF2-SHA256 with 600,000 rounds, HttpOnly session cookie, same-origin check on changes, the same answer for
   a wrong password and an unknown email.
+- Passwords need at least **8** characters, lowered from 12 at the user's
+  request on 15 October 2026. A random password (from a password manager) is
+  advised; one built from words in the account's email is easy to guess.
 
 ### Two accounts
 
@@ -45,7 +47,7 @@ step below waits for the user's approval.
   email creates nothing (a warning is logged), so a third account cannot
   appear by accident.
 - The User is skipped, with a warning, when only one of its two values is
-  set, its email is the admin's, or its password is shorter than 12
+  set, its email is the admin's, or its password is shorter than 8
   characters. The API still starts.
 - No registration, sign-up or user-management route exists. Passwords are
   never logged or printed.
@@ -106,7 +108,7 @@ Recommendation (for the user to decide):
    and that 8 wrong passwords on a test email do not affect the admin.
 3. To create the User: in the API service's variables, add `SEED_USER_EMAIL`
    (an email different from the admin's) and `SEED_USER_PASSWORD` (a new,
-   unique password of at least 12 characters, kept in a password manager).
+   unique password of at least 8 characters, kept in a password manager).
    Railway redeploys; the log shows `User account … (created)`.
 4. Sign in as the User and check: the console opens, review buttons are
    replaced by the view-only note, and a review change answers 403.
