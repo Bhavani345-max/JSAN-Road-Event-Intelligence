@@ -3,11 +3,13 @@
 import base64
 import hashlib
 import hmac
+import re
 import secrets
 import uuid
+from dataclasses import dataclass
 from datetime import timedelta
 
-from sqlalchemy import delete, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
 from app.models import AuthSession, User
@@ -89,6 +91,50 @@ def seed_account(session: Session, email: str, password: str, *, role: str) -> t
     session.add(user)
     session.flush()
     return user, True
+
+
+_EMAIL = re.compile(r"[^@\s]+@[^@\s]+\.[^@\s]+")
+
+
+@dataclass(frozen=True)
+class EmailChange:
+    user_id: str
+    old_email: str
+    new_email: str
+    sessions_ended: int
+
+
+def change_account_email(
+    session: Session, old_email: str, new_email: str, *, role: str | None = None, end_sessions: bool = True
+) -> EmailChange:
+    """Give an existing account a new sign-in email; nothing else about it changes.
+
+    The account keeps its id, password, role, status and creation time, and
+    history that recorded the old email is left as it was. Its open sessions are
+    ended unless `end_sessions` is False, so it signs in again with the new email.
+    Raises ValueError, changing nothing, when no account has the old email, that
+    account does not have `role` (when given), or the new email is taken or not
+    an email. The caller commits.
+    """
+    old, new = normalize_email(old_email), normalize_email(new_email)
+    if len(new) > 320 or not _EMAIL.fullmatch(new):
+        raise ValueError(f"Not an email address: {new_email!r}")
+    if new == old:
+        raise ValueError("The new email is the account's current email.")
+    user = session.scalar(select(User).where(User.email == old).with_for_update())
+    if user is None:
+        raise ValueError(f"No account has the email {old}.")
+    if role is not None and user.role != role:
+        raise ValueError(f"{old} is a {user.role!r} account, not {role!r}.")
+    if session.scalar(select(User.user_id).where(func.lower(func.trim(User.email)) == new)):
+        raise ValueError(f"{new} is already used by another account.")
+    user.email = new
+    user.updated_at = utc_now()
+    ended = 0
+    if end_sessions:
+        ended = session.execute(delete(AuthSession).where(AuthSession.user_id == user.user_id)).rowcount
+    session.flush()
+    return EmailChange(user.user_id, old, new, ended)
 
 
 def authenticate(session: Session, email: str, password: str) -> User | None:

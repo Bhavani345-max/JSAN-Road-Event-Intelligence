@@ -215,6 +215,7 @@ python cli/backfill.py <source_id> <url>   # bring in one article its feed no lo
 python cli/search_sweep.py --window month  # search Google News over a longer window (12 credits)
 python cli/ingest_source.py tfl-road-disruptions   # run one connected source now (official feeds)
 python cli/seed_user.py                    # create the Admin and User accounts from SEED_ADMIN_*/SEED_USER_* in .env
+python cli/change_account_email.py OLD NEW --role admin [--apply]   # new sign-in email for an account (check only by default)
 python -m services.geo_resolution.build_gazetteer --city hyderabad   # a city's place list
 python -m services.geo_resolution.build_gazetteer   # refresh the place list from OpenStreetMap
 python cli/gis.py propose-junction "NAME" --crossing "ROAD A" "ROAD B"   # a junction reference, UNCONFIRMED

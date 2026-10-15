@@ -15,7 +15,8 @@ from sqlalchemy import select
 from app.api.routes import auth
 from app.core.config import Settings
 from app.main import create_app
-from app.models import User
+from app.models import AuthSession, User
+from app.services.auth_service import change_account_email
 
 ADMIN = ("admin@example.com", "admin test password 1")
 USER = ("user@example.com", "user test password 22")
@@ -211,3 +212,81 @@ def test_the_admin_reviews_and_runs_sources(client):
     # No connector is configured in this test: nothing is fetched.
     assert client.post("/api/ingestion/run", headers=ORIGIN).status_code == 200
     assert client.post("/api/ingestion/run", params={"source_id": "no-such-source"}, headers=ORIGIN).status_code == 404
+
+
+# --- changing the admin's sign-in email -------------------------------------------------
+
+NEW_ADMIN_EMAIL = "new-admin@example.com"
+
+
+def snapshot(session):
+    """What must survive an email change, per account id."""
+    return {
+        user.user_id: (user.email, user.password_hash, user.role, user.is_active, user.display_name, user.created_at)
+        for user in accounts(session).values()
+    }
+
+
+def test_changing_the_admin_email_keeps_the_account_and_its_password(client, session):
+    assert sign_in(client, ADMIN).status_code == 200  # an open admin session
+    user_client = TestClient(client.app)
+    assert sign_in(user_client, USER).status_code == 200  # and an open user session
+    before = snapshot(session)
+
+    change = change_account_email(session, ADMIN[0], NEW_ADMIN_EMAIL, role="admin")
+    session.commit()
+
+    after = snapshot(session)
+    admin_id = change.user_id
+    assert after[admin_id] == (NEW_ADMIN_EMAIL, *before[admin_id][1:])  # same id, hash, role, status
+    assert {k: v for k, v in after.items() if k != admin_id} == {k: v for k, v in before.items() if k != admin_id}
+    assert len(after) == 2
+    # The admin's open sessions ended; the user's did not.
+    assert change.sessions_ended == 1
+    assert client.get("/api/auth/me").status_code == 401
+    assert user_client.get("/api/auth/me").json()["email"] == USER[0]
+    # The same password now opens the account with the new email only.
+    assert sign_in(client, ADMIN).status_code == 401
+    signed_in = sign_in(client, (NEW_ADMIN_EMAIL, ADMIN[1]))
+    assert signed_in.status_code == 200 and signed_in.json()["role"] == "admin"
+    assert client.post("/api/ingestion/run", headers=ORIGIN).status_code == 200  # still an admin
+
+
+def test_after_the_change_a_restart_with_either_seed_email_adds_nothing(engine, session, client):
+    change_account_email(session, ADMIN[0], NEW_ADMIN_EMAIL)
+    session.commit()
+    before = snapshot(session)
+    for seed_email in (NEW_ADMIN_EMAIL, ADMIN[0]):
+        with TestClient(create_app(settings(seed_admin_email=seed_email), engine=engine)):
+            pass
+        assert snapshot(session) == before
+
+
+@pytest.mark.parametrize(
+    "old, new, reason",
+    [
+        (ADMIN[0], USER[0], "already used"),  # taken by the user
+        (ADMIN[0], " User@Example.COM ", "already used"),  # the same, in another case
+        ("nobody@example.com", NEW_ADMIN_EMAIL, "No account"),
+        (USER[0], NEW_ADMIN_EMAIL, "is a 'user' account, not 'admin'"),  # not the admin
+        (ADMIN[0], "not-an-email", "Not an email"),
+        (ADMIN[0], ADMIN[0].upper(), "current email"),
+    ],
+)
+def test_an_email_change_that_is_not_safe_changes_nothing(client, session, old, new, reason):
+    assert sign_in(client, ADMIN).status_code == 200
+    before = snapshot(session)
+    with pytest.raises(ValueError, match=reason):
+        change_account_email(session, old, new, role="admin")
+    session.rollback()
+    assert snapshot(session) == before
+    assert client.get("/api/auth/me").status_code == 200  # the session is still open
+
+
+def test_sessions_can_be_kept(client, session):
+    assert sign_in(client, ADMIN).status_code == 200
+    change = change_account_email(session, ADMIN[0], NEW_ADMIN_EMAIL, end_sessions=False)
+    session.commit()
+    assert change.sessions_ended == 0
+    assert client.get("/api/auth/me").json()["email"] == NEW_ADMIN_EMAIL
+    assert session.scalar(select(AuthSession).where(AuthSession.user_id == change.user_id)) is not None
