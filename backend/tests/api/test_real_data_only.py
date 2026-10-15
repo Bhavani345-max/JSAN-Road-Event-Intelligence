@@ -2,13 +2,14 @@
 
 from connectors.rss.deccan_chronicle import DECCAN_CHRONICLE
 from connectors.rss.telangana_today import TELANGANA_TODAY
-from tests.support import FakeConnector, iiit_junction_article, khajaguda_article
+from tests.support import FakeConnector, iiit_junction_article, ingest_each, khajaguda_article
 
 UNKNOWN_UNTIL_ESTABLISHED = ("start_time", "end_time", "severity", "direction", "geometry", "confidence")
 
 
 def ingest_all(client):
-    assert client.post("/api/ingestion/run").status_code == 200
+    # Every fixture source, by name: Deccan Chronicle is disconnected (decision 0032).
+    ingest_each(client, *client.app.state.ingestion_service.connector_factories)
 
 
 # --- No demo data ---------------------------------------------------------------
@@ -48,12 +49,12 @@ def test_registry_separates_connected_from_researched_sources(news_client):
     connected = [s for s in sources if s["integration_status"] == "CONNECTED"]
     others = [s for s in sources if s["integration_status"] != "CONNECTED"]
 
-    assert {s["source_id"] for s in connected} >= {
-        "telangana-today", "the-hindu", "deccan-chronicle", "newsmeter",
-    }
-    # Siasat's terms forbid automated access (decision 0024), and The Hans India
-    # was removed (decision 0026): listed, not connected.
-    assert not {"siasat", "siasat-mumbai", "the-hans-india"} & {s["source_id"] for s in connected}
+    assert {s["source_id"] for s in connected} >= {"telangana-today", "newsmeter"}
+    # Terms forbid automated access: Siasat (decision 0024), The Hindu and Deccan
+    # Chronicle (decision 0032); The Hans India was removed (decision 0026).
+    assert not {
+        "siasat", "siasat-mumbai", "the-hans-india", "the-hindu", "the-hindu-bengaluru", "deccan-chronicle",
+    } & {s["source_id"] for s in connected}
     assert len(others) >= 15
     for source in others:
         # A researched source is never polled and is never presented as active.

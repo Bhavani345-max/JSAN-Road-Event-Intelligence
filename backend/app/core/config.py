@@ -32,6 +32,10 @@ class Settings(BaseSettings):
     # both seed values are present, and an existing account is never reset.
     seed_admin_email: str | None = None
     seed_admin_password: str | None = None
+    # The one read-only User account (decision 0032), created the same way: only
+    # if both are set, once, and never reset. Its email must differ from the admin's.
+    seed_user_email: str | None = None
+    seed_user_password: str | None = None
     auth_cookie_name: str = "rei_session"
     auth_cookie_secure: bool = False
     auth_session_hours: int = 12

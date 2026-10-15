@@ -11,6 +11,8 @@ interface SourceStatusBarProps {
   sources: ConnectedSource[];
   /** Called after sources have been checked, so events and sources can reload. */
   onChecked: () => void;
+  /** Whether this account may run sources by hand (admins only); else no Check buttons. */
+  canRun?: boolean;
 }
 
 const plural = (count: number, word: string) => `${count} ${word}${count === 1 ? "" : "s"}`;
@@ -78,7 +80,15 @@ function StatusMessage({ message }: { message: Message }) {
   );
 }
 
-function SourceRow({ source, onChecked }: { source: ConnectedSource; onChecked: () => void }) {
+function SourceRow({
+  source,
+  onChecked,
+  canRun,
+}: {
+  source: ConnectedSource;
+  onChecked: () => void;
+  canRun: boolean;
+}) {
   const { checking, message, check } = useCheck(source.id, onChecked);
   const health = HEALTH[source.health];
   // In the source's own city's time zone.
@@ -111,9 +121,11 @@ function SourceRow({ source, onChecked }: { source: ConnectedSource; onChecked: 
             {plural(source.articleCount, "article")} · {plural(source.candidateCount, "candidate")}
           </p>
         </div>
-        <button type="button" onClick={check} disabled={checking} className={buttonClass}>
-          {checking ? "Checking…" : "Check"}
-        </button>
+        {canRun && (
+          <button type="button" onClick={check} disabled={checking} className={buttonClass}>
+            {checking ? "Checking…" : "Check"}
+          </button>
+        )}
       </div>
       <div className="pl-[18px]">
         {/* A fresh result replaces the stored failure message. */}
@@ -132,7 +144,7 @@ function SourceRow({ source, onChecked }: { source: ConnectedSource; onChecked: 
 }
 
 /** Health of each connected source feeding the console, with manual checks. */
-export default function SourceStatusBar({ sources, onChecked }: SourceStatusBarProps) {
+export default function SourceStatusBar({ sources, onChecked, canRun = true }: SourceStatusBarProps) {
   const [expanded, setExpanded] = useState(true);
   const all = useCheck(undefined, onChecked);
   if (sources.length === 0) return null;
@@ -178,9 +190,11 @@ export default function SourceStatusBar({ sources, onChecked }: SourceStatusBarP
             </span>
           </span>
         </button>
-        <button type="button" onClick={all.check} disabled={all.checking} className={buttonClass}>
-          {all.checking ? "Checking…" : "Check all"}
-        </button>
+        {canRun && (
+          <button type="button" onClick={all.check} disabled={all.checking} className={buttonClass}>
+            {all.checking ? "Checking…" : "Check all"}
+          </button>
+        )}
       </div>
       {all.message && (
         <div className="mt-1 pl-[18px]">
@@ -190,7 +204,7 @@ export default function SourceStatusBar({ sources, onChecked }: SourceStatusBarP
       {expanded && (
         <ul className="rei-sidebar-scroll mt-2 max-h-[8.75rem] space-y-2 overflow-y-auto border-t border-white/10 pt-2 pr-1">
           {sources.map((source) => (
-            <SourceRow key={source.id} source={source} onChecked={onChecked} />
+            <SourceRow key={source.id} source={source} onChecked={onChecked} canRun={canRun} />
           ))}
         </ul>
       )}

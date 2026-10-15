@@ -9,8 +9,9 @@ in London, Toronto, Mumbai, Bengaluru, New York City, France and Finland. The or
 Hyderabad proof of concept began with six publisher feeds:
 
 ```
-Telangana Today, The Hindu, Deccan Chronicle,
-The Siasat Daily (disconnected 14 Oct 2026, decision 0024), NewsMeter,
+Telangana Today, NewsMeter,
+The Hindu and Deccan Chronicle (disconnected 15 Oct 2026, decision 0032),
+The Siasat Daily (disconnected 14 Oct 2026, decision 0024),
 The Hans India (removed 14 Oct 2026, decision 0026)
    → generic RSS connector → ingestion → evidence stored
    → keyword detection + Hyderabad scope + a named place
@@ -18,7 +19,7 @@ The Hans India (removed 14 Oct 2026, decision 0026)
    → FastAPI → Next.js console → map
 ```
 
-- Real articles are fetched from six news feeds, stored as evidence, and the
+- Real articles are fetched from the connected news feeds, stored as evidence, and the
   traffic-related ones become events awaiting human review. Reports of the
   same real-world event from different sources are kept separate, not merged.
 - Nothing is invented: an event only carries what the article states. It is
@@ -32,9 +33,11 @@ The Hans India (removed 14 Oct 2026, decision 0026)
   (diversion, restriction, closure, waterlogging, road or flyover works) and
   names a road or place. Everything else is kept as evidence only.
 - There is **no demo data**. Every event comes from a connected source.
-- Reviewer access is protected by a sign-in page. Configure
-  `SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` in the ignored root `.env` to
-  provision the first administrator; see [database setup](database/README.md).
+- Access is protected by a sign-in page, with exactly two accounts and no
+  sign-up (decision 0032): the Admin (`SEED_ADMIN_EMAIL`/`SEED_ADMIN_PASSWORD`)
+  reviews and runs sources; the User (`SEED_USER_EMAIL`/`SEED_USER_PASSWORD`)
+  views the console and changes nothing. Each is created once from the ignored
+  root `.env` and never reset; see [database setup](database/README.md).
 - To pull a current snapshot from all connected live feeds, run
   `python backend/cli/seed_worldwide.py` while the API is running. Set `REI_API_URL`
   to the API origin to seed a remote deployment. New source events enter the
@@ -211,7 +214,7 @@ python cli/retention.py [--apply [--vacuum]]   # drop the text of old non-road a
 python cli/backfill.py <source_id> <url>   # bring in one article its feed no longer carries
 python cli/search_sweep.py --window month  # search Google News over a longer window (12 credits)
 python cli/ingest_source.py tfl-road-disruptions   # run one connected source now (official feeds)
-python cli/seed_user.py                    # create the first reviewer from SEED_ADMIN_* in .env
+python cli/seed_user.py                    # create the Admin and User accounts from SEED_ADMIN_*/SEED_USER_* in .env
 python -m services.geo_resolution.build_gazetteer --city hyderabad   # a city's place list
 python -m services.geo_resolution.build_gazetteer   # refresh the place list from OpenStreetMap
 python cli/gis.py propose-junction "NAME" --crossing "ROAD A" "ROAD B"   # a junction reference, UNCONFIRMED

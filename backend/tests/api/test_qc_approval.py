@@ -13,7 +13,7 @@ from app.main import create_app
 from app.repositories.sources import SourceRepository
 from connectors.rss.deccan_chronicle import DECCAN_CHRONICLE
 from connectors.rss.telangana_today import TELANGANA_TODAY
-from tests.support import REVIEWER_EMAIL, FakeConnector, iiit_junction_article, sign_in
+from tests.support import ingest_each, REVIEWER_EMAIL, FakeConnector, iiit_junction_article, sign_in
 
 from .test_manual_and_extend import DLF_CLOSURE, undated_article
 
@@ -36,7 +36,7 @@ def client(engine, session):
     }
     with TestClient(app) as client:
         sign_in(client)
-        assert client.post("/api/ingestion/run").status_code == 200
+        ingest_each(client, "telangana-today", "deccan-chronicle")
         yield client
 
 

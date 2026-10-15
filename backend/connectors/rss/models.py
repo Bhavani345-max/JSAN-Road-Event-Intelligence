@@ -78,12 +78,18 @@ def news_rss_source(
     )
 
 
-def restricted_by_terms(definition: SourceDefinition, *, terms: str) -> SourceDefinition:
+def restricted_by_terms(
+    definition: SourceDefinition,
+    *,
+    terms: str,
+    licence: str = "Personal, non-commercial use only; automated access needs written permission",
+    since: str = "14 October 2026",
+) -> SourceDefinition:
     """`definition`, disconnected because the publisher's terms forbid REI's use.
 
     The source stays registered, so its stored evidence keeps its source and the
-    console shows why it is not read, but it is never fetched (decision 0024).
-    Rebuilt through validation, so the definition's own checks still apply.
+    console shows why it is not read, but it is never fetched (decisions 0024,
+    0032). Rebuilt through validation, so the definition's own checks still apply.
     """
     return SourceDefinition.model_validate(
         definition.model_dump()
@@ -93,9 +99,9 @@ def restricted_by_terms(definition: SourceDefinition, *, terms: str) -> SourceDe
             # Read, not formally reviewed by a lawyer: terms_reviewed stays False.
             "terms_status": TermsStatus.RESTRICTED,
             "commercial_use": CommercialUse.NOT_PERMITTED,
-            "licence": "Personal, non-commercial use only; automated access needs written permission",
+            "licence": licence,
             "access_method": "Not accessed: the publisher's terms forbid automated access",
-            "notes": f"{definition.notes} Disconnected on 14 October 2026: {terms}",
+            "notes": f"{definition.notes} Disconnected on {since}: {terms}",
         }
     )
 

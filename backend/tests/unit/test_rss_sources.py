@@ -41,37 +41,54 @@ def test_three_rss_sources_are_registered_with_distinct_identities():
     ids = [source.definition.source_id for source in RSS_SOURCES]
     assert ids == [
         "telangana-today",
-        "the-hindu",
-        "deccan-chronicle",
         "newsmeter",
-        # Mumbai and Bengaluru, 8 October 2026.
+        # Mumbai, 8 October 2026.
         "mid-day-mumbai",
-        "the-hindu-bengaluru",
     ]
-    # Disconnected on 14 October 2026: the two Siasat feeds (decision 0024) and
-    # The Hans India (decision 0026).
-    assert len({source.definition.endpoint for source in RSS_SOURCES}) == 6
-    assert len({source.definition.source_name for source in RSS_SOURCES}) == 6
+    # Disconnected by their publishers' terms: the two Siasat feeds on 14 October
+    # 2026 (decision 0024); The Hindu (both cities) and Deccan Chronicle on 15
+    # October 2026 (decision 0032). The Hans India was removed (decision 0026).
+    assert len({source.definition.endpoint for source in RSS_SOURCES}) == 3
+    assert len({source.definition.source_name for source in RSS_SOURCES}) == 3
 
 
-def test_the_hindu_is_registered_correctly():
-    source = get_registered_source("the-hindu").definition
-    assert source.source_name == "The Hindu"
-    assert source.source_type is SourceType.RSS
-    assert source.endpoint == "https://www.thehindu.com/news/cities/Hyderabad/feeder/default.rss"
-    assert source.active is True
-    assert source.polling_frequency_minutes == 30
+@pytest.mark.parametrize(
+    "source_id, domain",
+    [("the-hindu", "thehindu.com"), ("the-hindu-bengaluru", "thehindu.com"),
+     ("deccan-chronicle", "deccanchronicle.com")],
+)  # fmt: skip
+def test_feeds_whose_terms_forbid_collection_are_registered_without_a_connector(source_id, domain):
+    from connectors.restricted import RESTRICTED_PUBLISHERS, restricted_publisher
+    from packages.source_models import CommercialUse, TermsStatus
+
+    registered = get_registered_source(source_id)
+    source = registered.definition
+    assert registered.create_connector is None
+    assert source.active is False
+    assert source.integration_status is IntegrationStatus.TERMS_REVIEW_REQUIRED
+    assert source.terms_status is TermsStatus.RESTRICTED
+    assert source.commercial_use is CommercialUse.NOT_PERMITTED
+    assert "Disconnected on 15 October 2026" in source.notes
+    assert RESTRICTED_PUBLISHERS[domain] in source.notes
+    # No page of the publisher is read by any other path either.
+    assert restricted_publisher(source.endpoint) == domain
+    assert restricted_publisher(source.source_url) == domain
 
 
-def test_deccan_chronicle_is_registered_correctly():
-    source = get_registered_source("deccan-chronicle").definition
-    assert source.source_name == "Deccan Chronicle"
-    assert source.source_type is SourceType.RSS
-    assert source.endpoint == (
+def test_the_hindu_parser_is_kept_for_reconnecting():
+    assert THE_HINDU.source_name == "The Hindu"
+    assert THE_HINDU.source_type is SourceType.RSS
+    assert THE_HINDU.endpoint == "https://www.thehindu.com/news/cities/Hyderabad/feeder/default.rss"
+    assert THE_HINDU.polling_frequency_minutes == 30
+
+
+def test_deccan_chronicle_parser_is_kept_for_reconnecting():
+    assert DECCAN_CHRONICLE.source_name == "Deccan Chronicle"
+    assert DECCAN_CHRONICLE.source_type is SourceType.RSS
+    assert DECCAN_CHRONICLE.endpoint == (
         "https://www.deccanchronicle.com/category/southern-states/telangana/google_feeds.xml"
     )
-    assert source.active is True
-    assert source.polling_frequency_minutes == 30
+    assert DECCAN_CHRONICLE.polling_frequency_minutes == 30
 
 
 @pytest.mark.parametrize("registered", RSS_SOURCES, ids=source_ids)
@@ -169,7 +186,7 @@ def test_deccan_chronicle_style_missing_fields():
 @pytest.mark.parametrize("source", NEW_SOURCES, ids=source_ids)
 def test_empty_feed_yields_no_records(source):
     body = b'<?xml version="1.0"?><rss version="2.0"><channel><title>t</title></channel></rss>'
-    assert get_registered_source(source.source_id).create_connector("ua").parse(
+    assert rss_package.create_rss_connector(source, "ua").parse(
         body, retrieved_at=RETRIEVED_AT
     ) == []
 
@@ -177,7 +194,7 @@ def test_empty_feed_yields_no_records(source):
 @pytest.mark.parametrize("source", NEW_SOURCES, ids=source_ids)
 @pytest.mark.parametrize("body", [b"", b"<html><body>Service unavailable</body></html>", b"{}"])
 def test_invalid_feed_is_rejected(source, body):
-    connector = get_registered_source(source.source_id).create_connector("ua")
+    connector = rss_package.create_rss_connector(source, "ua")
     with pytest.raises(ConnectorError, match=f"{source.source_id}: invalid feed"):
         connector.parse(body, retrieved_at=RETRIEVED_AT)
 

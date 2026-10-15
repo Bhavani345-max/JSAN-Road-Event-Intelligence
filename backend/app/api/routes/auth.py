@@ -16,31 +16,20 @@ from app.services.auth_service import (
 )
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
-# Failed sign-ins in the last window, per account and per visitor's address.
+# Failed sign-ins in the last window, per account (decision 0032).
+#
+# There is no per-visitor limit: behind Railway's edge, CDN and the console's
+# /api proxy, no request header identifies a visitor reliably (tested in
+# production on 15 October 2026: X-Forwarded-For named whichever relay passed
+# the request on), and an address limit keyed on a relay locks out unrelated
+# users. Forwarded-address headers are therefore not read at all.
 _LOGIN_ATTEMPTS: dict[str, deque[float]] = defaultdict(deque)
 _ATTEMPT_LOCK = Lock()
 _ATTEMPT_WINDOW_SECONDS = 15 * 60
 # Failed sign-ins one account may have in the window.
 _ATTEMPT_LIMIT = 8
-# Failed sign-ins one address may have in the window, across accounts.
-_ADDRESS_ATTEMPT_LIMIT = 30
-# Accounts and addresses tracked before aged-out ones are swept.
+# Accounts tracked before those whose failures have aged out are swept.
 _MAX_TRACKED_KEYS = 10_000
-
-
-def _client_address(request: Request) -> str:
-    """The visitor's address.
-
-    In production the connection comes from a proxy (Railway's edge, then the
-    console's /api proxy), so every visitor would share the proxy's address.
-    The edge appends the address it saw to X-Forwarded-For; its last entry is
-    the visitor's (earlier entries can be written by the visitor and are ignored).
-    """
-    forwarded = [part.strip() for part in request.headers.get("x-forwarded-for", "").split(",")]
-    forwarded = [part for part in forwarded if part]
-    if forwarded:
-        return forwarded[-1]
-    return request.client.host if request.client else "unknown"
 
 
 def _recent_failures(key: str, now: float) -> int:
@@ -55,22 +44,18 @@ def _recent_failures(key: str, now: float) -> int:
     return len(attempts)
 
 
-def _refuse_if_limited(account: str, address: str) -> None:
+def _refuse_if_limited(account: str) -> None:
     now = monotonic()
     with _ATTEMPT_LOCK:
-        if (
-            _recent_failures(account, now) >= _ATTEMPT_LIMIT
-            or _recent_failures(address, now) >= _ADDRESS_ATTEMPT_LIMIT
-        ):
+        if _recent_failures(account, now) >= _ATTEMPT_LIMIT:
             raise HTTPException(status_code=429, detail="Too many sign-in attempts. Try again in 15 minutes.")
 
 
-def _record_failure(account: str, address: str) -> None:
+def _record_failure(account: str) -> None:
     now = monotonic()
     with _ATTEMPT_LOCK:
-        for key in (account, address):
-            _recent_failures(key, now)
-            _LOGIN_ATTEMPTS[key].append(now)
+        _recent_failures(account, now)
+        _LOGIN_ATTEMPTS[account].append(now)
         # Made-up emails each add a key: forget those whose failures have aged out.
         if len(_LOGIN_ATTEMPTS) > _MAX_TRACKED_KEYS:
             for key in list(_LOGIN_ATTEMPTS):
@@ -79,15 +64,13 @@ def _record_failure(account: str, address: str) -> None:
 
 @router.post("/login", response_model=UserOut)
 def login(body: LoginIn, request: Request, response: Response, session: SessionDep) -> UserOut:
-    # One account's failures do not lock out the others (they share the proxy's
-    # connection), and one visitor cannot try many accounts.
+    # Counted per account: one account's failures never lock out another.
     account = f"account:{normalize_email(body.email)}"
-    address = f"address:{_client_address(request)}"
-    _refuse_if_limited(account, address)
+    _refuse_if_limited(account)
     user = authenticate(session, body.email, body.password)
     if user is None:
         session.rollback()
-        _record_failure(account, address)
+        _record_failure(account)
         raise HTTPException(status_code=401, detail="The email or password is incorrect.")
 
     settings = request.app.state.settings

@@ -46,12 +46,32 @@ def verify_password(password: str, encoded: str) -> bool:
         return False
 
 
+# The two kinds of account REI has (decision 0032): the admin manages REI and
+# reviews; a user signs in to view the console and changes nothing.
+ADMIN_ROLE = "admin"
+USER_ROLE = "user"
+
+
 def seed_admin_user(session: Session, email: str, password: str) -> tuple[User, bool]:
     """Create the bootstrap admin once; never reset an existing user's password."""
+    return seed_account(session, email, password, role=ADMIN_ROLE)
+
+
+def seed_account(session: Session, email: str, password: str, *, role: str) -> tuple[User, bool]:
+    """Create the one account of `role` once, from configured values.
+
+    Nothing is ever changed here: an account with this email is returned
+    untouched, whatever the configuration says. REI has one account per role
+    (decision 0032), so when another account already has the role, that one is
+    returned and none is created: a changed email never adds a third account.
+    """
     email = normalize_email(email)
     existing = session.scalar(select(User).where(User.email == email))
     if existing:
         return existing, False
+    holder = session.scalar(select(User).where(User.role == role).order_by(User.created_at))
+    if holder:
+        return holder, False
     local_name = email.partition("@")[0].replace(".", " ").replace("_", " ").replace("-", " ")
     display_name = " ".join(part.capitalize() for part in local_name.split()) or "REI Admin"
     now = utc_now()
@@ -60,7 +80,7 @@ def seed_admin_user(session: Session, email: str, password: str) -> tuple[User, 
         email=email,
         display_name=display_name,
         password_hash=hash_password(password),
-        role="admin",
+        role=role,
         is_active=True,
         created_at=now,
         updated_at=now,

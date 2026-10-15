@@ -1,7 +1,8 @@
 # 0031 — API documentation behind sign-in, per-visitor sign-in limits, roles
 
-**Status:** accepted in code, 15 October 2026. Not deployed. The Railway
-settings below are proposals awaiting the user's approval.
+**Status:** accepted in code, 15 October 2026; deployed 15 October 2026.
+The per-visitor sign-in limit is replaced by decision 0032 (per account
+only). The Railway settings below are proposals awaiting the user's approval.
 
 ## Context
 

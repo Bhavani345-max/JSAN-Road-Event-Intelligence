@@ -1,8 +1,8 @@
 """Security fixes of 15 October 2026 (production audit, docs/audit/production-audit-2026-10-15.md).
 
 - The API's documentation is for signed-in users only.
-- Sign-in limits count failures per account and per visitor's address, not
-  per connection: behind the console's proxy every visitor shares one.
+- Sign-in limits count failures per account only (decision 0032): no request
+  header identifies a visitor behind Railway's relays, so none is trusted.
 - Roles: a viewer reads, a reviewer also records decisions, an admin also
   runs sources.
 """
@@ -82,22 +82,28 @@ def test_one_accounts_failures_do_not_lock_out_another(client, monkeypatch):
     assert sign_in(client, "reviewer@example.com").status_code == 200
 
 
-def test_one_address_cannot_try_many_accounts(client, monkeypatch):
-    monkeypatch.setattr(auth, "_ADDRESS_ATTEMPT_LIMIT", 3)
+def test_forwarded_address_headers_neither_lift_nor_spread_an_accounts_limit(client, monkeypatch):
+    """No forwarded header is trusted: changing it does not reset an account's
+    failures, and failures sent with one header do not lock out another account
+    (decision 0032)."""
+    monkeypatch.setattr(auth, "_ATTEMPT_LIMIT", 3)
     for n in range(3):
-        assert sign_in(client, f"guess{n}@example.com", "wrong", forwarded="203.0.113.7").status_code == 401
-    assert sign_in(client, "admin@example.com", forwarded="203.0.113.7").status_code == 429
-    # Another visitor is not affected.
-    assert sign_in(client, "admin@example.com", forwarded="198.51.100.4").status_code == 200
-
-
-def test_the_address_is_the_last_one_the_proxy_added(client, monkeypatch):
-    """Entries a visitor writes before the edge's own are ignored."""
-    monkeypatch.setattr(auth, "_ADDRESS_ATTEMPT_LIMIT", 2)
-    for spoofed in ("10.0.0.1", "10.0.0.2"):
-        response = sign_in(client, f"x-{spoofed}@example.com", "wrong", forwarded=f"{spoofed}, 203.0.113.9")
+        headers = {"X-Forwarded-For": f"203.0.113.{n}", "X-Real-IP": f"198.51.100.{n}"}
+        response = client.post("/api/auth/login", json={"email": "viewer@example.com", "password": "wrong"}, headers=headers)
         assert response.status_code == 401
-    assert sign_in(client, "admin@example.com", forwarded="10.0.0.3, 203.0.113.9").status_code == 429
+    fresh = {"X-Forwarded-For": "192.0.2.99", "X-Real-IP": "192.0.2.99"}
+    assert sign_in(client, "viewer@example.com", forwarded="192.0.2.99").status_code == 429
+    assert client.post("/api/auth/login", json={"email": "viewer@example.com", "password": PASSWORD}, headers=fresh).status_code == 429
+    # The same headers on another account change nothing for it.
+    assert client.post("/api/auth/login", json={"email": "admin@example.com", "password": PASSWORD}, headers=fresh).status_code == 200
+
+
+def test_many_failing_accounts_from_one_connection_lock_out_no_other_account(client):
+    """Behind the console's proxy every visitor shares one connection; failures on
+    other accounts, however many, never stop an account from signing in."""
+    for n in range(40):
+        assert sign_in(client, f"guess-{n}@example.com", "wrong").status_code == 401
+    assert sign_in(client, "admin@example.com").status_code == 200
 
 
 def test_a_successful_sign_in_clears_the_accounts_failures(client, monkeypatch):

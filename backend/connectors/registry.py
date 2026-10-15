@@ -60,7 +60,9 @@ from .official import (
     toronto_source,
 )
 from .manual import MANUAL_ENTRY
+from .restricted import RESTRICTED_PUBLISHERS
 from .rss import create_rss_connector
+from .rss.models import restricted_by_terms
 from .rss.deccan_chronicle import DECCAN_CHRONICLE
 from .rss.mid_day_mumbai import MID_DAY_MUMBAI
 from .rss.newsmeter import NEWSMETER
@@ -87,13 +89,9 @@ def _rss(definition: SourceDefinition) -> RegisteredSource:
 
 CONNECTED_SOURCES: tuple[RegisteredSource, ...] = (
     _rss(TELANGANA_TODAY),
-    _rss(THE_HINDU),
-    _rss(DECCAN_CHRONICLE),
     _rss(NEWSMETER),
-    # Mumbai and Bengaluru (8 October 2026): the feeds verified in
-    # docs/cities/*-source-research.md whose items carry text.
+    # Mumbai (8 October 2026): the feed verified in docs/cities/mumbai-source-research.md.
     _rss(MID_DAY_MUMBAI),
-    _rss(THE_HINDU_BENGALURU),
 )
 
 # Feeds whose publisher's terms forbid automated access (decision 0024):
@@ -102,6 +100,24 @@ CONNECTED_SOURCES: tuple[RegisteredSource, ...] = (
 RESTRICTED_SOURCES: tuple[RegisteredSource, ...] = (
     RegisteredSource(SIASAT),
     RegisteredSource(SIASAT_MUMBAI),
+    # Decision 0032 (15 October 2026): their publishers' terms forbid automated
+    # collection; disconnected until permission is obtained. Their parsers stay
+    # (connectors/rss/the_hindu.py ...), so reconnecting is moving them back above.
+    *(
+        RegisteredSource(
+            restricted_by_terms(
+                definition,
+                terms=RESTRICTED_PUBLISHERS[domain],
+                licence=licence,
+                since="15 October 2026",
+            )
+        )
+        for definition, domain, licence in (
+            (THE_HINDU, "thehindu.com", "Automated collection not permitted without permission"),
+            (THE_HINDU_BENGALURU, "thehindu.com", "Automated collection not permitted without permission"),
+            (DECCAN_CHRONICLE, "deccanchronicle.com", "Viewing only; no data mining or commercial use"),
+        )
+    ),
 )
 
 # Feeds the user removed from REI (decision 0026): registered without a

@@ -18,6 +18,22 @@ RESTRICTED_PUBLISHERS: dict[str, str] = {
         "scraper, or other automated means to access, extract, or index the Content without "
         "prior written permission'."
     ),
+    # Decision 0032: read 15 October 2026; disconnected until the publisher agrees.
+    "thehindu.com": (
+        "The Hindu's terms of use (https://www.thehindu.com/termsofuse/, THG Publishing, read "
+        "15 October 2026) say users may not 'use robots, spiders, scripts, service, software or "
+        "any manual or automatic device, tool, or process designed to data mine or scrape the "
+        "Content, data or information from the Services, or otherwise use, access, or collect "
+        "the Content, data or information from the Services using automated means', nor use the "
+        "Content to train a machine learning or AI system."
+    ),
+    "deccanchronicle.com": (
+        "Deccan Chronicle's terms (https://www.deccanchronicle.com/terms-and-condition, read 15 "
+        "October 2026) grant a 'limited license only for purposes of viewing the material', and "
+        "restrict 'publishing any Website material in any other media', 'selling, sublicensing "
+        "and/or otherwise commercializing any Website material' and 'engaging in any data "
+        "mining, data harvesting, data extracting or any other similar activity'."
+    ),
 }
 
 

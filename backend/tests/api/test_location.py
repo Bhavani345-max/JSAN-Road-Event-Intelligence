@@ -17,7 +17,7 @@ from connectors.rss.telangana_today import TELANGANA_TODAY
 from services.extraction import KeywordClassifier, build_event_from_article
 from services.geo_resolution import default_resolver
 from services.ingestion import event_for_record
-from tests.support import RETRIEVED_AT, FakeConnector, iiit_junction_article, khajaguda_article, sign_in
+from tests.support import ingest_each, RETRIEVED_AT, FakeConnector, iiit_junction_article, khajaguda_article, sign_in
 
 
 def no_place_article():
@@ -61,7 +61,7 @@ def located_client(engine, session):
     }
     with TestClient(app) as client:
         sign_in(client)
-        assert client.post("/api/ingestion/run").status_code == 200
+        ingest_each(client, "telangana-today", "deccan-chronicle")
         yield client
 
 

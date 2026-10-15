@@ -2,18 +2,17 @@
 
 from tests.support import FakeConnector
 
-# source id -> (articles stored, events created) from each fixture feed
+# source id -> (articles stored, events created) from each connected fixture feed
 EXPECTED = {
     "telangana-today": (6, 3),
-    "the-hindu": (5, 2),
-    "deccan-chronicle": (5, 2),
     "newsmeter": (5, 2),
 }
+# Fixture feeds whose publishers' terms forbid automated collection (decision
+# 0032): the test gives them a connector, and a run must still not read them.
+DISCONNECTED = {"the-hindu", "deccan-chronicle"}
 TOTAL_EVENTS = sum(events for _, events in EXPECTED.values())
 SOURCE_NAMES = {
     "telangana-today": "Telangana Today",
-    "the-hindu": "The Hindu",
-    "deccan-chronicle": "Deccan Chronicle",
     "newsmeter": "NewsMeter",
 }
 
@@ -27,6 +26,7 @@ def ingest_all(client):
 def test_one_run_ingests_every_connected_source_and_nothing_else(news_client):
     results = ingest_all(news_client)
     assert sorted(results) == sorted(EXPECTED)
+    assert not DISCONNECTED & set(results)
     for source_id, (articles, events) in EXPECTED.items():
         assert results[source_id]["status"] == "ok"
         assert results[source_id]["new_artifacts"] == articles
@@ -81,23 +81,31 @@ def test_repeated_polling_adds_nothing_for_any_source(news_client):
 
 
 def test_one_failing_source_does_not_stop_the_others(news_client):
-    news_client.app.state.ingestion_service.connector_factories["the-hindu"] = lambda: FakeConnector(
+    news_client.app.state.ingestion_service.connector_factories["newsmeter"] = lambda: FakeConnector(
         [], error="feed unreachable"
     )
     results = ingest_all(news_client)
 
-    assert results["the-hindu"]["status"] == "failed"
-    assert results["the-hindu"]["error"] == "feed unreachable"
+    assert results["newsmeter"]["status"] == "failed"
+    assert results["newsmeter"]["error"] == "feed unreachable"
     for source_id, (_, events) in EXPECTED.items():
-        if source_id != "the-hindu":
+        if source_id != "newsmeter":
             assert results[source_id]["status"] == "ok"
             assert results[source_id]["events_created"] == events
 
     sources = {source["source_id"]: source for source in news_client.get("/api/sources").json()}
-    assert sources["the-hindu"]["last_failure_at"] is not None
-    assert sources["the-hindu"]["last_error"] == "feed unreachable"
-    assert sources["the-hindu"]["artifact_count"] == 0
+    assert sources["newsmeter"]["last_failure_at"] is not None
+    assert sources["newsmeter"]["last_error"] == "feed unreachable"
+    assert sources["newsmeter"]["artifact_count"] == 0
     assert sources["telangana-today"]["last_failure_at"] is None
+
+
+def test_disconnected_feeds_are_listed_with_their_reason_and_not_active(news_client):
+    sources = {source["source_id"]: source for source in news_client.get("/api/sources").json()}
+    for source_id in DISCONNECTED:
+        assert sources[source_id]["integration_status"] == "TERMS_REVIEW_REQUIRED"
+        assert sources[source_id]["active"] is False
+        assert "15 October 2026" in sources[source_id]["notes"]
 
 
 def test_single_source_can_be_ingested_on_its_own(news_client):

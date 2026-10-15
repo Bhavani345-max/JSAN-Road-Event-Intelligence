@@ -49,11 +49,13 @@ code registry on start-up, and every row in `source_artifacts`, `events` and
 `event_versions` comes from a connected source or a reviewer action. Test
 fixtures live under `backend/tests/` and never reach this database.
 
-The first reviewer account is provisioned once when both
-`SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` are set. The password is stored as
-a salted PBKDF2 hash. Existing accounts are never reset by startup. To create
-the account manually, run `python backend/cli/seed_user.py` from the repository
-root. To ingest a current snapshot from all connected feeds while the API is
+REI has two accounts (decision 0032). The Admin is provisioned once when both
+`SEED_ADMIN_EMAIL` and `SEED_ADMIN_PASSWORD` are set, and the read-only User
+when both `SEED_USER_EMAIL` and `SEED_USER_PASSWORD` are set (a different
+email). Passwords are stored as salted PBKDF2 hashes. Existing accounts are
+never reset by startup, and no second account of either role is created. To
+create the accounts manually, run `python backend/cli/seed_user.py` from the
+repository root. To ingest a current snapshot from all connected feeds while the API is
 running, run `python backend/cli/seed_worldwide.py`; set `REI_API_URL` to the API
 origin to target a remote deployment. New events remain in the validation
 queue until a reviewer accepts them.

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
 import Header from "@/components/layout/Header";
 import { useAuth } from "@/features/auth/AuthGate";
+import { canReview, canRunSources } from "@/features/auth/permissions";
 import {
   ALL_CITIES,
   ALL_CITIES_ID,
@@ -55,6 +56,9 @@ const NO_IDS: ReadonlySet<string> = new Set();
 
 export default function Dashboard() {
   const { user, signOut } = useAuth();
+  // The API enforces these too; the console leaves out what it would refuse.
+  const mayReview = canReview(user);
+  const mayRunSources = canRunSources(user);
   const { sources: allSources, refresh: refreshSources } = useConnectedSources();
   const cities = useCities();
   // A link can open the console on a city (/?city=london); choosing one in
@@ -224,7 +228,7 @@ export default function Dashboard() {
                 {view === "validation" ? "Back to operations" : "Open review queue"}
               </button>
             </div>
-            <SourceStatusBar sources={sources} onChecked={refreshAll} />
+            <SourceStatusBar sources={sources} onChecked={refreshAll} canRun={mayRunSources} />
             {!overview && (
               <EventFilters
                 filters={filters}
@@ -234,7 +238,7 @@ export default function Dashboard() {
               />
             )}
             {/* Manual entries are located with Hyderabad's place list: for its city only. */}
-            {isDefaultCity && (
+            {isDefaultCity && mayReview && (
             <button
               type="button"
               onClick={() => {
@@ -337,14 +341,20 @@ export default function Dashboard() {
                 event={selectedEvent}
                 onClose={() => setSelectedEventId(null)}
                 footer={
-                  // Keyed so a pending/failed state never carries over to another event.
-                  <ReviewActions
-                    key={selectedEvent.id}
-                    event={selectedEvent}
-                    onUpdated={refreshAll}
-                    pickedPoint={pickedPoint}
-                    onPickingChange={changePicking}
-                  />
+                  mayReview ? (
+                    // Keyed so a pending/failed state never carries over to another event.
+                    <ReviewActions
+                      key={selectedEvent.id}
+                      event={selectedEvent}
+                      onUpdated={refreshAll}
+                      pickedPoint={pickedPoint}
+                      onPickingChange={changePicking}
+                    />
+                  ) : (
+                    <p className="border-t border-slate-200 px-5 py-3 text-xs text-slate-500">
+                      View-only account: review decisions are made by an administrator.
+                    </p>
+                  )
                 }
               />
             </div>

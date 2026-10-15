@@ -184,3 +184,18 @@ class FakeConnector:
         if self.error:
             raise ConnectorError(self.error)
         return self.records
+
+
+def ingest_each(client, *source_ids: str) -> None:
+    """Run the named sources one by one through the API.
+
+    Test fixtures use real articles of The Hindu and Deccan Chronicle as data
+    for features that do not depend on a feed being connected. Since 15 October
+    2026 those feeds are disconnected by their publishers' terms (decision
+    0032), so a run of every connected source skips them; naming them reaches
+    the test's own connector.
+    """
+    for source_id in source_ids:
+        response = client.post("/api/ingestion/run", params={"source_id": source_id})
+        assert response.status_code == 200, (source_id, response.text)
+        assert response.json()["results"][0]["status"] == "ok", response.json()
