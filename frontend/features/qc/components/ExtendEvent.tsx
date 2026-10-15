@@ -31,7 +31,7 @@ export default function ExtendEvent({ event, onCancel, onSaved }: ExtendEventPro
   const reasonRef = useRef<HTMLInputElement>(null);
 
   // Dates are whole days in the event's own city.
-  const zone = timeZoneOf(event.city);
+  const zone = timeZoneOf(event.city, event.source.id);
   const currentEnd = formatDate(event.endTime, zone);
   // The first day that would be an extension: the day after the current end.
   const earliest =

@@ -35,7 +35,7 @@ def test_one_run_ingests_every_connected_source_and_nothing_else(news_client):
 
 def test_events_from_all_sources_are_returned_with_their_source(news_client):
     ingest_all(news_client)
-    events = news_client.get("/api/events?view=validation").json()["items"]
+    events = news_client.get("/api/events?view=validation&include_hidden=true").json()["items"]
     assert len(events) == TOTAL_EVENTS
 
     assert {event["source_id"]: event["source"]["source_name"] for event in events} == SOURCE_NAMES
@@ -50,10 +50,10 @@ def test_events_from_all_sources_are_returned_with_their_source(news_client):
 def test_events_can_be_filtered_by_source(news_client):
     ingest_all(news_client)
     for source_id, (_, expected_events) in EXPECTED.items():
-        body = news_client.get("/api/events", params={"view": "validation", "source_id": source_id}).json()
+        body = news_client.get("/api/events", params={"view": "validation", "include_hidden": "true", "source_id": source_id}).json()
         assert body["total"] == expected_events
         assert {event["source_id"] for event in body["items"]} == {source_id}
-    assert news_client.get("/api/events", params={"view": "validation", "source_id": "unknown"}).json()["total"] == 0
+    assert news_client.get("/api/events", params={"view": "validation", "include_hidden": "true", "source_id": "unknown"}).json()["total"] == 0
 
 
 def test_each_connected_source_reports_its_own_health_and_counts(news_client):
@@ -77,7 +77,7 @@ def test_repeated_polling_adds_nothing_for_any_source(news_client):
         assert second[source_id]["new_artifacts"] == 0
         assert second[source_id]["events_created"] == 0
         assert second[source_id]["duplicates"] == second[source_id]["fetched"]
-    assert news_client.get("/api/events?view=validation").json()["total"] == TOTAL_EVENTS
+    assert news_client.get("/api/events?view=validation&include_hidden=true").json()["total"] == TOTAL_EVENTS
 
 
 def test_one_failing_source_does_not_stop_the_others(news_client):
@@ -103,5 +103,5 @@ def test_one_failing_source_does_not_stop_the_others(news_client):
 def test_single_source_can_be_ingested_on_its_own(news_client):
     response = news_client.post("/api/ingestion/run", params={"source_id": "deccan-chronicle"})
     assert [result["source_id"] for result in response.json()["results"]] == ["deccan-chronicle"]
-    events = news_client.get("/api/events?view=validation").json()["items"]
+    events = news_client.get("/api/events?view=validation&include_hidden=true").json()["items"]
     assert {event["source_id"] for event in events} == {"deccan-chronicle"}

@@ -291,6 +291,8 @@ export interface ApiCity {
   map_zoom: number;
   scope_terms: string[];
   official_sources: string[];
+  /** For a country spanning several zones: each regional source's zone. */
+  source_time_zones?: Record<string, string>;
   has_gazetteer: boolean;
 }
 

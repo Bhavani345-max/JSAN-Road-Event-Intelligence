@@ -26,6 +26,7 @@ lists a block's closure once per permit purpose). Those rows are merged in the
 same way, by `merge_listed_rows`.
 """
 
+import json
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -36,6 +37,14 @@ from sqlalchemy.orm import Session
 from app.models import Event, EventMergeCandidate
 from app.repositories.events import EventRepository, to_rei_event
 from packages.common.time import ensure_utc, utc_now
+from connectors.official.calgary import SOURCE_ID as CALGARY_SOURCE_ID
+from connectors.official import (
+    dialog, drivebc, edmonton, finland, gold_coast, lyon, main_roads_wa, ottawa, roads_act, tfl,
+    toronto, winnipeg, wodonga,
+)  # fmt: skip
+from connectors.official.calgary import same_place_and_period_key
+from connectors.official.bison_fute import SOURCE_ID as BISON_FUTE_SOURCE_ID
+from connectors.official.bison_fute import same_situation_key
 from connectors.official.nyc import SOURCE_ID as NYC_SOURCE_ID
 from connectors.official.nyc import same_closure_key
 from packages.event_schema import EventStatus, ReiEvent
@@ -61,11 +70,56 @@ _LOCATION_RANK = {
     "QC_APPROVED": 5, "SOURCE_PROVIDED": 4, "GIS_RESOLVED": 4, "HUMAN_CORRECTED": 3,
     "APPROXIMATE": 1, "UNRESOLVED": 0,
 }  # fmt: skip
+# Of the rows a source lists for one event, the one that says most about the
+# road leads: a closure before the works needing it, before a diversion or a
+# hazard warning (a DATEX II situation's records, decision 0029).
+_LEAD_TYPE_RANK = {
+    "EMERGENCY_ROAD_CLOSURE": 0, "PLANNED_ROAD_CLOSURE": 0, "WEATHER_CLOSURE": 0,
+    "BRIDGE_TUNNEL_RESTRICTION": 1, "ROAD_WORKS": 2, "ROAD_CONSTRUCTION": 2,
+    "LANE_RESTRICTION": 3, "TURN_RESTRICTION": 3, "ACCIDENT": 4, "FLOODING": 4,
+    "WATERLOGGING": 4, "TRAFFIC_DIVERSION": 5, "ROAD_HAZARD": 6,
+}  # fmt: skip
+
+
+def _row_lead_rank(row: Event):
+    """Which of one event's rows leads: authority, review, location, then the type above."""
+    rank = _canonical_rank(row)
+    return (*rank[:3], _LEAD_TYPE_RANK.get(row.event_type or "", 7), *rank[3:])
+
+
+def identical_rows_key(event: ReiEvent, _external_id: str | None) -> str | None:
+    """Rows a source lists under different ids but identical to a reader (decision 0029).
+
+    Same type, same title, same position and same stated period: the same
+    closure entered twice. Rows that differ in any of these stay separate events.
+    """
+    if event.geometry is None or event.start_time is None or event.end_time is None:
+        return None
+    start, end = (
+        ensure_utc(moment).strftime("%Y-%m-%d %H:%M") for moment in (event.start_time, event.end_time)
+    )
+    spot = json.dumps(event.geometry.model_dump(mode="json")["coordinates"])
+    return f"{event.event_type} | {normalise(event.title)} | {spot} | {start} to {end} UTC"
+
+
 # Official sources that list one event in several rows, and what the rows of
-# one event share (None: the row cannot be grouped and stays on its own).
-LISTED_IN_SEVERAL_ROWS: dict[str, Callable[[ReiEvent], str | None]] = {
+# one event share, given the event and its row's id in the source (None: the
+# row cannot be grouped and stays on its own).
+LISTED_IN_SEVERAL_ROWS: dict[str, Callable[[ReiEvent, str | None], str | None]] = {
     # A block's closure, once per permit purpose: same segment and work period.
-    NYC_SOURCE_ID: same_closure_key,
+    NYC_SOURCE_ID: lambda event, _external_id: same_closure_key(event),
+    # A DATEX II situation's records at one spot over one period (decision 0029).
+    BISON_FUTE_SOURCE_ID: same_situation_key,
+    # Calgary's rows of one closure, per direction or lane: same place and period.
+    CALGARY_SOURCE_ID: same_place_and_period_key,
+    # Every other official feed: rows identical to a reader are one event.
+    **{
+        module.SOURCE_ID: identical_rows_key
+        for module in (
+            tfl, toronto, dialog, lyon, finland, drivebc, ottawa, edmonton, winnipeg,
+            main_roads_wa, gold_coast, roads_act, wodonga,
+        )
+    },
 }
 
 
@@ -266,7 +320,8 @@ def merge_listed_rows(session: Session, source_id: str) -> MatchRun:
     ).unique()
     groups: dict[str, list[Event]] = {}
     for row in rows:
-        if key := key_of(to_rei_event(row)):
+        external_id = row.artifact.external_id if row.artifact else None
+        if key := key_of(to_rei_event(row), external_id):
             groups.setdefault(key, []).append(row)
     known = {(c.event_a, c.event_b): c for c in session.scalars(select(EventMergeCandidate))}
     now = utc_now()
@@ -277,7 +332,7 @@ def merge_listed_rows(session: Session, source_id: str) -> MatchRun:
         reason = f"The source lists one event in several rows: {key}"
         notes = ["a reviewer has acted on one of them: merged only by a reviewer"]
         untouched = [row for row in rows_of_event if not reviewed(row)]
-        canonical = min(untouched or rows_of_event, key=_canonical_rank)
+        canonical = min(untouched or rows_of_event, key=_row_lead_rank)
         for row in rows_of_event:
             if row is canonical:
                 continue

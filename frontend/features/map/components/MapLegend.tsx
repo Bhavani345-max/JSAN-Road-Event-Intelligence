@@ -50,6 +50,16 @@ export default function MapLegend({ eventTypes }: MapLegendProps) {
           <span className="ml-1.5 h-2.5 w-2.5 rounded-full border-[2.5px] border-slate-500 bg-white" />
           <span className="ml-1">Approximate (named place)</span>
         </li>
+        <li
+          className="flex items-center gap-2"
+          title="Several events at the same spot: each has its own marker around the spot, with a line pointing to it"
+        >
+          <span className="relative ml-0.5 h-3 w-4">
+            <span className="absolute left-0 top-0 h-2 w-2 rounded-full bg-slate-500 ring-1 ring-white" />
+            <span className="absolute left-[3px] top-[5px] w-2.5 rotate-[35deg] border-t border-slate-500" />
+          </span>
+          <span>Same spot: spread, line to spot</span>
+        </li>
       </ul>
       <ul className="mt-2 space-y-1 border-t border-slate-200 pt-2">
         <li className="flex items-center gap-2" title="For the selected event: the places an AI reading found in the article, by their role">

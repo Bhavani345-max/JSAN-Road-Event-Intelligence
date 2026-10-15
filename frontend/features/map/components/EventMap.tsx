@@ -16,7 +16,7 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import { HYDERABAD_VIEW, mapConfig, satelliteConfig, type Basemap } from "@/lib/config";
 import { isLocated, type Position, type RoadEvent } from "@/features/events/model";
-import { distinctEvents, toEventMapData, type StackedEvent } from "../geojson";
+import { distinctEvents, spreadStacks, toEventMapData, type StackedEvent } from "../geojson";
 import { getBoundingBox } from "../geometry";
 
 interface EventMapProps {
@@ -43,6 +43,8 @@ type MapStatus = "loading" | "ready" | "error";
 const GEOMETRY_SOURCE = "rei-event-geometries";
 const ANCHOR_SOURCE = "rei-event-anchors";
 const PLACE_SOURCE = "rei-event-places";
+// Lines from markers spread around a shared spot back to the spot.
+const LEADER_SOURCE = "rei-event-leaders";
 
 const SATELLITE_SOURCE = "rei-satellite";
 const SATELLITE_LAYER = "rei-satellite";
@@ -53,6 +55,7 @@ const LAYERS = {
   casing: "rei-event-line-casing",
   line: "rei-event-line",
   lineDashed: "rei-event-line-dashed",
+  leaders: "rei-event-leaders",
   anchorHalo: "rei-event-anchor-halo",
   anchor: "rei-event-anchor",
   locationPoints: "rei-event-location-points",
@@ -217,6 +220,19 @@ function addEventLayers(map: MapLibreMap) {
       "text-halo-width": 1.6,
     },
   });
+  // Several events at one spot each get their own marker around it; a thin
+  // line points from each back to the spot they share.
+  map.addSource(LEADER_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
+  map.addLayer({
+    id: LAYERS.leaders,
+    type: "line",
+    source: LEADER_SOURCE,
+    paint: {
+      "line-color": ["get", "color"],
+      "line-width": ["case", ["get", "selected"], 2, 1.2],
+      "line-opacity": 0.75,
+    },
+  });
   map.addLayer({
     id: LAYERS.anchorHalo,
     type: "circle",
@@ -232,8 +248,8 @@ function addEventLayers(map: MapLibreMap) {
     // solid dot with a white ring; GIS-resolved a solid dot with a teal ring;
     // corrected by a reviewer a solid dot with a black ring; approximate (a
     // named place's position, not the event's) a hollow ring, never read as exact.
-    // Of markers sharing a spot, the selected one (else the first) is on top.
-    layout: { "circle-sort-key": ["case", ["get", "stackTop"], 1, 0] },
+    // Markers sharing a spot are spread around it; the selected one is on top.
+    layout: { "circle-sort-key": ["case", ["get", "selected"], 1, 0] },
     paint: {
       "circle-color": ["case", ["get", "approximate"], "#ffffff", ["get", "color"]],
       "circle-radius": ["case", ["get", "selected"], 8.5, 6.5],
@@ -330,16 +346,6 @@ function stackChooser(events: StackedEvent[], onChoose: (eventId: string) => voi
   return root;
 }
 
-/** The count shown on a marker that several events share. */
-function stackBadge(count: number): HTMLElement {
-  const badge = document.createElement("span");
-  badge.className =
-    "pointer-events-none flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-slate-900 px-1 text-[10px] font-bold leading-none text-white ring-2 ring-white";
-  badge.textContent = String(count);
-  badge.setAttribute("aria-hidden", "true");
-  return badge;
-}
-
 function fitToEvents(
   map: MapLibreMap,
   events: RoadEvent[],
@@ -399,6 +405,8 @@ export default function EventMap({
   // this one: during a development reload the map is rebuilt while `status`
   // still says "ready" from the map before it.
   const [loadedMap, setLoadedMap] = useState<MapLibreMap | null>(null);
+  // The zoom markers sharing a spot are spread for (a ring of fixed pixel size).
+  const [spreadZoom, setSpreadZoom] = useState(initialView.zoom);
 
   const onSelectEventRef = useRef(onSelectEvent);
   const pickingRef = useRef(picking);
@@ -461,11 +469,16 @@ export default function EventMap({
       // Keep the event's selectable marker above GIS point features. A GIS
       // candidate or resolved junction can share its coordinates and would
       // otherwise paint over the selected event marker.
+      map.moveLayer(LAYERS.leaders);
       map.moveLayer(LAYERS.anchorHalo);
       map.moveLayer(LAYERS.anchor);
       loaded = true;
       setLoadedMap(map);
       setStatus("ready");
+    });
+
+    map.on("zoomend", () => {
+      setSpreadZoom(Math.round(map.getZoom() * 4) / 4);
     });
 
     map.on("error", (e) => {
@@ -546,6 +559,7 @@ export default function EventMap({
     () => toEventMapData(events, selectedEventId),
     [events, selectedEventId],
   );
+  const markers = useMemo(() => spreadStacks(mapData.anchors, spreadZoom), [mapData, spreadZoom]);
 
   useEffect(() => {
     const map = loadedMap;
@@ -570,25 +584,16 @@ export default function EventMap({
     const map = loadedMap;
     if (!map || map !== mapRef.current) return;
     map.getSource<GeoJSONSource>(GEOMETRY_SOURCE)?.setData(mapData.geometries);
-    map.getSource<GeoJSONSource>(ANCHOR_SOURCE)?.setData(mapData.anchors);
     map.getSource<GeoJSONSource>(PLACE_SOURCE)?.setData(mapData.places);
   }, [loadedMap, mapData]);
 
-  // A count on each marker that several events share.
+  // Markers, with those sharing a spot spread around it at the current zoom.
   useEffect(() => {
     const map = loadedMap;
     if (!map || map !== mapRef.current) return;
-    const badges = mapData.anchors.features
-      .filter((anchor) => anchor.properties.stackTop && anchor.properties.stackSize > 1)
-      .map((anchor) =>
-        new Marker({ element: stackBadge(anchor.properties.stackSize), anchor: "bottom-left", offset: [3, -3] })
-          .setLngLat(anchor.geometry.coordinates as [number, number])
-          .addTo(map),
-      );
-    return () => {
-      for (const badge of badges) badge.remove();
-    };
-  }, [loadedMap, mapData]);
+    map.getSource<GeoJSONSource>(ANCHOR_SOURCE)?.setData(markers.anchors);
+    map.getSource<GeoJSONSource>(LEADER_SOURCE)?.setData(markers.leaders);
+  }, [loadedMap, markers]);
 
   // Bring a newly selected event into view.
   useEffect(() => {

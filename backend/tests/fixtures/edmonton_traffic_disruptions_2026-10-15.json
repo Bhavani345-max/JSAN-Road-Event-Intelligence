@@ -1,0 +1,1277 @@
+{
+ "fetched_at": "2026-10-15T08:54:16.104633+00:00",
+ "items": [
+  {
+   "disruption_id": "1099",
+   "rows": [
+    {
+     "disruption_id": "1099",
+     "date_issued": "2026-09-21T00:00:00.000",
+     "start_date": "2026-09-25T00:00:00.000",
+     "finish_date": "2026-10-24T00:00:00.000",
+     "status": "Current",
+     "on_street": "Aspen Drive East NW",
+     "from_street": "121 Street NW",
+     "to_street": "40 Avenue NW",
+     "impact": "Total Closure",
+     "duration": "30",
+     "details": "Starts Sept 25th. Aspen Drive East from 121 Street to 40 Avenue will be closed due to utility repair. Local Access maintained.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Southwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.53979519026993,
+       53.47634694166428
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1177",
+   "rows": [
+    {
+     "disruption_id": "1177",
+     "date_issued": "2026-10-05T00:00:00.000",
+     "start_date": "2026-10-06T00:00:00.000",
+     "finish_date": "2026-10-17T00:00:00.000",
+     "status": "Current",
+     "on_street": "105 Street",
+     "from_street": "99 Avenue",
+     "to_street": "100 Avenue",
+     "impact": "Increased Travel Time",
+     "duration": "12",
+     "details": "Due to EPCOR Drainage work, 105 Street northbound is reduced to one lane with left and right turns maintained at 100 Avenue.  105 Street southbound left turn is banned to 100 Avenue eastbound.  Bike lane closed along 100 Avenue at 105 Street.  Dismount to cross intersection.  Pedestrian crosswalk closed on north side of intersection along 100 Avenue at 105 Street.  Local Access maintained.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.50108012807797,
+       53.53725097425669
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1208",
+   "rows": [
+    {
+     "disruption_id": "1208",
+     "date_issued": "2026-10-09T00:00:00.000",
+     "start_date": "2026-10-30T00:00:00.000",
+     "finish_date": "2026-10-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "94 Street NW",
+     "from_street": "118 Avenue NW",
+     "to_street": "117 Avenue NW",
+     "impact": "Total Closure",
+     "duration": "1",
+     "details": "94 St from 118 Ave south to alley will be total closed",
+     "description": "SPECIAL EVENT",
+     "activity_type": "Special Event",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.48576288255836,
+       53.57038858839272
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1093",
+   "rows": [
+    {
+     "disruption_id": "1093",
+     "date_issued": "2026-09-18T00:00:00.000",
+     "start_date": "2026-10-02T00:00:00.000",
+     "finish_date": "2026-10-23T00:00:00.000",
+     "status": "Current",
+     "on_street": "102A Avenue NW",
+     "from_street": "95 Street NW",
+     "to_street": "96 Street NW",
+     "impact": "Total Closure",
+     "duration": "22",
+     "details": "102A Avenue between 95 Street and 96 Street will be closed for Utility Construction. North sidewalk closure also in place. Local Access is maintained.",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.47930407057977,
+       53.5461560327246
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1028",
+   "rows": [
+    {
+     "disruption_id": "1028",
+     "date_issued": "2026-09-08T00:00:00.000",
+     "start_date": "2026-09-14T00:00:00.000",
+     "finish_date": "2027-03-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "87 Avenue NW",
+     "from_street": "159 Street NW",
+     "to_street": "153 Street NW",
+     "impact": "Travel Delays",
+     "duration": "199",
+     "details": "87 Av Reduced to 1 Lane in Each Direction",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Northwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.59667030200804,
+       53.51940149678848
+      ]
+     }
+    },
+    {
+     "disruption_id": "1028",
+     "date_issued": "2026-09-08T00:00:00.000",
+     "start_date": "2026-09-14T00:00:00.000",
+     "finish_date": "2027-03-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "87 Avenue NW",
+     "from_street": "159 Street NW",
+     "to_street": "153 Street NW",
+     "impact": "Travel Delays",
+     "duration": "199",
+     "details": "87 Av Reduced to 1 Lane in Each Direction",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Northwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.58506919226487,
+       53.51949349929663
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1211",
+   "rows": [
+    {
+     "disruption_id": "1211",
+     "date_issued": "2026-10-13T00:00:00.000",
+     "start_date": "2026-10-23T00:00:00.000",
+     "finish_date": "2026-10-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "36A AVENUE",
+     "from_street": "66 STREET NW",
+     "to_street": "WOODVALE ROAD W NW",
+     "impact": "Total Closure",
+     "duration": "8",
+     "details": "36A Avenue will be completely closed from 66 Street to Woodvale Rd W from October 23 to October 30. Please follow the detour.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.43337887879947,
+       53.47135109788343
+      ]
+     }
+    },
+    {
+     "disruption_id": "1211",
+     "date_issued": "2026-10-13T00:00:00.000",
+     "start_date": "2026-10-23T00:00:00.000",
+     "finish_date": "2026-10-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "36A AVENUE",
+     "from_street": "66 STREET NW",
+     "to_street": "WOODVALE ROAD W NW",
+     "impact": "Total Closure",
+     "duration": "8",
+     "details": "36A Avenue will be completely closed from 66 Street to Woodvale Rd W from October 23 to October 30. Please follow the detour.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.4384236418774,
+       53.470639080447036
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1204",
+   "rows": [
+    {
+     "disruption_id": "1204",
+     "date_issued": "2026-10-09T00:00:00.000",
+     "start_date": "2026-10-13T00:00:00.000",
+     "finish_date": "2026-10-17T00:00:00.000",
+     "status": "Current",
+     "on_street": "Matheson Way",
+     "from_street": "50 Street NW",
+     "to_street": "149 Avenue NW",
+     "impact": "Total Closure",
+     "duration": "5",
+     "details": "Matheson Way totally closed between 50 Street and 149 Avenue. North sidewalk closed and detoured to the South side.",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.41797398406565,
+       53.61204515853014
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1183",
+   "rows": [
+    {
+     "disruption_id": "1183",
+     "date_issued": "2026-10-05T00:00:00.000",
+     "start_date": "2026-10-26T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "97 Street NW",
+     "from_street": "75 Avenue NW",
+     "to_street": "76 Avenue NW",
+     "impact": "Total Closure",
+     "duration": "6",
+     "details": "Road segment closed to vehicle traffic. 76 AV reduced to a single lane at 97 ST with all directions of traffic travel maintained under flagsperson control.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.47977066374645,
+       53.51136210453684
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1192",
+   "rows": [
+    {
+     "disruption_id": "1192",
+     "date_issued": "2026-10-07T00:00:00.000",
+     "start_date": "2026-10-14T00:00:00.000",
+     "finish_date": "2026-10-28T00:00:00.000",
+     "status": "Current",
+     "on_street": "82 Street NW",
+     "from_street": "133A Avenue NW",
+     "to_street": "130 Avenue NW",
+     "impact": "Travel Delays",
+     "duration": "15",
+     "details": "82 Street Southbound curb lane closure from North of 132 Ave to South of 132 Ave.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.46724738172816,
+       53.589142617714806
+      ]
+     }
+    },
+    {
+     "disruption_id": "1192",
+     "date_issued": "2026-10-07T00:00:00.000",
+     "start_date": "2026-10-14T00:00:00.000",
+     "finish_date": "2026-10-28T00:00:00.000",
+     "status": "Current",
+     "on_street": "82 Street NW",
+     "from_street": "133A Avenue NW",
+     "to_street": "130 Avenue NW",
+     "impact": "Travel Delays",
+     "duration": "15",
+     "details": "82 Street Southbound curb lane closure from North of 132 Ave to South of 132 Ave.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.46737367122132,
+       53.59439944340343
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1008",
+   "rows": [
+    {
+     "disruption_id": "1008",
+     "date_issued": "2026-09-02T00:00:00.000",
+     "start_date": "2026-10-06T00:00:00.000",
+     "finish_date": "2026-11-15T00:00:00.000",
+     "status": "Current",
+     "on_street": "87 Street NW",
+     "from_street": "95 Avenue NW",
+     "to_street": "96 Avenue NW",
+     "impact": "Total Closure",
+     "duration": "41",
+     "details": "Road segment closed to vehicle access.",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.46084389175213,
+       53.53176260998836
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "5",
+   "rows": [
+    {
+     "disruption_id": "5",
+     "date_issued": "2025-03-26T00:00:00.000",
+     "start_date": "2025-03-10T00:00:00.000",
+     "finish_date": "2026-11-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "Meridian Street",
+     "from_street": "Marquis Boulevard NE",
+     "to_street": "Fort Road",
+     "impact": "Total Closure",
+     "duration": "631",
+     "details": "Meridian Street will be closed from Marquis Boulevard to South of Fort Road. Detour using 167 Avenue, 18 Street, and Fort Road.",
+     "description": "Road Construction",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.34431478810555,
+       53.652468483370704
+      ]
+     }
+    },
+    {
+     "disruption_id": "5",
+     "date_issued": "2025-03-26T00:00:00.000",
+     "start_date": "2025-03-10T00:00:00.000",
+     "finish_date": "2026-11-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "Meridian Street",
+     "from_street": "Marquis Boulevard NE",
+     "to_street": "Fort Road",
+     "impact": "Total Closure",
+     "duration": "631",
+     "details": "Meridian Street will be closed from Marquis Boulevard to South of Fort Road. Detour using 167 Avenue, 18 Street, and Fort Road.",
+     "description": "Road Construction",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.34436446307997,
+       53.63823356745164
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "570",
+   "rows": [
+    {
+     "disruption_id": "570",
+     "date_issued": "2026-06-05T00:00:00.000",
+     "start_date": "2026-06-11T00:00:00.000",
+     "finish_date": "2026-10-26T00:00:00.000",
+     "status": "Current",
+     "on_street": "109 Street NW",
+     "from_street": "29A Avenue NW",
+     "to_street": "28 Avenue NW",
+     "impact": "Travel Delays",
+     "duration": "138",
+     "details": "Starts Oct 16th. 109 St from 29A Ave to 28 Ave will be reduced to a single lane per direction due to road construction. Pedestrians to detour to the East side of 109st. Expect travel delays.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southwest",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.50952390827814,
+       53.45797061515561
+      ]
+     }
+    },
+    {
+     "disruption_id": "570",
+     "date_issued": "2026-06-05T00:00:00.000",
+     "start_date": "2026-06-11T00:00:00.000",
+     "finish_date": "2026-10-26T00:00:00.000",
+     "status": "Current",
+     "on_street": "109 Street NW",
+     "from_street": "29A Avenue NW",
+     "to_street": "28 Avenue NW",
+     "impact": "Travel Delays",
+     "duration": "138",
+     "details": "Starts Oct 16th. 109 St from 29A Ave to 28 Ave will be reduced to a single lane per direction due to road construction. Pedestrians to detour to the East side of 109st. Expect travel delays.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southwest",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.5124288639279,
+       53.4608061407726
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "711",
+   "rows": [
+    {
+     "disruption_id": "711",
+     "date_issued": "2026-07-02T00:00:00.000",
+     "start_date": "2026-07-15T00:00:00.000",
+     "finish_date": "2026-12-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "105 Street NW",
+     "from_street": "102 Avenue NW",
+     "impact": "Total Closure",
+     "duration": "170",
+     "details": "Starting July 15, the intersection of 105 St and 102 Ave will be closed to traffic. Pedestrian access will generally be maintained on at least one side of each street.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.50069722798747,
+       53.522259461039816
+      ]
+     }
+    },
+    {
+     "disruption_id": "711",
+     "date_issued": "2026-07-02T00:00:00.000",
+     "start_date": "2026-07-15T00:00:00.000",
+     "finish_date": "2026-12-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "105 Street NW",
+     "from_street": "102 Avenue NW",
+     "impact": "Total Closure",
+     "duration": "170",
+     "details": "Starting July 15, the intersection of 105 St and 102 Ave will be closed to traffic. Pedestrian access will generally be maintained on at least one side of each street.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.50107001361684,
+       53.54301102092754
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "102",
+   "rows": [
+    {
+     "disruption_id": "102",
+     "date_issued": "2026-02-06T00:00:00.000",
+     "start_date": "2025-12-01T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "76 Avenue NW",
+     "from_street": "89 Street NW",
+     "to_street": "95 Street NW",
+     "impact": "Total Closure",
+     "duration": "335",
+     "details": "Road/bridge closed to eastbound and westbound vehicle traffic.",
+     "description": "BRIDGE CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.46375981501998,
+       53.51229034753758
+      ]
+     }
+    },
+    {
+     "disruption_id": "102",
+     "date_issued": "2026-02-06T00:00:00.000",
+     "start_date": "2025-12-01T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "76 Avenue NW",
+     "from_street": "89 Street NW",
+     "to_street": "95 Street NW",
+     "impact": "Total Closure",
+     "duration": "335",
+     "details": "Road/bridge closed to eastbound and westbound vehicle traffic.",
+     "description": "BRIDGE CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.47362845036764,
+       53.51227974762961
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1144",
+   "rows": [
+    {
+     "disruption_id": "1144",
+     "date_issued": "2026-09-29T00:00:00.000",
+     "start_date": "2026-10-01T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "83 Avenue NW",
+     "from_street": "107 Street NW",
+     "to_street": "109 Street NW",
+     "impact": "Total Closure",
+     "duration": "31",
+     "details": "Road segment closed to vehicle traffic.",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.50630788052034,
+       53.519087822273825
+      ]
+     }
+    },
+    {
+     "disruption_id": "1144",
+     "date_issued": "2026-09-29T00:00:00.000",
+     "start_date": "2026-10-01T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "83 Avenue NW",
+     "from_street": "107 Street NW",
+     "to_street": "109 Street NW",
+     "impact": "Total Closure",
+     "duration": "31",
+     "details": "Road segment closed to vehicle traffic.",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.51206948602334,
+       53.51917124636824
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1196",
+   "rows": [
+    {
+     "disruption_id": "1196",
+     "date_issued": "2026-10-08T00:00:00.000",
+     "start_date": "2026-10-15T00:00:00.000",
+     "finish_date": "2026-10-17T00:00:00.000",
+     "status": "Current",
+     "on_street": "101 STREET NW",
+     "from_street": "118 AVENUE NW",
+     "impact": "Total Closure",
+     "duration": "3",
+     "details": "101 Street Northbound towards 118 Avenue Westbound closed in traffic circle for manhole repair. Northbound 101 Street towards Eastbound 118 Avenue to remain open. Closure only outside of peak hours. Closure to take place on Oct 17th.  Use alternative routes during closure, 112 Avenue or Yellowhead.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.4939796715976,
+       53.570123573197264
+      ]
+     }
+    },
+    {
+     "disruption_id": "1196",
+     "date_issued": "2026-10-08T00:00:00.000",
+     "start_date": "2026-10-15T00:00:00.000",
+     "finish_date": "2026-10-17T00:00:00.000",
+     "status": "Current",
+     "on_street": "101 STREET NW",
+     "from_street": "118 AVENUE NW",
+     "impact": "Total Closure",
+     "duration": "3",
+     "details": "101 Street Northbound towards 118 Avenue Westbound closed in traffic circle for manhole repair. Northbound 101 Street towards Eastbound 118 Avenue to remain open. Closure only outside of peak hours. Closure to take place on Oct 17th.  Use alternative routes during closure, 112 Avenue or Yellowhead.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.49348240764282,
+       53.554701190614
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "942",
+   "rows": [
+    {
+     "disruption_id": "942",
+     "date_issued": "2026-08-20T00:00:00.000",
+     "start_date": "2026-08-31T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "170 Street SW",
+     "from_street": "Ambleside Link SW",
+     "to_street": "Windermere Boulevard",
+     "impact": "Travel Delays",
+     "duration": "62",
+     "details": "Starts Aug 31st @ 8pm. Traffic pattern change on 170 St SW Northbound at Windermere Blvd. Dedicated left turning lane closure. Left turns maintained in left through lane. Expect travel delays.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.61336578876914,
+       53.43692313936926
+      ]
+     }
+    },
+    {
+     "disruption_id": "942",
+     "date_issued": "2026-08-20T00:00:00.000",
+     "start_date": "2026-08-31T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "170 Street SW",
+     "from_street": "Ambleside Link SW",
+     "to_street": "Windermere Boulevard",
+     "impact": "Travel Delays",
+     "duration": "62",
+     "details": "Starts Aug 31st @ 8pm. Traffic pattern change on 170 St SW Northbound at Windermere Blvd. Dedicated left turning lane closure. Left turns maintained in left through lane. Expect travel delays.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.61431950130385,
+       53.43337713240913
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "757",
+   "rows": [
+    {
+     "disruption_id": "757",
+     "date_issued": "2026-07-10T00:00:00.000",
+     "start_date": "2025-10-20T00:00:00.000",
+     "finish_date": "2026-10-20T00:00:00.000",
+     "status": "Current",
+     "on_street": "155 Avenue NW",
+     "from_street": "101 Street NW",
+     "to_street": "102 Street NW",
+     "impact": "Travel Delays",
+     "duration": "366",
+     "details": "North sidewalk of 155 Ave from 101 St to 102 St is closed and detoured to the South side",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.49685683009231,
+       53.61608265508543
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1190",
+   "rows": [
+    {
+     "disruption_id": "1190",
+     "date_issued": "2026-10-06T00:00:00.000",
+     "start_date": "2026-10-17T00:00:00.000",
+     "finish_date": "2026-10-17T00:00:00.000",
+     "status": "Current",
+     "on_street": "99 Street NW",
+     "from_street": "Jasper Avenue NW",
+     "to_street": "Judy Padua Way NW",
+     "impact": "Total Closure",
+     "duration": "1",
+     "details": "99 Street from Jasper Ave to Judy Padua Way will be closed for road construction from 9am to 3pm.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.48858103529824,
+       53.54126615782316
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1163",
+   "rows": [
+    {
+     "disruption_id": "1163",
+     "date_issued": "2026-10-02T00:00:00.000",
+     "start_date": "2026-10-19T00:00:00.000",
+     "finish_date": "2026-10-24T00:00:00.000",
+     "status": "Current",
+     "on_street": "Saskatchewan Drive NW",
+     "from_street": "99 Street NW",
+     "to_street": "91 Avenue NW",
+     "impact": "Directional Closure",
+     "duration": "6",
+     "details": "Sask. DR westbound closed from 99 ST to 91 AV nightly between 20:00hrs to 06:00hrs. Eastbound traffic will be maintained.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.48606575587903,
+       53.52722761659918
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "323",
+   "rows": [
+    {
+     "disruption_id": "323",
+     "date_issued": "2026-04-21T00:00:00.000",
+     "start_date": "2026-05-04T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "95 Avenue NW",
+     "from_street": "163 Street NW",
+     "to_street": "170 Street NW",
+     "impact": "Travel Delays",
+     "duration": "181",
+     "details": "95 Av will be reduced to 1 lane in each direction from 163 St to 170 St starting on April 27. The sidewalk on the south side will be closed. Use other routes.",
+     "description": "ROAD MAINTENANCE",
+     "activity_type": "Construction",
+     "traffic_district": "Northwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.61527439566788,
+       53.53168398335468
+      ]
+     }
+    },
+    {
+     "disruption_id": "323",
+     "date_issued": "2026-04-21T00:00:00.000",
+     "start_date": "2026-05-04T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "95 Avenue NW",
+     "from_street": "163 Street NW",
+     "to_street": "170 Street NW",
+     "impact": "Travel Delays",
+     "duration": "181",
+     "details": "95 Av will be reduced to 1 lane in each direction from 163 St to 170 St starting on April 27. The sidewalk on the south side will be closed. Use other routes.",
+     "description": "ROAD MAINTENANCE",
+     "activity_type": "Construction",
+     "traffic_district": "Northwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.6026246476124,
+       53.5315863161643
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "362",
+   "rows": [
+    {
+     "disruption_id": "362",
+     "date_issued": "2026-04-28T00:00:00.000",
+     "start_date": "2026-05-25T00:00:00.000",
+     "finish_date": "2026-10-15T00:00:00.000",
+     "status": "Revised",
+     "on_street": "Yellowhead Trail NW",
+     "from_street": "133 Street NW",
+     "impact": "Total Closure",
+     "duration": "144",
+     "details": "Yellowhead Trail North service road will be closed from 133 St to 300m East of 133 St. Exit from Yellowhead Trail WB to St. Albert Trail will remain open. Southbound 133 St at the Yellowhead Trail WB exit will be maintained as a right turn only. Local access will be changing with the ultimate re-alignment of this service road to a one way (Westbound) alignment).",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.52495166423749,
+       53.57821615728698
+      ]
+     }
+    },
+    {
+     "disruption_id": "362",
+     "date_issued": "2026-04-28T00:00:00.000",
+     "start_date": "2026-05-25T00:00:00.000",
+     "finish_date": "2026-10-15T00:00:00.000",
+     "status": "Revised",
+     "on_street": "Yellowhead Trail NW",
+     "from_street": "133 Street NW",
+     "impact": "Total Closure",
+     "duration": "144",
+     "details": "Yellowhead Trail North service road will be closed from 133 St to 300m East of 133 St. Exit from Yellowhead Trail WB to St. Albert Trail will remain open. Southbound 133 St at the Yellowhead Trail WB exit will be maintained as a right turn only. Local access will be changing with the ultimate re-alignment of this service road to a one way (Westbound) alignment).",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.5557428852684,
+       53.581676454931824
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1154",
+   "rows": [
+    {
+     "disruption_id": "1154",
+     "date_issued": "2026-10-02T00:00:00.000",
+     "start_date": "2026-10-05T00:00:00.000",
+     "finish_date": "2026-10-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "Bellamy Hill",
+     "from_street": "99 Avenue NW",
+     "to_street": "Macdonald Drive",
+     "impact": "Travel Delays",
+     "duration": "26",
+     "details": "Northbound 101 St right lane closed. Closures of the east sidewalk when crews are on site with local pedestrian access maintained up to the closure points. Full pedestrian access maintained via an on street pedestrian detour when crews are not on site.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.49561982278178,
+       53.5372309770368
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "59",
+   "rows": [
+    {
+     "disruption_id": "59",
+     "date_issued": "2026-01-22T00:00:00.000",
+     "start_date": "2026-01-22T00:00:00.000",
+     "finish_date": "2028-06-20T00:00:00.000",
+     "status": "Current",
+     "on_street": "Meadowlark Road NW",
+     "from_street": "156 Street NW",
+     "to_street": "87 Avenue NW",
+     "impact": "Directional Closure",
+     "duration": "881",
+     "details": "Various Northbound and Southbound single block closures scheduled as required, to facilitate West LRT construction along Meadowlard Rd; 156 St to 87 Ave. Work to take place during off-peak hours, please use other routes.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northwest",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.590568653078,
+       53.52463075028407
+      ]
+     }
+    },
+    {
+     "disruption_id": "59",
+     "date_issued": "2026-01-22T00:00:00.000",
+     "start_date": "2026-01-22T00:00:00.000",
+     "finish_date": "2028-06-20T00:00:00.000",
+     "status": "Current",
+     "on_street": "Meadowlark Road NW",
+     "from_street": "156 Street NW",
+     "to_street": "87 Avenue NW",
+     "impact": "Directional Closure",
+     "duration": "881",
+     "details": "Various Northbound and Southbound single block closures scheduled as required, to facilitate West LRT construction along Meadowlard Rd; 156 St to 87 Ave. Work to take place during off-peak hours, please use other routes.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northwest",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.59665962257691,
+       53.51953764480032
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "682",
+   "rows": [
+    {
+     "disruption_id": "682",
+     "date_issued": "2026-06-25T00:00:00.000",
+     "start_date": "2026-06-25T00:00:00.000",
+     "finish_date": "2026-12-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "109 Street",
+     "from_street": "High Level Bridge",
+     "to_street": "Saskatchewan Drive",
+     "impact": "Increased Travel Time",
+     "duration": "189",
+     "details": "The east side shared use path along 109 Street from 100m south of the High Level Bridge to Saskatchewan Drive / Walterdale Hill Road is closed for maintenance activity.  Pedestrians and active mode users can still cross the High Level Bridge using the west side shared use path.  Pedestrian and active mode user mapping is provided to help guide commuters.\n\nA portion of the far left turn lane along 109 Street from 200m north of Saskatchewan Drive / Walterdale Hill Road to 100m north of Saskatchewan Drive / Walterdale Hill Road is closed for maintenance activity.  Left turns to Walterdale Hill Road and through movement to Saskatchewan Drive are maintained.",
+     "description": "ROAD MAINTENANCE",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.51135351601255,
+       53.529590082619464
+      ]
+     }
+    },
+    {
+     "disruption_id": "682",
+     "date_issued": "2026-06-25T00:00:00.000",
+     "start_date": "2026-06-25T00:00:00.000",
+     "finish_date": "2026-12-30T00:00:00.000",
+     "status": "Current",
+     "on_street": "109 Street",
+     "from_street": "High Level Bridge",
+     "to_street": "Saskatchewan Drive",
+     "impact": "Increased Travel Time",
+     "duration": "189",
+     "details": "The east side shared use path along 109 Street from 100m south of the High Level Bridge to Saskatchewan Drive / Walterdale Hill Road is closed for maintenance activity.  Pedestrians and active mode users can still cross the High Level Bridge using the west side shared use path.  Pedestrian and active mode user mapping is provided to help guide commuters.\n\nA portion of the far left turn lane along 109 Street from 200m north of Saskatchewan Drive / Walterdale Hill Road to 100m north of Saskatchewan Drive / Walterdale Hill Road is closed for maintenance activity.  Left turns to Walterdale Hill Road and through movement to Saskatchewan Drive are maintained.",
+     "description": "ROAD MAINTENANCE",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.51185838326633,
+       53.52408134650435
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1178",
+   "rows": [
+    {
+     "disruption_id": "1178",
+     "date_issued": "2026-10-05T00:00:00.000",
+     "start_date": "2026-10-06T00:00:00.000",
+     "finish_date": "2026-10-17T00:00:00.000",
+     "status": "Current",
+     "on_street": "100 Avenue",
+     "from_street": "104 Street",
+     "to_street": "105 Street",
+     "impact": "Directional Closure",
+     "duration": "12",
+     "details": "Due to EPCOR Drainage work, 100 Avenue westbound is closed from alley west of 104 Street to 105 Street. Bike lane closed along 100 Avenue at 105 Street. Dismount to cross intersection. Pedestrian crosswalk closed on north side of intersection along 100 Avenue at 105 Street. Local Access maintained.",
+     "description": "UTILITY REPAIR",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.49927839584169,
+       53.53884886242321
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "58",
+   "rows": [
+    {
+     "disruption_id": "58",
+     "date_issued": "2026-01-22T00:00:00.000",
+     "start_date": "2026-01-26T00:00:00.000",
+     "finish_date": "2027-01-18T00:00:00.000",
+     "status": "Revised",
+     "on_street": "127 Avenue",
+     "from_street": "109 Street",
+     "to_street": "101 Street",
+     "impact": "Directional Closure",
+     "duration": "358",
+     "details": "On 127 Ave from West of 109 St to the West side of 103 St, eastbound lanes are closed and westbound traffic is reduced to a single lane. Between the intersection of 103 St and 101 St, all traffic will be diverted into a split-lane configuration.",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.4938856031522,
+       53.58492209985055
+      ]
+     }
+    },
+    {
+     "disruption_id": "58",
+     "date_issued": "2026-01-22T00:00:00.000",
+     "start_date": "2026-01-26T00:00:00.000",
+     "finish_date": "2027-01-18T00:00:00.000",
+     "status": "Revised",
+     "on_street": "127 Avenue",
+     "from_street": "109 Street",
+     "to_street": "101 Street",
+     "impact": "Directional Closure",
+     "duration": "358",
+     "details": "On 127 Ave from West of 109 St to the West side of 103 St, eastbound lanes are closed and westbound traffic is reduced to a single lane. Between the intersection of 103 St and 101 St, all traffic will be diverted into a split-lane configuration.",
+     "description": "UTILITY CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Northeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.50844128304335,
+       53.58488194467815
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "495",
+   "rows": [
+    {
+     "disruption_id": "495",
+     "date_issued": "2026-05-24T00:00:00.000",
+     "start_date": "2026-05-23T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "Terwillegar Drive NW",
+     "from_street": "Anthony Henday Drive NW",
+     "to_street": "Windermere Boulevard SW",
+     "impact": "Major Delays",
+     "duration": "162",
+     "details": "Traffic pattern change on Terwillegar Drive SW Southbound north of Windermere Blvd. Through traffic reduced to a single lane. Dedicated single right and left turn lanes. Expect Major delays.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.59989128590965,
+       53.44432700233357
+      ]
+     }
+    },
+    {
+     "disruption_id": "495",
+     "date_issued": "2026-05-24T00:00:00.000",
+     "start_date": "2026-05-23T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "Terwillegar Drive NW",
+     "from_street": "Anthony Henday Drive NW",
+     "to_street": "Windermere Boulevard SW",
+     "impact": "Major Delays",
+     "duration": "162",
+     "details": "Traffic pattern change on Terwillegar Drive SW Southbound north of Windermere Blvd. Through traffic reduced to a single lane. Dedicated single right and left turn lanes. Expect Major delays.",
+     "description": "ROAD CONSTRUCTION",
+     "activity_type": "Construction",
+     "traffic_district": "Southwest",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.61322423589472,
+       53.43707179742727
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "1220",
+   "rows": [
+    {
+     "disruption_id": "1220",
+     "date_issued": "2026-10-14T00:00:00.000",
+     "start_date": "2026-10-16T00:00:00.000",
+     "finish_date": "2026-10-17T00:00:00.000",
+     "status": "Current",
+     "on_street": "112 Avenue NW",
+     "from_street": "70 Street NW",
+     "to_street": "73 Street NW",
+     "impact": "Total Closure",
+     "duration": "2",
+     "details": "112 Avenue bridge over Wayne Gretzky Drive will be closed to traffic from 00:00hrs - 06:00hrs. Use 118 Ave or 106 Ave to detour.",
+     "description": "BRIDGE REPAIR / MAINTENANCE",
+     "activity_type": "Construction",
+     "traffic_district": "Central",
+     "infrastructure": "Road and Sidewalk",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.44497294438375,
+       53.563171792848344
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "disruption_id": "13",
+   "rows": [
+    {
+     "disruption_id": "13",
+     "date_issued": "2025-05-14T00:00:00.000",
+     "start_date": "2025-05-26T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "41 Avenue SW",
+     "from_street": "91 Street",
+     "to_street": "Ewing Trail",
+     "impact": "Total Closure",
+     "duration": "524",
+     "details": "41 Ave SW from 91 Street to Ewing Trail will be closed due to road construction. Local access to be maintained.  Use 25 Avenue SW",
+     "description": "Road Construction Rehab",
+     "activity_type": "Construction",
+     "traffic_district": "Southeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.49191689865212,
+       53.395904906149866
+      ]
+     }
+    },
+    {
+     "disruption_id": "13",
+     "date_issued": "2025-05-14T00:00:00.000",
+     "start_date": "2025-05-26T00:00:00.000",
+     "finish_date": "2026-10-31T00:00:00.000",
+     "status": "Current",
+     "on_street": "41 Avenue SW",
+     "from_street": "91 Street",
+     "to_street": "Ewing Trail",
+     "impact": "Total Closure",
+     "duration": "524",
+     "details": "41 Ave SW from 91 Street to Ewing Trail will be closed due to road construction. Local access to be maintained.  Use 25 Avenue SW",
+     "description": "Road Construction Rehab",
+     "activity_type": "Construction",
+     "traffic_district": "Southeast",
+     "infrastructure": "Road",
+     "point": {
+      "type": "Point",
+      "coordinates": [
+       -113.4672879531645,
+       53.39585395642586
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

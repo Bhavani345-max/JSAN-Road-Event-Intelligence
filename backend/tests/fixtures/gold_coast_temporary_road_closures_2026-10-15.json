@@ -1,0 +1,1232 @@
+{
+ "fetched_at": "2026-10-15T08:54:16.104633+00:00",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 1,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.349733106186,
+      -28.073610413422
+     ],
+     [
+      153.349400148791,
+      -28.0742059436137
+     ],
+     [
+      153.349388934669,
+      -28.0744854179505
+     ],
+     [
+      153.349528110862,
+      -28.0749500823152
+     ],
+     [
+      153.349530181176,
+      -28.0749567471712
+     ],
+     [
+      153.349531965583,
+      -28.0749624937959
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 1,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "MOORALLA STREET",
+    "START_DATE": 1633392000000,
+    "FINISH_DATE": null,
+    "OPERATION_TIMES": null,
+    "CLOSURE_CATEGORY": null,
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": null,
+    "SUBURB": "TALLAI",
+    "GlobalID": "4e0cb99d-f76e-4738-b0c5-70d08777e725",
+    "TRC_ID": "283"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.429568871363,
+      -28.0131835019382
+     ],
+     [
+      153.430348113078,
+      -28.0132983966016
+     ],
+     [
+      153.433354370047,
+      -28.0129903976103
+     ],
+     [
+      153.431437595008,
+      -27.9978095493996
+     ],
+     [
+      153.427266014223,
+      -27.9972021765326
+     ],
+     [
+      153.426502279689,
+      -28.0008675189886
+     ],
+     [
+      153.42617086271,
+      -28.0018485535092
+     ],
+     [
+      153.42601030361,
+      -28.0022805373088
+     ],
+     [
+      153.426024949192,
+      -28.0026849219637
+     ],
+     [
+      153.427845651393,
+      -28.0055207076691
+     ],
+     [
+      153.427970089667,
+      -28.0062209254609
+     ],
+     [
+      153.427494826508,
+      -28.008461960591
+     ],
+     [
+      153.427596947538,
+      -28.0094118420205
+     ],
+     [
+      153.428279168685,
+      -28.0102466662776
+     ],
+     [
+      153.429215229183,
+      -28.0110515351687
+     ],
+     [
+      153.429441517158,
+      -28.0115705624227
+     ],
+     [
+      153.429568779493,
+      -28.013183676449
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Various",
+    "START_DATE": 1785679200000,
+    "FINISH_DATE": 1819548000000,
+    "OPERATION_TIMES": "00:00-2359",
+    "CLOSURE_CATEGORY": "SPECIAL EVENT",
+    "CLOSURE_EXTENT": "MULTIPLE LONG TERM IMPACTS",
+    "COMMENTS": "2026 - Bump in 3/08, event 14-16/08, bump out 16/08 (Month of August Each Year - Daily/Nightly Impacts",
+    "SUBURB": "Surfers Paradise",
+    "GlobalID": "9c80a634-1ede-42d6-9aab-dc4a5e42e713",
+    "TRC_ID": "Gold Coast Airshow 2023 - 2027"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 10,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.349512422631,
+      -27.8555480045837
+     ],
+     [
+      153.35982986878,
+      -27.8368027773765
+     ],
+     [
+      153.334764015908,
+      -27.8095507806706
+     ],
+     [
+      153.296921772338,
+      -27.7701065114821
+     ],
+     [
+      153.278697200179,
+      -27.7605281774599
+     ],
+     [
+      153.284254494421,
+      -27.7408489735105
+     ],
+     [
+      153.276783418688,
+      -27.7188261191296
+     ],
+     [
+      153.253165684156,
+      -27.6852623962549
+     ],
+     [
+      153.214973766158,
+      -27.6983954094852
+     ],
+     [
+      153.234448659341,
+      -27.7240492553156
+     ],
+     [
+      153.243821436086,
+      -27.7429092336917
+     ],
+     [
+      153.246688216243,
+      -27.7570330297895
+     ],
+     [
+      153.268157781455,
+      -27.7887600676405
+     ],
+     [
+      153.288788736368,
+      -27.801879897907
+     ],
+     [
+      153.300117323456,
+      -27.8175626908301
+     ],
+     [
+      153.314585826403,
+      -27.8294378499184
+     ],
+     [
+      153.312455967163,
+      -27.8521998349189
+     ],
+     [
+      153.349512422631,
+      -27.8555480045837
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 10,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Goldmine Road / Prairie Road / Burnside Road / Eastern Service Road",
+    "START_DATE": 1739109600000,
+    "FINISH_DATE": 1796047200000,
+    "OPERATION_TIMES": "0000-2359",
+    "CLOSURE_CATEGORY": "CONSTRUCTION",
+    "CLOSURE_EXTENT": "MULTIPLE LONG TERM IMPACTS",
+    "COMMENTS": "Must see approval for ANY works within this area",
+    "SUBURB": "Coomera",
+    "GlobalID": "f57d0724-3178-4af2-a4ca-7746b0a01218",
+    "TRC_ID": "TRC/QTMP/QR/CC"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 28,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.24655582671,
+      -27.7456433542386
+     ],
+     [
+      153.24731383287,
+      -27.7460528320514
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 28,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "TRCI/2025/745",
+    "START_DATE": 1763906400000,
+    "FINISH_DATE": 1793368800000,
+    "OPERATION_TIMES": "00.00-23.59",
+    "CLOSURE_CATEGORY": "UTILITIES",
+    "CLOSURE_EXTENT": "FULL CLOSURE",
+    "COMMENTS": "Installation of DN800 sewer main and associated manholes predominantly by means of micro tunnelling, which include excavations for tunnel launch and receival shafts. Work will take place on different",
+    "SUBURB": "Stapylton",
+    "GlobalID": "d966718d-78ca-48cd-bca2-4c1cfcf59a56",
+    "TRC_ID": "Christensen Road South"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 490,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.471885502804,
+      -28.1210930213993
+     ],
+     [
+      153.472186992483,
+      -28.1209633085788
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 490,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Palm Beach Avenue",
+    "START_DATE": 1787493600000,
+    "FINISH_DATE": 1795442400000,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "To facilitate demolition works at 1134 Gold Coast Highway, Palm Beach.",
+    "SUBURB": "Palm Beach",
+    "GlobalID": "b9035d59-51a4-4b2e-9328-be0865558c33",
+    "TRC_ID": "TRC/2026/2181"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 47,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.330944306215,
+      -27.9894750630077
+     ],
+     [
+      153.330994824912,
+      -27.9891572489586
+     ],
+     [
+      153.330944456165,
+      -27.9894742140876
+     ],
+     [
+      153.330876778148,
+      -27.9897304242638
+     ],
+     [
+      153.330943299393,
+      -27.9894760493979
+     ],
+     [
+      153.332050693342,
+      -27.9896425740679
+     ],
+     [
+      153.331706920135,
+      -27.9895904092492
+     ],
+     [
+      153.331667455156,
+      -27.9898632096942
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 47,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Mylor Street, West Street, Wundowie Street",
+    "START_DATE": 1768140000000,
+    "FINISH_DATE": 1799676000000,
+    "OPERATION_TIMES": "06.30-18.30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Operational Permit – to safely facilitate construction related activities.",
+    "SUBURB": "Nerang",
+    "GlobalID": "ce251e02-0e6c-428f-9b0d-6c793c85b2fa",
+    "TRC_ID": "TRC/2026/25"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 1069,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.229074565971,
+      -27.7376843649895
+     ],
+     [
+      153.228608987872,
+      -27.7376104920853
+     ],
+     [
+      153.228286080768,
+      -27.737564448207
+     ],
+     [
+      153.228076594595,
+      -27.7375182166654
+     ],
+     [
+      153.227932558628,
+      -27.7374796398398
+     ],
+     [
+      153.227788458195,
+      -27.7374100125369
+     ],
+     [
+      153.227679248173,
+      -27.7373364449054
+     ],
+     [
+      153.227198504033,
+      -27.7369063991534
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 1069,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Lloyds Lane",
+    "START_DATE": 1790863200000,
+    "FINISH_DATE": 1793541600000,
+    "OPERATION_TIMES": "06:30-18:30",
+    "CLOSURE_CATEGORY": "MAINTENANCE",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Footpath Works, road asphalt works, installation of three, kerb inlet pits and swale drainage works",
+    "SUBURB": "Yatalla",
+    "GlobalID": "44b81923-552d-4d11-ba27-e6a5a5077499",
+    "TRC_ID": "TRC/2026/2714"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 124,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.42729456792,
+      -28.0183964889173
+     ],
+     [
+      153.428797208374,
+      -28.0186091563534
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 124,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Monte Carlo Avenue",
+    "START_DATE": 1778335200000,
+    "FINISH_DATE": 1794146400000,
+    "OPERATION_TIMES": "06:30-18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "Low Impact Operational Permit - To facilitate construction activities on 24 Monte Carlo Avenue, Surfers Paradise",
+    "SUBURB": "Surfers Paradise",
+    "GlobalID": "36baf5cb-6062-4f51-aa36-0227f8a8abc3",
+    "TRC_ID": "TRC/2026/993"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 385,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.439348263749,
+      -28.0505115716844
+     ],
+     [
+      153.439373535091,
+      -28.0506022509287
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 385,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Hedges Avenue",
+    "START_DATE": 1785420000000,
+    "FINISH_DATE": 1793282400000,
+    "OPERATION_TIMES": "09:00 - 03:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Operational approval for construction related activities",
+    "SUBURB": "Mermaid Beach",
+    "GlobalID": "240ff78e-db0c-4e4f-9152-4d3a2efff326",
+    "TRC_ID": "TRC/2026/2009"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 549,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.43241076155,
+      -28.0324695633386
+     ],
+     [
+      153.432708332586,
+      -28.0324187688934
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 549,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Anne Avenue",
+    "START_DATE": 1789567200000,
+    "FINISH_DATE": 1797429600000,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Low Impact Operational Approval for Avva Development",
+    "SUBURB": "Broadbeach",
+    "GlobalID": "dd19bb5a-fb30-45ba-86fb-56b5d8312fdb",
+    "TRC_ID": "TRC/2026/2192"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 63,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.346443068096,
+      -27.9814460240706
+     ],
+     [
+      153.346405034254,
+      -27.9817990808824
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 63,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Old Coach Road",
+    "START_DATE": 1770472800000,
+    "FINISH_DATE": 1809612000000,
+    "OPERATION_TIMES": "18.00-05.00",
+    "CLOSURE_CATEGORY": "CONSTRUCTION",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "To facilitate completion of watermain and drainage crossings",
+    "SUBURB": "Ashmore",
+    "GlobalID": "77761385-acc2-4521-81c5-2208d6642cf3",
+    "TRC_ID": "TRC/2026/160"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 167,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.417199233559,
+      -27.9695821415174
+     ],
+     [
+      153.41736322165,
+      -27.9700577424733
+     ],
+     [
+      153.417692684823,
+      -27.970811493515
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 167,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Marine Parade, SOUTHPORT",
+    "START_DATE": 1783087200000,
+    "FINISH_DATE": 1823954400000,
+    "OPERATION_TIMES": "06:00 - 17:00 / 17:00 - 06:00",
+    "CLOSURE_CATEGORY": "CONSTRUCTION",
+    "CLOSURE_EXTENT": "FULL CLOSURE",
+    "COMMENTS": "To facilitate Stage 2 of the Short and Lawson Streets Stormwater Drainage Upgrade",
+    "SUBURB": "Southport",
+    "GlobalID": "80d7b312-fba9-418b-89e3-68a6f7479899",
+    "TRC_ID": "TRCI/2026/255"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 367,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.40339953758,
+      -27.9724778227328
+     ],
+     [
+      153.403614880248,
+      -27.9725106297987
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 367,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "77 Pohlman Street",
+    "START_DATE": 1785247200000,
+    "FINISH_DATE": 1793109600000,
+    "OPERATION_TIMES": "6:30 AM - 18:30 PM",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "To facilitate ingress and egress truck deliveries only.",
+    "SUBURB": "Southport",
+    "GlobalID": "58359cad-bcd6-4950-8dad-3060385d9d66",
+    "TRC_ID": "TRC/2026/1910"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 786,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.41477304147,
+      -28.0773044262016
+     ],
+     [
+      153.415098538259,
+      -28.0775661685448
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 786,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Lake Street",
+    "START_DATE": 1789394400000,
+    "FINISH_DATE": 1794751200000,
+    "OPERATION_TIMES": "06:30-18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "Half road hold and release to facilitate constructed related activities",
+    "SUBURB": "Varsity Lakes",
+    "GlobalID": "58f9711f-760f-4919-8096-3086a011f417",
+    "TRC_ID": "TRC/2026/2533"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 550,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.43241213732,
+      -28.0324770226238
+     ],
+     [
+      153.432707363987,
+      -28.0324289220266
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 550,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Anne Avenue",
+    "START_DATE": 1789567200000,
+    "FINISH_DATE": 1797429600000,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "(33m x 2.6m) Medium Impact Operational Approval for the Avva Development",
+    "SUBURB": "Broadbeach",
+    "GlobalID": "d7bcdc8c-af3e-4886-903c-1b6d1657d4e3",
+    "TRC_ID": "TRC/2026/2194"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 311,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.438109660346,
+      -28.0453700701654
+     ],
+     [
+      153.438153418182,
+      -28.0455389113881
+     ],
+     [
+      153.438153642831,
+      -28.0455391101702
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 311,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Hedges Avenue",
+    "START_DATE": 1785160800000,
+    "FINISH_DATE": 1800972000000,
+    "OPERATION_TIMES": "06.30-18.30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Operational Approval - to facilitate construction related activities at 111 Hedges Avenue, Mermaid Beach",
+    "SUBURB": "Mermaid Beach",
+    "GlobalID": "03845fef-2c74-4b6d-9a0c-f69f7f177853",
+    "TRC_ID": "TRC/2026/1979"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 734,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.269661559213,
+      -27.7858710462939
+     ],
+     [
+      153.268786302939,
+      -27.7862274814081
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 734,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Achievement Drive",
+    "START_DATE": 1789999200000,
+    "FINISH_DATE": 1792591200000,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "UTILITIES",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "To complete Stormwater CCTV for our off-maintenance at 114 Eggersdorf Road.",
+    "SUBURB": "Ormeau",
+    "GlobalID": "35b66fc8-e5e6-4277-989c-b3d7b187c750",
+    "TRC_ID": "TRC/2026/2484"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 965,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.522070065697,
+      -28.1659264016803
+     ],
+     [
+      153.52237949107,
+      -28.1660995723182
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 965,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Pacific Parade, Bilinga",
+    "START_DATE": 1790258400000,
+    "FINISH_DATE": 1797516000000,
+    "OPERATION_TIMES": "06:30-18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Operational Permit - to facilitate construction related activities.",
+    "SUBURB": "Bilinga",
+    "GlobalID": "9366fb81-5a31-4d6b-a098-8cd335451fcf",
+    "TRC_ID": "TRC/2026/2732"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 763,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.426893827872,
+      -27.9924957336241
+     ],
+     [
+      153.427110553026,
+      -27.992526110568
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 763,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Birt Avenue",
+    "START_DATE": 1789740000000,
+    "FINISH_DATE": 1792332000000,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "UTILITIES",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "To facilitate Underground electrical infrastructure works",
+    "SUBURB": "Surfers Paradise",
+    "GlobalID": "4654a3d2-4975-49af-a263-2061a9af4457",
+    "TRC_ID": "TRC/2026/2486"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 630,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.449535350403,
+      -28.0837492908083
+     ],
+     [
+      153.449466916978,
+      -28.0835641150686
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 630,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "The Esplanade",
+    "START_DATE": 1786543200000,
+    "FINISH_DATE": 1797516000000,
+    "OPERATION_TIMES": "09.00-14.30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "(20m x 3.75m) Operational Approval – To facilitate daily construction related activities 96 The Esplanade, Burleigh Heads",
+    "SUBURB": "Burleigh Heads",
+    "GlobalID": "98d5a29c-d330-4d95-9174-d468282891de",
+    "TRC_ID": "TRC/2026/2398"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 824,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.412265664621,
+      -27.9686962495367
+     ],
+     [
+      153.41255880266,
+      -27.9699101981922
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 824,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Garden Street",
+    "START_DATE": 1791208800000,
+    "FINISH_DATE": 1793628000000,
+    "OPERATION_TIMES": "18:00-06:00",
+    "CLOSURE_CATEGORY": "ROAD RESEAL REHABILITATION",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "To facilitate - Asphalt resurfacing works are being undertaken as part of the CoGC Asphalt Resurfacing Contract",
+    "SUBURB": "Southport",
+    "GlobalID": "55bd98fa-d888-4cf9-8143-b15920551bb2",
+    "TRC_ID": "TRCI/2026/369"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 593,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.431737338871,
+      -28.0121798461361
+     ],
+     [
+      153.431025795883,
+      -28.0122525376689
+     ],
+     [
+      153.431025934585,
+      -28.0122531411495
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 593,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Frederick Street",
+    "START_DATE": 1788098400000,
+    "FINISH_DATE": 1795960800000,
+    "OPERATION_TIMES": "06.30-18.30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "(80m x 3.6m) Low and Medium Impact Operational Permit and Continuous Occupation – To facilitate daily construction activities of a new site development at 8 Frederick Street, Surfers Paradise.",
+    "SUBURB": "Surfers Paradise",
+    "GlobalID": "3ad8490d-e1cf-4d89-8184-7546e234cda9",
+    "TRC_ID": "TRC/2026/2388"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 744,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.421662974799,
+      -27.9991830400677
+     ],
+     [
+      153.421760631314,
+      -27.9986931100509
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 744,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Weemala Street",
+    "START_DATE": 1791208800000,
+    "FINISH_DATE": 1793714400000,
+    "OPERATION_TIMES": "06:30-18:30",
+    "CLOSURE_CATEGORY": "UTILITIES",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Civil Works for sewer, water and stormwater cinnection",
+    "SUBURB": "Surfers Paradise",
+    "GlobalID": "62d79dd5-6067-41ed-9a68-b824ec4c4dd9",
+    "TRC_ID": "TRC/2026/2558"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 523,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.548160852786,
+      -28.1659747945077
+     ],
+     [
+      153.547789721419,
+      -28.1661291345321
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 523,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Boundary Street",
+    "START_DATE": 1786975200000,
+    "FINISH_DATE": 1794837600000,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Operational Approval - to facilitate the construction related activities at 239 Boundary Street, Coolangatta",
+    "SUBURB": "Coolangatta",
+    "GlobalID": "aed74d68-352e-47b2-9c9e-6e0c516a2371",
+    "TRC_ID": "TRC/2026/2170"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 484,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.402157668319,
+      -27.9433463317898
+     ],
+     [
+      153.402608417625,
+      -27.9434142796607
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 484,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Imperial Parade",
+    "START_DATE": 1789221600000,
+    "FINISH_DATE": 1797084000000,
+    "OPERATION_TIMES": "09:00-14:00 school term - 06:30-18:30 school hols",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "To facilitate large concrete pours (2 days only)",
+    "SUBURB": "Labrador",
+    "GlobalID": "d2cdbf0d-5c83-465a-9e65-32b3b8fdb0d1",
+    "TRC_ID": "TRC/2026/2327"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 762,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.427287572527,
+      -27.992567574933
+     ],
+     [
+      153.427504297927,
+      -27.9925979512532
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 762,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Birt Avenue",
+    "START_DATE": 1789740000000,
+    "FINISH_DATE": 1792332000000,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "UTILITIES",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "To facilitate Underground electrical infrastructure works",
+    "SUBURB": "Surfers Paradise",
+    "GlobalID": "d6171203-fdef-4218-8dcd-82a95a1ebea8",
+    "TRC_ID": "TRC/2026/2486"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 691,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.413763811802,
+      -28.0402854094693
+     ],
+     [
+      153.413920677191,
+      -28.0403010584302
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 691,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Lakeview Boulevarde",
+    "START_DATE": 1789740000000,
+    "FINISH_DATE": 1797516000000,
+    "OPERATION_TIMES": "06.30-18.30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "Operational approval- To facilitate construction related activities at 8 Lakeview Boulevard, Mermaid Waters.",
+    "SUBURB": "Mermaid Waters",
+    "GlobalID": "a32f60f7-4e47-4638-a127-e1e54713905e",
+    "TRC_ID": "TRC/2026/2472"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 512,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       153.221318619882,
+       -27.7700040998884
+      ],
+      [
+       153.22099311884,
+       -27.7703808170399
+      ]
+     ],
+     [
+      [
+       153.221293381677,
+       -27.7700008723085
+      ],
+      [
+       153.221620492953,
+       -27.7704195386102
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 512,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Peachey Road",
+    "START_DATE": 1789826400000,
+    "FINISH_DATE": 1797688800000,
+    "OPERATION_TIMES": "6.30-18.30",
+    "CLOSURE_CATEGORY": "UTILITIES",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "Shoulder - to facilitate conduit and electrical works on behalf Energex",
+    "SUBURB": "Luscombe",
+    "GlobalID": "5f266568-d7fc-42f3-bd8c-4524bce37ad8",
+    "TRC_ID": "TRC/2026/2355"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 677,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.440748597137,
+      -28.0602027194108
+     ],
+     [
+      153.440806456368,
+      -28.0604431664324
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 677,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Seagull Avenue",
+    "START_DATE": 1791208800000,
+    "FINISH_DATE": 1797602400000,
+    "OPERATION_TIMES": "6.30-18.30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": "to facilitate construction related activities",
+    "SUBURB": "Mermaid Beach",
+    "GlobalID": "ce8b2d1e-ea90-4694-8364-b575a2dce129",
+    "TRC_ID": "TRC/2026/2520"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 1055,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.355585938284,
+      -27.9236506091169
+     ],
+     [
+      153.355381225561,
+      -27.9239565643374
+     ],
+     [
+      153.355249315484,
+      -27.9243232368945
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 1055,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Marcble Arch Place",
+    "START_DATE": 1791208800000,
+    "FINISH_DATE": 1796911200000,
+    "OPERATION_TIMES": "20:00 to 05:00",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "HOLD AND RELEASE",
+    "COMMENTS": "To facilitate DTMR Maintenance CN-8334 (Civil works and line marking)",
+    "SUBURB": "Arundel",
+    "GlobalID": "6b44b0a7-57b9-48af-baee-44b9b197c632",
+    "TRC_ID": "TRC/2026/2747"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 5,
+   "geometry": null,
+   "properties": {
+    "OBJECTID": 5,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": null,
+    "START_DATE": null,
+    "FINISH_DATE": null,
+    "OPERATION_TIMES": null,
+    "CLOSURE_CATEGORY": null,
+    "CLOSURE_EXTENT": "PART CLOSURE",
+    "COMMENTS": null,
+    "SUBURB": null,
+    "GlobalID": "9919823c-0383-43aa-9a39-d75853d9a1cb",
+    "TRC_ID": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 7,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.439510514501,
+      -28.0532095068303
+     ],
+     [
+      153.439511865551,
+      -28.0532106967889
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 7,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": null,
+    "START_DATE": null,
+    "FINISH_DATE": null,
+    "OPERATION_TIMES": null,
+    "CLOSURE_CATEGORY": null,
+    "CLOSURE_EXTENT": "PARKING LANE",
+    "COMMENTS": null,
+    "SUBURB": null,
+    "GlobalID": "501473b2-677b-4f4f-b308-c43f8f1dc90c",
+    "TRC_ID": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 9,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      153.409304781344,
+      -28.0792236749892
+     ],
+     [
+      153.409145121472,
+      -28.0795513640536
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 9,
+    "ACTIVE_CLOSURE": "Yes",
+    "STREET": "Bellvue Drive",
+    "START_DATE": 1756908000000,
+    "FINISH_DATE": null,
+    "OPERATION_TIMES": "06:30 - 18:30",
+    "CLOSURE_CATEGORY": "DEVELOPER",
+    "CLOSURE_EXTENT": "PARKING LANE",
+    "COMMENTS": "Parking lane - to facilitate required Energex works for new development.",
+    "SUBURB": "Varsity Lakes",
+    "GlobalID": "863145d6-aa71-45b3-bf6c-be1b4658bbc0",
+    "TRC_ID": "TRC/2025/2333"
+   }
+  }
+ ]
+}

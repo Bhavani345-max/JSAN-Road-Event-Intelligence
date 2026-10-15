@@ -272,8 +272,8 @@ def merging_client(engine, session):
 def test_the_same_articles_from_four_sources_are_listed_once_with_every_source(merging_client):
     """The fixture feeds carry the same articles under four publishers: duplicate ingestion."""
     merging_client.post("/api/ingestion/run")
-    every = merging_client.get("/api/events", params={"view": "validation", "include_merged": "true"}).json()
-    listed = merging_client.get("/api/events?view=validation").json()
+    every = merging_client.get("/api/events", params={"view": "validation", "include_hidden": "true", "include_merged": "true"}).json()
+    listed = merging_client.get("/api/events?view=validation&include_hidden=true").json()
     assert every["total"] == 9
     assert listed["total"] < every["total"]
     # Nothing was deleted: listed events plus their merged evidence account for all 9.
@@ -290,7 +290,7 @@ def test_the_same_articles_from_four_sources_are_listed_once_with_every_source(m
             assert member["evidence"]["url"] == other["url"]
     # Polling again changes nothing.
     merging_client.post("/api/ingestion/run")
-    assert merging_client.get("/api/events?view=validation").json()["total"] == listed["total"]
+    assert merging_client.get("/api/events?view=validation&include_hidden=true").json()["total"] == listed["total"]
 
 
 def test_candidates_can_be_listed_confirmed_and_rejected_through_the_api(merging_client, session):

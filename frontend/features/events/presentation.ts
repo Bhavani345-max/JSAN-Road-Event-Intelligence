@@ -207,20 +207,30 @@ export function getDisplayTimeZone(): string {
 /** Each configured city's time zone, by city name and by city id. */
 const cityZones = new Map<string, string>();
 
-export function setCityTimeZones(cities: { id: string; name: string; timeZone: string }[]): void {
+/** Sources of a country spanning several zones, each with its region's zone. */
+const sourceZones = new Map<string, string>();
+
+export function setCityTimeZones(
+  cities: { id: string; name: string; timeZone: string; sourceTimeZones?: Record<string, string> }[],
+): void {
   cityZones.clear();
+  sourceZones.clear();
   for (const city of cities) {
     cityZones.set(city.name, city.timeZone);
     cityZones.set(city.id, city.timeZone);
+    for (const [sourceId, zone] of Object.entries(city.sourceTimeZones ?? {})) {
+      sourceZones.set(sourceId, zone);
+    }
   }
 }
 
 /**
- * The zone an event's (or a source's) times are shown in: its own city's.
+ * The zone an event's (or a source's) times are shown in: its source's
+ * region's when its country spans several zones, else its own city's.
  * Takes a city name or id; the display zone when it has none or is unknown.
  */
-export function timeZoneOf(city: string | null | undefined): string {
-  return (city && cityZones.get(city)) || displayTimeZone;
+export function timeZoneOf(city: string | null | undefined, sourceId?: string | null): string {
+  return (sourceId && sourceZones.get(sourceId)) || (city && cityZones.get(city)) || displayTimeZone;
 }
 
 /** "IST" for India, otherwise the zone's own short name ("BST", "EDT"). */

@@ -3,7 +3,7 @@ import { mapApiEvent } from "@/features/events/api/eventRepository";
 import type { RoadEvent } from "@/features/events/model";
 import { locatedApiEvent } from "@/features/events/testing/fixtures";
 import type { ApiEvent } from "@/types/api";
-import { distinctEvents, toEventMapData } from "./geojson";
+import { distinctEvents, spreadStacks, toEventMapData } from "./geojson";
 
 const KBR_PARK: [number, number] = [78.420104, 17.420234];
 
@@ -70,5 +70,41 @@ describe("events at one spot with the same title", () => {
     const [a, b] = anchors.features.map((f) => f.properties.detail);
     expect(a).not.toEqual(b);
     expect(a).toContain(first.source.name);
+  });
+});
+
+describe("markers spread around a spot they share", () => {
+  const PX_PER_DEGREE_AT = (zoom: number) => (512 * 2 ** zoom) / 360;
+
+  it("each get a position of their own, and a lone marker stays put", () => {
+    const events = [at("EVT-A", KBR_PARK), at("EVT-B", KBR_PARK), at("EVT-C", KBR_PARK), at("EVT-D", [78.43, 17.43])];
+    const { anchors, leaders } = spreadStacks(toEventMapData(events, null).anchors, 15);
+    const positions = anchors.features.map((f) => f.geometry.coordinates.join(","));
+    expect(new Set(positions).size).toBe(4);
+    expect(anchors.features.find((f) => f.properties.eventId === "EVT-D")?.geometry.coordinates).toEqual([78.43, 17.43]);
+    // Every spread marker has a line back to the true spot.
+    expect(leaders.features.map((f) => f.properties.eventId).sort()).toEqual(["EVT-A", "EVT-B", "EVT-C"]);
+    for (const leader of leaders.features) expect(leader.geometry.coordinates[1]).toEqual(KBR_PARK);
+  });
+
+  it("sit the same number of pixels from the spot at every zoom", () => {
+    const events = [at("EVT-A", KBR_PARK), at("EVT-B", KBR_PARK)];
+    for (const zoom of [10, 14, 18]) {
+      const { anchors } = spreadStacks(toEventMapData(events, null).anchors, zoom);
+      for (const feature of anchors.features) {
+        const [lng, lat] = feature.geometry.coordinates;
+        const dxPx = (lng - KBR_PARK[0]) * PX_PER_DEGREE_AT(zoom);
+        const dyPx = ((lat - KBR_PARK[1]) * PX_PER_DEGREE_AT(zoom)) / Math.cos((KBR_PARK[1] * Math.PI) / 180);
+        expect(Math.hypot(dxPx, dyPx)).toBeCloseTo(16, 1);
+      }
+    }
+  });
+
+  it("move only what is drawn: event geometry and the input are unchanged", () => {
+    const events = [at("EVT-A", KBR_PARK), at("EVT-B", KBR_PARK)];
+    const data = toEventMapData(events, null);
+    spreadStacks(data.anchors, 15);
+    expect(data.anchors.features.map((f) => f.geometry.coordinates)).toEqual([KBR_PARK, KBR_PARK]);
+    expect(data.geometries.features.map((f) => f.geometry)).toEqual(events.map((e) => e.geometry));
   });
 });

@@ -74,7 +74,6 @@ def client_for(handler):
 @pytest.mark.parametrize(
     "source_id, city",
     [
-        ("nyc-permitted-events", "new-york"),
         ("france-dialog-traffic-orders", "france"),
         ("lyon-disruptive-works", "france"),
     ],
@@ -336,3 +335,16 @@ def test_traffic_orders_become_events_once_and_are_rebuilt_from_their_evidence(f
     original = dialog.to_record(REGULATIONS[0], NOW)
     assert rebuilt.structured == original.structured
     assert rebuilt.summary == original.summary
+
+
+def test_nyc_permitted_events_is_removed_for_giving_no_location():
+    """Its rows name streets only (decision 0029); the licence read on 14 October stays recorded."""
+    registered = {s.definition.source_id: s for s in registered_sources()}["nyc-permitted-events"]
+    definition = registered.definition
+    assert definition.integration_status is IntegrationStatus.NOT_USABLE
+    assert definition.active is False and registered.create_connector is None
+    assert "decision 0029" in definition.notes
+    assert definition.terms_status is TermsStatus.PERMITS_TESTING
+    assert definition.commercial_use is CommercialUse.PERMITTED_WITH_ATTRIBUTION
+    scheduled = {s.definition.source_id: s for s in registered_sources(official_feeds_scheduled=True)}
+    assert scheduled["nyc-permitted-events"].definition.active is False

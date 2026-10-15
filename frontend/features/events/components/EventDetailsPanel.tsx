@@ -64,7 +64,7 @@ function formatConflictValue(value: unknown, zone: string): string {
 
 /** The source and the stored article the event was derived from. */
 function Evidence({ event }: { event: RoadEvent }) {
-  const zone = timeZoneOf(event.city);
+  const zone = timeZoneOf(event.city, event.source.id);
   const published = formatDateTime(event.evidence?.publishedAt ?? null, zone);
   const retrieved = formatDateTime(event.evidence?.retrievedAt ?? null, zone);
   const keywords = event.detection?.matchedKeywords ?? [];
@@ -307,7 +307,7 @@ function LocationSummary({ event }: { event: RoadEvent }) {
 }
 
 export default function EventDetailsPanel({ event, onClose, footer }: EventDetailsPanelProps) {
-  const zone = timeZoneOf(event.city);
+  const zone = timeZoneOf(event.city, event.source.id);
   const typeColor = getEventTypeColor(event.eventType);
   const statedPeriod = event.detection?.statedPeriod ?? null;
   const statedDistance = event.detection?.statedDistance ?? null;

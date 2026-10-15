@@ -371,3 +371,19 @@ describe("all cities on one page", () => {
     expect(timeZoneLabel(new Date(at), timeZoneOf("London"))).toBe("BST");
   });
 });
+
+describe("a country spanning several time zones", () => {
+  it("shows a regional source's times in its region's zone, others in the country's", () => {
+    setCityTimeZones([
+      {
+        id: "canada",
+        name: "Canada",
+        timeZone: "America/Toronto",
+        sourceTimeZones: { "test-bc-source": "America/Vancouver" },
+      },
+    ]);
+    const at = "2026-10-15T15:00:00Z";
+    expect(formatDateTime(at, timeZoneOf("Canada", "test-bc-source"))).toBe("Thu, 15 Oct 2026, 08:00");
+    expect(formatDateTime(at, timeZoneOf("Canada", "another-source"))).toBe("Thu, 15 Oct 2026, 11:00");
+  });
+});

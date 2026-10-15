@@ -1,0 +1,815 @@
+{
+ "fetched_at": "2026-10-15T08:54:16.104633+00:00",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 11942,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.046029480583,
+     -35.271815235327
+    ]
+   },
+   "properties": {
+    "objectid": 11942,
+    "globalid": "95ec2165-18d4-4c03-b83d-1656f9adce25",
+    "projectTitle": "TTE22-ACT-2184 - ACT Government - Suburban Land Agency - Whitlam Display Village",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Klaus Moje Street (both directions): between Sculthorpe Avenue and St Leon Street.",
+    "reasonRoadClosure": "Whitlam display village.",
+    "suburb1": "OTHER",
+    "startTimeClosure": 1659042000000,
+    "endTimeClosure": 1816930800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1657842693340,
+    "roadsApprovalTimestamp": 1657839481535
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 21512,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.030330365554,
+     -35.3002205765989
+    ]
+   },
+   "properties": {
+    "objectid": 21512,
+    "globalid": "d9a000dd-d150-426b-9dd1-eb7f2f76c886",
+    "projectTitle": "Denman North Package 1 - Display Village Additional Work - WOD-DEN-021",
+    "type": "roadWorks",
+    "describeActivity": "",
+    "roadsClosed": "Romano Street (both dirctions): from Fong Lim Way to Makinson View.",
+    "reasonRoadClosure": "Civil Works.",
+    "suburb1": "DENMAN_PROSPECT",
+    "startTimeClosure": 1740340800000,
+    "endTimeClosure": 1803448800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1729466741632,
+    "roadsApprovalTimestamp": 1729468996283
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 30059,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.134637301586,
+     -35.2972848483388
+    ]
+   },
+   "properties": {
+    "objectid": 30059,
+    "globalid": "238f4920-b26c-47b4-8b2b-1c70df5f8281",
+    "projectTitle": "The Little Burley Markets",
+    "type": "specialEvent",
+    "describeActivity": "",
+    "roadsClosed": "Queen Elizabeth Terrace - both directions: from Parkes Place West to Parkes Place East.",
+    "reasonRoadClosure": "Special Event - Markets",
+    "suburb1": "PARKES",
+    "startTimeClosure": 1770404400000,
+    "endTimeClosure": 1801897200000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1765170337486,
+    "roadsApprovalTimestamp": 1765171992477
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 31965,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.129706598976,
+     -35.2673924690209
+    ]
+   },
+   "properties": {
+    "objectid": 31965,
+    "globalid": "78b419e4-185e-420f-8494-84b6f5f70bab",
+    "projectTitle": "Botanical Northbourne - Forbes st Concret Pours",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Forbes Street (southbound direction) between Condamine Street and Greenway Street.<br>\n7 am - 5 pm (daily) Monday to Friday as required.<br>\nAccess for local residents will be maintained during these works.",
+    "reasonRoadClosure": "Commercial concrete pour associated with the Botanical development.",
+    "suburb1": "TURNER",
+    "startTimeClosure": 1779138000000,
+    "endTimeClosure": 1811746800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1778555265611,
+    "roadsApprovalTimestamp": 1778567272850
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 22682,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.083770121701,
+     -35.3435905349498
+    ]
+   },
+   "properties": {
+    "objectid": 22682,
+    "globalid": "b3cc9560-1753-49c9-b49e-e8c11e466bc6",
+    "projectTitle": "The Charlotte - Block 2 Section 180 Phillip",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Corinna Street (eastbound direction): from Little Corinna Street to Furzer Street.",
+    "reasonRoadClosure": "Building construction associated with the Charlotte development.",
+    "suburb1": "PHILLIP",
+    "startTimeClosure": 1733169600000,
+    "endTimeClosure": 1793343600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1732569258283,
+    "roadsApprovalTimestamp": 1732507961755
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 39032,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.128321748239,
+     -35.279398986609
+    ]
+   },
+   "properties": {
+    "objectid": 39032,
+    "globalid": "8ab0a700-37d7-40ea-9d03-1e02811e48a1",
+    "projectTitle": "TTE26-CMC-9052 CMC, Odgers Ln & Alinga St - Line Marking",
+    "type": "lightRail",
+    "describeActivity": "",
+    "roadsClosed": "London Cicuit between West Row and Odgers Lane.<br>\nWill be intermittently closed as required between the hours of 8 pm Friday 16 October 2026 to 5 am Monday 19 October 2026.",
+    "reasonRoadClosure": "Light Rail Stage 2A delivery phase works.",
+    "suburb1": "CITY",
+    "startTimeClosure": 1792141200000,
+    "endTimeClosure": 1792346400000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1791842166073,
+    "roadsApprovalTimestamp": 1791852798449
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 23424,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.126770637349,
+     -35.2800344099756
+    ]
+   },
+   "properties": {
+    "objectid": 23424,
+    "globalid": "f7cef253-3039-4ad8-8377-14580b73477a",
+    "projectTitle": "TTE24-CMC-CB1-00-1-RevB- CMC - LR2a - Phase 00 Section 1 - London Cct, N'bourne - Edinburgh",
+    "type": "lightRail",
+    "describeActivity": "",
+    "roadsClosed": "London Circuit (both directions): between Northbourne Avenue and Gordon Street.<br>\nAccess to Odgers Lane will be via a left turn movement from West Row only.<br>\nAccess to Knowles Place will be via a right turn movement from West Row only.<br>\nHobart Place will be closed at London Circuit.<br>\nUniversity Avenue (both directions): between Darwin Place and London Circuit.<br>\nFarrell Place (both directions): between the William Clemens Street and Farrell Place intersection and London Circuit.<br>\nKnowles Place (South) will be closed in both directions at London Circuit.<br>\nLondon Circuit (both directions): between Gordon Street and Edinburgh Avenue.",
+    "reasonRoadClosure": "Light Rail Stage 2A construction delivery phase.",
+    "suburb1": "CITY",
+    "startTimeClosure": 1738659600000,
+    "endTimeClosure": 1801810800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1739851655610,
+    "roadsApprovalTimestamp": 1739861281930
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 31306,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.024917899385,
+     -35.2897870098781
+    ]
+   },
+   "properties": {
+    "objectid": 31306,
+    "globalid": "9232ee45-330b-4206-a614-c93995166faf",
+    "projectTitle": "New Construction Blocks 1 - 6, Section 115 Denman Prospect",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Terania Lane - (both directions): from Siedlecky Street to Manoa Street.",
+    "reasonRoadClosure": "Land lease for contruction on Stella Young Way.",
+    "suburb1": "DENMAN_PROSPECT",
+    "startTimeClosure": 1770580800000,
+    "endTimeClosure": 1798704000000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1770067554323,
+    "roadsApprovalTimestamp": 1770068326487
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 33220,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.100358225668,
+     -35.2906616694554
+    ]
+   },
+   "properties": {
+    "objectid": 33220,
+    "globalid": "179ebfa0-38f2-4b8f-aea7-c6950f290db8",
+    "projectTitle": "The Golden Oar 2026",
+    "type": "specialEvent",
+    "describeActivity": "",
+    "roadsClosed": "John Cardiff Close - Northbound and southbound from the designated carpark adjacent to the Red Shed Rowing Club. ",
+    "reasonRoadClosure": "Special event",
+    "suburb1": "ACTON",
+    "startTimeClosure": 1793304000000,
+    "endTimeClosure": 1793512800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1782369216789,
+    "roadsApprovalTimestamp": 1782426198048
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 23137,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.030330365554,
+     -35.3002205765989
+    ]
+   },
+   "properties": {
+    "objectid": 23137,
+    "globalid": "97fdad51-050a-4cb5-a04e-3b9b89945313",
+    "projectTitle": "Denman North Package 1 - Display Village Additional Work - WOD-DEN-021",
+    "type": "roadWorks",
+    "describeActivity": "",
+    "roadsClosed": "Romano Street (both directions) between Fong Lim Way and Makinson View. ",
+    "reasonRoadClosure": "Civil works.",
+    "suburb1": "DENMAN_PROSPECT",
+    "startTimeClosure": 1734638400000,
+    "endTimeClosure": 1803448800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1733951556927,
+    "roadsApprovalTimestamp": 1733958910389
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 23976,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.127625428918,
+     -35.2895936269164
+    ]
+   },
+   "properties": {
+    "objectid": 23976,
+    "globalid": "eebbc970-20ed-45e4-ac00-18bd6f21cedf",
+    "projectTitle": "TTE24-CMC-OP2-01- 11 - CMC - LR2a - Phase 01 Section 2 - Operational Outbound Road Closure Albert St East",
+    "type": "lightRail",
+    "describeActivity": "",
+    "roadsClosed": "Albert Street (eastern entrance): between Regatta Place and Commonwealth Avenue.<br>\n8 pm - 6 am (nightly as required) Monday to Sunday.",
+    "reasonRoadClosure": "Light Rail Stage 2A delivery phase.",
+    "suburb1": "PARKES",
+    "startTimeClosure": 1743584400000,
+    "endTimeClosure": 1801767600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1742878870673,
+    "roadsApprovalTimestamp": 1742938771667
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 31223,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.032494448606,
+     -35.3141644283152
+    ]
+   },
+   "properties": {
+    "objectid": 31223,
+    "globalid": "38c3754e-ae0d-433f-8b4d-39bb5fd9f775",
+    "projectTitle": "LGP - 206137 - CC - Opperman Ave, Wright ACT - Stage 2",
+    "type": "roadWorks",
+    "describeActivity": "",
+    "roadsClosed": "Uriarra Road (both directions): between Admiral Place and Swallowtail Road.",
+    "reasonRoadClosure": "Stromlo Forest Anglican College offsite works.",
+    "suburb1": "WRIGHT",
+    "startTimeClosure": 1769972400000,
+    "endTimeClosure": 1801551600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1768858637079,
+    "roadsApprovalTimestamp": 1768945494913
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 37730,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.128304739374,
+     -35.2795686613419
+    ]
+   },
+   "properties": {
+    "objectid": 37730,
+    "globalid": "879377fc-4464-4db8-a469-4821970130b6",
+    "projectTitle": "TTE25-CMC-6003 - CMC - LR2a - Combined Construction Base",
+    "type": "lightRail",
+    "describeActivity": "",
+    "roadsClosed": "London Circuit (both directions): between Theatre Lane and Gordon Street.<br>\nLondon Circuit (both directions): between Gordon Street and Edinburgh Avenue.<br>\nVehicle access to Verity Lane and East Row will be from London Circuit (southern end).<br>\nAccess to Odgers Lane will be via a left turn movement from West Row only.<br>\nAccess to Knowles Place will be via a right turn movement from West Row only.<br>\nHobart Place will be closed at London Circuit.<br>\nUniversity Avenue (both directions): between Darwin Place and London Circuit.,br>\nFarrell Place (both directions): between William Clemens Street / Farrell Place and London Circuit.<br>\nKnowles Place (south) will be closed in both directions at London Circuit.",
+    "reasonRoadClosure": "Light Rail Stage 2A delivery phase.",
+    "suburb1": "CITY",
+    "startTimeClosure": 1789333200000,
+    "endTimeClosure": 1801810800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1789342368208,
+    "roadsApprovalTimestamp": 1789344411555
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 29918,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.024917899385,
+     -35.2897870098781
+    ]
+   },
+   "properties": {
+    "objectid": 29918,
+    "globalid": "bc054620-17c1-458e-9f33-c0fedb861743",
+    "projectTitle": "New Construction Blocks 1 - 6, Section 115 Denman Prospect",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Terania Lane (both directions): from Siedlecky Street to Manoa Street.",
+    "reasonRoadClosure": "Land lease for contruction on Stella Young Way",
+    "suburb1": "DENMAN_PROSPECT",
+    "startTimeClosure": 1764532800000,
+    "endTimeClosure": 1798704000000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1763948210660,
+    "roadsApprovalTimestamp": 1763957552011
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 38899,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.151860136931,
+     -35.3957991055282
+    ]
+   },
+   "properties": {
+    "objectid": 38899,
+    "globalid": "869ad0de-b194-4781-b1f2-f66abb75573d",
+    "projectTitle": "Ext4 TTE25-CC1-4011-2 Cord Civil, Road Closure, 1 John Cory Road, Hume",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Recycling Road will be closed in both directions at the intersection of John Cory Road.",
+    "reasonRoadClosure": "Water main install. ",
+    "suburb1": "HUME",
+    "startTimeClosure": 1791576000000,
+    "endTimeClosure": 1793948400000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1791241130312,
+    "roadsApprovalTimestamp": 1791323724924
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 31435,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.020556244372,
+     -35.293627327631
+    ]
+   },
+   "properties": {
+    "objectid": 31435,
+    "globalid": "9780d31e-755d-4e5b-bd71-bc6132e74775",
+    "projectTitle": "Elm Lane - New Construction",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Carden Street - (both directions) from Hartishorn Crescent to Goedecke Street.<br>\n7am - 8pm Monday to Saturday as required.",
+    "reasonRoadClosure": "Construction",
+    "suburb1": "DENMAN_PROSPECT",
+    "startTimeClosure": 1772222400000,
+    "endTimeClosure": 1830236400000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1771451220910,
+    "roadsApprovalTimestamp": 1771468370465
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 33184,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.129985548713,
+     -35.268846571702
+    ]
+   },
+   "properties": {
+    "objectid": 33184,
+    "globalid": "a5739c2f-f942-40d6-8534-0363a6a32405",
+    "projectTitle": "Botanical - Greenway st Road Closure",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Greenway Street both directions between Forbes Street and Northbourne Avenue<br>\n6 am - 5 pm (daily) Monday to Friday as required.",
+    "reasonRoadClosure": "Construction works associated with the Botanical development.",
+    "suburb1": "TURNER",
+    "startTimeClosure": 1783281600000,
+    "endTimeClosure": 1814338800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1782181594147,
+    "roadsApprovalTimestamp": 1782339407501
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 36689,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.146728169605,
+     -35.3133428819049
+    ]
+   },
+   "properties": {
+    "objectid": 36689,
+    "globalid": "6dadef65-0ec5-47ff-8167-1138c60cd4f4",
+    "projectTitle": "Crane lift - 39 Eastlake Parade Kingston",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Eastlake Parade - southbound: from Giles Street to Eyre Street.<br>\n7 am - 6 pm Monday to Saturday as required",
+    "reasonRoadClosure": "Crane lift",
+    "suburb1": "KINGSTON",
+    "startTimeClosure": 1788901200000,
+    "endTimeClosure": 1809072000000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1788472523757,
+    "roadsApprovalTimestamp": 1788496909380
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 31481,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.164110499805,
+     -35.2987139480195
+    ]
+   },
+   "properties": {
+    "objectid": 31481,
+    "globalid": "263aeb17-aa30-4599-8aa7-a214e0fedbc3",
+    "projectTitle": "Resub TTE19-ADF-1341 1343 2373 D.o.D, Base Closure Parade Events, RMC Duntroon, Campbell",
+    "type": "specialEvent",
+    "describeActivity": "",
+    "roadsClosed": "Harrison Road (northbound and southbound): from Fraser Road to Robert Campbell Road.<br> \nLavarack Road - Intersection of Bruche Road and Lavarack Road. ",
+    "reasonRoadClosure": "RMC Duntroon events.",
+    "suburb1": "CAMPBELL",
+    "startTimeClosure": 1772395200000,
+    "endTimeClosure": 1806044400000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1771823271272,
+    "roadsApprovalTimestamp": 1771902324826
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 30078,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.127104690767,
+     -35.292794285589
+    ]
+   },
+   "properties": {
+    "objectid": 30078,
+    "globalid": "6ce563df-7d93-49a7-a2d5-442938f0b96c",
+    "projectTitle": "Commonwealth Avenue Bridge Upgrade Stage 1",
+    "type": "roadWorks",
+    "describeActivity": "",
+    "roadsClosed": "Commonwealth Avenue (northbound direction): from the Flynn Drive entry ramp to Albert Street.<br>Flynn Drive entry ramp onto Commonwealth Avenue (northbund) will be closed to all vehicles except Transport Canberra buses and emergency vehicles.",
+    "reasonRoadClosure": "Commonwealth Avenue Bridge Renewal Project.",
+    "suburb1": "PARKES",
+    "startTimeClosure": 1767740400000,
+    "endTimeClosure": 1804829400000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1765259400387,
+    "roadsApprovalTimestamp": 1765427033618
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 31745,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.129188899998,
+     -35.2812681199994
+    ]
+   },
+   "properties": {
+    "objectid": 31745,
+    "globalid": "076d2a3c-fc2e-4eed-8889-2808a00a8936",
+    "projectTitle": "LGP - TGS - 199972 - BLOC -  26 Narellan Street, Canberra",
+    "type": "roadWorks",
+    "describeActivity": "",
+    "roadsClosed": "Narellan Street both directions between the Section 96 car park entry / exit and Scotts Crossing.",
+    "reasonRoadClosure": "26 Narellan Street building refurbishment works.",
+    "suburb1": "CITY",
+    "startTimeClosure": 1788206400000,
+    "endTimeClosure": 1824447600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1777524604798,
+    "roadsApprovalTimestamp": 1777431547882
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 29959,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.137787161925,
+     -35.1806251984931
+    ]
+   },
+   "properties": {
+    "objectid": 29959,
+    "globalid": "4a2d26f0-33b5-4f22-87d0-a05c90b3e3e9",
+    "projectTitle": "Gold Creek feeder project",
+    "type": "utilities",
+    "describeActivity": "",
+    "roadsClosed": "The following roads will be closed as required during the nominated timeframe. The road closures are expected to be in place for 1- 2 days.<br>\nGundaroo Drive service road southern side between Pallin Street and Gungahlin Place.<br>\nGundaroo Drive service road southern side between Gozzard Street and Gungahlin Pace.<br>\nGungahlin Place (both directions) between Swain Street and Gundaroo Drive.<br>\n7 am - 8 pm Monday to Saturday.<br>\n8 am - 8 pm Sunday.<br>\n7 pm - 6 am (nightly) Monday to Sunday.",
+    "reasonRoadClosure": "EVO Energy Gold Creek feeder project.",
+    "suburb1": "GUNGAHLIN",
+    "startTimeClosure": 1769976000000,
+    "endTimeClosure": 1798707600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1765499424057,
+    "roadsApprovalTimestamp": 1765513220968
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 31456,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.101244437089,
+     -35.2490704717524
+    ]
+   },
+   "properties": {
+    "objectid": 31456,
+    "globalid": "273e6190-eff9-4d89-aa3e-7cd3ce299e87",
+    "projectTitle": "TTE26-GIO Stadium Events - Major, Medium & Small 2026",
+    "type": "specialEvent",
+    "describeActivity": "",
+    "roadsClosed": "Battye Street,\nBraybrooke Street,\nLeverrier Crescent,\nMasterman Street,\nAgar Street,\nGinninderra Drive,\nWatson Street and\nThynne Street.",
+    "reasonRoadClosure": "GIO Stadium events.",
+    "suburb1": "BRUCE",
+    "startTimeClosure": 1774990800000,
+    "endTimeClosure": 1806483600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1771538814653,
+    "roadsApprovalTimestamp": 1771538726970
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 27755,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.128457650423,
+     -35.2846261911755
+    ]
+   },
+   "properties": {
+    "objectid": 27755,
+    "globalid": "7df3a443-0621-49d9-8177-d2a448839d06",
+    "projectTitle": "TTE25-CMC-9001 - CMC - LR2a - Operational Lane Closures, Commonwealth Ave",
+    "type": "lightRail",
+    "describeActivity": "",
+    "roadsClosed": "London Circuit (East) both directions between Constitution Avenue and Commonwealth Avenue.<br>\n8 pm - 6 am (nightly) Monday to Friday as required.<br>\n8 pm Friday to 6 am Monday (inclusive) as required.",
+    "reasonRoadClosure": "Light Rail Stage 2A delivery phase.",
+    "suburb1": "CITY",
+    "startTimeClosure": 1763715600000,
+    "endTimeClosure": 1801803600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1762402940548,
+    "roadsApprovalTimestamp": 1762753203049
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 38826,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     148.994542894101,
+     -35.230769212689
+    ]
+   },
+   "properties": {
+    "objectid": 38826,
+    "globalid": "3efa1f31-7e2e-4401-b0d9-1831c3ed0595",
+    "projectTitle": "TTTM 26088 - Ginninderry Spooktacular",
+    "type": "specialEvent",
+    "describeActivity": "",
+    "roadsClosed": "Road Closure: \nMcClymont Way: from Pro Hart Avenue to Lorna Byrne Terrace - Saturday 31/10/26 from 3:00 PM to 10:00 PM (inclusive).\n\n",
+    "reasonRoadClosure": "Special Event - community celebration",
+    "suburb1": "STRATHNAIRN",
+    "startTimeClosure": 1793419200000,
+    "endTimeClosure": 1793444400000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1790121488170,
+    "roadsApprovalTimestamp": 1790121525696
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 27170,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.105707530406,
+     -35.3051135315614
+    ]
+   },
+   "properties": {
+    "objectid": 27170,
+    "globalid": "f6c3690a-4a06-411d-a0c4-154d15bf1ba4",
+    "projectTitle": "Resub TTE24-PB2-7403 Preferred Builders, 40 Musgrave St, Yarralumla",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Musgrave Street (both directions): from Schlich Street to Broome Crescent.<br>\n7 am - 6 pm periodically. ",
+    "reasonRoadClosure": "Periodic crane lift related to construction works. ",
+    "suburb1": "YARRALUMLA",
+    "startTimeClosure": 1757278800000,
+    "endTimeClosure": 1793343600000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1756425267512,
+    "roadsApprovalTimestamp": 1756449025613
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 38830,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.152922579908,
+     -35.4061814273852
+    ]
+   },
+   "properties": {
+    "objectid": 38830,
+    "globalid": "f2337727-4567-4b12-811b-6a0b007c397a",
+    "projectTitle": "CBR Industrial Val Reid Watermain Connection Road Closure",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Val Reid Crescent both directions in between the driveways to number 9 - 17.",
+    "reasonRoadClosure": "New watermain connection.",
+    "suburb1": "HUME",
+    "startTimeClosure": 1790802000000,
+    "endTimeClosure": 1795759200000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1790145491675,
+    "roadsApprovalTimestamp": 1790204109093
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 38879,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.129327783267,
+     -35.279335557969
+    ]
+   },
+   "properties": {
+    "objectid": 38879,
+    "globalid": "24d6b11c-8469-43c1-9cb7-0c45fdd46a33",
+    "projectTitle": "Resub - TTE25-CMC-5012-1 CMC - Northbourne Ave Southbound (Cooyong St to Vernon Circle) Closure",
+    "type": "lightRail",
+    "describeActivity": "",
+    "roadsClosed": "Northbourne Avenue (southbound) between Cooyong Street and Vernon Circle.<br>\n8 pm Friday 16 October 2026 to 5 am Monday 19 October 2026.<br>\n8 pm Friday 23 October 2026 to 5 am Monday 26 October 2026.<br>\n8 pm Friday 30 October 2026 to 5 am Monday 2 November 2026.(Contingency weekend),<br>\n8 pm Friday 6 November 2026 to 5 am Monday 9 November 2026.(Contingency weekend)<br>",
+    "reasonRoadClosure": "Light Rial Stage 2A delivery phase works.",
+    "suburb1": "CITY",
+    "startTimeClosure": 1792141200000,
+    "endTimeClosure": 1794160800000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1791495671366,
+    "roadsApprovalTimestamp": 1791764784160
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 38794,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.030719274146,
+     -35.3138235549298
+    ]
+   },
+   "properties": {
+    "objectid": 38794,
+    "globalid": "b51d62f4-59dd-4590-8e3f-0a11fb6786cd",
+    "projectTitle": "LGP - 206137 - CC - Opperman Ave, Wright ACT - Stage 2 - R1",
+    "type": "roadWorks",
+    "describeActivity": "",
+    "roadsClosed": "Uriarra Road (Both directions): between Admiral Place and Swallowtail Road.",
+    "reasonRoadClosure": "Amendment to TGS - Site fence to move 7m South\nOriginal Permit 31223",
+    "suburb1": "WRIGHT",
+    "startTimeClosure": 1789934400000,
+    "endTimeClosure": 1803798000000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1789943208808,
+    "roadsApprovalTimestamp": 1789949243534
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 38958,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     149.14851518239,
+     -35.2027017361358
+    ]
+   },
+   "properties": {
+    "objectid": 38958,
+    "globalid": "10ce18d2-c105-4f8d-880d-967ab263275e",
+    "projectTitle": "Aamira Apartments Cladding Replacement",
+    "type": "buildingConstruction",
+    "describeActivity": "",
+    "roadsClosed": "Flemington Road Service Road - northbound: from Flemington Road to Knorr Street.",
+    "reasonRoadClosure": "Scaffold removal",
+    "suburb1": "FRANKLIN",
+    "startTimeClosure": 1792008000000,
+    "endTimeClosure": 1795766400000,
+    "tccsCommsClosure": "yes",
+    "roadsDelegateClosure": "yes",
+    "tccsCommsApprovalTimestamp": 1791439181262,
+    "roadsApprovalTimestamp": 1791764801765
+   }
+  }
+ ]
+}

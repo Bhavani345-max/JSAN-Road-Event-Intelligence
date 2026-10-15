@@ -1,5 +1,6 @@
 """France's open, nationwide DATEX II road-event feed (non-concession roads)."""
 
+import json
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from typing import Any
@@ -9,8 +10,8 @@ import httpx
 from connectors.base import ConnectorError
 from packages.cities import get_city
 from packages.common.hashing import sha256_hex
-from packages.common.time import utc_now
-from packages.event_schema import EventDirection, EventType
+from packages.common.time import ensure_utc, utc_now
+from packages.event_schema import EventDirection, EventType, ReiEvent
 from packages.source_models import (
     CommercialUse,
     CostCategory,
@@ -183,6 +184,26 @@ def _direction(record: ET.Element) -> str | None:
     if value in {"bothways", "bothdirections"}:
         return EventDirection.BOTH_DIRECTIONS.value
     return None
+
+
+def same_situation_key(event: ReiEvent, external_id: str | None) -> str | None:
+    """What the feed's records of one situation at one spot share (decision 0029).
+
+    DATEX II lists a situation as several records (works, the closure they
+    need, a hazard, a diversion), each its own row here. Records of the same
+    situation with the same position and the same period are one event on
+    the road. None for a record without a situation, a position or a full period.
+    """
+    if not external_id or ":" not in external_id or event.geometry is None:
+        return None
+    if event.start_time is None or event.end_time is None:
+        return None
+    situation = external_id.split(":", 1)[0]
+    spot = json.dumps(event.geometry.model_dump(mode="json")["coordinates"])
+    start, end = (
+        ensure_utc(time).strftime("%Y-%m-%d %H:%M") for time in (event.start_time, event.end_time)
+    )
+    return f"situation {situation} at {spot}, {start} to {end} UTC"
 
 
 def to_record(

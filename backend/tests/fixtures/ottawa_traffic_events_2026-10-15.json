@@ -1,0 +1,3181 @@
+{
+ "fetched_at": "2026-10-15T08:54:16.104633+00:00",
+ "items": [
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.750756,
+       45.387277
+      ],
+      [
+       -75.750721,
+       45.387288
+      ],
+      [
+       -75.750354,
+       45.387406
+      ],
+      [
+       -75.750072,
+       45.387458
+      ],
+      [
+       -75.749857,
+       45.387481
+      ],
+      [
+       -75.748866,
+       45.387627
+      ],
+      [
+       -75.748619,
+       45.387659
+      ],
+      [
+       -75.748406,
+       45.3877
+      ],
+      [
+       -75.747999,
+       45.387778
+      ],
+      [
+       -75.747619,
+       45.38789
+      ],
+      [
+       -75.747546,
+       45.387908
+      ],
+      [
+       -75.746908,
+       45.388079
+      ],
+      [
+       -75.74682,
+       45.388103
+      ],
+      [
+       -75.745909,
+       45.388374
+      ],
+      [
+       -75.745734,
+       45.38843
+      ],
+      [
+       -75.74559,
+       45.388476
+      ],
+      [
+       -75.745507,
+       45.3885
+      ],
+      [
+       -75.745428,
+       45.388522
+      ],
+      [
+       -75.744534,
+       45.388782
+      ],
+      [
+       -75.744276,
+       45.388862
+      ],
+      [
+       -75.743824,
+       45.388992
+      ],
+      [
+       -75.743225,
+       45.389181
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-03-13 15:25:00",
+    "eventGroupAffected": "29",
+    "cause": "construction.",
+    "mainStreet": "Clare",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Clare eastbound closed between Churchill and Kirkwood due to construction. Follow the signed detour. From 6am Monday, March 23 to 7pm Tuesday December 1. ",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-03-23T06:00",
+      "endDateTime": "2026-12-01T19:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Churchill",
+    "id": 26267,
+    "crossStreet2": "Kirkwood",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 08:08:00",
+    "headline": "Clare E/B between Churchill and Kirkwood",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.666816,
+       45.377185
+      ],
+      [
+       -75.666952,
+       45.377438
+      ],
+      [
+       -75.666939,
+       45.377603
+      ],
+      [
+       -75.667015,
+       45.37776
+      ],
+      [
+       -75.667079,
+       45.377892
+      ],
+      [
+       -75.667214,
+       45.378161
+      ],
+      [
+       -75.667231,
+       45.378193
+      ],
+      [
+       -75.667277,
+       45.378286
+      ],
+      [
+       -75.667358,
+       45.378448
+      ],
+      [
+       -75.667374,
+       45.378481
+      ],
+      [
+       -75.667407,
+       45.378542
+      ],
+      [
+       -75.667463,
+       45.378641
+      ],
+      [
+       -75.667503,
+       45.378715
+      ],
+      [
+       -75.667525,
+       45.378755
+      ],
+      [
+       -75.667675,
+       45.379039
+      ],
+      [
+       -75.667776,
+       45.379221
+      ],
+      [
+       -75.667871,
+       45.379297
+      ],
+      [
+       -75.667924,
+       45.37934
+      ],
+      [
+       -75.668145,
+       45.37978
+      ],
+      [
+       -75.668171,
+       45.379837
+      ],
+      [
+       -75.668291,
+       45.380069
+      ],
+      [
+       -75.668356,
+       45.380197
+      ],
+      [
+       -75.668522,
+       45.380496
+      ],
+      [
+       -75.668551,
+       45.380539
+      ],
+      [
+       -75.668626,
+       45.380651
+      ],
+      [
+       -75.668764,
+       45.380874
+      ],
+      [
+       -75.668792,
+       45.380902
+      ],
+      [
+       -75.668808,
+       45.380918
+      ],
+      [
+       -75.668963,
+       45.38107
+      ],
+      [
+       -75.669097,
+       45.381129
+      ],
+      [
+       -75.669199,
+       45.38121
+      ],
+      [
+       -75.669509,
+       45.381449
+      ],
+      [
+       -75.669561,
+       45.38149
+      ],
+      [
+       -75.669759,
+       45.381646
+      ],
+      [
+       -75.669934,
+       45.381789
+      ],
+      [
+       -75.670252,
+       45.38205
+      ],
+      [
+       -75.670271,
+       45.382066
+      ],
+      [
+       -75.67028,
+       45.382074
+      ],
+      [
+       -75.670339,
+       45.382208
+      ],
+      [
+       -75.6705,
+       45.382374
+      ],
+      [
+       -75.670597,
+       45.382474
+      ],
+      [
+       -75.670722,
+       45.382595
+      ],
+      [
+       -75.671002,
+       45.382867
+      ],
+      [
+       -75.67105,
+       45.382918
+      ],
+      [
+       -75.671115,
+       45.382991
+      ],
+      [
+       -75.671149,
+       45.38303
+      ],
+      [
+       -75.671246,
+       45.383146
+      ],
+      [
+       -75.671353,
+       45.383291
+      ],
+      [
+       -75.671421,
+       45.383382
+      ],
+      [
+       -75.671443,
+       45.383412
+      ],
+      [
+       -75.671514,
+       45.383508
+      ],
+      [
+       -75.671625,
+       45.383657
+      ],
+      [
+       -75.671672,
+       45.383724
+      ],
+      [
+       -75.671712,
+       45.383783
+      ],
+      [
+       -75.671754,
+       45.383837
+      ],
+      [
+       -75.671806,
+       45.383913
+      ],
+      [
+       -75.671918,
+       45.384047
+      ],
+      [
+       -75.672014,
+       45.384168
+      ],
+      [
+       -75.67208,
+       45.384251
+      ],
+      [
+       -75.672298,
+       45.384526
+      ],
+      [
+       -75.672444,
+       45.384708
+      ],
+      [
+       -75.672595,
+       45.384897
+      ],
+      [
+       -75.672922,
+       45.385294
+      ],
+      [
+       -75.673074,
+       45.385471
+      ],
+      [
+       -75.673302,
+       45.385709
+      ],
+      [
+       -75.673347,
+       45.385759
+      ],
+      [
+       -75.673416,
+       45.385835
+      ],
+      [
+       -75.673476,
+       45.385891
+      ],
+      [
+       -75.673551,
+       45.38596
+      ],
+      [
+       -75.673661,
+       45.386061
+      ],
+      [
+       -75.673849,
+       45.386214
+      ],
+      [
+       -75.674357,
+       45.38663
+      ],
+      [
+       -75.674632,
+       45.386848
+      ],
+      [
+       -75.674715,
+       45.386913
+      ],
+      [
+       -75.674795,
+       45.386975
+      ],
+      [
+       -75.674905,
+       45.387061
+      ],
+      [
+       -75.67524,
+       45.387323
+      ],
+      [
+       -75.675331,
+       45.387394
+      ],
+      [
+       -75.675377,
+       45.38743
+      ],
+      [
+       -75.675609,
+       45.387613
+      ],
+      [
+       -75.675964,
+       45.387893
+      ],
+      [
+       -75.676093,
+       45.387992
+      ],
+      [
+       -75.676105,
+       45.388001
+      ],
+      [
+       -75.676186,
+       45.388063
+      ],
+      [
+       -75.676245,
+       45.38811
+      ],
+      [
+       -75.676552,
+       45.388309
+      ],
+      [
+       -75.676559,
+       45.388315
+      ],
+      [
+       -75.676624,
+       45.388366
+      ],
+      [
+       -75.676677,
+       45.388408
+      ],
+      [
+       -75.676797,
+       45.388504
+      ],
+      [
+       -75.676845,
+       45.388539
+      ],
+      [
+       -75.677092,
+       45.388728
+      ],
+      [
+       -75.67714,
+       45.388765
+      ],
+      [
+       -75.67717,
+       45.388788
+      ],
+      [
+       -75.677234,
+       45.388835
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-03-20 16:18:00",
+    "eventGroupAffected": "25",
+    "cause": "construction.",
+    "mainStreet": "Bank",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Bank lane reductions in both directions between Riverside westbound and Collins due to construction. Cyclists and pedestrians not affected. From March 25 to December 2026.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-03-25T07:00",
+      "endDateTime": "2026-12-31T17:00"
+     }
+    ],
+    "lanes": "lane reductions in both directions",
+    "crossStreet1": "Riverisde",
+    "id": 26371,
+    "crossStreet2": "Transitway at Billings Bridge ",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-09-08 16:24:00",
+    "headline": "Bank between Riverside W/B and Collins",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     -75.73026740826732,
+     45.385734903712866
+    ],
+    "type": "Point"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-04-10 18:56:00",
+    "eventGroupAffected": "1",
+    "cause": "construction.",
+    "mainStreet": "Harrold Place",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "Harrold Place periodic lane reduction due to construction. April 13th to November 13th.",
+    "closureType": "OTHER",
+    "schedule": [
+     {
+      "startDateTime": "2026-04-13T06:00",
+      "endDateTime": "2026-11-13T18:00"
+     }
+    ],
+    "id": 26515,
+    "closureFlow": "UNKNOWN",
+    "updated": "2026-09-22 15:27:00",
+    "headline": "Harrold Place",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     -75.70083785135755,
+     45.420562754098114
+    ],
+    "type": "Point"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-05 06:14:00",
+    "eventGroupAffected": "6",
+    "cause": "a demonstration.",
+    "mainStreet": "Bank",
+    "eventType": "SPECIAL_EVENT",
+    "priority": "LOW",
+    "message": "Bank traffic disruptions at Queen due to a demonstration, from September 23rd to November 1st between 7:00am and 5:00pm.",
+    "closureType": "OTHER",
+    "schedule": [
+     {
+      "startDateTime": "2026-09-23T00:00",
+      "endDateTime": "2026-11-01T17:00"
+     }
+    ],
+    "lanes": "traffic disruptions",
+    "crossStreet1": "Queen",
+    "id": 29240,
+    "closureFlow": "AT",
+    "updated": "2026-10-05 06:16:00",
+    "headline": "Bank at Queen",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.587407,
+       45.450146
+      ],
+      [
+       -75.587192,
+       45.450218
+      ],
+      [
+       -75.586922,
+       45.450265
+      ],
+      [
+       -75.586753,
+       45.450282
+      ],
+      [
+       -75.586598,
+       45.450286
+      ],
+      [
+       -75.586436,
+       45.450279
+      ],
+      [
+       -75.586423,
+       45.450279
+      ],
+      [
+       -75.586378,
+       45.450273
+      ],
+      [
+       -75.586278,
+       45.450253
+      ],
+      [
+       -75.586151,
+       45.450215
+      ],
+      [
+       -75.585998,
+       45.450149
+      ],
+      [
+       -75.585873,
+       45.450066
+      ],
+      [
+       -75.585761,
+       45.449962
+      ],
+      [
+       -75.585675,
+       45.449836
+      ],
+      [
+       -75.585616,
+       45.449688
+      ],
+      [
+       -75.585588,
+       45.449539
+      ],
+      [
+       -75.585588,
+       45.449406
+      ],
+      [
+       -75.585602,
+       45.449315
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "LRT",
+    "created": "2026-10-14 15:57:00",
+    "eventGroupAffected": "25",
+    "cause": "construction.",
+    "mainStreet": "174 W/B On-ramp/Bretelle d'accès",
+    "eventType": "CONSTRUCTION",
+    "priority": "HIGH",
+    "message": "(LRT) 174 westbound on-ramp closed at Montreal eastbound due to construction. From 11:00pm to 5:00am, October 14th to 15th.",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-14T23:00",
+      "endDateTime": "2026-10-15T05:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Montreal",
+    "id": 29472,
+    "closureFlow": "AT",
+    "updated": "2026-10-14 22:56:00",
+    "headline": "(LRT) 174 W/B On-ramp at Montreal E/B",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.685984,
+       45.426069
+      ],
+      [
+       -75.685963,
+       45.426043
+      ],
+      [
+       -75.685747,
+       45.425782
+      ],
+      [
+       -75.685552,
+       45.425546
+      ],
+      [
+       -75.685516,
+       45.425504
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-07-21 11:34:00",
+    "eventGroupAffected": "7",
+    "cause": "construction.",
+    "mainStreet": "Cumberland",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Cumberland closed between Wilbrod and Stewart due to construction. Access for local traffic maintained. From 7:00am, 18/09/26 to 5:00pm, 03/11/26",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-09-18T07:00",
+      "endDateTime": "2026-11-03T17:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Wilbrod",
+    "id": 27880,
+    "crossStreet2": "Stewart",
+    "closureFlow": "FROM",
+    "updated": "2026-09-21 16:28:00",
+    "headline": "Cumberland between Wilbrod and Stewart",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.788536,
+       45.343768
+      ],
+      [
+       -75.788614,
+       45.343771
+      ],
+      [
+       -75.78862,
+       45.343673
+      ],
+      [
+       -75.78865,
+       45.342665
+      ],
+      [
+       -75.788633,
+       45.342323
+      ],
+      [
+       -75.78859,
+       45.342065
+      ],
+      [
+       -75.788537,
+       45.341903
+      ],
+      [
+       -75.78844,
+       45.341631
+      ],
+      [
+       -75.788387,
+       45.341514
+      ],
+      [
+       -75.78827,
+       45.341275
+      ],
+      [
+       -75.788153,
+       45.341066
+      ],
+      [
+       -75.788116,
+       45.340996
+      ],
+      [
+       -75.788037,
+       45.340871
+      ],
+      [
+       -75.788001,
+       45.34081
+      ],
+      [
+       -75.787849,
+       45.340559
+      ],
+      [
+       -75.787614,
+       45.34017
+      ],
+      [
+       -75.78751,
+       45.339998
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-03-26 18:57:00",
+    "eventGroupAffected": "31",
+    "cause": "construction.",
+    "mainStreet": "Greenbank",
+    "eventType": "CONSTRUCTION",
+    "priority": "HIGH",
+    "message": "Greenbank lane reductions in both directions between Lisa and Monterey due to construction. Follow the signed detour. From Monday, March 30 to Monday, November 30.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-03-30T07:00",
+      "endDateTime": "2026-11-30T17:00"
+     }
+    ],
+    "lanes": "lane reductions in both directions",
+    "crossStreet1": "Lisa",
+    "id": 26416,
+    "crossStreet2": "Monterey",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-09-04 08:36:00",
+    "headline": "Greenbank between Lisa and Monterey",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.911763,
+       45.283191
+      ],
+      [
+       -75.911915,
+       45.283311
+      ],
+      [
+       -75.911972,
+       45.283355
+      ],
+      [
+       -75.912016,
+       45.28339
+      ],
+      [
+       -75.912115,
+       45.283472
+      ],
+      [
+       -75.912586,
+       45.283858
+      ],
+      [
+       -75.91359,
+       45.284645
+      ],
+      [
+       -75.913652,
+       45.284695
+      ],
+      [
+       -75.914063,
+       45.285023
+      ],
+      [
+       -75.914283,
+       45.285182
+      ],
+      [
+       -75.914751,
+       45.285466
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-09-28 11:11:00",
+    "eventGroupAffected": "31",
+    "cause": "construction.",
+    "mainStreet": "Huntmar",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Huntmar off-peak lane reduction in both directions between Hazeldean and Coriolis/Gallantry due to construction, from September 28th to October 30th.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-09-28T00:00",
+      "endDateTime": "2026-10-30T17:00"
+     }
+    ],
+    "lanes": "off-peak lane reduction in both directions",
+    "crossStreet1": "Hazeldean",
+    "id": 29120,
+    "crossStreet2": "Coriolis/Gallantry",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-09-28 11:12:00",
+    "headline": "Huntmar between Hazeldean and Coriolis/Gallantry",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.631734,
+       45.439508
+      ],
+      [
+       -75.631608,
+       45.439533
+      ],
+      [
+       -75.631496,
+       45.439571
+      ],
+      [
+       -75.631345,
+       45.439624
+      ],
+      [
+       -75.631211,
+       45.43968
+      ],
+      [
+       -75.630934,
+       45.439795
+      ],
+      [
+       -75.630318,
+       45.44005
+      ],
+      [
+       -75.630026,
+       45.440168
+      ],
+      [
+       -75.629897,
+       45.440222
+      ],
+      [
+       -75.629806,
+       45.440256
+      ],
+      [
+       -75.629725,
+       45.440284
+      ],
+      [
+       -75.629344,
+       45.44041
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-08 13:26:00",
+    "eventGroupAffected": "15",
+    "cause": "construction.",
+    "mainStreet": "DEN HAAG",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "DEN HAAG off-peak lane reduction in both directions between BOREALIS and PIONNIERS, PRIVE DES due to construction, from October 6th to November 6th.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-06T00:00",
+      "endDateTime": "2026-11-06T17:00"
+     }
+    ],
+    "lanes": "off-peak lane reduction in both directions",
+    "crossStreet1": "BOREALIS",
+    "id": 29349,
+    "crossStreet2": "PIONNIERS, PRIVE DES",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-10-08 13:28:00",
+    "headline": "DEN HAAG between BOREALIS and PIONNIERS, PRIVE DES",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.751913,
+       45.391829
+      ],
+      [
+       -75.752228,
+       45.392379
+      ],
+      [
+       -75.752301,
+       45.392497
+      ],
+      [
+       -75.752386,
+       45.392645
+      ],
+      [
+       -75.7524,
+       45.392671
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-03-30 16:36:00",
+    "cause": "construction.",
+    "mainStreet": "Eden",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "Eden closed between Byron and Richmond due to construction. Monday, 6 April at 6am to Sunday, 20 December at 7pm.",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-04-06T06:00",
+      "endDateTime": "2026-12-20T19:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Byron",
+    "id": 26436,
+    "crossStreet2": "Richmond",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 08:24:00",
+    "headline": "Eden between Byron and Richmond",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.651722,
+       45.158532
+      ],
+      [
+       -75.65116,
+       45.15778
+      ],
+      [
+       -75.650075,
+       45.156332
+      ],
+      [
+       -75.649451,
+       45.155527
+      ],
+      [
+       -75.649178,
+       45.15512
+      ],
+      [
+       -75.649147,
+       45.155061
+      ],
+      [
+       -75.648967,
+       45.154713
+      ],
+      [
+       -75.648877,
+       45.154503
+      ],
+      [
+       -75.648774,
+       45.154264
+      ],
+      [
+       -75.648746,
+       45.154199
+      ],
+      [
+       -75.64855,
+       45.153675
+      ],
+      [
+       -75.648429,
+       45.153324
+      ],
+      [
+       -75.648368,
+       45.153143
+      ],
+      [
+       -75.64824,
+       45.152779
+      ],
+      [
+       -75.648178,
+       45.152602
+      ],
+      [
+       -75.647672,
+       45.151158
+      ],
+      [
+       -75.647627,
+       45.151026
+      ],
+      [
+       -75.6476,
+       45.15095
+      ],
+      [
+       -75.647573,
+       45.150872
+      ],
+      [
+       -75.64755,
+       45.150804
+      ],
+      [
+       -75.647525,
+       45.150731
+      ],
+      [
+       -75.647499,
+       45.150657
+      ],
+      [
+       -75.647476,
+       45.150591
+      ],
+      [
+       -75.647412,
+       45.150407
+      ],
+      [
+       -75.64718,
+       45.149676
+      ],
+      [
+       -75.647168,
+       45.149638
+      ],
+      [
+       -75.647132,
+       45.149536
+      ],
+      [
+       -75.647117,
+       45.149491
+      ],
+      [
+       -75.647098,
+       45.149438
+      ],
+      [
+       -75.64705,
+       45.149301
+      ],
+      [
+       -75.647027,
+       45.149236
+      ],
+      [
+       -75.646996,
+       45.149149
+      ],
+      [
+       -75.646783,
+       45.148542
+      ],
+      [
+       -75.646714,
+       45.148298
+      ],
+      [
+       -75.646639,
+       45.14803
+      ],
+      [
+       -75.646614,
+       45.147943
+      ],
+      [
+       -75.646508,
+       45.147515
+      ],
+      [
+       -75.646453,
+       45.14724
+      ],
+      [
+       -75.64645,
+       45.147225
+      ],
+      [
+       -75.646423,
+       45.147053
+      ],
+      [
+       -75.646403,
+       45.146748
+      ],
+      [
+       -75.646391,
+       45.146227
+      ],
+      [
+       -75.646388,
+       45.146055
+      ],
+      [
+       -75.646373,
+       45.144498
+      ],
+      [
+       -75.646327,
+       45.144156
+      ],
+      [
+       -75.646242,
+       45.143903
+      ],
+      [
+       -75.645515,
+       45.142341
+      ],
+      [
+       -75.644886,
+       45.14104
+      ],
+      [
+       -75.644825,
+       45.140869
+      ],
+      [
+       -75.644626,
+       45.140561
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-06-11 17:43:00",
+    "eventGroupAffected": "31",
+    "cause": "construction.",
+    "mainStreet": "Rideau Valley",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Rideau Valley closed between Roger Stevens and Lockhead East due to construction, until October 31st. Follow the signed detour. Access for local traffic maintained up to the bridge.",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-06-29T07:00",
+      "endDateTime": "2026-10-31T17:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Roger Stevens",
+    "id": 27129,
+    "crossStreet2": "Lockhead E",
+    "closureFlow": "FROM",
+    "updated": "2026-09-17 17:44:00",
+    "headline": "Rideau Valley between Roger Stevens and Lockhead E",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.668407,
+       45.447507
+      ],
+      [
+       -75.668288,
+       45.447597
+      ],
+      [
+       -75.668191,
+       45.447663
+      ],
+      [
+       -75.668163,
+       45.447683
+      ],
+      [
+       -75.667926,
+       45.447831
+      ],
+      [
+       -75.667669,
+       45.44797
+      ],
+      [
+       -75.66727,
+       45.448183
+      ],
+      [
+       -75.666627,
+       45.448458
+      ],
+      [
+       -75.666169,
+       45.448609
+      ],
+      [
+       -75.665933,
+       45.448687
+      ],
+      [
+       -75.665578,
+       45.448773
+      ],
+      [
+       -75.665392,
+       45.448813
+      ],
+      [
+       -75.665219,
+       45.448848
+      ],
+      [
+       -75.664959,
+       45.448895
+      ],
+      [
+       -75.66451,
+       45.448964
+      ],
+      [
+       -75.663714,
+       45.449026
+      ],
+      [
+       -75.662923,
+       45.449086
+      ],
+      [
+       -75.662769,
+       45.449097
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-13 10:53:00",
+    "eventGroupAffected": "15",
+    "cause": "construction.",
+    "mainStreet": "HEMLOCK",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "HEMLOCK off-peak lane reduction between LANSDOWNE and BIRCH due to construction, from October 6th to November 6th.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-06T00:00",
+      "endDateTime": "2026-11-06T17:00"
+     }
+    ],
+    "lanes": "off-peak lane reduction",
+    "crossStreet1": "LANSDOWNE",
+    "id": 29429,
+    "crossStreet2": "BIRCH",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-10-13 10:56:00",
+    "headline": "HEMLOCK between LANSDOWNE and BIRCH",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.928308,
+       45.30489
+      ],
+      [
+       -75.92837,
+       45.3049
+      ],
+      [
+       -75.928435,
+       45.3049
+      ],
+      [
+       -75.928695,
+       45.304999
+      ],
+      [
+       -75.92883,
+       45.305052
+      ],
+      [
+       -75.928895,
+       45.305071
+      ],
+      [
+       -75.929029,
+       45.305159
+      ],
+      [
+       -75.929115,
+       45.305205
+      ],
+      [
+       -75.92914,
+       45.305218
+      ],
+      [
+       -75.92927,
+       45.305288
+      ],
+      [
+       -75.929524,
+       45.305417
+      ],
+      [
+       -75.929826,
+       45.305534
+      ],
+      [
+       -75.929986,
+       45.305577
+      ],
+      [
+       -75.930259,
+       45.30565
+      ],
+      [
+       -75.930653,
+       45.305736
+      ],
+      [
+       -75.931305,
+       45.305879
+      ]
+     ],
+     [
+      [
+       -75.931305,
+       45.305879
+      ],
+      [
+       -75.930653,
+       45.305736
+      ],
+      [
+       -75.930259,
+       45.30565
+      ],
+      [
+       -75.929986,
+       45.305577
+      ],
+      [
+       -75.929826,
+       45.305534
+      ],
+      [
+       -75.929524,
+       45.305417
+      ],
+      [
+       -75.92927,
+       45.305288
+      ],
+      [
+       -75.92914,
+       45.305218
+      ],
+      [
+       -75.929115,
+       45.305205
+      ],
+      [
+       -75.929029,
+       45.305159
+      ],
+      [
+       -75.928895,
+       45.305071
+      ],
+      [
+       -75.928855,
+       45.305005
+      ],
+      [
+       -75.928812,
+       45.304932
+      ],
+      [
+       -75.928742,
+       45.304811
+      ],
+      [
+       -75.928699,
+       45.304739
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-07-28 12:25:00",
+    "eventGroupAffected": "7",
+    "cause": "construction.",
+    "mainStreet": "Winterest",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Winterest closed between Calvington and Campeau due to construction, from October 5th to 30th. Follow the signed detour. Access for local traffic maintained.",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-02T07:00",
+      "endDateTime": "2026-10-30T17:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Calvington",
+    "id": 28001,
+    "crossStreet2": "Campeau",
+    "closureFlow": "FROM",
+    "updated": "2026-10-02 06:56:00",
+    "headline": "Winterest between Calvington and Campeau",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.751844,
+       45.391708
+      ],
+      [
+       -75.751767,
+       45.391735
+      ],
+      [
+       -75.751733,
+       45.391748
+      ],
+      [
+       -75.751108,
+       45.391963
+      ],
+      [
+       -75.751068,
+       45.391977
+      ],
+      [
+       -75.75103,
+       45.39199
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-03-30 16:33:00",
+    "cause": "construction.",
+    "mainStreet": "Lincoln",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "Lincoln closed between Eden and Edgewood due to construction. Monday, 6 April at 6am to Sunday, 20 December at 7pm.",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-04-06T06:00",
+      "endDateTime": "2026-12-20T19:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Eden",
+    "id": 26434,
+    "crossStreet2": "Edgrewood",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 09:04:00",
+    "headline": "Lincoln between Eden and Edgewood",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.932502,
+       45.311553
+      ],
+      [
+       -75.932764,
+       45.311651
+      ],
+      [
+       -75.933611,
+       45.311985
+      ],
+      [
+       -75.933931,
+       45.312109
+      ],
+      [
+       -75.934917,
+       45.312495
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-04-10 18:52:00",
+    "cause": "construction.",
+    "mainStreet": "Veteran",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "Veteran periodic lane reductions between Viscount and Crerar due to construction. April 13th to November 13th.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-04-13T06:00",
+      "endDateTime": "2026-11-13T18:00"
+     }
+    ],
+    "lanes": "periodic lane reductions",
+    "crossStreet1": "Viscount",
+    "id": 26514,
+    "crossStreet2": "Crerar",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 09:24:00",
+    "headline": "Veteran between Viscount and Crerar",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.724076,
+       45.406468
+      ],
+      [
+       -75.724036,
+       45.40651
+      ],
+      [
+       -75.72399,
+       45.406559
+      ],
+      [
+       -75.723661,
+       45.406906
+      ],
+      [
+       -75.723585,
+       45.406986
+      ],
+      [
+       -75.72315,
+       45.407451
+      ],
+      [
+       -75.723132,
+       45.407474
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-09 17:58:00",
+    "eventGroupAffected": "31",
+    "cause": "construction.",
+    "mainStreet": "O'Meara",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "O'Meara closed between Garland and Bayview due to construction, until November 13th. Access for local traffic maintained. ",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-09T00:00",
+      "endDateTime": "2026-11-13T17:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Garland",
+    "id": 29405,
+    "crossStreet2": "Bayview",
+    "closureFlow": "UNKNOWN",
+    "updated": "2026-10-09 18:00:00",
+    "headline": "O'Meara between Garland and Bayview",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.685841,
+       45.28236
+      ],
+      [
+       -75.685758,
+       45.282455
+      ],
+      [
+       -75.685389,
+       45.282874
+      ],
+      [
+       -75.685297,
+       45.282968
+      ],
+      [
+       -75.685224,
+       45.283041
+      ],
+      [
+       -75.685159,
+       45.283098
+      ],
+      [
+       -75.685064,
+       45.283178
+      ],
+      [
+       -75.68498,
+       45.283239
+      ],
+      [
+       -75.684895,
+       45.283293
+      ],
+      [
+       -75.684779,
+       45.283363
+      ],
+      [
+       -75.684699,
+       45.283407
+      ],
+      [
+       -75.68462,
+       45.283446
+      ],
+      [
+       -75.684506,
+       45.2835
+      ],
+      [
+       -75.68436,
+       45.283561
+      ],
+      [
+       -75.683377,
+       45.283972
+      ],
+      [
+       -75.683186,
+       45.284052
+      ],
+      [
+       -75.683101,
+       45.284087
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-09 10:12:00",
+    "eventGroupAffected": "15",
+    "cause": "construction.",
+    "mainStreet": "SPRATT",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "SPRATT off-peak lane reductions between CANYON WALK / GOLDENEYE and HOLLOW TRAIL due to construction, from October 6th to November 6th.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-06T00:00",
+      "endDateTime": "2026-11-06T17:00"
+     }
+    ],
+    "lanes": "off-peak lane reductions",
+    "crossStreet1": "CANYON WALK / GOLDENEYE",
+    "id": 29375,
+    "crossStreet2": "HOLLOW TRAIL",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-10-09 10:16:00",
+    "headline": "SPRATT between CANYON WALK / GOLDENEYE and HOLLOW TRAIL",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     -75.72734156422415,
+     45.386048608006526
+    ],
+    "type": "Point"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-08 12:34:00",
+    "eventGroupAffected": "15",
+    "cause": "construction.",
+    "mainStreet": "Crerar",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "Crerar closed at Anna due to construction, from October 12th to 23rd. Follow the signed detour.",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-09T07:00",
+      "endDateTime": "2026-10-23T17:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Anna",
+    "id": 29342,
+    "closureFlow": "AT",
+    "updated": "2026-10-09 06:56:00",
+    "headline": "Crerar at Anna",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.684275,
+       45.410847
+      ],
+      [
+       -75.684366,
+       45.410802
+      ],
+      [
+       -75.684457,
+       45.410769
+      ],
+      [
+       -75.684601,
+       45.410711
+      ],
+      [
+       -75.684796,
+       45.410632
+      ],
+      [
+       -75.684981,
+       45.410559
+      ],
+      [
+       -75.68609,
+       45.410112
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-05-22 17:49:00",
+    "eventGroupAffected": "9",
+    "cause": "construction.",
+    "mainStreet": "Pretoria",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Pretoria closed between Metcalfe and Queen Elizabeth due to construction, from may 25th to October 30th.",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-05-25T07:00",
+      "endDateTime": "2026-10-30T17:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Metcalfe",
+    "id": 26887,
+    "crossStreet2": "Queen Elizabeth",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 09:08:00",
+    "headline": "Pretoria between Metcalfe and Queen Elizabeth",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     -75.67518,
+     45.12595
+    ],
+    "type": "Point"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "MTO",
+    "created": "2026-10-09 16:18:00",
+    "auto_gen_id": "58628",
+    "mainStreet": "HWY 416",
+    "eventType": "CONSTRUCTION",
+    "priority": "UNKNOWN",
+    "message": "Highway 416 Northbound from 3RD LINE RD to ROGER STEVENS DR /CR 6 - Daily Construction. 1 Alternating Lane. Detailed closure information is as follows: Mon-Sun: 00:00-23:59. 2026-10-12 00:00 to 2026-10-18 23:59",
+    "closureType": "OTHER",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-12T00:00",
+      "endDateTime": "2026-10-18T23:59"
+     }
+    ],
+    "lanes": "1 Alternating Lane(s)",
+    "crossStreet1": "3RD LINE RD",
+    "id": 29393,
+    "crossStreet2": "ROGER STEVENS DR (IC 49)/CR 6",
+    "closureFlow": "FROM",
+    "updated": "2026-10-09 16:18:00",
+    "headline": "(MTO) Highway 416 Northbound from 3RD LINE RD to ROGER STEVENS DR /CR 6 - Daily Construction. 2026-10-12 00:00 to 2026-10-18 23:59",
+    "status": "ACTIVE",
+    "direction": "Northbound"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.728986,
+       45.385465
+      ],
+      [
+       -75.72903,
+       45.385515
+      ],
+      [
+       -75.729063,
+       45.385551
+      ],
+      [
+       -75.729525,
+       45.386073
+      ],
+      [
+       -75.72967,
+       45.386237
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-08 12:40:00",
+    "eventGroupAffected": "7",
+    "cause": "construction.",
+    "mainStreet": "VETERAN",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "VETERAN closed between CRERAR and HARROLD Place North due to construction, from October 13th to 23rd. Follow the signed detour. Access for local traffic maintained. ",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-10T07:00",
+      "endDateTime": "2026-10-23T17:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "CRERAR",
+    "id": 29343,
+    "crossStreet2": "HARROLD Place North",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-10-10 06:56:00",
+    "headline": "VETERAN between CRERAR and HARROLD Place North",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.601197,
+       45.327271
+      ],
+      [
+       -75.600957,
+       45.327265
+      ],
+      [
+       -75.600698,
+       45.327247
+      ],
+      [
+       -75.600594,
+       45.327234
+      ],
+      [
+       -75.600197,
+       45.327181
+      ],
+      [
+       -75.599618,
+       45.327106
+      ],
+      [
+       -75.599131,
+       45.327096
+      ],
+      [
+       -75.598801,
+       45.327127
+      ],
+      [
+       -75.59847,
+       45.327191
+      ],
+      [
+       -75.598184,
+       45.327273
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-09-04 07:21:00",
+    "eventGroupAffected": "17",
+    "cause": "construction.",
+    "mainStreet": " Barrett Farm",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "Barrett Farm - closed between Delphinium and dead end due to construction. Access for local traffic maintained. Until October 31. ",
+    "closureType": "ROAD_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-09-04T07:20",
+      "endDateTime": "2026-10-31T19:00"
+     }
+    ],
+    "lanes": "closed",
+    "crossStreet1": "Delphinium",
+    "id": 28704,
+    "crossStreet2": "dead end",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 09:37:00",
+    "headline": "Barrett Farm - between Delphinium and dead end",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.642889,
+       45.414957
+      ],
+      [
+       -75.642946,
+       45.414992
+      ],
+      [
+       -75.642991,
+       45.414913
+      ],
+      [
+       -75.6428,
+       45.414903
+      ],
+      [
+       -75.642689,
+       45.414871
+      ],
+      [
+       -75.642485,
+       45.41481
+      ],
+      [
+       -75.641643,
+       45.414561
+      ],
+      [
+       -75.641416,
+       45.414494
+      ],
+      [
+       -75.641138,
+       45.414412
+      ],
+      [
+       -75.640883,
+       45.414318
+      ],
+      [
+       -75.640625,
+       45.414208
+      ],
+      [
+       -75.64056,
+       45.414177
+      ],
+      [
+       -75.640432,
+       45.414117
+      ],
+      [
+       -75.64038,
+       45.414092
+      ],
+      [
+       -75.639798,
+       45.413834
+      ],
+      [
+       -75.639682,
+       45.413782
+      ],
+      [
+       -75.639331,
+       45.413626
+      ],
+      [
+       -75.638782,
+       45.413382
+      ],
+      [
+       -75.638614,
+       45.413308
+      ],
+      [
+       -75.638462,
+       45.413242
+      ],
+      [
+       -75.638363,
+       45.413199
+      ],
+      [
+       -75.638216,
+       45.413135
+      ],
+      [
+       -75.638161,
+       45.413112
+      ],
+      [
+       -75.638115,
+       45.413092
+      ],
+      [
+       -75.637807,
+       45.412948
+      ],
+      [
+       -75.63737,
+       45.412786
+      ],
+      [
+       -75.637181,
+       45.412722
+      ],
+      [
+       -75.637012,
+       45.412664
+      ],
+      [
+       -75.636845,
+       45.412609
+      ],
+      [
+       -75.636437,
+       45.412472
+      ],
+      [
+       -75.636112,
+       45.412362
+      ],
+      [
+       -75.635781,
+       45.412274
+      ],
+      [
+       -75.635602,
+       45.412226
+      ],
+      [
+       -75.635342,
+       45.412149
+      ],
+      [
+       -75.635266,
+       45.412131
+      ],
+      [
+       -75.634379,
+       45.411912
+      ],
+      [
+       -75.634126,
+       45.41185
+      ],
+      [
+       -75.634058,
+       45.411833
+      ],
+      [
+       -75.63341,
+       45.411674
+      ],
+      [
+       -75.633309,
+       45.411649
+      ],
+      [
+       -75.633144,
+       45.411611
+      ],
+      [
+       -75.632982,
+       45.411574
+      ],
+      [
+       -75.632701,
+       45.411509
+      ],
+      [
+       -75.632512,
+       45.411498
+      ],
+      [
+       -75.632349,
+       45.411488
+      ],
+      [
+       -75.632226,
+       45.411482
+      ],
+      [
+       -75.632152,
+       45.411477
+      ],
+      [
+       -75.63203,
+       45.411484
+      ],
+      [
+       -75.63187,
+       45.411493
+      ],
+      [
+       -75.631444,
+       45.411568
+      ],
+      [
+       -75.630908,
+       45.411717
+      ],
+      [
+       -75.630561,
+       45.411812
+      ],
+      [
+       -75.630493,
+       45.411831
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-13 10:57:00",
+    "eventGroupAffected": "15",
+    "cause": "construction.",
+    "mainStreet": "BELFAST",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "BELFAST off-peak lane reductions between TRAINYARDS and ST-LAURENT, BOUL due to construction, from October 6th to November 6th.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-06T00:00",
+      "endDateTime": "2026-11-06T17:00"
+     }
+    ],
+    "lanes": "off-peak lane reductions",
+    "crossStreet1": "TRAINYARDS",
+    "id": 29430,
+    "crossStreet2": "ST-LAURENT, BOUL",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-10-13 11:00:00",
+    "headline": "BELFAST between TRAINYARDS and ST-LAURENT, BOUL",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.752072,
+       45.252785
+      ],
+      [
+       -75.751768,
+       45.252782
+      ],
+      [
+       -75.751279,
+       45.252752
+      ],
+      [
+       -75.750161,
+       45.252628
+      ],
+      [
+       -75.750011,
+       45.252613
+      ],
+      [
+       -75.749851,
+       45.2526
+      ],
+      [
+       -75.748835,
+       45.252559
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-05-01 19:04:00",
+    "eventGroupAffected": "1",
+    "cause": "construction.",
+    "mainStreet": "Perseus ",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Perseus periodic lane reductions between Burbot and Celestial Grove due to construction, May 4th to October 30th.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-05-04T07:00",
+      "endDateTime": "2026-10-30T17:00"
+     }
+    ],
+    "lanes": "periodic lane reductions",
+    "crossStreet1": "Burbot",
+    "id": 26675,
+    "crossStreet2": "Celestial Grove",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 09:16:00",
+    "headline": "Perseus between Burbot and Celestial Grove",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.889501,
+       45.308928
+      ],
+      [
+       -75.889152,
+       45.308624
+      ],
+      [
+       -75.889117,
+       45.308593
+      ],
+      [
+       -75.889036,
+       45.308519
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-09-03 17:35:00",
+    "eventGroupAffected": "7",
+    "cause": "construction.",
+    "mainStreet": "Anik",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "Anik - off-peak lane reduction in both directions between Kakulu and Chimo due to construction. Flagpersons present. Until November 13.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-09-03T17:35",
+      "endDateTime": "2026-11-13T21:00"
+     }
+    ],
+    "lanes": "off-peak lane reduction in both directions",
+    "crossStreet1": "Kakulu",
+    "id": 28688,
+    "crossStreet2": "Chimo",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-09-04 09:42:00",
+    "headline": "Anik - between Kakulu and Chimo",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.67649,
+       45.38953
+      ],
+      [
+       -75.67661,
+       45.38939
+      ],
+      [
+       -75.67681,
+       45.3892
+      ],
+      [
+       -75.67701,
+       45.38901
+      ],
+      [
+       -75.67712,
+       45.38892
+      ],
+      [
+       -75.67714,
+       45.3889
+      ],
+      [
+       -75.67723,
+       45.38884
+      ],
+      [
+       -75.67726,
+       45.38882
+      ],
+      [
+       -75.67726,
+       45.38882
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-09-21 16:26:00",
+    "eventGroupAffected": "25",
+    "cause": "construction.",
+    "mainStreet": "Riverside",
+    "eventType": "CONSTRUCTION",
+    "priority": "HIGH",
+    "message": "Riverside westbound reduced to 1 lane at Bank due to construction. From Monday, 28 September to Friday, 16 September.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-09-26T07:00",
+      "endDateTime": "2026-10-16T17:00"
+     }
+    ],
+    "lanes": "reduced to 1 lane",
+    "crossStreet1": "Bank",
+    "id": 28992,
+    "closureFlow": "AT",
+    "updated": "2026-10-02 11:01:00",
+    "headline": "Riverside W/B at Bank",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.634874,
+       45.38964
+      ],
+      [
+       -75.634819,
+       45.389565
+      ],
+      [
+       -75.634649,
+       45.389332
+      ],
+      [
+       -75.634497,
+       45.389232
+      ],
+      [
+       -75.634407,
+       45.389192
+      ],
+      [
+       -75.634177,
+       45.389089
+      ],
+      [
+       -75.634067,
+       45.389061
+      ],
+      [
+       -75.63397,
+       45.389045
+      ],
+      [
+       -75.633772,
+       45.389029
+      ],
+      [
+       -75.632645,
+       45.389094
+      ],
+      [
+       -75.632606,
+       45.389096
+      ],
+      [
+       -75.632494,
+       45.389103
+      ],
+      [
+       -75.632398,
+       45.389105
+      ],
+      [
+       -75.632365,
+       45.389108
+      ],
+      [
+       -75.63216,
+       45.389123
+      ],
+      [
+       -75.631809,
+       45.389129
+      ],
+      [
+       -75.631631,
+       45.389133
+      ],
+      [
+       -75.631479,
+       45.389129
+      ],
+      [
+       -75.630951,
+       45.389143
+      ],
+      [
+       -75.630684,
+       45.389151
+      ],
+      [
+       -75.6306,
+       45.389153
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-10-08 12:58:00",
+    "eventGroupAffected": "15",
+    "cause": "construction.",
+    "mainStreet": "CANTERBURY",
+    "eventType": "CONSTRUCTION",
+    "priority": "LOW",
+    "message": "CANTERBURY reduced to 1 lane in each direction between KILBORN / HAIG and ARCH due to construction, from October 13th to 16th. Flagpersons present. ",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-10-08T07:00",
+      "endDateTime": "2026-10-16T17:00"
+     }
+    ],
+    "lanes": "reduced to 1 lane in each direction",
+    "crossStreet1": "KILBORN / HAIG",
+    "id": 29345,
+    "crossStreet2": "ARCH",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-10-08 13:00:00",
+    "headline": "CANTERBURY between KILBORN / HAIG and ARCH",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.599678,
+       45.330883
+      ],
+      [
+       -75.599748,
+       45.331016
+      ],
+      [
+       -75.599886,
+       45.330955
+      ],
+      [
+       -75.599812,
+       45.330831
+      ],
+      [
+       -75.599701,
+       45.33065
+      ],
+      [
+       -75.599682,
+       45.330631
+      ],
+      [
+       -75.599653,
+       45.330609
+      ],
+      [
+       -75.599585,
+       45.330563
+      ],
+      [
+       -75.599307,
+       45.330073
+      ],
+      [
+       -75.599079,
+       45.329676
+      ],
+      [
+       -75.598981,
+       45.329501
+      ],
+      [
+       -75.598718,
+       45.329043
+      ],
+      [
+       -75.59862,
+       45.328878
+      ],
+      [
+       -75.598525,
+       45.328708
+      ],
+      [
+       -75.598396,
+       45.328484
+      ],
+      [
+       -75.598218,
+       45.328176
+      ],
+      [
+       -75.598165,
+       45.328084
+      ],
+      [
+       -75.59811,
+       45.327987
+      ],
+      [
+       -75.597836,
+       45.327513
+      ],
+      [
+       -75.597783,
+       45.32742
+      ],
+      [
+       -75.597722,
+       45.327315
+      ],
+      [
+       -75.597587,
+       45.327083
+      ],
+      [
+       -75.597322,
+       45.326629
+      ],
+      [
+       -75.596986,
+       45.32605
+      ],
+      [
+       -75.596642,
+       45.325456
+      ],
+      [
+       -75.596427,
+       45.325085
+      ],
+      [
+       -75.596344,
+       45.324935
+      ],
+      [
+       -75.59631,
+       45.324876
+      ],
+      [
+       -75.596154,
+       45.324602
+      ],
+      [
+       -75.595923,
+       45.324204
+      ],
+      [
+       -75.59568,
+       45.323792
+      ],
+      [
+       -75.59562,
+       45.32369
+      ],
+      [
+       -75.595563,
+       45.323591
+      ],
+      [
+       -75.595257,
+       45.323068
+      ],
+      [
+       -75.595018,
+       45.32267
+      ],
+      [
+       -75.594873,
+       45.322414
+      ],
+      [
+       -75.593835,
+       45.320619
+      ],
+      [
+       -75.593779,
+       45.320523
+      ],
+      [
+       -75.593729,
+       45.320438
+      ],
+      [
+       -75.593665,
+       45.320327
+      ],
+      [
+       -75.593371,
+       45.319821
+      ],
+      [
+       -75.593279,
+       45.319587
+      ],
+      [
+       -75.593196,
+       45.319409
+      ],
+      [
+       -75.593105,
+       45.319249
+      ],
+      [
+       -75.592975,
+       45.319016
+      ],
+      [
+       -75.592724,
+       45.318602
+      ],
+      [
+       -75.592483,
+       45.3182
+      ],
+      [
+       -75.592381,
+       45.31803
+      ],
+      [
+       -75.592327,
+       45.317938
+      ],
+      [
+       -75.592282,
+       45.317862
+      ],
+      [
+       -75.592255,
+       45.317814
+      ],
+      [
+       -75.592253,
+       45.317809
+      ],
+      [
+       -75.592237,
+       45.317782
+      ],
+      [
+       -75.592036,
+       45.31743
+      ],
+      [
+       -75.59118,
+       45.315946
+      ],
+      [
+       -75.590832,
+       45.315343
+      ],
+      [
+       -75.590298,
+       45.314415
+      ],
+      [
+       -75.590069,
+       45.314043
+      ],
+      [
+       -75.590066,
+       45.314038
+      ],
+      [
+       -75.590046,
+       45.314005
+      ],
+      [
+       -75.589987,
+       45.313906
+      ],
+      [
+       -75.589951,
+       45.313845
+      ],
+      [
+       -75.589872,
+       45.313707
+      ],
+      [
+       -75.589854,
+       45.313674
+      ],
+      [
+       -75.589746,
+       45.313489
+      ],
+      [
+       -75.589721,
+       45.313459
+      ],
+      [
+       -75.589711,
+       45.313451
+      ],
+      [
+       -75.589636,
+       45.313387
+      ],
+      [
+       -75.589538,
+       45.313215
+      ],
+      [
+       -75.58925,
+       45.312725
+      ],
+      [
+       -75.588929,
+       45.312172
+      ],
+      [
+       -75.588267,
+       45.311029
+      ],
+      [
+       -75.588193,
+       45.310902
+      ],
+      [
+       -75.587927,
+       45.310431
+      ],
+      [
+       -75.587838,
+       45.310274
+      ],
+      [
+       -75.587819,
+       45.310244
+      ],
+      [
+       -75.587781,
+       45.310182
+      ],
+      [
+       -75.587732,
+       45.3101
+      ],
+      [
+       -75.587687,
+       45.310028
+      ],
+      [
+       -75.58766,
+       45.309985
+      ],
+      [
+       -75.587526,
+       45.30976
+      ],
+      [
+       -75.587428,
+       45.309596
+      ],
+      [
+       -75.587373,
+       45.309503
+      ],
+      [
+       -75.587096,
+       45.309031
+      ],
+      [
+       -75.586992,
+       45.30886
+      ],
+      [
+       -75.585877,
+       45.306927
+      ],
+      [
+       -75.585808,
+       45.306816
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-09-03 18:19:00",
+    "eventGroupAffected": "31",
+    "cause": "construction.",
+    "mainStreet": "Bank",
+    "eventType": "CONSTRUCTION",
+    "priority": "HIGH",
+    "message": "Bank - periodic lane reductions in each direction between Leitrim and Blais/Miikana due to construction. Flagpersons present. Until December 31.",
+    "closureType": "LANES_CLOSED",
+    "schedule": [
+     {
+      "startDateTime": "2026-09-03T18:20",
+      "endDateTime": "2026-12-31T21:00"
+     }
+    ],
+    "lanes": "periodic lane reductions in each direction",
+    "crossStreet1": "Leitrim",
+    "id": 28695,
+    "crossStreet2": "Blais/Miikana",
+    "closureFlow": "BOTH_DIRECTIONS",
+    "updated": "2026-09-04 09:41:00",
+    "headline": "Bank - between Leitrim and Blais/Miikana",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -75.897414,
+       45.292343
+      ],
+      [
+       -75.89703,
+       45.292585
+      ],
+      [
+       -75.896496,
+       45.292914
+      ],
+      [
+       -75.896073,
+       45.293172
+      ],
+      [
+       -75.895795,
+       45.293356
+      ],
+      [
+       -75.895719,
+       45.293408
+      ],
+      [
+       -75.895561,
+       45.293513
+      ],
+      [
+       -75.895478,
+       45.293566
+      ],
+      [
+       -75.895317,
+       45.293669
+      ],
+      [
+       -75.894751,
+       45.294031
+      ],
+      [
+       -75.894451,
+       45.294222
+      ],
+      [
+       -75.894221,
+       45.294369
+      ],
+      [
+       -75.894085,
+       45.294459
+      ],
+      [
+       -75.894171,
+       45.294526
+      ],
+      [
+       -75.894243,
+       45.294481
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-08-14 11:05:00",
+    "eventGroupAffected": "31",
+    "cause": "construction.",
+    "mainStreet": "Hazeldean",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Hazeldean eastbound reduced to 1 lane between Kincardine and Edgewater due to construction.",
+    "closureType": "LANES_CLOSED",
+    "lanes": "reduced to 1 lane",
+    "crossStreet1": "Kincardine",
+    "id": 28321,
+    "crossStreet2": "Edgewater",
+    "closureFlow": "FROM",
+    "updated": "2026-09-04 08:40:00",
+    "headline": "Hazeldean E/B between Kincardine and Edgewater",
+    "status": "ACTIVE"
+   }
+  },
+  {
+   "geometry": {
+    "coordinates": [
+     -75.70440166179075,
+     45.41816012409674
+    ],
+    "type": "Point"
+   },
+   "type": "Feature",
+   "properties": {
+    "generation_source": "CITY",
+    "created": "2026-09-09 18:18:00",
+    "cause": "construction.",
+    "mainStreet": "ALBERT",
+    "eventType": "CONSTRUCTION",
+    "priority": "MEDIUM",
+    "message": "Albert and Lyon off-peak lane reductions at the intersection due to construction.",
+    "closureType": "LANES_CLOSED",
+    "lanes": "off-peak lane reduction in both directions",
+    "crossStreet1": "LYON",
+    "id": 28777,
+    "closureFlow": "AT",
+    "updated": "2026-09-09 18:32:00",
+    "headline": "ALBERT at LYON",
+    "status": "ACTIVE"
+   }
+  }
+ ]
+}

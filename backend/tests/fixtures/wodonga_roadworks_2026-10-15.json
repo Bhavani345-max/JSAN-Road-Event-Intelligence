@@ -1,0 +1,2246 @@
+{
+ "fetched_at": "2026-10-15T08:54:16.104633+00:00",
+ "items": [
+  {
+   "works": {
+    "type": "Feature",
+    "id": 88,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.90710705806,
+        -36.1618662444717
+       ],
+       [
+        146.899383618163,
+        -36.1664676106365
+       ],
+       [
+        146.899029498967,
+        -36.1673319280115
+       ],
+       [
+        146.898443475989,
+        -36.1670670902349
+       ],
+       [
+        146.89887751051,
+        -36.1677783998819
+       ],
+       [
+        146.906773951253,
+        -36.1761306473011
+       ],
+       [
+        146.906309362879,
+        -36.1764862617999
+       ],
+       [
+        146.897924240232,
+        -36.1677793026046
+       ],
+       [
+        146.897511936804,
+        -36.1669173721239
+       ],
+       [
+        146.897792180488,
+        -36.1663886499136
+       ],
+       [
+        146.898702854348,
+        -36.1665774505256
+       ],
+       [
+        146.899231087628,
+        -36.1660543209751
+       ],
+       [
+        146.906703175302,
+        -36.1611936708879
+       ],
+       [
+        146.90710705806,
+        -36.1618662444717
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 88,
+     "globalid": "ff6cb5aa-c251-4d36-8ec6-663811d4e48b",
+     "RW_location": "Baranduda Road and Frederic Street Road, also works in Martin Road and Beechworth Wodonga Road",
+     "RW_description": "Water pipeline as per previous emails and discussions with Luke Rutledge",
+     "RW_traffic_impact": "Short_term_mobile_works,Long_term_works,Works_near_a_school_pedestrian_crossing_or_refuge,Application_includes_speed_reduction",
+     "application_ID": "APP-2605051230-52",
+     "RW_start": 1778792400000,
+     "RW_end": 1809068400000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 66,
+      "globalid": "c1319995-7bd9-4604-aaf4-73b2aae4def6",
+      "CL_street": "Frederic Road, Leneva",
+      "CL_reason": "Construction",
+      "CL_description": "Service Locating and Water Main Installation ",
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1778792400000,
+      "CL_ends": 1809068400000,
+      "CL_access": "Local Access",
+      "CL_url": null,
+      "parentglobalid": "ff6cb5aa-c251-4d36-8ec6-663811d4e48b",
+      "Shape__Length": 0.011840599070541045,
+      "CL_ID": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.906367858749,
+        -36.1761007602902
+       ],
+       [
+        146.898641174279,
+        -36.1682562223864
+       ],
+       [
+        146.898079106875,
+        -36.1676458183105
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 67,
+      "globalid": "62e6afe3-065b-4c4a-af17-61c3e40c5f16",
+      "CL_street": "Martins Road, Leneva",
+      "CL_reason": "Construction",
+      "CL_description": "Service Locating and Water Main Installation ",
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1778792400000,
+      "CL_ends": 1809068400000,
+      "CL_access": "Local Access",
+      "CL_url": null,
+      "parentglobalid": "ff6cb5aa-c251-4d36-8ec6-663811d4e48b",
+      "Shape__Length": 0.00875291191747058,
+      "CL_ID": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.899179229418,
+        -36.1662935296352
+       ],
+       [
+        146.906577740171,
+        -36.1616164038426
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 37,
+      "globalid": "7fe79a16-6032-481b-8bd2-4a67ef205148",
+      "DR_street": "Frederic Road, Leneva",
+      "DR_lane_impact": "All lanes",
+      "DR_reason": "Construction",
+      "DR_description": "Water pipeline",
+      "DR_starttime": 1778792400000,
+      "DR_endtime": 1809068400000,
+      "DR_url": null,
+      "parentglobalid": "ff6cb5aa-c251-4d36-8ec6-663811d4e48b",
+      "Shape__Length": 0.01083823251518475,
+      "DR_id": "DIS-2605051230-31"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.899027623807,
+        -36.1684726108243
+       ],
+       [
+        146.906492148876,
+        -36.1763306099045
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 182,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.902275700776,
+        -36.0947526502817
+       ],
+       [
+        146.903183569523,
+        -36.0930145687012
+       ],
+       [
+        146.903853995674,
+        -36.092043934988
+       ],
+       [
+        146.904873602113,
+        -36.0916150465055
+       ],
+       [
+        146.906144618359,
+        -36.0913328817538
+       ],
+       [
+        146.906186519994,
+        -36.0914796075511
+       ],
+       [
+        146.904105405481,
+        -36.09217937297
+       ],
+       [
+        146.903616553079,
+        -36.0927662681947
+       ],
+       [
+        146.902610913851,
+        -36.0948203669679
+       ],
+       [
+        146.902275700776,
+        -36.0947526502817
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 182,
+     "globalid": "870cd384-64e6-4ae3-8244-613e4f76dac5",
+     "RW_location": "Lincoln Causeway",
+     "RW_description": "Maintenance activities including (but not limited to) asphalt patching, linemarking, vegetation management, drainage works, barrier maintenance. ",
+     "RW_traffic_impact": "Application_includes_speed_reduction",
+     "application_ID": "APP-2608261252-85",
+     "RW_start": 1788184800000,
+     "RW_end": 1819634400000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 121,
+      "globalid": "7f7164a2-4e98-496e-9660-c66a3d307ad2",
+      "CL_street": null,
+      "CL_reason": null,
+      "CL_description": null,
+      "CL_lane_impact": null,
+      "CL_start": 1788184800000,
+      "CL_ends": 1819634400000,
+      "CL_access": null,
+      "CL_url": null,
+      "parentglobalid": "870cd384-64e6-4ae3-8244-613e4f76dac5",
+      "Shape__Length": 0.0006093187936435482,
+      "CL_ID": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.902910700192,
+        -36.0923028839418
+       ],
+       [
+        146.903474116283,
+        -36.092527093464
+       ],
+       [
+        146.903476917735,
+        -36.0925262357669
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 103,
+      "globalid": "8ea01b84-de1f-4133-8fcf-6d2a575ad4aa",
+      "DR_street": "LINCOLN CAUSEWAY",
+      "DR_lane_impact": "All lanes",
+      "DR_reason": "Construction",
+      "DR_description": "Maintenance activities including (but not  limited to) asphalt patching, linemarking,  vegetation management, drainage works,  barrier maintenance. To be completed in 4x stages",
+      "DR_starttime": 1788184800000,
+      "DR_endtime": 1819634400000,
+      "DR_url": null,
+      "parentglobalid": "870cd384-64e6-4ae3-8244-613e4f76dac5",
+      "Shape__Length": 0.013767572664159752,
+      "DR_id": "DIS-2608261252-80"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.90607037479,
+        -36.0912935316106
+       ],
+       [
+        146.906152428943,
+        -36.0915477052372
+       ],
+       [
+        146.904989995119,
+        -36.0917466231542
+       ],
+       [
+        146.904005345292,
+        -36.092221813918
+       ],
+       [
+        146.901953991487,
+        -36.0958685311254
+       ],
+       [
+        146.901598423494,
+        -36.09568067407
+       ],
+       [
+        146.903471993303,
+        -36.0923875774621
+       ],
+       [
+        146.904005345292,
+        -36.0919123877004
+       ],
+       [
+        146.904907940967,
+        -36.091536654227
+       ],
+       [
+        146.906043023406,
+        -36.0912935316106
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "detour",
+     "properties": {
+      "objectid": 35,
+      "globalid": "d03c0d4e-675d-4842-84a3-e0c419de4583",
+      "DT_street": "Lemke Road",
+      "DT_description": null,
+      "DT_start": 1788184800000,
+      "DT_ends": 1819634400000,
+      "DT_url": null,
+      "parentglobalid": "870cd384-64e6-4ae3-8244-613e4f76dac5",
+      "Shape__Length": 0.0042258791346385495,
+      "DT_id": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.902907675474,
+        -36.0919127770913
+       ],
+       [
+        146.902875438852,
+        -36.0925509883584
+       ],
+       [
+        146.902624224249,
+        -36.093321050214
+       ],
+       [
+        146.90238298476,
+        -36.0936804419557
+       ],
+       [
+        146.901911282584,
+        -36.0948235377753
+       ],
+       [
+        146.901392201797,
+        -36.09577980687
+       ],
+       [
+        146.901402376207,
+        -36.0957962493912
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 102,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.916728882947,
+        -36.1476777126875
+       ],
+       [
+        146.917831270853,
+        -36.1482884890168
+       ],
+       [
+        146.917785673299,
+        -36.1483318063064
+       ],
+       [
+        146.916669874349,
+        -36.1477340255978
+       ],
+       [
+        146.916728882947,
+        -36.1476777126875
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 102,
+     "globalid": "24c4d424-e957-4b2d-8e41-da0959670cf7",
+     "RW_location": "Rowlands Road Bandiana",
+     "RW_description": "Road maintenance Works",
+     "RW_traffic_impact": "Short_term_mobile_works",
+     "application_ID": "APP-2605191612-79",
+     "RW_start": 1780270200000,
+     "RW_end": 1793390400000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 77,
+      "globalid": "59244367-19dc-4e0e-bed2-01c3dff86b94",
+      "CL_street": "Rowlands Rd",
+      "CL_reason": "Construction",
+      "CL_description": "Road maintenance works",
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1780257600000,
+      "CL_ends": 1793426400000,
+      "CL_access": "No Access",
+      "CL_url": null,
+      "parentglobalid": "24c4d424-e957-4b2d-8e41-da0959670cf7",
+      "Shape__Length": 0.0012576349680705236,
+      "CL_ID": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.91674448289,
+        -36.1477067973168
+       ],
+       [
+        146.917838513129,
+        -36.1483270743104
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "detour",
+     "properties": {
+      "objectid": 28,
+      "globalid": "6ab46994-05a3-4901-b0b9-0da42b99874c",
+      "DT_street": "Anderson Road",
+      "DT_description": "Detour for Rowlands Road",
+      "DT_start": 1780261200000,
+      "DT_ends": 1793426400000,
+      "DT_url": null,
+      "parentglobalid": "24c4d424-e957-4b2d-8e41-da0959670cf7",
+      "Shape__Length": 0.0033548594572433694,
+      "DT_id": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.916682410444,
+        -36.1476566736518
+       ],
+       [
+        146.917318655095,
+        -36.1468922847383
+       ],
+       [
+        146.918606661987,
+        -36.1474373825301
+       ],
+       [
+        146.917962658541,
+        -36.1481516428354
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 210,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.875098722496,
+        -36.1321333270299
+       ],
+       [
+        146.875122010421,
+        -36.1321019789319
+       ],
+       [
+        146.876636698071,
+        -36.1323036148706
+       ],
+       [
+        146.876951199182,
+        -36.1315984321303
+       ],
+       [
+        146.8773804849,
+        -36.1316335683995
+       ],
+       [
+        146.877555494633,
+        -36.131246999347
+       ],
+       [
+        146.877917195165,
+        -36.131291241516
+       ],
+       [
+        146.877840492808,
+        -36.1318277684161
+       ],
+       [
+        146.877271034315,
+        -36.13211674564
+       ],
+       [
+        146.876891906228,
+        -36.1325157732524
+       ],
+       [
+        146.876666788418,
+        -36.1326913213692
+       ],
+       [
+        146.87644943295,
+        -36.1325596597743
+       ],
+       [
+        146.875021095479,
+        -36.1324342687139
+       ],
+       [
+        146.875098722496,
+        -36.1321333270299
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 210,
+     "globalid": "0e7efef9-1d26-475d-8b3f-fce99ccac3ac",
+     "RW_location": "23 Carkeek Street, Wodonga",
+     "RW_description": "Site establishment, development and large deliveries/pours. ",
+     "RW_traffic_impact": "Long_term_works,Application_includes_speed_reduction",
+     "application_ID": "APP-2609230952-54",
+     "RW_start": 1790107200000,
+     "RW_end": 1811750400000
+    }
+   },
+   "children": [
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 129,
+      "globalid": "b49a0c29-5ba7-413b-9928-ebf1935cdc4e",
+      "DR_street": null,
+      "DR_lane_impact": "Some lanes",
+      "DR_reason": "Construction",
+      "DR_description": null,
+      "DR_starttime": 1790204400000,
+      "DR_endtime": 1811736000000,
+      "DR_url": null,
+      "parentglobalid": "0e7efef9-1d26-475d-8b3f-fce99ccac3ac",
+      "Shape__Length": 0.007922437030350934,
+      "DR_id": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.875084006122,
+        -36.1315463783696
+       ],
+       [
+        146.874977444492,
+        -36.1320369538186
+       ],
+       [
+        146.876645134007,
+        -36.1322650273252
+       ],
+       [
+        146.876991459306,
+        -36.1324715838912
+       ],
+       [
+        146.877300488034,
+        -36.1321316259206
+       ],
+       [
+        146.877534307931,
+        -36.1308283922429
+       ],
+       [
+        146.877468926451,
+        -36.1311902733725
+       ],
+       [
+        146.877963875387,
+        -36.1312451769126
+       ],
+       [
+        146.878115406025,
+        -36.1313133415253
+       ],
+       [
+        146.878263100445,
+        -36.1311692662515
+       ],
+       [
+        146.878114979438,
+        -36.1313134684354
+       ],
+       [
+        146.878251919555,
+        -36.1314238860588
+       ],
+       [
+        146.878115083889,
+        -36.1313134732888
+       ],
+       [
+        146.877963594989,
+        -36.1312449284414
+       ],
+       [
+        146.877468852561,
+        -36.1311901931465
+       ],
+       [
+        146.877396152779,
+        -36.1315923066209
+       ],
+       [
+        146.876721873407,
+        -36.131495740412
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 215,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.887035581115,
+        -36.1196924555018
+       ],
+       [
+        146.888013523543,
+        -36.1201664357728
+       ],
+       [
+        146.88787847435,
+        -36.120388377932
+       ],
+       [
+        146.886728227781,
+        -36.1201100097001
+       ],
+       [
+        146.887035581115,
+        -36.1196924555018
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 215,
+     "globalid": "28654f18-c0f8-4d74-8a34-94469347b6b3",
+     "RW_location": "Junction Square, Wodonga",
+     "RW_description": "Events in the square",
+     "RW_traffic_impact": "Social_event",
+     "application_ID": "APP-2609291413-98",
+     "RW_start": 1796351400000,
+     "RW_end": 1796378400000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 143,
+      "globalid": "a801d3ce-cacb-4368-89c3-e70453095e82",
+      "CL_street": "CHURCH STREET",
+      "CL_reason": "Event",
+      "CL_description": null,
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1796351400000,
+      "CL_ends": 1796378400000,
+      "CL_access": "No Access",
+      "CL_url": null,
+      "parentglobalid": "28654f18-c0f8-4d74-8a34-94469347b6b3",
+      "Shape__Length": 0.0011401026589211538,
+      "CL_ID": "CL-2609291413-62"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.887229948771,
+        -36.1191840303405
+       ],
+       [
+        146.886554757641,
+        -36.1200930490327
+       ],
+       [
+        146.886562518458,
+        -36.1200930490327
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "detour",
+     "properties": {
+      "objectid": 42,
+      "globalid": "871cdd8f-f1ab-440e-827d-efd0c7c4a6d7",
+      "DT_street": "JACK HORE WAY",
+      "DT_description": null,
+      "DT_start": 1796351400000,
+      "DT_ends": 1796378400000,
+      "DT_url": null,
+      "parentglobalid": "28654f18-c0f8-4d74-8a34-94469347b6b3",
+      "Shape__Length": 0.0014654867411624617,
+      "DT_id": "DT-2609291413-77"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.887239365493,
+        -36.1192056554327
+       ],
+       [
+        146.88857377546,
+        -36.1197874884135
+       ],
+       [
+        146.888581357335,
+        -36.1197936129483
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 218,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.863465064036,
+        -36.1113163821386
+       ],
+       [
+        146.863580591436,
+        -36.1113263819215
+       ],
+       [
+        146.863671363021,
+        -36.1114630458535
+       ],
+       [
+        146.864269630077,
+        -36.1118530367312
+       ],
+       [
+        146.864121094871,
+        -36.1119996995076
+       ],
+       [
+        146.863386670516,
+        -36.1115863765287
+       ],
+       [
+        146.863040088159,
+        -36.1119130351266
+       ],
+       [
+        146.862978198463,
+        -36.1118730361591
+       ],
+       [
+        146.863295898931,
+        -36.1114597126408
+       ],
+       [
+        146.863465064036,
+        -36.1113163821386
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 218,
+     "globalid": "4400fa60-88df-47c5-830a-fe838914c782",
+     "RW_location": "Melbourne Road & Moorefield Park Drive, West Wodonga",
+     "RW_description": "Landscaping works taking place on the roundabout on behalf of Council",
+     "RW_traffic_impact": "Long_term_works,Works_near_a_school_pedestrian_crossing_or_refuge,Application_includes_speed_reduction",
+     "application_ID": "APP-2610121040-60",
+     "RW_start": 1792353600000,
+     "RW_end": 1792735200000
+    }
+   },
+   "children": [
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 133,
+      "globalid": "d5b0b2f2-8ae7-408c-8e31-55ca09100885",
+      "DR_street": "MELBOURNE ROAD",
+      "DR_lane_impact": "Some lanes",
+      "DR_reason": "Construction",
+      "DR_description": "Standard Lane merge with TC controlling access of work vehicles to and from roundabout",
+      "DR_starttime": 1792353600000,
+      "DR_endtime": 1792735200000,
+      "DR_url": null,
+      "parentglobalid": "4400fa60-88df-47c5-830a-fe838914c782",
+      "Shape__Length": 0.003915488171178603,
+      "DR_id": "DIS-2610121040-2"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.862953685955,
+        -36.1109827286969
+       ],
+       [
+        146.86337586952,
+        -36.1113187843613
+       ],
+       [
+        146.863562126891,
+        -36.1113187843613
+       ],
+       [
+        146.863673881267,
+        -36.1114140835599
+       ],
+       [
+        146.863642838372,
+        -36.1115545241224
+       ],
+       [
+        146.86357454386,
+        -36.1115946499239
+       ],
+       [
+        146.864133316211,
+        -36.1119607974181
+       ],
+       [
+        146.86357454386,
+        -36.1116046814189
+       ],
+       [
+        146.8634131209,
+        -36.1115946499239
+       ],
+       [
+        146.86331378373,
+        -36.1115394769654
+       ],
+       [
+        146.862984728851,
+        -36.1118705145176
+       ],
+       [
+        146.863332409419,
+        -36.111544492621
+       ],
+       [
+        146.863319992214,
+        -36.1114491937719
+       ],
+       [
+        146.863326200698,
+        -36.1113689418084
+       ],
+       [
+        146.863382078004,
+        -36.1112937056257
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 173,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.889882135987,
+        -36.1645927953249
+       ],
+       [
+        146.890553194937,
+        -36.1649088229635
+       ],
+       [
+        146.891252214676,
+        -36.16507812296
+       ],
+       [
+        146.893754705345,
+        -36.1655747341737
+       ],
+       [
+        146.897557372729,
+        -36.1663647909838
+       ],
+       [
+        146.897459509965,
+        -36.1666695250538
+       ],
+       [
+        146.89371276416,
+        -36.1658794713153
+       ],
+       [
+        146.892580352182,
+        -36.1656085939146
+       ],
+       [
+        146.890455332173,
+        -36.1651345562109
+       ],
+       [
+        146.889742332039,
+        -36.16480724279
+       ],
+       [
+        146.889882135987,
+        -36.1645927953249
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 173,
+     "globalid": "2f0157c7-8a47-430c-8b98-ec297360b133",
+     "RW_location": "Baranduda Boulavard",
+     "RW_description": "Survey works",
+     "RW_traffic_impact": "Application_includes_speed_reduction",
+     "application_ID": "APP-2608171558-12",
+     "RW_start": 1788127200000,
+     "RW_end": 1793426400000
+    }
+   },
+   "children": [
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 97,
+      "globalid": "cad295fe-f174-4652-8608-4c293f7e8e5d",
+      "DR_street": "BARANDUDA BOULEVARD",
+      "DR_lane_impact": "All lanes",
+      "DR_reason": "Construction",
+      "DR_description": "Survey works",
+      "DR_starttime": 1788127200000,
+      "DR_endtime": 1793426400000,
+      "DR_url": null,
+      "parentglobalid": "2f0157c7-8a47-430c-8b98-ec297360b133",
+      "Shape__Length": 0.014535080683262465,
+      "DR_id": "DIS-2608171603-18"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.887536579329,
+        -36.1632212954318
+       ],
+       [
+        146.888440026941,
+        -36.1637738607023
+       ],
+       [
+        146.889726755358,
+        -36.1646579570333
+       ],
+       [
+        146.89058913717,
+        -36.1650889503793
+       ],
+       [
+        146.892601361397,
+        -36.165542043393
+       ],
+       [
+        146.896762695853,
+        -36.166415068888
+       ],
+       [
+        146.901307311113,
+        -36.1673322877306
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 219,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.886289316695,
+        -36.1263366729825
+       ],
+       [
+        146.877563371234,
+        -36.1250962663954
+       ],
+       [
+        146.87757708265,
+        -36.1250320305756
+       ],
+       [
+        146.886297775825,
+        -36.1262652277509
+       ],
+       [
+        146.886289316695,
+        -36.1263366729825
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 219,
+     "globalid": "72011c3c-7e74-4af3-8e16-75def510ab66",
+     "RW_location": "Woodland Street, Wodonga Vic 3690",
+     "RW_description": "Potholing of Gas Main along Woodland as per Council requirements\n\nTraffic Management consent was previously approved; however a AGIG permit was not obtained in time to complete",
+     "RW_traffic_impact": "Short_term_mobile_works,Application_includes_speed_reduction",
+     "application_ID": "APP-2610131254-48",
+     "RW_start": 1792535400000,
+     "RW_end": 1792596600000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 147,
+      "globalid": "f3eef96f-33b4-4903-8735-c2d6419cc4b2",
+      "CL_street": "WOODLAND STREET",
+      "CL_reason": "Construction",
+      "CL_description": "Single Lane Closure with Speed Reduction",
+      "CL_lane_impact": "Alternating one way",
+      "CL_start": 1792535400000,
+      "CL_ends": 1792596600000,
+      "CL_access": "Local Access",
+      "CL_url": null,
+      "parentglobalid": "72011c3c-7e74-4af3-8e16-75def510ab66",
+      "Shape__Length": 0.008828084753966702,
+      "CL_ID": "CL-2610131254-9"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.886269266392,
+        -36.1263216861442
+       ],
+       [
+        146.877606757837,
+        -36.125102866287
+       ],
+       [
+        146.877606757837,
+        -36.1250226141964
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 214,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.92254033823,
+        -36.1697902143304
+       ],
+       [
+        146.924497593502,
+        -36.1693387740016
+       ],
+       [
+        146.924660698108,
+        -36.1696961644763
+       ],
+       [
+        146.92265684152,
+        -36.1700911731049
+       ],
+       [
+        146.92254033823,
+        -36.1697902143304
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 214,
+     "globalid": "7f59706f-52eb-4ea0-8b7b-7f2fa8723aaa",
+     "RW_location": "Baranduda Bouldvard, Baranduda",
+     "RW_description": "Sewer upgrade works",
+     "RW_traffic_impact": "Long_term_works,Application_includes_speed_reduction",
+     "application_ID": "APP-2609281641-52",
+     "RW_start": 1790539200000,
+     "RW_end": 1822118400000
+    }
+   },
+   "children": [
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 132,
+      "globalid": "9442faba-511b-43ca-8142-d409ac7be249",
+      "DR_street": "BARANDUDA BOULEVARD",
+      "DR_lane_impact": "All lanes",
+      "DR_reason": "Construction",
+      "DR_description": "Sewer upgrade works - speed reduction & shuttleflow",
+      "DR_starttime": 1790539200000,
+      "DR_endtime": 1822118400000,
+      "DR_url": null,
+      "parentglobalid": "7f59706f-52eb-4ea0-8b7b-7f2fa8723aaa",
+      "Shape__Length": 0.010786784418766973,
+      "DR_id": "DIS-2609281641-38"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.917835158693,
+        -36.1706362895802
+       ],
+       [
+        146.919893383483,
+        -36.1705108911035
+       ],
+       [
+        146.92599038899,
+        -36.169194194984
+       ],
+       [
+        146.92847579251,
+        -36.1691001444147
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 206,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.895094002377,
+        -36.1255074825572
+       ],
+       [
+        146.895132289889,
+        -36.1255564483934
+       ],
+       [
+        146.89507395669,
+        -36.1258327845016
+       ],
+       [
+        146.895017463983,
+        -36.1259196295465
+       ],
+       [
+        146.894935458432,
+        -36.1260373854316
+       ],
+       [
+        146.894899011551,
+        -36.1260476890744
+       ],
+       [
+        146.894866209303,
+        -36.1260329696004
+       ],
+       [
+        146.89501017451,
+        -36.1258622235221
+       ],
+       [
+        146.895094002377,
+        -36.1255074825572
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 206,
+     "globalid": "62fa7cfd-7e1a-4411-8995-7668265dac42",
+     "RW_location": "Iona Court Wodonga",
+     "RW_description": "Footpath Replacement works",
+     "RW_traffic_impact": "Pedestrian_affected,Long_term_works",
+     "application_ID": "APP-2609161435-63",
+     "RW_start": 1789938000000,
+     "RW_end": 1793430000000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 135,
+      "globalid": "e089f6db-58fc-43cb-8706-494858112269",
+      "CL_street": "IONA COURT",
+      "CL_reason": "Construction",
+      "CL_description": "Road Closure with resident's access maintained",
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1789938000000,
+      "CL_ends": 1793430000000,
+      "CL_access": "Local Access",
+      "CL_url": null,
+      "parentglobalid": "62fa7cfd-7e1a-4411-8995-7668265dac42",
+      "Shape__Length": 0.0005642712406603901,
+      "CL_ID": "CL-2609161435-2"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.89510395609,
+        -36.1255207161241
+       ],
+       [
+        146.895004601728,
+        -36.1259119403595
+       ],
+       [
+        146.894892828011,
+        -36.1260273009246
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 201,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.893337330297,
+        -36.1656692969481
+       ],
+       [
+        146.898036560491,
+        -36.1666913520136
+       ],
+       [
+        146.897972187475,
+        -36.1668126118997
+       ],
+       [
+        146.893251499608,
+        -36.1658078814668
+       ],
+       [
+        146.893337330297,
+        -36.1656692969481
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 201,
+     "globalid": "c400edb2-6337-4a1a-8679-443a18086901",
+     "RW_location": "Baranduda Road, Wodonga",
+     "RW_description": "Pavement testing",
+     "RW_traffic_impact": "Long_term_works,Application_includes_speed_reduction",
+     "application_ID": "APP-2609111537-78",
+     "RW_start": 1791145800000,
+     "RW_end": 1793341800000
+    }
+   },
+   "children": [
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 128,
+      "globalid": "3ac8c8b9-95ef-4bf4-9c88-8c59612a0770",
+      "DR_street": null,
+      "DR_lane_impact": null,
+      "DR_reason": null,
+      "DR_description": null,
+      "DR_starttime": 1791163563000,
+      "DR_endtime": 1793323573000,
+      "DR_url": null,
+      "parentglobalid": "c400edb2-6337-4a1a-8679-443a18086901",
+      "Shape__Length": 0.009651268930754209,
+      "DR_id": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.891380516807,
+        -36.1652914280603
+       ],
+       [
+        146.892627098555,
+        -36.1655270369124
+       ],
+       [
+        146.892731327902,
+        -36.1657424501068
+       ],
+       [
+        146.892914771373,
+        -36.1658636197262
+       ],
+       [
+        146.892668790405,
+        -36.1666007310159
+       ],
+       [
+        146.892914879462,
+        -36.1658627595011
+       ],
+       [
+        146.892921422308,
+        -36.1658455926372
+       ],
+       [
+        146.893107453457,
+        -36.1658359889867
+       ],
+       [
+        146.89327873937,
+        -36.1657256298723
+       ],
+       [
+        146.893309199745,
+        -36.1656446283196
+       ],
+       [
+        146.899048165922,
+        -36.1668946370553
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "detour",
+     "properties": {
+      "objectid": 40,
+      "globalid": "d625fa10-774e-425a-9ebc-e09fe874a0aa",
+      "DT_street": "Baranduda Boulevard",
+      "DT_description": "Pavement testings",
+      "DT_start": 1791145800000,
+      "DT_ends": 1793322000000,
+      "DT_url": null,
+      "parentglobalid": "c400edb2-6337-4a1a-8679-443a18086901",
+      "Shape__Length": 0.009940065332624268,
+      "DT_id": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.891129986838,
+        -36.1652266168047
+       ],
+       [
+        146.892685087049,
+        -36.1655396400829
+       ],
+       [
+        146.892739286511,
+        -36.1657516874272
+       ],
+       [
+        146.892910222372,
+        -36.1658661254113
+       ],
+       [
+        146.892683176993,
+        -36.1666253354849
+       ],
+       [
+        146.892917580223,
+        -36.1658445894766
+       ],
+       [
+        146.893095199269,
+        -36.1658456399835
+       ],
+       [
+        146.893251998477,
+        -36.1657531954381
+       ],
+       [
+        146.893300144282,
+        -36.1656665285695
+       ],
+       [
+        146.893442647753,
+        -36.1656980005423
+       ],
+       [
+        146.899035915829,
+        -36.1668803638993
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 146,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.926720253039,
+        -36.146930451619
+       ],
+       [
+        146.92987769921,
+        -36.1477664013637
+       ],
+       [
+        146.92990708038,
+        -36.1480473836271
+       ],
+       [
+        146.928454982508,
+        -36.1479198768098
+       ],
+       [
+        146.928676346206,
+        -36.1483505399811
+       ],
+       [
+        146.92833554982,
+        -36.1485456889213
+       ],
+       [
+        146.92786828571,
+        -36.1479822189633
+       ],
+       [
+        146.927177659529,
+        -36.1475044789793
+       ],
+       [
+        146.926554440824,
+        -36.1470431055242
+       ],
+       [
+        146.926720253039,
+        -36.146930451619
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 146,
+     "globalid": "a00477db-0357-491a-8004-5c98fb83a7a1",
+     "RW_location": "Murray Valley Highway and Kiewa Valley Highway, Bandiana",
+     "RW_description": "Survey of road reserve including pavement \nand line marking (Two days work)",
+     "RW_traffic_impact": "Application_includes_speed_reduction",
+     "application_ID": "APP-2606291217-45",
+     "RW_start": 1782856800000,
+     "RW_end": 1798696800000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 98,
+      "globalid": "80d18f98-c44f-481f-8a35-9043331ea8be",
+      "CL_street": "ANZAC PARADE",
+      "CL_reason": "Construction",
+      "CL_description": "Survey of road reserve including pavement  and line marking",
+      "CL_lane_impact": "Alternating one way",
+      "CL_start": 1782856800000,
+      "CL_ends": 1798696800000,
+      "CL_access": "Critical Services",
+      "CL_url": null,
+      "parentglobalid": "a00477db-0357-491a-8004-5c98fb83a7a1",
+      "Shape__Length": 0.0036375267270227765,
+      "CL_ID": "CL-2606291217-37"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.926331434984,
+        -36.1467005369987
+       ],
+       [
+        146.927730054264,
+        -36.1473834435958
+       ],
+       [
+        146.929195938974,
+        -36.1477164330825
+       ],
+       [
+        146.929767516213,
+        -36.1478014099108
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 80,
+      "globalid": "7bc53ff4-ce9c-451c-b467-97e39ab44862",
+      "DR_street": "Murray Valley Highway",
+      "DR_lane_impact": "Some lanes",
+      "DR_reason": "Construction",
+      "DR_description": "Survey",
+      "DR_starttime": 1782849600000,
+      "DR_endtime": 1798696800000,
+      "DR_url": null,
+      "parentglobalid": "a00477db-0357-491a-8004-5c98fb83a7a1",
+      "Shape__Length": 0.003995217917610259,
+      "DR_id": null
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.92624313197,
+        -36.1468235557578
+       ],
+       [
+        146.927245840347,
+        -36.1474144121508
+       ],
+       [
+        146.928004646685,
+        -36.1476770135635
+       ],
+       [
+        146.929233190282,
+        -36.147888552951
+       ],
+       [
+        146.930010063438,
+        -36.1479760863237
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "detour",
+     "properties": {
+      "objectid": 29,
+      "globalid": "e3ec77a3-7de4-46e6-8148-a8b02bc04030",
+      "DT_street": "HIGH COUNTRY RAIL TRAIL",
+      "DT_description": "Survey of road reserve including pavement  and line marking",
+      "DT_start": 1782856800000,
+      "DT_ends": 1798696800000,
+      "DT_url": null,
+      "parentglobalid": "a00477db-0357-491a-8004-5c98fb83a7a1",
+      "Shape__Length": 0.042481335482217296,
+      "DT_id": "DT-2606291217-34"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.928448936889,
+        -36.1476946621368
+       ],
+       [
+        146.937730192962,
+        -36.14857412659
+       ],
+       [
+        146.943365240298,
+        -36.1449988518913
+       ],
+       [
+        146.95307892183,
+        -36.1552433125642
+       ],
+       [
+        146.948261093299,
+        -36.1597009885886
+       ],
+       [
+        146.943275979421,
+        -36.1626727985336
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 211,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.718549845031,
+        -36.0729036781407
+       ],
+       [
+        146.718552680575,
+        -36.0727181598873
+       ],
+       [
+        146.71921778995,
+        -36.0728170175103
+       ],
+       [
+        146.720656663001,
+        -36.0730607342219
+       ],
+       [
+        146.720530592995,
+        -36.0732205284498
+       ],
+       [
+        146.718549845031,
+        -36.0729036781407
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 211,
+     "globalid": "7f2c0b06-763d-41ff-886a-535f02e584c3",
+     "RW_location": "Full Road Closure of Baxter Whelans Road",
+     "RW_description": "Full Road closure for the installation of pipes etc",
+     "RW_traffic_impact": "Long_term_works",
+     "application_ID": "APP-2609241106-83",
+     "RW_start": 1791144000000,
+     "RW_end": 1792396800000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 141,
+      "globalid": "da57dd20-b9f1-4490-8319-6d7591809c33",
+      "CL_street": "BAXTER-WHELANS ROAD",
+      "CL_reason": "Construction",
+      "CL_description": "Full Road Closure",
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1791144000000,
+      "CL_ends": 1792396800000,
+      "CL_access": "No Access",
+      "CL_url": null,
+      "parentglobalid": "7f2c0b06-763d-41ff-886a-535f02e584c3",
+      "Shape__Length": 0.011754700783516219,
+      "CL_ID": "CL-2609241106-64"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.707949807534,
+        -36.0718403016464
+       ],
+       [
+        146.719657114228,
+        -36.0728947970153
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 204,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.87710658266,
+        -36.1250228876432
+       ],
+       [
+        146.876875143394,
+        -36.1249919761553
+       ],
+       [
+        146.87665281598,
+        -36.1249625366104
+       ],
+       [
+        146.876661927762,
+        -36.1248079788182
+       ],
+       [
+        146.876720243108,
+        -36.1248138667621
+       ],
+       [
+        146.876722065506,
+        -36.1249183772722
+       ],
+       [
+        146.877115694441,
+        -36.1249757844294
+       ],
+       [
+        146.87710658266,
+        -36.1250228876432
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 204,
+     "globalid": "07b93e41-496f-43cc-8250-3118af06661b",
+     "RW_location": "Sewer Works on behalf of Council",
+     "RW_description": "New sewer works on behalf of council - requiring Road Closure",
+     "RW_traffic_impact": "Long_term_works",
+     "application_ID": "APP-2609141227-33",
+     "RW_start": 1790024400000,
+     "RW_end": 1792134000000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 133,
+      "globalid": "9599d8f1-3b24-447d-8cb6-302aa354076d",
+      "CL_street": "WOODLAND STREET",
+      "CL_reason": "Construction",
+      "CL_description": "Full Road Closure",
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1790024400000,
+      "CL_ends": 1792134000000,
+      "CL_access": "No Access",
+      "CL_url": null,
+      "parentglobalid": "07b93e41-496f-43cc-8250-3118af06661b",
+      "Shape__Length": 0.0011235723285627774,
+      "CL_ID": "CL-2609141227-70"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.876716694043,
+        -36.1247879838625
+       ],
+       [
+        146.87670572489,
+        -36.1249231007586
+       ],
+       [
+        146.877075932506,
+        -36.1249762614879
+       ],
+       [
+        146.877070447825,
+        -36.1250028418391
+       ],
+       [
+        146.876664590722,
+        -36.1249496811277
+       ],
+       [
+        146.876675559875,
+        -36.1247724786093
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 126,
+      "globalid": "2054b7e7-5eb4-41b3-8925-e098f2975130",
+      "DR_street": "NORAH AVENUE",
+      "DR_lane_impact": "Some lanes",
+      "DR_reason": "Construction",
+      "DR_description": "Advance warning VMS Board Placement",
+      "DR_starttime": 1790024400000,
+      "DR_endtime": 1792134000000,
+      "DR_url": null,
+      "parentglobalid": "07b93e41-496f-43cc-8250-3118af06661b",
+      "Shape__Length": 0.00759662168226345,
+      "DR_id": "DIS-2609141227-71"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.876874811582,
+        -36.1230250649921
+       ],
+       [
+        146.876678580664,
+        -36.1248893783123
+       ],
+       [
+        146.878519414972,
+        -36.1251610962505
+       ],
+       [
+        146.878482037484,
+        -36.1251912872024
+       ],
+       [
+        146.876631858983,
+        -36.1249422122216
+       ],
+       [
+        146.876865467388,
+        -36.123009969245
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "detour",
+     "properties": {
+      "objectid": 38,
+      "globalid": "b1afd15b-36f1-46eb-81ab-a496e9697b8e",
+      "DT_street": "BEARDMORE STREET",
+      "DT_description": "Woodland Street Detour",
+      "DT_start": 1790024400000,
+      "DT_ends": 1792134000000,
+      "DT_url": null,
+      "parentglobalid": "07b93e41-496f-43cc-8250-3118af06661b",
+      "Shape__Length": 0.002342767211911036,
+      "DT_id": "DT-2609141227-76"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.878003099352,
+        -36.1251268858066
+       ],
+       [
+        146.877599469932,
+        -36.1250666966691
+       ],
+       [
+        146.877984470586,
+        -36.1231707164572
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 217,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.898165145944,
+        -36.1674666770252
+       ],
+       [
+        146.904078852942,
+        -36.1735384767627
+       ],
+       [
+        146.903603519519,
+        -36.1737528997517
+       ],
+       [
+        146.898039322391,
+        -36.1678391243804
+       ],
+       [
+        146.898165145944,
+        -36.1674666770252
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 217,
+     "globalid": "265b375c-088a-46c6-84e7-5a1d61625d78",
+     "RW_location": "Frederic Road, Levena",
+     "RW_description": "24/7 Hard road closure",
+     "RW_traffic_impact": "Long_term_works",
+     "application_ID": "APP-2610081250-8",
+     "RW_start": 1791378000000,
+     "RW_end": 1795957200000
+    }
+   },
+   "children": [
+    {
+     "layer": "closure",
+     "properties": {
+      "objectid": 146,
+      "globalid": "1c2091b0-46d5-4ddb-830e-a73f4eaef3c3",
+      "CL_street": "FREDERIC ROAD",
+      "CL_reason": "Construction",
+      "CL_description": null,
+      "CL_lane_impact": "All lanes",
+      "CL_start": 1791378000000,
+      "CL_ends": 1795957200000,
+      "CL_access": "No Access",
+      "CL_url": null,
+      "parentglobalid": "265b375c-088a-46c6-84e7-5a1d61625d78",
+      "Shape__Length": 0.016010558435992632,
+      "CL_ID": "CL-2610081250-78"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.898162879164,
+        -36.1674624133078
+       ],
+       [
+        146.898078996795,
+        -36.1678800056995
+       ],
+       [
+        146.90319582129,
+        -36.1732972188501
+       ],
+       [
+        146.903503389976,
+        -36.1731166511114
+       ],
+       [
+        146.898176859559,
+        -36.167451126996
+       ]
+      ]
+     }
+    },
+    {
+     "layer": "detour",
+     "properties": {
+      "objectid": 44,
+      "globalid": "2b82e0b7-be79-417d-8f12-88abc3dea60f",
+      "DT_street": "UNNAMED",
+      "DT_description": null,
+      "DT_start": 1791378000000,
+      "DT_ends": 1795957200000,
+      "DT_url": null,
+      "parentglobalid": "265b375c-088a-46c6-84e7-5a1d61625d78",
+      "Shape__Length": 0.07277075519895987,
+      "DT_id": "DT-2610081250-88"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.897939944605,
+        -36.1666698850124
+       ],
+       [
+        146.9111436508,
+        -36.1693346900687
+       ],
+       [
+        146.917434828458,
+        -36.1705886846266
+       ],
+       [
+        146.920425079567,
+        -36.170400586722
+       ],
+       [
+        146.926560919505,
+        -36.169052538528
+       ],
+       [
+        146.928386137714,
+        -36.1689898380477
+       ],
+       [
+        146.930560865794,
+        -36.1693973902731
+       ],
+       [
+        146.935842348272,
+        -36.172908521662
+       ],
+       [
+        146.929512336184,
+        -36.1771091328733
+       ],
+       [
+        146.917240656308,
+        -36.1849454920864
+       ],
+       [
+        146.91157082953,
+        -36.1789899305737
+       ],
+       [
+        146.908774750571,
+        -36.1784570424759
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "works": {
+    "type": "Feature",
+    "id": 187,
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        146.855191898985,
+        -36.1260217658678
+       ],
+       [
+        146.855483755333,
+        -36.1262324258989
+       ],
+       [
+        146.855924644881,
+        -36.1258813257748
+       ],
+       [
+        146.855974322615,
+        -36.1259716087724
+       ],
+       [
+        146.855545852275,
+        -36.1263026460255
+       ],
+       [
+        146.855856337885,
+        -36.1265835251782
+       ],
+       [
+        146.856030210402,
+        -36.1270048416599
+       ],
+       [
+        146.856104726553,
+        -36.1280932318624
+       ],
+       [
+        146.856195513506,
+        -36.1288229984032
+       ],
+       [
+        146.856185452757,
+        -36.128986001559
+       ],
+       [
+        146.856079888135,
+        -36.128965939047
+       ],
+       [
+        146.856030210402,
+        -36.1281333566019
+       ],
+       [
+        146.856024000348,
+        -36.1280832001302
+       ],
+       [
+        146.855974322615,
+        -36.127536499258
+       ],
+       [
+        146.855906015619,
+        -36.1269095439095
+       ],
+       [
+        146.855558272382,
+        -36.1263879125639
+       ],
+       [
+        146.855098753572,
+        -36.126086970189
+       ],
+       [
+        146.855191898985,
+        -36.1260217658678
+       ]
+      ]
+     ]
+    },
+    "properties": {
+     "objectid": 187,
+     "globalid": "69433b82-c951-4634-8f26-3c2fbbab62dd",
+     "RW_location": "Marshall Street - Birallee Park",
+     "RW_description": "Bi-Annual event raising funds for the local community.\n",
+     "RW_traffic_impact": "Social_event",
+     "application_ID": "APP-2609010534-96",
+     "RW_start": 1792119600000,
+     "RW_end": 1792357200000
+    }
+   },
+   "children": [
+    {
+     "layer": "disruption",
+     "properties": {
+      "objectid": 111,
+      "globalid": "13cfe54b-c9ff-41a7-8c82-74a7e5dda1f0",
+      "DR_street": "MARSHALL STREET",
+      "DR_lane_impact": "All lanes",
+      "DR_reason": "Event",
+      "DR_description": "Speed Reduction due to increased traffic flow and pedestrian movements",
+      "DR_starttime": 1792119600000,
+      "DR_endtime": 1792357200000,
+      "DR_url": null,
+      "parentglobalid": "69433b82-c951-4634-8f26-3c2fbbab62dd",
+      "Shape__Length": 0.0039161494374642045,
+      "DR_id": "DIS-2609010534-3"
+     },
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        146.855319087866,
+        -36.1260335669684
+       ],
+       [
+        146.855505372532,
+        -36.1261740021524
+       ],
+       [
+        146.855791008925,
+        -36.1259583338128
+       ],
+       [
+        146.855486744113,
+        -36.1261689865051
+       ],
+       [
+        146.855896570283,
+        -36.126640445235
+       ],
+       [
+        146.856101483369,
+        -36.1271771022092
+       ],
+       [
+        146.856051807505,
+        -36.1277388324887
+       ],
+       [
+        146.856138740444,
+        -36.1289274811836
+       ]
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

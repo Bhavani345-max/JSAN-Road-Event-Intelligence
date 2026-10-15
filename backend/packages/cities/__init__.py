@@ -68,6 +68,10 @@ class City(BaseModel):
     discovery: Discovery = Discovery()
     official_sources: tuple[str, ...] = ()
     gis_sources: tuple[str, ...] = ()
+    # A country spanning several time zones: the zone of each source that
+    # covers one region ("drivebc-events": "America/Vancouver"). Its events'
+    # times are shown there; other events in the city's own `timezone`.
+    source_time_zones: dict[str, str] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def _bbox_is_well_formed(self) -> "City":
@@ -77,10 +81,11 @@ class City(BaseModel):
         lon, lat = self.map.center
         if not self.covers(lat, lon):
             raise ValueError(f"{self.id}: the map centre lies outside the bbox")
-        try:
-            ZoneInfo(self.timezone)
-        except (KeyError, ValueError) as error:
-            raise ValueError(f"{self.id}: unknown timezone {self.timezone!r}") from error
+        for zone in (self.timezone, *self.source_time_zones.values()):
+            try:
+                ZoneInfo(zone)
+            except (KeyError, ValueError) as error:
+                raise ValueError(f"{self.id}: unknown timezone {zone!r}") from error
         return self
 
     @property

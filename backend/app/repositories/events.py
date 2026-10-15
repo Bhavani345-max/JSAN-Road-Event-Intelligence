@@ -16,7 +16,12 @@ from packages.common.time import utc_now
 from packages.cities import default_city
 from packages.event_schema import EventSeverity, EventStatus, ReiEvent
 from services.lifecycle import approval_blockers
-from services.lifecycle.current import EventListView, matches_event_view
+from services.lifecycle.current import (
+    OPERATIONAL_STATUSES,
+    REVIEW_STATUSES,
+    EventListView,
+    matches_event_view,
+)
 
 # Columns that are copied one-to-one between the canonical event and its row.
 _CANONICAL_FIELDS = tuple(ReiEvent.model_fields)
@@ -123,6 +128,7 @@ class EventRepository:
         source_id: str | None = None,
         city: str | None = None,
         include_merged: bool = False,
+        include_hidden: bool = False,
         view: EventListView = EventListView.CURRENT_UPCOMING,
         q: str | None = None,
         limit: int = 200,
@@ -148,28 +154,60 @@ class EventRepository:
             filters.append(Event.merged_into.is_(None))
 
         # Most recently published first.
+        order = (func.coalesce(SourceArtifact.published_at, Event.created_at).desc(), Event.event_id)
+        terms = (q or "").lower().split()
+        now = now or utc_now()
+        if not terms and not include_hidden and view in _CONSOLE_VIEWS:
+            return self._list_shown(filters + _shown_filters(view, now), order, limit, offset)
+
         query = (
             select(Event)
             .outerjoin(Event.artifact)
             .options(contains_eager(Event.artifact))
             .where(*filters)
-            .order_by(
-                func.coalesce(SourceArtifact.published_at, Event.created_at).desc(),
-                Event.event_id,
-            )
+            .order_by(*order)
         )
         # Apply view and text eligibility before pagination. At current REI
         # volumes this keeps totals and pages correct without dialect-specific
         # JSON timestamp/status expressions.
-        terms = (q or "").lower().split()
-        now = now or utc_now()
         matched = [
             row
             for row in self.session.scalars(query).unique()
             if (not terms or _matches(row, terms))
-            and matches_event_view(to_rei_event(row), view, now=now)
+            and matches_event_view(to_rei_event(row), view, now=now, include_hidden=include_hidden)
         ]
         return matched[offset : offset + limit], len(matched)
+
+    def _list_shown(self, filters, order, limit: int, offset: int) -> "tuple[list[Event], int]":
+        """A console view without a text search: filtered by the database, one page loaded.
+
+        The database applies the view's column rules (`_shown_filters`); the
+        source's own "it is over" (inside the detection record) is read here.
+        Only the page's events are loaded in full.
+        """
+        ids = [
+            event_id
+            for event_id, detection in self.session.execute(
+                select(Event.event_id, Event.detection)
+                .outerjoin(Event.artifact)
+                .where(*filters)
+                .order_by(*order)
+            )
+            if not (detection or {}).get("source_reports_ended")
+        ]
+        page = ids[offset : offset + limit]
+        if not page:
+            return [], len(ids)
+        rows = {
+            row.event_id: row
+            for row in self.session.scalars(
+                select(Event)
+                .outerjoin(Event.artifact)
+                .options(contains_eager(Event.artifact))
+                .where(Event.event_id.in_(page))
+            ).unique()
+        }
+        return [rows[event_id] for event_id in page], len(ids)
 
     def get(self, event_id: str) -> Event | None:
         return self.session.get(Event, event_id)
@@ -216,6 +254,35 @@ def searchable_text(row: Event) -> str:
     if row.detection:
         parts += row.detection.get("road_mentions") or []
     return " ".join(part for part in parts if part).lower()
+
+
+_CONSOLE_VIEWS = frozenset(
+    {
+        EventListView.CURRENT_UPCOMING,
+        EventListView.CURRENT,
+        EventListView.UPCOMING,
+        EventListView.VALIDATION,
+    }
+)
+
+
+def _shown_filters(view: EventListView, now: datetime) -> list:
+    """`matches_event_view` for a console view, as database conditions (all but the
+    source's own "it is over", which lives inside the detection record)."""
+    filters = [
+        Event.geometry.is_not(None),
+        Event.start_time.is_not(None),
+        Event.end_time.is_not(None),
+        Event.end_time >= now,
+    ]
+    if view is EventListView.VALIDATION:
+        return filters + [Event.status.in_([status.value for status in REVIEW_STATUSES])]
+    filters.append(Event.status.in_([status.value for status in OPERATIONAL_STATUSES]))
+    if view is EventListView.CURRENT:
+        filters.append(Event.start_time <= now)
+    elif view is EventListView.UPCOMING:
+        filters.append(Event.start_time > now)
+    return filters
 
 
 def _matches(row: Event, terms: list[str]) -> bool:

@@ -1,0 +1,965 @@
+{
+ "fetched_at": "2026-10-15T08:54:16.104633+00:00",
+ "items": [
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 21647,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      116.410315549036,
+      -32.8307254877164
+     ]
+    },
+    "properties": {
+     "FID": 21647,
+     "Id": 69769,
+     "DateStarte": "01/04/2023 00:00:00",
+     "EstimatedC": "30/04/2038 00:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "LOCAL ROAD",
+     "Suburb": "Boddington",
+     "Region": "South West",
+     "EntryDate": "03/04/2023 07:08:22",
+     "GlobalID": "ad4ef33e-90a6-4c11-bd8d-003cf1aec4b8",
+     "Descriptio": "Ashcroft Rd, 3 kms south of Morts Rd intersection, Boddington - Long term Temporary Closure - Mining",
+     "TrafficImp": "Long term Road Closure - April 2023 to April 2038",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": "Ashcroft Rd"
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 28954,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.754399428886,
+      -32.0403629645119
+     ]
+    },
+    "properties": {
+     "FID": 28954,
+     "Id": 79157,
+     "DateStarte": "07/09/2024 07:00:00",
+     "EstimatedC": "01/12/2026 14:00:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "LOCAL ROAD",
+     "Suburb": "",
+     "Region": "Metro",
+     "EntryDate": "28/01/2025 15:29:14",
+     "GlobalID": "c1106f1e-7018-4e0d-b91c-28174373c972",
+     "Descriptio": "Fremantle Traffic Bridge shared path from Podger Lane to Canning Highway - Upgrades",
+     "TrafficImp": "Fremantle Traffic Bridge shared path from Podger Lane to Canning Highway closed 24/7 until late 2026 - click on 'find out more' for detour",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "https://www.mainroads.wa.gov.au/4a9135/globalassets/projects-initiatives/projects/metro/swan-river-crossings/freo-bridge-path-closure-podger-to-canning.jpg",
+     "LocalRoadName": "Fremantle Traffic Bridge shared path"
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 31312,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      117.451413134544,
+      -21.6738014867995
+     ]
+    },
+    "properties": {
+     "FID": 31312,
+     "Id": 83669,
+     "DateStarte": "14/07/2025 06:00:00",
+     "EstimatedC": "31/10/2026 18:00:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "Manuwarra Red Dog Hwy",
+     "Suburb": "Fortescue",
+     "Region": "Pilbara",
+     "EntryDate": "09/06/2026 07:50:11",
+     "GlobalID": "ff0549df-87e0-45a5-9de0-23c8b0c73612",
+     "Descriptio": "Manuwarra Red Dog Hwy, Fortescue - Manuwarra Red Dog Highway Upgrades Stage 4A",
+     "TrafficImp": "Works are off Road. Advanced Warning Signage for Heavy Vehicle Movements and Speed Reduction in Place. ",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "www.mainroads.wa.gov.au/projects-initiatives/all-projects/regional/karratha-tom-price/",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "event",
+   "feature": {
+    "type": "Feature",
+    "id": 12781,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      116.903602600098,
+      -34.994514465332
+     ]
+    },
+    "properties": {
+     "FID": 12781,
+     "Id": 7284,
+     "Road": "South Coast Hwy (H009)",
+     "LocalRoadN": "",
+     "DateTimeSt": "23/10/2026 07:45:00",
+     "DateTimeEn": "25/10/2026 13:00:00",
+     "EventType": "Sports Event",
+     "EventName": "Run Bibbulmun Track Stage Race",
+     "Suburb": "Shire of Denmark",
+     "EntryDate": "07/05/2026 01:47:23",
+     "Region": "Great Southern",
+     "GlobalID": "8aa283f8-6cf5-42d6-ac38-1c6da62a50da",
+     "EventDescr": "Run Bibbulmun Track Stage Race - South Coast Hwy near Valley of the Giants Rd, Shire of Denmark",
+     "TrafficImp": null,
+     "SeeMoreName": null,
+     "SeeMoreUrl": ""
+    }
+   }
+  },
+  {
+   "layer": "event",
+   "feature": {
+    "type": "Feature",
+    "id": 12874,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.851852416992,
+      -31.9483375549316
+     ]
+    },
+    "properties": {
+     "FID": 12874,
+     "Id": 7421,
+     "Road": "LOCAL ROAD",
+     "LocalRoadN": "RAC Arena -",
+     "DateTimeSt": "17/10/2026 17:45:00",
+     "DateTimeEn": "18/10/2026 23:59:00",
+     "EventType": "Public Celebration",
+     "EventName": "Telethon Weekend and Family Festival",
+     "Suburb": "Perth",
+     "EntryDate": "23/09/2026 10:56:24",
+     "Region": "Metro",
+     "GlobalID": "0b859538-ba3a-4105-a9dc-2452f654258c",
+     "EventDescr": "RAC Arena - 700 Wellington St, Perth\r\nRoad closures 11:30pm Sat to midnight Sun \r\nWellington St closed between Elder St & William St\r\nSide roads also closed, follow detours\r\nTow away zones in place, check street signs or take public transport",
+     "TrafficImp": null,
+     "SeeMoreName": null,
+     "SeeMoreUrl": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34994,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.847545324023,
+      -31.9596985589488
+     ]
+    },
+    "properties": {
+     "FID": 34994,
+     "Id": 89224,
+     "DateStarte": "21/06/2026 20:00:00",
+     "EstimatedC": "30/10/2026 05:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Mitchell Fwy",
+     "Suburb": "Perth CBD",
+     "Region": "Metro",
+     "EntryDate": "04/09/2026 10:09:47",
+     "GlobalID": "5a4f64ff-afc9-4003-9c0f-e031e5c18eb8",
+     "Descriptio": "Mitchell Fwy northbound off to Mounts Bay Rd, Perth CBD - Maintenance\r\n8pm to 5am",
+     "TrafficImp": "Lane closures in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 31835,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.972712107627,
+      -32.2070379799683
+     ]
+    },
+    "properties": {
+     "FID": 31835,
+     "Id": 84632,
+     "DateStarte": "15/09/2025 00:00:00",
+     "EstimatedC": "31/12/2028 23:59:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Thomas Rd",
+     "Suburb": "Oakford",
+     "Region": "Metro",
+     "EntryDate": "10/09/2025 11:05:30",
+     "GlobalID": "3176ed99-0565-4b1d-a905-6e41ce47c40e",
+     "Descriptio": "Thomas Rd and Hopkinson Rd, Abernethy Rd, Briggs Rd and Kargotich Rd, Oakford - Maintenance\r\n24/7 works",
+     "TrafficImp": "Traffic management, road closures and detour in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 32551,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.954878098323,
+      -31.8607036675669
+     ]
+    },
+    "properties": {
+     "FID": 32551,
+     "Id": 86049,
+     "DateStarte": "28/11/2025 08:00:00",
+     "EstimatedC": "31/07/2027 23:00:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "Reid Hwy",
+     "Suburb": "",
+     "Region": "Metro",
+     "EntryDate": "03/12/2025 13:08:56",
+     "GlobalID": "74db149a-a34c-4873-914a-b8d38669149f",
+     "Descriptio": "Reid Hwy PSP from West of Altone Rd to Arthur St Bridge - Upgrades",
+     "TrafficImp": "Approximately 3.5 kilometres of PSP closed for major construction works. From November 2025 to July 2027. Click 'Find out more' for a detour map.",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "https://www.mainroads.wa.gov.au/4adbfa/globalassets/projects-initiatives/projects/metro/reid-highway-interchanges/reid-highway-interchanges-psp-closure-detour-map.png",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34400,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      117.282152372051,
+      -33.7920727481131
+     ]
+    },
+    "properties": {
+     "FID": 34400,
+     "Id": 89498,
+     "DateStarte": "08/07/2026 07:00:00",
+     "EstimatedC": "02/11/2026 16:30:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Kojonup Katanning Rd",
+     "Suburb": "Cherry Tree Pool",
+     "Region": "Great Southern",
+     "EntryDate": "10/07/2026 12:43:20",
+     "GlobalID": "08a4c7f8-c7a3-41c3-bde3-19bb36a816d5",
+     "Descriptio": "Bridge 0646 Kojonup Katanning Rd between Carlecatup North Rd and Marron Pool Rd - Cherry Tree Pool - Bridge Works",
+     "TrafficImp": "Exercise extreme caution - speed reduction and single lane closure in place - follow direction of traffic management ",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35063,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      120.071828244308,
+      -21.6851746917598
+     ]
+    },
+    "properties": {
+     "FID": 35063,
+     "Id": 90287,
+     "DateStarte": "15/09/2026 06:00:00",
+     "EstimatedC": "31/12/2026 18:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Marble Bar Rd",
+     "Suburb": "Nullagine",
+     "Region": "Pilbara",
+     "EntryDate": "14/09/2026 09:49:25",
+     "GlobalID": "00a792a4-4633-41d1-8b03-bbd71956821e",
+     "Descriptio": "Marble Bar Rd from Nullagine to Spinaway Creek, Nullagine - Maintenance",
+     "TrafficImp": "Traffic management with speed reductions. Delays expected.",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 32023,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      117.199480023876,
+      -21.5524390023079
+     ]
+    },
+    "properties": {
+     "FID": 32023,
+     "Id": 84954,
+     "DateStarte": "12/10/2025 06:00:00",
+     "EstimatedC": "31/10/2026 18:00:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "Manuwarra Red Dog Hwy",
+     "Suburb": "Millstream",
+     "Region": "Pilbara",
+     "EntryDate": "09/06/2026 07:51:08",
+     "GlobalID": "f29fcd0e-d9b4-4cb0-bd9e-0a59dbf1ff35",
+     "Descriptio": "Manuwarra Red Dog Hwy, between approx 14km North of Roebourne Wittenoom Rd, Karratha to Roebourne Wittenoom Rd, Fortescue - Increased vehicle movements for Manuwarra Red Dog Hwy Stage 4A-1 project",
+     "TrafficImp": "Traffic management, speed adjustment and follow me vehicle in place. Delays expected. For heavy vehicle travel impacts, please visit the Main Roads WA website: Heavy Vehicles > Travel Impacts",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 32993,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.813202387068,
+      -31.887890605776
+     ]
+    },
+    "properties": {
+     "FID": 32993,
+     "Id": 86938,
+     "DateStarte": "03/02/2026 09:00:00",
+     "EstimatedC": "01/12/2026 14:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Karrinyup Rd",
+     "Suburb": "Stirling",
+     "Region": "Metro",
+     "EntryDate": "03/02/2026 14:57:01",
+     "GlobalID": "b72d2d93-b1b9-448a-83e7-16dd73f43575",
+     "Descriptio": "Karrinyup Rd at Jones St, Stirling - Maintenance\r\n9am-2pm",
+     "TrafficImp": "Lane closure and speed reduction in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35319,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.757560416478,
+      -31.8921472758842
+     ]
+    },
+    "properties": {
+     "FID": 35319,
+     "Id": 90738,
+     "DateStarte": "19/10/2026 01:00:00",
+     "EstimatedC": "23/10/2026 06:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "West Coast Hwy",
+     "Suburb": "Scarborough",
+     "Region": "Metro",
+     "EntryDate": "14/10/2026 13:19:12",
+     "GlobalID": "010fcff3-644e-48f2-afb3-8330271755f8",
+     "Descriptio": "West Coast Hwy and Manning St, Scarborough - Maintenance\r\n1am-6am",
+     "TrafficImp": "Various closures, speed reduction and detour in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35297,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      116.000223182165,
+      -32.0699960716674
+     ]
+    },
+    "properties": {
+     "FID": 35297,
+     "Id": 90701,
+     "DateStarte": "13/10/2026 20:00:00",
+     "EstimatedC": "27/11/2026 05:00:00",
+     "WorkStatus": "",
+     "WorkType": "Utility works",
+     "Road": "Albany Hwy",
+     "Suburb": "Gosnells",
+     "Region": "Metro",
+     "EntryDate": "12/10/2026 11:53:12",
+     "GlobalID": "6578d94e-94de-4784-9294-bb5fa58c7624",
+     "Descriptio": "Albany Hwy and Main St, Gosnells - Utility works\r\n8pm-5am",
+     "TrafficImp": "Lane closure and speed reduction in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35243,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      118.717958659245,
+      -21.1728622681715
+     ]
+    },
+    "properties": {
+     "FID": 35243,
+     "Id": 90608,
+     "DateStarte": "18/10/2026 06:00:00",
+     "EstimatedC": "22/10/2026 18:00:00",
+     "WorkStatus": "",
+     "WorkType": "Resurfacing",
+     "Road": "Great Northern Hwy",
+     "Suburb": "Marble Bar",
+     "Region": "Pilbara",
+     "EntryDate": "15/10/2026 08:11:17",
+     "GlobalID": "66b9a57f-41ad-42d0-98c3-a300381c64b0",
+     "Descriptio": "Great Northern Hwy, between approx 27 km north of Hillside - Woodstock Rd to approx 16km south of Wodgina Access Rd, Marble Bar - Annual Pavement Repair Program",
+     "TrafficImp": "Traffic management, speed reduction and single lane closure with shuttle flow in place. Drive to conditions and follow all traffic management signage. Delays expected.",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 33299,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.847135871565,
+      -32.0659080152813
+     ]
+    },
+    "properties": {
+     "FID": 33299,
+     "Id": 87528,
+     "DateStarte": "11/05/2026 07:00:00",
+     "EstimatedC": "12/03/2027 19:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "South St",
+     "Suburb": "Murdoch",
+     "Region": "Metro",
+     "EntryDate": "10/03/2026 12:37:54",
+     "GlobalID": "070b38a1-663b-4ce7-969a-96004e80cf2d",
+     "Descriptio": "South St at Fiona Wood Rd, Murdoch - Maintenance\r\n7am to 7pm",
+     "TrafficImp": "Various closures and detour in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35313,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      117.059482395451,
+      -21.1782530169483
+     ]
+    },
+    "properties": {
+     "FID": 35313,
+     "Id": 90729,
+     "DateStarte": "19/10/2026 18:00:00",
+     "EstimatedC": "20/10/2026 06:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Manuwarra Red Dog Hwy",
+     "Suburb": "Millstream",
+     "Region": "Pilbara",
+     "EntryDate": "14/10/2026 08:40:12",
+     "GlobalID": "0c5b4f6d-6794-4ad5-b2d4-bc62e9976d12",
+     "Descriptio": "Manuwarra Red Dog Hwy RTIO 71.00 Deepdale Line Level Crossing Millstream - Maintenance\r\n",
+     "TrafficImp": "Traffic management with speed reduction. Delays expected.",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35248,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      118.068424057208,
+      -22.6059921675567
+     ]
+    },
+    "properties": {
+     "FID": 35248,
+     "Id": 90614,
+     "DateStarte": "26/10/2026 06:00:00",
+     "EstimatedC": "29/10/2026 18:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Karijini Dr",
+     "Suburb": "Mount Sheila",
+     "Region": "Pilbara",
+     "EntryDate": "05/10/2026 09:47:18",
+     "GlobalID": "f022a449-19f7-4238-a64a-75666a7f1958",
+     "Descriptio": "Karijini Dr RTIO 299.90 Yandi Line Mount Sheila - Maintenance",
+     "TrafficImp": "Traffic management with speed reduction. Delays expected.\r\n",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34805,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      128.497468954883,
+      -15.809213090552
+     ]
+    },
+    "properties": {
+     "FID": 34805,
+     "Id": 89852,
+     "DateStarte": "10/08/2026 07:00:00",
+     "EstimatedC": "18/12/2026 17:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Victoria Hwy",
+     "Suburb": "Kununurra",
+     "Region": "Kimberley",
+     "EntryDate": "10/08/2026 16:06:23",
+     "GlobalID": "59822edc-519e-4b11-8d38-a2275483347d",
+     "Descriptio": "Victoria Hwy, between 30-45km west of Kununurra - Culvert Extensions",
+     "TrafficImp": "Temporary Traffic Signals with Speed Reductions. Exercise Caution.",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34061,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.834199961422,
+      -31.8796162208633
+     ]
+    },
+    "properties": {
+     "FID": 34061,
+     "Id": 82771,
+     "DateStarte": "01/06/2026 09:00:00",
+     "EstimatedC": "01/06/2027 15:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Wanneroo Rd",
+     "Suburb": "various suburbs",
+     "Region": "Metro",
+     "EntryDate": "02/06/2026 09:48:47",
+     "GlobalID": "0813b1ed-dcab-41da-bb52-abdbbb42d8fe",
+     "Descriptio": "Wanneroo Rd between Beach Rd and McDonald St, various suburbs - Maintenance\r\n9am to 3pm",
+     "TrafficImp": "Low traffic impact",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 33112,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.964032973666,
+      -31.8618381434459
+     ]
+    },
+    "properties": {
+     "FID": 33112,
+     "Id": 87156,
+     "DateStarte": "20/02/2026 00:00:00",
+     "EstimatedC": "31/12/2027 23:59:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "Reid Hwy",
+     "Suburb": "Dayton",
+     "Region": "Metro",
+     "EntryDate": "16/02/2026 09:34:59",
+     "GlobalID": "7510ca0b-6cb3-4840-9e49-7edbfad53b79",
+     "Descriptio": "Reid Hwy at Drumpellier Dr, Dayton - Upgrades\r\n24/7",
+     "TrafficImp": "Various closures, speed reductions and detours in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34493,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.761661053475,
+      -31.7518977686364
+     ]
+    },
+    "properties": {
+     "FID": 34493,
+     "Id": 89669,
+     "DateStarte": "01/06/2026 06:00:00",
+     "EstimatedC": "31/08/2027 19:00:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "Mitchell Fwy",
+     "Suburb": "",
+     "Region": "Metro",
+     "EntryDate": "27/07/2026 14:30:11",
+     "GlobalID": "061ea6eb-454c-4a60-8edc-3b4c44254660",
+     "Descriptio": "Mitchell Fwy between Ocean Reef Rd and Hester Ave - Upgrades",
+     "TrafficImp": "Upgrades to median barriers north and southbound. From Mid 2026 to Mid 2027. Lane closures, speed reductions and after hours work. Click 'Find out more' for more information on the project.",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "https://www.mainroads.wa.gov.au/projects-initiatives/all-projects/metropolitan/mitchell-freeway-median-barriers-upgrade-ocean-reef-road-to-hester-avenue/",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35060,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      118.8920067633,
+      -23.0707457131468
+     ]
+    },
+    "properties": {
+     "FID": 35060,
+     "Id": 90283,
+     "DateStarte": "20/10/2026 07:00:00",
+     "EstimatedC": "20/10/2026 17:30:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Great Northern Hwy",
+     "Suburb": "Newman",
+     "Region": "Pilbara",
+     "EntryDate": "14/09/2026 07:53:42",
+     "GlobalID": "1ea98019-3cea-4fae-ae94-b3485714e525",
+     "Descriptio": "Great Northern Hwy, RTIO Lang Hancock Line Newman - Level Crossing Maintenance",
+     "TrafficImp": "Traffic management with speed reduction. Delays expected.",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 35256,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      116.013496798479,
+      -31.8918308003587
+     ]
+    },
+    "properties": {
+     "FID": 35256,
+     "Id": 90628,
+     "DateStarte": "23/11/2026 19:00:00",
+     "EstimatedC": "27/11/2026 05:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Great Eastern Hwy",
+     "Suburb": "Midland",
+     "Region": "Metro",
+     "EntryDate": "13/10/2026 11:03:52",
+     "GlobalID": "6cbf82fc-55a3-4a5e-99b9-1efb3c28cd57",
+     "Descriptio": "Great Eastern Hwy and Lloyd St, Midland - Maintenance\r\n7pm-5am",
+     "TrafficImp": "Various closures in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34751,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.95296138051,
+      -32.2075471646267
+     ]
+    },
+    "properties": {
+     "FID": 34751,
+     "Id": 89752,
+     "DateStarte": "03/08/2026 07:00:00",
+     "EstimatedC": "27/10/2026 17:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Thomas Rd",
+     "Suburb": "Byford",
+     "Region": "Metro",
+     "EntryDate": "01/08/2026 10:35:38",
+     "GlobalID": "2b77b913-f761-4a76-ba47-1e0021670e8e",
+     "Descriptio": "Thomas Rd at Kargotich Rd, Byford - Maintenance\r\n7am to 5pm",
+     "TrafficImp": "Lane closures and speed reduction in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34242,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.757509093075,
+      -32.0073424399284
+     ]
+    },
+    "properties": {
+     "FID": 34242,
+     "Id": 89261,
+     "DateStarte": "06/07/2026 07:00:00",
+     "EstimatedC": "06/06/2027 17:00:00",
+     "WorkStatus": "",
+     "WorkType": "Maintenance",
+     "Road": "Stirling Hwy",
+     "Suburb": "Mosman Park",
+     "Region": "Metro",
+     "EntryDate": "24/06/2026 09:28:40",
+     "GlobalID": "9880bfac-0188-47a9-a1f8-50f06b3b4603",
+     "Descriptio": "Stirling Hwy at Glyde St, Mosman Park - Maintenance\r\n7am to 5pm",
+     "TrafficImp": "Various closures, detour and speed reduction in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34941,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      116.006845111158,
+      -32.2459331325611
+     ]
+    },
+    "properties": {
+     "FID": 34941,
+     "Id": 90086,
+     "DateStarte": "01/09/2026 07:00:00",
+     "EstimatedC": "01/02/2027 17:00:00",
+     "WorkStatus": "",
+     "WorkType": "Utility works",
+     "Road": "South Western Hwy",
+     "Suburb": "Byford",
+     "Region": "Metro",
+     "EntryDate": "28/08/2026 09:38:48",
+     "GlobalID": "e6129a8f-1ec8-4deb-8bf6-6c5c0d988030",
+     "Descriptio": "South Western Hwy and Kiln Rd, Byford - Utility works\r\n7am-5pm",
+     "TrafficImp": "Speed reduction in place",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34121,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.554893917552,
+      -33.5500704147102
+     ]
+    },
+    "properties": {
+     "FID": 34121,
+     "Id": 89013,
+     "DateStarte": "15/06/2026 00:00:00",
+     "EstimatedC": "31/10/2026 23:59:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "Bussell Hwy",
+     "Suburb": "Capel",
+     "Region": "South West",
+     "EntryDate": "20/08/2026 10:32:00",
+     "GlobalID": "4f6e46f8-f995-450c-ab12-e4d7b5d1d3cd",
+     "Descriptio": "Bussell Hwy, Capel - Northbound & Southbound Lanes - Intersection Upgrades at Boyanup Capel Rd, Capel Dve, Halls Rd, James Rd, Stirling Rd, Mallokup Rd, Spurr St & Tuart Dve",
+     "TrafficImp": "Advance Warning - Speed Reduction - Road & Lane Closures (In Place 24/7) - Detours - Temporary Traffic Holds - Water Filled Traffic Barriers- Proceed With Extreme Caution",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 34743,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      115.704024307644,
+      -32.550188967605
+     ]
+    },
+    "properties": {
+     "FID": 34743,
+     "Id": 89737,
+     "DateStarte": "14/08/2026 07:00:00",
+     "EstimatedC": "16/11/2026 17:00:00",
+     "WorkStatus": "",
+     "WorkType": "Utility works",
+     "Road": "Old Coast Rd",
+     "Suburb": "Erskine",
+     "Region": "South West",
+     "EntryDate": "31/07/2026 10:35:34",
+     "GlobalID": "51b52f79-d971-4d7b-980e-0675b17f2ef2",
+     "Descriptio": "Old Coast Rd Near Peelwood Pde, Erskine - NBN Works",
+     "TrafficImp": "Advance Warning - Workers on Side of Road - Proceed With Caution",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  },
+  {
+   "layer": "roadworks",
+   "feature": {
+    "type": "Feature",
+    "id": 33902,
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      118.083630967552,
+      -27.1207630619777
+     ]
+    },
+    "properties": {
+     "FID": 33902,
+     "Id": 88630,
+     "DateStarte": "11/05/2026 06:00:00",
+     "EstimatedC": "01/01/2027 18:00:00",
+     "WorkStatus": "",
+     "WorkType": "Upgrades",
+     "Road": "Great Northern Hwy",
+     "Suburb": "",
+     "Region": "Mid West Gascoyne",
+     "EntryDate": "12/05/2026 09:19:44",
+     "GlobalID": "6fea18ae-02bb-4a89-bc5c-545025de8580",
+     "Descriptio": "Great Northern Hwy - Shoulder Widening Upgrades between Beebyn-Karbar Rd (Tuckanarra) to  Robinson St (Cue) ",
+     "TrafficImp": "Traffic Management in Place - Speed Restrictions and Lane Closures - Expect Minor Delays",
+     "SeeMoreName": null,
+     "SeeMoreUrl": "",
+     "LocalRoadName": ""
+    }
+   }
+  }
+ ]
+}

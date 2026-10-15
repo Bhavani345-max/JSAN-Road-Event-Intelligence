@@ -15,10 +15,10 @@ def ingest_all(client):
 
 
 def test_no_demo_events_or_demo_source_exist(news_client):
-    assert news_client.get("/api/events?view=validation").json()["total"] == 0
+    assert news_client.get("/api/events?view=validation&include_hidden=true").json()["total"] == 0
     ingest_all(news_client)
 
-    events = news_client.get("/api/events", params={"view": "validation", "limit": 500}).json()["items"]
+    events = news_client.get("/api/events", params={"view": "validation", "include_hidden": "true", "limit": 500}).json()["items"]
     assert events
     for event in events:
         assert "is_demo" not in event
@@ -26,12 +26,12 @@ def test_no_demo_events_or_demo_source_exist(news_client):
         assert event["evidence"] is not None  # every event has stored source evidence
     assert all(s["source_id"] != "rei-demo" for s in news_client.get("/api/sources").json())
     # The old demo filter is gone rather than hidden.
-    assert news_client.get("/api/events", params={"view": "validation", "is_demo": "true"}).json()["total"] == len(events)
+    assert news_client.get("/api/events", params={"view": "validation", "include_hidden": "true", "is_demo": "true"}).json()["total"] == len(events)
 
 
 def test_no_event_carries_an_invented_value(news_client):
     ingest_all(news_client)
-    for event in news_client.get("/api/events", params={"view": "validation", "limit": 500}).json()["items"]:
+    for event in news_client.get("/api/events", params={"view": "validation", "include_hidden": "true", "limit": 500}).json()["items"]:
         assert event["status"] == "VALIDATION_REQUIRED"
         for name in UNKNOWN_UNTIL_ESTABLISHED:
             assert event[name] is None, f"{event['event_id']}: {name}"
@@ -110,7 +110,7 @@ def test_a_run_never_fetches_an_unconnected_source(news_client):
 
 
 def search(client, text):
-    body = client.get("/api/events", params={"view": "validation", "q": text}).json()
+    body = client.get("/api/events", params={"view": "validation", "include_hidden": "true", "q": text}).json()
     return {event["title"] for event in body["items"]}, body["total"]
 
 
@@ -158,7 +158,7 @@ def test_search_requires_every_word_and_combines_with_filters(news_client):
     assert search(client, "no-such-place")[1] == 0
     assert search(client, "   ")[1] == 2  # blank search is no search
 
-    body = client.get("/api/events", params={"view": "validation", "q": "gachibowli", "source_id": "deccan-chronicle"}).json()
+    body = client.get("/api/events", params={"view": "validation", "include_hidden": "true", "q": "gachibowli", "source_id": "deccan-chronicle"}).json()
     assert [event["title"] for event in body["items"]] == [IIIT]
-    paged = client.get("/api/events", params={"view": "validation", "q": "gachibowli", "limit": 1}).json()
+    paged = client.get("/api/events", params={"view": "validation", "include_hidden": "true", "q": "gachibowli", "limit": 1}).json()
     assert paged["total"] == 2 and len(paged["items"]) == 1

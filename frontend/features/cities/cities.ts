@@ -14,6 +14,8 @@ export interface City {
   view: { center: [number, number]; zoom: number };
   /** Whether a place list exists, so events can be located by the places they name. */
   hasGazetteer: boolean;
+  /** For a country spanning several zones: each regional source's zone. */
+  sourceTimeZones: Record<string, string>;
 }
 
 export const DEFAULT_CITY_ID = "hyderabad";
@@ -26,6 +28,7 @@ export const DEFAULT_CITY: City = {
   timeZone: "Asia/Kolkata",
   view: HYDERABAD_VIEW,
   hasGazetteer: true,
+  sourceTimeZones: {},
 };
 
 export function toCity(dto: ApiCity): City {
@@ -38,6 +41,7 @@ export function toCity(dto: ApiCity): City {
     view:
       dto.id === DEFAULT_CITY_ID ? HYDERABAD_VIEW : { center: dto.map_center, zoom: dto.map_zoom },
     hasGazetteer: dto.has_gazetteer,
+    sourceTimeZones: dto.source_time_zones ?? {},
   };
 }
 
@@ -53,6 +57,7 @@ export const ALL_CITIES: City = {
   timeZone: "Asia/Kolkata",
   view: { center: [30, 30], zoom: 1.6 },
   hasGazetteer: false,
+  sourceTimeZones: {},
 };
 
 /** The configured cities, the default first. */

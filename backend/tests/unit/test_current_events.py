@@ -7,17 +7,22 @@ from zoneinfo import ZoneInfo
 import pytest
 
 from packages.event_schema import EventDetection, EventStatus, EventType, ReiEvent
+from packages.geo_models import Point
 from services.lifecycle import is_current
-from services.lifecycle.current import EventListView, event_time_state, matches_event_view
+from services.lifecycle.current import EventListView, event_time_state, is_shown, matches_event_view
 
 NOW = datetime(2026, 10, 7, 12, 0, tzinfo=timezone.utc)
+HYDERABAD = Point(type="Point", coordinates=(78.4867, 17.385))
 DAY = timedelta(days=1)
 
 
-def event(*, status=EventStatus.VALIDATION_REQUIRED, start=None, end=None, event_type=None, ended=False):
+def event(
+    *, status=EventStatus.VALIDATION_REQUIRED, start=None, end=None, event_type=None, ended=False,
+    geometry=HYDERABAD,
+):
     return ReiEvent(
         event_id="EVT-CUR000000001", source_id="test", title="Test event", status=status,
-        start_time=start, end_time=end, event_type=event_type,
+        start_time=start, end_time=end, event_type=event_type, geometry=geometry,
         detection=EventDetection(method="keyword_rules", matched_keywords=[], source_reports_ended=ended),
         created_at=NOW, updated_at=NOW,
     )  # fmt: skip
@@ -84,7 +89,10 @@ def test_server_views_require_reviewed_operational_status_and_stated_timing():
     assert matches_event_view(upcoming, EventListView.UPCOMING, now=NOW)
     assert matches_event_view(pending, EventListView.VALIDATION, now=NOW)
     assert not matches_event_view(pending, EventListView.CURRENT_UPCOMING, now=NOW)
-    assert matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW)
+    # Without a stated start and end it is unconfirmed: hidden from every console
+    # view (15 October 2026), still listed when hidden events are asked for.
+    assert not matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW)
+    assert matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW, include_hidden=True)
     assert not matches_event_view(untimed_approved, EventListView.CURRENT_UPCOMING, now=NOW)
 
 
@@ -132,3 +140,55 @@ def test_timezone_local_boundary_is_compared_as_the_same_utc_instant(zone_name):
     )
 
     assert event_time_state(event_at_boundary, now=NOW) == "current"
+
+
+# --- What the console shows at all (the user's rules of 15 October 2026) -----------
+
+CONSOLE_VIEWS = (EventListView.CURRENT_UPCOMING, EventListView.VALIDATION)
+
+
+@pytest.mark.parametrize(
+    "case, why",
+    [
+        (dict(start=NOW - DAY), "no stated end: unconfirmed"),
+        (dict(end=NOW + DAY), "no stated start: unconfirmed"),
+        (dict(), "no stated period: unconfirmed"),
+        (dict(start=NOW - 3 * DAY, end=NOW - DAY), "ended: expired"),
+        (dict(start=NOW - DAY, end=NOW + DAY, ended=True), "the source reports it over"),
+        (dict(start=NOW - DAY, end=NOW + DAY, geometry=None), "no location"),
+    ],
+)
+@pytest.mark.parametrize("status", [EventStatus.VALIDATION_REQUIRED, EventStatus.QC_PENDING, EventStatus.APPROVED])
+def test_the_console_hides_unconfirmed_expired_and_unlocated_events(case, why, status):
+    hidden = event(status=status, **case)
+    assert not is_shown(hidden, now=NOW), why
+    for view in CONSOLE_VIEWS:
+        assert not matches_event_view(hidden, view, now=NOW), (why, view)
+
+
+@pytest.mark.parametrize(
+    "status, view",
+    [
+        (EventStatus.VALIDATION_REQUIRED, EventListView.VALIDATION),
+        (EventStatus.QC_PENDING, EventListView.VALIDATION),
+        (EventStatus.APPROVED, EventListView.CURRENT_UPCOMING),
+    ],
+)
+def test_a_located_event_with_its_stated_period_is_shown(status, view):
+    shown = event(status=status, start=NOW - DAY, end=NOW + DAY)
+    assert is_shown(shown, now=NOW)
+    assert matches_event_view(shown, view, now=NOW)
+
+
+def test_hidden_events_are_kept_and_listed_on_request():
+    ended = event(status=EventStatus.APPROVED, start=NOW - 3 * DAY, end=NOW - DAY)
+    undated = event()
+    assert matches_event_view(ended, EventListView.HISTORY, now=NOW)
+    assert matches_event_view(undated, EventListView.VALIDATION, now=NOW, include_hidden=True)
+    # Hiding changes nothing about the event itself.
+    assert ended.status is EventStatus.APPROVED and undated.start_time is None
+
+
+def test_an_event_ending_now_is_still_shown():
+    assert is_shown(event(start=NOW - DAY, end=NOW), now=NOW)
+    assert not is_shown(event(start=NOW - DAY, end=NOW - timedelta(seconds=1)), now=NOW)

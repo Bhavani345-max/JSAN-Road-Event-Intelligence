@@ -1,0 +1,47 @@
+{
+  "id": "australia",
+  "name": "Australia",
+  "area_name": "Australia",
+  "country": "AU",
+  "region": "National",
+  "timezone": "Australia/Sydney",
+  "language": "en",
+  "bbox": [
+    -43.8,
+    112.9,
+    -10.0,
+    154.0
+  ],
+  "map": {
+    "center": [
+      133.8,
+      -25.3
+    ],
+    "zoom": 3.4
+  },
+  "scope_terms": [
+    "Australia"
+  ],
+  "other_cities": [
+    "New Zealand",
+    "Papua New Guinea",
+    "Indonesia"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "main-roads-wa-webeoc",
+    "gold-coast-temporary-road-closures",
+    "wodonga-roadworks",
+    "roads-act-planned-closures"
+  ],
+  "gis_sources": [],
+  "source_time_zones": {
+    "main-roads-wa-webeoc": "Australia/Perth",
+    "gold-coast-temporary-road-closures": "Australia/Brisbane",
+    "wodonga-roadworks": "Australia/Melbourne"
+  }
+}

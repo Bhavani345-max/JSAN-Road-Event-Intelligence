@@ -1,7 +1,7 @@
 """Which official feeds the scheduler polls (decision 0028).
 
 Production polled no official feed from 13 to 15 October 2026 because
-OFFICIAL_FEEDS_SCHEDULED is unset there, and setting it switches on all ten at
+OFFICIAL_FEEDS_SCHEDULED is unset there, and setting it switches on all of them at
 once. OFFICIAL_FEEDS_SCHEDULED_SOURCES switches them on one at a time.
 """
 
@@ -27,9 +27,14 @@ def official(sources) -> dict:
     }
 
 
-def test_the_ten_connected_official_feeds_can_be_named():
-    assert len(OFFICIAL_SOURCE_IDS) == 10
+def test_the_connected_official_feeds_can_be_named():
+    # Seven, and nine for Canada and Australia since 15 October 2026 (decision 0029).
+    assert len(OFFICIAL_SOURCE_IDS) == 16
     assert {TFL, TORONTO, "nyc-street-closures", "finland-digitraffic-road-events"} <= OFFICIAL_SOURCE_IDS
+    # Removed for giving no location (decision 0029): not an official feed to schedule.
+    assert not OFFICIAL_SOURCE_IDS & {
+        "nyc-permitted-events", "mumbai-traffic-police-notifications", "bengaluru-traffic-police-website"
+    }
 
 
 def test_no_official_feed_is_scheduled_unless_asked():
@@ -41,7 +46,8 @@ def test_only_the_official_feeds_named_are_scheduled():
     assert {source_id for source_id, d in feeds.items() if d.active} == {TFL, TORONTO}
     # A chosen feed is described as scheduled, the others as run by hand.
     assert "Polled every 15 minutes." in feeds[TFL].notes
-    assert "run by hand" in feeds["mumbai-traffic-police-notifications"].notes
+    only_tfl = official(registered_sources(official_feeds_scheduled_sources={TFL}))
+    assert "run by hand" in only_tfl[TORONTO].notes
 
 
 def test_naming_a_news_restricted_or_removed_source_schedules_nothing():
@@ -54,7 +60,7 @@ def test_naming_a_news_restricted_or_removed_source_schedules_nothing():
 
 def test_the_switch_for_every_feed_still_schedules_them_all():
     feeds = official(registered_sources(official_feeds_scheduled=True))
-    assert all(d.active for d in feeds.values()) and len(feeds) == 10
+    assert all(d.active for d in feeds.values()) and len(feeds) == 16
 
 
 def test_the_setting_is_a_comma_separated_list():

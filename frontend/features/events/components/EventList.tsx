@@ -37,7 +37,7 @@ const TIME_STATE_LABELS: Record<TimeState, string> = {
 /** When the event happens; or, if the source gave no times, when it was reported. */
 function getTimeLine(event: RoadEvent, now: Date): string {
   // Each event's times are shown in its own city's zone.
-  const zone = timeZoneOf(event.city);
+  const zone = timeZoneOf(event.city, event.source.id);
   const state = getTimeState(event, now);
   if (state) {
     const wholeDays = isWholeDayPeriod(event.startTime, event.endTime, zone);

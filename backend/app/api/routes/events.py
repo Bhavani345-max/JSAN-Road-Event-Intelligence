@@ -38,6 +38,15 @@ def list_events(
     include_merged: Annotated[
         bool, Query(description="Also list events merged into another (shown as part of it)")
     ] = False,
+    include_hidden: Annotated[
+        bool,
+        Query(
+            description=(
+                "Also list the events the console hides: without a location, without a "
+                "stated start and end, or ended (for audit and tools)."
+            )
+        ),
+    ] = False,
     view: Annotated[
         EventListView,
         Query(
@@ -69,6 +78,7 @@ def list_events(
         source_id=source_id,
         city=city_name,
         include_merged=include_merged,
+        include_hidden=include_hidden,
         view=view,
         q=q,
         limit=limit,

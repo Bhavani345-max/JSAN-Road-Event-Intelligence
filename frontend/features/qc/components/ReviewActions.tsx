@@ -225,7 +225,7 @@ export default function ReviewActions({
           {approved && !approved.forced && (
             <p className="mt-1 text-xs leading-relaxed text-slate-600">
               QC approved by {approved.approvedBy} on{" "}
-              {formatDateTime(approved.approvedAt, timeZoneOf(event.city)) ?? approved.approvedAt}{" "}
+              {formatDateTime(approved.approvedAt, timeZoneOf(event.city, event.source.id)) ?? approved.approvedAt}{" "}
               (version {approved.version})
               {approved.reason && <>: &ldquo;{approved.reason}&rdquo;</>}.
             </p>
@@ -237,7 +237,7 @@ export default function ReviewActions({
             >
               <p>
                 <span className="font-semibold">Approved anyway</span> by {approved.approvedBy} on{" "}
-                {formatDateTime(approved.approvedAt, timeZoneOf(event.city)) ?? approved.approvedAt} (version{" "}
+                {formatDateTime(approved.approvedAt, timeZoneOf(event.city, event.source.id)) ?? approved.approvedAt} (version{" "}
                 {approved.version}), overriding:
               </p>
               <ul className="mt-1 list-disc space-y-0.5 pl-4">
@@ -352,7 +352,7 @@ export default function ReviewActions({
               {assessment && (
                 <p className="mt-1 text-[11px] text-slate-500">
                   Set to {assessment.severity.toLowerCase()} by {assessment.assessedBy} on{" "}
-                  {formatDateTime(assessment.assessedAt, timeZoneOf(event.city)) ?? assessment.assessedAt}{" "}
+                  {formatDateTime(assessment.assessedAt, timeZoneOf(event.city, event.source.id)) ?? assessment.assessedAt}{" "}
                   (version {assessment.version}){assessment.reason && <>: &ldquo;{assessment.reason}&rdquo;</>}.
                 </p>
               )}

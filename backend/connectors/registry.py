@@ -13,27 +13,43 @@ from collections.abc import Callable, Collection
 from dataclasses import dataclass
 from functools import partial
 
-from packages.source_models import SourceDefinition
+from packages.source_models import IntegrationStatus, SourceDefinition
 
 from packages.cities import load_cities
 
 from .api.serper_news import SerperNewsConnector, serper_news_source
 from .base import SourceConnector
 from .discovered import DISCOVERED_SOURCES
+from .discovered_2026_10_15 import DISCOVERED_2026_10_15
 from .discovery.google_news_rss import GoogleNewsRssConnector, google_news_rss_source
 from .official import (
-    BengaluruTrafficPoliceConnector,
+    CalgaryConstructionDetoursConnector,
+    DriveBcEventsConnector,
+    EdmontonTrafficDisruptionsConnector,
+    GoldCoastTemporaryClosuresConnector,
+    MainRoadsWaConnector,
+    OttawaTrafficEventsConnector,
+    RoadsActPlannedClosuresConnector,
+    WinnipegLaneClosuresConnector,
+    WodongaRoadworksConnector,
     BisonFuteRoadEventsConnector,
     DialogTrafficOrdersConnector,
     FinlandDigitrafficConnector,
     LyonDisruptiveWorksConnector,
-    MumbaiTrafficPoliceConnector,
-    NycPermittedEventsConnector,
     NycStreetClosuresConnector,
     TflRoadDisruptionsConnector,
     TorontoRoadRestrictionsConnector,
     bengaluru_source,
     bison_fute_source,
+    calgary_source,
+    drivebc_source,
+    edmonton_source,
+    gold_coast_source,
+    main_roads_wa_source,
+    ottawa_source,
+    roads_act_source,
+    winnipeg_source,
+    wodonga_source,
     dialog_source,
     finland_source,
     lyon_source,
@@ -93,6 +109,33 @@ RESTRICTED_SOURCES: tuple[RegisteredSource, ...] = (
 REMOVED_SOURCES: tuple[RegisteredSource, ...] = (RegisteredSource(THE_HANS_INDIA),)
 
 
+def _without_location(definition: SourceDefinition) -> SourceDefinition:
+    """`definition`, removed because its records carry no location of their own (decision 0029).
+
+    Registered without a connector, so it is never fetched; its stored
+    evidence keeps its source. Its terms and licence stay as they were read.
+    """
+    return SourceDefinition.model_validate(
+        definition.model_dump()
+        | {
+            "integration_status": IntegrationStatus.NOT_USABLE,
+            "active": False,
+            "access_method": "Not accessed: removed from REI, its records give no location",
+            "notes": (
+                f"{definition.notes} Removed from REI on 15 October 2026 by the user's "
+                "decision: its records give no coordinates of their own (decision 0029)."
+            ),
+        }
+    )
+
+
+# Official feeds whose records name places but give no coordinates (decision 0029).
+UNLOCATED_SOURCES: tuple[RegisteredSource, ...] = tuple(
+    RegisteredSource(_without_location(make(scheduled=False)))
+    for make in (nyc_events_source, mumbai_source, bengaluru_source)
+)
+
+
 def _google_news_rss_sources(enabled: bool) -> tuple[RegisteredSource, ...]:
     """One Google News RSS discovery source per configured city."""
     sources = []
@@ -134,26 +177,30 @@ def _official_sources(
     `scheduled` schedules every one of them; `chosen` schedules only the
     sources it names, so feeds can be switched on one at a time.
     """
-    tfl, toronto, mumbai, bengaluru, nyc, nyc_events, france, dialog, lyon, finland = (
+    tfl, toronto, nyc, france, dialog, lyon, finland = (
         _scheduled_if_chosen(make, scheduled, chosen)
         for make in (
-            tfl_source, toronto_source, mumbai_source, bengaluru_source, nyc_source,
-            nyc_events_source, bison_fute_source, dialog_source, lyon_source, finland_source,
+            tfl_source, toronto_source, nyc_source, bison_fute_source, dialog_source,
+            lyon_source, finland_source,
         )
     )  # fmt: skip
+    # Canada and Australia (15 October 2026, decision 0029): every record kept.
+    feature_feeds = tuple(
+        (definition, connector)
+        for make, connector in (
+            (calgary_source, CalgaryConstructionDetoursConnector),
+            (drivebc_source, DriveBcEventsConnector),
+            (edmonton_source, EdmontonTrafficDisruptionsConnector),
+            (gold_coast_source, GoldCoastTemporaryClosuresConnector),
+            (main_roads_wa_source, MainRoadsWaConnector),
+            (ottawa_source, OttawaTrafficEventsConnector),
+            (roads_act_source, RoadsActPlannedClosuresConnector),
+            (winnipeg_source, WinnipegLaneClosuresConnector),
+            (wodonga_source, WodongaRoadworksConnector),
+        )
+        if (definition := _scheduled_if_chosen(make, scheduled, chosen))
+    )
     return (
-        RegisteredSource(
-            mumbai,
-            lambda user_agent: MumbaiTrafficPoliceConnector(
-                mumbai, user_agent, max_records=max_records
-            ),
-        ),
-        RegisteredSource(
-            bengaluru,
-            lambda user_agent: BengaluruTrafficPoliceConnector(
-                bengaluru, user_agent, max_records=max_records
-            ),
-        ),
         RegisteredSource(
             tfl,
             lambda user_agent: TflRoadDisruptionsConnector(
@@ -172,11 +219,7 @@ def _official_sources(
             nyc,
             lambda user_agent: NycStreetClosuresConnector(nyc, user_agent),
         ),
-        # NYC permitted events, DiaLog and Lyon: connected 14 October 2026 (decision 0027).
-        RegisteredSource(
-            nyc_events,
-            lambda user_agent: NycPermittedEventsConnector(nyc_events, user_agent),
-        ),
+        # DiaLog and Lyon: connected 14 October 2026 (decision 0027).
         RegisteredSource(
             france,
             lambda user_agent: BisonFuteRoadEventsConnector(france, user_agent),
@@ -193,6 +236,12 @@ def _official_sources(
             finland,
             lambda user_agent: FinlandDigitrafficConnector(finland, user_agent),
         ),
+    ) + tuple(
+        RegisteredSource(
+            definition,
+            lambda user_agent, definition=definition, connector=connector: connector(definition, user_agent),
+        )
+        for definition, connector in feature_feeds
     )
 
 
@@ -226,6 +275,7 @@ def registered_sources(
         CONNECTED_SOURCES
         + RESTRICTED_SOURCES
         + REMOVED_SOURCES
+        + UNLOCATED_SOURCES
         + (search,)
         + _official_sources(
             official_feeds_scheduled,
@@ -235,7 +285,10 @@ def registered_sources(
         )
         + _google_news_rss_sources(google_news_rss_enabled)
         + (RegisteredSource(MANUAL_ENTRY),)
-        + tuple(RegisteredSource(definition) for definition in DISCOVERED_SOURCES)
+        + tuple(
+            RegisteredSource(definition)
+            for definition in DISCOVERED_SOURCES + DISCOVERED_2026_10_15
+        )
     )
 
 

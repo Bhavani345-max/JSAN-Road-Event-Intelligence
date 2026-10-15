@@ -1,0 +1,47 @@
+{
+  "id": "canada",
+  "name": "Canada",
+  "area_name": "Canada",
+  "country": "CA",
+  "region": "National",
+  "timezone": "America/Toronto",
+  "language": "en",
+  "bbox": [
+    41.6,
+    -141.1,
+    83.2,
+    -52.6
+  ],
+  "map": {
+    "center": [
+      -96.8,
+      54.0
+    ],
+    "zoom": 3.2
+  },
+  "scope_terms": [
+    "Canada"
+  ],
+  "other_cities": [
+    "United States"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "drivebc-events",
+    "ottawa-traffic-events",
+    "edmonton-traffic-disruptions",
+    "winnipeg-lane-closures",
+    "calgary-construction-detours"
+  ],
+  "gis_sources": [],
+  "source_time_zones": {
+    "drivebc-events": "America/Vancouver",
+    "edmonton-traffic-disruptions": "America/Edmonton",
+    "calgary-construction-detours": "America/Edmonton",
+    "winnipeg-lane-closures": "America/Winnipeg"
+  }
+}

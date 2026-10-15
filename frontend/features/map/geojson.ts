@@ -2,6 +2,7 @@ import {
   isLocated,
   type EventGeometry,
   type PointGeometry,
+  type Position,
   type RoadEvent,
 } from "@/features/events/model";
 import {
@@ -184,7 +185,7 @@ export function toEventMapData(events: RoadEvent[], selectedEventId: string | nu
 export function describeForStack(event: RoadEvent): string {
   const parts = [getEventTypeLabel(event.eventType)];
   if (event.startTime || event.endTime) {
-    const zone = timeZoneOf(event.city);
+    const zone = timeZoneOf(event.city, event.source.id);
     const wholeDays = isWholeDayPeriod(event.startTime, event.endTime, zone);
     const { start, end } = formatEventPeriod(event.startTime, event.endTime, wholeDays, zone);
     parts.push(event.startTime ? `${start} → ${end}` : `until ${end}`);
@@ -217,6 +218,85 @@ export function stackAnchors(
     }
   }
   return anchors;
+}
+
+/** Ring radius, in screen pixels, of markers spread around the spot they share. */
+const SPREAD_MIN_RADIUS_PX = 16;
+const SPREAD_PX_PER_MARKER = 3.4;
+const SPREAD_MAX_RADIUS_PX = 64;
+
+/** Degrees of longitude one screen pixel covers at `zoom` (MapLibre's 512-pixel tiles). */
+function degreesPerPixel(zoom: number): number {
+  return 360 / (512 * 2 ** zoom);
+}
+
+export interface LeaderFeature {
+  type: "Feature";
+  geometry: { type: "LineString"; coordinates: Position[] };
+  properties: { eventId: string; color: string; selected: boolean };
+}
+
+export interface SpreadMarkers {
+  /** Every marker; those sharing a spot moved onto a ring around it, for display only. */
+  anchors: EventFeatureCollection<PointGeometry>;
+  /** A thin line from each moved marker back to the spot it shares. */
+  leaders: { type: "FeatureCollection"; features: LeaderFeature[] };
+}
+
+/**
+ * Gives each of several events at one spot its own marker: spread on a ring
+ * around the spot, the same number of pixels across at every zoom, each with
+ * a line pointing back to the spot. Only what is drawn moves; the events,
+ * their geometry and the spot itself are unchanged, and a marker alone at
+ * its spot stays exactly there.
+ */
+export function spreadStacks(
+  anchors: EventFeatureCollection<PointGeometry>,
+  zoom: number,
+): SpreadMarkers {
+  const stacks = new Map<string, EventFeature<PointGeometry>[]>();
+  for (const anchor of anchors.features) {
+    const key = pointKey(anchor.geometry.coordinates as [number, number]);
+    stacks.set(key, [...(stacks.get(key) ?? []), anchor]);
+  }
+  const spread: EventFeature<PointGeometry>[] = [];
+  const leaders: LeaderFeature[] = [];
+  const step = degreesPerPixel(zoom);
+  for (const stack of stacks.values()) {
+    if (stack.length === 1) {
+      spread.push(stack[0]);
+      continue;
+    }
+    const [lng, lat] = stack[0].geometry.coordinates;
+    const radius = Math.min(
+      SPREAD_MAX_RADIUS_PX,
+      Math.max(SPREAD_MIN_RADIUS_PX, stack.length * SPREAD_PX_PER_MARKER),
+    );
+    // On Web Mercator a degree of latitude is drawn longer by 1 / cos(latitude).
+    const latStep = step * Math.cos((lat * Math.PI) / 180);
+    stack.forEach((anchor, index) => {
+      // Clockwise from the top, evenly spaced.
+      const angle = (2 * Math.PI * index) / stack.length;
+      const position: Position = [
+        lng + radius * Math.sin(angle) * step,
+        lat + radius * Math.cos(angle) * latStep,
+      ];
+      spread.push({ ...anchor, geometry: { type: "Point", coordinates: position } });
+      leaders.push({
+        type: "Feature",
+        geometry: { type: "LineString", coordinates: [position, [lng, lat]] },
+        properties: {
+          eventId: anchor.properties.eventId,
+          color: anchor.properties.color,
+          selected: anchor.properties.selected,
+        },
+      });
+    });
+  }
+  return {
+    anchors: { type: "FeatureCollection", features: spread },
+    leaders: { type: "FeatureCollection", features: leaders },
+  };
 }
 
 /** An event under a click: enough to choose it from a list. */

@@ -82,7 +82,7 @@ function SourceRow({ source, onChecked }: { source: ConnectedSource; onChecked: 
   const { checking, message, check } = useCheck(source.id, onChecked);
   const health = HEALTH[source.health];
   // In the source's own city's time zone.
-  const zone = timeZoneOf(source.city);
+  const zone = timeZoneOf(source.city, source.id);
   const lastSuccess = formatDateTime(source.lastSuccessAt, zone);
   const lastFailure = formatDateTime(source.lastFailureAt, zone);
 

@@ -1,0 +1,455 @@
+{
+ "fetched_at": "2026-10-15T08:54:16.104633+00:00",
+ "items": [
+  {
+   "construction_info": "Edmonton Trail at 1 Avenue NE",
+   "description": "Right lane closed north bound on 1 AV NE  ",
+   "start_dt": "2025-06-01T09:00:00.000",
+   "end_dt": "2026-12-31T15:00:00.000",
+   "longitude": "-114.05028321045208",
+   "latitude": "51.053268688758585",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.05028321045208,
+     51.053268688758585
+    ]
+   }
+  },
+  {
+   "construction_info": "Centre Street between 12 Avenue and 13 Avenue SE",
+   "description": "Two-way traffic on Centre St Between 13 AV & 12 AV SE. Drive with caution.  ",
+   "start_dt": "2026-07-27T07:00:00.000",
+   "end_dt": "2026-11-21T17:00:00.000",
+   "longitude": "-114.06331352224184",
+   "latitude": "51.041429983593154",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.06331352224184,
+     51.041429983593154
+    ]
+   }
+  },
+  {
+   "construction_info": "Ogden Road between Millican Road and 68 Street SE",
+   "description": "Full road closure ¿ Detour including transit to go through the community. Large trucks to be diverted away from the area.",
+   "start_dt": "2026-10-16T21:00:00.000",
+   "end_dt": "2026-10-19T05:00:00.000",
+   "longitude": "-114.0097769945873",
+   "latitude": "50.999669998289235",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.0097769945873,
+     50.999669998289235
+    ]
+   }
+  },
+  {
+   "construction_info": "37 Street at 28 Avenue SW",
+   "description": "Daily right lane closure on northbound 37 St between 26 Av & 28 Av SW.",
+   "start_dt": "2026-10-08T09:00:00.000",
+   "end_dt": "2026-12-31T15:00:00.000",
+   "longitude": "-114.14115444634307",
+   "latitude": "51.0285060069718",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.14115444634307,
+     51.0285060069718
+    ]
+   }
+  },
+  {
+   "construction_info": "12739 52 Street SE",
+   "description": "Right Lane ClosureSpeed Reduction",
+   "start_dt": "2026-08-09T09:00:00.000",
+   "end_dt": "2026-11-30T15:00:00.000",
+   "longitude": "-113.95829566930266",
+   "latitude": "50.93708172534867",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -113.95829566930266,
+     50.93708172534867
+    ]
+   }
+  },
+  {
+   "construction_info": "17 Avenue at 9 Street SW",
+   "description": "No parking any time, no stopping any time, right lane closed eastbound, right lane closed westbound.",
+   "start_dt": "2026-10-15T21:00:00.000",
+   "end_dt": "2026-10-16T15:00:00.000",
+   "longitude": "-114.08427003762817",
+   "latitude": "51.03782103490408",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.08427003762817,
+     51.03782103490408
+    ]
+   }
+  },
+  {
+   "construction_info": "Shaganappi Trail between Sage Valley Boulevard and Kincora Crescent NW",
+   "description": "Northbound right and left lane closure between Sherwood Gate NW to Symons Valley Parkway NW, 9 pm to 5 am nightly on weekdays and 9 pm to 8 am nightly on weekends.  Only one traffic setup will be implemented at any given time.  Calgary Police Services will be on site for traffic control.  Drivers are to obey all traffic control devices.  Pedestrians are to obey all pedestrian control devices.  Expect delays. ",
+   "start_dt": "2026-07-15T21:00:00.000",
+   "end_dt": "2026-10-31T08:00:00.000",
+   "longitude": "-114.1569810291484",
+   "latitude": "51.17520602660193",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.1569810291484,
+     51.17520602660193
+    ]
+   }
+  },
+  {
+   "construction_info": "Macleod Trail between 58 Avenue and Canyon Meadows SW",
+   "description": "Nightly two right lane closure on northbound MacLeod Tr between 58 Av & Canyon Meadows SW.",
+   "start_dt": "2026-10-23T21:00:00.000",
+   "end_dt": "2026-10-31T05:00:00.000",
+   "longitude": "-114.06843213524348",
+   "latitude": "50.93175761726678",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.06843213524348,
+     50.93175761726678
+    ]
+   }
+  },
+  {
+   "construction_info": "Beddington Boulevard at Berwick Drive NW",
+   "description": "Daily 9 AM to 3 PMEastbound and westbound left lane closures on Beddington Blvd NW at Berwick Dr NW.Only one setup is allowed at a time. ",
+   "start_dt": "2026-09-11T09:00:00.000",
+   "end_dt": "2026-10-31T15:00:00.000",
+   "longitude": "-114.08718143166683",
+   "latitude": "51.13164601454138",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.08718143166683,
+     51.13164601454138
+    ]
+   }
+  },
+  {
+   "construction_info": "Beddington Boulevard between Berkshire Boulevard and Berkley Drive NW",
+   "description": "Westbound road closure on Beddington Bv NW between Berkshire Bv to Berkley Dr NW with a two way traffic setup on the eastbound lanes, 9 pm to 5 am nightly on weekdays and 9 pm to 8 am nightly on weekends.  Only one traffic setup will be implemented at any given time.  Calgary Police Services will be on site for traffic control.  Drivers are to obey all traffic control devices.  Pedestrians are to obey all pedestrian control devices.Eastbound road closure on Beddington Bv NW between Berkshire Bv to Berkley Dr NW with a two way traffic setup on the westbound lanes, 9 pm to 5 am nightly on weekdays and 9 pm to 8 am nightly on weekends.  Only one traffic setup will be implemented at any given time.  Calgary Police Services will be on site for traffic control.  Drivers are to obey all traffic control devices.  Pedestrians are to obey all pedestrian control devices.  Expect delays.",
+   "start_dt": "2026-07-08T21:00:00.000",
+   "end_dt": "2026-10-31T08:00:00.000",
+   "longitude": "-114.09976346939605",
+   "latitude": "51.132042019352134",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.09976346939605,
+     51.132042019352134
+    ]
+   }
+  },
+  {
+   "construction_info": "WB Country Hills Boulevard NE between Stonegate Landing to 38 Street NE",
+   "description": "West bound Country Hills BLVD NE between Stonegate LANDING NE to 38 ST NE will have two right lane closures 24/7.  Only one traffic setup will be implemented at any given time.  The speed will be restricted to 50km/h.  Drivers are to obey all traffic control devices.  Pedestrians are to obey all pedestrian control devices.  Please avoid the area if possible.  Expect major delays.",
+   "start_dt": "2026-09-24T07:00:00.000",
+   "end_dt": "2026-11-30T21:00:00.000",
+   "longitude": "-113.98398978852529",
+   "latitude": "51.15446743879556",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -113.98398978852529,
+     51.15446743879556
+    ]
+   }
+  },
+  {
+   "construction_info": "Macleod Trail and Shawnessy Blvd SW",
+   "description": "Intermittent northbound + southbound short-term mobile left lane closures with 50 km/h speed reduction. SB 7:00am-3:00pm, NB 9:00am-7:00pm & weekends ",
+   "start_dt": "2026-10-06T09:00:00.000",
+   "end_dt": "2026-11-30T15:00:00.000",
+   "longitude": "-114.0701715226108",
+   "latitude": "50.912919007477214",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.0701715226108,
+     50.912919007477214
+    ]
+   }
+  },
+  {
+   "construction_info": "8 Avenue and 1 Street NE",
+   "description": "Road Closure on 8 Ave & 1 St NE",
+   "start_dt": "2026-10-12T07:00:00.000",
+   "end_dt": "2026-11-07T19:00:00.000",
+   "longitude": "-114.06011844012319",
+   "latitude": "51.05977196951106",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.06011844012319,
+     51.05977196951106
+    ]
+   }
+  },
+  {
+   "construction_info": "14555 1 Street NE",
+   "description": "Right Lane Closure on 14555 1 St NE",
+   "start_dt": "2026-10-13T07:00:00.000",
+   "end_dt": "2026-10-27T19:00:00.000",
+   "longitude": "-114.06942895047897",
+   "latitude": "51.18433195675676",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.06942895047897,
+     51.18433195675676
+    ]
+   }
+  },
+  {
+   "construction_info": "11 Avenue between 13 Street and 14 Street SW",
+   "description": "Two right lanes closed (two lanes open) on 11Ave, a full road closure on 13 St, and northbound and southbound left lane closures on 14 St.",
+   "start_dt": "2026-10-19T21:00:00.000",
+   "end_dt": "2026-10-20T05:00:00.000",
+   "longitude": "-114.09422843137872",
+   "latitude": "51.04230299810307",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.09422843137872,
+     51.04230299810307
+    ]
+   }
+  },
+  {
+   "construction_info": "32 Avenue between 29 Street to 39 Street NE",
+   "description": "32 AVE NE between 29 ST NE to 36 ST NE will have left lane of dual left turn bay closures, left lane closures, and left turn bay closures from 9 pm to 5 am on weekdays and 9 pm to 8 am on weekends.  Only one traffic setup will be implemented at any given time.  Calgary Police Services will be on site for traffic control.  The speed will be restricted to 50km/h.  Drivers are to obey all traffic control devices.  Pedestrians are to obey all pedestrian control devices.  Please avoid the area if possible.  Expect major delays.",
+   "start_dt": "2026-06-15T21:00:00.000",
+   "end_dt": "2026-10-31T08:00:00.000",
+   "longitude": "-113.98430713731429",
+   "latitude": "51.08149261963345",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -113.98430713731429,
+     51.08149261963345
+    ]
+   }
+  },
+  {
+   "construction_info": "5 Avenue at 8 Street SW",
+   "description": "2 Left lane Closure on 5 St SW b/w 9 St SW - 7 St SW",
+   "start_dt": "2026-10-14T05:30:00.000",
+   "end_dt": "2026-10-16T09:30:00.000",
+   "longitude": "-114.0810659653775",
+   "latitude": "51.048908996187905",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.0810659653775,
+     51.048908996187905
+    ]
+   }
+  },
+  {
+   "construction_info": "17 Avenue at 4 Street SW",
+   "description": "The road is closed.",
+   "start_dt": "2026-10-14T21:00:00.000",
+   "end_dt": "2026-10-15T05:00:00.000",
+   "longitude": "-114.07149444115699",
+   "latitude": "51.0378389874587",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.07149444115699,
+     51.0378389874587
+    ]
+   }
+  },
+  {
+   "construction_info": "36 Street between 32 Avenue and 39 Avenue NE",
+   "description": "North bound 36 ST NE between 20 AVE NE to 39 AVE NE/WHITEFIELD DR NE will have road closures, two left lane closures, right turn bay closures, and left turn bay closures from 9 pm to 5 am on weekdays and 9 pm to 7 am on weekends.  Only one traffic setup will be implemented at any given time.  Calgary Police Services will be on site for traffic control.  The speed will be restricted to 50km/h.  Drivers are to obey all traffic control devices.  Pedestrians are to obey all pedestrian control devices.  Please avoid the area if possible.  Expect major delays.",
+   "start_dt": "2026-06-05T21:00:00.000",
+   "end_dt": "2026-10-31T05:00:00.000",
+   "longitude": "-113.98234043979832",
+   "latitude": "51.08156102021867",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -113.98234043979832,
+     51.08156102021867
+    ]
+   }
+  },
+  {
+   "construction_info": "38 Street SW between 10 Avenue and 8 Avenue SW",
+   "description": "24/7 Road closure of 38 St between 8 Av & 10 Av SW. Use the detour route.",
+   "start_dt": "2026-10-20T06:00:00.000",
+   "end_dt": "2026-10-30T17:00:00.000",
+   "longitude": "-114.14262151937486",
+   "latitude": "51.043284009192135",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.14262151937486,
+     51.043284009192135
+    ]
+   }
+  },
+  {
+   "construction_info": "52 Street at Prestwick Avenue SE",
+   "description": "Weekdays from 9 AM to 3 PM and weekends from 7 AM to 5 PM; the right lane is closed northbound and southbound on 52 ST SE. The right turn from SB 52 ST to WB Prestwick Av SE is restricted; follow detour.",
+   "start_dt": "2026-10-15T09:00:00.000",
+   "end_dt": "2026-10-30T15:00:00.000",
+   "longitude": "-113.95871106478388",
+   "latitude": "50.922197994445426",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -113.95871106478388,
+     50.922197994445426
+    ]
+   }
+  },
+  {
+   "construction_info": "Berkshire Boulevard at Beddington Boulevard NW",
+   "description": "Right lane closures on Berkshire Blvd NW and Beddington Blvd NW.Only one setup, and one corner allowed at a time.",
+   "start_dt": "2026-08-27T09:00:00.000",
+   "end_dt": "2026-10-31T15:00:00.000",
+   "longitude": "-114.08916606898528",
+   "latitude": "51.13356298889404",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.08916606898528,
+     51.13356298889404
+    ]
+   }
+  },
+  {
+   "construction_info": "Airport Trail between Deerfoot Trail and Metis Trail NE",
+   "description": "Nightly 9 PM to 5 AMWestbound two left lane closure on Airport Tr NE from Deerfoot Tr to Metis NE.Speed reduced to 50km/hr.Only one setup is allowed at a time.",
+   "start_dt": "2026-10-23T21:00:00.000",
+   "end_dt": "2026-10-31T05:00:00.000",
+   "longitude": "-114.03839255444493",
+   "latitude": "51.141590962042194",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.03839255444493,
+     51.141590962042194
+    ]
+   }
+  },
+  {
+   "construction_info": "4 Avenue between 4 Street and 5 Street SW",
+   "description": "Right lane closure, and northside sidewalk closure on 4 Ave between 4 St and 5 St SW",
+   "start_dt": "2026-09-01T07:00:00.000",
+   "end_dt": "2026-11-30T15:00:00.000",
+   "longitude": "-114.07317835750263",
+   "latitude": "51.04968749696039",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.07317835750263,
+     51.04968749696039
+    ]
+   }
+  },
+  {
+   "construction_info": "Beddington Boulevard between Centre Street N and Berkshire Boulevard NW",
+   "description": "Beddington BLVD NW between Centre ST N to Berkshire BLVD NW will have right lane closures and left lane closures from 9 am to 3 pm daily.  Only one traffic setup will be implemented at any given time.  Drivers are to obey all traffic control devices.  Pedestrians are to obey all pedestrian control devices.  Please avoid the area if possible.  Expect major delays.",
+   "start_dt": "2026-06-29T09:00:00.000",
+   "end_dt": "2026-10-31T15:00:00.000",
+   "longitude": "-114.07136398583557",
+   "latitude": "51.1251390015129",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.07136398583557,
+     51.1251390015129
+    ]
+   }
+  },
+  {
+   "construction_info": "8 Avenue at Centre Street N",
+   "description": "Road Closure on 112 8 Ave NE",
+   "start_dt": "2026-10-01T07:00:00.000",
+   "end_dt": "2026-11-07T19:00:00.000",
+   "longitude": "-114.06254853754015",
+   "latitude": "51.0597810326309",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.06254853754015,
+     51.0597810326309
+    ]
+   }
+  },
+  {
+   "construction_info": "14 Avenue at 4 Street SW",
+   "description": "Westbound road closure on 14 Ave, and northbound andsouthbound left lane closures on 4 St.",
+   "start_dt": "2026-10-21T21:00:00.000",
+   "end_dt": "2026-10-22T05:00:00.000",
+   "longitude": "-114.07152148930699",
+   "latitude": "51.03975603388005",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.07152148930699,
+     51.03975603388005
+    ]
+   }
+  },
+  {
+   "construction_info": "11 Avenue between Stampede Trail and 5 Street SE",
+   "description": "Eastbound road closure",
+   "start_dt": "2026-10-14T07:00:00.000",
+   "end_dt": "2026-10-16T19:00:00.000",
+   "longitude": "-114.05346596333742",
+   "latitude": "51.04216379124046",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.05346596333742,
+     51.04216379124046
+    ]
+   }
+  },
+  {
+   "construction_info": "14 Street between Country Hills Boulevard and 115 Avenue SE",
+   "description": "Right Lane Closure on 11390 14 St NE",
+   "start_dt": "2026-10-08T07:00:00.000",
+   "end_dt": "2026-10-31T19:00:00.000",
+   "longitude": "-114.02749802697637",
+   "latitude": "51.15616199292135",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.02749802697637,
+     51.15616199292135
+    ]
+   }
+  },
+  {
+   "construction_info": "42 Street between 33 Avenue and 35 Avenue SW",
+   "description": "24/7 Road closure of 42 St between 33 Av & 35 Av SW. Use the detour route",
+   "start_dt": "2026-10-14T00:00:00.000",
+   "end_dt": "2026-10-17T23:00:00.000",
+   "longitude": "-114.14824199657617",
+   "latitude": "51.02231397788445",
+   "point": {
+    "type": "Point",
+    "coordinates": [
+     -114.14824199657617,
+     51.02231397788445
+    ]
+   }
+  }
+ ]
+}

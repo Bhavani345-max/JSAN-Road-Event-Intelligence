@@ -89,13 +89,14 @@ def test_mumbai_and_bengaluru_are_configured_with_place_lists():
     "source_id, city",
     [("mumbai-traffic-police-notifications", "mumbai"), ("bengaluru-traffic-police-website", "bengaluru")],
 )
-def test_the_listings_are_tier_one_connected_by_hand_and_without_geometry(source_id, city):
+def test_the_listings_are_tier_one_and_removed_for_giving_no_location(source_id, city):
     registered = {s.definition.source_id: s for s in registered_sources()}[source_id]
     definition = registered.definition
     assert definition.source_class is SourceClass.AUTHORITATIVE_OFFICIAL
     assert definition.source_tier == 1 and definition.city == city
-    assert definition.integration_status is IntegrationStatus.CONNECTED
-    assert definition.active is False and registered.create_connector is not None
+    # Removed on 15 October 2026 (decision 0029): their records give no coordinates.
+    assert definition.integration_status is IntegrationStatus.NOT_USABLE
+    assert definition.active is False and registered.create_connector is None
     assert definition.provides_geometry is False
     # Both authorities ask for permission before re-publication: recorded, not resolved.
     assert definition.terms_status is TermsStatus.REVIEW_REQUIRED

@@ -1,0 +1,40 @@
+{
+  "id": "south-africa",
+  "name": "South Africa",
+  "area_name": "South Africa",
+  "country": "ZA",
+  "region": "National",
+  "timezone": "Africa/Johannesburg",
+  "language": "en",
+  "bbox": [
+    -35.0,
+    16.3,
+    -22.1,
+    33.0
+  ],
+  "map": {
+    "center": [
+      24.7,
+      -29.0
+    ],
+    "zoom": 4.6
+  },
+  "scope_terms": [
+    "South Africa"
+  ],
+  "other_cities": [
+    "Namibia",
+    "Botswana",
+    "Zimbabwe",
+    "Mozambique",
+    "Lesotho",
+    "Eswatini"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

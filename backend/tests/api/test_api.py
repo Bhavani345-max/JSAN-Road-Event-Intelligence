@@ -28,6 +28,9 @@ def test_server_event_views_filter_before_count_and_pagination(client, session):
     assert client.get("/api/events").json()["total"] == 0
     rows = list(session.scalars(select(Event).order_by(Event.event_id)))
     now = datetime.now(timezone.utc)
+    # The console lists located events only; these three get a position.
+    for row in rows[:3]:
+        row.geometry = {"type": "Point", "coordinates": [78.4867, 17.385]}
     rows[0].status = "APPROVED"
     rows[0].start_time = now - timedelta(hours=1)
     rows[0].end_time = now + timedelta(hours=1)
@@ -76,7 +79,7 @@ def test_ingestion_creates_real_events_from_the_source(client):
         "finished_at": None,
     }
 
-    body = client.get("/api/events?view=validation").json()
+    body = client.get("/api/events?view=validation&include_hidden=true").json()
     assert body["total"] == 3
     # Most recently published first. The article with no publication date is
     # ordered by when it was found (now).
@@ -85,7 +88,7 @@ def test_ingestion_creates_real_events_from_the_source(client):
 
 def test_real_event_response_shape(client):
     ingest(client)
-    events = client.get("/api/events?view=validation").json()["items"]
+    events = client.get("/api/events?view=validation&include_hidden=true").json()["items"]
     event = next(e for e in events if e["title"].startswith("Traffic diversions at Lakeview"))
 
     assert event["event_id"].startswith("EVT-")
@@ -114,23 +117,23 @@ def test_repeated_ingestion_does_not_duplicate_events(client):
     assert second["new_artifacts"] == 0
     assert second["duplicates"] == 7
     assert second["events_created"] == 0
-    assert client.get("/api/events?view=validation").json()["total"] == 3
+    assert client.get("/api/events?view=validation&include_hidden=true").json()["total"] == 3
 
 
 def test_event_filters(client):
     ingest(client)
-    assert client.get("/api/events", params={"view": "validation", "source_id": "test-news"}).json()["total"] == 3
-    assert client.get("/api/events", params={"view": "validation", "source_id": "telangana-today"}).json()["total"] == 0
-    assert client.get("/api/events", params={"view": "validation", "status": "VALIDATION_REQUIRED"}).json()["total"] == 3
-    assert client.get("/api/events", params={"view": "validation", "status": "ACTIVE"}).json()["total"] == 0
-    page = client.get("/api/events", params={"view": "validation", "limit": 2, "offset": 2}).json()
+    assert client.get("/api/events", params={"view": "validation", "include_hidden": "true", "source_id": "test-news"}).json()["total"] == 3
+    assert client.get("/api/events", params={"view": "validation", "include_hidden": "true", "source_id": "telangana-today"}).json()["total"] == 0
+    assert client.get("/api/events", params={"view": "validation", "include_hidden": "true", "status": "VALIDATION_REQUIRED"}).json()["total"] == 3
+    assert client.get("/api/events", params={"view": "validation", "include_hidden": "true", "status": "ACTIVE"}).json()["total"] == 0
+    page = client.get("/api/events", params={"view": "validation", "include_hidden": "true", "limit": 2, "offset": 2}).json()
     assert page["total"] == 3 and len(page["items"]) == 1
-    assert client.get("/api/events", params={"view": "validation", "status": "NOT_A_STATUS"}).status_code == 422
+    assert client.get("/api/events", params={"view": "validation", "include_hidden": "true", "status": "NOT_A_STATUS"}).status_code == 422
 
 
 def test_event_detail_includes_version_history(client):
     ingest(client)
-    event_id = client.get("/api/events?view=validation").json()["items"][0]["event_id"]
+    event_id = client.get("/api/events?view=validation&include_hidden=true").json()["items"][0]["event_id"]
     detail = client.get(f"/api/events/{event_id}").json()
     assert detail["event_id"] == event_id
     assert [(v["version"], v["status"], v["changed_by"]) for v in detail["versions"]] == [
@@ -141,7 +144,7 @@ def test_event_detail_includes_version_history(client):
 
 def test_reviewer_can_reject_or_send_to_qc(client):
     ingest(client)
-    first, second = client.get("/api/events?view=validation").json()["items"][:2]
+    first, second = client.get("/api/events?view=validation&include_hidden=true").json()["items"][:2]
 
     rejected = client.post(
         f"/api/events/{first['event_id']}/status",
@@ -165,7 +168,7 @@ def test_reviewer_can_reject_or_send_to_qc(client):
 
 def test_unlocated_event_cannot_be_approved_or_published(client):
     ingest(client)
-    event_id = client.get("/api/events?view=validation").json()["items"][0]["event_id"]
+    event_id = client.get("/api/events?view=validation&include_hidden=true").json()["items"][0]["event_id"]
     url = f"/api/events/{event_id}/status"
 
     # No shortcut from validation straight to a live status.
@@ -204,7 +207,7 @@ def test_failed_fetch_is_reported_and_recorded_on_the_source(client, app):
     assert source["last_failure_at"] is not None
     assert source["last_success_at"] is None
     assert source["last_error"] == "feed unreachable"
-    assert client.get("/api/events?view=validation").json()["total"] == 0
+    assert client.get("/api/events?view=validation&include_hidden=true").json()["total"] == 0
 
 
 def test_ingestion_of_unknown_source_is_404(client):

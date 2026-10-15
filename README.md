@@ -83,6 +83,23 @@ The Hans India (removed 14 Oct 2026, decision 0026)
   own schedule, or list chosen feeds in `OFFICIAL_FEEDS_SCHEDULED_SOURCES`
   (comma-separated source ids) to switch them on one at a time
   ([decision 0028](docs/decisions/0028-official-feeds-scheduled-one-at-a-time.md)).
+- Canada, Australia and South Africa are configured
+  ([decision 0029](docs/decisions/0029-countries-and-confirmed-located-events.md)).
+  - **Canada:** Toronto, plus DriveBC (British Columbia), Ottawa, Edmonton,
+    Winnipeg and Calgary.
+  - **Australia:** Main Roads WA, City of Gold Coast, City of Wodonga and
+    Roads ACT (CC BY-SA, testing only).
+  - **South Africa:** no source passes the checks yet.
+  - Each country spanning several time zones shows each source's times in
+    its own region's zone.
+- The console shows only located events with a start and an end stated by the
+  source, and only until that end. Expired, undated ("unconfirmed") and
+  unlocated events are hidden, never deleted (`include_hidden=true` lists
+  them). Feeds without locations (NYC permitted events, the Mumbai and
+  Bengaluru traffic police listings) are switched off. Rows a source lists
+  for one event are merged. Different events at one spot each get their own
+  marker, spread around the spot with a line to it. Score the console against
+  these rules with `backend/tools/requirements_eval/requirements_eval.py`.
 - Additional sources are catalogued with their access and terms state,
   including Queensland QLDTraffic, Spain's National Access Point and Germany's
   Autobahn API. API keys, regional coverage or licence review still prevent

@@ -47,7 +47,7 @@ def event_titled(client, title):
     2026): the DLF closure's stated period has ended, so it moves to history.
     """
     for view in ("validation", "current_upcoming", "history", "rejected"):
-        items = client.get("/api/events", params={"view": view, "limit": 500}).json()["items"]
+        items = client.get("/api/events", params={"view": view, "limit": 500, "include_hidden": "true"}).json()["items"]
         for item in items:
             if item["title"] == title:
                 return item
