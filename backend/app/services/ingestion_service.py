@@ -13,7 +13,7 @@ from app.schemas.source import IngestionResultOut
 from app.services.retention_service import slim_unrelated_articles
 from connectors.base import ConnectorError, SourceConnector
 from connectors.html import ArticlePageConnector
-from connectors.registry import registered_sources
+from connectors.registry import OFFICIAL_SOURCE_IDS, registered_sources
 from packages.cities import DEFAULT_CITY_ID, City, get_city, load_cities
 from packages.common.time import utc_now
 from services.extraction import KeywordClassifier
@@ -79,9 +79,16 @@ class IngestionService:
             settings.serper_api_key,
             settings.google_news_rss_enabled,
             official_feeds_scheduled=settings.official_feeds_scheduled,
+            official_feeds_scheduled_sources=settings.official_feeds_scheduled_source_ids,
             official_feed_max_records=settings.official_feed_max_records,
             tfl_app_key=settings.tfl_app_key,
         )
+        unknown = settings.official_feeds_scheduled_source_ids - OFFICIAL_SOURCE_IDS
+        if unknown:
+            logger.warning(
+                "OFFICIAL_FEEDS_SCHEDULED_SOURCES: %s not an official feed; ignored. Official feeds: %s",
+                ", ".join(sorted(unknown)), ", ".join(sorted(OFFICIAL_SOURCE_IDS)),
+            )  # fmt: skip
         # source_id -> how to build its connector. Replaceable in tests.
         self.connector_factories: dict[str, Callable[[], SourceConnector]] = {
             source.definition.source_id: (

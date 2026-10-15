@@ -82,7 +82,7 @@ def nyc_source(*, scheduled: bool) -> SourceDefinition:
         notes=(
             "Public NYC DOT data for full street closures caused by construction. The "
             "dataset was fetched without a key on 13 October 2026. NYC Open Data's FAQ "
-            "states that open data has no use restrictions; polling is hourly when enabled."
+            "states that open data has no use restrictions; polling is daily when enabled."
         ),
     )
 

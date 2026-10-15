@@ -54,6 +54,10 @@ class Settings(BaseSettings):
     # Run by hand by default; set true to poll all connected official feeds on
     # their source-specific schedules.
     official_feeds_scheduled: bool = False
+    # Comma-separated official feeds to poll on their schedules while
+    # OFFICIAL_FEEDS_SCHEDULED is off, e.g. "tfl-road-disruptions,
+    # toronto-road-restrictions". Names that are not official feeds are ignored.
+    official_feeds_scheduled_sources: str = ""
     # Records one run of an official feed keeps (in effect now or within a
     # week, most recent first). Keeps each test city to a small number of
     # real events; 0 keeps every record.
@@ -119,6 +123,14 @@ class Settings(BaseSettings):
     @property
     def ai_excluded_source_ids(self) -> set[str]:
         return {source.strip() for source in self.ai_excluded_sources.split(",") if source.strip()}
+
+    @property
+    def official_feeds_scheduled_source_ids(self) -> frozenset[str]:
+        return frozenset(
+            source.strip()
+            for source in self.official_feeds_scheduled_sources.split(",")
+            if source.strip()
+        )
 
     @property
     def cors_origin_list(self) -> list[str]:

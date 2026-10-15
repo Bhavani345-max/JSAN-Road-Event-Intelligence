@@ -18,6 +18,8 @@ FROM node:24-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build /app ./
+# next start writes optimised images to .next/cache; the files above belong to root.
+RUN mkdir -p .next/cache && chown -R node:node .next/cache
 USER node
 EXPOSE 3000
 CMD ["npx", "next", "start"]

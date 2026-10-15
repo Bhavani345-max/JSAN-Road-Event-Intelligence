@@ -80,7 +80,9 @@ The Hans India (removed 14 Oct 2026, decision 0026)
   source's road geometry. Official feeds run by hand by default:
   `python backend/cli/ingest_source.py <source_id>`. Set
   `OFFICIAL_FEEDS_SCHEDULED=true` to poll every connected official feed on its
-  own schedule.
+  own schedule, or list chosen feeds in `OFFICIAL_FEEDS_SCHEDULED_SOURCES`
+  (comma-separated source ids) to switch them on one at a time
+  ([decision 0028](docs/decisions/0028-official-feeds-scheduled-one-at-a-time.md)).
 - Additional sources are catalogued with their access and terms state,
   including Queensland QLDTraffic, Spain's National Access Point and Germany's
   Autobahn API. API keys, regional coverage or licence review still prevent

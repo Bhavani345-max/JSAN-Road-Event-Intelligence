@@ -9,7 +9,7 @@ does) and list it below with `_rss(...)`. The ingestion service, the API and
 the console pick it up from this registry; nothing else needs to change.
 """
 
-from collections.abc import Callable
+from collections.abc import Callable, Collection
 from dataclasses import dataclass
 from functools import partial
 
@@ -113,20 +113,34 @@ def _google_news_rss_sources(enabled: bool) -> tuple[RegisteredSource, ...]:
     return tuple(sources)
 
 
+def _scheduled_if_chosen(
+    make: Callable[..., SourceDefinition], everything: bool, chosen: frozenset[str]
+) -> SourceDefinition:
+    """The source's definition, scheduled when every feed is or it is one of those chosen."""
+    definition = make(scheduled=everything)
+    if not everything and definition.source_id in chosen:
+        definition = make(scheduled=True)
+    return definition
+
+
 def _official_sources(
-    scheduled: bool, max_records: int | None, tfl_app_key: str | None
+    scheduled: bool,
+    max_records: int | None,
+    tfl_app_key: str | None,
+    chosen: frozenset[str] = frozenset(),
 ) -> tuple[RegisteredSource, ...]:
-    """Connected official/open-data sources; scheduled or run by hand."""
-    tfl = tfl_source(scheduled=scheduled)
-    toronto = toronto_source(scheduled=scheduled)
-    mumbai = mumbai_source(scheduled=scheduled)
-    bengaluru = bengaluru_source(scheduled=scheduled)
-    nyc = nyc_source(scheduled=scheduled)
-    nyc_events = nyc_events_source(scheduled=scheduled)
-    france = bison_fute_source(scheduled=scheduled)
-    dialog = dialog_source(scheduled=scheduled)
-    lyon = lyon_source(scheduled=scheduled)
-    finland = finland_source(scheduled=scheduled)
+    """Connected official/open-data sources; scheduled or run by hand.
+
+    `scheduled` schedules every one of them; `chosen` schedules only the
+    sources it names, so feeds can be switched on one at a time.
+    """
+    tfl, toronto, mumbai, bengaluru, nyc, nyc_events, france, dialog, lyon, finland = (
+        _scheduled_if_chosen(make, scheduled, chosen)
+        for make in (
+            tfl_source, toronto_source, mumbai_source, bengaluru_source, nyc_source,
+            nyc_events_source, bison_fute_source, dialog_source, lyon_source, finland_source,
+        )
+    )  # fmt: skip
     return (
         RegisteredSource(
             mumbai,
@@ -187,6 +201,7 @@ def registered_sources(
     google_news_rss_enabled: bool = False,
     *,
     official_feeds_scheduled: bool = False,
+    official_feeds_scheduled_sources: Collection[str] = (),
     official_feed_max_records: int | None = 30,
     tfl_app_key: str | None = None,
 ) -> tuple[RegisteredSource, ...]:
@@ -195,7 +210,9 @@ def registered_sources(
     Sources that need a key are connected only when it is present; without it
     they are listed as REQUIRES_ACCESS and never fetched. The Google News RSS
     feeds are connected only when switched on; otherwise they are listed as
-    needing a terms review and never fetched.
+    needing a terms review and never fetched. Official feeds are polled on
+    their schedules when `official_feeds_scheduled` is on, or when named in
+    `official_feeds_scheduled_sources`; otherwise only by hand.
     """
     if serper_api_key:
         definition = serper_news_source(connected=True)
@@ -211,7 +228,10 @@ def registered_sources(
         + REMOVED_SOURCES
         + (search,)
         + _official_sources(
-            official_feeds_scheduled, official_feed_max_records or None, tfl_app_key
+            official_feeds_scheduled,
+            official_feed_max_records or None,
+            tfl_app_key,
+            frozenset(official_feeds_scheduled_sources),
         )
         + _google_news_rss_sources(google_news_rss_enabled)
         + (RegisteredSource(MANUAL_ENTRY),)
@@ -221,6 +241,11 @@ def registered_sources(
 
 # The registry with no credentials configured.
 REGISTERED_SOURCES: tuple[RegisteredSource, ...] = registered_sources()
+
+# The official feeds OFFICIAL_FEEDS_SCHEDULED_SOURCES can name.
+OFFICIAL_SOURCE_IDS: frozenset[str] = frozenset(
+    source.definition.source_id for source in _official_sources(False, None, None)
+)
 
 
 def get_registered_source(source_id: str) -> RegisteredSource | None:
