@@ -90,7 +90,7 @@ def gold_coast_source(*, scheduled: bool) -> SourceDefinition:
             EventType.ROAD_WORKS.value,
             EventType.SPECIAL_EVENT.value,
         ),
-        parser_type="gold_coast_temporary_road_closures",
+        parser_type="gold_coast_temp_road_closures",
         cost_category=CostCategory.FREE_PUBLIC,
         rate_limit="None published.",
         terms_status=TermsStatus.PERMITS_TESTING,

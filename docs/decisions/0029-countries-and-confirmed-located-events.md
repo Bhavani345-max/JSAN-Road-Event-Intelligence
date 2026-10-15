@@ -140,6 +140,12 @@ each listed event against the requirements independently, and scores them
   from 9.3 s to 2.1 s, and the operations view from 8.9 s to 0.1 s. The
   database now applies the view's column rules (`EventRepository._list_shown`,
   tested equal to the rule in `tests/api/test_console_lists.py`).
+- First deployment (af6c041) failed at startup: the Gold Coast parser name
+  had 34 characters, and PostgreSQL's `sources.parser_type` column allows 32
+  (SQLite, used locally, does not check). Production kept the previous API
+  running and no data changed. The name is now `gold_coast_temp_road_closures`.
+  `tests/unit/test_source_column_limits.py` checks every registered source,
+  and the new feeds' stored events and evidence, against the column limits.
 - Production gets the code when deployed. The new feeds poll only when
   named in `OFFICIAL_FEEDS_SCHEDULED_SOURCES` (0028) or run by hand.
 - For the user: Roads ACT's share-alike licence before any publishing;
