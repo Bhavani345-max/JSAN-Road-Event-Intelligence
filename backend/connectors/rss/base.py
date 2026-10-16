@@ -86,7 +86,11 @@ class RssConnector:
 
         summary_html = entry.get("summary") or ""
         contents = entry.get("content") or []
-        content_html = contents[0].get("value", "") if contents else ""
+        # The first content element that has any; some feeds (The New Indian
+        # Express) put an empty one first and the article in the next.
+        content_html = next(
+            (c.get("value", "") for c in contents if (c.get("value") or "").strip()), ""
+        )
         categories = [tag.get("term", "").strip() for tag in entry.get("tags") or []]
 
         return RawSourceRecord(

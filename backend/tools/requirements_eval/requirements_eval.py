@@ -1,4 +1,5 @@
-"""Score the console against the user's requirements of 15 October 2026.
+"""Score the console against the user's requirements of 15 October 2026
+(R5 as changed on 16 October 2026).
 
 Reads a REI database READ-ONLY, lists events exactly as the API does for the
 console's two views (operations: current_upcoming; review queue: validation),
@@ -9,8 +10,10 @@ rule that listed it:
   R2  At least four working, located sources per new country.
   R3  One point per event: no duplicate rows of one event at one spot, and
       every remaining shared spot is spread apart on the map.
-  R4  No expired event is shown (end before now, or reported over).
-  R5  No unconfirmed event is shown (missing a stated start or end).
+  R4  No expired event is shown (end before now, reported over, or an
+      open-ended event read from an article past its days).
+  R5  No unconfirmed event is shown (missing a stated start; since 16
+      October 2026 a start without an end is allowed).
   R6  No event without a location is shown, and no connected official feed
       lacks locations.
 
@@ -40,7 +43,7 @@ from app.repositories.sources import SourceRepository  # noqa: E402
 from connectors.registry import registered_sources  # noqa: E402
 from packages.cities import load_cities  # noqa: E402
 from packages.common.time import ensure_utc  # noqa: E402
-from services.lifecycle.current import EventListView  # noqa: E402
+from services.lifecycle.current import EventListView, open_end_lapsed  # noqa: E402
 from services.merging.matcher import normalise  # noqa: E402
 
 NEW_COUNTRIES = {"CA": "Canada", "ZA": "South Africa", "AU": "Australia"}
@@ -108,9 +111,12 @@ def evaluate(session: Session, now: datetime, *, before: bool = False) -> dict:
     by_point: dict[str, list] = defaultdict(list)
     for event_id, (row, view) in listed.items():
         ended = row.detection and row.detection.get("source_reports_ended")
-        if row.end_time is not None and ensure_utc(row.end_time) < now or ended:
+        lapsed = open_end_lapsed(
+            (row.detection or {}).get("method"), row.start_time, row.end_time, now=now
+        )
+        if row.end_time is not None and ensure_utc(row.end_time) < now or ended or lapsed:
             expired.append(event_id)
-        if row.start_time is None or row.end_time is None:
+        if row.start_time is None:
             unconfirmed.append(event_id)
         if not row.geometry:
             unlocated.append(event_id)

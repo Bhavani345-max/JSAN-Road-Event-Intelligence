@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 
 from app.core.config import Settings
 from app.main import create_app
+from connectors.registry import RegisteredSource
 from tests.support import SOURCE_FIXTURES, TEST_SOURCE, FakeConnector, parse_fixture, sign_in
 
 
@@ -20,9 +21,11 @@ def app(engine, session, records):
         event_matching_after_ingestion=False,
     )
     app = create_app(settings, engine=engine)
-    app.state.ingestion_service.connector_factories = {
-        TEST_SOURCE.source_id: lambda: FakeConnector(records)
-    }
+    service = app.state.ingestion_service
+    # Registered like every source REI polls: a source the registry does not
+    # know is never processed with another city's rules (decision 0033).
+    service.sources = (*service.sources, RegisteredSource(TEST_SOURCE))
+    service.connector_factories = {TEST_SOURCE.source_id: lambda: FakeConnector(records)}
     # The synthetic feeds name invented places, which no gazetteer knows.
     # Location is tested with real articles (test_location.py).
     app.state.ingestion_service.resolver = None

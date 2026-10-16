@@ -29,7 +29,7 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from app.core.config import DATA_DIR, Settings
 from app.models import Event, SourceArtifact
-from app.services.ingestion_service import IngestionService
+from app.services.ingestion_service import IngestionService, UnknownSource
 from app.services.reprocess_service import AI_CHANGED_BY, record_from_artifact, rederive_artifact
 from app.services.retention_service import is_stub
 from connectors.restricted import restricted_publisher
@@ -151,11 +151,13 @@ class AiReadingService:
             )
         query = query.order_by(SourceArtifact.created_at.desc())
         # Excluded by source, and by address whatever source stored it: a
-        # restricted publisher's article is never sent to a model (decision 0024).
+        # restricted publisher's article is never sent to a model (decision 0024),
+        # nor one from a source that is not connected (decision 0033).
         return [
             artifact
             for artifact in session.scalars(query)
             if artifact.source_id not in self._excluded
+            and self._ingestion.ai_may_read(artifact.source_id)
             and not restricted_publisher(artifact.url)
             and not is_stub(artifact)
         ]
@@ -288,7 +290,11 @@ class AiReadingService:
             if artifact is None:
                 continue
             record = record_from_artifact(artifact)
-            tools = self._ingestion.tools_for_source(artifact.source_id)
+            try:
+                tools = self._ingestion.tools_for_source(artifact.source_id)
+            except UnknownSource:
+                # Never read with another city's rules (decision 0033).
+                continue
             articles.append(
                 (
                     ArticleText(

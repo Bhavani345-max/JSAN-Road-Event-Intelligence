@@ -106,6 +106,26 @@ def restricted_by_terms(
     )
 
 
+def awaiting_permission(definition: SourceDefinition, *, terms: str) -> SourceDefinition:
+    """`definition`, verified working but not connected: the publisher's terms do not
+    permit REI's (commercial) use, so it waits for written permission (decision 0033).
+
+    Registered without a connector, so it is never fetched; connecting it once
+    permission is granted is moving it to CONNECTED_SOURCES.
+    """
+    return SourceDefinition.model_validate(
+        definition.model_dump()
+        | {
+            "integration_status": IntegrationStatus.TERMS_REVIEW_REQUIRED,
+            "active": False,
+            "terms_status": TermsStatus.REVIEW_REQUIRED,
+            "commercial_use": CommercialUse.UNKNOWN,
+            "access_method": "Not accessed: awaiting the publisher's written permission",
+            "notes": f"{definition.notes} Not connected (16 October 2026): {terms}",
+        }
+    )
+
+
 def removed_from_rei(
     definition: SourceDefinition, *, licence: str, attribution: str, reason: str
 ) -> SourceDefinition:

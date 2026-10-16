@@ -1,0 +1,60 @@
+{
+  "id": "ahmedabad",
+  "name": "Ahmedabad",
+  "area_name": "Ahmedabad",
+  "country": "IN",
+  "region": "Gujarat",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    22.9,
+    72.45,
+    23.15,
+    72.72
+  ],
+  "map": {
+    "center": [
+      72.5714,
+      23.0225
+    ],
+    "zoom": 11
+  },
+  "scope_terms": [
+    "Ahmedabad",
+    "Amdavad",
+    "Ahmedabad Municipal Corporation",
+    "Ahmedabad Traffic Police",
+    "Ahmedabad Metro"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Surat",
+    "Vadodara",
+    "Baroda",
+    "Rajkot",
+    "Gandhinagar",
+    "Bhavnagar",
+    "Jamnagar",
+    "Anand",
+    "Mehsana",
+    "Junagadh",
+    "Bharuch"
+  ],
+  "gazetteer": "ahmedabad_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Ahmedabad traffic diversions OR restrictions OR closure",
+      "Ahmedabad \"road closed\" OR \"roads closed\" OR \"road blocked\" OR \"no entry\"",
+      "\"Ahmedabad traffic police\" OR \"Ahmedabad police\" advisory OR diversion OR \"one-way\"",
+      "Ahmedabad flyover OR underpass OR bridge closed OR closure OR repairs",
+      "Ahmedabad waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Ahmedabad marathon OR procession OR rally OR festival traffic diversions OR restrictions",
+      "Ahmedabad metro OR \"Ahmedabad Municipal Corporation\" works traffic diversions OR restrictions",
+      "Ahmedabad VIP OR \"Prime Minister\" OR \"Chief Minister\" OR President visit traffic restrictions",
+      "Ahmedabad \"heavy vehicles\" banned OR prohibited OR \"traffic alert\" OR \"alternative routes\""
+    ]
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

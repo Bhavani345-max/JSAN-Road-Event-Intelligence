@@ -54,6 +54,10 @@ class Settings(BaseSettings):
     # each feed says it is for personal, non-commercial use only. Switch on only
     # with written permission (docs/data-sources/google-news-rss.md).
     google_news_rss_enabled: bool = False
+    # GDELT news searches, one per city with a place list (decision 0033). Off
+    # by default: on 16 October 2026 its API refused most requests. Off, the
+    # searches are listed but never run; true switches them on.
+    gdelt_search_enabled: bool = False
     # Connected government feeds (including TfL, Toronto, NYC and France).
     # Run by hand by default; set true to poll all connected official feeds on
     # their source-specific schedules.

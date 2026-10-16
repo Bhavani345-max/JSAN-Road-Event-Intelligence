@@ -229,3 +229,63 @@ def test_a_restricted_publishers_article_is_never_sent_to_the_model(app, tmp_pat
     with app.state.session_factory() as session:
         artifact = session.scalar(select(SourceArtifact).where(SourceArtifact.title == KHAJAGUDA))
         assert "ai" not in (artifact.classification_details or {})
+
+
+# --- sources the registry does not know, or that are not connected (decision 0033) --
+
+
+def _move_khajaguda_to(app, definition):
+    with app.state.session_factory() as session:
+        SourceRepository(session).sync_registry([definition])
+        artifact = session.scalar(select(SourceArtifact).where(SourceArtifact.title == KHAJAGUDA))
+        artifact.source_id = definition.source_id
+        session.commit()
+
+
+def _khajaguda(app):
+    with app.state.session_factory() as session:
+        artifact = session.scalar(select(SourceArtifact).where(SourceArtifact.title == KHAJAGUDA))
+        event = session.scalar(select(Event).where(Event.source_artifact_id == artifact.artifact_id))
+        return artifact.classification, dict(artifact.classification_details or {}), event.status, event.version
+
+
+def test_a_source_the_registry_does_not_know_is_never_read_with_hyderabads_rules(app, tmp_path):
+    # On 16 October 2026 an API on older code read new cities' articles with
+    # Hyderabad's rules (the default city) and rejected their events.
+    from app.services.ingestion_service import UnknownSource
+    from packages.source_models import SourceDefinition
+
+    service = app.state.ingestion_service
+    with pytest.raises(UnknownSource):
+        service.tools_for_source("retired-chennai-feed")
+    retired = SourceDefinition.model_validate(
+        TELANGANA_TODAY.model_dump() | {"source_id": "retired-chennai-feed", "city": "chennai"}
+    )
+    _move_khajaguda_to(app, retired)
+    before = _khajaguda(app)
+
+    with app.state.session_factory() as session:
+        result = reprocess_stored_evidence(
+            session, service.classifier, service.resolver, tools_for_source=service.tools_for_source
+        )
+        session.commit()
+    assert result.unknown_source == 1
+    assert _khajaguda(app) == before  # article and event left exactly as they were
+
+    fake = model()
+    reader(app, tmp_path, fake).run()
+    assert not any(KHAJAGUDA in prompt for prompt in fake.prompts)
+    assert _khajaguda(app) == before
+
+
+def test_an_article_of_a_source_awaiting_permission_is_never_sent_to_the_model(app, tmp_path):
+    from connectors.registry import get_registered_source
+
+    awaiting = get_registered_source("new-indian-express-chennai")
+    assert awaiting.create_connector is None
+    _move_khajaguda_to(app, awaiting.definition)
+
+    fake = model()
+    reader(app, tmp_path, fake).run()
+    assert not any(KHAJAGUDA in prompt for prompt in fake.prompts)
+    assert "ai" not in _khajaguda(app)[1]

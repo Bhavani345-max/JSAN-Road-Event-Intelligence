@@ -5,7 +5,12 @@ works) from external sources, turns them into one canonical event format,
 and shows them on a map for human review.
 
 **Current coverage:** real-source news for Hyderabad, with official road feeds
-in London, Toronto, Mumbai, Bengaluru, New York City, France and Finland. The original
+in London, Toronto, Mumbai, Bengaluru, New York City, France and Finland. Since
+16 October 2026 (decision 0033): Delhi, Chennai, Kolkata, Pune and Ahmedabad are
+configured with place lists, South Africa has a place list over seven metro areas
+and the SAnews feed, Mid-day is disconnected (personal-use terms), and a GDELT
+news search is built but off by default (`GDELT_SEARCH_ENABLED`). Feeds whose
+terms do not permit commercial use wait for written permission. The original
 Hyderabad proof of concept began with six publisher feeds:
 
 ```
@@ -95,10 +100,12 @@ The Hans India (removed 14 Oct 2026, decision 0026)
   - **South Africa:** no source passes the checks yet.
   - Each country spanning several time zones shows each source's times in
     its own region's zone.
-- The console shows only located events with a start and an end stated by the
-  source, and only until that end. Expired, undated ("unconfirmed") and
-  unlocated events are hidden, never deleted (`include_hidden=true` lists
-  them). Feeds without locations (NYC permitted events, the Mumbai and
+- The console shows only located events with a start stated by the source,
+  and only until their end. An event with a start and no end runs until
+  further notice: an official record until its source reports it over, an
+  event read from an article for 30 days after its start (decision 0033).
+  Expired, undated ("unconfirmed") and unlocated events are hidden, never
+  deleted (`include_hidden=true` lists them). Feeds without locations (NYC permitted events, the Mumbai and
   Bengaluru traffic police listings) are switched off. Rows a source lists
   for one event are merged. Different events at one spot each get their own
   marker, spread around the spot with a line to it. Score the console against

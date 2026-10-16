@@ -1,0 +1,64 @@
+{
+  "id": "kolkata",
+  "name": "Kolkata",
+  "area_name": "Kolkata and Howrah",
+  "country": "IN",
+  "region": "West Bengal",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    22.4,
+    88.2,
+    22.72,
+    88.52
+  ],
+  "map": {
+    "center": [
+      88.3639,
+      22.5726
+    ],
+    "zoom": 10.8
+  },
+  "scope_terms": [
+    "Kolkata",
+    "Calcutta",
+    "Howrah",
+    "Salt Lake",
+    "New Town",
+    "Bidhannagar",
+    "Kolkata Police",
+    "Kolkata Traffic Police",
+    "Kolkata Municipal Corporation",
+    "Kolkata Metro"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Siliguri",
+    "Durgapur",
+    "Asansol",
+    "Kharagpur",
+    "Haldia",
+    "Bardhaman",
+    "Burdwan",
+    "Malda",
+    "Krishnanagar",
+    "Darjeeling"
+  ],
+  "gazetteer": "kolkata_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Kolkata traffic diversions OR restrictions OR closure",
+      "Kolkata \"road closed\" OR \"roads closed\" OR \"road blocked\" OR \"no entry\"",
+      "\"Kolkata Police\" OR \"Kolkata Traffic Police\" advisory OR diversion OR \"one-way\"",
+      "Kolkata flyover OR underpass OR bridge closed OR closure OR repairs",
+      "Kolkata waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Kolkata marathon OR procession OR rally OR festival traffic diversions OR restrictions",
+      "Kolkata metro OR \"Kolkata Municipal Corporation\" OR KMDA works traffic diversions OR restrictions",
+      "Kolkata VIP OR \"Prime Minister\" OR \"Chief Minister\" OR President visit traffic restrictions",
+      "Kolkata \"heavy vehicles\" banned OR prohibited OR \"traffic alert\" OR \"alternative routes\""
+    ]
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

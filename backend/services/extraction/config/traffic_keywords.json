@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-07",
+  "version": "2026-10-16",
   "description": "Rule-based detection of road/traffic articles. Each matched rule adds its weight; an article is RELEVANT_TRAFFIC_ARTICLE when the total reaches the threshold, at least one matched rule weighs 'strong_signal_weight' or more, and it is within the location scope. 'term' is matched as whole words, case-insensitively, with an optional plural 's'; 'pattern' is a regular expression. Longer terms win over the shorter terms they contain. Rules sharing a 'group' count once (the heaviest). Rules of weight 1 are supporting context only: together they add at most 'max_supporting_score', so they can never make an article relevant by themselves. 'event_type' is the type suggested when that rule is the strongest typed match. An article is out of scope when its headline names another city and not the scope city; it is in scope when its headline names a known Hyderabad locality or junction (checked by the place resolver, when one is given) even if the city itself is not written. A rule with 'names_event' names what the event is (a marathon, a VIP visit, an accident) rather than the measure on the road; its type wins over measure types.",
   "threshold": 3,
   "strong_signal_weight": 3,
@@ -330,6 +330,23 @@
       "term": "road work",
       "weight": 2,
       "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "term": "roadworks",
+      "weight": 2,
+      "event_type": "ROAD_CONSTRUCTION"
+    },
+    {
+      "pattern": "\\bdetour(?:s|ed|ing)?\\b",
+      "label": "detour",
+      "weight": 2,
+      "event_type": "TRAFFIC_DIVERSION"
+    },
+    {
+      "pattern": "\\bstop[/-]go\\b",
+      "label": "stop/go control",
+      "weight": 3,
+      "event_type": "LANE_RESTRICTION"
     },
     {
       "term": "road repair",

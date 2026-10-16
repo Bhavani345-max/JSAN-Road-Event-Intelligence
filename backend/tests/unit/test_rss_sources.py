@@ -37,25 +37,26 @@ def classifier() -> KeywordClassifier:
 # --- Source registration -----------------------------------------------------
 
 
-def test_three_rss_sources_are_registered_with_distinct_identities():
+def test_the_connected_rss_sources_are_registered_with_distinct_identities():
     ids = [source.definition.source_id for source in RSS_SOURCES]
     assert ids == [
         "telangana-today",
         "newsmeter",
-        # Mumbai, 8 October 2026.
-        "mid-day-mumbai",
+        # South Africa, 16 October 2026 (decision 0033): free to use with credit.
+        "sanews",
     ]
     # Disconnected by their publishers' terms: the two Siasat feeds on 14 October
     # 2026 (decision 0024); The Hindu (both cities) and Deccan Chronicle on 15
-    # October 2026 (decision 0032). The Hans India was removed (decision 0026).
-    assert len({source.definition.endpoint for source in RSS_SOURCES}) == 3
-    assert len({source.definition.source_name for source in RSS_SOURCES}) == 3
+    # October 2026 (decision 0032); Mid-day on 16 October 2026 (decision 0033). The
+    # Hans India was removed (decision 0026).
+    assert len({source.definition.endpoint for source in RSS_SOURCES}) == len(ids)
+    assert len({source.definition.source_name for source in RSS_SOURCES}) == len(ids)
 
 
 @pytest.mark.parametrize(
     "source_id, domain",
     [("the-hindu", "thehindu.com"), ("the-hindu-bengaluru", "thehindu.com"),
-     ("deccan-chronicle", "deccanchronicle.com")],
+     ("deccan-chronicle", "deccanchronicle.com"), ("mid-day-mumbai", "mid-day.com")],
 )  # fmt: skip
 def test_feeds_whose_terms_forbid_collection_are_registered_without_a_connector(source_id, domain):
     from connectors.restricted import RESTRICTED_PUBLISHERS, restricted_publisher
@@ -68,7 +69,9 @@ def test_feeds_whose_terms_forbid_collection_are_registered_without_a_connector(
     assert source.integration_status is IntegrationStatus.TERMS_REVIEW_REQUIRED
     assert source.terms_status is TermsStatus.RESTRICTED
     assert source.commercial_use is CommercialUse.NOT_PERMITTED
-    assert "Disconnected on 15 October 2026" in source.notes
+    assert "Disconnected on 15 October 2026" in source.notes or (
+        source_id == "mid-day-mumbai" and "Disconnected on 16 October 2026" in source.notes
+    )
     assert RESTRICTED_PUBLISHERS[domain] in source.notes
     # No page of the publisher is read by any other path either.
     assert restricted_publisher(source.endpoint) == domain
@@ -259,3 +262,21 @@ def test_out_of_scope_and_unrelated_articles_create_no_event(source, filename, c
     titles = [event.title for event in events_from(source, filename, classifier)]
     assert not any("Warangal" in title for title in titles)
     assert not any("rafficking" in title for title in titles)
+
+
+@pytest.mark.parametrize("source_id", [
+    "new-indian-express-hyderabad", "new-indian-express-bengaluru", "new-indian-express-chennai",
+    "new-indian-express-delhi", "new-indian-express-mumbai", "new-indian-express-kolkata",
+    "millennium-post-delhi", "millennium-post-kolkata",
+])  # fmt: skip
+def test_feeds_whose_terms_do_not_permit_reis_use_wait_for_permission_unread(source_id):
+    # Decision 0033: verified working on 16 October 2026, but nothing in the
+    # publishers' terms permits commercial use; never fetched until permission.
+    from packages.source_models import CommercialUse, IntegrationStatus
+
+    registered = get_registered_source(source_id)
+    source = registered.definition
+    assert registered.create_connector is None
+    assert source.integration_status is IntegrationStatus.TERMS_REVIEW_REQUIRED and not source.active
+    assert source.commercial_use is CommercialUse.UNKNOWN and not source.terms_reviewed
+    assert "written permission" in source.access_method

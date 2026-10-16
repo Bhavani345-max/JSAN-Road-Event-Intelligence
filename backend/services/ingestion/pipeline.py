@@ -170,9 +170,8 @@ def run_ingestion(
         # publisher's own feed is not stored a second time.
         held = store.stored_article_urls([record.url for record in records if record.url])
         seen |= {record.external_id for record in records if record.url in held}
-    if connector.source.source_class is SourceClass.DISCOVERY and hasattr(
-        store, "stored_article_titles"
-    ):
+    discovery = connector.source.source_class is SourceClass.DISCOVERY
+    if discovery and hasattr(store, "stored_article_titles"):
         # A search source finds reports of articles. One already held under
         # the same headline, from the publisher's feed or another search, is
         # the same article and is not stored again. Publishers' own feeds are
@@ -205,6 +204,8 @@ def run_ingestion(
 
     revised_records: list[RawSourceRecord] = []
     new_records: list[RawSourceRecord] = []
+    # Headlines of the new results of this poll (search sources only).
+    titles_this_poll: set[str] = set()
     for record in records:
         if record.external_id in seen:
             if is_revision(record):
@@ -214,6 +215,15 @@ def run_ingestion(
             else:
                 result.duplicates += 1
             continue
+        if discovery:
+            # A search can list syndicated copies of one article (the same
+            # headline on several sites) in one poll: the first is kept, as
+            # one held from an earlier poll would be (decision 0033).
+            key = _title_key(record.title)
+            if key in titles_this_poll:
+                result.duplicates += 1
+                continue
+            titles_this_poll.add(key)
         # Also guards against the same item appearing twice in one fetch.
         seen.add(record.external_id)
         # All fetching happens here, before the first write: a database write

@@ -46,7 +46,7 @@ def list_events(
         Query(
             description=(
                 "Also list the events the console hides: without a location, without a "
-                "stated start and end, or ended (for audit and tools)."
+                "stated start, or ended (for audit and tools)."
             )
         ),
     ] = False,

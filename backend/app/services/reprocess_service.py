@@ -18,6 +18,7 @@ from sqlalchemy.orm import Session
 
 from app.models import Event, SourceArtifact
 from app.repositories.events import EventRepository, column_values, to_rei_event
+from app.services.ingestion_service import UnknownSource
 from app.services.retention_service import is_stub
 from packages.common.text import html_to_text
 from packages.common.time import ensure_utc, utc_now
@@ -32,6 +33,9 @@ from services.ingestion.pipeline import classify
 CHANGED_BY = "reprocessing"
 # Changes made after a language model read the article (app/services/ai_reading_service.py).
 AI_CHANGED_BY = "ai-reading"
+# Where an article keeps AI readings set aside as made with the wrong rules
+# (app/services/ai_reading_correction.py).
+SUPERSEDED_KEY = "ai_superseded"
 # Who makes changes without a person deciding them.
 _AUTOMATIC = {"ingestion", CHANGED_BY, "source-update", "gis-resolver", AI_CHANGED_BY}
 # Automatic re-derivations whose rejection a later one may undo.
@@ -66,6 +70,8 @@ class ReprocessResult:
     rejected: int = 0
     restored: int = 0
     unchanged: int = 0
+    # Items of a source the registry does not know: left as they are (decision 0033).
+    unknown_source: int = 0
 
 
 def record_from_artifact(
@@ -158,6 +164,9 @@ def _record_classification(artifact: SourceArtifact, classification: Classificat
         if label == ArticleRelevance.NOT_RELEVANT.value and is_ai_road_event(ai_reading_of(artifact)):
             label = ArticleRelevance.RELEVANT_TRAFFIC_ARTICLE.value
             details["relevant_by"] = "ai_reading"
+    # Readings set aside as made with the wrong rules are evidence too (decision 0033).
+    if previous.get(SUPERSEDED_KEY):
+        details[SUPERSEDED_KEY] = previous[SUPERSEDED_KEY]
     artifact.classification = label
     artifact.classification_details = details
 
@@ -288,7 +297,12 @@ def reprocess_stored_evidence(
         city = None
         this_classifier, this_resolver = classifier, resolver
         if tools_for_source is not None:
-            this_classifier, this_resolver, city = tools_for_source(artifact.source_id)
+            try:
+                this_classifier, this_resolver, city = tools_for_source(artifact.source_id)
+            except UnknownSource:
+                # Never re-derived with another city's rules (decision 0033).
+                result.unknown_source += 1
+                continue
         outcome, _ = rederive_artifact(
             session,
             artifact,

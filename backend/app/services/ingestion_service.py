@@ -82,6 +82,7 @@ class IngestionService:
             official_feeds_scheduled_sources=settings.official_feeds_scheduled_source_ids,
             official_feed_max_records=settings.official_feed_max_records,
             tfl_app_key=settings.tfl_app_key,
+            gdelt_enabled=settings.gdelt_search_enabled,
         )
         unknown = settings.official_feeds_scheduled_source_ids - OFFICIAL_SOURCE_IDS
         if unknown:
@@ -159,12 +160,26 @@ class IngestionService:
     def tools_for_source(
         self, source_id: str
     ) -> tuple[KeywordClassifier, PlaceResolver | None, City]:
-        """The classifier, resolver and city a source's items are processed with."""
+        """The classifier, resolver and city a source's items are processed with.
+
+        A source this registry does not know raises UnknownSource: its items
+        are never read with another city's rules (decision 0033: an API
+        running older code read new cities' articles with Hyderabad's). A
+        registered source without a city is Hyderabad's, as legacy records are.
+        """
         source = next((s for s in self.sources if s.definition.source_id == source_id), None)
-        city_id = (source.definition.city if source else None) or DEFAULT_CITY_ID
+        if source is None:
+            raise UnknownSource(f"{source_id}: not a registered source")
+        city_id = source.definition.city or DEFAULT_CITY_ID
         if city_id not in self.cities:
             raise UnknownSource(f"{source_id}: its city {city_id!r} is not configured")
         return self.classifiers[city_id], self.resolvers[city_id], get_city(city_id)
+
+    def ai_may_read(self, source_id: str) -> bool:
+        """Whether a source's stored articles may be sent to an AI model: only a
+        connected source's. One awaiting permission, restricted, removed or
+        unknown is never sent (decision 0033)."""
+        return source_id in self.connector_factories
 
     def placer_for_source(self, source_id: str) -> Placer | None:
         """How a source's events are placed on the map (its city's placer)."""

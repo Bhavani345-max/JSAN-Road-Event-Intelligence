@@ -21,6 +21,7 @@ import argparse
 import json
 import math
 import re
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -31,6 +32,12 @@ from packages.cities import DEFAULT_CITY_ID, get_city
 from .names import normalise_name
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
+# Tried in order when a server is overloaded.
+OVERPASS_URLS = (
+    OVERPASS_URL,
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+)
 USER_AGENT = "JSAN-REI/1.0 (road event intelligence PoC)"
 OUTPUT_PATH = Path(__file__).parent / "data" / "hyderabad_places.json"
 
@@ -239,12 +246,39 @@ def build_places(elements: list[dict]) -> tuple[list[dict], Counter]:
 
 
 def download(bbox: tuple[float, float, float, float] = BBOX) -> dict:
+    """The Overpass response for one area, from the first server that answers.
+
+    The public servers are often overloaded (HTTP 429/504 or a timeout); the
+    next one is tried, and the whole list twice, before giving up.
+    """
     query = _QUERY.format(bbox=",".join(str(value) for value in bbox))
-    response = httpx.post(
-        OVERPASS_URL, data={"data": query}, headers={"User-Agent": USER_AGENT}, timeout=240
-    )
-    response.raise_for_status()
-    return response.json()
+    errors = []
+    for attempt in range(2):
+        for url in OVERPASS_URLS:
+            try:
+                response = httpx.post(
+                    url, data={"data": query}, headers={"User-Agent": USER_AGENT}, timeout=240
+                )
+                response.raise_for_status()
+                return response.json()
+            except (httpx.HTTPError, ValueError) as error:
+                errors.append(f"{url}: {error}")
+                print(f"Overpass failed ({url}): {error}")
+        if attempt == 0:
+            time.sleep(30)
+    raise SystemExit("Every Overpass server failed:\n" + "\n".join(errors))
+
+
+def download_areas(areas: tuple[tuple[float, float, float, float], ...]) -> dict:
+    """One Overpass response covering several areas (each feature once)."""
+    elements: dict[tuple[str, int], dict] = {}
+    timestamp = None
+    for area in areas:
+        document = download(area)
+        timestamp = document.get("osm3s", {}).get("timestamp_osm_base") or timestamp
+        for element in document["elements"]:
+            elements[(element["type"], element["id"])] = element
+    return {"elements": list(elements.values()), "osm3s": {"timestamp_osm_base": timestamp}}
 
 
 def main() -> None:
@@ -257,12 +291,14 @@ def main() -> None:
     if not city.gazetteer:
         raise SystemExit(f"{city.id}: the city configuration names no gazetteer file")
     bbox = tuple(city.bbox)
+    # A country covers its metro areas only (`gazetteer_areas`), not all of its land.
+    areas = city.gazetteer_areas or (bbox,)
     output_path = OUTPUT_PATH.parent / city.gazetteer
 
     if args.from_file:
         document = json.loads(Path(args.from_file).read_text(encoding="utf-8"))
     else:
-        document = download(bbox)
+        document = download_areas(areas)
     places, skipped = build_places(document["elements"])
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -273,6 +309,7 @@ def main() -> None:
             "osm_data_timestamp": document.get("osm3s", {}).get("timestamp_osm_base"),
             "city": city.id,
             "bbox_south_west_north_east": bbox,
+            **({"areas_south_west_north_east": areas} if city.gazetteer_areas else {}),
             "places": places,
         },
         ensure_ascii=False,

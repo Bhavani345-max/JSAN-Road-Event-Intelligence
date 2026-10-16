@@ -18,12 +18,12 @@ DAY = timedelta(days=1)
 
 def event(
     *, status=EventStatus.VALIDATION_REQUIRED, start=None, end=None, event_type=None, ended=False,
-    geometry=HYDERABAD,
+    geometry=HYDERABAD, method="keyword_rules",
 ):
     return ReiEvent(
         event_id="EVT-CUR000000001", source_id="test", title="Test event", status=status,
         start_time=start, end_time=end, event_type=event_type, geometry=geometry,
-        detection=EventDetection(method="keyword_rules", matched_keywords=[], source_reports_ended=ended),
+        detection=EventDetection(method=method, matched_keywords=[], source_reports_ended=ended),
         created_at=NOW, updated_at=NOW,
     )  # fmt: skip
 
@@ -89,7 +89,7 @@ def test_server_views_require_reviewed_operational_status_and_stated_timing():
     assert matches_event_view(upcoming, EventListView.UPCOMING, now=NOW)
     assert matches_event_view(pending, EventListView.VALIDATION, now=NOW)
     assert not matches_event_view(pending, EventListView.CURRENT_UPCOMING, now=NOW)
-    # Without a stated start and end it is unconfirmed: hidden from every console
+    # Without a stated start it is unconfirmed: hidden from every console
     # view (15 October 2026), still listed when hidden events are asked for.
     assert not matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW)
     assert matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW, include_hidden=True)
@@ -150,7 +150,6 @@ CONSOLE_VIEWS = (EventListView.CURRENT_UPCOMING, EventListView.VALIDATION)
 @pytest.mark.parametrize(
     "case, why",
     [
-        (dict(start=NOW - DAY), "no stated end: unconfirmed"),
         (dict(end=NOW + DAY), "no stated start: unconfirmed"),
         (dict(), "no stated period: unconfirmed"),
         (dict(start=NOW - 3 * DAY, end=NOW - DAY), "ended: expired"),
@@ -192,3 +191,44 @@ def test_hidden_events_are_kept_and_listed_on_request():
 def test_an_event_ending_now_is_still_shown():
     assert is_shown(event(start=NOW - DAY, end=NOW), now=NOW)
     assert not is_shown(event(start=NOW - DAY, end=NOW - timedelta(seconds=1)), now=NOW)
+
+
+# --- A stated start and no end (the user's rule of 16 October 2026) ----------------
+
+
+@pytest.mark.parametrize("status, view", [
+    (EventStatus.VALIDATION_REQUIRED, EventListView.VALIDATION),
+    (EventStatus.APPROVED, EventListView.CURRENT_UPCOMING),
+    (EventStatus.APPROVED, EventListView.CURRENT),
+])  # fmt: skip
+def test_a_located_event_with_a_start_and_no_end_is_shown(status, view):
+    open_ended = event(status=status, start=NOW - DAY)
+    assert is_shown(open_ended, now=NOW)
+    assert matches_event_view(open_ended, view, now=NOW)
+
+
+def test_an_open_ended_event_that_starts_later_is_upcoming():
+    later = event(status=EventStatus.SCHEDULED, start=NOW + DAY)
+    assert matches_event_view(later, EventListView.UPCOMING, now=NOW)
+    assert not matches_event_view(later, EventListView.CURRENT, now=NOW)
+
+
+@pytest.mark.parametrize("method", ["keyword_rules", "ai_reading"])
+def test_an_open_ended_event_read_from_an_article_is_shown_30_days_after_its_start(method):
+    assert is_shown(event(start=NOW - 30 * DAY, method=method), now=NOW)
+    lapsed = event(start=NOW - 30 * DAY - timedelta(seconds=1), method=method)
+    assert not is_shown(lapsed, now=NOW)
+    for view in CONSOLE_VIEWS:
+        assert not matches_event_view(lapsed, view, now=NOW)
+    # Hidden, not changed: listed when hidden events are asked for.
+    assert matches_event_view(lapsed, EventListView.VALIDATION, now=NOW, include_hidden=True)
+
+
+def test_an_open_ended_official_record_is_shown_until_its_source_reports_it_over():
+    assert is_shown(event(start=NOW - 400 * DAY, method="source_provided"), now=NOW)
+    over = event(start=NOW - 400 * DAY, method="source_provided", ended=True)
+    assert not is_shown(over, now=NOW)
+
+
+def test_a_stated_end_is_not_cut_short_by_the_open_end_window():
+    assert is_shown(event(start=NOW - 90 * DAY, end=NOW + DAY), now=NOW)

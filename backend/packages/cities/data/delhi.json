@@ -1,0 +1,63 @@
+{
+  "id": "delhi",
+  "name": "Delhi",
+  "area_name": "Delhi (National Capital Territory)",
+  "country": "IN",
+  "region": "Delhi",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    28.4,
+    76.83,
+    28.89,
+    77.35
+  ],
+  "map": {
+    "center": [
+      77.209,
+      28.6139
+    ],
+    "zoom": 10.3
+  },
+  "scope_terms": [
+    "Delhi",
+    "New Delhi",
+    "Delhi Traffic Police",
+    "MCD",
+    "NDMC",
+    "DMRC",
+    "Delhi Metro"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Noida",
+    "Greater Noida",
+    "Gurugram",
+    "Gurgaon",
+    "Ghaziabad",
+    "Faridabad",
+    "Sonipat",
+    "Sonepat",
+    "Meerut",
+    "Panipat",
+    "Rohtak",
+    "Bahadurgarh"
+  ],
+  "gazetteer": "delhi_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Delhi traffic diversions OR restrictions OR closure",
+      "Delhi \"road closed\" OR \"roads closed\" OR \"road blocked\" OR \"no entry\"",
+      "\"Delhi Traffic Police\" advisory OR diversion OR \"one-way\"",
+      "Delhi flyover OR underpass OR bridge closed OR closure OR repairs",
+      "Delhi waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Delhi marathon OR procession OR rally OR festival traffic diversions OR restrictions",
+      "Delhi metro OR DMRC OR PWD OR MCD works traffic diversions OR restrictions",
+      "Delhi VIP OR \"Prime Minister\" OR \"Chief Minister\" OR President visit traffic restrictions",
+      "Delhi \"heavy vehicles\" banned OR prohibited OR \"traffic alert\" OR \"alternative routes\""
+    ]
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

@@ -21,6 +21,7 @@ from .api.serper_news import SerperNewsConnector, serper_news_source
 from .base import SourceConnector
 from .discovered import DISCOVERED_SOURCES
 from .discovered_2026_10_15 import DISCOVERED_2026_10_15
+from .discovery.gdelt import GdeltConnector, gdelt_source
 from .discovery.google_news_rss import GoogleNewsRssConnector, google_news_rss_source
 from .official import (
     CalgaryConstructionDetoursConnector,
@@ -62,9 +63,12 @@ from .official import (
 from .manual import MANUAL_ENTRY
 from .restricted import RESTRICTED_PUBLISHERS
 from .rss import create_rss_connector
-from .rss.models import restricted_by_terms
+from .rss.models import awaiting_permission, restricted_by_terms
+from .rss.sanews import SANEWS
 from .rss.deccan_chronicle import DECCAN_CHRONICLE
 from .rss.mid_day_mumbai import MID_DAY_MUMBAI
+from .rss.millennium_post import MILLENNIUM_POST_DELHI, MILLENNIUM_POST_KOLKATA
+from .rss.new_indian_express import NEW_INDIAN_EXPRESS_FEEDS
 from .rss.newsmeter import NEWSMETER
 from .rss.siasat import SIASAT
 from .rss.siasat_mumbai import SIASAT_MUMBAI
@@ -90,8 +94,25 @@ def _rss(definition: SourceDefinition) -> RegisteredSource:
 CONNECTED_SOURCES: tuple[RegisteredSource, ...] = (
     _rss(TELANGANA_TODAY),
     _rss(NEWSMETER),
-    # Mumbai (8 October 2026): the feed verified in docs/cities/mumbai-source-research.md.
-    _rss(MID_DAY_MUMBAI),
+    # South Africa (16 October 2026, decision 0033): the government news agency's
+    # feed, free to use with credit (docs/data-sources/south-africa-sources-2026-10-16.md).
+    _rss(SANEWS),
+)
+
+# Feeds verified working whose publishers' terms do not permit REI's use
+# (decision 0033): registered without a connector until written permission.
+AWAITING_PERMISSION_SOURCES: tuple[RegisteredSource, ...] = tuple(
+    RegisteredSource(
+        awaiting_permission(
+            definition,
+            terms=(
+                "the publisher's terms page holds only a privacy notice (read 16 October "
+                "2026); nothing permits commercial use. Connect once written permission is "
+                "granted (docs/data-sources/india-national-feeds-2026-10-16.md)."
+            ),
+        )
+    )
+    for definition in (*NEW_INDIAN_EXPRESS_FEEDS, MILLENNIUM_POST_DELHI, MILLENNIUM_POST_KOLKATA)
 )
 
 # Feeds whose publisher's terms forbid automated access (decision 0024):
@@ -116,6 +137,16 @@ RESTRICTED_SOURCES: tuple[RegisteredSource, ...] = (
             (THE_HINDU, "thehindu.com", "Automated collection not permitted without permission"),
             (THE_HINDU_BENGALURU, "thehindu.com", "Automated collection not permitted without permission"),
             (DECCAN_CHRONICLE, "deccanchronicle.com", "Viewing only; no data mining or commercial use"),
+        )
+    ),
+    # Decision 0033 (16 October 2026, the user's decision): personal use only, and no
+    # retrieval system. Its parser stays (connectors/rss/mid_day_mumbai.py).
+    RegisteredSource(
+        restricted_by_terms(
+            MID_DAY_MUMBAI,
+            terms=RESTRICTED_PUBLISHERS["mid-day.com"],
+            licence="Personal use only; not to be incorporated into a retrieval system",
+            since="16 October 2026",
         )
     ),
 )
@@ -162,6 +193,33 @@ def _google_news_rss_sources(enabled: bool) -> tuple[RegisteredSource, ...]:
                 definition,
                 (
                     lambda user_agent, definition=definition, city=city: GoogleNewsRssConnector(
+                        definition, city, user_agent
+                    )
+                )
+                if enabled
+                else None,
+            )
+        )
+    return tuple(sources)
+
+
+def _gdelt_sources(enabled: bool) -> tuple[RegisteredSource, ...]:
+    """One GDELT news search per city that has a place list (decision 0033).
+
+    Without a place list nothing a news article names can be located, and an
+    unlocated event is never shown, so such a city gets no search. Off by
+    default (GDELT_SEARCH_ENABLED): the searches are listed but never run.
+    """
+    sources = []
+    for city in load_cities().values():
+        if not city.gazetteer:
+            continue
+        definition = gdelt_source(city, enabled=enabled)
+        sources.append(
+            RegisteredSource(
+                definition,
+                (
+                    lambda user_agent, definition=definition, city=city: GdeltConnector(
                         definition, city, user_agent
                     )
                 )
@@ -269,6 +327,7 @@ def registered_sources(
     official_feeds_scheduled_sources: Collection[str] = (),
     official_feed_max_records: int | None = 30,
     tfl_app_key: str | None = None,
+    gdelt_enabled: bool = False,
 ) -> tuple[RegisteredSource, ...]:
     """Every source REI knows about, given the credentials and switches configured.
 
@@ -289,6 +348,7 @@ def registered_sources(
         search = RegisteredSource(serper_news_source(connected=False))
     return (
         CONNECTED_SOURCES
+        + AWAITING_PERMISSION_SOURCES
         + RESTRICTED_SOURCES
         + REMOVED_SOURCES
         + UNLOCATED_SOURCES
@@ -300,6 +360,7 @@ def registered_sources(
             frozenset(official_feeds_scheduled_sources),
         )
         + _google_news_rss_sources(google_news_rss_enabled)
+        + _gdelt_sources(gdelt_enabled)
         + (RegisteredSource(MANUAL_ENTRY),)
         + tuple(
             RegisteredSource(definition)

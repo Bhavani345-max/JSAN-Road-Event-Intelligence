@@ -20,7 +20,37 @@
     "zoom": 4.6
   },
   "scope_terms": [
-    "South Africa"
+    "South Africa",
+    "Johannesburg",
+    "Joburg",
+    "Jozi",
+    "Soweto",
+    "Sandton",
+    "Randburg",
+    "Roodepoort",
+    "Midrand",
+    "Pretoria",
+    "Tshwane",
+    "Centurion",
+    "Ekurhuleni",
+    "Kempton Park",
+    "Germiston",
+    "Boksburg",
+    "Benoni",
+    "Gauteng",
+    "Cape Town",
+    "Durban",
+    "eThekwini",
+    "Gqeberha",
+    "Port Elizabeth",
+    "Nelson Mandela Bay",
+    "Bloemfontein",
+    "Mangaung",
+    "JMPD",
+    "Johannesburg Roads Agency",
+    "SANRAL",
+    "Tshwane Metro Police",
+    "Ekurhuleni Metro Police"
   ],
   "other_cities": [
     "Namibia",
@@ -28,13 +58,74 @@
     "Zimbabwe",
     "Mozambique",
     "Lesotho",
-    "Eswatini"
+    "Eswatini",
+    "Windhoek",
+    "Gaborone",
+    "Harare",
+    "Maputo",
+    "Maseru"
   ],
-  "gazetteer": null,
+  "gazetteer": "south-africa_places.json",
   "keywords": "traffic_keywords.json",
   "discovery": {
-    "queries": []
+    "queries": [
+      "Johannesburg road closures OR roadworks OR detour OR diversion",
+      "Pretoria OR Tshwane road closures OR roadworks OR detour",
+      "Cape Town road closures OR roadworks OR detour OR \"lane closures\"",
+      "Durban OR eThekwini road closures OR roadworks OR detour",
+      "Gqeberha OR \"Nelson Mandela Bay\" road closures OR roadworks",
+      "SANRAL roadworks OR \"stop/go\" OR \"lane closures\" N1 OR N2 OR N3 OR N4",
+      "JMPD OR \"Johannesburg Roads Agency\" road closure OR roads closed",
+      "marathon OR race OR \"Comrades\" OR \"Cape Town Cycle Tour\" road closures"
+    ],
+    "gdelt_queries": [
+      "(\"road closure\" OR \"road closures\" OR \"roads closed\" OR \"road closed\" OR \"roadworks\" OR \"lane closures\" OR \"detour\" OR \"traffic diversion\") sourcecountry:SF sourcelang:english"
+    ]
   },
   "official_sources": [],
-  "gis_sources": []
+  "gis_sources": [],
+  "gazetteer_areas": [
+    [
+      -26.45,
+      27.75,
+      -25.95,
+      28.2
+    ],
+    [
+      -26.45,
+      28.2,
+      -25.95,
+      28.6
+    ],
+    [
+      -25.95,
+      27.95,
+      -25.55,
+      28.45
+    ],
+    [
+      -34.2,
+      18.3,
+      -33.55,
+      18.95
+    ],
+    [
+      -30.1,
+      30.7,
+      -29.55,
+      31.15
+    ],
+    [
+      -34.1,
+      25.35,
+      -33.7,
+      25.75
+    ],
+    [
+      -29.25,
+      26.05,
+      -29.0,
+      26.35
+    ]
+  ]
 }

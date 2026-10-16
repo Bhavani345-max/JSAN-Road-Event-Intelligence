@@ -1,0 +1,68 @@
+{
+  "id": "chennai",
+  "name": "Chennai",
+  "area_name": "Greater Chennai",
+  "country": "IN",
+  "region": "Tamil Nadu",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    12.82,
+    80.05,
+    13.25,
+    80.34
+  ],
+  "map": {
+    "center": [
+      80.2707,
+      13.0827
+    ],
+    "zoom": 10.5
+  },
+  "scope_terms": [
+    "Chennai",
+    "Madras",
+    "Greater Chennai Corporation",
+    "Greater Chennai Traffic Police",
+    "Chennai Traffic Police",
+    "CMRL",
+    "Chennai Metro"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Coimbatore",
+    "Madurai",
+    "Tiruchi",
+    "Tiruchirappalli",
+    "Trichy",
+    "Salem",
+    "Vellore",
+    "Kancheepuram",
+    "Kanchipuram",
+    "Chengalpattu",
+    "Tiruvallur",
+    "Hosur",
+    "Tirunelveli",
+    "Thoothukudi",
+    "Erode",
+    "Tiruppur",
+    "Puducherry"
+  ],
+  "gazetteer": "chennai_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Chennai traffic diversions OR restrictions OR closure",
+      "Chennai \"road closed\" OR \"roads closed\" OR \"road blocked\" OR \"no entry\"",
+      "\"Chennai Traffic Police\" OR \"Greater Chennai Traffic Police\" advisory OR diversion OR \"one-way\"",
+      "Chennai flyover OR underpass OR bridge closed OR closure OR repairs",
+      "Chennai waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Chennai marathon OR procession OR rally OR festival traffic diversions OR restrictions",
+      "Chennai metro OR CMRL OR \"Greater Chennai Corporation\" works traffic diversions OR restrictions",
+      "Chennai VIP OR \"Prime Minister\" OR \"Chief Minister\" OR President visit traffic restrictions",
+      "Chennai \"heavy vehicles\" banned OR prohibited OR \"traffic alert\" OR \"alternative routes\""
+    ]
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

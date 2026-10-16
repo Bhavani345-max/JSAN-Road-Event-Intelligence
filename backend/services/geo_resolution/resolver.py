@@ -255,7 +255,7 @@ def default_resolver() -> PlaceResolver:
     return PlaceResolver.from_file()
 
 
-@lru_cache(maxsize=16)
+@lru_cache(maxsize=64)
 def _resolver_from(filename: str | None, bbox: tuple[float, float, float, float]) -> PlaceResolver:
     path = DEFAULT_GAZETTEER_PATH.parent / filename if filename else None
     if path is None or not path.exists():

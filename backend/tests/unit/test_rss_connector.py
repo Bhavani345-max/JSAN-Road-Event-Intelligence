@@ -70,6 +70,22 @@ def test_invalid_feed_is_rejected(rss_connector, body):
         rss_connector.parse(body, retrieved_at=RETRIEVED_AT)
 
 
+def test_the_article_body_is_found_after_an_empty_image_description(rss_connector):
+    # The New Indian Express (16 October 2026): an image's empty <media:description>
+    # comes first among the item's content elements, the article after it.
+    body = b"""<?xml version="1.0"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>t</title>
+<item><title>Rain brings Delhi traffic to a crawl</title><link>https://example.com/a</link>
+<guid isPermaLink="false">a1</guid><pubDate>Fri, 16 Oct 2026 08:38:59 +0000</pubDate>
+<description></description>
+<media:content url="https://example.com/a.jpg" medium="image"><media:description type="html"></media:description></media:content>
+<content:encoded><![CDATA[<p>Waterlogging at ITO slowed traffic.</p>]]></content:encoded></item>
+</channel></rss>"""
+    (record,) = rss_connector.parse(body, retrieved_at=RETRIEVED_AT)
+    assert record.content_text == "Waterlogging at ITO slowed traffic."
+
+
 def test_feed_with_no_items_is_valid_and_empty(rss_connector):
     body = b'<?xml version="1.0"?><rss version="2.0"><channel><title>t</title></channel></rss>'
     assert rss_connector.parse(body, retrieved_at=RETRIEVED_AT) == []

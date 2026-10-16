@@ -45,6 +45,9 @@ class Discovery(BaseModel):
     # Searches a discovery source runs for the city, in the words the local
     # press uses. Each names the city or an authority of it.
     queries: tuple[str, ...] = ()
+    # GDELT DOC searches (connectors/discovery/gdelt.py); empty: the city's
+    # name with REI's road phrases.
+    gdelt_queries: tuple[str, ...] = ()
 
 
 class City(BaseModel):
@@ -64,6 +67,9 @@ class City(BaseModel):
     scope_terms: tuple[str, ...] = Field(min_length=1)
     other_cities: tuple[str, ...] = ()
     gazetteer: str | None = None
+    # The areas (south, west, north, east) the place list is built from, when
+    # not the whole bbox: a country's metro areas, not all of its land.
+    gazetteer_areas: tuple[tuple[float, float, float, float], ...] = ()
     keywords: str = "traffic_keywords.json"
     discovery: Discovery = Discovery()
     official_sources: tuple[str, ...] = ()
@@ -81,6 +87,11 @@ class City(BaseModel):
         lon, lat = self.map.center
         if not self.covers(lat, lon):
             raise ValueError(f"{self.id}: the map centre lies outside the bbox")
+        for area_south, area_west, area_north, area_east in self.gazetteer_areas:
+            if not (
+                south <= area_south < area_north <= north and west <= area_west < area_east <= east
+            ):
+                raise ValueError(f"{self.id}: each gazetteer area must lie inside the bbox")
         for zone in (self.timezone, *self.source_time_zones.values()):
             try:
                 ZoneInfo(zone)

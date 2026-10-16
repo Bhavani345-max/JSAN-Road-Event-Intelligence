@@ -22,6 +22,7 @@ from services.lifecycle.current import (
     REVIEW_STATUSES,
     EventListView,
     matches_event_view,
+    open_end_lapsed,
 )
 
 # Columns that are copied one-to-one between the canonical event and its row.
@@ -159,7 +160,7 @@ class EventRepository:
         terms = (q or "").lower().split()
         now = now or utc_now()
         if not terms and not include_hidden and view in _CONSOLE_VIEWS:
-            return self._list_shown(filters + _shown_filters(view, now), order, limit, offset)
+            return self._list_shown(filters + _shown_filters(view, now), order, limit, offset, now)
 
         query = (
             select(Event)
@@ -179,22 +180,24 @@ class EventRepository:
         ]
         return matched[offset : offset + limit], len(matched)
 
-    def _list_shown(self, filters, order, limit: int, offset: int) -> "tuple[list[Event], int]":
+    def _list_shown(
+        self, filters, order, limit: int, offset: int, now: datetime
+    ) -> "tuple[list[Event], int]":
         """A console view without a text search: filtered by the database, one page loaded.
 
         The database applies the view's column rules (`_shown_filters`); the
-        source's own "it is over" (inside the detection record) is read here.
-        Only the page's events are loaded in full.
+        rules inside the detection record (`_hidden_by_detection`) are read
+        here. Only the page's events are loaded in full.
         """
         ids = [
             event_id
-            for event_id, detection in self.session.execute(
-                select(Event.event_id, Event.detection)
+            for event_id, detection, start, end in self.session.execute(
+                select(Event.event_id, Event.detection, Event.start_time, Event.end_time)
                 .outerjoin(Event.artifact)
                 .where(*filters)
                 .order_by(*order)
             )
-            if not (detection or {}).get("source_reports_ended")
+            if not _hidden_by_detection(detection, start, end, now)
         ]
         page = ids[offset : offset + limit]
         if not page:
@@ -220,13 +223,19 @@ class EventRepository:
         if view not in _CONSOLE_VIEWS:
             raise ValueError(f"{view} is not a console view")
         counts: dict[str | None, dict[str, Counter]] = {}
+        now = now or utc_now()
         rows = self.session.execute(
-            select(Event.city, Event.status, Event.event_type, Event.detection).where(
-                Event.merged_into.is_(None), *_shown_filters(view, now or utc_now())
-            )
+            select(
+                Event.city,
+                Event.status,
+                Event.event_type,
+                Event.detection,
+                Event.start_time,
+                Event.end_time,
+            ).where(Event.merged_into.is_(None), *_shown_filters(view, now))
         )
-        for city, status, event_type, detection in rows:
-            if (detection or {}).get("source_reports_ended"):
+        for city, status, event_type, detection, start, end in rows:
+            if _hidden_by_detection(detection, start, end, now):
                 continue
             found = counts.setdefault(city, {"status": Counter(), "type": Counter()})
             found["status"][status] += 1
@@ -290,14 +299,22 @@ _CONSOLE_VIEWS = frozenset(
 )
 
 
+def _hidden_by_detection(detection: dict | None, start, end, now: datetime) -> bool:
+    """The part of `is_shown` read from the detection record: the source reports
+    the event over, or an open-ended event read from an article has lapsed."""
+    detection = detection or {}
+    return bool(detection.get("source_reports_ended")) or open_end_lapsed(
+        detection.get("method"), start, end, now=now
+    )
+
+
 def _shown_filters(view: EventListView, now: datetime) -> list:
-    """`matches_event_view` for a console view, as database conditions (all but the
-    source's own "it is over", which lives inside the detection record)."""
+    """`matches_event_view` for a console view, as database conditions (all but
+    `_hidden_by_detection`, which reads the detection record)."""
     filters = [
         Event.geometry.is_not(None),
         Event.start_time.is_not(None),
-        Event.end_time.is_not(None),
-        Event.end_time >= now,
+        or_(Event.end_time.is_(None), Event.end_time >= now),
     ]
     if view is EventListView.VALIDATION:
         return filters + [Event.status.in_([status.value for status in REVIEW_STATUSES])]

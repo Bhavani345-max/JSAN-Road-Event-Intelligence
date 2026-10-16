@@ -1,0 +1,65 @@
+{
+  "id": "pune",
+  "name": "Pune",
+  "area_name": "Pune and Pimpri-Chinchwad",
+  "country": "IN",
+  "region": "Maharashtra",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    18.4,
+    73.7,
+    18.7,
+    74.02
+  ],
+  "map": {
+    "center": [
+      73.8567,
+      18.5204
+    ],
+    "zoom": 10.8
+  },
+  "scope_terms": [
+    "Pune",
+    "Poona",
+    "Pimpri",
+    "Chinchwad",
+    "Pimpri-Chinchwad",
+    "PCMC",
+    "Pune Municipal Corporation",
+    "Pune Traffic Police",
+    "Pune Metro"
+  ],
+  "other_cities": [
+    "Hyderabad",
+    "Mumbai",
+    "Navi Mumbai",
+    "Thane",
+    "Nashik",
+    "Nagpur",
+    "Satara",
+    "Kolhapur",
+    "Solapur",
+    "Ahmednagar",
+    "Lonavala",
+    "Aurangabad",
+    "Sangli"
+  ],
+  "gazetteer": "pune_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Pune traffic diversions OR restrictions OR closure",
+      "Pune \"road closed\" OR \"roads closed\" OR \"road blocked\" OR \"no entry\"",
+      "\"Pune Traffic Police\" OR \"Pune traffic police\" advisory OR diversion OR \"one-way\"",
+      "Pune flyover OR underpass OR bridge closed OR closure OR repairs",
+      "Pune waterlogging OR waterlogged OR \"flooded roads\" OR \"heavy rain\" traffic",
+      "Pune marathon OR procession OR rally OR festival traffic diversions OR restrictions",
+      "Pune metro OR PMC OR PCMC OR \"Pune Municipal Corporation\" works traffic diversions OR restrictions",
+      "Pune VIP OR \"Prime Minister\" OR \"Chief Minister\" OR President visit traffic restrictions",
+      "Pune \"heavy vehicles\" banned OR prohibited OR \"traffic alert\" OR \"alternative routes\""
+    ]
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

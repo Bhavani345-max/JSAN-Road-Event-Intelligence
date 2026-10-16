@@ -2,8 +2,8 @@
 
 `is_current` retains the conservative recency rule used by merge candidate
 selection. User-facing API views use `matches_event_view`: the console's
-views show only located events with a stated start and end that have not
-ended (`is_shown`), current/upcoming lists also need an operational
+views show only located events with a stated start that have not ended
+(`is_shown`), current/upcoming lists also need an operational
 lifecycle status, and article age is never evidence of an ongoing event.
 """
 
@@ -17,6 +17,12 @@ from packages.event_schema import EventStatus, EventType, ReiEvent
 RECENT_REPORT_DAYS = 7
 # Road works run for months, so a report of them stays current longer.
 RECENT_WORKS_REPORT_DAYS = 30
+# An event read from an article that states a start but no end is shown for
+# this many days after its start (the user's rule of 16 October 2026). An
+# official record with no end is shown until its source reports it over.
+OPEN_END_TEXT_DAYS = 30
+# Detection methods that read an event from an article's text.
+TEXT_METHODS = frozenset({"keyword_rules", "ai_reading"})
 
 CLOSED_STATUSES = frozenset(
     {EventStatus.REJECTED, EventStatus.CANCELLED, EventStatus.SUPERSEDED, EventStatus.EXPIRED}
@@ -73,21 +79,43 @@ def event_time_state(event: ReiEvent, *, now: datetime) -> str | None:
     return "current"
 
 
-def is_shown(event: ReiEvent, *, now: datetime) -> bool:
-    """Whether the console shows the event at all (the user's rules of 15 October 2026).
+def open_end_lapsed(
+    method: str | None, start: datetime | None, end: datetime | None, *, now: datetime
+) -> bool:
+    """Whether an event read from an article, with a stated start and no end,
+    is past the days it is shown (`OPEN_END_TEXT_DAYS` after its start)."""
+    return (
+        end is None
+        and start is not None
+        and method in TEXT_METHODS
+        and ensure_utc(now) - ensure_utc(start) > timedelta(days=OPEN_END_TEXT_DAYS)
+    )
 
-    Only an event with a location, a stated start and a stated end, that has
-    not ended. An event missing its start or end is unconfirmed; one past its
-    end, or that its source reports over, is expired. Neither is shown, in the
-    operational views or the review queue. Nothing is deleted or changed: the
-    history view and the stored evidence keep them.
+
+def is_shown(event: ReiEvent, *, now: datetime) -> bool:
+    """Whether the console shows the event at all (the user's rules of 15 and
+    16 October 2026).
+
+    Only an event with a location and a stated start that has not ended. An
+    event without a stated start is unconfirmed. One with a start and no end
+    runs until further notice: an official record until its source reports it
+    over; an event read from an article for `OPEN_END_TEXT_DAYS` after its
+    start. One past its end, or that its source reports over, is expired.
+    Neither is shown, in the operational views or the review queue. Nothing is
+    deleted or changed: the history view and the stored evidence keep them.
     """
+    detection = event.detection
     return (
         event.geometry is not None
         and event.start_time is not None
-        and event.end_time is not None
-        and ensure_utc(event.end_time) >= ensure_utc(now)
-        and not (event.detection is not None and event.detection.source_reports_ended)
+        and (event.end_time is None or ensure_utc(event.end_time) >= ensure_utc(now))
+        and not (detection is not None and detection.source_reports_ended)
+        and not open_end_lapsed(
+            detection.method if detection is not None else None,
+            event.start_time,
+            event.end_time,
+            now=now,
+        )
     )
 
 

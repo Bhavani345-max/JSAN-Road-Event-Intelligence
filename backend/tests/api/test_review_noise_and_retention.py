@@ -187,8 +187,9 @@ def test_an_old_unrelated_article_keeps_only_a_stub_and_is_not_stored_again(sess
 
 
 def test_a_recent_unrelated_article_keeps_its_text_and_a_preview_changes_nothing(session):
+    # Without a publication time, the retrieval time counts: retrieved now.
     ingest(session, [unrelated_article(utc_now() - timedelta(days=3)), unrelated_article(None).model_copy(
-        update={"external_id": "x2", "url": "https://news.example.com/x2"})])  # fmt: skip
+        update={"external_id": "x2", "url": "https://news.example.com/x2", "retrieved_at": utc_now()})])  # fmt: skip
     assert slim_unrelated_articles(session, older_than_days=14).articles == 0
 
     old = unrelated_article(utc_now() - timedelta(days=20)).model_copy(

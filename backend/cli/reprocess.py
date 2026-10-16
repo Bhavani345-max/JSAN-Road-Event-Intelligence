@@ -40,4 +40,5 @@ if __name__ == "__main__":
         f"{result.artifacts} stored articles read with rules {service.classifier.version}: "
         f"{result.created} events created, {result.updated} updated, "
         f"{result.rejected} rejected, {result.restored} restored, {result.unchanged} unchanged"
+        + (f", {result.unknown_source} of unknown sources left as they are" if result.unknown_source else "")
     )
