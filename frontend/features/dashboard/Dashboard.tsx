@@ -8,6 +8,7 @@ import { canReview, canRunSources } from "@/features/auth/permissions";
 import {
   ALL_CITIES,
   ALL_CITIES_ID,
+  areaIds,
   DEFAULT_CITY_ID,
   useCities,
 } from "@/features/cities/cities";
@@ -40,8 +41,9 @@ import MapLegend from "@/features/map/components/MapLegend";
 import AddEventPanel from "@/features/qc/components/AddEventPanel";
 import ReviewActions from "@/features/qc/components/ReviewActions";
 import type { Basemap } from "@/lib/config";
+import CoverageSummary from "./components/CoverageSummary";
 import SourceStatusBar from "./components/SourceStatusBar";
-import { useConnectedSources } from "./sources";
+import { sourcesForCity, useCoverage, useSources } from "./sources";
 
 // MapLibre needs the browser (WebGL, workers), so the map is client-only.
 const EventMap = dynamic(() => import("@/features/map/components/EventMap"), {
@@ -59,7 +61,8 @@ export default function Dashboard() {
   // The API enforces these too; the console leaves out what it would refuse.
   const mayReview = canReview(user);
   const mayRunSources = canRunSources(user);
-  const { sources: allSources, refresh: refreshSources } = useConnectedSources();
+  const { sources: allSources, refresh: refreshSources } = useSources();
+  const { coverage, refresh: refreshCoverage } = useCoverage();
   const cities = useCities();
   // A link can open the console on a city (/?city=london); choosing one in
   // the header overrides it.
@@ -75,7 +78,10 @@ export default function Dashboard() {
   const city = cityOptions.find((candidate) => candidate.id === cityId) ?? ALL_CITIES;
   const allCities = city.id === ALL_CITIES_ID;
   const isDefaultCity = city.id === DEFAULT_CITY_ID;
+  // The API lists a country's events with its cities' (decision 0035).
   const cityFilter = allCities ? null : city.id;
+  // What the choice covers: a city, or a country entry and its cities; null for all.
+  const area = useMemo(() => areaIds(city, cities), [city, cities]);
   const [view, setView] = useState<EventListView>("current_upcoming");
   // All cities: an overview of counts and one bubble per city; a city's events
   // are loaded and drawn only once it is chosen.
@@ -91,13 +97,10 @@ export default function Dashboard() {
   // Set before anything below renders a time.
   setCityTimeZones(cities);
   setDisplayTimeZone(city.timeZone);
-  // The city's own sources, and those about no city in particular.
+  // The sources of what the choice covers, and those about no city in particular.
   const sources = useMemo(
-    () =>
-      allCities
-        ? allSources
-        : allSources.filter((source) => source.city === null || source.city === city.id),
-    [allSources, city.id, allCities],
+    () => sourcesForCity(allSources, area === null ? null : { ids: area, country: city.country }),
+    [allSources, area, city.country],
   );
   const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
@@ -174,7 +177,8 @@ export default function Dashboard() {
     refreshEvents();
     refreshCounts();
     refreshSources();
-  }, [refreshEvents, refreshCounts, refreshSources]);
+    refreshCoverage();
+  }, [refreshEvents, refreshCounts, refreshSources, refreshCoverage]);
 
   const changeCity = useCallback((id: string) => {
     setCityId(id);
@@ -191,7 +195,7 @@ export default function Dashboard() {
   return (
     <div className="flex h-dvh flex-col bg-white text-slate-900">
       <Header
-        cities={cityOptions}
+        cities={cities}
         city={city}
         onCityChange={changeCity}
         user={user}
@@ -228,7 +232,8 @@ export default function Dashboard() {
                 {view === "validation" ? "Back to operations" : "Open review queue"}
               </button>
             </div>
-            <SourceStatusBar sources={sources} onChecked={refreshAll} canRun={mayRunSources} />
+            <CoverageSummary coverage={coverage} areaIds={area} view={view} />
+            <SourceStatusBar sources={sources} view={view} onChecked={refreshAll} canRun={mayRunSources} />
             {!overview && (
               <EventFilters
                 filters={filters}
@@ -261,11 +266,13 @@ export default function Dashboard() {
               {overview ? (
                 <CityOverviewList
                   state={countsState}
+                  cities={cities}
                   view={view}
                   onSelect={changeCity}
                   onRetry={() => {
                     refreshCounts();
                     refreshSources();
+                    refreshCoverage();
                   }}
                 />
               ) : (
@@ -279,6 +286,7 @@ export default function Dashboard() {
                   onRetry={() => {
                     reload();
                     refreshSources();
+                    refreshCoverage();
                   }}
                 />
               )}

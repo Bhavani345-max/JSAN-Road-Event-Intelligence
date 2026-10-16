@@ -50,6 +50,21 @@ class SourceOut(BaseModel):
     # How much has been acquired from this source so far.
     artifact_count: int = 0
     event_count: int = 0
+    # Its state, derived from the registry, its polling and its events
+    # (app/services/source_status.py, decision 0034): a code, words for it and why.
+    status: str = "RESEARCHED"
+    status_label: str = "Researched, not connected"
+    status_reason: str | None = None
+    # Whether REI polls it on its own schedule.
+    polled: bool = False
+    # Its events: detected in the last 7 days, awaiting review, validated.
+    recent_event_count: int = 0
+    pending_review_count: int = 0
+    validated_count: int = 0
+    # Its events awaiting review on the review queue's map, and its validated
+    # events on the operations map (decision 0035).
+    on_map_review_count: int = 0
+    on_map_operations_count: int = 0
 
 
 class IngestionResultOut(BaseModel):

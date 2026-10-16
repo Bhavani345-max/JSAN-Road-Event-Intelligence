@@ -1,5 +1,6 @@
 from collections import Counter
-from datetime import datetime
+from collections.abc import Sequence
+from datetime import datetime, timedelta
 
 from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session, contains_eager
@@ -13,7 +14,7 @@ from app.schemas.event import (
     SourceSummary,
 )
 from packages.common.text import html_to_text
-from packages.common.time import utc_now
+from packages.common.time import ensure_utc, utc_now
 from packages.cities import default_city
 from packages.event_schema import EventSeverity, EventStatus, ReiEvent
 from services.lifecycle import approval_blockers
@@ -128,7 +129,7 @@ class EventRepository:
         status: EventStatus | None = None,
         severity: EventSeverity | None = None,
         source_id: str | None = None,
-        city: str | None = None,
+        cities: Sequence[str] | None = None,
         include_merged: bool = False,
         include_hidden: bool = False,
         view: EventListView = EventListView.CURRENT_UPCOMING,
@@ -145,10 +146,11 @@ class EventRepository:
             filters.append(Event.severity == severity.value)
         if source_id is not None:
             filters.append(Event.source_id == source_id)
-        if city is not None:
-            # The city's display name, as event creation records it.
-            city_filter = Event.city == city
-            if city == default_city().name:
+        if cities is not None:
+            # The cities' display names, as event creation records them: one
+            # city, or a country entry and the cities within it (decision 0035).
+            city_filter = Event.city.in_(list(cities))
+            if default_city().name in cities:
                 city_filter = or_(city_filter, Event.city.is_(None))
             filters.append(city_filter)
         if not include_merged:
@@ -240,6 +242,73 @@ class EventRepository:
             found = counts.setdefault(city, {"status": Counter(), "type": Counter()})
             found["status"][status] += 1
             found["type"][event_type or "UNCLASSIFIED"] += 1
+        return counts
+
+    def tally(self, *, by: str, now: datetime | None = None) -> "dict[str | None, Counter]":
+        """Every event counted from detection to the map, per source or per city.
+
+        `by` is "source" (source id) or "city" (the city's name as events record
+        it; None for legacy records). Keys: detected (not merged into another),
+        merged, rejected, closed, pending_review, validated, recent (detected in
+        the last 7 days); on_map_review: events awaiting review on the review
+        queue's map; on_map_operations: validated events on the operations map
+        (exactly what those two console views list; the two are never added
+        up: an event awaiting review is not a confirmed road event). For
+        events not on their view's map, the first rule that hides each,
+        separately for the review queue (hidden_review_<rule>) and the
+        operations view (hidden_operations_<rule>); rules: no_location,
+        no_start, ended, source_ended, open_end_lapsed (decisions 0034, 0035).
+        """
+        now = ensure_utc(now or utc_now())
+        recent_since = now - timedelta(days=7)
+        key_column = Event.source_id if by == "source" else Event.city
+        rows = self.session.execute(
+            select(
+                key_column,
+                Event.status,
+                Event.start_time,
+                Event.end_time,
+                Event.geometry.is_not(None),
+                Event.detection,
+                Event.merged_into,
+                Event.created_at,
+            )
+        )
+        review = {status.value for status in REVIEW_STATUSES}
+        operational = {status.value for status in OPERATIONAL_STATUSES}
+        counts: dict[str | None, Counter] = {}
+        for key, status, start, end, located, detection, merged, created in rows:
+            found = counts.setdefault(key, Counter())
+            if merged:
+                found["merged"] += 1
+                continue
+            found["detected"] += 1
+            if created is not None and ensure_utc(created) >= recent_since:
+                found["recent"] += 1
+            if status in review:
+                group = "pending_review"
+            elif status in operational:
+                group = "validated"
+            else:
+                found["rejected" if status == EventStatus.REJECTED.value else "closed"] += 1
+                continue
+            found[group] += 1
+            map_name = "review" if group == "pending_review" else "operations"
+            detection = detection or {}
+            if not located:
+                rule = "no_location"
+            elif start is None:
+                rule = "no_start"
+            elif end is not None and ensure_utc(end) < now:
+                rule = "ended"
+            elif detection.get("source_reports_ended"):
+                rule = "source_ended"
+            elif open_end_lapsed(detection.get("method"), start, end, now=now):
+                rule = "open_end_lapsed"
+            else:
+                found[f"on_map_{map_name}"] += 1
+                continue
+            found[f"hidden_{map_name}_{rule}"] += 1
         return counts
 
     def get(self, event_id: str) -> Event | None:

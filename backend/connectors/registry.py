@@ -61,6 +61,12 @@ from .official import (
     toronto_source,
 )
 from .manual import MANUAL_ENTRY
+from .official.wzdx import FEEDS as WZDX_FEEDS
+from .official.wzdx import connector_for as wzdx_connector_for
+from .official.wzdx import wzdx_source
+from .official.tokushima import TokushimaRoadRestrictionsConnector, tokushima_source
+from .official.brussels import BrusselsTrafficEventsConnector, brussels_source
+from .official.hamburg import HamburgPoliceTrafficConnector, hamburg_source
 from .restricted import RESTRICTED_PUBLISHERS
 from .rss import create_rss_connector
 from .rss.models import awaiting_permission, restricted_by_terms
@@ -271,6 +277,13 @@ def _official_sources(
             (roads_act_source, RoadsActPlannedClosuresConnector),
             (winnipeg_source, WinnipegLaneClosuresConnector),
             (wodonga_source, WodongaRoadworksConnector),
+            # United States, WZDx work-zone feeds (16 October 2026, decision 0034).
+            *((partial(wzdx_source, feed), wzdx_connector_for(feed)) for feed in WZDX_FEEDS),
+            # Japan, Tokushima Prefecture (16 October 2026, decision 0034).
+            (tokushima_source, TokushimaRoadRestrictionsConnector),
+            # Belgium and Germany (16 October 2026, decision 0034).
+            (brussels_source, BrusselsTrafficEventsConnector),
+            (hamburg_source, HamburgPoliceTrafficConnector),
         )
         if (definition := _scheduled_if_chosen(make, scheduled, chosen))
     )

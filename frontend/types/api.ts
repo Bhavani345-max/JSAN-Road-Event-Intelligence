@@ -249,6 +249,50 @@ export interface ApiSource {
   last_error: string | null;
   artifact_count: number;
   event_count: number;
+  /**
+   * The source's state, derived by the API from the registry, its polling and
+   * its events (decision 0034): COLLECTING, NO_RECENT_EVENTS, FAILING,
+   * NOT_POLLED_YET, NOT_SCHEDULED, DISABLED, AWAITING_PERMISSION,
+   * BLOCKED_BY_TERMS, BLOCKED, REMOVED, NEEDS_CREDENTIALS, RESEARCHED or MANUAL_ONLY.
+   */
+  status: string;
+  status_label: string;
+  status_reason: string | null;
+  /** Whether REI polls it on its own schedule. */
+  polled: boolean;
+  recent_event_count: number;
+  pending_review_count: number;
+  validated_count: number;
+  /** Its events awaiting review that the review queue's map shows now. */
+  on_map_review_count: number;
+  /** Its validated events that the operations map shows now. Never added to the review count. */
+  on_map_operations_count: number;
+}
+
+/** One city's events from detection to the map (GET /events/coverage). */
+export interface ApiCityCoverage {
+  city_id: string;
+  city_name: string;
+  country: string;
+  detected: number;
+  merged: number;
+  rejected: number;
+  closed: number;
+  pending_review: number;
+  validated: number;
+  recent: number;
+  /** Events awaiting review that the review queue's map shows now. */
+  on_map_review: number;
+  /** Validated events that the operations map shows now. */
+  on_map_operations: number;
+  /** Events awaiting review that the review queue's map does not show, by the rule hiding them. */
+  hidden_review: Record<string, number>;
+  /** Validated events that the operations map does not show, by the rule hiding them. */
+  hidden_operations: Record<string, number>;
+}
+
+export interface ApiEventCoverage {
+  cities: ApiCityCoverage[];
 }
 
 export interface ApiIngestionResult {
@@ -281,6 +325,10 @@ export interface ApiCity {
   id: string;
   name: string;
   country: string;
+  /** "country": a whole country's entry (Canada), covering the cities within it; "city": one city. */
+  level: "country" | "city";
+  /** The country entry the city lies within (Toronto: "canada"); null otherwise. */
+  parent_id: string | null;
   region: string | null;
   timezone: string;
   language: string;

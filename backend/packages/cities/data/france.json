@@ -3,6 +3,7 @@
   "name": "France",
   "area_name": "mainland France",
   "country": "FR",
+  "level": "country",
   "region": "National",
   "timezone": "Europe/Paris",
   "language": "fr",

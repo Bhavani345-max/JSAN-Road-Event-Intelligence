@@ -1,0 +1,62 @@
+{
+  "id": "united-states",
+  "name": "United States",
+  "area_name": "United States (WZDx work-zone feeds)",
+  "country": "US",
+  "level": "country",
+  "region": "National",
+  "timezone": "America/New_York",
+  "language": "en",
+  "bbox": [
+    24.0,
+    -125.0,
+    49.6,
+    -66.5
+  ],
+  "map": {
+    "center": [
+      -92.0,
+      38.5
+    ],
+    "zoom": 3.8
+  },
+  "scope_terms": [
+    "United States"
+  ],
+  "other_cities": [
+    "Canada",
+    "Mexico"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "wzdx-deldot",
+    "wzdx-indot",
+    "wzdx-kdot",
+    "wzdx-kytc",
+    "wzdx-ladotd",
+    "wzdx-mcdot",
+    "wzdx-mdot",
+    "wzdx-mndot",
+    "wzdx-njdot",
+    "wzdx-nddot",
+    "wzdx-stcharles"
+  ],
+  "gis_sources": [],
+  "source_time_zones": {
+    "wzdx-deldot": "America/New_York",
+    "wzdx-indot": "America/Indiana/Indianapolis",
+    "wzdx-kdot": "America/Chicago",
+    "wzdx-kytc": "America/New_York",
+    "wzdx-ladotd": "America/Chicago",
+    "wzdx-mcdot": "America/Phoenix",
+    "wzdx-mdot": "America/New_York",
+    "wzdx-mndot": "America/Chicago",
+    "wzdx-njdot": "America/New_York",
+    "wzdx-nddot": "America/Chicago",
+    "wzdx-stcharles": "America/Chicago"
+  }
+}

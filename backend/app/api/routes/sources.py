@@ -1,6 +1,9 @@
+from collections import Counter
+
 from fastapi import APIRouter, HTTPException
 
 from app.api.deps import SessionDep
+from app.repositories.events import EventRepository
 from app.repositories.sources import SourceRepository
 from app.schemas.source import SourceOut
 from packages.source_models import IntegrationStatus
@@ -12,10 +15,12 @@ router = APIRouter(prefix="/sources", tags=["sources"])
 def list_sources(
     session: SessionDep, integration_status: IntegrationStatus | None = None
 ) -> list[SourceOut]:
-    """The source registry: connected sources and researched, unconnected ones."""
+    """The source registry: every source, connected or not, with its state
+    (status, status_label, status_reason) and its event counts."""
     sources = SourceRepository(session)
+    counts = EventRepository(session).tally(by="source")
     return [
-        sources.to_out(source)
+        sources.to_out(source, counts.get(source.source_id, Counter()))
         for source in sources.list()
         if integration_status is None or source.integration_status == integration_status.value
     ]

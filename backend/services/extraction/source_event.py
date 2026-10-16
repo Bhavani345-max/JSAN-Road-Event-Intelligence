@@ -71,10 +71,24 @@ _GEOMETRY = TypeAdapter(Geometry)
 _LOCATING_FIELDS = ("title", "summary")
 
 
+def _flat(coordinates):
+    """Positions as [longitude, latitude]: a third value (altitude) is left out."""
+    if isinstance(coordinates, list) and coordinates and all(isinstance(v, (int, float)) for v in coordinates):
+        return coordinates[:2]
+    if isinstance(coordinates, list):
+        return [_flat(part) for part in coordinates]
+    return coordinates
+
+
 def _geometry(value: dict | None) -> Geometry | None:
     """The source's GeoJSON as a validated geometry; None if it is not valid GeoJSON."""
     if not value:
         return None
+    if isinstance(value, dict) and "coordinates" in value:
+        # GeoJSON allows members beside the shape ("bbox", "crs"; RFC 7946 s.5)
+        # and a third value (altitude) in a position (s.3.1.1); REI keeps the
+        # shape in longitude and latitude (WZDx feeds send both, decision 0034).
+        value = {"type": value.get("type"), "coordinates": _flat(value["coordinates"])}
     try:
         return _GEOMETRY.validate_python(value)
     except ValidationError:

@@ -1,0 +1,35 @@
+{
+  "id": "hamburg",
+  "name": "Hamburg",
+  "area_name": "Freie und Hansestadt Hamburg",
+  "country": "DE",
+  "region": "Hamburg",
+  "timezone": "Europe/Berlin",
+  "language": "de",
+  "bbox": [
+    53.39,
+    9.73,
+    53.75,
+    10.33
+  ],
+  "map": {
+    "center": [
+      9.9937,
+      53.5511
+    ],
+    "zoom": 10.6
+  },
+  "scope_terms": [
+    "Hamburg"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "hamburg-police-traffic-messages"
+  ],
+  "gis_sources": []
+}

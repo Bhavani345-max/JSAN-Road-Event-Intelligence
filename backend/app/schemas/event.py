@@ -102,6 +102,38 @@ class CityEventCountOut(BaseModel):
     by_type: dict[str, int]
 
 
+class CityCoverageOut(BaseModel):
+    """One city's events from detection to the map (decisions 0034, 0035).
+
+    detected: events not merged into another; merged: rows merged into another
+    event (duplicates); pending_review / validated: awaiting a reviewer /
+    approved and in force; on_map_review: events awaiting review that the
+    review queue's map shows now; on_map_operations: validated events that the
+    operations map shows now (the two are never added up); hidden_review /
+    hidden_operations: events awaiting review / validated that their view's
+    map does not show, by the first rule that hides each.
+    """
+
+    city_id: str
+    city_name: str
+    country: str
+    detected: int = 0
+    merged: int = 0
+    rejected: int = 0
+    closed: int = 0
+    pending_review: int = 0
+    validated: int = 0
+    recent: int = 0
+    on_map_review: int = 0
+    on_map_operations: int = 0
+    hidden_review: dict[str, int] = {}
+    hidden_operations: dict[str, int] = {}
+
+
+class EventCoverageOut(BaseModel):
+    cities: list[CityCoverageOut]
+
+
 class EventSummaryOut(BaseModel):
     """Per city, what a console view lists: for the overview of all cities."""
 

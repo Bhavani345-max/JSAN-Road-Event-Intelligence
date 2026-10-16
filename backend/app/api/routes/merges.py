@@ -5,11 +5,11 @@ from sqlalchemy import select
 
 from app.api.auth_deps import CurrentUserDep
 from app.api.deps import SessionDep
+from app.api.routes.cities import area_names
 from app.models import Event, EventMergeCandidate
 from app.repositories.events import source_summary, to_event_outs
 from app.schemas.event import EventOut, MergeCandidateOut, MergeDecisionIn, MergeGroupDecisionIn
 from app.services import merge_service
-from packages.cities import load_cities
 
 router = APIRouter(prefix="/merge-candidates", tags=["merging"])
 
@@ -35,22 +35,19 @@ def _out(session, candidate: EventMergeCandidate, side: str) -> MergeCandidateOu
 def list_candidates(
     session: SessionDep,
     status: Annotated[str | None, Query(description="PENDING, AUTO_MERGED, CONFIRMED, REJECTED")] = None,
-    city: Annotated[str | None, Query(description="A configured city id")] = None,
+    city: Annotated[
+        str | None, Query(description="A configured city id; a country's id also covers its cities")
+    ] = None,
 ) -> list[MergeCandidateOut]:
     """Pairs of events that may be the same, seen from their first event."""
     query = select(EventMergeCandidate).order_by(EventMergeCandidate.id)
     if status:
         query = query.where(EventMergeCandidate.status == status.upper())
-    city_name = None
-    if city is not None:
-        configured = load_cities().get(city)
-        if configured is None:
-            raise HTTPException(status_code=422, detail=f"Unknown city {city!r}")
-        city_name = configured.name
+    names = area_names(city)
     found = []
     for candidate in session.scalars(query):
         first = session.get(Event, candidate.event_a)
-        if city_name and first.city != city_name:
+        if names is not None and first.city not in names:
             continue
         found.append(_out(session, candidate, candidate.event_a))
     return found

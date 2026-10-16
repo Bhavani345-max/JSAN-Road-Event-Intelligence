@@ -1,3 +1,4 @@
+from collections import Counter
 from collections.abc import Iterable
 
 from sqlalchemy import func, select
@@ -19,10 +20,19 @@ class SourceRepository:
     def get(self, source_id: str) -> Source | None:
         return self.session.get(Source, source_id)
 
-    def to_out(self, source: Source) -> SourceOut:
+    def to_out(self, source: Source, event_counts: Counter | None = None) -> SourceOut:
+        """The source's API form. `event_counts`: its row of
+        EventRepository.tally(by="source"); counted here when not given."""
+        from app.repositories.events import EventRepository
+        from app.services.source_status import describe
+
+        if event_counts is None:
+            event_counts = EventRepository(self.session).tally(by="source").get(source.source_id)
         out = SourceOut.model_validate(source)
         out.artifact_count = self._count(SourceArtifact, source.source_id)
         out.event_count = self._count(Event, source.source_id)
+        for name, value in describe(source, event_counts).items():
+            setattr(out, name, value)
         return out
 
     def _count(self, model: type[SourceArtifact] | type[Event], source_id: str) -> int:

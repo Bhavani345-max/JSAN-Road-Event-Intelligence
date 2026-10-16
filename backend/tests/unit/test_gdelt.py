@@ -246,7 +246,7 @@ def test_gdelt_is_off_by_default_listed_but_never_run():
     assert Settings(_env_file=None).gdelt_search_enabled is False
     off = [s for s in registered_sources() if s.definition.source_id.startswith("gdelt-")]
     assert off and all(s.create_connector is None and not s.definition.active for s in off)
-    assert all(s.definition.integration_status is IntegrationStatus.VALIDATED for s in off)
+    assert all(s.definition.integration_status is IntegrationStatus.DISABLED for s in off)
 
 
 # --- through the pipeline ------------------------------------------------------
@@ -288,3 +288,114 @@ def test_a_publishers_own_feed_keeps_two_items_with_one_headline(session):
         SqlIngestionStore(session),
     )
     assert (result.new_artifacts, result.duplicates) == (2, 0)
+
+
+# --- refusals, cooldown, cache (decision 0034) -------------------------------------
+
+
+class Clock:
+    def __init__(self):
+        self.now = 1000.0
+
+    def __call__(self):
+        return self.now
+
+
+def _counting(responses):
+    """A transport answering GDELT searches from `responses` in turn, counting them."""
+    sent = []
+
+    def handler(request):
+        sent.append(str(request.url))
+        status, body, headers = responses[min(len(sent) - 1, len(responses) - 1)]
+        return httpx.Response(status, text=body, headers=headers)
+
+    return handler, sent
+
+
+def _connector(handler, guard, clock, city=DELHI):
+    return GdeltConnector(
+        gdelt_source(city), city, "ua",
+        client=httpx.Client(transport=httpx.MockTransport(handler)),
+        sleep=lambda seconds: None, clock=clock, pace=guard, min_seconds_between_requests=0,
+    )  # fmt: skip
+
+
+REFUSAL = (429, "Please limit requests to one every 5 seconds.", {})
+EMPTY = (200, "{}", {"Cache-Control": "public, max-age=900"})
+
+
+def test_a_refusal_stops_every_gdelt_request_for_a_bounded_growing_time():
+    from connectors.discovery.gdelt import COOLDOWN_BASE_SECONDS, COOLDOWN_MAX_SECONDS
+
+    guard, clock = _Pace(), Clock()
+    handler, sent = _counting([REFUSAL])
+    with pytest.raises(ConnectorError, match=r"refused the request \(HTTP 429\).*no request before"):
+        _connector(handler, guard, clock).fetch()
+    assert len(sent) == 1
+    # During the cooldown no request is sent at all, for any city.
+    for city in (DELHI, get_city("mumbai"), get_city("south-africa")):
+        with pytest.raises(ConnectorError, match="cooling down after a refusal: no request sent"):
+            _connector(handler, guard, clock, city).fetch()
+    assert len(sent) == 1
+    # After it, one request; refused again, the cooldown doubles ...
+    clock.now += COOLDOWN_BASE_SECONDS + 1
+    with pytest.raises(ConnectorError, match="refused"):
+        _connector(handler, guard, clock).fetch()
+    assert len(sent) == 2 and guard.cooldown_until - clock.now == 2 * COOLDOWN_BASE_SECONDS
+    # ... up to a day at most.
+    for _ in range(12):
+        clock.now = guard.cooldown_until + 1
+        with pytest.raises(ConnectorError):
+            _connector(handler, guard, clock).fetch()
+    assert guard.cooldown_until - clock.now == COOLDOWN_MAX_SECONDS
+
+
+def test_an_answer_resets_the_cooldown():
+    guard, clock = _Pace(), Clock()
+    handler, _sent = _counting([REFUSAL, EMPTY])
+    with pytest.raises(ConnectorError):
+        _connector(handler, guard, clock).fetch()
+    clock.now = guard.cooldown_until + 1
+    assert _connector(handler, guard, clock).fetch() == []
+    assert guard.refusals == 0 and guard.cooling_down(clock) == 0
+
+
+def test_gdelts_limit_message_with_status_200_counts_as_a_refusal():
+    guard, clock = _Pace(), Clock()
+    handler, _sent = _counting([(200, "Please limit requests to one every 5 seconds or contact us.", {})])
+    with pytest.raises(ConnectorError, match="refused"):
+        _connector(handler, guard, clock).fetch()
+    assert guard.cooling_down(clock) > 0
+
+
+def test_the_same_search_within_its_freshness_is_answered_from_the_cache():
+    guard, clock = _Pace(), Clock()
+    handler, sent = _counting([EMPTY])
+    _connector(handler, guard, clock).fetch()
+    _connector(handler, guard, clock).fetch()
+    assert len(sent) == 1
+    clock.now += 901  # GDELT's max-age=900 has passed
+    _connector(handler, guard, clock).fetch()
+    assert len(sent) == 2
+
+
+def test_with_gdelt_disabled_the_api_has_no_gdelt_connector_and_polls_none(engine, session):
+    from app.core.config import Settings
+    from app.main import create_app
+    from app.repositories.sources import SourceRepository
+
+    settings = Settings(
+        _env_file=None, database_url="sqlite://", auto_migrate=False,
+        ingestion_scheduler_enabled=False, event_matching_after_ingestion=False,
+    )  # fmt: skip
+    app = create_app(settings, engine=engine)
+    service = app.state.ingestion_service
+    assert not any(source_id.startswith("gdelt-") for source_id in service.connector_factories)
+    SourceRepository(session).sync_registry(s.definition for s in service.sources)
+    session.commit()
+    rows = [s for s in SourceRepository(session).list() if s.source_id.startswith("gdelt-")]
+    assert rows and all(r.integration_status == "DISABLED" and not r.active for r in rows)
+    # Nothing else is polled in this test: only GDELT's rows are looked at.
+    service.connector_factories = {}
+    assert service.run_due() == []

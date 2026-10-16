@@ -65,6 +65,8 @@ def test_registry_separates_connected_from_researched_sources(news_client):
             "DISCOVERED", "NOT_USABLE", "REQUIRES_ACCESS", "MANUAL_ONLY",
             # Added 6 October 2026 with the source research.
             "VALIDATED", "READY_FOR_INTEGRATION", "TERMS_REVIEW_REQUIRED", "BLOCKED",
+            # Connector built, switched off by configuration (GDELT, decision 0034).
+            "DISABLED",
         }
         assert source["notes"]
 

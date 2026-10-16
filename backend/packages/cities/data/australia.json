@@ -3,6 +3,7 @@
   "name": "Australia",
   "area_name": "Australia",
   "country": "AU",
+  "level": "country",
   "region": "National",
   "timezone": "Australia/Sydney",
   "language": "en",

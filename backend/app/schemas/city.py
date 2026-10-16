@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from packages.cities import City
+from packages.cities import City, country_entry
 
 
 class CityOut(BaseModel):
@@ -9,6 +9,12 @@ class CityOut(BaseModel):
     id: str
     name: str
     country: str
+    # "country": the entry for a whole country (Canada), which covers its own
+    # events and those of the cities within it; "city": one city (Toronto).
+    level: str
+    # The country entry the city lies within (Toronto: "canada"); None for a
+    # country entry or a city whose country has none (decision 0035).
+    parent_id: str | None
     region: str | None
     timezone: str
     language: str
@@ -32,6 +38,8 @@ class CityOut(BaseModel):
             id=city.id,
             name=city.name,
             country=city.country,
+            level=city.level,
+            parent_id=parent.id if (parent := country_entry(city)) else None,
             region=city.region,
             timezone=city.timezone,
             language=city.language,

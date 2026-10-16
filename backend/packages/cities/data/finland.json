@@ -3,6 +3,7 @@
   "name": "Finland",
   "area_name": "Finland",
   "country": "FI",
+  "level": "country",
   "region": "National",
   "timezone": "Europe/Helsinki",
   "language": "fi",

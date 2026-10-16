@@ -1,9 +1,11 @@
 import Image from "next/image";
-import type { City } from "@/features/cities/cities";
+import { ALL_CITIES, choiceLabel, groupByCountry, type City } from "@/features/cities/cities";
 import type { AuthUser } from "@/features/auth/types";
 
 interface HeaderProps {
+  /** The configured countries and cities (not "All cities"). */
   cities: City[];
+  /** The one chosen, or All cities. */
   city: City;
   onCityChange: (cityId: string) => void;
   user: AuthUser;
@@ -26,18 +28,25 @@ export default function Header({ cities, city, onCityChange, user, onSignOut }: 
           <h1 className="truncate text-[15px] font-semibold tracking-tight text-brand-800">
             JSAN Road Event Intelligence
           </h1>
-          {cities.length > 1 ? (
+          {cities.length > 0 ? (
             <label className="flex shrink-0 items-center gap-1.5">
-              <span className="sr-only">City</span>
+              <span className="sr-only">Country or city</span>
               <select
                 value={city.id}
                 onChange={(event) => onCityChange(event.target.value)}
                 className="h-7 cursor-pointer rounded-full bg-brand-50 pl-2.5 pr-7 text-[11px] font-semibold text-brand-700 ring-1 ring-inset ring-brand-100 outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
               >
-                {cities.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.id === "all" ? "All cities" : `${option.name} PoC`}
-                  </option>
+                <option value={ALL_CITIES.id}>{ALL_CITIES.name}</option>
+                {/* Each country, its own entry first (Canada, which covers its
+                    cities), then its cities (Toronto). */}
+                {groupByCountry(cities).map((group) => (
+                  <optgroup key={group.country} label={group.name}>
+                    {[...(group.entry ? [group.entry] : []), ...group.cities].map((option) => (
+                      <option key={option.id} value={option.id}>
+                        {`${choiceLabel(option, cities)} PoC`}
+                      </option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
             </label>

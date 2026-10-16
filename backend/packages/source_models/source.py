@@ -62,6 +62,9 @@ class IntegrationStatus(StrEnum):
     REQUIRES_ACCESS = "REQUIRES_ACCESS"
     # Official, but published for people only: no machine-readable access.
     MANUAL_ONLY = "MANUAL_ONLY"
+    # A connector exists and works, but configuration switches it off (the GDELT
+    # search, GDELT_SEARCH_ENABLED; decision 0034). Never fetched while so.
+    DISABLED = "DISABLED"
 
 
 class CostCategory(StrEnum):

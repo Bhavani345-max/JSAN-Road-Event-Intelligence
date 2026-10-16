@@ -1,0 +1,37 @@
+{
+  "id": "brussels",
+  "name": "Brussels",
+  "area_name": "Brussels-Capital Region",
+  "country": "BE",
+  "region": "Brussels-Capital Region",
+  "timezone": "Europe/Brussels",
+  "language": "fr",
+  "bbox": [
+    50.76,
+    4.24,
+    50.92,
+    4.49
+  ],
+  "map": {
+    "center": [
+      4.3517,
+      50.8503
+    ],
+    "zoom": 11.2
+  },
+  "scope_terms": [
+    "Brussels",
+    "Bruxelles",
+    "Brussel"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "brussels-traffic-events"
+  ],
+  "gis_sources": []
+}

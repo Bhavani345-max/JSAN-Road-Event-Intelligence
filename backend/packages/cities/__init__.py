@@ -8,6 +8,11 @@ A city file states:
 
 - `id`, `name`, `country` (ISO 3166-1 alpha-2), `region`, `timezone` (IANA),
   `language` (BCP 47 primary subtag);
+- `level`: "city" (the default) or "country". A country entry (Canada) holds
+  the country's national and regional sources; the cities configured with the
+  same `country` code (Toronto) are within it. Choosing the country covers its
+  own events and its cities' events; choosing a city covers that city's only
+  (decision 0035). A country has at most one country entry;
 - `bbox`: south, west, north, east — the area REI covers for the city. An
   event placed outside it is not that city's;
 - `map`: where the console's map starts for the city;
@@ -23,6 +28,7 @@ A city file states:
 import json
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 from zoneinfo import ZoneInfo
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -58,6 +64,8 @@ class City(BaseModel):
     # How the covered area is called in messages: "Greater Hyderabad".
     area_name: str | None = None
     country: str = Field(min_length=2, max_length=2)
+    # "country": the entry for a whole country, with its cities within it.
+    level: Literal["city", "country"] = "city"
     region: str | None = None
     timezone: str
     language: str = "en"
@@ -121,7 +129,40 @@ def load_cities() -> dict[str, City]:
         cities[city.id] = city
     if DEFAULT_CITY_ID not in cities:
         raise ValueError(f"The default city {DEFAULT_CITY_ID!r} is not configured")
+    countries: dict[str, str] = {}
+    for city in cities.values():
+        if city.level == "country":
+            if city.country in countries:
+                raise ValueError(
+                    f"{city.id}: {countries[city.country]} is already the country entry for {city.country}"
+                )
+            countries[city.country] = city.id
     return cities
+
+
+def country_entry(city: City) -> City | None:
+    """The country entry a city lies within (Toronto: Canada); None for a
+    country entry itself or a city whose country has none (Delhi)."""
+    if city.level == "country":
+        return None
+    return next(
+        (other for other in load_cities().values() if other.level == "country" and other.country == city.country),
+        None,
+    )
+
+
+def cities_within(city: City) -> tuple[City, ...]:
+    """The configured cities within a country entry (Canada: Toronto); none for a city."""
+    if city.level != "country":
+        return ()
+    return tuple(
+        other for other in load_cities().values() if other.level == "city" and other.country == city.country
+    )
+
+
+def area_of(city: City) -> tuple[City, ...]:
+    """What choosing this entry covers: a city alone, or a country entry and its cities."""
+    return (city, *cities_within(city))
 
 
 def get_city(city_id: str | None) -> City:
@@ -137,4 +178,15 @@ def default_city() -> City:
     return get_city(DEFAULT_CITY_ID)
 
 
-__all__ = ["City", "DEFAULT_CITY_ID", "Discovery", "MapView", "default_city", "get_city", "load_cities"]
+__all__ = [
+    "City",
+    "DEFAULT_CITY_ID",
+    "Discovery",
+    "MapView",
+    "area_of",
+    "cities_within",
+    "country_entry",
+    "default_city",
+    "get_city",
+    "load_cities",
+]

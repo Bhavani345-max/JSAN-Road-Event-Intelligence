@@ -10,7 +10,14 @@ in London, Toronto, Mumbai, Bengaluru, New York City, France and Finland. Since
 configured with place lists, South Africa has a place list over seven metro areas
 and the SAnews feed, Mid-day is disconnected (personal-use terms), and a GDELT
 news search is built but off by default (`GDELT_SEARCH_ENABLED`). Feeds whose
-terms do not permit commercial use wait for written permission. The original
+terms do not permit commercial use wait for written permission. Decision 0034
+adds official feeds for the United States (11 WZDx work-zone feeds), Japan
+(Tokushima), Belgium (Brussels) and Germany (Hamburg); the console lists every
+source with its state and shows per city how many events are detected,
+awaiting review, validated and on the map. Decision 0035 counts each map on
+its own (an event awaiting review is never counted on the operations map) and
+groups cities under their country: choosing Canada covers Toronto too, and the
+United States covers New York City. The original
 Hyderabad proof of concept began with six publisher feeds:
 
 ```

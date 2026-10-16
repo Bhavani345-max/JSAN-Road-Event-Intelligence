@@ -38,12 +38,13 @@ Latin script are dropped, as for the other search sources. Every event found
 is a lead for review.
 """
 
+import json
 import logging
 import re
 import threading
 import time
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import httpx
@@ -107,12 +108,24 @@ _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,:;?!.%])")
 _THOUSANDS = re.compile(r"(\d) , (\d{3})\b")
 
 
-class _Pace:
-    """Keeps GDELT requests at least `MIN_SECONDS_BETWEEN_REQUESTS` apart, process-wide."""
+class _Guard:
+    """What every GDELT request in the process shares (decision 0034).
+
+    - Pace: requests at least `MIN_SECONDS_BETWEEN_REQUESTS` apart.
+    - Cache: an identical search within its freshness (GDELT answers with
+      Cache-Control: max-age=900) is answered from memory, not sent again.
+    - Cooldown: after a refusal (HTTP 429/503, or GDELT's "limit requests"
+      message) nothing is sent for COOLDOWN_BASE_SECONDS, doubling with each
+      further refusal up to COOLDOWN_MAX_SECONDS; a successful answer resets it.
+      Bounded: never a retry loop, never more traffic to force an answer.
+    """
 
     def __init__(self) -> None:
         self._lock = threading.Lock()
         self._last = 0.0
+        self._cache: dict[str, tuple[float, str]] = {}
+        self.cooldown_until = 0.0
+        self.refusals = 0
 
     def wait(self, seconds: float, sleep: Callable[[float], None], clock: Callable[[], float]) -> None:
         with self._lock:
@@ -121,8 +134,53 @@ class _Pace:
                 sleep(pause)
             self._last = clock()
 
+    def cooling_down(self, clock: Callable[[], float]) -> float:
+        """Seconds left before another request may be sent (0 when none)."""
+        with self._lock:
+            return max(0.0, self.cooldown_until - clock())
 
-_PACE = _Pace()
+    def refused(self, clock: Callable[[], float]) -> float:
+        """Record a refusal; the cooldown it starts, in seconds."""
+        with self._lock:
+            self.refusals += 1
+            delay = min(COOLDOWN_BASE_SECONDS * 2 ** (self.refusals - 1), COOLDOWN_MAX_SECONDS)
+            self.cooldown_until = clock() + delay
+            return delay
+
+    def answered(self) -> None:
+        with self._lock:
+            self.refusals = 0
+            self.cooldown_until = 0.0
+
+    def cached(self, key: str, clock: Callable[[], float]) -> str | None:
+        with self._lock:
+            found = self._cache.get(key)
+            if found is None or found[0] <= clock():
+                self._cache.pop(key, None)
+                return None
+            return found[1]
+
+    def store(self, key: str, body: str, max_age: float, clock: Callable[[], float]) -> None:
+        with self._lock:
+            if max_age > 0:
+                self._cache[key] = (clock() + max_age, body)
+
+
+# Kept under its earlier name for callers that only pace.
+_Pace = _Guard
+_PACE = _Guard()
+
+# A refusal stops GDELT requests for 15 minutes, then 30, 60 ... at most a day.
+COOLDOWN_BASE_SECONDS = 15 * 60
+COOLDOWN_MAX_SECONDS = 24 * 60 * 60
+# How long an answer is reused when GDELT states no freshness.
+DEFAULT_CACHE_SECONDS = 15 * 60
+_MAX_AGE = re.compile(r"max-age=(\d+)")
+
+
+def _utc_after(seconds: float) -> str:
+    """The UTC time `seconds` from now, for messages ("2026-10-16 14:05")."""
+    return (utc_now() + timedelta(seconds=seconds)).strftime("%Y-%m-%d %H:%M")
 
 
 def source_id_for(city: City) -> str:
@@ -173,7 +231,7 @@ def gdelt_source(city: City, *, enabled: bool = True) -> SourceDefinition:
         source_url="https://www.gdeltproject.org/",
         endpoint=API_URL,
         access_method="Public DOC 2.0 API (ArtList, JSON), no credentials",
-        integration_status=IntegrationStatus.CONNECTED if enabled else IntegrationStatus.VALIDATED,
+        integration_status=IntegrationStatus.CONNECTED if enabled else IntegrationStatus.DISABLED,
         active=enabled,
         polling_frequency_minutes=POLLING_FREQUENCY_MINUTES,
         language=city.language,
@@ -300,31 +358,53 @@ class GdeltConnector:
             "timespan": TIMESPAN,
             "sort": "DateDesc",
         }
+        key = str(httpx.URL(API_URL, params=params))
+        body = self._pace.cached(key, self._clock)
+        if body is None:
+            body = self._request(params, key)
+        if not body.strip():
+            return []
+        try:
+            document = json.loads(body)
+        except ValueError:
+            # GDELT answers a query it cannot run with a plain-text message.
+            raise ConnectorError(f"GDELT did not run the search: {body.strip()[:200]}") from None
+        articles = document.get("articles") if isinstance(document, dict) else None
+        return [article for article in articles or [] if isinstance(article, dict)]
+
+    def _request(self, params: dict[str, str], key: str) -> str:
+        """One request, unless a refusal's cooldown is running: then none at all."""
+        left = self._pace.cooling_down(self._clock)
+        if left > 0:
+            raise ConnectorError(
+                f"GDELT is cooling down after a refusal: no request sent; next request after "
+                f"{_utc_after(left)} UTC"
+            )
         self._pace.wait(self._gap, self._sleep, self._clock)
         try:
             response = self._client.get(API_URL, params=params, headers={"User-Agent": self._user_agent})
         except httpx.HTTPError as error:
-            raise ConnectorError(f"GDELT search failed: {error}") from error
-        if response.status_code in (429, 503):
+            raise ConnectorError(f"GDELT search failed: {type(error).__name__}: {error}") from error
+        refused = response.status_code in (429, 503) or (
+            response.status_code == 200 and "limit requests" in response.text[:300].lower()
+        )
+        if refused:
+            delay = self._pace.refused(self._clock)
             raise ConnectorError(
                 f"GDELT refused the request (HTTP {response.status_code}): "
-                f"{response.text.strip()[:120]}; retried at the next poll"
+                f"{response.text.strip()[:120]}; no request before {_utc_after(delay)} UTC"
             )
         if response.status_code != 200:
             raise ConnectorError(f"GDELT search failed: HTTP {response.status_code}")
         if len(response.content) > MAX_RESPONSE_BYTES:
             raise ConnectorError("GDELT response is larger than the allowed maximum")
-        if not response.content.strip():
-            return []
-        try:
-            document = response.json()
-        except ValueError:
-            # GDELT answers a query it cannot run with a plain-text message.
-            raise ConnectorError(
-                f"GDELT did not run the search: {response.text.strip()[:200]}"
-            ) from None
-        articles = document.get("articles") if isinstance(document, dict) else None
-        return [article for article in articles or [] if isinstance(article, dict)]
+        self._pace.answered()
+        cache_control = response.headers.get("Cache-Control", "")
+        found = _MAX_AGE.search(cache_control)
+        self._pace.store(
+            key, response.text, float(found.group(1)) if found else DEFAULT_CACHE_SECONDS, self._clock
+        )
+        return response.text
 
     def _to_record(
         self, article: dict[str, Any], query: str, retrieved_at: datetime

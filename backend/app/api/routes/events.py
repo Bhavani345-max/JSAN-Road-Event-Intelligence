@@ -5,13 +5,16 @@ from fastapi import APIRouter, HTTPException, Query
 
 from app.api.auth_deps import CurrentUserDep
 from app.api.deps import ResolverDep, SessionDep
+from app.api.routes.cities import area_names
 from app.repositories.events import EventRepository, to_event_out, to_event_outs
 from app.schemas.event import (
+    CityCoverageOut,
     CityEventCountOut,
-    EventSummaryOut,
+    EventCoverageOut,
     EventDetailOut,
     EventListOut,
     EventOut,
+    EventSummaryOut,
     EventVersionOut,
     ExtendIn,
     LocationIn,
@@ -23,8 +26,8 @@ from app.services import review_service
 from app.services.manual_event_service import create_manual_event
 from packages.cities import default_city, load_cities
 from packages.event_schema import EventSeverity, EventStatus
-from services.lifecycle.current import EventListView
 from services.lifecycle import InvalidTransition
+from services.lifecycle.current import EventListView
 
 router = APIRouter(prefix="/events", tags=["events"])
 
@@ -37,7 +40,15 @@ def list_events(
         EventSeverity | None, Query(description="REI severity (LOW, MEDIUM, HIGH, CRITICAL), never the source's")
     ] = None,
     source_id: str | None = None,
-    city: Annotated[str | None, Query(description="A configured city id, e.g. hyderabad")] = None,
+    city: Annotated[
+        str | None,
+        Query(
+            description=(
+                "A configured city id, e.g. hyderabad. A country's id (canada) also "
+                "lists the events of the cities within it (toronto)."
+            )
+        ),
+    ] = None,
     include_merged: Annotated[
         bool, Query(description="Also list events merged into another (shown as part of it)")
     ] = False,
@@ -69,17 +80,11 @@ def list_events(
     limit: Annotated[int, Query(ge=1, le=500)] = 200,
     offset: Annotated[int, Query(ge=0)] = 0,
 ) -> EventListOut:
-    city_name: str | None = None
-    if city is not None:
-        configured = load_cities().get(city)
-        if configured is None:
-            raise HTTPException(status_code=422, detail=f"Unknown city {city!r}")
-        city_name = configured.name
     rows, total = EventRepository(session).list(
         status=status,
         severity=severity,
         source_id=source_id,
-        city=city_name,
+        cities=area_names(city),
         include_merged=include_merged,
         include_hidden=include_hidden,
         view=view,
@@ -138,6 +143,50 @@ def summarize_events(
             )
         )
     return EventSummaryOut(view=view.value, cities=cities)
+
+
+COVERAGE_COUNTS = (
+    "detected", "merged", "rejected", "closed", "pending_review", "validated",
+    "recent", "on_map_review", "on_map_operations",
+)
+
+
+def _hidden(found: Counter, map_name: str) -> dict[str, int]:
+    """The events one view's map does not show, by the rule hiding them."""
+    prefix = f"hidden_{map_name}_"
+    return {
+        name.removeprefix(prefix): count
+        for name, count in sorted(found.items())
+        if name.startswith(prefix) and count
+    }
+
+
+@router.get("/coverage", response_model=EventCoverageOut)
+def event_coverage(session: SessionDep) -> EventCoverageOut:
+    """Per configured city: events detected, merged as duplicates, rejected,
+    pending review, validated; how many of those awaiting review the review
+    queue's map shows and how many validated ones the operations map shows;
+    and, for each map, why the others are hidden. A country entry's row holds
+    its own events only: the console adds its cities' rows (decision 0035)."""
+    counts = EventRepository(session).tally(by="city")
+    # Events stored before cities existed are Hyderabad's (as the list treats them).
+    legacy = counts.pop(None, Counter())
+    cities = []
+    for city in load_cities().values():
+        found = counts.get(city.name, Counter())
+        if city.name == default_city().name:
+            found = found + legacy
+        cities.append(
+            CityCoverageOut(
+                city_id=city.id,
+                city_name=city.name,
+                country=city.country,
+                **{name: found.get(name, 0) for name in COVERAGE_COUNTS},
+                hidden_review=_hidden(found, "review"),
+                hidden_operations=_hidden(found, "operations"),
+            )
+        )
+    return EventCoverageOut(cities=cities)
 
 
 @router.get("/{event_id}", response_model=EventDetailOut)

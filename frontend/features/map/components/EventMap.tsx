@@ -808,7 +808,10 @@ export default function EventMap({
   // Move to the selected city. Runs before the framing below, which then
   // fits the city's located events if it has any.
   const cityKey = cityView ? `${cityView.center.join(",")}|${cityView.zoom}` : "";
-  const cityKeyRef = useRef(cityKey);
+  // Nothing moved to yet: a console opened on a city (/?city=delhi) whose view
+  // is known at the first render goes there once the map has loaded, instead
+  // of staying at the initial (Hyderabad) view.
+  const cityKeyRef = useRef<string | null>(null);
   useEffect(() => {
     const map = loadedMap;
     if (!map || map !== mapRef.current || !cityView) return;

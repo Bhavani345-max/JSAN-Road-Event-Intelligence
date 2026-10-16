@@ -3,6 +3,7 @@
   "name": "South Africa",
   "area_name": "South Africa",
   "country": "ZA",
+  "level": "country",
   "region": "National",
   "timezone": "Africa/Johannesburg",
   "language": "en",

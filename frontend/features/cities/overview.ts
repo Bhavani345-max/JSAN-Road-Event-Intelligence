@@ -6,7 +6,7 @@ import type { EventListView } from "@/features/events/filters";
 import { ROAD_CLOSURE_EVENT_TYPES } from "@/features/events/model";
 import type { EventStats } from "@/features/events/stats";
 import type { ApiCityEventCount, ApiEventSummary } from "@/types/api";
-import type { City } from "./cities";
+import { groupByCountry, type City } from "./cities";
 
 /**
  * The overview of all cities: how many events each city's view lists, without
@@ -86,7 +86,49 @@ export function useCityCounts(view: EventListView, enabled: boolean) {
   return { state: visible, refresh };
 }
 
-/** One bubble per configured city, at the place its map opens on, with its count. */
+const NO_STATS: EventStats = { total: 0, active: 0, scheduled: 0, roadClosures: 0, needsReview: 0 };
+
+/**
+ * One country in the overview (decision 0035). Its entry, when configured
+ * (Canada), carries what choosing it lists: its own events and those of the
+ * cities within it (Toronto). Each city carries its own.
+ */
+export interface CountryCount {
+  country: string;
+  name: string;
+  entry: CityCount | null;
+  cities: CityCount[];
+  /** Everything listed in the country: each event once. */
+  stats: EventStats;
+}
+
+const byTotal = (a: CityCount, b: CityCount) => b.stats.total - a.stats.total || a.cityName.localeCompare(b.cityName);
+
+/** The per-city counts grouped by country, the busiest country first. */
+export function groupCityCounts(cities: City[], counts: CityCount[]): CountryCount[] {
+  const byId = new Map(counts.map((count) => [count.cityId, count]));
+  const countOf = (city: City): CityCount =>
+    byId.get(city.id) ?? { cityId: city.id, cityName: city.name, stats: NO_STATS };
+  const groups: CountryCount[] = groupByCountry(cities).map((group) => {
+    const own = group.cities.map(countOf).sort(byTotal);
+    const entry = group.entry ? countOf(group.entry) : null;
+    const stats = sumStats(entry ? [entry, ...own] : own);
+    return { country: group.country, name: group.name, entry: entry && { ...entry, stats }, cities: own, stats };
+  });
+  // A count for an entry the city list does not hold yet (still loading) is not left out.
+  const listed = new Set(cities.map((city) => city.id));
+  for (const count of counts) {
+    if (!listed.has(count.cityId)) {
+      groups.push({ country: count.cityId, name: count.cityName, entry: count, cities: [], stats: count.stats });
+    }
+  }
+  return groups.sort((a, b) => b.stats.total - a.stats.total || a.name.localeCompare(b.name));
+}
+
+/**
+ * One bubble per configured city, at the place its map opens on, with what
+ * choosing it lists: a country entry counts the cities within it too.
+ */
 export interface CityBubbleFeature {
   type: "Feature";
   geometry: { type: "Point"; coordinates: [number, number] };
@@ -100,10 +142,12 @@ export interface CityBubbleCollection {
 
 export function toCityBubbles(cities: City[], counts: CityCount[]): CityBubbleCollection {
   const byId = new Map(counts.map((count) => [count.cityId, count.stats.total]));
+  const own = (city: City) => byId.get(city.id) ?? 0;
   return {
     type: "FeatureCollection",
     features: cities.map((city) => {
-      const count = byId.get(city.id) ?? 0;
+      const count =
+        own(city) + cities.filter((other) => other.parentId === city.id).reduce((sum, other) => sum + own(other), 0);
       return {
         type: "Feature",
         geometry: { type: "Point", coordinates: city.view.center },

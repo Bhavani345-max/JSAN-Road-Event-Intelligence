@@ -1,0 +1,37 @@
+{
+  "id": "japan",
+  "name": "Japan",
+  "area_name": "Japan (Tokushima Prefecture)",
+  "country": "JP",
+  "level": "country",
+  "region": "Tokushima",
+  "timezone": "Asia/Tokyo",
+  "language": "ja",
+  "bbox": [
+    24.0,
+    122.9,
+    45.6,
+    146.0
+  ],
+  "map": {
+    "center": [
+      134.4,
+      33.95
+    ],
+    "zoom": 8.6
+  },
+  "scope_terms": [
+    "Japan",
+    "Tokushima"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "tokushima-road-restrictions"
+  ],
+  "gis_sources": []
+}

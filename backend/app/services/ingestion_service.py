@@ -239,7 +239,13 @@ class IngestionService:
                     >= timedelta(minutes=source.polling_frequency_minutes)
                 )
             ]
-        results = [self.run_source(source_id) for source_id in due]
+        results = []
+        for source_id in due:
+            try:
+                results.append(self.run_source(source_id))
+            except Exception:
+                # Never let one source stop the others in this round.
+                logger.exception("Scheduled run of %s failed", source_id)
         if results:
             self.apply_retention()
         return results
@@ -289,6 +295,20 @@ class IngestionService:
                 source_id=source_id,
                 status="failed",
                 error=str(error),
+                started_at=started_at,
+                finished_at=utc_now(),
+            )
+        except Exception as error:
+            # A parser or storage fault in one source is recorded on that source
+            # and never stops the others (decision 0034).
+            session.rollback()
+            logger.exception("Ingestion failed unexpectedly for %s", source_id)
+            message = f"Unexpected error while reading the source: {type(error).__name__}: {error}"[:500]
+            self._record_poll(session, source_id, error=message)
+            return IngestionResultOut(
+                source_id=source_id,
+                status="failed",
+                error=message,
                 started_at=started_at,
                 finished_at=utc_now(),
             )

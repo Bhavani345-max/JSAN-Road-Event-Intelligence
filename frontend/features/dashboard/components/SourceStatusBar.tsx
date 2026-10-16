@@ -1,14 +1,19 @@
 import { useState } from "react";
+import type { EventListView } from "@/features/events/filters";
 import { formatDateTime, timeZoneOf } from "@/features/events/presentation";
 import {
   checkSourcesNow,
-  type ConnectedSource,
+  groupSources,
+  sourceCounts,
   type IngestionOutcome,
-  type SourceHealth,
+  type RegistrySource,
+  type SourceStatus,
 } from "../sources";
 
 interface SourceStatusBarProps {
-  sources: ConnectedSource[];
+  sources: RegistrySource[];
+  /** The view on screen: each source says how many of its events this view's map shows. */
+  view: EventListView;
   /** Called after sources have been checked, so events and sources can reload. */
   onChecked: () => void;
   /** Whether this account may run sources by hand (admins only); else no Check buttons. */
@@ -17,13 +22,23 @@ interface SourceStatusBarProps {
 
 const plural = (count: number, word: string) => `${count} ${word}${count === 1 ? "" : "s"}`;
 
-const HEALTH: Record<SourceHealth, { label: string; dot: string; text: string }> = {
-  healthy: { label: "Healthy", dot: "bg-emerald-400", text: "text-emerald-200" },
-  failing: { label: "Failing", dot: "bg-red-400", text: "text-red-200" },
-  "not-checked": { label: "Not checked yet", dot: "bg-white/40", text: "text-brand-200" },
-  // Connected but not on a schedule: the test cities' official feeds.
-  inactive: { label: "Run by hand", dot: "bg-white/30", text: "text-brand-200" },
+// How each state looks; the words come from the API (status_label).
+const LOOK: Record<SourceStatus, { dot: string; text: string }> = {
+  COLLECTING: { dot: "bg-emerald-400", text: "text-emerald-200" },
+  NO_RECENT_EVENTS: { dot: "bg-sky-300", text: "text-sky-100" },
+  FAILING: { dot: "bg-red-400", text: "text-red-200" },
+  NOT_POLLED_YET: { dot: "bg-white/40", text: "text-brand-200" },
+  NOT_SCHEDULED: { dot: "bg-white/30", text: "text-brand-200" },
+  DISABLED: { dot: "bg-amber-300", text: "text-amber-100" },
+  AWAITING_PERMISSION: { dot: "bg-amber-300", text: "text-amber-100" },
+  NEEDS_CREDENTIALS: { dot: "bg-amber-300/70", text: "text-amber-100" },
+  BLOCKED_BY_TERMS: { dot: "bg-rose-300", text: "text-rose-100" },
+  BLOCKED: { dot: "bg-rose-300/70", text: "text-rose-100" },
+  REMOVED: { dot: "bg-white/20", text: "text-brand-200" },
+  RESEARCHED: { dot: "bg-white/20", text: "text-brand-200" },
+  MANUAL_ONLY: { dot: "bg-white/20", text: "text-brand-200" },
 };
+const UNKNOWN_LOOK = { dot: "bg-white/20", text: "text-brand-200" };
 
 type Message = { text: string; isError: boolean };
 
@@ -80,26 +95,45 @@ function StatusMessage({ message }: { message: Message }) {
   );
 }
 
+/**
+ * What a source has given, in its own words: polls and real event counts.
+ * "On this map" is the view's map only: events awaiting review on the
+ * review queue's, validated ones on the operations map (decision 0035).
+ */
+function activity(source: RegistrySource, zone: string, view: EventListView): string {
+  const parts: string[] = [];
+  const lastSuccess = formatDateTime(source.lastSuccessAt, zone);
+  if (source.checkable) {
+    parts.push(lastSuccess ? `Last success ${lastSuccess}` : "No successful poll yet");
+  }
+  parts.push(...sourceCounts(source, view));
+  if (!source.checkable && source.articleCount) parts.push(`${plural(source.articleCount, "item")} kept as evidence`);
+  return parts.join(" · ");
+}
+
 function SourceRow({
   source,
+  view,
   onChecked,
   canRun,
 }: {
-  source: ConnectedSource;
+  source: RegistrySource;
+  view: EventListView;
   onChecked: () => void;
   canRun: boolean;
 }) {
   const { checking, message, check } = useCheck(source.id, onChecked);
-  const health = HEALTH[source.health];
+  const look = LOOK[source.status] ?? UNKNOWN_LOOK;
   // In the source's own city's time zone.
   const zone = timeZoneOf(source.city, source.id);
-  const lastSuccess = formatDateTime(source.lastSuccessAt, zone);
-  const lastFailure = formatDateTime(source.lastFailureAt, zone);
+  const details = activity(source, zone, view);
+  // Collecting needs no explanation; every other state says why.
+  const reason = source.status === "COLLECTING" ? null : source.statusReason;
 
   return (
     <li>
       <div className="flex items-center gap-2.5">
-        <span className={`h-2 w-2 shrink-0 rounded-full ${health.dot}`} aria-hidden="true" />
+        <span className={`h-2 w-2 shrink-0 rounded-full ${look.dot}`} aria-hidden="true" />
         <div className="min-w-0 flex-1">
           <p className="flex items-center gap-1.5 text-xs font-semibold text-white">
             <span className="truncate">{source.name}</span>
@@ -114,27 +148,27 @@ function SourceRow({
                 Official
               </span>
             )}
-            <span className={`text-[11px] font-medium ${health.text}`}>{health.label}</span>
           </p>
-          <p className="truncate text-[11px] text-brand-200">
-            {lastSuccess ? `Last success ${lastSuccess}` : "No successful check yet"} ·{" "}
-            {plural(source.articleCount, "article")} · {plural(source.candidateCount, "candidate")}
-          </p>
+          <p className={`text-[11px] font-medium ${look.text}`}>{source.statusLabel}</p>
+          {details && <p className="truncate text-[11px] text-brand-200">{details}</p>}
         </div>
-        {canRun && (
+        {canRun && source.checkable && (
           <button type="button" onClick={check} disabled={checking} className={buttonClass}>
             {checking ? "Checking…" : "Check"}
           </button>
         )}
       </div>
       <div className="pl-[18px]">
-        {/* A fresh result replaces the stored failure message. */}
+        {/* A fresh result replaces the stored reason. */}
         {message ? (
           <StatusMessage message={message} />
         ) : (
-          source.lastError && (
-            <p role="status" className="text-[11px] text-red-200">
-              Last failure{lastFailure ? ` ${lastFailure}` : ""}: {source.lastError}
+          reason && (
+            <p
+              role={source.status === "FAILING" ? "status" : undefined}
+              className={`text-[11px] ${source.status === "FAILING" ? "text-red-200" : "text-brand-200"}`}
+            >
+              {reason}
             </p>
           )
         )}
@@ -143,23 +177,32 @@ function SourceRow({
   );
 }
 
-/** Health of each connected source feeding the console, with manual checks. */
-export default function SourceStatusBar({ sources, onChecked, canRun = true }: SourceStatusBarProps) {
+/** Every source in the registry, grouped by state, with checks for connected ones. */
+export default function SourceStatusBar({ sources, view, onChecked, canRun = true }: SourceStatusBarProps) {
   const [expanded, setExpanded] = useState(true);
+  // Only the polled group opens by itself; the others on request.
+  const [openGroups, setOpenGroups] = useState<ReadonlySet<string>>(new Set(["polled"]));
   const all = useCheck(undefined, onChecked);
   if (sources.length === 0) return null;
 
-  const failing = sources.filter((source) => source.health === "failing").length;
-  // Sources run by hand are not part of "all healthy": nothing polls them.
-  const scheduled = sources.filter((source) => source.health !== "inactive");
+  const groups = groupSources(sources);
+  const polled = sources.filter((source) => source.polled);
+  const failing = polled.filter((source) => source.status === "FAILING").length;
+  const collecting = polled.filter((source) => source.status === "COLLECTING").length;
   const summary =
     failing > 0
-      ? `${failing} of ${sources.length} failing`
-      : scheduled.length === 0
-        ? "run by hand"
-        : scheduled.every((source) => source.health === "healthy")
-          ? "all healthy"
-          : "checking";
+      ? `${failing} of ${polled.length} polled failing`
+      : polled.length === 0
+        ? "none polled here"
+        : `${collecting} of ${polled.length} polled collecting`;
+
+  const toggle = (key: string) =>
+    setOpenGroups((open) => {
+      const next = new Set(open);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
 
   return (
     <section
@@ -173,24 +216,15 @@ export default function SourceStatusBar({ sources, onChecked, canRun = true }: S
           aria-expanded={expanded}
           className="flex min-w-0 flex-1 cursor-pointer items-center gap-1.5 text-left text-xs font-semibold text-white outline-none focus-visible:underline"
         >
-          <svg
-            viewBox="0 0 12 12"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            className={`h-3 w-3 shrink-0 transition-transform ${expanded ? "rotate-90" : ""}`}
-            aria-hidden="true"
-          >
-            <path d="m4 2 4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <Chevron open={expanded} />
           <span className="truncate">
-            {plural(sources.length, "source")} connected
+            {plural(sources.length, "source")}
             <span className={`ml-1.5 font-medium ${failing > 0 ? "text-red-200" : "text-emerald-200"}`}>
               · {summary}
             </span>
           </span>
         </button>
-        {canRun && (
+        {canRun && polled.length > 0 && (
           <button type="button" onClick={all.check} disabled={all.checking} className={buttonClass}>
             {all.checking ? "Checking…" : "Check all"}
           </button>
@@ -202,12 +236,53 @@ export default function SourceStatusBar({ sources, onChecked, canRun = true }: S
         </div>
       )}
       {expanded && (
-        <ul className="rei-sidebar-scroll mt-2 max-h-[8.75rem] space-y-2 overflow-y-auto border-t border-white/10 pt-2 pr-1">
-          {sources.map((source) => (
-            <SourceRow key={source.id} source={source} onChecked={onChecked} canRun={canRun} />
-          ))}
-        </ul>
+        <div className="rei-sidebar-scroll mt-2 max-h-[14rem] space-y-2 overflow-y-auto border-t border-white/10 pt-2 pr-1">
+          {groups.map((group) => {
+            const open = openGroups.has(group.key);
+            return (
+              <div key={group.key}>
+                <button
+                  type="button"
+                  onClick={() => toggle(group.key)}
+                  aria-expanded={open}
+                  className="flex w-full cursor-pointer items-center gap-1.5 text-left text-[11px] font-semibold uppercase tracking-wide text-brand-100 outline-none focus-visible:underline"
+                >
+                  <Chevron open={open} />
+                  {group.label} ({group.sources.length})
+                </button>
+                {open && (
+                  <ul className="mt-1.5 space-y-2">
+                    {group.sources.map((source) => (
+                      <SourceRow
+                        key={source.id}
+                        source={source}
+                        view={view}
+                        onChecked={onChecked}
+                        canRun={canRun}
+                      />
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
+        </div>
       )}
     </section>
+  );
+}
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      className={`h-3 w-3 shrink-0 transition-transform ${open ? "rotate-90" : ""}`}
+      aria-hidden="true"
+    >
+      <path d="m4 2 4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }

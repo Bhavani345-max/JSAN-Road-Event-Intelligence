@@ -3,6 +3,7 @@
   "name": "Canada",
   "area_name": "Canada",
   "country": "CA",
+  "level": "country",
   "region": "National",
   "timezone": "America/Toronto",
   "language": "en",
