@@ -28,18 +28,19 @@ const BACKGROUND = 0x050e18;
 const GROUND_HEIGHT = 0;
 const ROAD_LIFT = 0.03;
 
+
 const palette = {
-  street: "rgba(62, 128, 176, 0.42)",
+  street: "rgba(62, 128, 176, 0.34)",
   blockFill: "rgba(32, 88, 136, 1)",
-  avenueGlow: "rgba(56, 189, 248, 0.55)",
-  avenueCore: "rgba(190, 236, 255, 0.95)",
-  avenueLine: 0x7dd3fc,
-  streetLine: 0x2f6f9e,
-  trafficCool: new THREE.Color(0xa8f0ff),
-  trafficWarm: new THREE.Color(0xffffff),
+  avenueGlow: "rgba(56, 189, 248, 0.42)",
+  avenueCore: "rgba(190, 236, 255, 0.88)",
+  avenueLine: 0x67c9f3,
+  streetLine: 0x285a80,
+  trafficCool: new THREE.Color(0x8be4ff),
+  trafficWarm: new THREE.Color(0xc8eaff),
   trafficBrand: new THREE.Color(0x5fb3e6),
-  amber: new THREE.Color(0xfbbf24),
-  amberDeep: new THREE.Color(0xf59e0b),
+  amber: new THREE.Color(0x76d7f5),
+  amberDeep: new THREE.Color(0x278fca),
   teal: new THREE.Color(0x2dd4bf),
   cyan: new THREE.Color(0x67e8f9),
 };
@@ -419,57 +420,90 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     const smallDiscGeometry = track(new THREE.CircleGeometry(0.17, 24));
     const smallBeamGeometry = track(new THREE.CylinderGeometry(0.03, 0.09, 2.6, 10, 1, true));
 
-    network.closures.forEach((closure, index) => {
-      const group = new THREE.Group();
-      group.position.set(closure.x, ROAD_LIFT + 0.02, closure.z);
-      scene.add(group);
+    
+network.closures.forEach((closure, index) => {
+  const group = new THREE.Group();
+  group.position.set(closure.x, ROAD_LIFT + 0.02, closure.z);
+  scene.add(group);
 
-      const halo = new THREE.Mesh(haloGeometry, track(new THREE.MeshBasicMaterial({
+  const halo = new THREE.Mesh(
+    haloGeometry,
+    track(
+      new THREE.MeshBasicMaterial({
         color: palette.amberDeep,
         transparent: true,
-        opacity: 0.16,
+        opacity: 0.09,
         depthWrite: false,
         blending: THREE.AdditiveBlending,
-      })));
-      halo.rotation.x = -Math.PI / 2;
-      group.add(halo);
+      })
+    )
+  );
+  halo.rotation.x = -Math.PI / 2;
+  group.add(halo);
 
-      const disc = new THREE.Mesh(discGeometry, track(new THREE.MeshBasicMaterial({ color: palette.amber, toneMapped: false })));
-      disc.rotation.x = -Math.PI / 2;
-      disc.position.y = 0.01;
-      group.add(disc);
+  const disc = new THREE.Mesh(
+    discGeometry,
+    track(
+      new THREE.MeshBasicMaterial({
+        color: palette.amber,
+        toneMapped: false,
+      })
+    )
+  );
+  disc.rotation.x = -Math.PI / 2;
+  disc.position.y = 0.01;
+  group.add(disc);
 
-      const staticRing = new THREE.Mesh(ringGeometry, track(new THREE.MeshBasicMaterial({
+  const staticRing = new THREE.Mesh(
+    ringGeometry,
+    track(
+      new THREE.MeshBasicMaterial({
         color: palette.amber,
         transparent: true,
-        opacity: 0.75,
+        opacity: 0.48,
         depthWrite: false,
         side: THREE.DoubleSide,
-      })));
-      staticRing.rotation.x = -Math.PI / 2;
-      group.add(staticRing);
+      })
+    )
+  );
+  staticRing.rotation.x = -Math.PI / 2;
+  group.add(staticRing);
 
-      for (let pulseIndex = 0; pulseIndex < 2; pulseIndex += 1) {
-        const pulse = new THREE.Mesh(ringGeometry, track(new THREE.MeshBasicMaterial({
+  for (let pulseIndex = 0; pulseIndex < 2; pulseIndex += 1) {
+    const pulse = new THREE.Mesh(
+      ringGeometry,
+      track(
+        new THREE.MeshBasicMaterial({
           color: palette.amber,
           transparent: true,
           opacity: 0,
           depthWrite: false,
           blending: THREE.AdditiveBlending,
           side: THREE.DoubleSide,
-        })));
-        pulse.rotation.x = -Math.PI / 2;
-        pulse.position.y = 0.015;
-        group.add(pulse);
-        pulses.push({ mesh: pulse, phase: pulseIndex * 0.5 + index * 0.23, speed: 0.34, reach: 3.6 });
-      }
+        })
+      )
+    );
+    pulse.rotation.x = -Math.PI / 2;
+    pulse.position.y = 0.015;
+    group.add(pulse);
 
-      const beamMaterial = track(createBeamMaterial(palette.amber, index === 0 ? 1.0 : 0.7));
-      beamMaterials.push(beamMaterial);
-      const beam = new THREE.Mesh(beamGeometry, beamMaterial);
-      beam.position.y = 9 / 2;
-      group.add(beam);
+    pulses.push({
+      mesh: pulse,
+      phase: pulseIndex * 0.5 + index * 0.23,
+      speed: 0.34,
+      reach: 3.6,
     });
+  }
+
+  const beamMaterial = track(
+    createBeamMaterial(palette.amber, index === 0 ? 0.6 : 0.42)
+  );
+  beamMaterials.push(beamMaterial);
+
+  const beam = new THREE.Mesh(beamGeometry, beamMaterial);
+  beam.position.y = 9 / 2;
+  group.add(beam);
+});
 
     const detour = createRibbon(network.detour, 0.34, palette.teal);
     track(detour.geometry);
@@ -581,7 +615,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
       for (const pulse of pulses) {
         const phase = (elapsed * pulse.speed + pulse.phase) % 1;
         pulse.mesh.scale.setScalar(1 + phase * pulse.reach);
-        pulse.mesh.material.opacity = Math.pow(1 - phase, 1.6) * 0.85;
+        pulse.mesh.material.opacity = Math.pow(1 - phase, 1.8) * 0.55;
       }
       for (const material of beamMaterials) material.uniforms.uTime.value = elapsed;
       for (const material of ribbonMaterials) material.uniforms.uTime.value = elapsed;
