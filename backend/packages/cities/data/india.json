@@ -1,0 +1,34 @@
+{
+  "id": "india",
+  "name": "India",
+  "area_name": "India",
+  "country": "IN",
+  "level": "country",
+  "region": "National",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "bbox": [
+    6.5,
+    68.0,
+    35.7,
+    97.5
+  ],
+  "map": {
+    "center": [
+      79.0,
+      22.5
+    ],
+    "zoom": 4.2
+  },
+  "scope_terms": [
+    "India"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

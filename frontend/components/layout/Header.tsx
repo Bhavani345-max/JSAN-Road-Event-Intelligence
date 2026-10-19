@@ -1,18 +1,24 @@
 import Image from "next/image";
-import { ALL_CITIES, choiceLabel, groupByCountry, type City } from "@/features/cities/cities";
+import { ALL_CITIES, citiesIn, countryChoices, countryOf, type City } from "@/features/cities/cities";
 import type { AuthUser } from "@/features/auth/types";
 
 interface HeaderProps {
-  /** The configured countries and cities (not "All cities"). */
+  /** The configured countries and cities (not "All countries"). */
   cities: City[];
-  /** The one chosen, or All cities. */
+  /** The one chosen, or All countries. */
   city: City;
   onCityChange: (cityId: string) => void;
   user: AuthUser;
   onSignOut: () => Promise<void>;
 }
 
+const SELECT_CLASS =
+  "h-7 max-w-44 cursor-pointer rounded-full bg-brand-50 pl-2.5 pr-7 text-[11px] font-semibold text-brand-700 ring-1 ring-inset ring-brand-100 outline-none focus-visible:ring-2 focus-visible:ring-brand-400";
+
 export default function Header({ cities, city, onCityChange, user, onSignOut }: HeaderProps) {
+  // Countries first (decision 0036); a chosen country's cities in a second list.
+  const country = countryOf(city, cities);
+  const within = citiesIn(country, cities);
   return (
     <header className="z-10 flex h-14 shrink-0 items-center justify-between gap-3 border-b border-slate-200 bg-white px-4">
       <div className="flex min-w-0 items-center gap-3">
@@ -29,30 +35,43 @@ export default function Header({ cities, city, onCityChange, user, onSignOut }: 
             JSAN Road Event Intelligence
           </h1>
           {cities.length > 0 ? (
-            <label className="flex shrink-0 items-center gap-1.5">
-              <span className="sr-only">Country or city</span>
-              <select
-                value={city.id}
-                onChange={(event) => onCityChange(event.target.value)}
-                className="h-7 cursor-pointer rounded-full bg-brand-50 pl-2.5 pr-7 text-[11px] font-semibold text-brand-700 ring-1 ring-inset ring-brand-100 outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
-              >
-                <option value={ALL_CITIES.id}>{ALL_CITIES.name}</option>
-                {/* Each country, its own entry first (Canada, which covers its
-                    cities), then its cities (Toronto). */}
-                {groupByCountry(cities).map((group) => (
-                  <optgroup key={group.country} label={group.name}>
-                    {[...(group.entry ? [group.entry] : []), ...group.cities].map((option) => (
+            <div className="flex shrink-0 items-center gap-1.5">
+              <label className="flex items-center">
+                <span className="sr-only">Country</span>
+                <select
+                  value={country?.id ?? ALL_CITIES.id}
+                  onChange={(event) => onCityChange(event.target.value)}
+                  className={SELECT_CLASS}
+                >
+                  <option value={ALL_CITIES.id}>{ALL_CITIES.name}</option>
+                  {countryChoices(cities).map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              {country && within.length > 0 && (
+                <label className="flex items-center">
+                  <span className="sr-only">City in {country.name}</span>
+                  <select
+                    value={city.id}
+                    onChange={(event) => onCityChange(event.target.value)}
+                    className={SELECT_CLASS}
+                  >
+                    <option value={country.id}>{`All of ${country.name}`}</option>
+                    {within.map((option) => (
                       <option key={option.id} value={option.id}>
-                        {`${choiceLabel(option, cities)} PoC`}
+                        {option.name}
                       </option>
                     ))}
-                  </optgroup>
-                ))}
-              </select>
-            </label>
+                  </select>
+                </label>
+              )}
+            </div>
           ) : (
             <span className="hidden shrink-0 rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-medium text-brand-700 ring-1 ring-inset ring-brand-100 sm:inline">
-              {city.id === "all" ? "All cities" : `${city.name} PoC`}
+              {city.id === ALL_CITIES.id ? ALL_CITIES.name : `${city.name} PoC`}
             </span>
           )}
         </div>

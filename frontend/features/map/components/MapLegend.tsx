@@ -4,7 +4,7 @@ import { EVENT_TYPE_COLORS, EVENT_TYPE_LABELS } from "@/features/events/presenta
 interface MapLegendProps {
   /** The types of the events on the map; every type when not given. */
   eventTypes?: readonly EventType[];
-  /** The overview of all cities: bubbles, not events. */
+  /** The overview of all countries: bubbles, not events. */
   overview?: boolean;
 }
 
@@ -16,7 +16,7 @@ export default function MapLegend({ eventTypes, overview = false }: MapLegendPro
           <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600 text-[9px] font-bold text-white ring-2 ring-white">
             12
           </span>
-          Events in a country or city. Click a bubble, or choose one above, to see its events.
+          Events in a country. Click a bubble, or choose one above, to see its events and cities.
         </p>
       </div>
     );

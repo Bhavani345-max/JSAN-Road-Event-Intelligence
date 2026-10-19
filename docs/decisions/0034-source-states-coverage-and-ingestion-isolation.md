@@ -147,3 +147,9 @@ events were re-derived as new versions.
   database came from replaying saved responses (decision 0033 evaluation),
   not from live answers; the console no longer shows it for a disabled
   source. Clearing it is a database change left for the user's approval.
+  Done on 19 October 2026 at the user's request ("complete the pending
+  tasks"), local database only: `last_poll_at` and `last_success_at` set to
+  empty on gdelt-delhi, gdelt-kolkata, gdelt-mumbai, gdelt-pune and
+  gdelt-south-africa (the five rows with the 10:58:43 replay time, nothing
+  else); backup `backend/.data/backups/rei-2026-10-19-before-gdelt-replay-times.db`.
+  The production rows were never polled and needed nothing.

@@ -253,6 +253,21 @@ def to_record(disruption: dict, retrieved_at: datetime) -> RawSourceRecord | Non
     )
 
 
+def _unexpected_body_detail(body: Any) -> str:
+    """What TfL said instead of a list, so a failed run's note can be checked.
+
+    On 18 October 2026 TfL twice answered HTTP 200 with an object instead of the
+    list of disruptions; the note then said only "returned dict". TfL's error
+    objects carry a message and a status code (ApiError).
+    """
+    if not isinstance(body, dict):
+        return ""
+    said = {key: body[key] for key in ("$type", "httpStatusCode", "message") if body.get(key) not in (None, "")}
+    if said:
+        return ": " + "; ".join(f"{key} {_clean(value)[:160]}" for key, value in said.items())
+    return " (keys: " + ", ".join(sorted(str(key) for key in body)[:10]) + ")"
+
+
 class TflRoadDisruptionsConnector:
     def __init__(
         self,
@@ -281,7 +296,9 @@ class TflRoadDisruptionsConnector:
         if not isinstance(body, list):
             from connectors.base import ConnectorError
 
-            raise ConnectorError(f"{ENDPOINT} returned {type(body).__name__}, not a list")
+            raise ConnectorError(
+                f"{ENDPOINT} returned {type(body).__name__}, not a list" + _unexpected_body_detail(body)
+            )
         retrieved_at = self._clock()
         records = [record for item in body if (record := to_record(item, retrieved_at))]
         # Every record the feed listed, kept or not: what was observed this refresh.

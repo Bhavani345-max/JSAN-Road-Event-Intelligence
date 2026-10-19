@@ -38,6 +38,13 @@ CASES = [
     ("SCHEDULED", NOW + DAY, NOW + 3 * DAY, True, False),
     ("REJECTED", NOW - DAY, NOW + DAY, True, False),
     ("EXPIRED", NOW - 3 * DAY, NOW - DAY, True, False),
+    # For the history and rejected views (19 October 2026).
+    ("REJECTED", NOW - 3 * DAY, NOW - DAY, True, True),
+    ("CANCELLED", NOW + DAY, NOW + 2 * DAY, False, False),
+    ("SUPERSEDED", None, None, True, False),
+    ("VALIDATION_REQUIRED", None, None, False, True),
+    ("VALIDATION_REQUIRED", None, NOW - DAY, False, False),
+    ("APPROVED", None, NOW + DAY, True, True),
 ]
 
 
@@ -64,10 +71,7 @@ def mixed(session):
     return session
 
 
-@pytest.mark.parametrize(
-    "view",
-    [EventListView.CURRENT_UPCOMING, EventListView.CURRENT, EventListView.UPCOMING, EventListView.VALIDATION],
-)
+@pytest.mark.parametrize("view", list(EventListView))
 def test_the_database_filtered_list_equals_the_view_rule(mixed, view):
     repository = EventRepository(mixed)
     # The rule applied by hand to every event, in the list's own order.
@@ -75,16 +79,28 @@ def test_the_database_filtered_list_equals_the_view_rule(mixed, view):
         mixed.query(Event).all(), key=lambda row: (-row.created_at.timestamp(), row.event_id)
     )
     expected = [row.event_id for row in ordered if matches_event_view(to_rei_event(row), view, now=NOW)]
+    assert expected, "every view lists at least one of the cases"
     shown, total = repository.list(view=view, limit=1000, now=NOW)
     assert [row.event_id for row in shown] == expected
     assert total == len(expected)
 
 
-def test_the_database_filtered_list_pages_without_losing_or_repeating_events(mixed):
+@pytest.mark.parametrize("view", [EventListView.HISTORY, EventListView.REJECTED])
+def test_the_history_and_rejected_lists_keep_every_record_hidden_or_not(mixed, view):
+    """`include_hidden` changes nothing for them, and a text search gives the same rule."""
     repository = EventRepository(mixed)
-    _, total = repository.list(view=EventListView.VALIDATION, limit=1000, now=NOW)
+    plain = [row.event_id for row in repository.list(view=view, limit=1000, now=NOW)[0]]
+    hidden_too = [row.event_id for row in repository.list(view=view, include_hidden=True, limit=1000, now=NOW)[0]]
+    searched = [row.event_id for row in repository.list(view=view, q="case", limit=1000, now=NOW)[0]]
+    assert plain == hidden_too == searched
+
+
+@pytest.mark.parametrize("view", [EventListView.VALIDATION, EventListView.HISTORY])
+def test_the_database_filtered_list_pages_without_losing_or_repeating_events(mixed, view):
+    repository = EventRepository(mixed)
+    _, total = repository.list(view=view, limit=1000, now=NOW)
     pages = [
-        [row.event_id for row in repository.list(view=EventListView.VALIDATION, limit=1, offset=n, now=NOW)[0]]
+        [row.event_id for row in repository.list(view=view, limit=1, offset=n, now=NOW)[0]]
         for n in range(total + 1)
     ]
     flat = [event_id for page in pages for event_id in page]
@@ -93,17 +109,22 @@ def test_the_database_filtered_list_pages_without_losing_or_repeating_events(mix
 
 
 def test_the_overview_counts_per_city_what_each_view_lists(mixed, client):
-    """GET /api/events/summary: per city, the list's own total, by status and type."""
+    """GET /api/events/summary: per entry, its own events, by status and type; a
+    country's list is its row plus its cities' rows (decisions 0035, 0036)."""
+    from packages.cities import area_of, get_city
+
     canada = mixed.get(Event, "EVT-LIST000000")
     canada.city = "Canada"
     mixed.commit()
     for view in ("current_upcoming", "validation"):
         summary = client.get("/api/events/summary", params={"view": view}).json()
         by_city = {entry["city_id"]: entry for entry in summary["cities"]}
-        assert {"canada", "australia", "south-africa", "hyderabad"} <= set(by_city)
+        assert {"canada", "australia", "south-africa", "hyderabad", "india"} <= set(by_city)
         for city_id, entry in by_city.items():
             listed = client.get("/api/events", params={"view": view, "city": city_id, "limit": 500}).json()
-            assert entry["total"] == listed["total"], (view, city_id)
+            rows = [by_city[city.id] for city in area_of(get_city(city_id))]
+            assert sum(row["total"] for row in rows) == listed["total"], (view, city_id)
             assert sum(entry["by_status"].values()) == entry["total"]
-            assert sorted(entry["by_status"]) == sorted({item["status"] for item in listed["items"]})
+            statuses = {status for row in rows for status in row["by_status"]}
+            assert sorted(statuses) == sorted({item["status"] for item in listed["items"]})
     assert client.get("/api/events/summary", params={"view": "history"}).status_code == 422

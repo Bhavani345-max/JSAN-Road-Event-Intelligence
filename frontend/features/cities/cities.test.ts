@@ -1,6 +1,15 @@
 import { describe, expect, it } from "vitest";
 import type { ApiCity } from "@/types/api";
-import { ALL_CITIES, areaIds, choiceLabel, countryName, groupByCountry, toCity } from "./cities";
+import {
+  ALL_CITIES,
+  areaIds,
+  citiesIn,
+  countryChoices,
+  countryName,
+  countryOf,
+  groupByCountry,
+  toCity,
+} from "./cities";
 
 function apiCity(id: string, name: string, country: string, extra: Partial<ApiCity> = {}): ApiCity {
   return {
@@ -24,9 +33,10 @@ function apiCity(id: string, name: string, country: string, extra: Partial<ApiCi
 
 // The configured entries as GET /api/cities lists them: the default city first.
 const CITIES = [
-  apiCity("hyderabad", "Hyderabad", "IN"),
+  apiCity("hyderabad", "Hyderabad", "IN", { parent_id: "india" }),
   apiCity("canada", "Canada", "CA", { level: "country" }),
-  apiCity("delhi", "Delhi", "IN"),
+  apiCity("delhi", "Delhi", "IN", { parent_id: "india" }),
+  apiCity("india", "India", "IN", { level: "country" }),
   apiCity("japan", "Japan", "JP", { level: "country" }),
   apiCity("new-york", "New York City", "US", { parent_id: "united-states" }),
   apiCity("toronto", "Toronto", "CA", { parent_id: "canada" }),
@@ -43,6 +53,7 @@ describe("countries and the cities within them (decision 0035)", () => {
   it("covers a country's own events and its cities' when the country is chosen", () => {
     expect(areaIds(byId("canada"), CITIES)).toEqual(["canada", "toronto"]);
     expect(areaIds(byId("united-states"), CITIES)).toEqual(["united-states", "new-york"]);
+    expect(areaIds(byId("india"), CITIES)).toEqual(["india", "hyderabad", "delhi"]);
   });
 
   it("covers only the city when a city is chosen", () => {
@@ -55,23 +66,47 @@ describe("countries and the cities within them (decision 0035)", () => {
     expect(areaIds(ALL_CITIES, CITIES)).toBeNull();
   });
 
-  it("groups the selector by country: the country first, its cities under it", () => {
+  it("groups the entries by country: the country, its cities under it", () => {
     const groups = groupByCountry(CITIES);
     expect(groups.map((group) => [group.name, group.entry?.id ?? null, group.cities.map((city) => city.id)])).toEqual([
       ["Canada", "canada", ["toronto"]],
-      ["India", null, ["hyderabad", "delhi"]],
+      ["India", "india", ["hyderabad", "delhi"]],
       ["Japan", "japan", []],
       ["United States", "united-states", ["new-york"]],
     ]);
     // Toronto is never a country of its own, nor listed twice.
     expect(groups.flatMap((group) => [group.entry, ...group.cities]).filter(Boolean)).toHaveLength(CITIES.length);
   });
+});
 
-  it("says which cities a country's choice includes", () => {
-    expect(choiceLabel(byId("canada"), CITIES)).toBe("Canada (incl. Toronto)");
-    expect(choiceLabel(byId("united-states"), CITIES)).toBe("United States (incl. New York City)");
-    expect(choiceLabel(byId("toronto"), CITIES)).toBe("Toronto");
-    expect(choiceLabel(byId("japan"), CITIES)).toBe("Japan");
+describe("countries first, then their cities (decision 0036)", () => {
+  it("offers only the countries, by name", () => {
+    expect(countryChoices(CITIES).map((city) => city.id)).toEqual(["canada", "india", "japan", "united-states"]);
+  });
+
+  it("keeps a city reachable if its country has no entry", () => {
+    const lone = toCity(apiCity("london", "London", "GB"));
+    expect(countryChoices([...CITIES, lone]).map((city) => city.id)).toContain("london");
+    expect(countryOf(lone, CITIES)).toBe(lone);
+    expect(citiesIn(countryOf(lone, CITIES), CITIES)).toEqual([]);
+  });
+
+  it("finds the country of a choice: the country itself, or a city's country", () => {
+    expect(countryOf(byId("india"), CITIES)?.id).toBe("india");
+    expect(countryOf(byId("delhi"), CITIES)?.id).toBe("india");
+    expect(countryOf(byId("toronto"), CITIES)?.id).toBe("canada");
+    expect(countryOf(ALL_CITIES, CITIES)).toBeNull();
+  });
+
+  it("lists a country's cities in the configured order, the default city first", () => {
+    expect(citiesIn(byId("india"), CITIES).map((city) => city.id)).toEqual(["hyderabad", "delhi"]);
+    expect(citiesIn(byId("japan"), CITIES)).toEqual([]);
+    expect(citiesIn(byId("delhi"), CITIES)).toEqual([]);
+    expect(citiesIn(null, CITIES)).toEqual([]);
+  });
+
+  it("calls the whole set All countries", () => {
+    expect(ALL_CITIES.name).toBe("All countries");
   });
 
   it("names countries in English", () => {

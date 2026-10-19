@@ -19,9 +19,11 @@ from packages.cities import default_city
 from packages.event_schema import EventSeverity, EventStatus, ReiEvent
 from services.lifecycle import approval_blockers
 from services.lifecycle.current import (
+    CLOSED_VIEWS,
     OPERATIONAL_STATUSES,
     REVIEW_STATUSES,
     EventListView,
+    matches_closed_view,
     matches_event_view,
     open_end_lapsed,
 )
@@ -162,7 +164,31 @@ class EventRepository:
         terms = (q or "").lower().split()
         now = now or utc_now()
         if not terms and not include_hidden and view in _CONSOLE_VIEWS:
-            return self._list_shown(filters + _shown_filters(view, now), order, limit, offset, now)
+            return self._list_light(
+                filters + _shown_filters(view, now),
+                order,
+                limit,
+                offset,
+                keep=lambda status, detection, start, end: not _hidden_by_detection(
+                    detection, start, end, now
+                ),
+            )
+        if not terms and view in CLOSED_VIEWS:
+            # The history and rejected views read only the status, the end and
+            # the detection record (`include_hidden` changes nothing for them).
+            return self._list_light(
+                filters + _closed_filters(view),
+                order,
+                limit,
+                offset,
+                keep=lambda status, detection, start, end: matches_closed_view(
+                    view,
+                    EventStatus(status),
+                    end,
+                    bool((detection or {}).get("source_reports_ended")),
+                    now=now,
+                ),
+            )
 
         query = (
             select(Event)
@@ -182,24 +208,25 @@ class EventRepository:
         ]
         return matched[offset : offset + limit], len(matched)
 
-    def _list_shown(
-        self, filters, order, limit: int, offset: int, now: datetime
+    def _list_light(
+        self, filters, order, limit: int, offset: int, *, keep
     ) -> "tuple[list[Event], int]":
-        """A console view without a text search: filtered by the database, one page loaded.
+        """A view without a text search: filtered by the database, one page loaded.
 
-        The database applies the view's column rules (`_shown_filters`); the
-        rules inside the detection record (`_hidden_by_detection`) are read
-        here. Only the page's events are loaded in full.
+        The database applies the view's column rules (`_shown_filters`,
+        `_closed_filters`); `keep(status, detection, start, end)` applies the
+        rest, reading only those columns. Only the page's events are loaded in
+        full, with their articles.
         """
         ids = [
             event_id
-            for event_id, detection, start, end in self.session.execute(
-                select(Event.event_id, Event.detection, Event.start_time, Event.end_time)
+            for event_id, status, detection, start, end in self.session.execute(
+                select(Event.event_id, Event.status, Event.detection, Event.start_time, Event.end_time)
                 .outerjoin(Event.artifact)
                 .where(*filters)
                 .order_by(*order)
             )
-            if not _hidden_by_detection(detection, start, end, now)
+            if keep(status, detection, start, end)
         ]
         page = ids[offset : offset + limit]
         if not page:
@@ -393,6 +420,13 @@ def _shown_filters(view: EventListView, now: datetime) -> list:
     elif view is EventListView.UPCOMING:
         filters.append(Event.start_time > now)
     return filters
+
+
+def _closed_filters(view: EventListView) -> list:
+    """The status part of `matches_closed_view`, as a database condition."""
+    if view is EventListView.REJECTED:
+        return [Event.status == EventStatus.REJECTED.value]
+    return [Event.status != EventStatus.REJECTED.value]
 
 
 def _matches(row: Event, terms: list[str]) -> bool:

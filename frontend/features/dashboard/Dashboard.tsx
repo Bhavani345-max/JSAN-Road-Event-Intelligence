@@ -9,10 +9,13 @@ import {
   ALL_CITIES,
   ALL_CITIES_ID,
   areaIds,
+  citiesIn,
+  countryOf,
   DEFAULT_CITY_ID,
   useCities,
 } from "@/features/cities/cities";
 import CityOverviewList from "@/features/cities/CityOverviewList";
+import CountryCities from "@/features/cities/CountryCities";
 import { sumStats, toCityBubbles, useCityCounts } from "@/features/cities/overview";
 import EventDetailsPanel from "@/features/events/components/EventDetailsPanel";
 import EventFilters from "@/features/events/components/EventFilters";
@@ -64,15 +67,15 @@ export default function Dashboard() {
   const { sources: allSources, refresh: refreshSources } = useSources();
   const { coverage, refresh: refreshCoverage } = useCoverage();
   const cities = useCities();
-  // A link can open the console on a city (/?city=london); choosing one in
-  // the header overrides it.
+  // A link can open the console on a country or city (/?city=india,
+  // /?city=london); choosing one in the header overrides it.
   const linkedCityId = useSyncExternalStore(
     subscribeToNothing,
     () => new URLSearchParams(window.location.search).get("city"),
     () => null,
   );
   const [chosenCityId, setCityId] = useState<string | null>(null);
-  // All cities together unless one is chosen (or named in the link).
+  // All countries together unless one is chosen (or named in the link).
   const cityId = chosenCityId ?? linkedCityId ?? ALL_CITIES_ID;
   const cityOptions = useMemo(() => [ALL_CITIES, ...cities], [cities]);
   const city = cityOptions.find((candidate) => candidate.id === cityId) ?? ALL_CITIES;
@@ -82,18 +85,23 @@ export default function Dashboard() {
   const cityFilter = allCities ? null : city.id;
   // What the choice covers: a city, or a country entry and its cities; null for all.
   const area = useMemo(() => areaIds(city, cities), [city, cities]);
+  // Countries first (decision 0036): the chosen country and its cities to choose from.
+  const country = countryOf(city, cities);
+  const countryCities = useMemo(() => citiesIn(country, cities), [country, cities]);
   const [view, setView] = useState<EventListView>("current_upcoming");
-  // All cities: an overview of counts and one bubble per city; a city's events
-  // are loaded and drawn only once it is chosen.
+  // All countries: an overview of counts and one bubble per country; a
+  // country's events are loaded and drawn only once it is chosen.
   const overview = allCities;
+  const showCountryCities = !overview && country !== null && countryCities.length > 0;
   const { state, reload, refresh: refreshEvents } = useEvents(view, cityFilter, !overview);
-  const { state: countsState, refresh: refreshCounts } = useCityCounts(view, overview);
+  // The per-entry counts: the overview's, and each city's number once a country is open.
+  const { state: countsState, refresh: refreshCounts } = useCityCounts(view, overview || showCountryCities);
   const cityBubbles = useMemo(
     () => (overview && countsState.status === "ready" ? toCityBubbles(cities, countsState.counts) : null),
     [overview, countsState, cities],
   );
   // Each event's times are shown in its own city's zone; times with no city
-  // (filters) in the selected city's, or India Standard Time for all cities.
+  // (filters) in the selected entry's, or India Standard Time for all countries.
   // Set before anything below renders a time.
   setCityTimeZones(cities);
   setDisplayTimeZone(city.timeZone);
@@ -206,6 +214,15 @@ export default function Dashboard() {
             the source list and the event list keep their own scrollbars inside it. */}
         <aside className="rei-sidebar-scroll flex min-h-0 flex-1 flex-col overflow-y-auto bg-linear-to-b from-brand-600 to-brand-700 md:w-[420px] md:flex-none">
           <div className="space-y-3 border-b border-white/15 p-4 md:shrink-0">
+            {showCountryCities && country && (
+              <CountryCities
+                country={country}
+                cities={countryCities}
+                selectedId={city.id}
+                counts={countsState}
+                onSelect={changeCity}
+              />
+            )}
             {overview ? (
               <StatsBar
                 stats={countsState.status === "ready" ? sumStats(countsState.counts) : null}

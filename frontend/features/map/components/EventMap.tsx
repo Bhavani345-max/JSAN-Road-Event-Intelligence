@@ -46,8 +46,8 @@ interface EventMapProps {
   pickedPoint?: Position | null;
   onPickPoint?: (point: Position) => void;
   /**
-   * The overview of all cities: one bubble per city with its count, drawn
-   * instead of events; clicking one opens that city.
+   * The overview of all countries: one bubble per country with its count, drawn
+   * instead of events; clicking one opens that country.
    */
   cityBubbles?: CityBubbleCollection | null;
   onSelectCity?: (cityId: string) => void;
@@ -617,7 +617,7 @@ export default function EventMap({
         return;
       }
       chooserPopup.remove();
-      // The overview: a city's bubble opens that city.
+      // The overview: a country's bubble opens that country.
       const [bubble] = map.queryRenderedFeatures(hitBox(e), { layers: [LAYERS.cityBubble] });
       if (bubble) {
         hoverPopup.remove();

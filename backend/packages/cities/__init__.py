@@ -9,10 +9,13 @@ A city file states:
 - `id`, `name`, `country` (ISO 3166-1 alpha-2), `region`, `timezone` (IANA),
   `language` (BCP 47 primary subtag);
 - `level`: "city" (the default) or "country". A country entry (Canada) holds
-  the country's national and regional sources; the cities configured with the
-  same `country` code (Toronto) are within it. Choosing the country covers its
-  own events and its cities' events; choosing a city covers that city's only
-  (decision 0035). A country has at most one country entry;
+  the country's national and regional sources, if it has any; the cities
+  configured with the same `country` code (Toronto) are within it. Choosing
+  the country covers its own events and its cities' events; choosing a city
+  covers that city's only (decision 0035). A country has exactly one country
+  entry, and every city lies within one: adding a city of a new country means
+  adding the country's entry too (India, with no national source, covers its
+  cities' sources; decision 0036);
 - `bbox`: south, west, north, east — the area REI covers for the city. An
   event placed outside it is not that city's;
 - `map`: where the console's map starts for the city;
@@ -137,12 +140,18 @@ def load_cities() -> dict[str, City]:
                     f"{city.id}: {countries[city.country]} is already the country entry for {city.country}"
                 )
             countries[city.country] = city.id
+    # The console offers countries and, within each, its cities (decision 0036).
+    for city in cities.values():
+        if city.level == "city" and city.country not in countries:
+            raise ValueError(
+                f"{city.id}: no country entry for {city.country}; add one with \"level\": \"country\""
+            )
     return cities
 
 
 def country_entry(city: City) -> City | None:
-    """The country entry a city lies within (Toronto: Canada); None for a
-    country entry itself or a city whose country has none (Delhi)."""
+    """The country entry a city lies within (Toronto: Canada; Delhi: India);
+    None for a country entry itself."""
     if city.level == "country":
         return None
     return next(

@@ -54,13 +54,13 @@ export function toCity(dto: ApiCity): City {
 }
 
 /**
- * Every city at once: one map with all their events and sources. Not a
- * configured city; each event keeps its own city and time zone.
+ * Every country at once: the overview of counts, one bubble per country. Not a
+ * configured entry; each event keeps its own city and time zone.
  */
 export const ALL_CITIES_ID = "all";
 export const ALL_CITIES: City = {
   id: ALL_CITIES_ID,
-  name: "All cities",
+  name: "All countries",
   country: "",
   level: "city",
   parentId: null,
@@ -93,7 +93,7 @@ export function countryName(code: string): string {
 export interface CountryGroup {
   country: string;
   name: string;
-  /** The country's own entry (Canada); null when only cities of it are configured (India). */
+  /** The country's own entry (Canada, India); null if only cities of it were configured. */
   entry: City | null;
   /** Its cities, in the configured order (the default city first). */
   cities: City[];
@@ -118,15 +118,29 @@ export function groupByCountry(cities: City[]): CountryGroup[] {
 }
 
 /**
- * The name a choice is offered under: a country entry with cities within it
- * says which ("Canada (incl. Toronto)"), so it is clear that it covers them.
+ * What the console offers first (decision 0036): the countries, by name. A
+ * city whose country has no entry (none is configured so) is offered on its
+ * own, so that it stays reachable.
  */
-export function choiceLabel(city: City, cities: City[]): string {
-  if (city.id === ALL_CITIES_ID) return city.name;
-  const within = cities.filter((other) => other.parentId === city.id);
-  if (within.length === 0) return city.name;
-  const names = within.length <= 2 ? within.map((other) => other.name).join(", ") : `${within.length} cities`;
-  return `${city.name} (incl. ${names})`;
+export function countryChoices(cities: City[]): City[] {
+  const ids = new Set(cities.map((city) => city.id));
+  return cities
+    .filter((city) => city.id !== ALL_CITIES_ID)
+    .filter((city) => city.level === "country" || city.parentId === null || !ids.has(city.parentId))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/** The country a choice lies in: the country itself, a city's country; null for all countries. */
+export function countryOf(city: City, cities: City[]): City | null {
+  if (city.id === ALL_CITIES_ID) return null;
+  if (city.level === "country" || city.parentId === null) return city;
+  return cities.find((other) => other.id === city.parentId) ?? city;
+}
+
+/** The cities within a country, in the configured order (the default city first). */
+export function citiesIn(country: City | null, cities: City[]): City[] {
+  if (country === null || country.level !== "country") return [];
+  return cities.filter((city) => city.parentId === country.id);
 }
 
 /** The configured cities, the default first. */

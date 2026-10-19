@@ -17,7 +17,10 @@ source with its state and shows per city how many events are detected,
 awaiting review, validated and on the map. Decision 0035 counts each map on
 its own (an event awaiting review is never counted on the operations map) and
 groups cities under their country: choosing Canada covers Toronto too, and the
-United States covers New York City. The original
+United States covers New York City. Decision 0036 puts countries first: the
+console offers only countries (India, the United Kingdom, Germany and Belgium
+now have entries too); choosing one shows the events of all its cities, from
+the cities' own sources, and lists its cities to narrow to one. The original
 Hyderabad proof of concept began with six publisher feeds:
 
 ```
@@ -85,8 +88,9 @@ The Hans India (removed 14 Oct 2026, decision 0026)
 
 - Cities are configuration (`backend/packages/cities/data/*.json`), including
   Hyderabad, London, Toronto, Mumbai, Bengaluru, New York City, France and Finland. The
-  console opens on **All cities**; the header narrows it to one city
-  (`/?city=london` opens one directly).
+  console opens on **All countries**; the header narrows it to one country,
+  then to one of its cities (`/?city=india` or `/?city=london` opens one
+  directly; decision 0036).
 - Connected official feeds now include Transport for London, City of Toronto,
   NYC DOT, NYC permitted events, France's Bison Futé / Interdepartmental Road
   Directorate feed, DiaLog traffic orders, the Métropole de Lyon's works and

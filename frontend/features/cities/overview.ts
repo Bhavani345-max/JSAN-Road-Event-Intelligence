@@ -6,11 +6,12 @@ import type { EventListView } from "@/features/events/filters";
 import { ROAD_CLOSURE_EVENT_TYPES } from "@/features/events/model";
 import type { EventStats } from "@/features/events/stats";
 import type { ApiCityEventCount, ApiEventSummary } from "@/types/api";
-import { groupByCountry, type City } from "./cities";
+import { countryChoices, groupByCountry, type City } from "./cities";
 
 /**
- * The overview of all cities: how many events each city's view lists, without
- * loading them. The map shows one bubble per city instead of every event.
+ * The overview of all countries: how many events each entry's view lists,
+ * without loading them. The map shows one bubble per country instead of every
+ * event. The same counts give each city's number once a country is chosen.
  */
 export interface CityCount {
   cityId: string;
@@ -126,8 +127,22 @@ export function groupCityCounts(cities: City[], counts: CityCount[]): CountryCou
 }
 
 /**
- * One bubble per configured city, at the place its map opens on, with what
- * choosing it lists: a country entry counts the cities within it too.
+ * What each choice within a country lists (decision 0036): the country its own
+ * events and its cities' (India: every Indian city's), each city its own.
+ */
+export function cityChoiceCounts(country: City, cities: City[], counts: CityCount[]): Record<string, number> {
+  const byId = new Map(counts.map((count) => [count.cityId, count.stats.total]));
+  const own = (city: City) => byId.get(city.id) ?? 0;
+  const result: Record<string, number> = {};
+  for (const city of cities) result[city.id] = own(city);
+  result[country.id] = own(country) + cities.reduce((sum, city) => sum + own(city), 0);
+  return result;
+}
+
+/**
+ * One bubble per country (decision 0036), at the place its map opens on, with
+ * what choosing it lists: its own events and those of the cities within it.
+ * Cities get no bubble of their own; choosing the country shows them.
  */
 export interface CityBubbleFeature {
   type: "Feature";
@@ -145,7 +160,7 @@ export function toCityBubbles(cities: City[], counts: CityCount[]): CityBubbleCo
   const own = (city: City) => byId.get(city.id) ?? 0;
   return {
     type: "FeatureCollection",
-    features: cities.map((city) => {
+    features: countryChoices(cities).map((city) => {
       const count =
         own(city) + cities.filter((other) => other.parentId === city.id).reduce((sum, other) => sum + own(other), 0);
       return {

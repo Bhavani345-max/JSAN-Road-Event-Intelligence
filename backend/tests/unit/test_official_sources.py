@@ -238,7 +238,19 @@ def test_the_tfl_connector_applies_the_limit():
         (httpx.Response(503), "rate limited"),
         (httpx.Response(500), "HTTP 500"),
         (httpx.Response(200, content=b"<html>maintenance</html>"), "did not return JSON"),
-        (httpx.Response(200, json={"not": "a list"}), "not a list"),
+        (httpx.Response(200, json={"not": "a list"}), r"not a list \(keys: not\)"),
+        (
+            httpx.Response(
+                200,
+                json={
+                    "$type": "Tfl.Api.Presentation.Entities.ApiError, Tfl.Api.Presentation.Entities",
+                    "httpStatusCode": 500,
+                    "message": "Service temporarily unavailable",
+                },
+            ),
+            r"not a list: \$type Tfl\.Api\.Presentation\.Entities\.ApiError.*httpStatusCode 500; "
+            r"message Service temporarily unavailable",
+        ),
     ],
 )
 def test_tfl_failures_are_errors_not_events(response, message):

@@ -12,8 +12,8 @@ class CityOut(BaseModel):
     # "country": the entry for a whole country (Canada), which covers its own
     # events and those of the cities within it; "city": one city (Toronto).
     level: str
-    # The country entry the city lies within (Toronto: "canada"); None for a
-    # country entry or a city whose country has none (decision 0035).
+    # The country entry the city lies within (Toronto: "canada", Delhi:
+    # "india"); None for a country entry (decisions 0035, 0036).
     parent_id: str | None
     region: str | None
     timezone: str

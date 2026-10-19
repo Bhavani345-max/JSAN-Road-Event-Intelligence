@@ -119,6 +119,31 @@ def is_shown(event: ReiEvent, *, now: datetime) -> bool:
     )
 
 
+CLOSED_VIEWS = frozenset({EventListView.HISTORY, EventListView.REJECTED})
+
+
+def matches_closed_view(
+    view: EventListView,
+    status: EventStatus,
+    end: datetime | None,
+    source_ended: bool,
+    *,
+    now: datetime,
+) -> bool:
+    """The rejected and history views' rule, from the three things it reads.
+
+    Rejected: every rejected event. History: every other event that is over:
+    expired, cancelled or superseded, past its stated end, or reported over
+    by its source. Both keep every record they describe (no `is_shown`).
+    """
+    if view is EventListView.REJECTED:
+        return status is EventStatus.REJECTED
+    ended = end is not None and ensure_utc(end) < ensure_utc(now)
+    return status is not EventStatus.REJECTED and (
+        status in HISTORY_STATUSES or source_ended or ended
+    )
+
+
 def matches_event_view(
     event: ReiEvent, view: EventListView, *, now: datetime, include_hidden: bool = False
 ) -> bool:
@@ -133,12 +158,8 @@ def matches_event_view(
     state = event_time_state(event, now=now)
     source_ended = bool(event.detection and event.detection.source_reports_ended)
 
-    if view is EventListView.REJECTED:
-        return status is EventStatus.REJECTED
-    if view is EventListView.HISTORY:
-        return status is not EventStatus.REJECTED and (
-            status in HISTORY_STATUSES or source_ended or state == "ended"
-        )
+    if view in CLOSED_VIEWS:
+        return matches_closed_view(view, status, event.end_time, source_ended, now=now)
     if not include_hidden and not is_shown(event, now=now):
         return False
     if view is EventListView.VALIDATION:

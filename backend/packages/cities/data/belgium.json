@@ -1,0 +1,36 @@
+{
+  "id": "belgium",
+  "name": "Belgium",
+  "area_name": "Belgium",
+  "country": "BE",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Brussels",
+  "language": "fr",
+  "bbox": [
+    49.4,
+    2.5,
+    51.6,
+    6.5
+  ],
+  "map": {
+    "center": [
+      4.45,
+      50.6
+    ],
+    "zoom": 7.0
+  },
+  "scope_terms": [
+    "Belgium",
+    "Belgique",
+    "België"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

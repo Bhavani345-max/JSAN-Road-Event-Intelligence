@@ -1,0 +1,34 @@
+{
+  "id": "united-kingdom",
+  "name": "United Kingdom",
+  "area_name": "United Kingdom",
+  "country": "GB",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/London",
+  "language": "en",
+  "bbox": [
+    49.8,
+    -8.7,
+    60.9,
+    1.8
+  ],
+  "map": {
+    "center": [
+      -2.5,
+      54.0
+    ],
+    "zoom": 4.9
+  },
+  "scope_terms": [
+    "United Kingdom"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

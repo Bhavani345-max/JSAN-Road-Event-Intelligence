@@ -1,0 +1,35 @@
+{
+  "id": "germany",
+  "name": "Germany",
+  "area_name": "Germany",
+  "country": "DE",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Berlin",
+  "language": "de",
+  "bbox": [
+    47.2,
+    5.8,
+    55.1,
+    15.1
+  ],
+  "map": {
+    "center": [
+      10.4,
+      51.1
+    ],
+    "zoom": 5.2
+  },
+  "scope_terms": [
+    "Germany",
+    "Deutschland"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}
