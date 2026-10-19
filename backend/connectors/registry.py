@@ -17,7 +17,7 @@ from packages.source_models import IntegrationStatus, SourceDefinition
 
 from packages.cities import load_cities
 
-from .api.serper_news import SerperNewsConnector, serper_news_source
+from .api.serper_news import SerperNewsConnector, searched_cities, serper_news_source
 from .base import SourceConnector
 from .discovered import DISCOVERED_SOURCES
 from .discovered_2026_10_15 import DISCOVERED_2026_10_15
@@ -366,7 +366,49 @@ def registered_sources(
         + REMOVED_SOURCES
         + UNLOCATED_SOURCES
         + (search,)
-        + _official_sources(
+        + _city_searches(serper_api_key)
+        + _registered_rest(
+            google_news_rss_enabled,
+            official_feeds_scheduled,
+            official_feed_max_records,
+            tfl_app_key,
+            official_feeds_scheduled_sources,
+            gdelt_enabled,
+        )
+    )
+
+
+def _city_searches(serper_api_key: str | None) -> tuple[RegisteredSource, ...]:
+    """Google News search for each other Indian city (decision 0037), on the
+    same key as Hyderabad's; listed as needing the key when it is not set."""
+    sources = []
+    for city in searched_cities():
+        definition = serper_news_source(connected=bool(serper_api_key), city_id=city.id)
+        sources.append(
+            RegisteredSource(
+                definition,
+                (
+                    lambda user_agent, definition=definition, city=city: SerperNewsConnector.for_city(
+                        definition, city, serper_api_key, user_agent
+                    )
+                )
+                if serper_api_key
+                else None,
+            )
+        )
+    return tuple(sources)
+
+
+def _registered_rest(
+    google_news_rss_enabled: bool,
+    official_feeds_scheduled: bool,
+    official_feed_max_records: int | None,
+    tfl_app_key: str | None,
+    official_feeds_scheduled_sources: Collection[str],
+    gdelt_enabled: bool,
+) -> tuple[RegisteredSource, ...]:
+    return (
+        _official_sources(
             official_feeds_scheduled,
             official_feed_max_records or None,
             tfl_app_key,

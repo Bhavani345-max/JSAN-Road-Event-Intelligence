@@ -7,6 +7,7 @@ import {
   formatEventPeriod,
   getEventTypeColor,
   isWholeDayPeriod,
+  offMapNote,
   timeZoneOf,
 } from "../presentation";
 import {
@@ -111,6 +112,11 @@ function EventListItem({
           {event.severity && <SeverityIndicator severity={event.severity} />}
         </span>
         <span className="mt-1.5 block text-[11px] text-slate-400">{getTimeLine(event, now)}</span>
+        {!event.mapEligible && (
+          <span className="mt-1 block text-[11px] font-medium text-amber-700">
+            {offMapNote(event.offMapReason)}
+          </span>
+        )}
         {matchedInArticle && (
           <span className="mt-1.5 block text-[11px] font-medium text-brand-600">
             Search matched the article text

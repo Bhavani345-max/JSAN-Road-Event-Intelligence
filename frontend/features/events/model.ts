@@ -468,6 +468,13 @@ export interface RoadEvent {
    * the API states them. Empty when it can be approved (and for other statuses).
    */
   approvalBlockers: string[];
+  /**
+   * Whether the console's maps may draw it: located, with a stated start, not
+   * over (decision 0038). The review queue also lists events no map draws.
+   */
+  mapEligible: boolean;
+  /** Why it is not drawn ("no_start", "no_location", ...); null when it is. */
+  offMapReason: string | null;
   /** Link to the event within its source, e.g. the article URL. */
   sourceReference: string | null;
   evidence: EventEvidence | null;

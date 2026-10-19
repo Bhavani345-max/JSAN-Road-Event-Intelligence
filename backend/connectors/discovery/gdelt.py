@@ -345,7 +345,13 @@ class GdeltConnector:
             update={
                 # GDELT's seen time stands in when the page states none.
                 "published_at": article.published_at or record.published_at,
-                "raw": {**article.raw, "search_result": record.raw["search_result"]},
+                "raw": {
+                    **article.raw,
+                    "search_result": record.raw["search_result"],
+                    # Whose publication time it is: a day may be counted from the
+                    # article's own, never from the search result's (decision 0038).
+                    "published_at_from": "article" if article.published_at else "search_result",
+                },
             }
         )
 

@@ -215,6 +215,8 @@ export interface CoverageTotals {
   onMapReview: number;
   /** Validated events that the operations map shows. */
   onMapOperations: number;
+  /** What the review queue lists, on its map or not (decision 0038). */
+  listedReview: number;
   merged: number;
   rejected: number;
   closed: number;
@@ -248,6 +250,8 @@ export function coverageTotals(coverage: ApiCityCoverage[], areaIds: string[] | 
     validated: sum((row) => row.validated),
     onMapReview: sum((row) => row.on_map_review),
     onMapOperations: sum((row) => row.on_map_operations),
+    // An API from before decision 0038 lists for review only what its map draws.
+    listedReview: sum((row) => row.listed_review ?? row.on_map_review),
     merged: sum((row) => row.merged),
     rejected: sum((row) => row.rejected),
     closed: sum((row) => row.closed),
@@ -298,6 +302,9 @@ export function notOnThisMap(totals: CoverageTotals, view: EventListView): strin
   if (view === "validation") {
     const hidden = totals.pendingReview - totals.onMapReview;
     if (hidden > 0) parts.push(`${number(hidden)} awaiting review${reasons(totals.hiddenReview)}`);
+    // Listed below without a stated start or not yet located on the map (decision 0038).
+    const listedOnly = totals.listedReview - totals.onMapReview;
+    if (listedOnly > 0) parts.push(`${number(listedOnly)} of them listed below for review`);
     if (totals.validated > 0) {
       parts.push(`${number(totals.validated)} validated (the operations map shows ${number(totals.onMapOperations)})`);
     }

@@ -2,7 +2,7 @@ from collections import Counter
 from collections.abc import Sequence
 from datetime import datetime, timedelta
 
-from sqlalchemy import func, or_, select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session, contains_eager
 
 from app.models import Event, EventMergeCandidate, EventVersion, Source, SourceArtifact
@@ -23,9 +23,11 @@ from services.lifecycle.current import (
     OPERATIONAL_STATUSES,
     REVIEW_STATUSES,
     EventListView,
+    in_review_status,
+    map_rule,
     matches_closed_view,
     matches_event_view,
-    open_end_lapsed,
+    review_listing,
 )
 
 # Columns that are copied one-to-one between the canonical event and its row.
@@ -61,8 +63,18 @@ def to_event_out(
     how = {
         c.get("event_id"): c.get("how") for c in (row.detection or {}).get("contributions") or []
     }
+    off_map_reason = map_rule(
+        located=event.geometry is not None,
+        start=event.start_time,
+        end=event.end_time,
+        source_ended=bool(event.detection and event.detection.source_reports_ended),
+        method=event.detection.method if event.detection else None,
+        now=utc_now(),
+    )
     return EventOut(
         **event.model_dump(),
+        map_eligible=off_map_reason is None,
+        off_map_reason=off_map_reason,
         merged_into=row.merged_into,
         approval_blockers=(
             approval_blockers(event) if event.status is EventStatus.QC_PENDING else []
@@ -163,32 +175,10 @@ class EventRepository:
         order = (func.coalesce(SourceArtifact.published_at, Event.created_at).desc(), Event.event_id)
         terms = (q or "").lower().split()
         now = now or utc_now()
-        if not terms and not include_hidden and view in _CONSOLE_VIEWS:
-            return self._list_light(
-                filters + _shown_filters(view, now),
-                order,
-                limit,
-                offset,
-                keep=lambda status, detection, start, end: not _hidden_by_detection(
-                    detection, start, end, now
-                ),
-            )
-        if not terms and view in CLOSED_VIEWS:
-            # The history and rejected views read only the status, the end and
-            # the detection record (`include_hidden` changes nothing for them).
-            return self._list_light(
-                filters + _closed_filters(view),
-                order,
-                limit,
-                offset,
-                keep=lambda status, detection, start, end: matches_closed_view(
-                    view,
-                    EventStatus(status),
-                    end,
-                    bool((detection or {}).get("source_reports_ended")),
-                    now=now,
-                ),
-            )
+        if not terms and (view in CLOSED_VIEWS or (view in _CONSOLE_VIEWS and not include_hidden)):
+            # `include_hidden` changes nothing for history and rejected.
+            view_filters, keep = _view_rule(view, now)
+            return self._list_light(filters + view_filters, order, limit, offset, keep=keep)
 
         query = (
             select(Event)
@@ -204,7 +194,13 @@ class EventRepository:
             row
             for row in self.session.scalars(query).unique()
             if (not terms or _matches(row, terms))
-            and matches_event_view(to_rei_event(row), view, now=now, include_hidden=include_hidden)
+            and matches_event_view(
+                to_rei_event(row),
+                view,
+                now=now,
+                include_hidden=include_hidden,
+                reported_at=(row.artifact.published_at if row.artifact else None) or row.created_at,
+            )
         ]
         return matched[offset : offset + limit], len(matched)
 
@@ -213,20 +209,16 @@ class EventRepository:
     ) -> "tuple[list[Event], int]":
         """A view without a text search: filtered by the database, one page loaded.
 
-        The database applies the view's column rules (`_shown_filters`,
-        `_closed_filters`); `keep(status, detection, start, end)` applies the
-        rest, reading only those columns. Only the page's events are loaded in
-        full, with their articles.
+        The database applies the view's column rules (`_view_rule`); `keep`
+        applies the rest to a row of `_light_columns`. Only the page's events
+        are loaded in full, with their articles.
         """
         ids = [
-            event_id
-            for event_id, status, detection, start, end in self.session.execute(
-                select(Event.event_id, Event.status, Event.detection, Event.start_time, Event.end_time)
-                .outerjoin(Event.artifact)
-                .where(*filters)
-                .order_by(*order)
+            row.event_id
+            for row in self.session.execute(
+                select(*_light_columns()).outerjoin(Event.artifact).where(*filters).order_by(*order)
             )
-            if keep(status, detection, start, end)
+            if keep(row)
         ]
         page = ids[offset : offset + limit]
         if not page:
@@ -253,22 +245,18 @@ class EventRepository:
             raise ValueError(f"{view} is not a console view")
         counts: dict[str | None, dict[str, Counter]] = {}
         now = now or utc_now()
+        view_filters, keep = _view_rule(view, now)
         rows = self.session.execute(
-            select(
-                Event.city,
-                Event.status,
-                Event.event_type,
-                Event.detection,
-                Event.start_time,
-                Event.end_time,
-            ).where(Event.merged_into.is_(None), *_shown_filters(view, now))
+            select(*_light_columns(), Event.city)
+            .outerjoin(Event.artifact)
+            .where(Event.merged_into.is_(None), *view_filters)
         )
-        for city, status, event_type, detection, start, end in rows:
-            if _hidden_by_detection(detection, start, end, now):
+        for row in rows:
+            if not keep(row):
                 continue
-            found = counts.setdefault(city, {"status": Counter(), "type": Counter()})
-            found["status"][status] += 1
-            found["type"][event_type or "UNCLASSIFIED"] += 1
+            found = counts.setdefault(row.city, {"status": Counter(), "type": Counter()})
+            found["status"][row.status] += 1
+            found["type"][row.event_type or "UNCLASSIFIED"] += 1
         return counts
 
     def tally(self, *, by: str, now: datetime | None = None) -> "dict[str | None, Counter]":
@@ -285,57 +273,44 @@ class EventRepository:
         separately for the review queue (hidden_review_<rule>) and the
         operations view (hidden_operations_<rule>); rules: no_location,
         no_start, ended, source_ended, open_end_lapsed (decisions 0034, 0035).
+        listed_review: what the review queue lists, on its map or not (it also
+        lists located events with no stated start that are not known to be
+        over, decision 0038).
         """
         now = ensure_utc(now or utc_now())
         recent_since = now - timedelta(days=7)
         key_column = Event.source_id if by == "source" else Event.city
         rows = self.session.execute(
-            select(
-                key_column,
-                Event.status,
-                Event.start_time,
-                Event.end_time,
-                Event.geometry.is_not(None),
-                Event.detection,
-                Event.merged_into,
-                Event.created_at,
-            )
+            select(*_light_columns(), key_column.label("key"), Event.merged_into, Event.created_at)
+            .outerjoin(Event.artifact)
         )
         review = {status.value for status in REVIEW_STATUSES}
         operational = {status.value for status in OPERATIONAL_STATUSES}
         counts: dict[str | None, Counter] = {}
-        for key, status, start, end, located, detection, merged, created in rows:
-            found = counts.setdefault(key, Counter())
-            if merged:
+        for row in rows:
+            found = counts.setdefault(row.key, Counter())
+            if row.merged_into:
                 found["merged"] += 1
                 continue
             found["detected"] += 1
-            if created is not None and ensure_utc(created) >= recent_since:
+            if row.created_at is not None and ensure_utc(row.created_at) >= recent_since:
                 found["recent"] += 1
-            if status in review:
+            if row.status in review:
                 group = "pending_review"
-            elif status in operational:
+            elif row.status in operational:
                 group = "validated"
             else:
-                found["rejected" if status == EventStatus.REJECTED.value else "closed"] += 1
+                found["rejected" if row.status == EventStatus.REJECTED.value else "closed"] += 1
                 continue
             found[group] += 1
+            if in_review_status(row.status, row.start_time) and _listed_for_review(row, now):
+                found["listed_review"] += 1
             map_name = "review" if group == "pending_review" else "operations"
-            detection = detection or {}
-            if not located:
-                rule = "no_location"
-            elif start is None:
-                rule = "no_start"
-            elif end is not None and ensure_utc(end) < now:
-                rule = "ended"
-            elif detection.get("source_reports_ended"):
-                rule = "source_ended"
-            elif open_end_lapsed(detection.get("method"), start, end, now=now):
-                rule = "open_end_lapsed"
-            else:
+            rule = map_rule(**_row_facts(row), now=now)
+            if rule is None:
                 found[f"on_map_{map_name}"] += 1
-                continue
-            found[f"hidden_{map_name}_{rule}"] += 1
+            else:
+                found[f"hidden_{map_name}_{rule}"] += 1
         return counts
 
     def get(self, event_id: str) -> Event | None:
@@ -395,31 +370,73 @@ _CONSOLE_VIEWS = frozenset(
 )
 
 
-def _hidden_by_detection(detection: dict | None, start, end, now: datetime) -> bool:
-    """The part of `is_shown` read from the detection record: the source reports
-    the event over, or an open-ended event read from an article has lapsed."""
-    detection = detection or {}
-    return bool(detection.get("source_reports_ended")) or open_end_lapsed(
-        detection.get("method"), start, end, now=now
+def _light_columns() -> tuple:
+    """What the view rules read, without the event's or its article's full records.
+
+    `reported_at` is when the source published the event, else when REI stored it.
+    """
+    return (
+        Event.event_id,
+        Event.status,
+        Event.event_type,
+        Event.detection,
+        Event.start_time,
+        Event.end_time,
+        Event.geometry.is_not(None).label("located"),
+        func.coalesce(SourceArtifact.published_at, Event.created_at).label("reported_at"),
     )
 
 
-def _shown_filters(view: EventListView, now: datetime) -> list:
-    """`matches_event_view` for a console view, as database conditions (all but
-    `_hidden_by_detection`, which reads the detection record)."""
-    filters = [
-        Event.geometry.is_not(None),
-        Event.start_time.is_not(None),
-        or_(Event.end_time.is_(None), Event.end_time >= now),
-    ]
+def _row_facts(row) -> dict:
+    """The facts `map_rule` reads, from a row of `_light_columns`."""
+    detection = row.detection or {}
+    return {
+        "located": bool(row.located),
+        "start": row.start_time,
+        "end": row.end_time,
+        "source_ended": bool(detection.get("source_reports_ended")),
+        "method": detection.get("method"),
+    }
+
+
+def _listed_for_review(row, now: datetime) -> bool:
+    return review_listing(**_row_facts(row), event_type=row.event_type, reported_at=row.reported_at, now=now)
+
+
+def _view_rule(view: EventListView, now: datetime):
+    """A view's rule as database conditions, and the rest as a test of a row of
+    `_light_columns` (the parts read from the detection record or the article).
+    The same as `matches_event_view`."""
+    if view in CLOSED_VIEWS:
+        # The status here; the end and the source's report of it over in the test.
+        status_filter = (
+            Event.status == EventStatus.REJECTED.value
+            if view is EventListView.REJECTED
+            else Event.status != EventStatus.REJECTED.value
+        )
+        return [status_filter], lambda row: matches_closed_view(
+            view, EventStatus(row.status), row.end_time, _row_facts(row)["source_ended"], now=now
+        )
+    located_not_ended = [Event.geometry.is_not(None), or_(Event.end_time.is_(None), Event.end_time >= now)]
     if view is EventListView.VALIDATION:
-        return filters + [Event.status.in_([status.value for status in REVIEW_STATUSES])]
-    filters.append(Event.status.in_([status.value for status in OPERATIONAL_STATUSES]))
+        # Awaiting review, or validated with no stated start (`in_review_status`).
+        status_filter = or_(
+            Event.status.in_([status.value for status in REVIEW_STATUSES]),
+            and_(
+                Event.status.in_([status.value for status in OPERATIONAL_STATUSES]),
+                Event.start_time.is_(None),
+            ),
+        )
+        return located_not_ended + [status_filter], lambda row: _listed_for_review(row, now)
+    filters = located_not_ended + [
+        Event.start_time.is_not(None),
+        Event.status.in_([status.value for status in OPERATIONAL_STATUSES]),
+    ]
     if view is EventListView.CURRENT:
         filters.append(Event.start_time <= now)
     elif view is EventListView.UPCOMING:
         filters.append(Event.start_time > now)
-    return filters
+    return filters, lambda row: map_rule(**_row_facts(row), now=now) is None
 
 
 def _closed_filters(view: EventListView) -> list:

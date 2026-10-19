@@ -118,6 +118,9 @@ export function mapApiEvent(dto: ApiEvent): RoadEvent | null {
       otherSourceName: candidate.other_source.source_name,
     })),
     approvalBlockers: dto.approval_blockers ?? [],
+    // An API from before decision 0038 lists only events its maps draw.
+    mapEligible: dto.map_eligible ?? true,
+    offMapReason: dto.off_map_reason ?? null,
     sourceReference: dto.source_reference,
     evidence: dto.evidence && {
       url: dto.evidence.url,

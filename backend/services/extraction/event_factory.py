@@ -164,6 +164,22 @@ def locate(places: list[PlaceMatch]) -> tuple[PlaceMatch | None, PlaceMatch | No
     return (spot, located_by) if spot else (located_by, None)
 
 
+def publication_day_known(record: RawSourceRecord) -> bool:
+    """Whether the record's publication time is the publisher's own, so that a
+    day can be counted from it ("begins today", decision 0038).
+
+    A result found through a search (Google News via Serper, GDELT) carries the
+    search engine's time ("3 days ago", the time it was seen) unless its
+    article page stated one (`published_at_from` "article").
+    """
+    if record.published_at is None:
+        return False
+    raw = record.raw or {}
+    if "search_result" in raw:
+        return raw.get("published_at_from") == "article"
+    return True
+
+
 def build_event_from_article(
     record: RawSourceRecord,
     classification: ClassificationResult,
@@ -208,6 +224,7 @@ def build_event_from_article(
         body=record.content_text,
         published_at=record.published_at,
         zone=city.tz if city else IST,
+        publication_day_known=publication_day_known(record),
     )
     return ReiEvent(
         event_id=event_id_for(record.source_id, record.external_id),

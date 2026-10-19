@@ -152,6 +152,9 @@ export default function Dashboard() {
     [allEvents],
   );
   const locatedCount = useMemo(() => visibleEvents.filter(isLocated).length, [visibleEvents]);
+  // The map draws only events with a location and a stated start that are not
+  // over; the review list also holds the others (decision 0038).
+  const mapEvents = useMemo(() => visibleEvents.filter((event) => event.mapEligible), [visibleEvents]);
   const visibleTypes = useMemo(
     () => visibleEvents.flatMap((event) => (event.eventType ? [event.eventType] : [])),
     [visibleEvents],
@@ -313,7 +316,7 @@ export default function Dashboard() {
 
         <section className="relative h-[42dvh] shrink-0 md:h-auto md:flex-1">
           <EventMap
-            events={visibleEvents}
+            events={mapEvents}
             selectedEventId={selectedEvent?.id ?? null}
             onSelectEvent={selectEvent}
             basemap={basemap}

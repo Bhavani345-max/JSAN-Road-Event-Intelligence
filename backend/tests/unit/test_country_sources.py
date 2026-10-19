@@ -35,6 +35,7 @@ from connectors.official import (
 from connectors.official.feature_feed import fetch_arcgis_features, fetch_socrata_rows
 from connectors.registry import OFFICIAL_SOURCE_IDS, registered_sources
 from packages.cities import get_city, load_cities
+from packages.common.time import ensure_utc
 from packages.event_schema import LocationClass
 from packages.source_models import CommercialUse, IntegrationStatus, TermsStatus
 from services.extraction import KeywordClassifier, build_event_from_source, classify_source_record
@@ -414,8 +415,16 @@ def test_ottawa_events_are_stored_once_and_the_dated_ones_reach_the_review_queue
     rows = canada_session.scalars(select(Event)).unique().all()
     assert {row.status for row in rows} == {"VALIDATION_REQUIRED"} and {row.city for row in rows} == {"Canada"}
     shown, total = EventRepository(canada_session).list(view=EventListView.VALIDATION, limit=500, now=now)
+    # Decision 0038: an official record is listed for review while it is
+    # located and not over, with or without a stated start; a map draws only
+    # those with one.
+    not_over = [
+        row for row in rows
+        if row.geometry is not None and (row.end_time is None or ensure_utc(row.end_time) >= now)
+    ]  # fmt: skip
+    assert total == len(not_over)
     dated = [r for _, r in found if r.structured.start and r.structured.end and r.structured.end >= now]
-    assert total == len(dated)
+    assert sum(1 for row in shown if row.start_time is not None) >= len(dated)
 
 
 def test_calgary_rows_of_one_closure_are_each_kept_and_merged_into_one_event(session):

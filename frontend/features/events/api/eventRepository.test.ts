@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { toManualEventBody } from "@/features/qc/api";
 import { isManualEntry } from "../model";
+import { offMapNote } from "../presentation";
 import { locatedApiEvent, realApiEvent } from "../testing/fixtures";
 import { apiEventRepository, mapApiEvent, searchEventIds } from "./eventRepository";
 
@@ -62,6 +63,14 @@ describe("mapApiEvent", () => {
     expect(event.eventType).toBeNull();
     expect(event.severity).toBeNull();
     expect(event.geometry).toBeNull();
+  });
+
+  it("keeps an event the map may not draw, with the reason (decision 0038)", () => {
+    const undated = mapApiEvent({ ...locatedApiEvent, map_eligible: false, off_map_reason: "no_start" })!;
+    expect([undated.mapEligible, undated.offMapReason]).toEqual([false, "no_start"]);
+    expect(offMapNote(undated.offMapReason)).toBe("Not on the map: the source states no start date");
+    // An API from before decision 0038 lists only events its maps draw.
+    expect(mapApiEvent(locatedApiEvent)!.mapEligible).toBe(true);
   });
 
   it("skips an event with a lifecycle status it does not know", () => {

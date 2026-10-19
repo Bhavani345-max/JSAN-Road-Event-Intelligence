@@ -174,6 +174,10 @@ export interface ApiEvent {
   }[];
   /** For an event in QC_PENDING: every QC requirement it does not yet meet. */
   approval_blockers?: string[];
+  /** Whether the console's maps may draw it: located, a stated start, not over (decision 0038). */
+  map_eligible?: boolean;
+  /** The first rule keeping it off the maps (no_location, no_start, ended, ...); null when drawn. */
+  off_map_reason?: string | null;
   /** Pending candidates: events that may be the same as this one. */
   merge_candidates?: {
     candidate_id: number;
@@ -283,6 +287,8 @@ export interface ApiCityCoverage {
   recent: number;
   /** Events awaiting review that the review queue's map shows now. */
   on_map_review: number;
+  /** What the review queue lists, on its map or not (decision 0038). */
+  listed_review?: number;
   /** Validated events that the operations map shows now. */
   on_map_operations: number;
   /** Events awaiting review that the review queue's map does not show, by the rule hiding them. */

@@ -89,11 +89,13 @@ def test_server_views_require_reviewed_operational_status_and_stated_timing():
     assert matches_event_view(upcoming, EventListView.UPCOMING, now=NOW)
     assert matches_event_view(pending, EventListView.VALIDATION, now=NOW)
     assert not matches_event_view(pending, EventListView.CURRENT_UPCOMING, now=NOW)
-    # Without a stated start it is unconfirmed: hidden from every console
-    # view (15 October 2026), still listed when hidden events are asked for.
-    assert not matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW)
-    assert matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW, include_hidden=True)
+    # Without a stated start no map can draw it, so it is never current or
+    # upcoming; approved anyway, it goes back to the review queue for a
+    # reviewer to see (decision 0038), its status unchanged.
+    assert not is_shown(untimed_approved, now=NOW)
+    assert matches_event_view(untimed_approved, EventListView.VALIDATION, now=NOW)
     assert not matches_event_view(untimed_approved, EventListView.CURRENT_UPCOMING, now=NOW)
+    assert untimed_approved.status is EventStatus.APPROVED
 
 
 def test_server_views_keep_ended_records_accessible_without_changing_status():
@@ -148,21 +150,23 @@ CONSOLE_VIEWS = (EventListView.CURRENT_UPCOMING, EventListView.VALIDATION)
 
 
 @pytest.mark.parametrize(
-    "case, why",
+    "case, why, listed_for_review",
     [
-        (dict(end=NOW + DAY), "no stated start: unconfirmed"),
-        (dict(), "no stated period: unconfirmed"),
-        (dict(start=NOW - 3 * DAY, end=NOW - DAY), "ended: expired"),
-        (dict(start=NOW - DAY, end=NOW + DAY, ended=True), "the source reports it over"),
-        (dict(start=NOW - DAY, end=NOW + DAY, geometry=None), "no location"),
+        # Listed for review since decision 0038; still on no map.
+        (dict(end=NOW + DAY), "no stated start", True),
+        (dict(), "no stated period, reported now", True),
+        # Hidden from the review queue too.
+        (dict(start=NOW - 3 * DAY, end=NOW - DAY), "ended: expired", False),
+        (dict(start=NOW - DAY, end=NOW + DAY, ended=True), "the source reports it over", False),
+        (dict(start=NOW - DAY, end=NOW + DAY, geometry=None), "no location", False),
     ],
 )
 @pytest.mark.parametrize("status", [EventStatus.VALIDATION_REQUIRED, EventStatus.QC_PENDING, EventStatus.APPROVED])
-def test_the_console_hides_unconfirmed_expired_and_unlocated_events(case, why, status):
+def test_maps_draw_no_unconfirmed_expired_or_unlocated_event(case, why, listed_for_review, status):
     hidden = event(status=status, **case)
     assert not is_shown(hidden, now=NOW), why
-    for view in CONSOLE_VIEWS:
-        assert not matches_event_view(hidden, view, now=NOW), (why, view)
+    assert not matches_event_view(hidden, EventListView.CURRENT_UPCOMING, now=NOW), why
+    assert matches_event_view(hidden, EventListView.VALIDATION, now=NOW) is listed_for_review, why
 
 
 @pytest.mark.parametrize(

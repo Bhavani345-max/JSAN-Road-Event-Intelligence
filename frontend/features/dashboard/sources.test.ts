@@ -167,6 +167,20 @@ describe("coverage from detection to the map, per view", () => {
     ]);
   });
 
+  it("says how many events off the review map the queue lists below (decision 0038)", () => {
+    // 46 without a stated start, of which 30 are recent reports or end-only: listed for review.
+    const listed = coverageTotals(
+      [row("hyderabad", { pending_review: 84, on_map_review: 12, listed_review: 42, hidden_review: { no_start: 46, no_location: 26 } })],
+      ["hyderabad"],
+    );
+    expect(notOnThisMap(listed, "validation")).toEqual([
+      "72 awaiting review (46 no stated start, 26 no location)",
+      "30 of them listed below for review",
+    ]);
+    // An API from before decision 0038 lists only what the map shows: nothing more is claimed.
+    expect(coverageTotals(coverage, ["united-states"]).listedReview).toBe(3979);
+  });
+
   it("adds a country entry and its cities together, each row once", () => {
     const us = coverageTotals(coverage, ["united-states", "new-york"]);
     expect(us).toMatchObject({ detected: 6333, pendingReview: 6333, onMapReview: 6061 });

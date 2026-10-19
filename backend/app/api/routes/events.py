@@ -147,7 +147,7 @@ def summarize_events(
 
 COVERAGE_COUNTS = (
     "detected", "merged", "rejected", "closed", "pending_review", "validated",
-    "recent", "on_map_review", "on_map_operations",
+    "recent", "on_map_review", "on_map_operations", "listed_review",
 )
 
 

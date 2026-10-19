@@ -73,6 +73,12 @@ class EventOut(ReiEvent):
     # For an event in QC_PENDING: every QC requirement it does not yet meet,
     # in plain words. Empty when it can be approved (and for other statuses).
     approval_blockers: list[str] = []
+    # Whether the console's maps may draw it: located, with a stated start, not
+    # over (decision 0038). The review queue also lists events no map draws.
+    map_eligible: bool = False
+    # The first rule that keeps it off the maps: no_location, no_start, ended,
+    # source_ended or open_end_lapsed; None when it may be drawn.
+    off_map_reason: str | None = None
 
 
 class EventVersionOut(BaseModel):
@@ -125,6 +131,9 @@ class CityCoverageOut(BaseModel):
     validated: int = 0
     recent: int = 0
     on_map_review: int = 0
+    # What the review queue lists, on its map or not: it also lists located
+    # events with no stated start that are not known to be over (decision 0038).
+    listed_review: int = 0
     on_map_operations: int = 0
     hidden_review: dict[str, int] = {}
     hidden_operations: dict[str, int] = {}

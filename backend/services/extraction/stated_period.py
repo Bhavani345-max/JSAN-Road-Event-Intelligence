@@ -2,10 +2,16 @@
 
 Only explicit wording is read: "for 60 days from September 26", "from July 1
 to July 15", "from October 10 to 18", "October 10-18", "till October 18",
-"on October 2", "for two months from September 26", "from September 26". The
-dates are calendar arithmetic on
-what the article says; nothing is estimated. The words they were read from
-are kept with the event so a reviewer can check them.
+"on October 2", "for two months from September 26", "from September 26",
+"begins today", "from tomorrow till October 20". The dates are calendar
+arithmetic on what the article says; nothing is estimated. The words they were
+read from are kept with the event so a reviewer can check them. An end alone
+("in place until 20 October") gives no start: the start stays unknown.
+
+"Today" and "tomorrow" are counted from the article's publication day in the
+city's time zone, only when that day is the publisher's own (not a search
+engine's "3 days ago"), only in the headline or summary, and not when the
+words say the measure is lifted or ends then (decision 0038).
 
 Dates are whole days in the city's time zone (India Standard Time unless a
 city is given): an article that gives no time of day is not given one. The year, when the article leaves it out, is the one
@@ -99,6 +105,27 @@ _TILL = re.compile(rf"\b(?:till|until|upto|up\s+to)\s+{_date('a')}", _FLAGS)
 _ON = re.compile(rf"\bon\s+{_date('a')}", _FLAGS)
 # "from September 26"
 _FROM = re.compile(rf"\bfrom\s+{_date('a')}", _FLAGS)
+# "begins today", "starting tomorrow", "with effect from today", "comes into
+# force today", "from today": a start on the day of publication or the next.
+# Not "Today's" (a name or a possessive), and only "today" or "tomorrow".
+_RELATIVE_START = re.compile(
+    r"\b(?:(?:begins?|beginning|began|starts?|starting|started|commences?|commencing|effective"
+    r"|comes?\s+into\s+(?:force|effect)|(?:will\s+be\s+)?in\s+(?:force|effect|place))\s+(?:from\s+)?"
+    r"|(?:with\s+effect\s+)?from\s+)"
+    r"(?P<rel>today|tomorrow)\b(?!['’]s)",
+    _FLAGS,
+)
+_RELATIVE_DAYS = {"today": 0, "tomorrow": 1}
+# Right after a relative start: "from today till October 20", "... to Oct 20".
+_THEN_END = re.compile(rf"\s*,?\s*(?:to|till|until|through|upto|up\s+to)\s+{_date('b')}", _FLAGS)
+# Words that make "from today" the day a measure ends: "restrictions lifted
+# from today", "the road reopens from tomorrow", "curbs eased from today".
+_ENDING = re.compile(
+    r"\b(?:lift(?:s|ed|ing)?|withdra(?:w|wn|ws|wing)|remov(?:e|ed|es|ing)|reopen(?:s|ed|ing)?"
+    r"|end(?:s|ed|ing)?|called\s+off|calls?\s+off|revok(?:e|ed|es|ing)|eas(?:e|ed|es|ing)"
+    r"|relax(?:ed|es|ing)?|scrap(?:s|ped)?)\b",
+    _FLAGS,
+)
 
 
 @dataclass(frozen=True)
@@ -222,6 +249,40 @@ def _period(
     )
 
 
+def _relative_period(
+    match: re.Match[str], text: str, found_in: str, published: date, zone: tzinfo
+) -> StatedPeriod | None:
+    """"Begins today" (publication day), "from tomorrow" (the day after), as a
+    whole day with no time; with an end when the same text states one."""
+    clause = re.split(r"[.!?;:|]", text[: match.start()])[-1]
+    if _ENDING.search(clause) or _ENDING.search(match.group()):
+        return None
+    start = published + timedelta(days=_RELATIVE_DAYS[match.group("rel").lower()])
+    words = " ".join(match.group().split())
+    # An end right after it ("from today till October 20"), else anywhere in
+    # the same text ("till October 20 ... begins today").
+    then = _THEN_END.match(text, match.end())
+    till = _TILL.search(text) if then is None else None
+    stated_end = None
+    if then is not None:
+        stated_end = _resolve_date(then, "b", start)
+    elif till is not None:
+        stated_end = _resolve_date(till, "a", start)
+    if stated_end is not None and start <= stated_end <= start + timedelta(days=MAX_DAYS):
+        if then is not None:
+            words = " ".join((match.group() + then.group()).split())
+        else:
+            words = f"{words} … {' '.join(till.group().split())}"
+    else:
+        stated_end = None
+    return StatedPeriod(
+        start=start_of_day(start, zone),
+        end=end_of_day(stated_end, zone) if stated_end else None,
+        text=words,
+        found_in=found_in,
+    )
+
+
 def find_stated_period(
     *,
     title: str | None,
@@ -229,13 +290,16 @@ def find_stated_period(
     body: str | None = None,
     published_at: datetime | None,
     zone: tzinfo = IST,
+    publication_day_known: bool = True,
 ) -> StatedPeriod | None:
     """The period the article states, or None when it states none explicitly.
 
     Wording that gives both a start and an end is preferred wherever it
-    appears. A bare "from <date>", "till <date>" or "on <date>" counts only in
-    the headline or summary: in a body it too often belongs to something other
-    than the road measure.
+    appears. A bare "from <date>", "begins today", "till <date>" or "on <date>"
+    counts only in the headline or summary: in a body it too often belongs to
+    something other than the road measure. "Today" and "tomorrow" are read
+    only when `publication_day_known`: the publication time is the
+    publisher's own, not a search engine's approximation.
     """
     if published_at is None:
         return None
@@ -252,15 +316,22 @@ def find_stated_period(
         _FROM_TO_SAME_MONTH,
         _MONTH_DAY_RANGE,
     )
+    up_front = [(_FROM, "start")]
+    if publication_day_known:
+        up_front.append((_RELATIVE_START, "relative"))
+    up_front += [(_TILL, "end"), (_ON, "one_day")]
     searches = [
         (tuple((pattern, "start") for pattern in complete), fields),
-        (((_FROM, "start"), (_TILL, "end"), (_ON, "one_day")), fields[:2]),
+        (tuple(up_front), fields[:2]),
     ]
     for patterns, where in searches:
         for found_in, text in where:
             for pattern, reads in patterns:
                 for match in pattern.finditer(text or ""):
-                    period = _period(match, found_in, published, reads=reads, zone=zone)
+                    if reads == "relative":
+                        period = _relative_period(match, text, found_in, published, zone)
+                    else:
+                        period = _period(match, found_in, published, reads=reads, zone=zone)
                     if period:
                         return period
     return None

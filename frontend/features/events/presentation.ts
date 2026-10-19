@@ -447,3 +447,23 @@ export const PLACE_ROLE_COLORS: Record<string, string> = {
   ALTERNATE_ROUTE: "#16a34a",
   NEAR: "#64748b",
 };
+
+/**
+ * Why a listed event is not on the map (decision 0038): the review queue
+ * lists located events with no stated start, which no map draws as a road
+ * event until a start is known.
+ */
+export function offMapNote(reason: string | null): string {
+  switch (reason) {
+    case "no_start":
+      return "Not on the map: the source states no start date";
+    case "no_location":
+      return "Not on the map: no location yet";
+    case "ended":
+    case "source_ended":
+    case "open_end_lapsed":
+      return "Not on the map: over";
+    default:
+      return "Not on the map";
+  }
+}

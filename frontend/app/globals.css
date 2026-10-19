@@ -11,13 +11,33 @@
   }
 }
 
-@keyframes rei-login-float {
+@keyframes rei-login-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3.2);
+    opacity: 0;
+  }
+}
+
+@keyframes rei-login-floor-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 56px, 0 0;
+  }
+}
+
+@keyframes rei-login-beam {
   0%,
   100% {
-    transform: translateY(0);
+    opacity: 0.55;
   }
   50% {
-    transform: translateY(-9px);
+    opacity: 0.9;
   }
 }
 
@@ -25,19 +45,187 @@
   animation: rei-login-reveal 720ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
-.login-float-slow {
-  animation: rei-login-float 8s ease-in-out infinite;
+/* Static backdrop: used on small screens, while the 3D scene loads, and when
+   WebGL is unavailable. A perspective road grid fading into deep-navy fog. */
+.login-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 45% at 68% 58%, rgba(0, 85, 140, 0.34), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 22% 30%, rgba(14, 116, 144, 0.18), transparent 70%),
+    linear-gradient(180deg, #040b14 0%, #061322 48%, #050e18 100%);
 }
 
-.login-float-delayed {
-  animation: rei-login-float 9s ease-in-out 1.2s infinite;
+.login-floor {
+  position: absolute;
+  inset: 0;
+  perspective: 560px;
+  perspective-origin: 50% 38%;
+}
+
+.login-floor::before {
+  content: "";
+  position: absolute;
+  left: -60%;
+  right: -60%;
+  top: 30%;
+  height: 120%;
+  transform-origin: 50% 0;
+  transform: rotateX(64deg);
+  background-image:
+    linear-gradient(rgba(103, 232, 249, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 232, 249, 0.2) 1px, transparent 1px);
+  background-size: 56px 56px, 56px 56px;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent);
+  animation: rei-login-floor-drift 9s linear infinite;
+}
+
+.login-floor::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 29.5%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.42) 30%, rgba(125, 211, 252, 0.6) 55%, transparent);
+  filter: blur(0.5px);
+  box-shadow: 0 0 36px 10px rgba(14, 116, 144, 0.28);
+}
+
+.login-beacon {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #fbbf24;
+  box-shadow: 0 0 14px 3px rgba(251, 191, 36, 0.55);
+  transform: translate(-50%, -50%);
+}
+
+.login-beacon::before,
+.login-beacon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  height: 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(251, 191, 36, 0.75);
+  animation: rei-login-pulse 2.8s ease-out infinite;
+}
+
+.login-beacon::after {
+  animation-delay: 1.4s;
+}
+
+.login-beacon-beam {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 2px;
+  height: 90px;
+  transform: translateX(-50%);
+  background: linear-gradient(to top, rgba(251, 191, 36, 0.85), rgba(251, 191, 36, 0));
+  animation: rei-login-beam 3.2s ease-in-out infinite;
+}
+
+.login-beacon--teal {
+  background: #2dd4bf;
+  box-shadow: 0 0 14px 3px rgba(45, 212, 191, 0.5);
+}
+
+.login-beacon--teal::before,
+.login-beacon--teal::after {
+  border-color: rgba(45, 212, 191, 0.7);
+}
+
+.login-beacon--teal .login-beacon-beam {
+  height: 54px;
+  background: linear-gradient(to top, rgba(45, 212, 191, 0.75), rgba(45, 212, 191, 0));
+}
+
+/* Legibility veil over the scene: darkens behind the copy and the edges. */
+.login-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(5, 14, 24, 0.72) 0%, rgba(5, 14, 24, 0.1) 26%, rgba(5, 14, 24, 0) 45%),
+    linear-gradient(0deg, rgba(5, 14, 24, 0.86) 0%, rgba(5, 14, 24, 0.35) 30%, rgba(5, 14, 24, 0) 58%);
+}
+
+@media (min-width: 1024px) {
+  .login-floor::before {
+    top: 44%;
+  }
+
+  .login-floor::after {
+    top: 43.4%;
+  }
+
+  .login-veil {
+    background:
+      radial-gradient(ellipse 58% 26% at 58% 12%, rgba(0, 85, 140, 0.28), transparent 70%),
+      /* A quiet backing for the headline and description, so road lines do not run through the text. */
+      radial-gradient(ellipse 36% 40% at 19% 56%, rgba(5, 14, 24, 0.62), rgba(5, 14, 24, 0.3) 55%, transparent 80%),
+      linear-gradient(90deg, rgba(5, 14, 24, 0.86) 0%, rgba(5, 14, 24, 0.68) 26%, rgba(5, 14, 24, 0.3) 40%, rgba(5, 14, 24, 0.06) 54%, rgba(5, 14, 24, 0) 64%),
+      linear-gradient(180deg, rgba(5, 14, 24, 0.5) 0%, rgba(5, 14, 24, 0) 20%),
+      linear-gradient(0deg, rgba(5, 14, 24, 0.7) 0%, rgba(5, 14, 24, 0) 28%);
+  }
+}
+
+/* Elevated glass sign-in panel. */
+.login-panel {
+  position: relative;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015) 48%, rgba(0, 85, 140, 0.08)),
+    rgba(7, 20, 34, 0.78);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 40px 90px -30px rgba(0, 0, 0, 0.75),
+    0 0 120px -24px rgba(0, 85, 140, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.login-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 18% auto 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.7), transparent);
+  pointer-events: none;
+}
+
+.login-input {
+  color-scheme: dark;
+}
+
+.login-input:-webkit-autofill,
+.login-input:-webkit-autofill:hover,
+.login-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f8fafc;
+  -webkit-box-shadow: 0 0 0 1000px #0e2236 inset;
+  caret-color: #f8fafc;
+  transition: background-color 9999s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .login-reveal,
-  .login-float-slow,
-  .login-float-delayed {
+  .login-floor::before,
+  .login-beacon::before,
+  .login-beacon::after,
+  .login-beacon-beam {
     animation: none;
+  }
+
+  .login-beacon::before,
+  .login-beacon::after {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.6);
   }
 }
 

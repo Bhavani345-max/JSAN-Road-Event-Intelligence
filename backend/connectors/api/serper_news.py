@@ -19,6 +19,16 @@ whose headline names another city, or that does not mention Hyderabad at all,
 is left out before anything is stored.
 
 The API key comes from the SERPER_API_KEY environment variable, never from code.
+
+Since 19 October 2026 (decision 0037) the same search runs for each Indian city
+with a place list and searches of its own (Delhi, Mumbai, Bengaluru, Chennai,
+Kolkata, Pune, Ahmedabad), as `google-news-serper-<city>`. By the user's
+decision of that day they read the article pages as Hyderabad's search does:
+Google's headline and snippet rarely state a date, and an event without a
+stated start is not shown. A publisher whose terms forbid automated access, or
+that the user removed, is left out of every search, result and page alike.
+(`read_any_publisher=False` would read only READABLE_PUBLISHERS, as the GDELT
+search does.)
 """
 
 import logging
@@ -30,8 +40,8 @@ import httpx
 
 from connectors.base import ConnectorError
 from connectors.html.article import download_page, parse_article_page
-from connectors.restricted import restricted_publisher
-from packages.cities import DEFAULT_CITY_ID, get_city
+from connectors.restricted import readable_publisher, removed_publisher, restricted_publisher
+from packages.cities import DEFAULT_CITY_ID, City, get_city, load_cities
 from packages.common.hashing import sha256_hex
 from packages.common.text import html_to_text
 from packages.common.time import ensure_utc, utc_now
@@ -67,17 +77,59 @@ CROWDING_CITIES: tuple[str, ...] = (
     "Gurugram", "Gurgaon", "Ahmedabad", "Lucknow", "Patna", "Jaipur", "Kochi", "Mysuru",
     "Coimbatore", "Bhopal", "Indore", "Nagpur", "Vijayawada", "Visakhapatnam", "Thane",
 )  # fmt: skip
-_EXCLUDE = " ".join(f"-{city}" for city in CROWDING_CITIES[:8])
 
-# The city this source searches for. The searches are the city's own
+# The city the original source searches for. The searches are the city's own
 # (packages/cities/data/<city>.json, "discovery.queries"), each naming the
 # city or an authority of it and one kind of road measure, with the crowding
 # cities excluded. One Serper credit each, every poll.
 CITY_ID = DEFAULT_CITY_ID
 
 
+def _own_names(city: City) -> set[str]:
+    return {term.lower() for term in (city.name, *city.scope_terms)}
+
+
+def other_cities_for(city: City) -> tuple[str, ...]:
+    """The cities whose news crowds this city's out, never its own names.
+
+    Hyderabad's are the crowding cities; another city's also include Hyderabad
+    and the neighbours its file names (Delhi: Noida, Gurugram, ...).
+    """
+    own = _own_names(city)
+    extra = () if city.id == DEFAULT_CITY_ID else ("Hyderabad", "Secunderabad", *city.other_cities)
+    names = dict.fromkeys(name for name in (*CROWDING_CITIES, *extra) if name.lower() not in own)
+    return tuple(names)
+
+
 def queries_for(city_id: str = CITY_ID) -> tuple[str, ...]:
-    return tuple(f"{query} {_EXCLUDE}" for query in get_city(city_id).discovery.queries)
+    """A city's searches. Hyderabad's leave out the cities that crowd it out;
+    another city's leave out none: on 19 October 2026 leaving out the other
+    large cities cut Mumbai's and Ahmedabad's results to a few (their news names
+    Pune, Delhi or Mumbai too), and results about another city are dropped
+    before anything is stored anyway."""
+    city = get_city(city_id)
+    if city.id != DEFAULT_CITY_ID:
+        return city.discovery.queries
+    exclude = " ".join(f"-{name}" for name in CROWDING_CITIES[:8])
+    return tuple(f"{query} {exclude}" for query in city.discovery.queries)
+
+
+def searched_cities() -> tuple[City, ...]:
+    """The cities searched besides Hyderabad (decision 0037): each Indian city
+    with a place list (to locate what it finds) and searches of its own."""
+    return tuple(
+        city
+        for city in load_cities().values()
+        if city.id != DEFAULT_CITY_ID
+        and city.level == "city"
+        and city.country == "IN"
+        and city.gazetteer
+        and city.discovery.queries
+    )
+
+
+def source_id_for(city_id: str) -> str:
+    return SOURCE_ID if city_id == DEFAULT_CITY_ID else f"{SOURCE_ID}-{city_id}"
 
 
 DEFAULT_QUERIES: tuple[str, ...] = queries_for()
@@ -89,14 +141,20 @@ DEFAULT_RESULTS_PER_QUERY = 10
 # A result must mention one of these to be about the PoC's city at all.
 DEFAULT_SCOPE_TERMS: tuple[str, ...] = ("Hyderabad", "Secunderabad", "Cyberabad", "Rachakonda")
 POLLING_FREQUENCY_MINUTES = 480
+# The other cities' searches run once a day: a past-week search catches what
+# was announced since, and each city's 8-9 searches cost one credit each.
+CITY_POLLING_FREQUENCY_MINUTES = 1440
 # Article pages read in one poll; further new results keep their search snippet.
 MAX_ARTICLE_PAGES_PER_POLL = 120
 # A headline with no Latin letters is in a script REI does not read.
 _LATIN = re.compile(r"[A-Za-z]{3}")
 
 
-def serper_news_source(*, connected: bool) -> SourceDefinition:
-    """The source as it stands with (`connected`) or without an API key."""
+def serper_news_source(*, connected: bool, city_id: str = CITY_ID) -> SourceDefinition:
+    """The source as it stands with (`connected`) or without an API key: the
+    original Hyderabad search, or another city's (decision 0037)."""
+    if city_id != CITY_ID:
+        return _city_source(get_city(city_id), connected=connected)
     return SourceDefinition(
         source_id=SOURCE_ID,
         source_name="Google News search",
@@ -146,6 +204,56 @@ def serper_news_source(*, connected: bool) -> SourceDefinition:
     )
 
 
+def _city_source(city: City, *, connected: bool) -> SourceDefinition:
+    queries = queries_for(city.id)
+    per_day = len(queries) * 24 * 60 // CITY_POLLING_FREQUENCY_MINUTES
+    return SourceDefinition(
+        source_id=source_id_for(city.id),
+        source_name=f"Google News search ({city.name})",
+        organization="Google News results via Serper.dev",
+        authority_type="SEARCH_API",
+        source_tier=4,
+        source_type=SourceType.API,
+        source_class=SourceClass.DISCOVERY,
+        discovery_only=True,
+        country=city.country,
+        region=city.region,
+        city=city.id,
+        cost_category=CostCategory.FREE_WITH_LIMITS,
+        rate_limit=(
+            "Shares the SERPER_API_KEY credits: 1 credit per search of up to 10 results "
+            "(serper.dev pricing, checked 6 October 2026)"
+        ),
+        terms_status=TermsStatus.REVIEW_REQUIRED,
+        source_url="https://serper.dev/",
+        endpoint=ENDPOINT,
+        access_method="Commercial search API; API key in SERPER_API_KEY",
+        integration_status=(
+            IntegrationStatus.CONNECTED if connected else IntegrationStatus.REQUIRES_ACCESS
+        ),
+        active=connected,
+        polling_frequency_minutes=CITY_POLLING_FREQUENCY_MINUTES,
+        language="en",
+        events_supported=tuple(event_type.value for event_type in EventType),
+        parser_type="serper_news",
+        terms_reviewed=False,
+        evidence_retention=(
+            "For each new search result: the article read from the publisher's page "
+            "(headline, summary, body, publication time) together with the search result "
+            "that led to it, and a SHA-256 content hash; Google's result alone when the "
+            "page carries no readable article."
+        ),
+        notes=(
+            f"{len(queries)} {city.name} road searches of the past week, once a day "
+            f"({per_day} Serper credits a day). Results from publishers whose terms forbid "
+            "automated access, or that the user removed, are left out. Article pages are "
+            "read as for Hyderabad (the user's decision of 19 October 2026). Results come "
+            "from any publisher Google lists; every event is a lead for review. "
+            + ("" if connected else "Not connected: SERPER_API_KEY is not set.")
+        ).strip(),
+    )
+
+
 _AGO = re.compile(r"(\d+)\s+(minute|hour|day|week|month)s?\s+ago", re.IGNORECASE)
 _UNIT = {
     "minute": timedelta(minutes=1),
@@ -175,7 +283,7 @@ def parse_result_date(text: str | None, *, now: datetime) -> datetime | None:
 
 
 class SerperNewsConnector:
-    """Searches Google News for Hyderabad road events and reads the articles found."""
+    """Searches Google News for one city's road events and reads the articles found."""
 
     def __init__(
         self,
@@ -185,6 +293,10 @@ class SerperNewsConnector:
         *,
         queries: tuple[str, ...] = DEFAULT_QUERIES,
         scope_terms: tuple[str, ...] = DEFAULT_SCOPE_TERMS,
+        other_cities: tuple[str, ...] = CROWDING_CITIES,
+        country: str = "in",
+        read_any_publisher: bool = True,
+        whole_words: bool = False,
         window: str = DEFAULT_WINDOW,
         results_per_query: int = DEFAULT_RESULTS_PER_QUERY,
         client: httpx.Client | None = None,
@@ -193,11 +305,18 @@ class SerperNewsConnector:
         self.queries = queries
         self.window = window
         self.results_per_query = results_per_query
-        self._in_scope = re.compile("|".join(re.escape(term) for term in scope_terms), re.IGNORECASE)
+        self._country = country
+        # Whether any page not refused is read (every city's search, decision
+        # 0037), or only those of publishers whose terms permit it.
+        self._read_any_publisher = read_any_publisher
+        # Another city's names include short ones ("MCD", "BMC"), matched as
+        # whole words only.
+        terms = "|".join(re.escape(term) for term in scope_terms)
+        self._in_scope = re.compile(rf"\b(?:{terms})\b" if whole_words else terms, re.IGNORECASE)
         # A headline about another city; "Mumbai Highway" is a road in Hyderabad.
         self._other_city = re.compile(
             r"\b(?:"
-            + "|".join(re.escape(city) for city in CROWDING_CITIES)
+            + "|".join(re.escape(city) for city in other_cities)
             + r")\b(?!\s+(?:highway|road|rd|expressway|bypass|route|line))",
             re.IGNORECASE,
         )
@@ -205,6 +324,28 @@ class SerperNewsConnector:
         self._user_agent = user_agent
         self._client = client or httpx.Client(timeout=30, follow_redirects=True)
         self._pages_read = 0
+
+    @classmethod
+    def for_city(
+        cls, source: SourceDefinition, city: City, api_key: str, user_agent: str, **options: Any
+    ) -> "SerperNewsConnector":
+        """Another city's search (decision 0037): its own searches, names and
+        neighbours; article pages read as Hyderabad's are (the user's decision
+        of 19 October 2026), unless `read_any_publisher=False` is given."""
+        return cls(
+            source,
+            api_key,
+            user_agent,
+            **{
+                "queries": queries_for(city.id),
+                "scope_terms": tuple(dict.fromkeys((city.name, *city.scope_terms))),
+                "other_cities": other_cities_for(city),
+                "country": city.country.lower(),
+                "read_any_publisher": True,
+                "whole_words": True,
+                **options,
+            },
+        )
 
     def fetch(self) -> list[RawSourceRecord]:
         """One record per distinct in-scope article link across all searches.
@@ -221,7 +362,7 @@ class SerperNewsConnector:
             try:
                 results = self._search_with_retry(query)
             except _TemporarySearchError as error:
-                logger.warning("%s: skipped the search %r (%s)", SOURCE_ID, query, error)
+                logger.warning("%s: skipped the search %r (%s)", self.source.source_id, query, error)
                 skipped.append(query)
                 continue
             for result in results:
@@ -232,7 +373,10 @@ class SerperNewsConnector:
             raise ConnectorError(f"Serper news search failed: all {len(skipped)} searches failed")
         if skipped:
             logger.warning(
-                "%s: %d of %d searches skipped after a retry", SOURCE_ID, len(skipped), len(self.queries)
+                "%s: %d of %d searches skipped after a retry",
+                self.source.source_id,
+                len(skipped),
+                len(self.queries),
             )
         return list(records.values())
 
@@ -254,6 +398,8 @@ class SerperNewsConnector:
         """
         if self._pages_read >= MAX_ARTICLE_PAGES_PER_POLL or not record.url:
             return record
+        if not self._read_any_publisher and not readable_publisher(record.url):
+            return record
         self._pages_read += 1
         try:
             _, page = download_page(record.url, self._user_agent, client=self._client)
@@ -261,13 +407,19 @@ class SerperNewsConnector:
                 self.source, record.url, page, retrieved_at=record.retrieved_at
             )
         except ConnectorError as error:
-            logger.info("%s: kept the search result only (%s)", SOURCE_ID, error)
+            logger.info("%s: kept the search result only (%s)", self.source.source_id, error)
             return record
         return article.model_copy(
             update={
                 # Google's date stands in when the page states none.
                 "published_at": article.published_at or record.published_at,
-                "raw": {**article.raw, "search_result": record.raw["search_result"]},
+                "raw": {
+                    **article.raw,
+                    "search_result": record.raw["search_result"],
+                    # Whose publication time it is: a day may be counted from the
+                    # article's own, never from the search result's (decision 0038).
+                    "published_at_from": "article" if article.published_at else "search_result",
+                },
             }
         )
 
@@ -276,10 +428,10 @@ class SerperNewsConnector:
             response = self._client.post(
                 ENDPOINT,
                 headers={"X-API-KEY": self._api_key, "User-Agent": self._user_agent},
-                # Indian results, in English, from the chosen window.
+                # The city's country's results, in English, from the chosen window.
                 json={
                     "q": query,
-                    "gl": "in",
+                    "gl": self._country,
                     "hl": "en",
                     "tbs": self.window,
                     "num": self.results_per_query,
@@ -314,8 +466,9 @@ class SerperNewsConnector:
         if self._other_city.search(title) and not self._in_scope.search(title):
             return None
         # A publisher whose terms forbid automated access is not used at all:
-        # neither its page nor the search result that links to it (decision 0024).
-        if restricted_publisher(link):
+        # neither its page nor the search result that links to it (decision
+        # 0024); nor one the user removed from REI (decision 0026).
+        if restricted_publisher(link) or removed_publisher(link):
             return None
         return RawSourceRecord(
             source_id=self.source.source_id,
