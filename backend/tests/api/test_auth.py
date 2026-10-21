@@ -5,6 +5,7 @@ opaque cookie; only its digest is stored, and signing out revokes it.
 """
 
 import hashlib
+import threading
 from collections import defaultdict
 
 import pytest
@@ -65,6 +66,24 @@ def test_signing_in_opens_the_api_and_signing_out_closes_it(anonymous, session):
     anonymous.cookies.set("rei_session", token)  # replaying the old cookie
     assert anonymous.get("/api/auth/me").status_code == 401
     assert anonymous.get("/api/events").status_code == 401
+
+
+def test_signing_in_and_out_do_not_wait_for_a_source_run_on_postgresql(anonymous, app, session, monkeypatch):
+    """A run holds the run lock throughout, minutes for a first run of a large feed."""
+    assert auth._one_writer_at_a_time(session)  # the tests' SQLite still waits
+    monkeypatch.setattr(auth, "_one_writer_at_a_time", lambda session: False)
+    statuses = []
+
+    def sign_in_and_out():
+        statuses.append(sign_in(anonymous).status_code)
+        statuses.append(anonymous.post("/api/auth/logout").status_code)
+
+    with app.state.ingestion_service.lock:  # a source run in progress
+        worker = threading.Thread(target=sign_in_and_out)
+        worker.start()
+        worker.join(timeout=10)
+        assert not worker.is_alive(), "signing in waited for the run"
+    assert statuses == [200, 200]
 
 
 def test_changes_from_another_website_are_refused(anonymous):

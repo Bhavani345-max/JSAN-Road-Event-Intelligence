@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+from contextlib import nullcontext
 from threading import Lock
 from time import monotonic
 
@@ -62,6 +63,20 @@ def _record_failure(account: str) -> None:
                 _recent_failures(key, now)
 
 
+def _one_writer_at_a_time(session) -> bool:
+    """SQLite (local) takes one writer at a time; PostgreSQL (production) takes many."""
+    return session.get_bind().dialect.name == "sqlite"
+
+
+def _while_no_run_writes(request: Request, session):
+    """On SQLite, wait for the source run in progress; on PostgreSQL, never: a run holds
+    the run lock throughout, minutes for a first run of a large feed (decision 0040),
+    and signing in or out must not wait for it."""
+    if _one_writer_at_a_time(session):
+        return request.app.state.ingestion_service.lock
+    return nullcontext()
+
+
 @router.post("/login", response_model=UserOut)
 def login(body: LoginIn, request: Request, response: Response, session: SessionDep) -> UserOut:
     # Counted per account: one account's failures never lock out another.
@@ -74,7 +89,7 @@ def login(body: LoginIn, request: Request, response: Response, session: SessionD
         raise HTTPException(status_code=401, detail="The email or password is incorrect.")
 
     settings = request.app.state.settings
-    with request.app.state.ingestion_service.lock:
+    with _while_no_run_writes(request, session):
         token = create_session(session, user, settings.auth_session_hours)
         session.commit()
     response.set_cookie(
@@ -103,7 +118,7 @@ def me(request: Request, session: SessionDep) -> UserOut:
 @router.post("/logout")
 def logout(request: Request, response: Response, session: SessionDep) -> dict[str, bool]:
     settings = request.app.state.settings
-    with request.app.state.ingestion_service.lock:
+    with _while_no_run_writes(request, session):
         revoke_session(session, request.cookies.get(settings.auth_cookie_name))
         session.commit()
     response.delete_cookie(

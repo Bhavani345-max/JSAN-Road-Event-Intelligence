@@ -115,7 +115,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative isolate flex min-h-dvh flex-col bg-[color:var(--login-page)] text-white" style={themeStyle}>
+    <main className="relative isolate flex min-h-dvh flex-col bg-[color:var(--login-page)] text-[color:var(--login-headline)]" style={themeStyle}>
       {/* White header bar, matching the console header. */}
       <header className="login-header relative z-20 flex h-14 shrink-0 items-center justify-between gap-3 px-5 sm:px-8 lg:px-12 xl:px-16">
         <Brand />
@@ -128,7 +128,7 @@ export default function LoginPage() {
         {/* Decorative backdrop: CSS perspective grid everywhere, WebGL road network on desktop. */}
         <div aria-hidden="true" className="login-backdrop">
           <div className="login-floor" />
-          <span className="login-beacon left-[88%] top-[8%] lg:left-[57%] lg:top-[63%]" />
+          <span className="login-beacon hidden lg:block lg:left-[57%] lg:top-[63%]" />
           <span className="login-beacon hidden lg:block lg:left-[47%] lg:top-[51%]" />
         </div>
         {scene === "on" && (
@@ -144,7 +144,7 @@ export default function LoginPage() {
             <p className="mb-5 flex items-center gap-3 text-[10.5px] font-semibold uppercase tracking-[0.26em] text-[color:var(--login-eyebrow)] sm:text-[11px]">
               <span className="h-px w-8 bg-[color:var(--login-eyebrow)] opacity-70" /> Operations console
             </p>
-            <h1 className="text-[2.1rem] font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-[2.7rem] lg:text-[3.2rem] xl:text-[3.7rem] 2xl:text-[4rem]">
+            <h1 className="login-headline text-[2.1rem] font-semibold leading-[1.05] tracking-[-0.04em] sm:text-[2.7rem] lg:text-[3.2rem] xl:text-[3.7rem] 2xl:text-[4rem]">
               See what&apos;s changing
               <br />
               <span className="login-headline-accent">on the road.</span>
@@ -155,7 +155,7 @@ export default function LoginPage() {
             <ul className="mt-7 hidden flex-wrap gap-2.5 sm:flex lg:mt-9" aria-label="How REI works">
               {indicators.map((indicator) => (
                 <li key={indicator.label} className="login-chip inline-flex items-center gap-2 rounded-full py-1.5 pl-2 pr-3.5 text-[12.5px] font-medium">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[color:var(--login-eyebrow)]/10 text-[color:var(--login-eyebrow)]">{indicator.icon}</span>
+                  <span className="login-chip-icon flex h-6 w-6 items-center justify-center rounded-full">{indicator.icon}</span>
                   {indicator.label}
                 </li>
               ))}
@@ -167,9 +167,9 @@ export default function LoginPage() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-[color:var(--login-eyebrow)]">Operator access</p>
-                  <h2 className="mt-2 text-[1.7rem] font-semibold tracking-[-0.035em] text-white">Sign in</h2>
+                  <h2 className="mt-2 text-[1.7rem] font-semibold tracking-[-0.035em] text-[color:var(--login-headline)]">Sign in</h2>
                 </div>
-                <div className="login-chip flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-[color:var(--login-label)]">
+                <div className="login-chip-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
                   <LockMark />
                 </div>
               </div>
@@ -268,14 +268,14 @@ export default function LoginPage() {
                       Signed in, opening your workspace
                     </>
                   ) : submitting ? (
-                    <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/35 border-t-white motion-reduce:animate-none" /> Signing in</>
+                    <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white motion-reduce:animate-none" /> Signing in</>
                   ) : (
                     <>Sign in <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" strokeLinecap="round" strokeLinejoin="round" /></svg></>
                   )}
                 </button>
               </form>
 
-              <p className="mt-6 flex items-start gap-2.5 border-t border-white/[0.08] pt-5 text-[12.5px] leading-5 text-[color:var(--login-helper)]">
+              <p className="mt-6 flex items-start gap-2.5 border-t border-[color:var(--login-card-border)] pt-5 text-[12.5px] leading-5 text-[color:var(--login-helper)]">
                 <LockMark className="mt-0.5 h-4 w-4 shrink-0" />
                 Sessions expire automatically. Accounts are provisioned by your REI administrator.
               </p>
@@ -283,9 +283,9 @@ export default function LoginPage() {
           </section>
         </div>
 
-        <footer className="flex items-center justify-between gap-3 border-t border-white/[0.08] pt-4 text-[11.5px] text-[color:var(--login-helper)] login-reveal" style={{ animationDelay: "240ms" }}>
+        <footer className="flex items-center justify-between gap-3 border-t border-slate-200/80 pt-4 text-[11.5px] text-[color:var(--login-helper)] login-reveal" style={{ animationDelay: "240ms" }}>
           <span>© {new Date().getFullYear()} JSAN Consulting</span>
-          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-300/90" /> Secure access</span>
+          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Secure access</span>
         </footer>
         </div>
       </div>

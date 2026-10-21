@@ -1,15 +1,26 @@
 /**
- * Colour tokens for the sign-in page. They are the single source of truth:
- * the page injects them as CSS custom properties, the 3D scene reads the
- * scene colours, and loginTheme.test.ts measures WCAG contrast on them.
+ * Colour tokens for the sign-in page (light theme). They are the single source
+ * of truth: the page injects them as CSS custom properties, the 3D scene reads
+ * the scene colours, and loginTheme.test.ts measures WCAG contrast on them.
  */
 export const loginColors = {
   // Page and scene
-  pageBackground: "#050D17",
-  sceneHaze: "#0B1A2C",
+  pageBackground: "#F4F7FB",
+  pageWhite: "#FFFFFF",
+  sceneHaze: "#F4F7FB",
+  sceneGround: "#EDF1F6",
+  sceneRoad: "#E2E8EF",
+  sceneMassing: "#FFFFFF",
   roadBlue: "#168BCE",
-  roadCyan: "#63D9F2",
-  eventAmber: "#E9B44C",
+  roadBlueDeep: "#0F6FA8",
+  eventAmber: "#D97706",
+
+  // Hero copy on the light page
+  headlineText: "#0B1F33",
+  accentText: "#0F6FA8",
+  bodyText: "#475569",
+  eyebrowText: "#004674",
+  chipText: "#334155",
 
   // White header bar (matches the console header)
   headerBackground: "#FFFFFF",
@@ -18,28 +29,28 @@ export const loginColors = {
   headerPillBackground: "#EEF6FB",
   headerPillText: "#004674",
 
-  // Sign-in card (solid base colour under the slight translucency)
-  cardBackground: "#0B1A2C",
-  inputBackground: "#13233A",
-  labelText: "#E6EDF5",
-  bodyText: "#C5D1DE",
-  placeholderText: "#9AAABB",
-  helperText: "#A3B3C4",
-  eyebrowText: "#63D9F2",
-  focusRing: "#63D9F2",
+  // Sign-in card
+  cardBackground: "#FFFFFF",
+  cardBorder: "#E2E8F0",
+  inputBackground: "#F8FAFC",
+  inputBorder: "#CBD5E1",
+  labelText: "#0F172A",
+  placeholderText: "#5B6B7F",
+  helperText: "#5B6B7F",
+  focusRing: "#0F6FA8",
 
   // Primary button
   buttonBackground: "#0F6FA8",
   buttonHoverBackground: "#0B5C8C",
   buttonText: "#FFFFFF",
-  buttonDisabledBackground: "#1B2F46",
-  buttonDisabledText: "#B3C2D3",
+  buttonDisabledBackground: "#E2E8F0",
+  buttonDisabledText: "#4B5A6C",
 
   // Feedback
-  errorBackground: "#2B1B27",
-  errorText: "#FFD9DD",
-  successBackground: "#10302C",
-  successText: "#C9F5E3",
+  errorBackground: "#FFF1F2",
+  errorText: "#9F1239",
+  successBackground: "#ECFDF5",
+  successText: "#065F46",
 } as const;
 
 export type LoginColor = keyof typeof loginColors;
@@ -47,18 +58,24 @@ export type LoginColor = keyof typeof loginColors;
 /** CSS custom properties consumed by the login-* rules in globals.css. */
 export const loginCssVariables: Record<string, string> = {
   "--login-page": loginColors.pageBackground,
+  "--login-white": loginColors.pageWhite,
+  "--login-headline": loginColors.headlineText,
+  "--login-accent": loginColors.accentText,
+  "--login-body": loginColors.bodyText,
+  "--login-eyebrow": loginColors.eyebrowText,
+  "--login-chip-text": loginColors.chipText,
   "--login-header-bg": loginColors.headerBackground,
   "--login-header-title": loginColors.headerTitleText,
   "--login-header-subtitle": loginColors.headerSubtitleText,
   "--login-header-pill-bg": loginColors.headerPillBackground,
   "--login-header-pill-text": loginColors.headerPillText,
   "--login-card": loginColors.cardBackground,
+  "--login-card-border": loginColors.cardBorder,
   "--login-input-bg": loginColors.inputBackground,
+  "--login-input-border": loginColors.inputBorder,
   "--login-label": loginColors.labelText,
-  "--login-body": loginColors.bodyText,
   "--login-placeholder": loginColors.placeholderText,
   "--login-helper": loginColors.helperText,
-  "--login-eyebrow": loginColors.eyebrowText,
   "--login-focus": loginColors.focusRing,
   "--login-button": loginColors.buttonBackground,
   "--login-button-hover": loginColors.buttonHoverBackground,
@@ -69,6 +86,7 @@ export const loginCssVariables: Record<string, string> = {
   "--login-error-text": loginColors.errorText,
   "--login-success-bg": loginColors.successBackground,
   "--login-success-text": loginColors.successText,
+  "--login-road-blue": loginColors.roadBlue,
 };
 
 function channel(value: number): number {

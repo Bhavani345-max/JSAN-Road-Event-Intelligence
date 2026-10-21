@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------
-   REI LOGIN — ENTERPRISE GEOSPATIAL THEME
-   Deep navy, electric blue (#168BCE) road lighting, soft cyan
-   (#63D9F2) highlights. Colour tokens come from
-   features/auth/loginTheme.ts as --login-* custom properties.
+   REI LOGIN — LIGHT ENTERPRISE GEOSPATIAL THEME
+   White / cool-grey page, white architectural city model with
+   brand-blue (#0F6FA8 / #168BCE) road edges. Colour tokens come
+   from features/auth/loginTheme.ts as --login-* custom properties.
    --------------------------------------------------------- */
 
 @keyframes rei-login-reveal {
@@ -53,9 +53,9 @@
   inset: 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 70% 48% at 66% 55%, rgba(22, 139, 206, 0.16), transparent 72%),
-    radial-gradient(ellipse 44% 36% at 22% 32%, rgba(14, 116, 144, 0.1), transparent 72%),
-    linear-gradient(180deg, #040b14 0%, #081522 50%, #050d17 100%);
+    radial-gradient(ellipse 70% 48% at 66% 55%, rgba(22, 139, 206, 0.07), transparent 72%),
+    radial-gradient(ellipse 44% 36% at 22% 32%, rgba(15, 111, 168, 0.04), transparent 72%),
+    linear-gradient(180deg, #ffffff 0%, #f4f7fb 55%, #eef2f7 100%);
 }
 
 .login-floor {
@@ -75,8 +75,8 @@
   transform-origin: 50% 0;
   transform: rotateX(64deg);
   background-image:
-    linear-gradient(rgba(22, 139, 206, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(22, 139, 206, 0.16) 1px, transparent 1px);
+    linear-gradient(rgba(15, 111, 168, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 111, 168, 0.13) 1px, transparent 1px);
   background-size: 72px 72px, 72px 72px;
   mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent);
   animation: rei-login-floor-drift 14s linear infinite;
@@ -89,19 +89,18 @@
   right: 0;
   top: 29.5%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(22, 139, 206, 0.2) 25%, rgba(99, 217, 242, 0.34) 52%, rgba(22, 139, 206, 0.14) 75%, transparent);
-  box-shadow: 0 0 24px 5px rgba(22, 139, 206, 0.1);
+  background: linear-gradient(90deg, transparent, rgba(22, 139, 206, 0.22) 25%, rgba(15, 111, 168, 0.34) 52%, rgba(22, 139, 206, 0.16) 75%, transparent);
 }
 
-/* Small event markers for the CSS backdrop. */
+/* Small event marker for the CSS backdrop. */
 
 .login-beacon {
   position: absolute;
   width: 7px;
   height: 7px;
   border-radius: 9999px;
-  background: #63d9f2;
-  box-shadow: 0 0 8px 2px rgba(99, 217, 242, 0.28);
+  background: #d97706;
+  box-shadow: 0 0 0 2px #ffffff;
   transform: translate(-50%, -50%);
 }
 
@@ -114,7 +113,7 @@
   width: 22px;
   height: 11px;
   border-radius: 9999px;
-  border: 1px solid rgba(99, 217, 242, 0.4);
+  border: 1px solid rgba(217, 119, 6, 0.45);
   animation: rei-login-pulse 3.8s ease-out infinite;
 }
 
@@ -123,7 +122,7 @@
 }
 
 /* ---------------------------------------------------------
-   READABILITY VEIL (never lets the scene reduce legibility)
+   READABILITY VEIL (soft white behind the copy and the card)
    --------------------------------------------------------- */
 
 .login-veil {
@@ -131,8 +130,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(5, 13, 23, 0.7) 0%, rgba(5, 13, 23, 0.14) 26%, transparent 45%),
-    linear-gradient(0deg, rgba(5, 13, 23, 0.84) 0%, rgba(5, 13, 23, 0.32) 30%, transparent 58%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.35) 30%, rgba(255, 255, 255, 0) 50%),
+    linear-gradient(0deg, rgba(244, 247, 251, 0.9) 0%, rgba(244, 247, 251, 0.4) 30%, rgba(244, 247, 251, 0) 58%);
 }
 
 @media (min-width: 1024px) {
@@ -146,12 +145,13 @@
 
   .login-veil {
     background:
-      radial-gradient(ellipse 58% 26% at 58% 12%, rgba(22, 139, 206, 0.12), transparent 70%),
-      /* A quiet backing for the headline and description, so road lines do not run through the text. */
-      radial-gradient(ellipse 36% 40% at 19% 56%, rgba(5, 13, 23, 0.68), rgba(5, 13, 23, 0.3) 55%, transparent 80%),
-      linear-gradient(90deg, rgba(5, 13, 23, 0.88) 0%, rgba(5, 13, 23, 0.7) 26%, rgba(5, 13, 23, 0.3) 40%, rgba(5, 13, 23, 0.06) 54%, transparent 64%),
-      linear-gradient(180deg, rgba(5, 13, 23, 0.52) 0%, transparent 22%),
-      linear-gradient(0deg, rgba(5, 13, 23, 0.7) 0%, transparent 28%);
+      /* A quiet white backing for the headline and description, so road lines do not run through the text. */
+      radial-gradient(ellipse 38% 42% at 19% 56%, rgba(248, 250, 253, 0.92), rgba(248, 250, 253, 0.55) 55%, transparent 80%),
+      /* Soft backing around the sign-in card. */
+      radial-gradient(ellipse 24% 46% at 82% 50%, rgba(255, 255, 255, 0.55), transparent 75%),
+      linear-gradient(90deg, rgba(248, 250, 253, 0.92) 0%, rgba(248, 250, 253, 0.78) 26%, rgba(248, 250, 253, 0.35) 40%, rgba(248, 250, 253, 0.06) 54%, transparent 64%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, transparent 24%),
+      linear-gradient(0deg, rgba(244, 247, 251, 0.75) 0%, transparent 26%);
   }
 }
 
@@ -162,7 +162,7 @@
 .login-header {
   background: var(--login-header-bg);
   border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04), 0 8px 24px -18px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .login-header-pill {
@@ -175,61 +175,55 @@
    TYPOGRAPHY ACCENTS AND CHIPS
    --------------------------------------------------------- */
 
+.login-headline {
+  color: var(--login-headline);
+}
+
 .login-headline-accent {
-  color: #9ee3f5;
-  background: linear-gradient(90deg, #d2f1f9 0%, #63d9f2 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--login-accent);
 }
 
 .login-chip {
-  color: var(--login-label);
-  background: rgba(11, 26, 44, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  color: var(--login-chip-text);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #dbe3ec;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.login-chip-icon {
+  color: var(--login-accent);
+  background: #eaf4fb;
 }
 
 /* ---------------------------------------------------------
-   SIGN-IN CARD (translucent navy glass)
+   SIGN-IN CARD (white, hairline border, soft lift)
    --------------------------------------------------------- */
 
 .login-panel {
   position: relative;
   color: var(--login-label);
   background: var(--login-card);
-  background: color-mix(in srgb, var(--login-card) 86%, transparent);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid var(--login-card-border);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 30px 70px -32px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(99, 217, 242, 0.04);
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 24px 60px -24px rgba(15, 23, 42, 0.22),
+    0 48px 90px -40px rgba(15, 111, 168, 0.18);
   transition: border-color 300ms ease;
 }
 
-.login-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0 20% auto;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(99, 217, 242, 0.55), transparent);
-  pointer-events: none;
-}
-
 .login-panel--success {
-  border-color: rgba(52, 211, 153, 0.45);
+  border-color: rgba(16, 185, 129, 0.55);
 }
 
 /* Inputs: states enabled, hover, focus (visible ring), invalid. */
 
 .login-input {
-  color-scheme: dark;
+  color-scheme: light;
   color: var(--login-label);
   background-color: var(--login-input-bg);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--login-input-border);
   outline: none;
   transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
 }
@@ -240,17 +234,18 @@
 }
 
 .login-input:hover {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: #94a3b8;
 }
 
 .login-input:focus,
 .login-input:focus-visible {
   border-color: var(--login-focus);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--login-focus) 30%, transparent);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--login-focus) 24%, transparent);
 }
 
 .login-input[aria-invalid="true"] {
-  border-color: rgba(253, 164, 175, 0.65);
+  border-color: #e11d48;
 }
 
 .login-input:-webkit-autofill,
@@ -265,21 +260,21 @@
 /* Password visibility toggle: always visible, keyboard focusable. */
 
 .login-toggle {
-  color: var(--login-label);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--login-eyebrow);
+  background: #ffffff;
+  border: 1px solid var(--login-input-border);
   transition: background-color 160ms ease, border-color 160ms ease;
 }
 
 .login-toggle:hover {
-  background: rgba(255, 255, 255, 0.13);
-  border-color: rgba(255, 255, 255, 0.28);
+  background: #eaf4fb;
+  border-color: #94a3b8;
 }
 
 .login-toggle:focus-visible {
   outline: none;
   border-color: var(--login-focus);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--login-focus) 30%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--login-focus) 24%, transparent);
 }
 
 /* Primary button: enabled, hover, focus, disabled, loading, success. */
@@ -287,9 +282,9 @@
 .login-button {
   color: var(--login-button-text);
   background: var(--login-button);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
   box-shadow:
-    0 12px 26px -12px rgba(15, 111, 168, 0.9),
+    0 10px 22px -12px rgba(15, 111, 168, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.14);
   transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
@@ -298,7 +293,7 @@
   background: var(--login-button-hover);
   transform: translateY(-1px);
   box-shadow:
-    0 16px 30px -12px rgba(15, 111, 168, 0.95),
+    0 14px 26px -12px rgba(15, 111, 168, 0.75),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
@@ -309,14 +304,14 @@
 .login-button:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 3px var(--login-card),
+    0 0 0 3px #ffffff,
     0 0 0 6px var(--login-focus);
 }
 
 .login-button:disabled {
   color: var(--login-button-disabled-text);
   background: var(--login-button-disabled);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: #cbd5e1;
   box-shadow: none;
   cursor: not-allowed;
   transform: none;
@@ -325,7 +320,7 @@
 .login-button.login-button--success:disabled {
   color: var(--login-success-text);
   background: var(--login-success-bg);
-  border-color: rgba(52, 211, 153, 0.5);
+  border-color: rgba(16, 185, 129, 0.6);
   cursor: default;
 }
 
@@ -334,13 +329,13 @@
 .login-error {
   color: var(--login-error-text);
   background: var(--login-error-bg);
-  border: 1px solid rgba(253, 164, 175, 0.35);
+  border: 1px solid #fecdd3;
 }
 
 .login-status {
   color: var(--login-success-text);
   background: var(--login-success-bg);
-  border: 1px solid rgba(52, 211, 153, 0.4);
+  border: 1px solid #a7f3d0;
 }
 
 /* ---------------------------------------------------------

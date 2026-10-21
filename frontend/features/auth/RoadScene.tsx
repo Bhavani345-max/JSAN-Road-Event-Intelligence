@@ -7,10 +7,11 @@ import { createRng, generateRoadNetwork, type ElevatedRoad, type Point, type Pol
 import { loginColors } from "./loginTheme";
 
 /**
- * Decorative night-time road network for the sign-in page: an oblique view of
- * ground avenues and streets, a flyover and a higher viaduct on pillars with
- * ramps, soft shadows from the elevated decks, restrained blue/cyan road-edge
- * lighting, a few small event markers and slow traffic lights.
+ * Decorative light "architectural model" road network for the sign-in page:
+ * an oblique view of ground avenues and streets, white building massing, a
+ * flyover and a higher viaduct on pillars with ramps, soft shadows from the
+ * elevated decks, thin brand-blue road edges, two small event markers and
+ * calm blue traffic, all dissolving into a white haze.
  *
  * Real 3D: all geometry, lighting, the shadow map (rendered once) and the
  * depth-based depth of field. Purely procedural and purely illustrative: it
@@ -24,10 +25,10 @@ type RoadSceneProps = {
   onUnavailable?: () => void;
 };
 
-const SKY = new THREE.Color("#081522");
-const HAZE = new THREE.Color(loginColors.sceneHaze).multiplyScalar(1.35);
+const SKY = new THREE.Color(loginColors.pageWhite);
+const HAZE = new THREE.Color(loginColors.sceneHaze);
 const ROAD_BLUE = new THREE.Color(loginColors.roadBlue);
-const ROAD_CYAN = new THREE.Color(loginColors.roadCyan);
+const ROAD_BLUE_DEEP = new THREE.Color(loginColors.roadBlueDeep);
 const EVENT_AMBER = new THREE.Color(loginColors.eventAmber);
 const DECK_THICKNESS = 0.6;
 const TARGET_FPS = 30;
@@ -226,8 +227,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     renderer.setPixelRatio(pixelRatio);
     renderer.setClearColor(SKY, 1);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.4;
+    renderer.toneMapping = THREE.NoToneMapping;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.shadowMap.autoUpdate = false; // static geometry and light: rendered once
@@ -249,7 +249,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
 
     const scene = new THREE.Scene();
     scene.background = SKY;
-    scene.fog = new THREE.Fog(HAZE, 55, 200);
+    scene.fog = new THREE.Fog(HAZE, 40, 170);
 
     const camera = new THREE.PerspectiveCamera(44, 1, 1, 320);
     const cameraBase = new THREE.Vector3(3, 14, 31);
@@ -259,11 +259,12 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
 
     // Lighting: cool ambient sky light, one shadow-casting key light from the
     // upper left and a faint blue fill from the right.
-    scene.add(new THREE.HemisphereLight(0x2f5a85, 0x07111d, 2.1));
-    const key = new THREE.DirectionalLight(0xbdd7f0, 2.6);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xdfe7f0, 1.9));
+    const key = new THREE.DirectionalLight(0xffffff, 1.7);
     key.position.set(-46, 72, 14);
     key.target.position.set(0, 0, -24);
     key.castShadow = true;
+    key.shadow.intensity = 0.42;
     key.shadow.mapSize.set(1536, 1536);
     key.shadow.camera.left = -64;
     key.shadow.camera.right = 64;
@@ -275,7 +276,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     key.shadow.normalBias = 0.05;
     scene.add(key, key.target);
     track(key.shadow);
-    const fill = new THREE.DirectionalLight(ROAD_BLUE, 0.6);
+    const fill = new THREE.DirectionalLight(0xdbe9f5, 0.5);
     fill.position.set(50, 30, -20);
     scene.add(fill);
 
@@ -283,7 +284,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
 
     // Sky: a far gradient quad from navy down to the horizon haze.
     const skyMaterial = track(new THREE.ShaderMaterial({
-      uniforms: { uTop: { value: SKY }, uHorizon: { value: HAZE.clone().multiplyScalar(1.15) } },
+      uniforms: { uTop: { value: SKY }, uHorizon: { value: HAZE } },
       vertexShader: `
         varying float vY;
         void main() {
@@ -307,7 +308,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     scene.add(sky);
 
     // Ground, blocks and ground roads --------------------------------------
-    const groundMaterial = track(new THREE.MeshStandardMaterial({ color: 0x0c1a2b, roughness: 0.5, metalness: 0.18 }));
+    const groundMaterial = track(new THREE.MeshStandardMaterial({ color: loginColors.sceneGround, roughness: 0.95, metalness: 0 }));
     const ground = new THREE.Mesh(track(new THREE.PlaneGeometry(240, 240)), groundMaterial);
     ground.rotation.x = -Math.PI / 2;
     ground.receiveShadow = true;
@@ -316,7 +317,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     const visibleBlocks = network.blocks.filter((block) => block.density > 0.12);
     const blockRng = createRng(99);
     const blockGeometry = track(new THREE.BoxGeometry(1, 1, 1));
-    const blockMaterial = track(new THREE.MeshStandardMaterial({ color: 0x102238, roughness: 0.9, metalness: 0.05 }));
+    const blockMaterial = track(new THREE.MeshStandardMaterial({ color: loginColors.sceneMassing, roughness: 0.9, metalness: 0 }));
     const blocks = new THREE.InstancedMesh(blockGeometry, blockMaterial, visibleBlocks.length);
     const matrix = new THREE.Matrix4();
     visibleBlocks.forEach((block, index) => {
@@ -334,11 +335,11 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     const streetGeometry = track(new THREE.BufferGeometry());
     streetGeometry.setAttribute("position", new THREE.Float32BufferAttribute(streetPositions, 3));
     scene.add(new THREE.LineSegments(streetGeometry, track(new THREE.LineBasicMaterial({
-      color: ROAD_BLUE, transparent: true, opacity: 0.2, depthWrite: false,
+      color: 0xa9b8c8, transparent: true, opacity: 0.8, depthWrite: false,
     }))));
 
-    const avenueSurface = track(new THREE.MeshStandardMaterial({ color: 0x142a42, roughness: 0.72, metalness: 0.1 }));
-    const avenueEdge = track(new THREE.LineBasicMaterial({ color: ROAD_BLUE, transparent: true, opacity: 0.72, depthWrite: false }));
+    const avenueSurface = track(new THREE.MeshStandardMaterial({ color: loginColors.sceneRoad, roughness: 0.9, metalness: 0 }));
+    const avenueEdge = track(new THREE.LineBasicMaterial({ color: ROAD_BLUE, transparent: true, opacity: 0.8, depthWrite: false }));
     network.arterials.forEach((line, index) => {
       const lift = 0.02 + index * 0.004;
       const strip = new THREE.Mesh(track(createStripGeometry(line, 1.25, lift)), avenueSurface);
@@ -350,9 +351,9 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     });
 
     // Elevated roads: decks, pillars, caps and edge lights -----------------
-    const deckMaterial = track(new THREE.MeshStandardMaterial({ color: 0x1d3a58, roughness: 0.62, metalness: 0.12 }));
-    const pillarMaterial = track(new THREE.MeshStandardMaterial({ color: 0x14283f, roughness: 0.85 }));
-    const deckEdge = track(new THREE.LineBasicMaterial({ color: ROAD_CYAN, transparent: true, opacity: 0.6, depthWrite: false }));
+    const deckMaterial = track(new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.85, metalness: 0 }));
+    const pillarMaterial = track(new THREE.MeshStandardMaterial({ color: 0xe9eef4, roughness: 0.9, metalness: 0 }));
+    const deckEdge = track(new THREE.LineBasicMaterial({ color: ROAD_BLUE_DEEP, transparent: true, opacity: 0.85, depthWrite: false }));
     const pillarGeometry = track(new THREE.CylinderGeometry(0.34, 0.42, 1, 12));
     const capGeometry = track(new THREE.BoxGeometry(1, 1, 1));
     type PillarSpot = { x: number; z: number; height: number; angle: number; width: number };
@@ -411,10 +412,8 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     }
     const trafficPositions = new Float32Array(trafficCount * 3);
     const trafficColors = new Float32Array(trafficCount * 3);
-    const cool = new THREE.Color(0xd6f1ff);
-    const cyanish = new THREE.Color(0x9fe3f7);
     travellers.forEach((_, index) => {
-      const color = rng() < 0.6 ? cool : cyanish;
+      const color = rng() < 0.6 ? ROAD_BLUE_DEEP : ROAD_BLUE;
       trafficColors.set([color.r, color.g, color.b], index * 3);
     });
     const trafficGeometry = track(new THREE.BufferGeometry());
@@ -423,7 +422,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     const spriteTexture = createSpriteTexture();
     if (spriteTexture) track(spriteTexture);
     const traffic = new THREE.Points(trafficGeometry, track(new THREE.PointsMaterial({
-      size: 0.34, map: spriteTexture, vertexColors: true, transparent: true, opacity: 0.62, depthWrite: false, sizeAttenuation: true, blending: THREE.AdditiveBlending,
+      size: 0.3, map: spriteTexture, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false, sizeAttenuation: true,
     })));
     traffic.frustumCulled = false;
     scene.add(traffic);
@@ -466,10 +465,10 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     const smallRingGeometry = track(new THREE.RingGeometry(0.24, 0.29, 32));
     const postGeometry = track(new THREE.CylinderGeometry(0.035, 0.035, 1.2, 8));
     const headGeometry = track(new THREE.SphereGeometry(0.13, 12, 10));
-    const amberFlat = track(new THREE.MeshBasicMaterial({ color: EVENT_AMBER, toneMapped: false }));
-    const amberRing = track(new THREE.MeshBasicMaterial({ color: EVENT_AMBER, transparent: true, opacity: 0.55, depthWrite: false, side: THREE.DoubleSide }));
-    const cyanFlat = track(new THREE.MeshBasicMaterial({ color: ROAD_CYAN }));
-    const cyanRing = track(new THREE.MeshBasicMaterial({ color: ROAD_CYAN, transparent: true, opacity: 0.35, depthWrite: false, side: THREE.DoubleSide }));
+    const amberFlat = track(new THREE.MeshBasicMaterial({ color: EVENT_AMBER }));
+    const amberRing = track(new THREE.MeshBasicMaterial({ color: EVENT_AMBER, transparent: true, opacity: 0.6, depthWrite: false, side: THREE.DoubleSide }));
+    const cyanFlat = track(new THREE.MeshBasicMaterial({ color: ROAD_BLUE_DEEP }));
+    const cyanRing = track(new THREE.MeshBasicMaterial({ color: ROAD_BLUE_DEEP, transparent: true, opacity: 0.4, depthWrite: false, side: THREE.DoubleSide }));
 
     const addPulse = (parent: THREE.Object3D, geometry: THREE.BufferGeometry, color: THREE.Color, phase: number, reach: number, peak: number) => {
       const ring = new THREE.Mesh(geometry, track(new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide })));
@@ -510,12 +509,12 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
       ring.rotation.x = -Math.PI / 2;
       ring.position.y = 0.01;
       group.add(ring);
-      addPulse(group, smallRingGeometry, ROAD_CYAN, index * 0.37, 1.5, 0.16);
+      addPulse(group, smallRingGeometry, ROAD_BLUE_DEEP, index * 0.37, 1.5, 0.2);
     });
 
     // Highlighted detour around the first closure (quiet cyan strip).
     const detourMaterial = track(new THREE.ShaderMaterial({
-      uniforms: { uColor: { value: ROAD_CYAN }, uTime: { value: 0 } },
+      uniforms: { uColor: { value: ROAD_BLUE }, uTime: { value: 0 } },
       vertexShader: quadVertexShader,
       fragmentShader: `
         uniform vec3 uColor;
@@ -525,7 +524,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
           float edge = pow(1.0 - abs(vUv.y * 2.0 - 1.0), 1.2);
           float flow = fract(vUv.x * 0.25 - uTime * 0.3);
           float dash = smoothstep(0.0, 0.35, flow) * (1.0 - smoothstep(0.55, 1.0, flow));
-          gl_FragColor = vec4(uColor, edge * (0.18 + 0.3 * dash));
+          gl_FragColor = vec4(uColor, edge * (0.3 + 0.45 * dash));
         }
       `,
       transparent: true,

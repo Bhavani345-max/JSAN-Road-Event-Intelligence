@@ -127,3 +127,12 @@ round after these feeds are scheduled holds the other feeds back for about half 
 hour, once; later runs only compare what is new.
 
 Tests: 1,436 backend passed (2 skipped), 158 frontend, tsc and eslint clean.
+
+### Signing in during a long run (added 21 October 2026, after the push)
+
+A run holds the ingestion lock from fetch to matching, and signing in and out took
+the same lock, so nobody could sign in while a first run of these feeds was going.
+`app/api/routes/auth.py` now takes it only on SQLite (one writer at a time, local);
+on PostgreSQL (production) signing in and out never wait for a run, as the console's
+review actions already did not. `tests/api/test_auth.py` holds the lock as a run would
+and checks that sign-in and sign-out return at once.
