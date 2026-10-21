@@ -1,0 +1,38 @@
+{
+  "id": "spain",
+  "name": "Spain",
+  "area_name": "Spain (mainland, Balearic Islands, Ceuta and Melilla)",
+  "country": "ES",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Madrid",
+  "language": "es",
+  "bbox": [
+    35.1,
+    -9.5,
+    43.9,
+    4.4
+  ],
+  "map": {
+    "center": [
+      -3.7038,
+      40.4168
+    ],
+    "zoom": 5.3
+  },
+  "scope_terms": [
+    "Spain",
+    "España"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "dgt-spain-incidents",
+    "euskadi-traffic-incidences"
+  ],
+  "gis_sources": []
+}

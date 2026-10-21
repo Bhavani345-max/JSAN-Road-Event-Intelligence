@@ -212,15 +212,17 @@ def test_a_run_keeps_current_and_upcoming_records_most_recent_first_up_to_the_li
         ("now-new-update", NOW - timedelta(days=3), NOW + timedelta(days=3), 9),
         ("next-week", NOW + timedelta(days=5), NOW + timedelta(days=9), 7),
         ("next-month", NOW + timedelta(days=30), NOW + timedelta(days=40), 8),
+        # More than a year ahead: left for a later run.
+        ("next-year", NOW + timedelta(days=400), NOW + timedelta(days=410), 6),
     ]
     kept = select_for_run(
         items, now=NOW, start=lambda i: i[1], end=lambda i: i[2], order=lambda i: i[3], limit=2
     )
-    assert [i[0] for i in kept] == ["now-new-update", "next-week"]
+    assert [i[0] for i in kept] == ["now-new-update", "next-month"]
     everything = select_for_run(
         items, now=NOW, start=lambda i: i[1], end=lambda i: i[2], order=lambda i: i[3], limit=None
     )
-    assert [i[0] for i in everything] == ["now-new-update", "next-week", "now-old-update"]
+    assert [i[0] for i in everything] == ["now-new-update", "next-month", "next-week", "now-old-update"]
 
 
 def test_the_tfl_connector_applies_the_limit():

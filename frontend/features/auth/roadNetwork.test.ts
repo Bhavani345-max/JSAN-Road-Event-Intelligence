@@ -29,6 +29,18 @@ describe("generateRoadNetwork", () => {
     expect(network.closures.every(inside)).toBe(true);
     expect(network.markers.every(inside)).toBe(true);
     expect(network.detour.every(inside)).toBe(true);
+    expect(network.elevated.flatMap((road) => road.line).every(inside)).toBe(true);
+  });
+
+  it("gives every elevated road one height per point, ramping from and to grade", () => {
+    expect(network.elevated.map((road) => road.name)).toEqual(["flyover", "viaduct", "ramp"]);
+    for (const road of network.elevated) {
+      expect(road.heights.length).toBe(road.line.length);
+      expect(Math.max(...road.heights)).toBeGreaterThan(3);
+      expect(Math.min(...road.heights)).toBeLessThan(0.1);
+    }
+    const [flyover, viaduct] = network.elevated;
+    expect(Math.max(...viaduct.heights)).toBeGreaterThan(Math.max(...flyover.heights) + 3);
   });
 
   it("places closures on arterials and routes the detour around the first one", () => {

@@ -10,6 +10,8 @@ export type Point = { x: number; z: number };
 export type Polyline = Point[];
 export type Segment = [Point, Point];
 export type Block = { x: number; z: number; w: number; d: number; density: number };
+/** An elevated carriageway: a polyline with a deck height per point (0 = at grade). */
+export type ElevatedRoad = { name: string; line: Polyline; heights: number[]; width: number };
 
 export type RoadNetwork = {
   /** Side length of the square the network covers, centred on the origin. */
@@ -26,6 +28,8 @@ export type RoadNetwork = {
   detour: Polyline;
   /** Smaller event markers placed on arterials. */
   markers: Point[];
+  /** Elevated roads: a flyover, a higher viaduct crossing it, and a branch ramp. */
+  elevated: ElevatedRoad[];
 };
 
 /** mulberry32: tiny seeded PRNG returning floats in [0, 1). */
@@ -76,6 +80,21 @@ function nearestPointOnPolyline(line: Polyline, target: Point): Point {
     }
   }
   return best;
+}
+
+function smoothstep(edge0: number, edge1: number, value: number): number {
+  const t = Math.min(1, Math.max(0, (value - edge0) / (edge1 - edge0)));
+  return t * t * (3 - 2 * t);
+}
+
+/** Deck heights that ramp up over the first `rise` and down over the last `fall` fraction. */
+function elevationProfile(count: number, top: number, rise: number, fall: number): number[] {
+  const heights: number[] = [];
+  for (let index = 0; index < count; index += 1) {
+    const t = index / (count - 1);
+    heights.push(top * smoothstep(0, rise, t) * smoothstep(1, 1 - fall, t));
+  }
+  return heights;
 }
 
 function wavyAvenue(
@@ -180,5 +199,32 @@ export function generateRoadNetwork(seed = 7, size = 160): RoadNetwork {
     pointAlong(arterials[2], polylineLength(arterials[2]) * 0.48),
   ];
 
-  return { size, arterials, streets, blocks, closures, detour, markers };
+  // Elevated structures. The flyover sweeps diagonally across the view, the
+  // viaduct crosses above it on the right, and a branch ramp leaves the
+  // flyover and descends to the first avenue.
+  const flyoverLine: Polyline = [];
+  for (let x = -80; x <= 80; x += 4) {
+    flyoverLine.push({ x, z: -20 - x * 0.36 + Math.sin(x * 0.035 + 0.8) * 5 });
+  }
+  const viaductLine: Polyline = [];
+  for (let z = -80; z <= 12; z += 4) {
+    viaductLine.push({ x: 12 + Math.sin(z * 0.04) * 3, z });
+  }
+  // The ramp leaves the flyover near the centre and descends away from the
+  // viewer to join the second avenue.
+  const rampStart = nearestPointOnPolyline(flyoverLine, { x: -4, z: -18 });
+  const rampLine: Polyline = [
+    rampStart,
+    { x: rampStart.x + 3, z: rampStart.z - 8 },
+    { x: rampStart.x + 5, z: rampStart.z - 16 },
+    { x: rampStart.x + 6, z: rampStart.z - 24 },
+    { x: rampStart.x + 6, z: rampStart.z - 31 },
+  ];
+  const elevated: ElevatedRoad[] = [
+    { name: "flyover", line: flyoverLine, heights: elevationProfile(flyoverLine.length, 4.6, 0.22, 0.22), width: 5.2 },
+    { name: "viaduct", line: viaductLine, heights: elevationProfile(viaductLine.length, 8.2, 0.26, 0.3), width: 4.2 },
+    { name: "ramp", line: rampLine, heights: [4.6, 4.3, 3.1, 1.4, 0.05], width: 3.4 },
+  ];
+
+  return { size, arterials, streets, blocks, closures, detour, markers, elevated };
 }

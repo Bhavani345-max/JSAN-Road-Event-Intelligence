@@ -562,27 +562,6 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
         ),
     ),
     SourceDefinition(
-        source_id="dgt-spain-incidents",
-        source_class=SourceClass.AUTHORITATIVE_OFFICIAL, country="ES", region="Spain",
-        source_name="DGT national road incidents (DATEX II 3.7)",
-        organization="Dirección General de Tráfico",
-        authority_type="NATIONAL_ROAD_AUTHORITY",
-        source_tier=1,
-        source_type=SourceType.API,
-        source_url="https://nap.dgt.es/en/dataset?organization=dgt&tags=incidents",
-        access_method="National Access Point DATEX II 3.7 dataset; access conditions need confirmation",
-        integration_status=S.TERMS_REVIEW_REQUIRED,
-        cost_category=CostCategory.UNKNOWN,
-        terms_status=TermsStatus.REVIEW_REQUIRED,
-        provides_geometry=True,
-        real_time=True,
-        notes=(
-            "The DGT National Access Point lists a live DATEX II incident feed for the "
-            "Spanish national road network, excluding the Basque Country and Catalonia. "
-            "The live feed URL and re-use terms were not validated in this pass."
-        ),
-    ),
-    SourceDefinition(
         source_id="tfnsw-live-traffic-hazards",
         source_class=SourceClass.AUTHORITATIVE_OFFICIAL, country="AU", region="New South Wales",
         source_name="Transport for NSW Live Traffic hazards",

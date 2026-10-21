@@ -1,21 +1,18 @@
 
-"""Safely update an existing REI production account's email and password."""
+"""Update the email and password of an existing REI account."""
 
 import getpass
 import sys
 from pathlib import Path
 
-BACKEND_DIR = Path(__file__).resolve().parents[2]
+BACKEND_DIR = Path(__file__).resolve().parents[1]
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
 from sqlalchemy import select
 
 from app.core.config import get_settings
-from app.core.database import (
-    create_db_engine,
-    create_session_factory,
-)
+from app.core.database import create_db_engine, create_session_factory
 from app.models import User
 from app.services.auth_service import (
     ADMIN_ROLE,
@@ -24,135 +21,103 @@ from app.services.auth_service import (
     hash_password,
     normalize_email,
 )
+from packages.common.time import utc_now
 
 
 def main() -> int:
     settings = get_settings()
+    database_url = settings.database_url
 
-    if not settings.database_url:
-        print("Database URL is not configured.")
+    if not database_url:
+        print("ERROR: DATABASE_URL is not configured.")
         return 2
 
-    print("REI account credential update")
-    print("This operation changes an EXISTING account.")
-    print("Use only the intended Railway production database.")
-    print()
-
-    old_email = input("Current login email: ").strip()
-    new_email = input("New login email: ").strip()
+    old_email = normalize_email(input("Current account email: "))
+    new_email = normalize_email(input("New account email: "))
     role = input("Account role (admin/user): ").strip().lower()
 
     if role not in (ADMIN_ROLE, USER_ROLE):
-        print("Invalid role. Enter admin or user.")
-        return 2
-
-    if not old_email or not new_email:
-        print("Both email addresses are required.")
-        return 2
-
-    if normalize_email(old_email) == normalize_email(new_email):
-        print("The new email must differ from the current email.")
+        print("ERROR: Role must be admin or user.")
         return 2
 
     password = getpass.getpass("New password (hidden): ")
-    confirm = getpass.getpass("Confirm new password (hidden): ")
+    confirmation = getpass.getpass("Confirm new password (hidden): ")
 
-    if password != confirm:
-        print("Passwords do not match.")
+    if password != confirmation:
+        print("ERROR: Passwords do not match.")
         return 2
 
     try:
-        new_password_hash = hash_password(password)
+        password_hash = hash_password(password)
     except ValueError as error:
-        print(str(error))
+        print(f"ERROR: {error}")
         return 2
+    finally:
+        password = ""
+        confirmation = ""
 
-    # Do not print the password, password hash, or database URL.
-    password = ""
-    confirm = ""
+    print("\nReview the requested change:")
+    print(f"Existing email: {old_email}")
+    print(f"New email:      {new_email}")
+    print(f"Expected role:  {role}")
+    print("Existing sessions will be revoked.")
 
-    print()
-    print(f"Account: {normalize_email(old_email)}")
-    print(f"New email: {normalize_email(new_email)}")
-    print(f"Role to preserve: {role}")
-
-    confirmation = input(
-        "Type UPDATE to confirm the account change: "
-    ).strip()
-
-    if confirmation != "UPDATE":
-        print("Cancelled. No changes made.")
+    if input('Type "UPDATE" to confirm: ').strip() != "UPDATE":
+        print("Cancelled.")
         return 1
 
-    engine = create_db_engine(settings.database_url)
+    engine = create_db_engine(database_url)
     factory = create_session_factory(engine)
 
     try:
         with factory() as session:
-            try:
-                with session.begin():
-                    account = session.scalar(
-                        select(User)
-                        .where(
-                            User.email == normalize_email(old_email)
-                        )
-                        .with_for_update()
+            with session.begin():
+                account = session.scalar(
+                    select(User)
+                    .where(User.email == old_email)
+                    .with_for_update()
+                )
+
+                if account is None:
+                    raise ValueError("Existing account was not found.")
+
+                if account.role != role:
+                    raise ValueError(
+                        f"Role mismatch: existing account has role "
+                        f"{account.role!r}."
                     )
 
-                    if account is None:
-                        raise ValueError(
-                            "No account exists with the current email."
-                        )
+                if not account.is_active:
+                    raise ValueError("Account is inactive.")
 
-                    if account.role != role:
-                        raise ValueError(
-                            f"Account role is {account.role!r}, "
-                            f"not {role!r}. No changes made."
-                        )
+                change_account_email(
+                    session,
+                    old_email,
+                    new_email,
+                    role=role,
+                    end_sessions=True,
+                )
 
-                    if not account.is_active:
-                        raise ValueError(
-                            "The account is inactive. No changes made."
-                        )
+                account = session.scalar(
+                    select(User)
+                    .where(User.email == new_email)
+                    .with_for_update()
+                )
 
-                    # Change email and revoke existing sessions.
-                    change_account_email(
-                        session,
-                        old_email,
-                        new_email,
-                        role=role,
-                        end_sessions=True,
-                    )
+                if account is None:
+                    raise ValueError("Account lookup failed after email change.")
 
-                    # Re-fetch the same account and set its password hash.
-                    account = session.scalar(
-                        select(User)
-                        .where(
-                            User.email == normalize_email(new_email)
-                        )
-                        .with_for_update()
-                    )
+                account.password_hash = password_hash
+                account.updated_at = utc_now()
 
-                    if account is None:
-                        raise ValueError(
-                            "Account lookup failed. Changes rolled back."
-                        )
-
-                    account.password_hash = new_password_hash
-
-                    from packages.common.time import utc_now
-
-                    account.updated_at = utc_now()
-
-            except ValueError as error:
-                print(f"Update failed: {error}")
-                return 2
-
-        print("Account credentials updated successfully.")
-        print("The existing account role was preserved.")
-        print("Existing sessions were revoked.")
-        print("Sign in using the new email and password.")
+        print("\nCredentials updated successfully.")
+        print("Account role preserved.")
+        print("Existing sessions revoked.")
         return 0
+
+    except ValueError as error:
+        print(f"ERROR: {error}")
+        return 2
 
     finally:
         engine.dispose()

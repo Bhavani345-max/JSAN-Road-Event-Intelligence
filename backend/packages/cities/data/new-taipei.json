@@ -1,0 +1,38 @@
+{
+  "id": "new-taipei",
+  "name": "New Taipei",
+  "area_name": "New Taipei City",
+  "country": "TW",
+  "region": "New Taipei City",
+  "timezone": "Asia/Taipei",
+  "language": "zh",
+  "bbox": [
+    24.66,
+    121.27,
+    25.31,
+    122.02
+  ],
+  "map": {
+    "center": [
+      121.465,
+      25.012
+    ],
+    "zoom": 10.2
+  },
+  "scope_terms": [
+    "New Taipei",
+    "New Taipei City",
+    "新北",
+    "新北市"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "new-taipei-road-excavation"
+  ],
+  "gis_sources": []
+}

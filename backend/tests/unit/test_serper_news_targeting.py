@@ -75,10 +75,11 @@ def test_every_search_names_hyderabad_and_leaves_the_crowding_cities_out():
     assert "Delhi" in CROWDING_CITIES and "Bengaluru" in CROWDING_CITIES
 
 
-def test_polls_search_the_past_week_ten_results_at_a_time(requests):
+def test_polls_search_the_past_week_a_hundred_results_at_a_time(requests):
+    # 100 results for two credits since 21 October 2026 (10 for one before).
     connector(requests).fetch()
     assert {request["tbs"] for request in requests} == {DEFAULT_WINDOW} == {"qdr:w"}
-    assert {request["num"] for request in requests} == {10}
+    assert {request["num"] for request in requests} == {100}
     assert {request["gl"] for request in requests} == {"in"}
 
 
@@ -99,5 +100,5 @@ def test_results_about_other_cities_and_in_other_scripts_are_left_out(requests):
 def test_the_source_says_what_a_day_of_polling_costs():
     notes = SOURCE.notes
     assert "12 Hyderabad road searches" in notes
-    assert "every 8 hours" in notes and "36 a day" in notes
+    assert "every 8 hours" in notes and "up to 100 results" in notes and "72 a day" in notes
     assert SOURCE.polling_frequency_minutes == 480

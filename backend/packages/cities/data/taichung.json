@@ -1,0 +1,40 @@
+{
+  "id": "taichung",
+  "name": "Taichung",
+  "area_name": "Taichung City",
+  "country": "TW",
+  "region": "Taichung City",
+  "timezone": "Asia/Taipei",
+  "language": "zh",
+  "bbox": [
+    23.98,
+    120.45,
+    24.46,
+    121.46
+  ],
+  "map": {
+    "center": [
+      120.6469,
+      24.1618
+    ],
+    "zoom": 10.8
+  },
+  "scope_terms": [
+    "Taichung",
+    "Taichung City",
+    "臺中",
+    "台中",
+    "臺中市",
+    "台中市"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "taichung-traffic-maintenance-plans"
+  ],
+  "gis_sources": []
+}

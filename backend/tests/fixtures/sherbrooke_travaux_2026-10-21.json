@@ -1,0 +1,367 @@
+{
+ "fetched_at": "2026-10-21T11:05:27.754696+00:00",
+ "request": "https://services3.arcgis.com/qsNXG7LzoUbR4c1C/arcgis/rest/services/Travaux/FeatureServer/0/query?where=1%3D1&outFields=%2A&outSR=4326&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000&f=geojson",
+ "note": "A trimmed sample of the real response (items unchanged).",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 50,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.8883905676336,
+     45.4295123007315
+    ]
+   },
+   "properties": {
+    "ID": 10147,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Autres travaux",
+    "SOUSTYPE": "Entretien des réseaux - Réparation d'un bris d'aqueduc",
+    "DESCRIPTION": "Bris aqueduc-1545 Baron entre Caravelle et Pèlerins",
+    "REALISATION": "Ville - SEI - Entretien des réseaux",
+    "LOCALISATION": "Baron, Rue du",
+    "INTERSECTION": null,
+    "NO_CIVIQUE": null,
+    "VOIE_DE": "Caravelle, Rue de la",
+    "VOIE_A": "Pèlerins, Chemin des",
+    "DATE_DEBUT": 1792580400000,
+    "DATE_FIN": 1792616400000,
+    "CIRCULATION": "Route fermée",
+    "SIGNALEUR": null,
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": "Oui",
+    "PERTEACCES": null,
+    "TRANSPORTCOMMUN": null,
+    "ECOLE": null,
+    "COMMERCE": null,
+    "TRAVAUXSUBSEQUENT": "Oui",
+    "OBJECTID": 50,
+    "REMARQUE": null,
+    "DATEDEBUTHE": "2026-10-21 07:00",
+    "DATEFINHE": "2026-10-21 17:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 51,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.9868595852565,
+     45.3721336950367
+    ]
+   },
+   "properties": {
+    "ID": 10147,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Autres travaux",
+    "SOUSTYPE": "Voirie - Travaux ponctuels de pavage",
+    "DESCRIPTION": "Correction d'ornières en pavage",
+    "REALISATION": "Ville - SEI - Voirie",
+    "LOCALISATION": "Bourque, Boulevard",
+    "INTERSECTION": "Partisans, Rue des/Bourque, Boulevard",
+    "NO_CIVIQUE": null,
+    "VOIE_DE": null,
+    "VOIE_A": null,
+    "DATE_DEBUT": 1792591200000,
+    "DATE_FIN": 1792609200000,
+    "CIRCULATION": "Deux voies fermées et une seule voie accessible dans chaque direction",
+    "SIGNALEUR": "Oui",
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": null,
+    "PERTEACCES": null,
+    "TRANSPORTCOMMUN": null,
+    "ECOLE": null,
+    "COMMERCE": "Oui",
+    "TRAVAUXSUBSEQUENT": null,
+    "OBJECTID": 51,
+    "REMARQUE": "Des travaux de correction d’ornières auront lieu à l’intersection du boulevard Bourque, en direction ouest et de la rue des Partisans. L’intervention pourrait être reportée en cas de pluie.",
+    "DATEDEBUTHE": "2026-10-21 10:00",
+    "DATEFINHE": "2026-10-21 15:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 3,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.8990762789369,
+     45.3691757399709
+    ]
+   },
+   "properties": {
+    "ID": 9409,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Autres travaux",
+    "SOUSTYPE": "Parc - Aménagement complet",
+    "DESCRIPTION": "Parc des Géologues - Aménagement du parc",
+    "REALISATION": "Ville - SEI - Parcs",
+    "LOCALISATION": "Prospecteurs, Rue des",
+    "INTERSECTION": null,
+    "NO_CIVIQUE": null,
+    "VOIE_DE": null,
+    "VOIE_A": null,
+    "DATE_DEBUT": 1778472000000,
+    "DATE_FIN": 1793332800000,
+    "CIRCULATION": "Aucun impact sur la circulation",
+    "SIGNALEUR": null,
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": null,
+    "PERTEACCES": null,
+    "TRANSPORTCOMMUN": null,
+    "ECOLE": null,
+    "COMMERCE": null,
+    "TRAVAUXSUBSEQUENT": null,
+    "OBJECTID": 3,
+    "REMARQUE": null,
+    "DATEDEBUTHE": "2026-05-11 00:00",
+    "DATEFINHE": "2026-10-30 00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.8828113680594,
+     45.3751739329077
+    ]
+   },
+   "properties": {
+    "ID": 3133,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Construction d'une nouvelle rue",
+    "SOUSTYPE": "Construction d'une nouvelle rue ou urbanisation",
+    "DESCRIPTION": "Prolongement des rues de Fleur-de-Fenouil et du Vent-du-Nord",
+    "REALISATION": "Promoteur",
+    "LOCALISATION": "Vent-du-Nord, Rue du",
+    "INTERSECTION": null,
+    "NO_CIVIQUE": null,
+    "VOIE_DE": null,
+    "VOIE_A": null,
+    "DATE_DEBUT": 1666152000000,
+    "DATE_FIN": 1798693200000,
+    "CIRCULATION": "Circulation en alternance",
+    "SIGNALEUR": null,
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": "Non",
+    "PERTEACCES": null,
+    "TRANSPORTCOMMUN": null,
+    "ECOLE": null,
+    "COMMERCE": null,
+    "TRAVAUXSUBSEQUENT": "Oui",
+    "OBJECTID": 6,
+    "REMARQUE": "Il y aura des travaux de nettoyage de conduites d'égouts le 20 mars 2026 de 8H00 à 12H00.<br>la section nettoyée sera de l'intersection de la rue Aurore-Boréale au # civique 250 de la rue du Vent-du-Nord.<br>Un avis sera distribué aux résidences affectées.",
+    "DATEDEBUTHE": "2022-10-19 00:00",
+    "DATEFINHE": "2026-12-31 00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 26,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.8937161931874,
+     45.4041855866397
+    ]
+   },
+   "properties": {
+    "ID": 9398,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Chantier non géré par la Ville",
+    "SOUSTYPE": "Occupation de l’emprise sans excavation",
+    "DESCRIPTION": "Travaux privés - près de l'intersection des rues Marquette et Frontenac",
+    "REALISATION": "Entrepreneur privé - Autre",
+    "LOCALISATION": "Frontenac, Rue",
+    "INTERSECTION": "Marquette, Rue/Frontenac, Rue",
+    "NO_CIVIQUE": null,
+    "VOIE_DE": null,
+    "VOIE_A": null,
+    "DATE_DEBUT": 1776052800000,
+    "DATE_FIN": 1793332800000,
+    "CIRCULATION": "Perte d'une voie dans une direction",
+    "SIGNALEUR": null,
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": null,
+    "PERTEACCES": null,
+    "TRANSPORTCOMMUN": null,
+    "ECOLE": null,
+    "COMMERCE": null,
+    "TRAVAUXSUBSEQUENT": null,
+    "OBJECTID": 26,
+    "REMARQUE": "Trottoir barré sur la rue Frontenac du côté sud. Perte de la voie à l'extrémité est permettant d'aller tout droit et de virer à droite forçant ainsi le virage à gauche pour tous les automobilistes. Détour par la rue Goodhue et Marquette ou par les rues Dufferin, Court, des Grandes-Fourches Nord et Abénaquis.",
+    "DATEDEBUTHE": "2026-04-13 00:00",
+    "DATEFINHE": "2026-10-30 00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 2,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.8979113793046,
+     45.4382093060007
+    ]
+   },
+   "properties": {
+    "ID": 8946,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Construction d'une nouvelle rue",
+    "SOUSTYPE": "Construction d'une nouvelle rue ou urbanisation",
+    "DESCRIPTION": "Ouverture de la rue de la Luzerne",
+    "REALISATION": "Promoteur",
+    "LOCALISATION": "Champêtre, Rue",
+    "INTERSECTION": null,
+    "NO_CIVIQUE": null,
+    "VOIE_DE": null,
+    "VOIE_A": null,
+    "DATE_DEBUT": 1760328000000,
+    "DATE_FIN": 1828414800000,
+    "CIRCULATION": "Ralentissement à prévoir",
+    "SIGNALEUR": null,
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": "Non",
+    "PERTEACCES": null,
+    "TRANSPORTCOMMUN": null,
+    "ECOLE": null,
+    "COMMERCE": null,
+    "TRAVAUXSUBSEQUENT": "Oui",
+    "OBJECTID": 2,
+    "REMARQUE": "Les travaux de pavage sont prévus le 22 mai 2026. Par intervalle, des interventions sur la rue Champêtre sont également prévues. La présence de deux signaleurs est prévue pour ces interventions.",
+    "DATEDEBUTHE": "2025-10-13 00:00",
+    "DATEFINHE": "2027-12-10 00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 4,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.8732496007652,
+     45.3921719513575
+    ]
+   },
+   "properties": {
+    "ID": 8088,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Reconstruction des infrastructures souterraines et de la chaussée",
+    "SOUSTYPE": "Reconstruction souterraine et chaussée",
+    "DESCRIPTION": "Reconstruction des infrastructures souterraines de la totalité de la rue York et de la rue La Salle (entre Bowen Sud et York) ainsi que réfection des rues La Salle et du Delaware (entre York et Magnan)",
+    "REALISATION": "Entrepreneur privé - Autre",
+    "LOCALISATION": "La Salle, Rue",
+    "INTERSECTION": null,
+    "NO_CIVIQUE": null,
+    "VOIE_DE": "Bowen Sud, Rue",
+    "VOIE_A": "Magnan, Rue",
+    "DATE_DEBUT": 1788346800000,
+    "DATE_FIN": 1794006000000,
+    "CIRCULATION": "Route fermée",
+    "SIGNALEUR": "Oui",
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": "Oui",
+    "PERTEACCES": "Oui",
+    "TRANSPORTCOMMUN": "Non",
+    "ECOLE": "Oui",
+    "COMMERCE": "Oui",
+    "TRAVAUXSUBSEQUENT": null,
+    "OBJECTID": 4,
+    "REMARQUE": "À partir du 20 octobre et pour environ une semaine, circulation en alternance de 7 h à 18 h à l'intersection des rues Bowen Sud et La Salle pour travaux d'amélioration de la traverse pour piétons.",
+    "DATEDEBUTHE": "2026-09-02 07:00",
+    "DATEFINHE": "2026-11-06 18:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 19,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.952615091607,
+     45.4219133540195
+    ]
+   },
+   "properties": {
+    "ID": 7642,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Chantier non géré par la Ville",
+    "SOUSTYPE": "Occupation de l’emprise sans excavation",
+    "DESCRIPTION": "Travaux privés - rue Laure-Conan",
+    "REALISATION": "Entrepreneur privé - Autre",
+    "LOCALISATION": "Laure-Conan, Rue",
+    "INTERSECTION": null,
+    "NO_CIVIQUE": "3475",
+    "VOIE_DE": "Chardonnay, Rue du",
+    "VOIE_A": "Nina-Owens, Rue",
+    "DATE_DEBUT": 1763960400000,
+    "DATE_FIN": 1814328000000,
+    "CIRCULATION": "Trottoir ou voie cyclable fermé",
+    "SIGNALEUR": null,
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": null,
+    "PERTEACCES": null,
+    "TRANSPORTCOMMUN": null,
+    "ECOLE": null,
+    "COMMERCE": null,
+    "TRAVAUXSUBSEQUENT": null,
+    "OBJECTID": 19,
+    "REMARQUE": "Piétons déviés sur la piste multifonctionnelle du côté sud de la rue.",
+    "DATEDEBUTHE": "2025-11-24 00:00",
+    "DATEFINHE": "2027-06-30 00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 14,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.8642029787838,
+     45.4431065630898
+    ]
+   },
+   "properties": {
+    "ID": 7194,
+    "MUNICIPALITE": "43027",
+    "TYPE": "Construction d'une nouvelle rue",
+    "SOUSTYPE": "Construction d'une nouvelle rue ou urbanisation",
+    "DESCRIPTION": "Alice-Girard et Audrey Frost",
+    "REALISATION": "Entrepreneur privé - Autre",
+    "LOCALISATION": "Alice-Girard, Rue",
+    "INTERSECTION": null,
+    "NO_CIVIQUE": null,
+    "VOIE_DE": null,
+    "VOIE_A": null,
+    "DATE_DEBUT": 1230786000000,
+    "DATE_FIN": 1798693200000,
+    "CIRCULATION": "Circulation en alternance",
+    "SIGNALEUR": null,
+    "VITESSE": null,
+    "POLICE": null,
+    "COUPUREEAU": "Non",
+    "PERTEACCES": "Non",
+    "TRANSPORTCOMMUN": "Non",
+    "ECOLE": "Non",
+    "COMMERCE": "Non",
+    "TRAVAUXSUBSEQUENT": "Oui",
+    "OBJECTID": 14,
+    "REMARQUE": "Il y aura des travaux de pavage sur ces rues. le jeudi 19 et vendredi 20 septembre 2024.",
+    "DATEDEBUTHE": "2009-01-01 00:00",
+    "DATEFINHE": "2026-12-31 00:00"
+   }
+  }
+ ]
+}

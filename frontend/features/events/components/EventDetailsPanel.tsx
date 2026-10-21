@@ -12,7 +12,9 @@ import {
   getEventTypeColor,
   getEventTypeLabel,
   getSiteName,
+  googleMapsUrl,
   isWholeDayPeriod,
+  streetViewUrl,
 } from "../presentation";
 import { SeverityIndicator, SourceBadge, StatusBadge } from "./EventBadges";
 import AiSection from "./AiSection";
@@ -40,6 +42,59 @@ function Unknown({ children }: { children: React.ReactNode }) {
 }
 
 const NOT_AVAILABLE = <Unknown>Not available</Unknown>;
+
+/**
+ * See the place on the ground: Google Street View, and Google Maps for the
+ * surroundings, at the event's map point, each in a new tab. A point that is
+ * only a named place's position says so, since the panorama may not show the
+ * exact spot.
+ */
+function StreetViewActions({ event }: { event: RoadEvent }) {
+  if (event.latitude === null || event.longitude === null) return null;
+  const approximate = event.detection?.locationClass === "APPROXIMATE";
+  const linkClass =
+    "inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1";
+  return (
+    <div className="px-4 pb-3">
+      <div className="flex flex-wrap items-center gap-2">
+        <a
+          href={streetViewUrl(event.latitude, event.longitude)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${linkClass} bg-brand-600 text-white shadow-sm hover:bg-brand-700`}
+          title="Open Google Street View at this event's map point (new tab)"
+        >
+          {/* A person standing on the street: Street View */}
+          <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4" aria-hidden="true">
+            <circle cx="10" cy="4" r="2.2" />
+            <path d="M7.4 7.6a2.6 2.6 0 0 1 5.2 0v3.6a1 1 0 0 1-1 1h-.3l-.4 4.3a.9.9 0 0 1-1.8 0l-.4-4.3h-.3a1 1 0 0 1-1-1V7.6Z" />
+            <ellipse cx="10" cy="18" rx="4.5" ry="1" opacity="0.35" />
+          </svg>
+          Street View
+        </a>
+        <a
+          href={googleMapsUrl(event.latitude, event.longitude)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${linkClass} bg-white text-slate-700 ring-1 ring-inset ring-slate-200 hover:bg-slate-50 hover:text-slate-900`}
+          title="Open this point on Google Maps (new tab)"
+        >
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-4 w-4" aria-hidden="true">
+            <path d="M10 17.5s5-4.6 5-8.6a5 5 0 1 0-10 0c0 4 5 8.6 5 8.6Z" strokeLinejoin="round" />
+            <circle cx="10" cy="8.8" r="1.8" />
+          </svg>
+          Google Maps
+        </a>
+      </div>
+      <p className="mt-1.5 text-[11px] leading-4 text-slate-500">
+        {approximate
+          ? "Opens at the named place's position, which may not be the exact spot of the event."
+          : "Opens at the event's map point."}{" "}
+        Imagery is Google&apos;s and may be older than the event.
+      </p>
+    </div>
+  );
+}
 
 /** Who named the place an event is located by, as a phrase. */
 const FOUND_IN_PHRASES: Record<string, string> = {
@@ -350,6 +405,7 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
           </svg>
         </button>
       </header>
+      <StreetViewActions event={event} />
 
       <div className="min-h-0 space-y-3.5 overflow-y-auto border-t border-slate-100 px-4 py-3.5">
         <Evidence event={event} />

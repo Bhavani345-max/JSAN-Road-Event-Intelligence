@@ -1,0 +1,38 @@
+{
+  "id": "luxembourg",
+  "name": "Luxembourg",
+  "area_name": "Luxembourg",
+  "country": "LU",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Luxembourg",
+  "language": "fr",
+  "bbox": [
+    49.4,
+    5.7,
+    50.2,
+    6.55
+  ],
+  "map": {
+    "center": [
+      6.13,
+      49.8
+    ],
+    "zoom": 9.0
+  },
+  "scope_terms": [
+    "Luxembourg",
+    "Lëtzebuerg",
+    "Luxemburg"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "lu-cita-datex2-v36"
+  ],
+  "gis_sources": []
+}

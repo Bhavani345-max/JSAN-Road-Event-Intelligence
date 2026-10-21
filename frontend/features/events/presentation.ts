@@ -467,3 +467,17 @@ export function offMapNote(reason: string | null): string {
       return "Not on the map";
   }
 }
+
+/**
+ * Google Street View at a point, in a new tab: Google's documented Maps URLs
+ * (no API key, no cost). Google opens the nearest panorama; where it has none,
+ * it shows the map there. Six decimals are about 10 cm.
+ */
+export function streetViewUrl(latitude: number, longitude: number): string {
+  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${latitude.toFixed(6)},${longitude.toFixed(6)}`;
+}
+
+/** The same point on Google Maps, for the surroundings and satellite view. */
+export function googleMapsUrl(latitude: number, longitude: number): string {
+  return `https://www.google.com/maps/search/?api=1&query=${latitude.toFixed(6)},${longitude.toFixed(6)}`;
+}

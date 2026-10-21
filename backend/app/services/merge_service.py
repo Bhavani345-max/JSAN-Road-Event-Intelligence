@@ -27,14 +27,16 @@ same way, by `merge_listed_rows`.
 """
 
 import json
+import math
+from collections import defaultdict
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from datetime import datetime
 
 from sqlalchemy import or_, select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, defer, load_only, selectinload
 
-from app.models import Event, EventMergeCandidate
+from app.models import Event, EventMergeCandidate, EventVersion, SourceArtifact
 from app.repositories.events import EventRepository, to_rei_event
 from packages.common.time import ensure_utc, utc_now
 from connectors.official.calgary import SOURCE_ID as CALGARY_SOURCE_ID
@@ -51,7 +53,7 @@ from packages.event_schema import EventStatus, ReiEvent
 from packages.geo_models import positions_of
 from services.merging import EventFacts, MatchClass, compare
 from services.lifecycle import is_current
-from services.merging.matcher import normalise
+from services.merging.matcher import headline_key, normalise
 
 AUTOMATIC = "auto-merge"
 # Who changes events without a person deciding.
@@ -215,12 +217,81 @@ def _open_events(session: Session, city: str | None) -> list[Event]:
     An event that is over (ended, or an old report with no times) is not
     compared: nobody needs to decide whether it is the same as another.
     """
-    query = select(Event).where(Event.merged_into.is_(None), Event.status.not_in(_CLOSED))
-    if city is not None:
-        query = query.where(Event.city == city)
+    return _open_events_where(session, [] if city is None else [Event.city == city])
+
+
+def _open_events_where(session: Session, filters: list) -> list[Event]:
+    # Each event's article in one query, without its raw content: matching reads
+    # only the link and the publication and retrieval times.
+    query = (
+        select(Event)
+        .where(Event.merged_into.is_(None), Event.status.not_in(_CLOSED), *filters)
+        .options(
+            selectinload(Event.artifact).options(
+                defer(SourceArtifact.raw_content), defer(SourceArtifact.classification_details)
+            ),
+            # Who changed each event (`reviewed`), not every version's snapshot.
+            selectinload(Event.versions).options(load_only(EventVersion.changed_by)),
+        )
+    )
     now = utc_now()
     rows = session.scalars(query.order_by(Event.created_at, Event.event_id)).unique()
     return [row for row in rows if is_current_row(row, now)]
+
+
+def _open_events_of_cities(session: Session, event_ids: list[str], city: str | None) -> list[Event]:
+    """The open events of the cities the given events are in: only events of one
+    city are ever compared (`compare`: "different cities")."""
+    cities: set[str | None] = set()
+    for chunk in range(0, len(event_ids), 500):
+        cities |= set(
+            session.scalars(select(Event.city).where(Event.event_id.in_(event_ids[chunk : chunk + 500])))
+        )
+    if city is not None:
+        cities &= {city}
+    if not cities:
+        return []
+    named = sorted(name for name in cities if name is not None)
+    conditions = [Event.city.in_(named)] if named else []
+    if None in cities:
+        conditions.append(Event.city.is_(None))
+    return _open_events_where(session, [or_(*conditions)])
+
+
+# compare() finds two events anything but DIFFERENT only if they share an article
+# or a link, a place or a road name, or lie within SAME_SPOT_KM (services/merging).
+# Events are indexed by those keys, per city, and only events sharing one are
+# compared. Map cells are CELL_DEGREES square: wider than SAME_SPOT_KM (0.3 km) in
+# both directions up to 80 degrees of latitude, so two such events are always in
+# the same or neighbouring cells.
+CELL_DEGREES = 0.02
+
+
+def _cell(position: tuple[float, float]) -> tuple[int, int]:
+    longitude, latitude = position
+    return math.floor(longitude / CELL_DEGREES), math.floor(latitude / CELL_DEGREES)
+
+
+def _match_keys(city: str | None, facts: EventFacts) -> set[tuple]:
+    """What an event is filed under for matching."""
+    keys: set[tuple] = {(city, "name", name) for name in facts.places | facts.roads}
+    if facts.position:
+        keys.add((city, "cell", _cell(facts.position)))
+    headline = headline_key(facts.title)
+    if headline:
+        keys.add((city, "headline", headline))
+    if facts.url:
+        keys.add((city, "url", facts.url))
+    return keys
+
+
+def _lookup_keys(city: str | None, facts: EventFacts) -> set[tuple]:
+    """Where an event's possible matches are filed: its own keys, and the cells around its own."""
+    keys = {key for key in _match_keys(city, facts) if key[1] != "cell"}
+    if facts.position:
+        x, y = _cell(facts.position)
+        keys |= {(city, "cell", (x + dx, y + dy)) for dx in (-1, 0, 1) for dy in (-1, 0, 1)}
+    return keys
 
 
 def _pair(a: str, b: str) -> tuple[str, str]:
@@ -240,9 +311,12 @@ def find_candidates(
     an ingestion run); otherwise every pair of open events in each city.
     """
     run = MatchRun()
-    pool = _open_events(session, city)
+    focus_ids = None if event_ids is None else list(dict.fromkeys(event_ids))
+    pool = (
+        _open_events(session, city) if focus_ids is None else _open_events_of_cities(session, focus_ids, city)
+    )
     by_id = {row.event_id: row for row in pool}
-    focus = [by_id[i] for i in (event_ids or []) if i in by_id] if event_ids is not None else pool
+    focus = [by_id[i] for i in focus_ids if i in by_id] if focus_ids is not None else pool
     known = {
         (c.event_a, c.event_b)
         for c in session.scalars(select(EventMergeCandidate))
@@ -254,11 +328,31 @@ def find_candidates(
             facts_of[row.event_id] = facts(row)
         return facts_of[row.event_id]
 
+    order = {row.event_id: position for position, row in enumerate(pool)}
+    filed: dict[tuple, dict[str, Event]] = defaultdict(dict)
+
+    def file(row: Event) -> None:
+        for match_key in _match_keys(row.city, fact(row)):
+            filed[match_key][row.event_id] = row
+
+    for row in pool:
+        file(row)
+
     for row in focus:
-        for other in pool:
+        if row.merged_into:
+            continue
+        # Every event that may match, in the pool's order (as when every pair was compared).
+        nearby: dict[str, Event] = {}
+        for match_key in _lookup_keys(row.city, fact(row)):
+            nearby.update(filed.get(match_key, {}))
+        for other in sorted(nearby.values(), key=lambda event: order[event.event_id]):
             if other.event_id == row.event_id or row.merged_into or other.merged_into:
                 continue
             if row.city != other.city:
+                continue
+            mine, theirs = fact(row), fact(other)
+            if mine.source_id == theirs.source_id and mine.official and theirs.official:
+                # compare(): separate records of one official source are separate events.
                 continue
             key = _pair(row.event_id, other.event_id)
             if key in known:
@@ -293,6 +387,8 @@ def find_candidates(
                 run.auto_merged += 1
                 run.examples.append(f"{canonical.title} ← {member.source_id}")
                 facts_of.pop(canonical.event_id, None)
+                # The merged event may now share more with others: filed again.
+                file(canonical)
     session.flush()
     return run
 

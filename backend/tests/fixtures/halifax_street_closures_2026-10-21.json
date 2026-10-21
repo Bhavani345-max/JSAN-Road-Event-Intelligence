@@ -1,0 +1,514 @@
+{
+ "fetched_at": "2026-10-21T11:05:22.912491+00:00",
+ "request": "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Street_Closures/FeatureServer/0/query?where=END_DATE+%3E%3D+DATE+%272026-10-20%27&outFields=%2A&outSR=4326&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000&f=geojson",
+ "note": "A trimmed sample of the real response (items unchanged).",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 430,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.5070588081344,
+      44.6741826558776
+     ],
+     [
+      -63.5053797463756,
+      44.6726834491824
+     ],
+     [
+      -63.5053314664206,
+      44.6726033381411
+     ],
+     [
+      -63.5053207369429,
+      44.6725995230834
+     ],
+     [
+      -63.5050525161687,
+      44.6716419925349
+     ],
+     [
+      -63.5050203295321,
+      44.6716076583542
+     ],
+     [
+      -63.5049291352594,
+      44.671565694541
+     ],
+     [
+      -63.5047682020763,
+      44.6715695096666
+     ],
+     [
+      -63.5040493710842,
+      44.6716191030834
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "5f3444bb-f2d8-492e-a976-3bd6c9d2dead",
+    "OBJECTID": 430,
+    "CLOSURE_TYPE": "Construction",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1784862000000,
+    "END_DATE": 1794715200000,
+    "START_TIME": "7:00AM",
+    "END_TIME": "7:00PM",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": "No",
+    "REOPEN_WEEKENDS": "Yes",
+    "PERMIT_NO": "TPW-ROW-2026-08173",
+    "APPLICATION_DATE": 1783998000000,
+    "DETOUR_URL": null,
+    "COMMENTS": "Street Closure to street recapitalization. Signed Detour in place with Local Access maintained.",
+    "ADDDATE": 1784120623000,
+    "MODDATE": 1790882585000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "SWANTON DR",
+    "FROM_STR": "GARNETT ST",
+    "TO_STR": "BEL AYR AVE",
+    "RDMID": 111264,
+    "Shape__Length": 584.7062540731041
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 617,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.593103562128,
+      44.640206083347
+     ],
+     [
+      -63.592336451181,
+      44.6388128748883
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "9ba9cde7-9934-43ee-a2f1-ef76acc48a08",
+    "OBJECTID": 617,
+    "CLOSURE_TYPE": "Development",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1790046000000,
+    "END_DATE": 1840676400000,
+    "START_TIME": "N/A",
+    "END_TIME": "N/A",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": "No",
+    "REOPEN_WEEKENDS": "No",
+    "PERMIT_NO": "DEV-ROW-2026-12350",
+    "APPLICATION_DATE": 1789614000000,
+    "DETOUR_URL": null,
+    "COMMENTS": "Street closure to facilitate construction of new development building. Local traffic access will be maintained from Watt St. Detour signs will be in place.",
+    "ADDDATE": 1789659556000,
+    "MODDATE": 1789668691000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "WALNUT ST",
+    "FROM_STR": "WATT ST",
+    "TO_STR": "COBURG RD",
+    "RDMID": 111377,
+    "Shape__Length": 234.09610925540122
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 344,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.5827510605868,
+      44.6402912407437
+     ],
+     [
+      -63.5799722929353,
+      44.6410355427362
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "15621dbc-c85a-4e18-a3be-193272f12289",
+    "OBJECTID": 344,
+    "CLOSURE_TYPE": "Utility",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1787108400000,
+    "END_DATE": 1796356800000,
+    "START_TIME": "7am",
+    "END_TIME": "6pm",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": "No",
+    "REOPEN_WEEKENDS": "No",
+    "PERMIT_NO": "TPW-ROW-2026-09323",
+    "APPLICATION_DATE": null,
+    "DETOUR_URL": null,
+    "COMMENTS": "Street closure due to facilitate storm sewer main replacement for Halifax Water. Access to the residents and emergency vehicles will be maintained.",
+    "ADDDATE": 1786644584000,
+    "MODDATE": 1786644584000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "COLLEGE ST",
+    "FROM_STR": "SUMMER ST",
+    "TO_STR": "CATHEDRAL LANE",
+    "RDMID": 111322,
+    "Shape__Length": 330.5232134978799
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 127,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.6135787249567,
+      44.6438871754505
+     ],
+     [
+      -63.6129698630268,
+      44.6432020702589
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "9c5674b2-a1d4-4d3b-8dbc-ec4a1d619f13",
+    "OBJECTID": 127,
+    "CLOSURE_TYPE": "Block Party",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1793415600000,
+    "END_DATE": 1793415600000,
+    "START_TIME": "4pm",
+    "END_TIME": "9pm",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": null,
+    "REOPEN_WEEKENDS": null,
+    "PERMIT_NO": null,
+    "APPLICATION_DATE": 1791169200000,
+    "DETOUR_URL": null,
+    "COMMENTS": "Street closure due to a block party. Access to emergency vehicles will be maintained.",
+    "ADDDATE": 1791293252000,
+    "MODDATE": 1791467115000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "MACDONALD ST",
+    "FROM_STR": "FLINN ST",
+    "TO_STR": "PATRICIA ST",
+    "RDMID": 111407,
+    "Shape__Length": 126.82190219351679
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 1235,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.5647418648412,
+      44.6736793704836
+     ],
+     [
+      -63.5647150429434,
+      44.6732215971067
+     ],
+     [
+      -63.5646828554085,
+      44.672981265882
+     ],
+     [
+      -63.5646238477724,
+      44.6728095987424
+     ],
+     [
+      -63.5645487450214,
+      44.6725616356892
+     ],
+     [
+      -63.5644951012259,
+      44.6723861528737
+     ],
+     [
+      -63.5643717194183,
+      44.6719970372426
+     ],
+     [
+      -63.56424297377,
+      44.6716041045146
+     ],
+     [
+      -63.5641893290762,
+      44.6714209891686
+     ],
+     [
+      -63.5641517777007,
+      44.6712683924984
+     ],
+     [
+      -63.5641195919624,
+      44.6711768346868
+     ],
+     [
+      -63.5640981339052,
+      44.6710547573796
+     ],
+     [
+      -63.5640015739953,
+      44.670726671905
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "19a54633-f4dd-466a-920b-67de3fe5969c",
+    "OBJECTID": 1235,
+    "CLOSURE_TYPE": "Special Event",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1794369600000,
+    "END_DATE": 1794369600000,
+    "START_TIME": "10:00AM",
+    "END_TIME": "12:00PM",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": "N/A",
+    "REOPEN_WEEKENDS": "N/A",
+    "PERMIT_NO": "Special Event",
+    "APPLICATION_DATE": 1792378800000,
+    "DETOUR_URL": null,
+    "COMMENTS": "Street closure on Crichton Ave between Ochterloney and Dahlia from 10:00am to 12:00pm to facilitate Remembrance Day event at the Sullivan’s Pond.",
+    "ADDDATE": 1792503519000,
+    "MODDATE": 1792503535000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "CRICHTON AVE",
+    "FROM_STR": "OCHTERLONEY ST",
+    "TO_STR": "DAHLIA ST",
+    "RDMID": 111420,
+    "Shape__Length": 470.6186299321623
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 968,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.5747302369769,
+      44.6470127601671
+     ],
+     [
+      -63.5737968272096,
+      44.645157905247
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "44e01a8a-bf40-4e1a-b482-5a2aae56529c",
+    "OBJECTID": 968,
+    "CLOSURE_TYPE": "Other",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1776394800000,
+    "END_DATE": 1794801600000,
+    "START_TIME": "9AM",
+    "END_TIME": "9AM",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": "No",
+    "REOPEN_WEEKENDS": "No",
+    "PERMIT_NO": "N/A",
+    "APPLICATION_DATE": 1776135600000,
+    "DETOUR_URL": null,
+    "COMMENTS": "Annual Seasonal Street Closure",
+    "ADDDATE": 1776194900000,
+    "MODDATE": 1776194900000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "ARGYLE ST",
+    "FROM_STR": "BLOWERS ST",
+    "TO_STR": "PRINCE ST",
+    "RDMID": 111121,
+    "Shape__Length": 308.26173213660536
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 452,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.5812487935642,
+      44.6676288001132
+     ],
+     [
+      -63.5811012731265,
+      44.6676593219069
+     ],
+     [
+      -63.5810476284327,
+      44.6676192629278
+     ],
+     [
+      -63.5799211015405,
+      44.6675887417518
+     ],
+     [
+      -63.5798111306817,
+      44.6676230776744
+     ],
+     [
+      -63.5797038412941,
+      44.667581111615
+     ],
+     [
+      -63.578156207553,
+      44.6675410519429
+     ],
+     [
+      -63.5780730585919,
+      44.6675792039209
+     ],
+     [
+      -63.5779872281598,
+      44.6675410519429
+     ],
+     [
+      -63.5764369102526,
+      44.6674933620948
+     ],
+     [
+      -63.5763618092982,
+      44.6675315141042
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "c3558389-106b-496e-a7ff-1b159fb5660c",
+    "OBJECTID": 452,
+    "CLOSURE_TYPE": "Construction",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1791774000000,
+    "END_DATE": 1792551600000,
+    "START_TIME": "7:00AM",
+    "END_TIME": "7:00PM",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": 1792724400000,
+    "REOPEN_EVENINGS": "No",
+    "REOPEN_WEEKENDS": "No",
+    "PERMIT_NO": "DEV-ROW-2024-08685",
+    "APPLICATION_DATE": 1788922800000,
+    "DETOUR_URL": null,
+    "COMMENTS": "Street Closure for major infrastructure upgrades to accommodate new development. Signed Detour in place with Local Access maintained.",
+    "ADDDATE": 1789670893000,
+    "MODDATE": 1792522380000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "WINDMILL RD",
+    "FROM_STR": "LYLE ST",
+    "TO_STR": "WYSE RD",
+    "RDMID": 111382,
+    "Shape__Length": 555.9515691757597
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 1109,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.5950183229527,
+      44.6389026032992
+     ],
+     [
+      -63.5946910927459,
+      44.6382078965821
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "f2c10a58-1173-49d1-9b8c-66a77b5c0a78",
+    "OBJECTID": 1109,
+    "CLOSURE_TYPE": "Development",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1790132400000,
+    "END_DATE": 1814324400000,
+    "START_TIME": "N/A",
+    "END_TIME": "N/A",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": "No",
+    "REOPEN_WEEKENDS": "No",
+    "PERMIT_NO": "Dev-Row-2026-12578",
+    "APPLICATION_DATE": 1789527600000,
+    "DETOUR_URL": null,
+    "COMMENTS": "Street closure to facilitate construction of new development building. Local traffic access will be maintained from Payzant Ave. Detour signs will be in place.",
+    "ADDDATE": 1789659703000,
+    "MODDATE": 1789668442000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "LILAC ST",
+    "FROM_STR": "COBURG RD",
+    "TO_STR": "PAYZANT AVE",
+    "RDMID": 111378,
+    "Shape__Length": 114.62601682600496
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 1617,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -63.7899893944635,
+      44.7463793746577
+     ],
+     [
+      -63.790043038259,
+      44.7461660159499
+     ],
+     [
+      -63.7900108525207,
+      44.7454573543171
+     ],
+     [
+      -63.7899196564514,
+      44.7451373108555
+     ],
+     [
+      -63.7898874698147,
+      44.7450915906721
+     ]
+    ]
+   },
+   "properties": {
+    "GLOBALID": "d3d1b2e1-f7d4-4dd7-89bc-4a734e28a29f",
+    "OBJECTID": 1617,
+    "CLOSURE_TYPE": "Construction",
+    "CLOSURE_STAGE": "Approved",
+    "START_DATE": 1776394800000,
+    "END_DATE": 1824951600000,
+    "START_TIME": "7AM",
+    "END_TIME": "7PM",
+    "ALT_START_DATE": null,
+    "ALT_END_DATE": null,
+    "REOPEN_EVENINGS": "No",
+    "REOPEN_WEEKENDS": "No",
+    "PERMIT_NO": "N/A",
+    "APPLICATION_DATE": 1776308400000,
+    "DETOUR_URL": "Kipawa Cres & Chippawa St",
+    "COMMENTS": null,
+    "ADDDATE": 1776376749000,
+    "MODDATE": 1776376749000,
+    "ALT_DATE_USED": 0,
+    "STREET_NAME": "HALFWAY LAKE DR",
+    "FROM_STR": "KIPAWA CRES",
+    "TO_STR": "CHIPPAWA ST",
+    "RDMID": 111122,
+    "Shape__Length": 204.29108258329774
+   }
+  }
+ ]
+}

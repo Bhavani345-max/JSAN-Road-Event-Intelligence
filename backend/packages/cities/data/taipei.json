@@ -1,0 +1,44 @@
+{
+  "id": "taipei",
+  "name": "Taipei",
+  "area_name": "Taipei City",
+  "country": "TW",
+  "region": "Taipei City",
+  "timezone": "Asia/Taipei",
+  "language": "zh",
+  "bbox": [
+    24.95,
+    121.44,
+    25.22,
+    121.67
+  ],
+  "map": {
+    "center": [
+      121.517,
+      25.0478
+    ],
+    "zoom": 11.5
+  },
+  "scope_terms": [
+    "Taipei",
+    "Taipei City",
+    "臺北",
+    "台北",
+    "臺北市",
+    "台北市"
+  ],
+  "other_cities": [
+    "New Taipei",
+    "新北",
+    "新北市"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "taipei-todaywork"
+  ],
+  "gis_sources": []
+}

@@ -1,0 +1,902 @@
+{
+ "BAUSTELLENLINOGD": {
+  "type": "FeatureCollection",
+  "totalFeatures": 12,
+  "numberMatched": 12,
+  "numberReturned": 12,
+  "timeStamp": "2026-10-21T11:07:31.098Z",
+  "crs": {
+   "type": "name",
+   "properties": {
+    "name": "urn:ogc:def:crs:EPSG::4326"
+   }
+  },
+  "features": [
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623872067",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.34402162,
+       48.21060894
+      ],
+      [
+       16.34397169,
+       48.21053376
+      ],
+      [
+       16.34383933,
+       48.20898559
+      ],
+      [
+       16.34345822,
+       48.20756109
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623872067,
+     "BEZIRK": 8,
+     "BEZEICHNUNG": "Albertgasse von Kreuzung Josef-Matthias-Hauer-Platz und Josefstädter Straße bis Kreuzung Florianigas",
+     "BEHINDERUNGSART": "Straßenbau",
+     "PRESSETEXT": "Bauphase 1 von 2 (13.10.2026 bis Mitte März 2027): Die Arbeiten erfolgen im Bereich Albertgasse von Josefstädter Straße bis Florianigasse. Der motorisierte Individualverkehr bleibt aufrecht. DerFußgänger- und Radverkehr kann aufrecht gehalten werden.Nähere Informationen zu den betroffenen öffentlichen Verkehrsmittel sind der Auskunft der Wiener Linien GmbH & Co KG zu entnehmen.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-10-12Z",
+     "OBJEKT_ENDE": "2027-09-01Z",
+     "ANTRAGSTELLER": "MA28",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623872068",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.34376235,
+       48.21524155
+      ],
+      [
+       16.34381769,
+       48.21457434
+      ],
+      [
+       16.3438432,
+       48.21416964
+      ],
+      [
+       16.34386253,
+       48.2138341
+      ],
+      [
+       16.34392513,
+       48.21314171
+      ],
+      [
+       16.34401322,
+       48.21197196
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623872068,
+     "BEZIRK": 8,
+     "BEZEICHNUNG": "Albertgasse von Kreuzung Josef-Matthias-Hauer-Platz und Josefstädter Straße bis Kreuzung Florianigas",
+     "BEHINDERUNGSART": "Straßenbau",
+     "PRESSETEXT": "Bauphase 1 von 2 (13.10.2026 bis Mitte März 2027): Die Arbeiten erfolgen im Bereich Albertgasse von Josefstädter Straße bis Florianigasse. Der motorisierte Individualverkehr bleibt aufrecht. DerFußgänger- und Radverkehr kann aufrecht gehalten werden.Nähere Informationen zu den betroffenen öffentlichen Verkehrsmittel sind der Auskunft der Wiener Linien GmbH & Co KG zu entnehmen.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-10-12Z",
+     "OBJEKT_ENDE": "2027-09-01Z",
+     "ANTRAGSTELLER": "MA28",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623869544",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.3230561,
+       48.19037865
+      ],
+      [
+       16.32392774,
+       48.19054512
+      ],
+      [
+       16.32550224,
+       48.19092883
+      ],
+      [
+       16.32640078,
+       48.1911479
+      ],
+      [
+       16.32707675,
+       48.19130929
+      ],
+      [
+       16.32748697,
+       48.1913408
+      ],
+      [
+       16.32880385,
+       48.19142525
+      ],
+      [
+       16.32992221,
+       48.19150733
+      ],
+      [
+       16.33013849,
+       48.19151751
+      ],
+      [
+       16.33100803,
+       48.19159058
+      ],
+      [
+       16.33159565,
+       48.19167604
+      ],
+      [
+       16.33211872,
+       48.19180475
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623869544,
+     "BEZIRK": 15,
+     "BEZEICHNUNG": "Mariahilfer Straße von Linzer Straße und Anschützgasse und Zollernsperggasse bis Sperrgasse und Talg",
+     "BEHINDERUNGSART": "Straßenbau",
+     "PRESSETEXT": "Die Bauarbeiten im zweiten Bauteil des Projektes Mariahilfer Straße werden abschnittsweise durchgeführt. Der Individualverkehr in Fahrtrichtung stadtauswärts wird größten Teils über das richtungsführende Gleis geführt. Die Kreuzungsplateaus werden abschnittsweise gesperrt. Im Zuge der Bauarbeiten im Abschnitt zwischen der Denglergasse und der Kauergasse wird der Verkehr in Fahrtrichtung stadtauswärts über die Denglergasse - Jurekgasse - Kauergasse umgeleitet. Ab dem Sommer 2026 wird dann die Fahrtrichtung stadteinwärts in der Mariahilfer Straße ab der Kreuzung Anschützgasse bis zur Grenzgasse für den motorisierten Individualverkehr für immer gesperrt. Weiters wird im Sommer 2026 die Mariahilfer Straße ab dem Kreuzungsplateau mit der Grenzgasse bis zur Kauergasse während der Bauarbeiten in Fahrtrichtung stadtauswärts gesperrt. Die Umleitung wird über die Oesterleingasse - Viktoriagasse Jurekgasse Rustengasse zurück zur Mariahilfer Straße eingerichtet. Zusätzlich wird abschließend noch die Clementinengasse nach Fertigstellung der Bauarbeiten in der Mariahilfer Straße als Sackgasse ausgebildet.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-04-13Z",
+     "OBJEKT_ENDE": "2027-04-30Z",
+     "ANTRAGSTELLER": "MA28",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623869545",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.33211872,
+       48.19180475
+      ],
+      [
+       16.33248603,
+       48.19193633
+      ],
+      [
+       16.33278555,
+       48.192169
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623869545,
+     "BEZIRK": 15,
+     "BEZEICHNUNG": "Mariahilfer Straße von Linzer Straße und Anschützgasse und Zollernsperggasse bis Sperrgasse und Talg",
+     "BEHINDERUNGSART": "Straßenbau",
+     "PRESSETEXT": "Die Bauarbeiten im zweiten Bauteil des Projektes Mariahilfer Straße werden abschnittsweise durchgeführt. Der Individualverkehr in Fahrtrichtung stadtauswärts wird größten Teils über das richtungsführende Gleis geführt. Die Kreuzungsplateaus werden abschnittsweise gesperrt. Im Zuge der Bauarbeiten im Abschnitt zwischen der Denglergasse und der Kauergasse wird der Verkehr in Fahrtrichtung stadtauswärts über die Denglergasse - Jurekgasse - Kauergasse umgeleitet. Ab dem Sommer 2026 wird dann die Fahrtrichtung stadteinwärts in der Mariahilfer Straße ab der Kreuzung Anschützgasse bis zur Grenzgasse für den motorisierten Individualverkehr für immer gesperrt. Weiters wird im Sommer 2026 die Mariahilfer Straße ab dem Kreuzungsplateau mit der Grenzgasse bis zur Kauergasse während der Bauarbeiten in Fahrtrichtung stadtauswärts gesperrt. Die Umleitung wird über die Oesterleingasse - Viktoriagasse Jurekgasse Rustengasse zurück zur Mariahilfer Straße eingerichtet. Zusätzlich wird abschließend noch die Clementinengasse nach Fertigstellung der Bauarbeiten in der Mariahilfer Straße als Sackgasse ausgebildet.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-04-13Z",
+     "OBJEKT_ENDE": "2027-04-30Z",
+     "ANTRAGSTELLER": "MA28",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623869546",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.33278555,
+       48.192169
+      ],
+      [
+       16.33348466,
+       48.19283694
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623869546,
+     "BEZIRK": 15,
+     "BEZEICHNUNG": "Mariahilfer Straße von Linzer Straße und Anschützgasse und Zollernsperggasse bis Sperrgasse und Talg",
+     "BEHINDERUNGSART": "Straßenbau",
+     "PRESSETEXT": "Die Bauarbeiten im zweiten Bauteil des Projektes Mariahilfer Straße werden abschnittsweise durchgeführt. Der Individualverkehr in Fahrtrichtung stadtauswärts wird größten Teils über das richtungsführende Gleis geführt. Die Kreuzungsplateaus werden abschnittsweise gesperrt. Im Zuge der Bauarbeiten im Abschnitt zwischen der Denglergasse und der Kauergasse wird der Verkehr in Fahrtrichtung stadtauswärts über die Denglergasse - Jurekgasse - Kauergasse umgeleitet. Ab dem Sommer 2026 wird dann die Fahrtrichtung stadteinwärts in der Mariahilfer Straße ab der Kreuzung Anschützgasse bis zur Grenzgasse für den motorisierten Individualverkehr für immer gesperrt. Weiters wird im Sommer 2026 die Mariahilfer Straße ab dem Kreuzungsplateau mit der Grenzgasse bis zur Kauergasse während der Bauarbeiten in Fahrtrichtung stadtauswärts gesperrt. Die Umleitung wird über die Oesterleingasse - Viktoriagasse Jurekgasse Rustengasse zurück zur Mariahilfer Straße eingerichtet. Zusätzlich wird abschließend noch die Clementinengasse nach Fertigstellung der Bauarbeiten in der Mariahilfer Straße als Sackgasse ausgebildet.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-04-13Z",
+     "OBJEKT_ENDE": "2027-04-30Z",
+     "ANTRAGSTELLER": "MA28",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623872671",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.367746,
+       48.18153081
+      ],
+      [
+       16.36595174,
+       48.18160215
+      ],
+      [
+       16.36588491,
+       48.18160891
+      ],
+      [
+       16.36583785,
+       48.18161522
+      ],
+      [
+       16.36579442,
+       48.18162405
+      ],
+      [
+       16.36573459,
+       48.18163944
+      ],
+      [
+       16.36566978,
+       48.18165987
+      ],
+      [
+       16.3656476,
+       48.18166914
+      ],
+      [
+       16.3656273,
+       48.18167976
+      ],
+      [
+       16.36559275,
+       48.18170135
+      ],
+      [
+       16.36555942,
+       48.18172825
+      ],
+      [
+       16.36551143,
+       48.18176684
+      ],
+      [
+       16.36482465,
+       48.1824657
+      ],
+      [
+       16.36472869,
+       48.18256123
+      ],
+      [
+       16.36450141,
+       48.18278765
+      ],
+      [
+       16.36441472,
+       48.18287392
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623872671,
+     "BEZIRK": 10,
+     "BEZEICHNUNG": "Landgutgasse von Herzgasse und Karl-Merkatz-Gasse bis Margaretengürtel und Kliebergasse",
+     "BEHINDERUNGSART": "Straßenbau",
+     "PRESSETEXT": "Während der Aufstellung der den Radweg abgrenzenden Betonleitwände wird die Fahrbahn örtlich eingeengt, der Verkehr wird durch geschultes Personal an der Arbeitsstelle vorbeigeschleust.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-10-15Z",
+     "OBJEKT_ENDE": "2026-10-30Z",
+     "ANTRAGSTELLER": "MA28",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623872309",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.41715199,
+       48.25319766
+      ],
+      [
+       16.41763474,
+       48.25319336
+      ],
+      [
+       16.41785249,
+       48.25319176
+      ],
+      [
+       16.41959204,
+       48.25317936
+      ],
+      [
+       16.42009674,
+       48.2531745
+      ],
+      [
+       16.42080694,
+       48.25316768
+      ],
+      [
+       16.42090996,
+       48.25316662
+      ],
+      [
+       16.42103222,
+       48.25316122
+      ],
+      [
+       16.42111436,
+       48.25315936
+      ],
+      [
+       16.42130287,
+       48.25314726
+      ],
+      [
+       16.42146107,
+       48.25313159
+      ],
+      [
+       16.42159328,
+       48.25311485
+      ],
+      [
+       16.42174865,
+       48.25309369
+      ],
+      [
+       16.42188085,
+       48.25307336
+      ],
+      [
+       16.42209262,
+       48.25303921
+      ],
+      [
+       16.42225296,
+       48.25301597
+      ],
+      [
+       16.42296769,
+       48.25290221
+      ],
+      [
+       16.42524728,
+       48.25253607
+      ],
+      [
+       16.4262521,
+       48.25237314
+      ],
+      [
+       16.42641809,
+       48.2523463
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623872309,
+     "BEZIRK": 21,
+     "BEZEICHNUNG": "Donaufelder Straße 79 bis 137",
+     "BEHINDERUNGSART": "Gleisbau",
+     "PRESSETEXT": "Die Donaufelder Straße wird ab Kreuzung Fultonstraße bis und in Fahrtrichtung Angyalföldstraße zur Einbahn. Die Umleitung in Fahrtrichtung 21. Bezirk erfolgt über: Angyalföldstraße - Leopoldauer Straße.Nähere Informationen zu den betroffenen öffentlichen Verkehrsmittel sind der Auskunft der Wiener Linien GmbH & Co KG zu entnehmen.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-09-10Z",
+     "OBJEKT_ENDE": "2026-12-11Z",
+     "ANTRAGSTELLER": "Wiener Linien GmbH & Co KG",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623872190",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.41189531,
+       48.28199894
+      ],
+      [
+       16.41223817,
+       48.28259918
+      ],
+      [
+       16.41260248,
+       48.28321335
+      ],
+      [
+       16.41285224,
+       48.28363424
+      ],
+      [
+       16.41312446,
+       48.28410845
+      ],
+      [
+       16.41384471,
+       48.28538085
+      ],
+      [
+       16.41433895,
+       48.28625401
+      ],
+      [
+       16.41609733,
+       48.28929984
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623872190,
+     "BEZIRK": 21,
+     "BEZEICHNUNG": "Brünner Straße von Gerasdorfer Straße bis Ocwirkgasse und Anton-Schall-Gasse",
+     "BEHINDERUNGSART": "Rohrlegung",
+     "PRESSETEXT": "Im Bereich Brünner Straße vonGerasdorfer Straße bis Anton-Schall-Gasse werden die stadteinwärts führendenFahrstreifen gesperrt. Der Verkehr wird auf der stadtauswärts führenden Seite geführt und es wird ein Fahrstreifen je Fahrtrichtung aufrecht gehalten. Die Arbeiten in den Kreuzungsbereichen werden in der Zeit von 20:00 Uhr bis 05:00 Uhr durchgeführt bei Aufrechterhaltung aller Fahrrelationen.Der Fußgängerverkehr kann aufrecht gehalten werden.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-07-06Z",
+     "OBJEKT_ENDE": "2026-12-23Z",
+     "ANTRAGSTELLER": null,
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623871933",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.35412942,
+       48.19126723
+      ],
+      [
+       16.35431489,
+       48.19163314
+      ],
+      [
+       16.35485556,
+       48.1926858
+      ],
+      [
+       16.35490994,
+       48.19279164
+      ],
+      [
+       16.35494239,
+       48.19288013
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623871933,
+     "BEZIRK": 5,
+     "BEZEICHNUNG": "Rechte Wienzeile von Kreuzung Ramperstorffergasse bis Kreuzung Pilgramgasse und Pilgrambrücke",
+     "BEHINDERUNGSART": "U-Bahnbau",
+     "PRESSETEXT": "Für den Neubau der U-Bahnstation der U2 Pilgramgasse wird die Rechte Wienzeile von der Ramperstorffergasse bis zur Pilgramgasse für den Fahrzeugverkehr gesperrt. Die Umleitungsstrecke wird über die Schönbrunner Straße und Pilgramgasse geführt.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2021-02-28Z",
+     "OBJEKT_ENDE": "2028-05-31Z",
+     "ANTRAGSTELLER": "Wiener Linien GmbH & Co KG",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623871493",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.28936411,
+       48.19103124
+      ],
+      [
+       16.28877626,
+       48.19112255
+      ],
+      [
+       16.28764092,
+       48.19129646
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623871493,
+     "BEZIRK": 14,
+     "BEZEICHNUNG": "Hadikgasse von ggü. 162 bis ggü. 172",
+     "BEHINDERUNGSART": "Kanalbau",
+     "PRESSETEXT": "Zur Errichtung eines Schachtbauwerkes(Zwischenschacht) für den Tunnelvortrieb des Wientalsammelkanals werden in derHadikgasse auf Höhe der Kaltenbäckgasse nach Sperre des linken Fahrstreifensdie beiden Fahrbahnen entsprechend verschwenkt. Die Bodenmarkierungen werdendafür entsprechend angepasst.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2025-06-22Z",
+     "OBJEKT_ENDE": "2027-12-31Z",
+     "ANTRAGSTELLER": "Wienkanal",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623871867",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.39378949,
+       48.2128918
+      ],
+      [
+       16.39367356,
+       48.21294411
+      ],
+      [
+       16.39344707,
+       48.21303865
+      ],
+      [
+       16.39325717,
+       48.21312167
+      ],
+      [
+       16.39314514,
+       48.21317226
+      ],
+      [
+       16.39302344,
+       48.21324067
+      ],
+      [
+       16.39291383,
+       48.21328632
+      ],
+      [
+       16.39278241,
+       48.21332875
+      ],
+      [
+       16.39242684,
+       48.21338908
+      ],
+      [
+       16.39214193,
+       48.2134609
+      ],
+      [
+       16.39213413,
+       48.21346306
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623871867,
+     "BEZIRK": 2,
+     "BEZEICHNUNG": "Schüttelstraße von 9 bis 3",
+     "BEHINDERUNGSART": "Arbeiten an Sonderbauwerken",
+     "PRESSETEXT": "In Fahrtrichtung stadteinwärts wird in der Zeit von 05:00 bis 20:00 Uhr ein Fahrstreifen und in der Zeit von 20:00 Uhr bis 5:00 Uhr zwei Fahrstreifen gesperrt. Die restlichen Fahrstreifen werde. aufrechtgehalten.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-09-14Z",
+     "OBJEKT_ENDE": "2026-11-15Z",
+     "ANTRAGSTELLER": "ÖBB Infrastruktur AG",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENLINOGD.623869554",
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       16.40211686,
+       48.26517642
+      ],
+      [
+       16.40229488,
+       48.26513953
+      ],
+      [
+       16.40319055,
+       48.26490204
+      ],
+      [
+       16.40344489,
+       48.26482761
+      ],
+      [
+       16.4038189,
+       48.2647032
+      ],
+      [
+       16.40424987,
+       48.26456769
+      ],
+      [
+       16.404505,
+       48.26448291
+      ],
+      [
+       16.4046718,
+       48.2644186
+      ],
+      [
+       16.40478717,
+       48.26437572
+      ],
+      [
+       16.40490887,
+       48.26432853
+      ],
+      [
+       16.40502006,
+       48.2642799
+      ],
+      [
+       16.40515683,
+       48.26422127
+      ],
+      [
+       16.40527393,
+       48.26416427
+      ],
+      [
+       16.40904742,
+       48.2621643
+      ],
+      [
+       16.40946946,
+       48.26193012
+      ],
+      [
+       16.40975421,
+       48.26175979
+      ],
+      [
+       16.4100497,
+       48.26156328
+      ],
+      [
+       16.4104364,
+       48.26130267
+      ],
+      [
+       16.41149504,
+       48.26058802
+      ],
+      [
+       16.41277937,
+       48.25968822
+      ],
+      [
+       16.41290369,
+       48.25960405
+      ]
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 623869554,
+     "BEZIRK": 21,
+     "BEZEICHNUNG": "Katsushikastraße von Kreuzung Brünner Straße bis Kreuzung Leopoldauer Straße und Angyalföldstraße",
+     "BEHINDERUNGSART": "Brückenbau",
+     "PRESSETEXT": "DieArbeiten erfolgen in der Zeit von 07:00 bis 18:00 Uhr.Derrechte/linke/mittlere Fahrstreifen wird in Fahrtrichtung Leopoldauer Straße gesperrt. Die restlichenFahrstreifen werden aufrechtgehalten. Außerhalbder Arbeitszeit bleibt der Verkehr unbehindert.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-10-06Z",
+     "OBJEKT_ENDE": "2026-10-30Z",
+     "ANTRAGSTELLER": "MA29",
+     "SE_ANNO_CAD_DATA": null
+    }
+   }
+  ]
+ },
+ "BAUSTELLENPKTOGD": {
+  "type": "FeatureCollection",
+  "totalFeatures": 6,
+  "numberMatched": 6,
+  "numberReturned": 6,
+  "timeStamp": "2026-10-21T11:07:32.595Z",
+  "crs": {
+   "type": "name",
+   "properties": {
+    "name": "urn:ogc:def:crs:EPSG::4326"
+   }
+  },
+  "features": [
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENPKTOGD.1725059207",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      16.35383861,
+      48.20412073
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 1725059207,
+     "BEZIRK": 7,
+     "BEZEICHNUNG": "Burggasse 25 bis 45",
+     "BEHINDERUNGSART": "Straßenbau",
+     "PRESSETEXT": "Derrechte Fahrstreifen wird in Fahrtrichtung stadteinwärts gesperrt. Die restlichenFahrstreifen werden aufrechtgehalten. DerFußgänger- und Radverkehr kann aufrecht gehalten werden.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-07-27Z",
+     "OBJEKT_ENDE": "2026-10-30Z",
+     "ANTRAGSTELLER": "MA28",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENPKTOGD.1725059545",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      16.29726708,
+      48.17578448
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 1725059545,
+     "BEZIRK": 13,
+     "BEZEICHNUNG": "Montecuccoliplatz ggü. 12 bis Ende des Gustav-Zelibor-Park",
+     "BEHINDERUNGSART": "Rohrlegung",
+     "PRESSETEXT": "Im Zuge der Verlegung einer Fernwärmeleitung (Wärmeanschluss für das Kesselhaus Schloss Schönbrunn) in der Maxingstraße wird der Montecuccoliplatz im Bereich von der Opitzgasse bis und in Richtung zur Volkgasse als provisorische Einbahn bei Freihaltung einer mindestens 3,50 m breite Restfahrbahn geführt. Für die Arbeiten in der Maxingstraße, welche erst Anfang 2026 beginnen, wird eine gesonderte Meldung ausgesandt.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-02-01Z",
+     "OBJEKT_ENDE": "2026-12-31Z",
+     "ANTRAGSTELLER": null,
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENPKTOGD.1725063129",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      16.37418492,
+      48.20008633
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 1725063129,
+     "BEZIRK": 1,
+     "BEZEICHNUNG": "Lothringerstraße 3 bis 5",
+     "BEHINDERUNGSART": "Baustelleneinrichtung für Hochbau",
+     "PRESSETEXT": "Für Be- und Entladetätigkeiten im Zuge der Kernsanierung des Gebäudes in Wien 1, Lothringerstraße ON 3-5 bzw. Schwarzenbergplatz ON 15 wird die rechte Fahrspur in der Lothringerstraße ab ca. 30 m nach dem Schwarzenbergplatz bis ca. 20 m vor der Canovagasse gesperrt. Die Absperrung erfolgt mittels Betonleitwänden. Es verbleiben 2 Fahrspuren im gegenständlichen Bereich aufrecht. Der Geh- und Radweg wird mittels Passagengerüst überbaut und wird durch das Bauvorhaben nicht behindert.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2025-02-02Z",
+     "OBJEKT_ENDE": "2027-12-31Z",
+     "ANTRAGSTELLER": "Privater Bauträger",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENPKTOGD.1725058132",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      16.35496596,
+      48.18713245
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 1725058132,
+     "BEZIRK": 5,
+     "BEZEICHNUNG": "Bacherplatz von Arbeitergasse bis Schwarzhorngasse",
+     "BEHINDERUNGSART": "U-Bahnbau",
+     "PRESSETEXT": "Der Bacherplatz wird im Zuge der Spengergasse zwischen der Arbeitergasse und der Schwarzhorngasse gesperrt. Aus diesem Grund werden die Spengergasse zwischen der Schwarzhorngasse und der Margaretenstraße und die Schwarzhorngasse zwischen der Spengergasse und der Reinprechtsdorfer Straße bei Aufhebung der bestehenden Einbahnregelungen als Sackgassen ausgebildet. Detaillierte Informationen über das Bauvorhaben U2 / U5 können über die Ombudsstelle des jeweils betroffenen U-Bahnabschnittes eingeholt werden.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2021-02-28Z",
+     "OBJEKT_ENDE": "2028-12-31Z",
+     "ANTRAGSTELLER": "Wiener Linien GmbH & Co KG",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENPKTOGD.1725058142",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      16.29486264,
+      48.18947432
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 1725058142,
+     "BEZIRK": 13,
+     "BEZEICHNUNG": "Hietzinger Kai Kreuzung Braunschweiggasse",
+     "BEHINDERUNGSART": "Zuleitungs- Schieber- Hydrantenarbeiten",
+     "PRESSETEXT": "DieArbeiten erfolgen in der Zeit von 19:00 bis 5:00 Uhr. Derrechte Fahrstreifen wird in der markierten Breite in Anspruch genommen. Die restlichenFahrstreifen werden aufrechtgehalten. Außerhalbder Arbeitszeit bleibt der Verkehr unbehindert.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-10-11Z",
+     "OBJEKT_ENDE": "2026-11-27Z",
+     "ANTRAGSTELLER": "MA31",
+     "SE_ANNO_CAD_DATA": null
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "BAUSTELLENPKTOGD.1725062714",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      16.25804707,
+      48.19735528
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "OBJECTID": 1725062714,
+     "BEZIRK": 13,
+     "BEZEICHNUNG": "Wientalstraße Kreuzung Rußpekgasse und Hütteldorfer Brücke",
+     "BEHINDERUNGSART": "Kanalbau",
+     "PRESSETEXT": "Im Bereich der Wientalstraße nach der Kreuzung Rußpekgasse werden zwei Fahrstreifen mit jeweils einer Breite von 3,50 m aufrecht gehalten.",
+     "GISCODE": 1,
+     "GISCODE_TXT": "P90 Baustellen",
+     "OBJEKT_BEGINN": "2026-08-24Z",
+     "OBJEKT_ENDE": "2027-12-31Z",
+     "ANTRAGSTELLER": "Wienkanal",
+     "SE_ANNO_CAD_DATA": null
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "austria",
+  "name": "Austria",
+  "area_name": "Austria",
+  "country": "AT",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Vienna",
+  "language": "de",
+  "bbox": [
+    46.37,
+    9.53,
+    49.02,
+    17.17
+  ],
+  "map": {
+    "center": [
+      13.33,
+      47.6
+    ],
+    "zoom": 6.4
+  },
+  "scope_terms": [
+    "Austria",
+    "Österreich"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

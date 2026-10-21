@@ -67,6 +67,31 @@ from .official.wzdx import wzdx_source
 from .official.tokushima import TokushimaRoadRestrictionsConnector, tokushima_source
 from .official.brussels import BrusselsTrafficEventsConnector, brussels_source
 from .official.hamburg import HamburgPoliceTrafficConnector, hamburg_source
+# 21 October 2026 (decision 0040).
+from .official.srwr import SrwrDisruptionsConnector, srwr_source
+from .official.seattle import SeattleStreetClosuresConnector, seattle_source
+from .official.baton_rouge import BatonRougeRoadClosuresConnector, baton_rouge_source
+from .official.halifax import HalifaxStreetClosuresConnector, halifax_source
+from .official.cambridge_on import CambridgeRoadClosuresConnector, cambridge_source
+from .official.kitchener import KitchenerTrafficClosuresConnector, kitchener_source
+from .official.sherbrooke import SherbrookeTravauxConnector, sherbrooke_source
+from .official.gipod import GipodHindranceConnector, gipod_source
+from .official.hamburg_roadworks import HamburgRoadworksConnector, hamburg_roadworks_source
+from .official.vienna import ViennaRoadworksConnector, vienna_source
+from .official.taipei_works import TaipeiTodayWorksConnector, taipei_source
+from .official.new_taipei_excavation import NewTaipeiRoadExcavationConnector, new_taipei_source
+from .official.taichung_traffic_plans import TaichungTrafficPlansConnector, taichung_source
+from .official.spain_dgt import SpainDgtIncidentsConnector, dgt_source
+from .official.barcelona import BarcelonaWorksConnector, barcelona_source
+from .official.madrid import MadridInformoConnector, madrid_source
+from .official.euskadi import EuskadiTrafficIncidencesConnector, euskadi_source
+from .official.ndw import (
+    NdwCurrentSituationsConnector,
+    NdwPlannedWorksConnector,
+    ndw_current_source,
+    ndw_planned_source,
+)
+from .official.cita import CitaTrafficEventsConnector, cita_source
 from .restricted import RESTRICTED_PUBLISHERS
 from .rss import create_rss_connector
 from .rss.models import awaiting_permission, restricted_by_terms
@@ -284,6 +309,29 @@ def _official_sources(
             # Belgium and Germany (16 October 2026, decision 0034).
             (brussels_source, BrusselsTrafficEventsConnector),
             (hamburg_source, HamburgPoliceTrafficConnector),
+            # 21 October 2026 (decision 0040): United Kingdom (Scotland), more US and
+            # Canadian cities, Flanders, Hamburg roadworks, Vienna, Taiwan, Spain,
+            # the Netherlands and Luxembourg.
+            (srwr_source, SrwrDisruptionsConnector),
+            (seattle_source, SeattleStreetClosuresConnector),
+            (baton_rouge_source, BatonRougeRoadClosuresConnector),
+            (halifax_source, HalifaxStreetClosuresConnector),
+            (cambridge_source, CambridgeRoadClosuresConnector),
+            (kitchener_source, KitchenerTrafficClosuresConnector),
+            (sherbrooke_source, SherbrookeTravauxConnector),
+            (gipod_source, GipodHindranceConnector),
+            (hamburg_roadworks_source, HamburgRoadworksConnector),
+            (vienna_source, ViennaRoadworksConnector),
+            (taipei_source, TaipeiTodayWorksConnector),
+            (new_taipei_source, NewTaipeiRoadExcavationConnector),
+            (taichung_source, TaichungTrafficPlansConnector),
+            (dgt_source, SpainDgtIncidentsConnector),
+            (barcelona_source, BarcelonaWorksConnector),
+            (madrid_source, MadridInformoConnector),
+            (euskadi_source, EuskadiTrafficIncidencesConnector),
+            (ndw_current_source, NdwCurrentSituationsConnector),
+            (ndw_planned_source, NdwPlannedWorksConnector),
+            (cita_source, CitaTrafficEventsConnector),
         )
         if (definition := _scheduled_if_chosen(make, scheduled, chosen))
     )
@@ -338,7 +386,7 @@ def registered_sources(
     *,
     official_feeds_scheduled: bool = False,
     official_feeds_scheduled_sources: Collection[str] = (),
-    official_feed_max_records: int | None = 30,
+    official_feed_max_records: int | None = None,
     tfl_app_key: str | None = None,
     gdelt_enabled: bool = False,
 ) -> tuple[RegisteredSource, ...]:

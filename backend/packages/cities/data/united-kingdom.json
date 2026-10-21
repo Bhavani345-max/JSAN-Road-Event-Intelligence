@@ -29,6 +29,8 @@
   "discovery": {
     "queries": []
   },
-  "official_sources": [],
+  "official_sources": [
+    "scotland-srwr-disruptions"
+  ],
   "gis_sources": []
 }

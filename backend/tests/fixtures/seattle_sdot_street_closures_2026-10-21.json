@@ -1,0 +1,236 @@
+{
+ "fetched_at": "2026-10-21T11:05:18.946738+00:00",
+ "request": "https://data.seattle.gov/resource/ium9-iqtc.json?%24limit=5000",
+ "note": "A trimmed sample of the real response (items unchanged).",
+ "items": [
+  {
+   "permit_number": "SUFUN0006740",
+   "permit_type": "Block Party",
+   "project_name": "Block Party | 10/25 | Phinney Ave N b/t 105th & 107th",
+   "project_description": "Block Party on Phinney Ave N between N 105th St (arterial) and N 107th St (non-arterial).  About 60-70 neighbors would like to gather and have a family-friendly block party to kick off Halloween week. Expecting outdoor games, and bike and scooter riding on Oct 25 from 2:30-6pm.",
+   "start_date": "2026-10-25T00:00:00.000",
+   "end_date": "2026-10-25T00:00:00.000",
+   "sunday": "2:30PM-6PM",
+   "street_on": "PHINNEY AVE N",
+   "street_from": "N 105TH ST",
+   "street_to": "N 107TH ST",
+   "segkey": "12171",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.354112152135,
+      47.7050795718855
+     ],
+     [
+      -122.354128469841,
+      47.7068951374398
+     ]
+    ]
+   }
+  },
+  {
+   "permit_number": "SUFUN0006736",
+   "permit_type": "Block Party",
+   "project_name": "Trick or Treat Street | 9th Ave NW",
+   "project_description": "[9th Ave NW] b/w [NW 80th St] and [NW 83rd St] from 3pm to 10pm.\r\n\r\nHalloween block party on 9th Ave NW between NW 80th St and NW 83rd St on 31Oct2026 from 3 - 10 pm. There will be potluck food, bikes, and general merriment!",
+   "start_date": "2026-10-31T00:00:00.000",
+   "end_date": "2026-10-31T00:00:00.000",
+   "saturday": "3PM-10PM",
+   "street_on": "9TH AVE NW",
+   "street_from": "NW 80TH ST",
+   "street_to": "NW 83RD S ST",
+   "segkey": "8589",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.368331378615,
+      47.6869243080113
+     ],
+     [
+      -122.368327054137,
+      47.6887504610931
+     ]
+    ]
+   }
+  },
+  {
+   "permit_number": "SUFUN0006127",
+   "permit_type": "Farmers Market",
+   "project_name": "University District Farmers Market 2026-2027",
+   "project_description": "Year-round U District Farmers Market takes place on University Way NE from NE 50th St to north of NE 52nd St, Saturdays 9am-2pm; Street Closed 6am-4pm.",
+   "start_date": "2026-05-16T00:00:00.000",
+   "end_date": "2027-05-15T00:00:00.000",
+   "saturday": "6AM-4PM",
+   "street_on": "UNIVERSITY WAY NE",
+   "street_from": "NE 52ND ST",
+   "street_to": "NE 55TH ST",
+   "segkey": "13225",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.313050579983,
+      47.6664357904485
+     ],
+     [
+      -122.313018302434,
+      47.6685183819184
+     ],
+     [
+      -122.313017854051,
+      47.6685472750851
+     ]
+    ]
+   }
+  },
+  {
+   "permit_number": "SUFUN0006732",
+   "permit_type": "Temporary Activation",
+   "project_name": "Public Activation | Sip & Stroll Pilot | Pike Place Market",
+   "project_description": "Pike Place merchants wish to extend their previously approved sip and savor program to include three additional dates:\r\nFriday, October 23, from 5 pm - 9 pm (drink sales end at 8:30)\r\nSaturday, November 28, from 12 pm - 6 pm (drink sales end at 5:30)\r\nThursday, December 10, from 5 pm - 9 pm (drink sales end at 8:30)\r\n\r\nIn each case the street will be fully closed, eight MAST-certified roaming event staff will observe and enforce program rules, and each participating merchant is also responsible for assigning a responsible party for their participation.  LCB has approved this activation.",
+   "start_date": "2026-11-28T00:00:00.000",
+   "end_date": "2026-11-28T00:00:00.000",
+   "saturday": "12PM-6PM",
+   "street_on": "PIKE PL",
+   "street_from": "POST AL",
+   "street_to": "PINE ST",
+   "segkey": "12190",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.340790211521,
+      47.6088178391951
+     ],
+     [
+      -122.341726827042,
+      47.6093703034529
+     ],
+     [
+      -122.341832217403,
+      47.609432512654
+     ]
+    ]
+   }
+  },
+  {
+   "permit_number": "SUFUN0006720",
+   "permit_type": "Play Street",
+   "project_name": "Block Party | Wednesdays | 19th Ave NE b/t 97th & 98th",
+   "project_description": "Block Party on 19th Ave NE between NE 97th St and NE 98th St, all non-arterials.  Wednesdays 5-8 PM, 10/21/2026-04/20/2027 (6 months max on Block Party permits).",
+   "start_date": "2026-10-21T00:00:00.000",
+   "end_date": "2027-04-20T00:00:00.000",
+   "wednesday": "5PM-8PM",
+   "street_on": "19TH AVE NE",
+   "street_from": "NE 97TH ST",
+   "street_to": "NE 98TH ST",
+   "segkey": "2686",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.30784917518,
+      47.6993999803494
+     ],
+     [
+      -122.307878854956,
+      47.7003075134794
+     ]
+    ]
+   }
+  },
+  {
+   "permit_number": "SUFUN0006224",
+   "permit_type": "Play Street",
+   "project_name": "Play Street | Fri Sun | 9th Ave NW b/t 65th & 67th",
+   "project_description": "Play Street on 9th Ave NW between NW 65th St (arterial) and NW 67th St (non-arterial).\r\nFridays 4:00 PM-9:00 PM and Sundays 1:00 PM-8:00 PM, through 11/08/2026.",
+   "start_date": "2026-05-12T00:00:00.000",
+   "end_date": "2026-11-08T00:00:00.000",
+   "sunday": "1PM-8PM",
+   "friday": "4PM-9PM",
+   "street_on": "9TH AVE NW",
+   "street_from": "NW 65TH ST",
+   "street_to": "NW 67TH ST",
+   "segkey": "8583",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.368737901219,
+      47.6759763724028
+     ],
+     [
+      -122.368696577424,
+      47.6759917434576
+     ],
+     [
+      -122.368720897263,
+      47.6777807661205
+     ]
+    ]
+   }
+  },
+  {
+   "permit_number": "SUFUN0006207",
+   "permit_type": "Block Party",
+   "project_name": "Block Party | Various Dates 5/20-10/31 | 10th Ave NW b/t 70th & 73rd",
+   "project_description": "Block party at 10th Ave NW between NW 70th St and NW 73rd St, all non-arterials.  Various dates from May 20 through Oct 31, 5:00 PM-10:00 PM each closure date.  See Permitted Uses for full list of approved closure dates.",
+   "start_date": "2026-10-31T00:00:00.000",
+   "end_date": "2026-10-31T00:00:00.000",
+   "saturday": "5PM-10PM",
+   "street_on": "10TH AVE NW",
+   "street_from": "NW 70TH E ST",
+   "street_to": "NW 73RD ST",
+   "segkey": "1311",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.369382048751,
+      47.6795467552323
+     ],
+     [
+      -122.369382197838,
+      47.679621985744
+     ],
+     [
+      -122.369386749006,
+      47.6814391924625
+     ]
+    ]
+   }
+  },
+  {
+   "permit_number": "SUFUN0006207",
+   "permit_type": "Block Party",
+   "project_name": "Block Party | Various Dates 5/20-10/31 | 10th Ave NW b/t 70th & 73rd",
+   "project_description": "Block party at 10th Ave NW between NW 70th St and NW 73rd St, all non-arterials.  Various dates from May 20 through Oct 31, 5:00 PM-10:00 PM each closure date.  See Permitted Uses for full list of approved closure dates.",
+   "start_date": "2026-10-21T00:00:00.000",
+   "end_date": "2026-10-21T00:00:00.000",
+   "wednesday": "5PM-10PM",
+   "street_on": "10TH AVE NW",
+   "street_from": "NW 70TH E ST",
+   "street_to": "NW 73RD ST",
+   "segkey": "1311",
+   "line_string": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.369382048751,
+      47.6795467552323
+     ],
+     [
+      -122.369382197838,
+      47.679621985744
+     ],
+     [
+      -122.369386749006,
+      47.6814391924625
+     ]
+    ]
+   }
+  }
+ ]
+}

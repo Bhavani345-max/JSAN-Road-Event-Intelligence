@@ -1,0 +1,35 @@
+{
+  "id": "barcelona",
+  "name": "Barcelona",
+  "area_name": "City of Barcelona",
+  "country": "ES",
+  "region": "Catalonia",
+  "timezone": "Europe/Madrid",
+  "language": "ca",
+  "bbox": [
+    41.31,
+    2.04,
+    41.48,
+    2.24
+  ],
+  "map": {
+    "center": [
+      2.1734,
+      41.3851
+    ],
+    "zoom": 11.8
+  },
+  "scope_terms": [
+    "Barcelona"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "barcelona-public-space-works"
+  ],
+  "gis_sources": []
+}

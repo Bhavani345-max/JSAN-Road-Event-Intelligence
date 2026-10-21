@@ -1,0 +1,393 @@
+{
+ "fetched_at": "2026-10-21T11:05:20.960231+00:00",
+ "request": "https://data.brla.gov/resource/ra2i-eye8.json?%24limit=5000",
+ "note": "A trimmed sample of the real response (items unchanged except the contact column, removed: names of contact people or firms).",
+ "items": [
+  {
+   "street": "E. Harrison",
+   "type": "CONSTRUCTION",
+   "subtype": "ROAD_CLOSED_CONSTRUCTION",
+   "start_date": "2025-10-31T12:00:00.000Z",
+   "end_date": "2031-02-17T18:00:00.000Z",
+   "description": "Demolition of Street",
+   "from_cross_street": "Maryland",
+   "end_cross_street": "Missouri",
+   "severity": "MAJOR",
+   "direction": "ALL",
+   "recurring": "Daily",
+   "full_closure": "Full",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "Yes",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.172282139731,
+       30.428670635267
+      ],
+      [
+       -91.172284856489,
+       30.428763807622
+      ],
+      [
+       -91.172707737289,
+       30.429110552656
+      ],
+      [
+       -91.172727732452,
+       30.429127201449
+      ],
+      [
+       -91.172738224213,
+       30.429135058714
+      ],
+      [
+       -91.172749028794,
+       30.429142590705
+      ],
+      [
+       -91.172760132677,
+       30.429149788386
+      ],
+      [
+       -91.172771521301,
+       30.42915664362
+      ],
+      [
+       -91.172783182189,
+       30.429163147371
+      ],
+      [
+       -91.172795098699,
+       30.4291692915
+      ],
+      [
+       -91.172807258353,
+       30.429175067872
+      ],
+      [
+       -91.172819644502,
+       30.429180471055
+      ],
+      [
+       -91.172832241546,
+       30.429185492912
+      ],
+      [
+       -91.172845035962,
+       30.429190127111
+      ],
+      [
+       -91.17285801006,
+       30.42919436912
+      ],
+      [
+       -91.172871148238,
+       30.429198211704
+      ],
+      [
+       -91.172884433843,
+       30.429201653039
+      ],
+      [
+       -91.172897851272,
+       30.429204685887
+      ],
+      [
+       -91.172911383871,
+       30.429207308426
+      ],
+      [
+       -91.172925014992,
+       30.429209517027
+      ],
+      [
+       -91.172938726943,
+       30.429211308059
+      ],
+      [
+       -91.172952502028,
+       30.4292126806
+      ],
+      [
+       -91.172966325679,
+       30.429213631925
+      ],
+      [
+       -91.17298017916,
+       30.429214161109
+      ],
+      [
+       -91.172994044773,
+       30.429214268131
+      ],
+      [
+       -91.173007906905,
+       30.42921395207
+      ],
+      [
+       -91.173021746819,
+       30.429213212904
+      ],
+      [
+       -91.173075155792,
+       30.429209544821
+      ],
+      [
+       -91.173450410458,
+       30.429197331119
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "street": "E. McKinley St",
+   "type": "CONSTRUCTION",
+   "subtype": "ROAD_CLOSED_CONSTRUCTION",
+   "start_date": "2026-05-01T13:00:00.000Z",
+   "end_date": "2027-06-29T13:00:00.000Z",
+   "description": "Mckinley High School Renovation",
+   "from_cross_street": "Kentucky St",
+   "end_cross_street": "E. McKinley St",
+   "severity": "MAJOR",
+   "direction": "ALL",
+   "recurring": "Daily",
+   "full_closure": "Full",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "Yes",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.174067105158,
+       30.423931512452
+      ],
+      [
+       -91.174067341415,
+       30.423784203113
+      ],
+      [
+       -91.174294940813,
+       30.423784477066
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "street": "East Blvd",
+   "type": "CONSTRUCTION",
+   "subtype": "ROAD_CLOSED_CONSTRUCTION",
+   "start_date": "2026-10-19T11:00:00.000Z",
+   "end_date": "2026-10-22T22:00:00.000Z",
+   "description": "Demo Interior Forms Ramp 2",
+   "from_cross_street": "South Blvd",
+   "end_cross_street": "Myrtle Ave",
+   "severity": "MAJOR",
+   "direction": "NORTH",
+   "recurring": "Daily",
+   "full_closure": "Partial",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "Yes",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.180153646028,
+       30.439742701229
+      ],
+      [
+       -91.180112510817,
+       30.43839199789
+      ],
+      [
+       -91.180190477992,
+       30.438279742069
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "street": "Baylor Dr",
+   "type": "CONSTRUCTION",
+   "start_date": "2026-09-16T11:00:00.000Z",
+   "end_date": "2026-10-22T23:00:00.000Z",
+   "description": "power Pole Replacment",
+   "from_cross_street": "Vanderbilt Dr",
+   "end_cross_street": "Eastgate Dr",
+   "severity": "MAJOR",
+   "direction": "EAST",
+   "recurring": "Daily",
+   "full_closure": "Partial",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "Yes",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.051937718297,
+       30.429034845266
+      ],
+      [
+       -91.051542437665,
+       30.429004210302
+      ],
+      [
+       -91.050439870082,
+       30.429850950582
+      ],
+      [
+       -91.049099181682,
+       30.42980338712
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "street": "Fernwood Drive",
+   "type": "BRIDGE",
+   "subtype": "ROAD_CLOSED_CONSTRUCTION",
+   "start_date": "2023-11-28T14:00:00.000Z",
+   "end_date": "2027-11-29T01:00:00.000Z",
+   "description": "Emergency Bridge Closure",
+   "from_cross_street": "Florida Blvd",
+   "end_cross_street": "Greenmoss",
+   "severity": "MAJOR",
+   "direction": "BOTH",
+   "recurring": "Daily",
+   "full_closure": "Bridge",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "Yes",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.102551915792,
+       30.453041750868
+      ],
+      [
+       -91.102568145144,
+       30.45364476913
+      ],
+      [
+       -91.102568153812,
+       30.453645071342
+      ],
+      [
+       -91.102568231398,
+       30.453647977072
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "street": "Victoria Dr Bridge",
+   "type": "BRIDGE",
+   "subtype": "ROAD_CLOSED_CONSTRUCTION",
+   "start_date": "2016-08-22T20:30:00.000Z",
+   "end_date": "2035-01-01T22:00:00.000Z",
+   "description": "over canal",
+   "from_cross_street": "Prescott Rd",
+   "end_cross_street": "Merrydale Rd",
+   "full_closure": "Bridge",
+   "alt_route": "Use Airline Hwy for Alternate Route",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "No",
+   "permit_id": "N/A",
+   "incident_id": "N/A",
+   "incident_name": "N/A",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.11794888473,
+       30.488674165312
+      ],
+      [
+       -91.117908327036,
+       30.487544611351
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "street": "N. 3rd St",
+   "type": "CONSTRUCTION",
+   "subtype": "ROAD_CLOSED_CONSTRUCTION",
+   "start_date": "2025-11-24T12:00:00.000Z",
+   "end_date": "2030-02-01T22:00:00.000Z",
+   "description": "Construction on State Capitol Building",
+   "from_cross_street": "State Capitol",
+   "end_cross_street": "N. 3rd St",
+   "severity": "MAJOR",
+   "recurring": "Daily",
+   "full_closure": "Full",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "Yes",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.188425589104,
+       30.458051033541
+      ],
+      [
+       -91.188331211921,
+       30.458286985425
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "street": "N. 3rd St",
+   "type": "CONSTRUCTION",
+   "subtype": "ROAD_CLOSED_CONSTRUCTION",
+   "start_date": "2025-11-24T12:00:00.000Z",
+   "end_date": "2030-02-01T22:00:00.000Z",
+   "description": "Construction on State Capitol Building",
+   "from_cross_street": "State Capitol",
+   "end_cross_street": "N. 3rd St",
+   "severity": "MAJOR",
+   "recurring": "Daily",
+   "full_closure": "Full",
+   "agency": "DPW",
+   "city": "Baton Rouge",
+   "sidewalk": "Yes",
+   "the_geom": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -91.188425589104,
+       30.458051033541
+      ],
+      [
+       -91.188434923181,
+       30.458053126661
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

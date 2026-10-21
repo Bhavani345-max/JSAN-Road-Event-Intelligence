@@ -1,0 +1,391 @@
+{
+ "type": "FeatureCollection",
+ "numberReturned": 12,
+ "numberMatched": 12,
+ "timeStamp": "2026-10-21T11:06:53Z",
+ "links": [
+  {
+   "href": "https://api.hamburg.de/datasets/v1/baustellen/collections/baustelle/items?limit=10000&f=json",
+   "rel": "self",
+   "type": "application/geo+json",
+   "title": "Dieses Dokument"
+  },
+  {
+   "href": "https://api.hamburg.de/datasets/v1/baustellen/collections/baustelle/items?limit=10000&f=html",
+   "rel": "alternate",
+   "type": "text/html",
+   "title": "Dieses Dokument als HTML"
+  }
+ ],
+ "features": [
+  {
+   "type": "Feature",
+   "id": 8193,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.900366699747678,
+     53.566732283840864
+    ]
+   },
+   "properties": {
+    "titel": "A 7 / Neubau Tunnel Altona",
+    "organisation": "Autobahn GmbH",
+    "anlass": "Neubau des Tunnels Altona (Überdeckelung der Autobahn) von der Behringstraße/Walderseestraße bis nördlich des Holstenkamp/Schulgartenstraße in Höhe des Schießplatzes.\nDie Stadtstraßen Bahrenfelder Chaussee und Osdorfer Weg werden, die A 7 überquerend, über das Tunnelbauwerk geführt. Die Baurstraße und der Kielkamp jedoch nicht. Sie enden, ausgestattet mit Wendeanlagen, jeweils im Tunnelbereich. Die Verkehrsteilnehmerinnen und Verkehrsteilnehmer des Kielkamp können zukünftig auch den Holstenkamp nutzen. Er wird als neue, zweistreifige Haupterschließung die Kreuzung Schnackenburgallee/Holstenkamp über den Deckel Altona mit dem sogenannten Ebertplatz verbinden.\n\nDie Anschlussstelle HH-Bahrenfeld befindet sich zukünftig im Tunnelbereich, sodass die Zu- und Abfahrtsrampen auch vollständig eingehaust werden. Die Auffahrtsrampe Richtung Flensburg an der AS HH-Othmarschen wird sich ebenfalls im Tunnel befinden. Zudem ist eine Fußgängerbrücke über den Osdorfer Weg geplant, um einen durchgängige",
+    "umfang": "Grundsätzlich: Teilweise Verschwenk der Fahrstreifen. Nachts zeitweise verkürzte Aus-/Auffahrten an den Anschlussstellen HH-Bahrenfeld und HH-Othmarschen.\n\nZusätzlich\nA 7-Sperrungen\nDie Sperrungen beginnen Freitag 22 Uhr und enden Montag 5 Uhr:\nUmleitungen sind ausgeschildert: A 1 / A 21 / B205\n\n* 26.09., 22:00 Uhr bis 29.09.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n* 17.10., 22:00 Uhr bis 20.10.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n* 07.11., 22:00 Uhr bis 10.11.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n* 05.12., 22:00 Uhr bis 08.12.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n\nBitte für die Vollsperrungen die gesonderten Steckbriefe beachten",
+    "baubeginn": "02.03.2020",
+    "bauende": "31.12.2028",
+    "letzteaktualisierung": "2025-08-20 09:00:26",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": true,
+    "istfreigegeben": true,
+    "mehrwert": "Er reduziert den Lärm für die schützenswerten Gebiete in diesem Bereich. Gleichzeitig wird die Verbindung zwischen den östlichen und westlichen Bereichen der Stadtteile Othmarschen und Bahrenfeld wieder hergestellt und ein Erholungsgebiet mit Kleingärten entsteht.\nSpätere Tunnellänge: ca. 2.230 Meter mit achtstreifiger Fahrbahn plus Seitenstreifen",
+    "istoepnveingeschraenkt": false,
+    "hatinternetlink": true,
+    "internetlink": "https://www.deges.de/projekte/projekt/a-7-altonatunnel/",
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 8208,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.933474860668648,
+     53.532496002439906
+    ]
+   },
+   "properties": {
+    "titel": "A 7 / Instandsetzung & Ausbau K 20 & K 30",
+    "organisation": "Autobahn GmbH",
+    "anlass": "Hochstraße Elbmarsch (K 20): Sanierung und Ausbau auf 8 Spuren bis Jahreswechsel 2026/27\nRampenbauwerk am Elbtunnel (K 30): Neubau Tunnelvorfeld bis Jahreswechsel 2024/25",
+    "umfang": "Grundsätzlich: A 7 (Elbtunnel bis AS Waltershof)\nDrei Fahrstreifen je Richtung frei, teilweise verschwenkt.\nDie Anschlussstellen (AS) HH-Hausbruch, HH-Heimfeld und HH-Waltershof stehen temporär eingeschränkt aber mit allen Fahrbeziehungen zur Verfügung.\nIn den Nächten für die Einrichtung der neuen Verkehrsphase wird sichergestellt, dass für Großraum- und Schwerlasttransporte eine Durchfahrtsbreite von mindestens 4,50 m zur Verfügung steht.\n\nZusätzlich\nA 7-Sperrungen\nDie Sperrungen beginnen Freitag 22 Uhr und enden Montag 5 Uhr:\nUmleitungen sind ausgeschildert:  A 1 / A 21 / B205\n\n* 26.09., 22:00 Uhr bis 29.09.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n* 17.10., 22:00 Uhr bis 20.10.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n* 07.11., 22:00 Uhr bis 10.11.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n* 05.12., 22:00 Uhr bis 08.12.2025, 5:00 Uhr zwischen den AS HH-Heimfeld (32) bis AS HH-Stellingen (26)\n\n\nBitte für die Vollsperrungen die gesonderten Steckbriefe beachten",
+    "baubeginn": "14.04.2020",
+    "bauende": "31.12.2027",
+    "letzteaktualisierung": "2025-08-20 08:53:33",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": true,
+    "istfreigegeben": true,
+    "mehrwert": "Sicherheit für die Verkehrsteilnehmer",
+    "istoepnveingeschraenkt": true,
+    "oevnveinschraenkungen": "Die Busverkehre der Linien 150, 250 und 611 werden von der Hochbahn über die Elbbrücken umgeleitet. Die Änderungen der Fahrzeiten werden von der Hochbahn veröffentlicht und können auch über die Fahrplanauskunft beim www.HVV.de nachgelesen werden.",
+    "hatinternetlink": true,
+    "internetlink": "https://www.deges.de/projekte/projekt/a-7-erweiterung-der-hochstrasse-k-20-und-ersatzneubau-bruecke-k-30-2/",
+    "hatumleitungsbeschreibung": true,
+    "umleitungsbeschreibung": "Die Umleitungen sind großräumig ausgeschildert, bitte möglichst Hamburg umfahren.\n\nEs wird grundsätzlich allen Verkehrsteilnehmern empfohlen, vor Fahrtantritt je nach Fahrziel die günstigste Route der genannten Umleitungen und Ausweichroten zu prüfen!\n\nGroßraum- und Schwerlastverkehre (GST)\nEine Durchfahrt kann während der Sperrung der Richtungsfahrbahn Nord und der Vollsperrung in der Nacht vom Samstag auf den Sonntag in beiden Richtungen nicht ermöglicht werden.\n\nFür GST wird mit zusätzlicher Beschilderung an den Autobahnen aus Süden kommend kurz vor den nachfolgenden Raststätten und Parkplätzen auf die Einschränkungen gesondert hingewiesen:\n\nA7 - Rastplatz Harburger Berge; Rastplatz Seevetal \nA261 - Parkplatz Rosengarten\n\nAirbus\nFür den Airbus-Schichtwechsel wird die Auffahrtsrampe Richtung Norden an der AS HH-Waltershof am Freitagabend erst 21:45 Uhr geschlossen!",
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 7145,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.089876070618057,
+     53.554173566269874
+    ]
+   },
+   "properties": {
+    "titel": "Neubau U4 Horner Geest",
+    "organisation": "Hamburger Hochbahn Aktiengesellschaft",
+    "anlass": "U4-Verlängerung auf die Horner Geest",
+    "umfang": "Bis Ende 2022 bleiben auf der Rennbahnstraße/Kreuzung Washingtonallee durch Behelfsbahnen zwei Fahrstreifen je Richtung erhalten. Linksabbieger in die Washingtonallee gesperrt, Ausweichempfehlung ausgeschildert. Abbiegen in Bauerberg nicht möglich. Meurerweg voll gesperrt.\n\nZudem:\nDie Manshardtstraße bleibt bis Ende 2026 für den Durchgangsverkehr gesperrt und ist nur in Abschnitten befahrbar. Anwohner*innen können über ausgeschilderte Umleitungen ihre Häuser erreichen.",
+    "baubeginn": "01.04.2020",
+    "bauende": "31.12.2026",
+    "letzteaktualisierung": "2022-09-08 14:44:29",
+    "istzugangeingeschraenkt": true,
+    "einschraenkungsbegruendung": "Geänderte Verkehrsführungen für den Fuß- und Radverkehr. Die Zugänglichkeit zu allen Häusern und Tiefgaragen ist gegeben.",
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "Mit der U4-Verlängerung erhält die Horner Geest einen leistungsfähigen ÖPNV-Anschluss. Rund 13.000 Menschen werden so erstmalig fußläufig an das Hamburger Schnellbahnnetz angebunden. Für die rund 2,6 km lange Strecke sind zwei neue Haltestellen „Stoltenstraße“ und „Horner Geest“ geplant, die voraussichtlich 2026 eröffnet werden.",
+    "istoepnveingeschraenkt": true,
+    "oevnveinschraenkungen": "Geänderte Linienführung der Buslinien Manshardtstraße und Sandkamp. Busse werden über Querkamp und Stengelestraße umgeleitet. Bitte informieren Sie sich über hvv.de.",
+    "hatinternetlink": true,
+    "internetlink": "https://www.schneller-durch-hamburg.de/u4-horner-geest",
+    "hatumleitungsbeschreibung": true,
+    "umleitungsbeschreibung": "Umfahrung der Manshardtstraße zwischen Speckenreye und Rudolf-Roß-Allee über Hermannstal und Legienstraße. Anlieger*innen und Besucher*innen der Kleingartenanlage kommen weiterhin zu ihren Parkplätzen.",
+    "istparkraumeingeschraenkt": true,
+    "parkraumeinschraenkung": "Es entfallen öffentliche Parkplätze im Bereich Rennbahnstraße, Meurerweg, Am Gojenboom, Bauerberg, Sandkamp und Manshardtstraße."
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 8210,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.914153141706276,
+     53.48244867875618
+    ]
+   },
+   "properties": {
+    "titel": "A 26 + A 7 AS HH-Hausbruch / Neubau inkl. AK HH-Hafen und Ausbau A 7",
+    "organisation": "Autobahn GmbH",
+    "anlass": "Neubau A 26 zur Entlastung der B 73\n\nDer Bauabschnitt 4 der A 26 schließt auf 8,7 Kilometern die Lücke zwischen Neu Wulmstorf in Niedersachsen und der A 7 in Hamburg. In diesem Abschnitt werden bis 2025 17 Brückenbauwerke erstellt, ein 190 Meter langer Tunnel unter der Hafenbahn und ein Autobahnkreuz an der A7 errichtet. Im Zuge des Neubaus des Autobahnkreuzes HH-Hafen wird die A 7 nördlich und südlich des neuen Autobahnkreuzes auf acht Fahrstreifen ausgebaut.\n- Neubau A 26 West von der Landesgrenze Niedersachsen/Hamburg bis A 7 und Erweiterung der A 7 von Moorburg bis AS HH-Heimfeld von 6 auf 8 Spuren - Bau 2020 bis Q1 2025\n- Neubau A 26 Ost von AK HH-Hafen (A 7/A 26) bis AD Süderelbe (A 1/A 26) - Bau 2020 bis 2028",
+    "umfang": "Grundsätzlich\nAS-Heimfeld bis Altenwerder\nSperrung von Fahrstreifen. Einengung von 4 auf 2 Fahrstreifen Richtung Norden.\nVerschwenkung eines Fahrstreifen auf die Gegenseite.\nRichtung Süden verbleiben 4 Fahrstreifen.\n\n\nZusätzlich AS HH-Hausbruch\n• Sperrung der Ausfahrt RF Norden bis 12.08.2024\n• Sperrung der Auffahrt RF Süden 13.02.2023 – 30.04.2025\n• Sperrung der Ausfahrt RF Süden 13.02.2023 – 30.04.2025\n• Sperrung der Auffahrt RF Norden bis Q4 2025",
+    "baubeginn": "01.10.2020",
+    "bauende": "31.12.2028",
+    "letzteaktualisierung": "2024-06-25 07:04:39",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": true,
+    "istfreigegeben": true,
+    "mehrwert": "Entlastung der B 73, weniger Stau",
+    "istoepnveingeschraenkt": false,
+    "hatinternetlink": true,
+    "internetlink": "https://www.deges.de/projekte/projekt/a-26-neubau-west-2/",
+    "hatumleitungsbeschreibung": true,
+    "umleitungsbeschreibung": "Umleitungen der Fahrrad-Freizeitrouten FR 11 und FR 13 in der Zeit vom 21.9. bis Ende Dezember 2024 umgeleitet.\nFR 11 Moorburger Alter Deich: Hohenwischer Straße - Waltershofer Straße - Fürstenmoordeich\nFR 13 Nincoper Moorweg: Von Hamburg kommend Richtung Niedersachsen westliche Abzweigung auf die Nincoper Straße – abzweigend Richtung Süden auf den Nincoper Deich – nach Westen abbiegend auf die Buxtehuder Straße – Abzweigung Richtung Süden ins Naturschutzgebiet Moore bei Buxthude – abzweigend nach Osten bis zur Wülmerstorfer Straße.",
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 577833,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.025769050999074,
+     53.55364501852187
+    ]
+   },
+   "properties": {
+    "titel": "Bürgerweide / Berlinertordammbrücke - Grundinstandsetzung",
+    "organisation": "Landesbetrieb Straßen, Brücken und Gewässer",
+    "anlass": "Abbruch und Neubau der Berlinertordammbrücke:\n\nDie Berlinertordammbrücke ist stark sanierungsbedürftig und wird unter Aufrechterhaltung des Verkehrs abschnittsweise abgebrochen und erneuert. \n1. Bauabschnitt: ab 01/2024 bis ca. 12/2025 wird am südlichen Teil der Brücke gebaut.\n2. Bauabschnitt: ab ca. 01/2026 bis ca. 12/2027 wird am nördlichen Teil der Brücke gebaut.\nnachlaufende Arbeiten bis ca. Mitte 2028",
+    "umfang": "Berlinertordamm (Berliner Tor bis Klaus-Groth-Straße): \n- bis ca. Ende 2025 einspurig auf dem nördlichen Teilbauwerk, \n- ab Anfang 2026 bis ca. Ende 2027 einspurig auf dem neu hergestellten südlichen Teilbauwerk\n- bis ca. 11.2025 Fuß- und Radverkehr auf bestehendem nördlichen Gehweg bzw. der Veloroute \n- ab ca. 12.2025 bis ca. Mitte 2028 Fuß- und Radverkehr auf neu hergestelltem südliche Gehweg bzw. Veloroute\n\nB75 Bürgerweide (Anckelmannsplatz bis Wallstraße): \nFahrstreifenreduzierungen, wechselnde Verkehrsführung\n\n16.01.26 (22.00 Uhr) bis 19.01.26 (05.00 Uhr) Vollsperrung Bürgerweide \n05.03.26 (22.00 Uhr) bis 09.03.26 (05.00 Uhr) Vollsperrung Bürgerweide und Berlinertordamm\n20.03.26 (22.00 Uhr) bis 23.03.26 (05.00 Uhr) Vollsperrung Bürgerweide und Berlinertordamm\n28.03.26 (22.00 Uhr) bis 31.03.26 (05.00 Uhr) Vollsperrung Bürgerweide\n11.04.26 (22.00 Uhr) bis 13.04.26 (05.00 Uhr) Vollsperrung Bürgerweide und Berlinertordamm\n18.04.26 (22.00 Uhr) bis 20.04.26 (05.00 Uhr) Vollsperrung Bürgerweide und Berlinertordamm\n24.04.26 (22.00 Uhr) bis 27.04.26 (05.00 Uhr) Vollsperrung Bürgerweide und Berlinertordamm\n30.04.26 (22.00 Uhr) bis 02.05.26 (05.00 Uhr) Vollsperrung Berlinertordamm\n07.05.26 (22.00 Uhr) bis 09.05.26 (05.00 Uhr) Vollsperrung Berlinertordamm\n13.05.26 (22.00 Uhr) bis 15.05.26 (05.00 Uhr) Vollsperrung Berlinertordamm\n20.07.26 (22.00 Uhr) bis 24.07.26 (05.00 Uhr) Vollsperrung Berlinertordamm\n\nweitere Verkehrseinschränkungen 11.2026 sowie 2027 werden nachgepflegt",
+    "baubeginn": "01.01.2024",
+    "bauende": "01.06.2028",
+    "letzteaktualisierung": "2026-10-19 09:22:16",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "Verkehrssicherheit, Stadtgrün und mehr Platz für den Bahnhof Berliner Tor: \n\nEin Pflanzentrog auf der neuen Brücke bietet Platz für Stadtgrün.\nDie Zukunftsvision eines Regionalbahnhofs am Berliner Tor für die Strecke Hamburg-Lübeck wird greifbar. Zukünftig stehen weniger Brückenpfeiler neben den Gleisen. Die Lage eines neuen Brückenpfeilers konnte so angepasst werden, dass ein Regionalbahnsteig Platz hat.",
+    "istoepnveingeschraenkt": true,
+    "oevnveinschraenkungen": "Hierüber informieren die HOCHBAHN und die S-Bahn Hamburg ihre Fahrgäste. Bitte beachten Sie dazu die Aushänge an den Haltestellen oder informieren Sie sich online unter www.hvv.de und https://www.s-bahn-hamburg.de/.",
+    "hatinternetlink": true,
+    "internetlink": "https://lsbg.hamburg.de/berlinertordammbruecke",
+    "hatumleitungsbeschreibung": true,
+    "umleitungsbeschreibung": "Der Radverkehr wird ausgeschildert umgeleitet.",
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 959924,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.019791336693348,
+     53.66526045808703
+    ]
+   },
+   "properties": {
+    "titel": "Wattkorn / Instandsetzung",
+    "organisation": "Landesbetrieb Straßen, Brücken und Gewässer",
+    "anlass": "Der Durchgang Wattkorn in Hamburg Langenhorn soll instandgesetzt werden und parallel zur U-Bahnlinie der U1 auf der ehemaligen Gütergleistrasse der DB eine Radroute Plus zwischen den Haltestellen \"Kiwittsmoor\" und \"Langenhorn Nord\" führen. Die Instandsetzung des Durchlasses ist Teil der Radroute Plus, die federführend durch den Bezirk Hamburg-Nord von Bad-Bramstedt nach Hamburg gebaut werden soll.",
+    "umfang": "Durch die Instandsetzung der Deckenkonstruktion sowie der Seitenwände kommt es zu kurzzeitigen Einschränkungen des Durchgangs zwischen den Kleingärten und Wattkorn kommen.",
+    "baubeginn": "01.07.2027",
+    "bauende": "31.12.2027",
+    "letzteaktualisierung": "2026-07-13 16:52:12",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "Die ehemalige Güterzugstrecke von 6 km soll zu einer kreuzungsfreien Radroute Plus zum Zeit- und Komfortgewinn umgebaut werden. Dabei wird eine 1996 stillgelegte Eisenbahnüberführung durch einen neuen Überbau und Teilerneuerungen der Lagerung instandgesetzt.",
+    "istoepnveingeschraenkt": false,
+    "hatinternetlink": false,
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": false,
+    "parkraumeinschraenkung": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 3721460,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.163059214267468,
+     53.650475156983184
+    ]
+   },
+   "properties": {
+    "titel": "U1 Volksdorf / Dachsanierung",
+    "organisation": "Hamburger Hochbahn Aktiengesellschaft",
+    "anlass": "Grundinstandsetzung der Bahnsteighalle",
+    "umfang": "Einschränkung in der Claus-Ferck-Straße: Reduzierung des Straßenquerschnitts auf eine Fahrspur.",
+    "baubeginn": "01.10.2027",
+    "bauende": "31.12.2028",
+    "letzteaktualisierung": "2026-09-30 16:33:06",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "Sicherstellung der dauerhaften Nutzbarkeit der Haltestelle.",
+    "istoepnveingeschraenkt": false,
+    "hatinternetlink": false,
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 36075,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.913674301119427,
+     53.49545547213932
+    ]
+   },
+   "properties": {
+    "titel": "Moorburger Elbdeich / Brückenneubau",
+    "organisation": "DEGES",
+    "anlass": "Vorbereitung für die Erweiterung der A 7 und den Anschluss der A 26. Hierfür wird das erste Überführungsbauwerk im Verlauf des Moorburger Elbdeichs abgebrochen und neu errichtet.",
+    "umfang": "bis 23.04.2022: Vollsperrung nachts, tagsüber Blockverkehr mit Ampel\nNach Rückbau des Blockverkehrs auf dem Moorburger Elbdeich steht je Richtung wieder ein Fahrstreifen zur Verfügung. Diese Verkehrsphase wird voraussichtlich bis Ende Februar 2023 bestehen bleiben.",
+    "baubeginn": "01.04.2022",
+    "bauende": "06.11.2030",
+    "letzteaktualisierung": "2022-04-13 07:13:27",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "Sicherheit, Zeitersparnis",
+    "istoepnveingeschraenkt": false,
+    "hatinternetlink": false,
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 861962,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.983625326709575,
+     53.480241800092195
+    ]
+   },
+   "properties": {
+    "titel": "Reiherstiegschleuse / Erneuerung Schleuse, Brücke und Straße",
+    "organisation": "Hamburg Port Authority",
+    "anlass": "Neubau der Reiherstiegschleuse und Brücke",
+    "umfang": "Hohe Schaar-Straße 36-44, 21107 Hamburg\nca. 450 m\nReduzierung der Geschwindigkeit auf 30km/h\nSperrung der südlichen Straßenbrücken im Bereich Reiherstiegschleuse\nzweistreifige Verkehrsführung über die Nördlichen Straßenbrücken\nder Fußgänger- und Radverkehr erfolgt auf dem nördlichen Gehweg (der südliche Gehweg ist gesperrt)",
+    "baubeginn": "20.06.2024",
+    "bauende": "31.12.2027",
+    "letzteaktualisierung": "2025-03-28 12:54:45",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "Verbesserung der Infrastruktur Land und Wasser",
+    "istoepnveingeschraenkt": true,
+    "oevnveinschraenkungen": "Bushaltestelle „Hohe-Schaar“ Richtung Kornweide wurde ca. 130m nach Westen verlegt",
+    "hatinternetlink": false,
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 935424,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.078227018905729,
+     53.49915645380033
+    ]
+   },
+   "properties": {
+    "titel": "Tatenberger Brücke / Ersatzneubau",
+    "organisation": "Landesbetrieb Straßen, Brücken und Gewässer",
+    "anlass": "Die zu erneuernde Tatenberger Brücke wurde 1952 erbaut und überführt den Tatenberger Weg über die Dove-Elbe.\nDie Brücke ist eine in Längsrichtung vorgespannte Einfeldbrücke. Bei den regelmäßigen Bauwerksprüfungen wurden Schäden festgestellt, weitergehende Untersuchungen und statische Berechnungen wurden durchgeführt. Um die dauerhafte Verkehrsfunktion zu erhalten ist ein Ersatzneubau erforderlich.\n\nZunächst wurde eine provisorische Umfahrung eingerichtet, um den kontinuierlichen Verkehrsfluss sicherzustellen. \nDerzeit findet der Bau des Ersatzbauwerks statt.",
+    "umfang": "Aktuell gibt es keine Straßen Verkehrseinschränkungen.\nIm Zuge der Arbeiten wird der Verkehr im November 2026 mit Hilfe einer Ampelschaltung einspurig an der Baustelle vorbeigeführt.\nDer Schleusenbetrieb wird ab Mai 2026 mit Einschränkungen verlaufen.",
+    "baubeginn": "15.03.2023",
+    "bauende": "30.09.2028",
+    "letzteaktualisierung": "2026-10-15 10:20:37",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "dauerhafte Aufrechterhaltung der Verkehrsfunktion; beidseitige Radstreifen",
+    "istoepnveingeschraenkt": false,
+    "hatinternetlink": false,
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 11041,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     9.902200366770172,
+     53.56926521548193
+    ]
+   },
+   "properties": {
+    "titel": "Bahrenfelder Chaussee / Vorarbeiten für Tunnel Altona",
+    "organisation": "Landesbetrieb Straßen, Brücken und Gewässer",
+    "anlass": "Für die Ausbaumaßnahme der A 7 im Bauabschnitt Altona laufen seit März 2020 die bauvorbereitenden Maßnahmen der DEGES im nachgeordneten Stadtstraßennetz. Diese Maßnahmen sind erforderlich, um den halbseitigen Abbruch der A 7 Brücke im Frühjahr 2021 vorzubereiten. Mit den halbseitigen Abbrucharbeiten der Brücke in Altona wird Platz für den Bau der ersten Tunnelzellen geschaffen, über die ab 2022/ 23 eine leistungsfähige Verkehrsführung im innerstädtischen Netz über die A 7 gewährleistet werden kann.",
+    "umfang": "Temporäre Sperrungen, wie auch die Fahrstreifenreduzierungen auf der Bahrenfelder Chaussee stadteinwärts und stadtauswärts sowie auf den Auf- und Ausfahrtsrampen sind notwendig, um den Arbeitsraum für die erforderlichen Maßnahmen zu erhalten.\n\nIn der ersten Bauphase wird auf der Brücke der Bahrenfelder Chaussee in beiden Richtungen jeweils nur ein Fahrstreifen zur Verfügung stehen.\n\n10.10.-16.10.2021: Sperrung der Fahrtrichtung stadteinwärts. Einbahnstraße einstreifig stadtauswärts. Umleitung über Ebertallee, Osdorfer Weg, Bahrenfelder Marktplatz, Von-Sauer-Straße.",
+    "baubeginn": "24.08.2020",
+    "bauende": "31.12.2028",
+    "letzteaktualisierung": "2026-07-13 16:23:02",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": true,
+    "istfreigegeben": true,
+    "mehrwert": "Lärmschutz",
+    "istoepnveingeschraenkt": true,
+    "oevnveinschraenkungen": "Die Bushaltestelle Silcherstraße wird für die weitere Bauzeit dauerhaft in die Nähe zum Knotenpunkt Lutherhöhe/ Silcherstraße verlegt.",
+    "hatinternetlink": true,
+    "internetlink": "https://www.deges.de/projekte/projekt/a-7-altonatunnel/",
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": false
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 387827,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.017260550723684,
+     53.601340484953205
+    ]
+   },
+   "properties": {
+    "titel": "Überseering, U5 – Haltestellenbau",
+    "organisation": "Hamburger Hochbahn Aktiengesellschaft",
+    "anlass": "U5 – Haltestellenbau",
+    "umfang": "Zur Vorbereitung der Herstellung der Haltestelle City Nord ist der Überseering West zwischen Jahnring und Sydneystraße voll gesperrt. Eine Zufahrt mit Pkw und Lkw zu den Gebäuden am Überseering West ist nur noch von Norden sowie über die Sydneystraße möglich. \n\nFußgänger*innen und Radfahrer*innen nutzen die Fußgängerbrücken (“Ebene 1”).",
+    "baubeginn": "30.05.2023",
+    "bauende": "31.12.2027",
+    "letzteaktualisierung": "2023-06-27 13:56:58",
+    "istzugangeingeschraenkt": false,
+    "iststoerung": true,
+    "isthotspot": false,
+    "istfreigegeben": true,
+    "mehrwert": "Hamburg wächst, Mitte der 30er Jahre wird die Stadt rund zwei Millionen Einwohner haben, dazu kommen täglich weit mehr als 300.000 Pendler. Um das enorme Verkehrsaufkommen zu bewältigen und die Mobilität auch für die nächsten Generationen sicherstellen zu können, plant die HOCHBAHN im Auftrag der Stadt die neue U-Bahn-Linie U5. Mit ihrem Streckenverlauf sollen vorhandene Lücken im U-Bahn-Netz geschlossen werden. Damit werden dicht bewohnte Stadtteile sowie große Ausbildungs-, Arbeitsplatz- und Einzelhandelsstandorte wie die City Nord, die Universität und das UKE an das S- und U-Bahn-Netz angeschlossen. Stark frequentierte Buslinien wie die MetroBus-Linien 5, 6 und 7 sollen zudem nachhaltig entlastet werden.",
+    "istoepnveingeschraenkt": true,
+    "oevnveinschraenkungen": "Bushaltestellen zwischen Sydneystraße und Überseering (West) entfallen. Die Buslinien 20, 26, 28 und 118 sind betroffen und fahren für die Dauer der Bauarbeiten Umleitungen. Bitte achten Sie auf die lokalen Beschilderungen und informieren Sie sich unter hvv.de.",
+    "hatinternetlink": true,
+    "internetlink": "https://www.schneller-durch-hamburg.de/",
+    "hatumleitungsbeschreibung": false,
+    "istparkraumeingeschraenkt": true,
+    "parkraumeinschraenkung": "Es entfallen sämtliche Parkplätze im Überseering (West) und in der Sydneystraße"
+   }
+  }
+ ]
+}

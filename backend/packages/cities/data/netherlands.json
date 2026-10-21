@@ -1,0 +1,39 @@
+{
+  "id": "netherlands",
+  "name": "Netherlands",
+  "area_name": "the Netherlands",
+  "country": "NL",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Amsterdam",
+  "language": "nl",
+  "bbox": [
+    50.7,
+    3.2,
+    53.7,
+    7.3
+  ],
+  "map": {
+    "center": [
+      5.3,
+      52.2
+    ],
+    "zoom": 7.0
+  },
+  "scope_terms": [
+    "Netherlands",
+    "Nederland",
+    "The Netherlands"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "nl-ndw-actueel-beeld",
+    "nl-ndw-planningsfeed-wegwerkzaamheden"
+  ],
+  "gis_sources": []
+}

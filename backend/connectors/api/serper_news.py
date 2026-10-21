@@ -136,8 +136,10 @@ DEFAULT_QUERIES: tuple[str, ...] = queries_for()
 # Google's "past week" (qdr:w), "past month" (qdr:m) and "past year" (qdr:y).
 DEFAULT_WINDOW = "qdr:w"
 WINDOWS = {"day": "qdr:d", "week": "qdr:w", "month": "qdr:m", "year": "qdr:y"}
-# Results per search: 10 for one credit; 11-100 cost two.
-DEFAULT_RESULTS_PER_QUERY = 10
+# Results per search: up to 100 for two credits (10 cost one), so five times
+# the results per credit (21 October 2026, the user asked to remove the caps).
+DEFAULT_RESULTS_PER_QUERY = 100
+CREDITS_PER_SEARCH = 2 if DEFAULT_RESULTS_PER_QUERY > 10 else 1
 # A result must mention one of these to be about the PoC's city at all.
 DEFAULT_SCOPE_TERMS: tuple[str, ...] = ("Hyderabad", "Secunderabad", "Cyberabad", "Rachakonda")
 POLLING_FREQUENCY_MINUTES = 480
@@ -145,7 +147,8 @@ POLLING_FREQUENCY_MINUTES = 480
 # was announced since, and each city's 8-9 searches cost one credit each.
 CITY_POLLING_FREQUENCY_MINUTES = 1440
 # Article pages read in one poll; further new results keep their search snippet.
-MAX_ARTICLE_PAGES_PER_POLL = 120
+# None: every new result's page is read (reading a page costs no credit).
+MAX_ARTICLE_PAGES_PER_POLL: int | None = None
 # A headline with no Latin letters is in a script REI does not read.
 _LATIN = re.compile(r"[A-Za-z]{3}")
 
@@ -194,8 +197,9 @@ def serper_news_source(*, connected: bool, city_id: str = CITY_ID) -> SourceDefi
         ),
         notes=(
             f"{len(DEFAULT_QUERIES)} Hyderabad road searches of the past week, every "
-            f"{POLLING_FREQUENCY_MINUTES // 60} hours ({len(DEFAULT_QUERIES)} Serper credits a "
-            f"poll, {len(DEFAULT_QUERIES) * 24 * 60 // POLLING_FREQUENCY_MINUTES} a day). "
+            f"{POLLING_FREQUENCY_MINUTES // 60} hours, up to {DEFAULT_RESULTS_PER_QUERY} results each "
+            f"({len(DEFAULT_QUERIES) * CREDITS_PER_SEARCH} Serper credits a poll, "
+            f"{len(DEFAULT_QUERIES) * CREDITS_PER_SEARCH * 24 * 60 // POLLING_FREQUENCY_MINUTES} a day). "
             "A deeper sweep of the past month or year is run by hand with "
             "backend/cli/search_sweep.py. Results come from any publisher Google lists; their "
             "reliability is not assessed, so every event is a lead for review. "
@@ -206,7 +210,7 @@ def serper_news_source(*, connected: bool, city_id: str = CITY_ID) -> SourceDefi
 
 def _city_source(city: City, *, connected: bool) -> SourceDefinition:
     queries = queries_for(city.id)
-    per_day = len(queries) * 24 * 60 // CITY_POLLING_FREQUENCY_MINUTES
+    per_day = len(queries) * CREDITS_PER_SEARCH * 24 * 60 // CITY_POLLING_FREQUENCY_MINUTES
     return SourceDefinition(
         source_id=source_id_for(city.id),
         source_name=f"Google News search ({city.name})",
@@ -221,8 +225,8 @@ def _city_source(city: City, *, connected: bool) -> SourceDefinition:
         city=city.id,
         cost_category=CostCategory.FREE_WITH_LIMITS,
         rate_limit=(
-            "Shares the SERPER_API_KEY credits: 1 credit per search of up to 10 results "
-            "(serper.dev pricing, checked 6 October 2026)"
+            "Shares the SERPER_API_KEY credits: 1 credit per search of up to 10 results, "
+            "2 for 11-100 (serper.dev pricing, checked 6 October 2026)"
         ),
         terms_status=TermsStatus.REVIEW_REQUIRED,
         source_url="https://serper.dev/",
@@ -396,7 +400,9 @@ class SerperNewsConnector:
         record keeps its identifier (the link Google gave) and the search
         result it came from; the text and publication time become the article's.
         """
-        if self._pages_read >= MAX_ARTICLE_PAGES_PER_POLL or not record.url:
+        if not record.url or (
+            MAX_ARTICLE_PAGES_PER_POLL is not None and self._pages_read >= MAX_ARTICLE_PAGES_PER_POLL
+        ):
             return record
         if not self._read_any_publisher and not readable_publisher(record.url):
             return record

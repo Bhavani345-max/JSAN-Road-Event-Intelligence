@@ -29,7 +29,8 @@
     "queries": []
   },
   "official_sources": [
-    "hamburg-police-traffic-messages"
+    "hamburg-police-traffic-messages",
+    "hamburg-roadworks"
   ],
   "gis_sources": []
 }

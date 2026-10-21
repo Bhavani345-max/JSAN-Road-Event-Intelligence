@@ -3,6 +3,7 @@ the records an international test run keeps."""
 
 import json
 import re
+import time
 from collections.abc import Callable, Iterable
 from datetime import datetime, timedelta
 from typing import Any, TypeVar
@@ -12,10 +13,39 @@ import httpx
 from connectors.base import ConnectorError, refusal_detail
 
 MAX_RESPONSE_BYTES = 20 * 1024 * 1024
-# A test run keeps records in effect now or starting within this long.
-UPCOMING_WINDOW = timedelta(days=7)
+# A run keeps records in effect now or starting within this long: a planned
+# closure is stored as soon as its source lists it, up to a year ahead (7 days
+# during the first test phase, until 21 October 2026).
+UPCOMING_WINDOW = timedelta(days=365)
+# A dropped connection, a timeout or a server error (500, 502, 504) is tried once
+# more after this pause before the run fails (21 October 2026: Bison Futé's
+# server reset connections twice in a day, Main Roads WA's once, each fine at
+# the next run). A refusal (429, 503) is not retried: the source asked REI to wait.
+RETRY_DELAY_SECONDS = 3.0
+_RETRIED_STATUSES = frozenset({500, 502, 504})
+_sleep = time.sleep
 
 T = TypeVar("T")
+
+
+def _get(url: str, *, client: httpx.Client | None, **options: Any) -> httpx.Response:
+    """GET once, and once more after RETRY_DELAY_SECONDS when the failure looks
+    temporary. The second attempt's error, or its response, is what counts."""
+    for attempt in (1, 2):
+        try:
+            response = (client or httpx).get(url, **options)
+        except httpx.TransportError:
+            if attempt == 2:
+                raise
+        else:
+            if response.status_code not in _RETRIED_STATUSES or attempt == 2:
+                return response
+        _sleep(RETRY_DELAY_SECONDS)
+    raise AssertionError("unreachable")
+
+
+# For a feed that needs the raw response (a zip, a gzip file): the same retry.
+get_with_retry = _get
 
 
 def fetch_json(
@@ -25,10 +55,12 @@ def fetch_json(
     client: httpx.Client | None = None,
     params: dict[str, str] | None = None,
 ) -> Any:
-    """GET a JSON document. A refusal (429, 503), a timeout or bad JSON is a ConnectorError."""
+    """GET a JSON document. A refusal (429, 503), a timeout or bad JSON is a ConnectorError
+    (a dropped connection, timeout or 500/502/504 is tried once more first)."""
     try:
-        response = (client or httpx).get(
+        response = _get(
             url,
+            client=client,
             params=params,
             headers={"User-Agent": user_agent, "Accept": "application/json"},
             timeout=60,
@@ -70,8 +102,9 @@ def fetch_text(
 ) -> str:
     """GET an HTML page as text. A refusal (429, 503), a timeout or a non-200 is a ConnectorError."""
     try:
-        response = (client or httpx).get(
+        response = _get(
             url,
+            client=client,
             params=params,
             headers={"User-Agent": user_agent, "Accept": "text/html"},
             timeout=60,

@@ -1,0 +1,36 @@
+{
+  "id": "vienna",
+  "name": "Vienna",
+  "area_name": "Wien",
+  "country": "AT",
+  "region": "Wien",
+  "timezone": "Europe/Vienna",
+  "language": "de",
+  "bbox": [
+    48.1,
+    16.17,
+    48.34,
+    16.59
+  ],
+  "map": {
+    "center": [
+      16.3738,
+      48.2082
+    ],
+    "zoom": 10.8
+  },
+  "scope_terms": [
+    "Vienna",
+    "Wien"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "vienna-roadworks"
+  ],
+  "gis_sources": []
+}

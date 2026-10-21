@@ -74,7 +74,7 @@ class GoogleMapsLookup:
         return int(usage.get("credits", 0)) if usage.get("date") == self._today() else 0
 
     def _spend(self, credits: int) -> bool:
-        if self.credits_used_today() + credits > self._daily:
+        if self._daily and self.credits_used_today() + credits > self._daily:
             return False
         self._data["usage"] = {"date": self._today(), "credits": self.credits_used_today() + credits}
         return True

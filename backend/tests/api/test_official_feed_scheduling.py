@@ -30,7 +30,8 @@ def official(sources) -> dict:
 def test_the_connected_official_feeds_can_be_named():
     # Seven, and nine for Canada and Australia since 15 October 2026 (decision 0029);
     # eleven US WZDx feeds, Tokushima, Brussels and Hamburg since 16 October 2026 (0034).
-    assert len(OFFICIAL_SOURCE_IDS) == 30
+    # + Austin and SFMTA work zones, and 20 more feeds in six countries (21 October 2026, 0039, 0040).
+    assert len(OFFICIAL_SOURCE_IDS) == 52
     assert {TFL, TORONTO, "nyc-street-closures", "finland-digitraffic-road-events"} <= OFFICIAL_SOURCE_IDS
     # Removed for giving no location (decision 0029): not an official feed to schedule.
     assert not OFFICIAL_SOURCE_IDS & {
@@ -61,7 +62,7 @@ def test_naming_a_news_restricted_or_removed_source_schedules_nothing():
 
 def test_the_switch_for_every_feed_still_schedules_them_all():
     feeds = official(registered_sources(official_feeds_scheduled=True))
-    assert all(d.active for d in feeds.values()) and len(feeds) == 30
+    assert all(d.active for d in feeds.values()) and len(feeds) == 52
 
 
 def test_the_setting_is_a_comma_separated_list():

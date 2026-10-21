@@ -36,13 +36,21 @@
     "ottawa-traffic-events",
     "edmonton-traffic-disruptions",
     "winnipeg-lane-closures",
-    "calgary-construction-detours"
+    "calgary-construction-detours",
+    "halifax-street-closures",
+    "cambridge-on-road-closures",
+    "kitchener-traffic-closures",
+    "sherbrooke-travaux"
   ],
   "gis_sources": [],
   "source_time_zones": {
     "drivebc-events": "America/Vancouver",
     "edmonton-traffic-disruptions": "America/Edmonton",
     "calgary-construction-detours": "America/Edmonton",
-    "winnipeg-lane-closures": "America/Winnipeg"
+    "winnipeg-lane-closures": "America/Winnipeg",
+    "halifax-street-closures": "America/Halifax",
+    "cambridge-on-road-closures": "America/Toronto",
+    "kitchener-traffic-closures": "America/Toronto",
+    "sherbrooke-travaux": "America/Toronto"
   }
 }

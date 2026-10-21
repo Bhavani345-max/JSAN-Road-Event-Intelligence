@@ -74,8 +74,11 @@ class WzdxFeed:
     url: str
     # The zone the feed's times are shown in (the feed states them with offsets).
     zone: str
-    # Features listed on 16 October 2026, for the notes.
+    # Features listed on the day it was checked (`listed_on`), for the notes.
     listed: int
+    listed_on: str = "16 October 2026"
+    # Where the feed's licence is stated when not in its own feed_info.license.
+    licence_note: str | None = None
 
 
 FEEDS: tuple[WzdxFeed, ...] = (
@@ -90,6 +93,15 @@ FEEDS: tuple[WzdxFeed, ...] = (
     WzdxFeed("njdot", "New Jersey", "New Jersey DOT (NJIT smart work zones)", "https://smartworkzones.njit.edu/nj/wzdx", "America/New_York", 365),
     WzdxFeed("nddot", "North Dakota", "North Dakota DOT", "https://travelfiles.dot.nd.gov/geojson_nc/wzdx_geojson.json", "America/Chicago", 79),
     WzdxFeed("stcharles", "Missouri (St. Charles County)", "St. Charles County", "https://scc.ridsi-dash.com:5000/wzdx.geojson", "America/Chicago", 100),
+    # 21 October 2026 (decision 0039). Austin: CC0 1.0 in its feed_info.license.
+    WzdxFeed("austin", "Texas (Austin)", "City of Austin Transportation and Public Works", "https://data.austintexas.gov/download/d9mm-cjw9", "America/Chicago", 2728, "21 October 2026"),
+    # SFMTA: feed_info is empty; the dataset's licence on DataSF is CC0 1.0
+    # (https://data.sfgov.org/api/views/4ftp-yz2f.json, licenseId CC0_10, read 21 October 2026).
+    WzdxFeed(
+        "sfmta", "California (San Francisco)", "San Francisco Municipal Transportation Agency (SFMTA)",
+        "https://data.sfgov.org/download/4ftp-yz2f", "America/Los_Angeles", 4279, "21 October 2026",
+        "CC0 1.0 Universal, stated in the dataset's licence on DataSF (dataset 4ftp-yz2f, attribution SFMTA)",
+    ),
 )  # fmt: skip
 
 
@@ -126,7 +138,7 @@ def wzdx_source(feed: WzdxFeed, *, scheduled: bool) -> SourceDefinition:
         cost_category=CostCategory.FREE_PUBLIC,
         rate_limit="None published; polled hourly (feeds update every 1–60 minutes).",
         terms_status=TermsStatus.PERMITS_TESTING,
-        licence=LICENCE,
+        licence=feed.licence_note or LICENCE,
         attribution=f"Work zones: {feed.organization} (WZDx feed, CC0 1.0).",
         commercial_use=CommercialUse.PERMITTED_WITH_ATTRIBUTION,
         provides_geometry=True,
@@ -134,7 +146,7 @@ def wzdx_source(feed: WzdxFeed, *, scheduled: bool) -> SourceDefinition:
         real_time=True,
         evidence_retention="Each work-zone feature as received.",
         notes=(
-            f"{feed.state}: {feed.listed} road events listed on 16 October 2026 (work zones and "
+            f"{feed.state}: {feed.listed} road events listed on {feed.listed_on} (work zones and "
             "detours; detours are not taken as events). Every feature carries a start, an end and "
             "geometry."
         ),

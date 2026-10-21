@@ -31,6 +31,8 @@
   "discovery": {
     "queries": []
   },
-  "official_sources": [],
+  "official_sources": [
+    "flanders-gipod-hindrance"
+  ],
   "gis_sources": []
 }

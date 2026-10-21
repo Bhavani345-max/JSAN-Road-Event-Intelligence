@@ -1,0 +1,511 @@
+{
+ "fetched_at": "2026-10-21T11:05:26.476445+00:00",
+ "request": "https://services1.arcgis.com/qAo1OsXi67t7XgmS/arcgis/rest/services/Traffic_Closures/FeatureServer/0/query?where=1%3D1&outFields=%2A&outSR=4326&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000&f=geojson",
+ "note": "A trimmed sample of the real response (items unchanged except CONTACT, ALTERNATE_CONTACT, CREATE_BY and UPDATE_BY, removed: staff names, telephone numbers and account names).",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 355934,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4260947229415,
+      43.4476339034607
+     ],
+     [
+      -80.425257874072,
+      43.4476806380544
+     ],
+     [
+      -80.4252551922225,
+      43.4476806380815
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 355934,
+    "TRAFFICCLOSURESID": 294457,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "MICHENER CRES",
+    "STREET_FROM": null,
+    "STREET_TO": null,
+    "DATE_FROM": null,
+    "DATE_TO": null,
+    "REASON": null,
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": null,
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Closed",
+    "Shape__Length": 68.13032187739906
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 714993,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4111014905116,
+      43.4426261204576
+     ],
+     [
+      -80.4108703544088,
+      43.4425636929993
+     ],
+     [
+      -80.4105431010754,
+      43.4424385972008
+     ],
+     [
+      -80.410341242294,
+      43.4423355081959
+     ],
+     [
+      -80.4102460148206,
+      43.4422784462766
+     ],
+     [
+      -80.4087285568606,
+      43.4412823816745
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 714993,
+    "TRAFFICCLOSURESID": 5143879,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "TREMAINE DR",
+    "STREET_FROM": "WILLIAM LEWIS ST",
+    "STREET_TO": "SIMS ESTATE DR",
+    "DATE_FROM": 1791284400000,
+    "DATE_TO": 1792796400000,
+    "REASON": "Site Servicing",
+    "STATUS": "No Through Traffic",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "UPDATED: Tremaine Dr will be closed between William Lewis St/Janine St and Sims Estate Dr/Edgewater Cres for site servicing work at Tremaine Park on Tuesday, October 6 for approximately three (3) weeks. Resident access to driveways will not be impacted, but NO THRU ACCESS will be permitted. ",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - No Through Traffic",
+    "Shape__Length": 245.05720683739148
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 678514,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.5230267689753,
+      43.4465650390279
+     ],
+     [
+      -80.5238793231571,
+      43.4464852393962
+     ],
+     [
+      -80.524400890444,
+      43.446255800336
+     ],
+     [
+      -80.5275892408302,
+      43.4451906638644
+     ],
+     [
+      -80.5281563351948,
+      43.4450618862744
+     ],
+     [
+      -80.5289634396907,
+      43.4450276988125
+     ],
+     [
+      -80.5301881544386,
+      43.4451629636978
+     ],
+     [
+      -80.5306815882699,
+      43.4451455728613
+     ],
+     [
+      -80.5317817290722,
+      43.4448358886484
+     ],
+     [
+      -80.5324232796042,
+      43.444610926373
+     ],
+     [
+      -80.5325828405518,
+      43.4444390143855
+     ],
+     [
+      -80.5328214873974,
+      43.4438970880105
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 678514,
+    "TRAFFICCLOSURESID": 5083001,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "WESTWOOD DR",
+    "STREET_FROM": "HUNTINGTON PL",
+    "STREET_TO": "WESTMOUNT RD W",
+    "DATE_FROM": 1774263600000,
+    "DATE_TO": 1797631200000,
+    "REASON": "Road Reconstruction",
+    "STATUS": "Local Access Only",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Westwood Drive is undergoing a full road reconstruction between Westmount Rd and Huntington Place. Local access to be maintained as much as possible, access to business will be maintained. ",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": 1774953577000,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Local Access Only",
+    "Shape__Length": 895.6750750732746
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 689393,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.5100991263815,
+      43.4334563491823
+     ],
+     [
+      -80.5080213603673,
+      43.4341945339079
+     ],
+     [
+      -80.5074655241548,
+      43.4344007620645
+     ],
+     [
+      -80.5072947032061,
+      43.4344794592944
+     ],
+     [
+      -80.5040828808507,
+      43.4362473923272
+     ],
+     [
+      -80.5036115374217,
+      43.4365581604705
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 689393,
+    "TRAFFICCLOSURESID": 5107231,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "QUEENS BLVD",
+    "STREET_FROM": "WESTMOUNT RD W",
+    "STREET_TO": "BELMONT AVE W",
+    "DATE_FROM": 1779102000000,
+    "DATE_TO": 1796076000000,
+    "REASON": "Road Reconstruction",
+    "STATUS": "Partially Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Queens Blvd is undergoing a full road reconstruction from Westmount Rd to Belmont Ave for 2026 and most of 2027. Traffic from Westmount to Belmont (towards WRHN Queens) will remain open to vehicle traffic, no traffic southbound is permitted. Blueridge & Queens intersection is currently closed, use alternate route.",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": 1780399895000,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Partially Closed",
+    "Shape__Length": 631.121129335765
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 683634,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.455945827415,
+      43.3972931862178
+     ],
+     [
+      -80.4556343222794,
+      43.3970547330789
+     ],
+     [
+      -80.4554668533972,
+      43.3966995407801
+     ],
+     [
+      -80.4554348336531,
+      43.3946780789315
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 683634,
+    "TRAFFICCLOSURESID": 5093402,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "BIEHN DR",
+    "STREET_FROM": "OLD HURON PL",
+    "STREET_TO": "CARLYLE DR",
+    "DATE_FROM": 1778151600000,
+    "DATE_TO": null,
+    "REASON": "Manhole Work",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Manhole work on Biehn Dr between Old Huron Pl and Carlyle Dr on Thursday, May 7. Two-way traffic will be maintained with traffic control persons on-site.",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Lane Reduced",
+    "Shape__Length": 302.80384821048375
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 704114,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4771079501659,
+      43.451065748921
+     ],
+     [
+      -80.4727260273806,
+      43.4525677097556
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 704114,
+    "TRAFFICCLOSURESID": 5135741,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "KRUG ST",
+    "STREET_FROM": "SAMUEL ST",
+    "STREET_TO": "EAST AVE",
+    "DATE_FROM": 1787137200000,
+    "DATE_TO": 1793401200000,
+    "REASON": "Utility Work",
+    "STATUS": "Tentative",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Krug St between Samuel St & East Ave will be closed beginning on or about Wednesday, August 19 for approximately 10-12 weeks for gas utility work. Closures details still to be determined. ",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Tentative",
+    "Shape__Length": 391.823101809689
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 696449,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4961302311615,
+      43.4649045524865
+     ],
+     [
+      -80.4923308452763,
+      43.466222770117
+     ],
+     [
+      -80.4922341480782,
+      43.4662356077575
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 696449,
+    "TRAFFICCLOSURESID": 5122562,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "FAIRFIELD AVE",
+    "STREET_FROM": "MARGARET AVE",
+    "STREET_TO": "RIDGEWOOD AVE",
+    "DATE_FROM": 1777888800000,
+    "DATE_TO": 1793394000000,
+    "REASON": "Road Reconstruction",
+    "STATUS": null,
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Fairfield Ave between Margaret Ave & Ridgewood Ave will be closed for a road reconstruction from Monday, May 4 through Friday, October 30, 2026. Local access may be available, use alternate access if possible.",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": 1783638189000,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - ",
+    "Shape__Length": 348.37820547692473
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 719794,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4934555373251,
+      43.4513814650173
+     ],
+     [
+      -80.4925501069685,
+      43.4510934476961
+     ],
+     [
+      -80.4921793497602,
+      43.4509755095891
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 719794,
+    "TRAFFICCLOSURESID": 5146359,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "KING ST W",
+    "STREET_FROM": "COLLEGE ST",
+    "STREET_TO": "YOUNG ST",
+    "DATE_FROM": 1793376000000,
+    "DATE_TO": 1793502000000,
+    "REASON": "Special Event",
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "King St W from College St to Young St (plus Gaukel St) will be closed at 12:00pm Friday, October 30 for a special event. Roads open for 11:00PM on Saturday, October 31 once event clears. ",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": null,
+    "DOWNTOWN": "Y",
+    "MAP_CLASS": "Road - Closed",
+    "Shape__Length": 112.6713463157266
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 688433,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -80.472378761166,
+       43.4551841967603
+      ],
+      [
+       -80.4715289473633,
+       43.4542979062627
+      ]
+     ],
+     [
+      [
+       -80.4705053616197,
+       43.4534565271201
+      ],
+      [
+       -80.4715289473633,
+       43.4542979062627
+      ],
+      [
+       -80.4720303436201,
+       43.4540379228733
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 688433,
+    "TRAFFICCLOSURESID": 5103588,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "MELROSE AVE",
+    "STREET_FROM": "KRUG ST",
+    "STREET_TO": "CHAPEL ST",
+    "DATE_FROM": 1777554129000,
+    "DATE_TO": 1796047337000,
+    "REASON": "Road Reconstruction",
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": null,
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1792429278874,
+    "UPDATE_DATE": 1792429278874,
+    "STATUS_DATE": 1779872571000,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Closed",
+    "Shape__Length": 294.7199552298367
+   }
+  }
+ ]
+}

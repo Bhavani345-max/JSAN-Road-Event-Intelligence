@@ -66,10 +66,11 @@ class Settings(BaseSettings):
     # OFFICIAL_FEEDS_SCHEDULED is off, e.g. "tfl-road-disruptions,
     # toronto-road-restrictions". Names that are not official feeds are ignored.
     official_feeds_scheduled_sources: str = ""
-    # Records one run of an official feed keeps (in effect now or within a
-    # week, most recent first). Keeps each test city to a small number of
-    # real events; 0 keeps every record.
-    official_feed_max_records: int = 30
+    # Records one run of an official feed may keep at most (in effect now or
+    # upcoming, most recent first); 0 keeps every record. 30 during the first
+    # four-city test (6 October 2026); since 21 October 2026 every record is
+    # kept by default, as every other official feed already did.
+    official_feed_max_records: int = 0
     # Optional TfL app key: raises TfL's limit from 50 to 500 requests a minute.
     tfl_app_key: str | None = None
     # After each ingestion run, compare the new events with the city's open
@@ -115,9 +116,10 @@ class Settings(BaseSettings):
     # Ask Google Maps (through Serper.dev, SERPER_API_KEY) for names the
     # OpenStreetMap place list cannot place. Off, or without the key: OSM only.
     place_lookup_google: bool = True
-    # Serper credits a day for place lookups (a /places query costs 1, a /maps 3).
-    # Every answer is cached, so a name is never asked twice.
-    place_lookup_daily_credits: int = 60
+    # Serper credits a day for place lookups (a /places query costs 1, a /maps 3);
+    # 0 sets no daily limit (since 21 October 2026; 60 before). Every answer is
+    # cached, so a name is never asked twice.
+    place_lookup_daily_credits: int = 0
     place_lookup_cache_path: str = str(DATA_DIR / "google_places_cache.json")
 
     @property

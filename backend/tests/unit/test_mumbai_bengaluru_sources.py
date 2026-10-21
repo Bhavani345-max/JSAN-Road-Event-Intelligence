@@ -359,9 +359,9 @@ def test_the_bengaluru_connector_keeps_current_and_imminent_items_and_reports_wh
     )  # fmt: skip
     records = connector.fetch()
     assert len(connector.observed_ids) == 26
-    # Items starting more than a week after the run are left for a later run.
-    assert all(record.structured.start <= NOW + timedelta(days=7) for record in records)
-    assert not any("Palace Grounds, Bellary Road" in record.title for record in records)
+    # Items up to a year ahead are kept since 21 October 2026 (a week before).
+    assert all(record.structured.start <= NOW + timedelta(days=365) for record in records)
+    assert any("Palace Grounds, Bellary Road" in record.title for record in records)
     assert any("White Topping Work at New Diagonal Road" in record.title for record in records)
     # Soonest to start first.
     starts = [record.structured.start for record in records]

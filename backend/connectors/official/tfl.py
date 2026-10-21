@@ -45,10 +45,13 @@ from packages.source_models import (
     too_short_road_block,
 )
 
+from . import common
 from .common import content_key, fetch_json, parse_json_text, select_for_run
 
 SOURCE_ID = "tfl-road-disruptions"
 ENDPOINT = "https://api.tfl.gov.uk/Road/all/Disruption"
+# How long to wait before asking again when TfL answers with something other than its list.
+UNEXPECTED_BODY_RETRY_SECONDS = 5.0
 API_BASE = "https://api.tfl.gov.uk"
 ATTRIBUTION = (
     "Powered by TfL Open Data. Contains OS data © Crown copyright and database rights 2016 "
@@ -293,6 +296,12 @@ class TflRoadDisruptionsConnector:
     def fetch(self) -> list[RawSourceRecord]:
         params = {"app_key": self._app_key} if self._app_key else None
         body = fetch_json(ENDPOINT, self._user_agent, client=self._client, params=params)
+        if not isinstance(body, list):
+            # On 19-21 October 2026 TfL now and then answered with a GeoJSON
+            # object (keys crs, features, type) instead of its list; the next
+            # request gave the list. Asked once more before the run fails.
+            common._sleep(UNEXPECTED_BODY_RETRY_SECONDS)
+            body = fetch_json(ENDPOINT, self._user_agent, client=self._client, params=params)
         if not isinstance(body, list):
             from connectors.base import ConnectorError
 
