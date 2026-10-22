@@ -128,3 +128,30 @@ def test_a_run_compares_its_events_only_with_its_own_city(db, monkeypatch):
     )  # fmt: skip
     merge_service.find_candidates(db, event_ids=london, automatic=False)
     assert loaded and {row.city for row in loaded} == {"London"}
+
+
+def test_a_page_many_events_share_is_not_taken_for_one_article(db, monkeypatch):
+    """22 October 2026: every NDW record gave the portal's home page as its
+    reference, and all 14,343 Dutch events were compared as "the same article"."""
+    monkeypatch.setattr(merge_service, "is_current_row", lambda row, now=None: True)
+    shared_page = "https://portal.example/"
+    ids = []
+    for n in range(2 * (merge_service.SHARED_URL_EVENTS + 1)):
+        source = tfl_source(scheduled=False) if n % 2 else TELANGANA_TODAY
+        # Far apart (about 11 km between neighbours), different types, same period.
+        row = add(
+            db, f"EVT-SHARED{n:04d}", source, f"Unrelated works number {n}", place=f"Place {n}",
+            position=(KHAJAGUDA[0] + 0.1 * n, KHAJAGUDA[1]), method="source_provided",
+            event_type="ROAD_WORKS" if n % 2 else "TRAFFIC_DIVERSION",
+            start=T0, end=T0 + timedelta(days=3), city="London",
+        )  # fmt: skip
+        row.source_reference = shared_page
+        ids.append(row.event_id)
+    db.commit()
+    rows = {row.event_id: row for row in db.scalars(select(Event).where(Event.event_id.in_(ids)))}
+    # The trap: compared directly, a shared address makes two unrelated events "one article".
+    assert compare(facts(rows[ids[0]]), facts(rows[ids[1]])).classification is not MatchClass.DIFFERENT
+    run = merge_service.find_candidates(db, event_ids=ids)
+    db.commit()
+    assert run.candidates == 0 and run.auto_merged == 0
+    assert db.scalars(select(EventMergeCandidate)).first() is None

@@ -28,9 +28,9 @@ same way, by `merge_listed_rows`.
 
 import json
 import math
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Callable, Iterable
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import datetime
 
 from sqlalchemy import or_, select
@@ -294,6 +294,14 @@ def _lookup_keys(city: str | None, facts: EventFacts) -> set[tuple]:
     return keys
 
 
+# A web address more open events share than this is a feed's or a portal's page,
+# not one article, and says nothing about which event a report is. On 22 October
+# 2026 NDW gave https://opendata.ndw.nu/ as the reference of every record: its
+# 14,343 Dutch events were all compared with one another as "the same article"
+# (7.7 GB of memory, millions of pairs).
+SHARED_URL_EVENTS = 10
+
+
 def _pair(a: str, b: str) -> tuple[str, str]:
     return (a, b) if a < b else (b, a)
 
@@ -327,6 +335,13 @@ def find_candidates(
         if row.event_id not in facts_of:
             facts_of[row.event_id] = facts(row)
         return facts_of[row.event_id]
+
+    # A shared page is neither a match key nor proof of "the same article".
+    url_counts = Counter(fact(row).url for row in pool if fact(row).url)
+    shared_urls = {url for url, count in url_counts.items() if count > SHARED_URL_EVENTS}
+    for event_id, known_facts in list(facts_of.items()):
+        if known_facts.url in shared_urls:
+            facts_of[event_id] = replace(known_facts, url=None)
 
     order = {row.event_id: position for position, row in enumerate(pool)}
     filed: dict[tuple, dict[str, Event]] = defaultdict(dict)

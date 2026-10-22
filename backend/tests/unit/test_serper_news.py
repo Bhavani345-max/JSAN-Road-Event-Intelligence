@@ -140,6 +140,26 @@ def test_a_result_whose_page_has_no_article_data_is_kept_as_a_search_result(conn
     assert kept.content_text is None and "search result" in kept.raw["acquired_from"]
 
 
+def test_a_refusal_carries_serpers_own_reason_without_the_key():
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(400, json={"message": "Not enough credits for secret-key", "statusCode": 400})
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    connector = SerperNewsConnector(SOURCE, "secret-key", "ua", client=client)
+    with pytest.raises(ConnectorError) as error:
+        connector.fetch()
+    assert "HTTP 400 (Not enough credits for [key])" in str(error.value)
+    assert "secret-key" not in str(error.value)
+
+
+def test_a_refusal_without_a_json_reason_keeps_the_plain_status():
+    client = httpx.Client(transport=httpx.MockTransport(lambda request: httpx.Response(400, text="Bad Request")))
+    connector = SerperNewsConnector(SOURCE, "secret-key", "ua", client=client)
+    with pytest.raises(ConnectorError) as error:
+        connector.fetch()
+    assert str(error.value).endswith("Serper news search failed: HTTP 400")
+
+
 def test_a_refused_key_fails_the_run_without_exposing_the_key():
     client = httpx.Client(transport=httpx.MockTransport(lambda request: httpx.Response(403)))
     connector = SerperNewsConnector(SOURCE, "secret-key", "ua", client=client)
@@ -304,6 +324,47 @@ def test_a_search_that_keeps_failing_is_skipped_and_the_others_are_kept(failure)
 
 def test_the_poll_fails_when_every_search_fails():
     connector, _ = flaky_connector(lambda q, n: "timeout")
+    with pytest.raises(ConnectorError, match="all .* searches failed"):
+        connector.fetch()
+
+
+def plan_refusing_connector(refuse):
+    """A connector whose searches Serper's plan refuses while `refuse(query)` says so."""
+    asked: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        query = json.loads(request.content)["q"]
+        asked.append(query)
+        if refuse(query):
+            return httpx.Response(400, json={"message": "Query pattern not allowed for free accounts.", "statusCode": 400})
+        return httpx.Response(200, json=search_results(query))
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    return SerperNewsConnector(SOURCE, "test-key", "ua", client=client), asked
+
+
+def test_a_search_the_plan_refuses_is_searched_again_without_quotes():
+    quoted = [q for q in DEFAULT_QUERIES if '"' in q]
+    assert quoted, "Hyderabad's searches include quoted phrases"
+    connector, asked = plan_refusing_connector(lambda q: '"' in q)
+    records = connector.fetch()
+    plain = " ".join(quoted[0].replace('"', " ").split())
+    assert quoted[0] in asked and plain in asked  # refused as written, then searched without quotes
+    assert asked.index(plain) == asked.index(quoted[0]) + 1
+    assert [record.url for record in records] == [ARTICLE_URL, NO_DATA_URL]
+
+
+def test_a_search_the_plan_refuses_even_without_quotes_is_skipped_and_the_others_kept():
+    last = DEFAULT_QUERIES[-1]
+    last_plain = " ".join(last.replace('"', " ").split())
+    connector, asked = plan_refusing_connector(lambda q: q in (last, last_plain))
+    records = connector.fetch()
+    assert asked.count(last) == 1
+    assert [record.url for record in records] == [ARTICLE_URL, NO_DATA_URL]
+
+
+def test_the_poll_fails_when_the_plan_refuses_every_search():
+    connector, _ = plan_refusing_connector(lambda q: True)
     with pytest.raises(ConnectorError, match="all .* searches failed"):
         connector.fetch()
 

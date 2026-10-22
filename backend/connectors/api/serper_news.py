@@ -70,6 +70,16 @@ TRANSIENT_RETRIES = 1
 class _TemporarySearchError(ConnectorError):
     """A timeout, network failure, rate limit (429) or server error (5xx)."""
 
+
+# Serper's answer, since 22 October 2026, to a search pattern its free plan does
+# not allow: searches that mix quoted phrases with other operators. The same
+# search without the quotes is accepted.
+PLAN_REFUSAL = "not allowed for free accounts"
+
+
+class _RefusedSearch(ConnectorError):
+    """Serper's plan refuses this search's pattern; the other searches go on."""
+
 # Cities whose road news crowds Hyderabad's out of a plain search. They are
 # left out of every search, and a result whose headline names one is dropped.
 CROWDING_CITIES: tuple[str, ...] = (
@@ -364,8 +374,8 @@ class SerperNewsConnector:
         skipped: list[str] = []
         for query in self.queries:
             try:
-                results = self._search_with_retry(query)
-            except _TemporarySearchError as error:
+                results = self._search_allowed(query)
+            except (_TemporarySearchError, _RefusedSearch) as error:
                 logger.warning("%s: skipped the search %r (%s)", self.source.source_id, query, error)
                 skipped.append(query)
                 continue
@@ -383,6 +393,31 @@ class SerperNewsConnector:
                 len(self.queries),
             )
         return list(records.values())
+
+    def _serper_message(self, response: httpx.Response) -> str:
+        """Serper's own reason for a refusal, as " (reason)", or "" when it gave none."""
+        try:
+            message = response.json().get("message")
+        except (ValueError, AttributeError):
+            return ""
+        if not isinstance(message, str) or not message.strip():
+            return ""
+        message = " ".join(message.split())[:160]
+        if self._api_key:
+            message = message.replace(self._api_key, "[key]")
+        return f" ({message})"
+
+    def _search_allowed(self, query: str) -> list[dict[str, Any]]:
+        """The search as written; when Serper's plan refuses its pattern, once
+        more without the quotes (the words stay, only phrase matching is lost)."""
+        try:
+            return self._search_with_retry(query)
+        except _RefusedSearch:
+            plain = " ".join(query.replace('"', " ").split())
+            if plain == query:
+                raise
+            logger.info("%s: Serper's plan refused %r; searching it without quotes", self.source.source_id, query)
+            return self._search_with_retry(plain)
 
     def _search_with_retry(self, query: str) -> list[dict[str, Any]]:
         for attempt in range(TRANSIENT_RETRIES + 1):
@@ -447,10 +482,16 @@ class SerperNewsConnector:
             return response.json().get("news") or []
         except httpx.HTTPStatusError as error:
             status = error.response.status_code
+            # Serper explains a refusal in its JSON "message"; keep it, so a
+            # failure says why (credits, quota, a bad parameter) and not only
+            # "HTTP 400".
+            detail = self._serper_message(error.response)
+            if status == 400 and PLAN_REFUSAL in detail.lower():
+                raise _RefusedSearch(f"Serper news search refused: HTTP 400{detail}") from error
             if status == 429 or status >= 500:
-                raise _TemporarySearchError(f"Serper news search failed: HTTP {status}") from error
+                raise _TemporarySearchError(f"Serper news search failed: HTTP {status}{detail}") from error
             reason = "the API key was refused" if status in (401, 403) else f"HTTP {status}"
-            raise ConnectorError(f"Serper news search failed: {reason}") from error
+            raise ConnectorError(f"Serper news search failed: {reason}{detail}") from error
         except httpx.TransportError as error:
             # Timeouts and network failures.
             raise _TemporarySearchError(f"Serper news search failed: {error}") from error
