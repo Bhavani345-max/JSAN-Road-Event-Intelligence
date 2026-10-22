@@ -693,3 +693,21 @@ Ranked by value to REI.
   update.
 - Every host listed as unreachable. The failures look like network filtering
   of the research connection, not refusals by terms.
+
+## Outcome, 22 October 2026 (after the research)
+
+- **Connected: Málaga traffic cuts** (`malaga-traffic-cuts`, `backend/connectors/official/malaga.py`,
+  new city entry `malaga`). Types from `TIPOAFECTACION` only: Corte is a planned
+  road closure, Ocupación de calzada a lane restriction; parking-only occupations
+  are not kept; blank records keep no type and no time. The stray third
+  coordinate is dropped. Licence recorded as CC BY-SA 4.0 (the page text says
+  CC BY 4.0) until Málaga confirms; credit "Ayuntamiento de Málaga". Polled every
+  6 hours when scheduled. Tests: `backend/tests/unit/test_malaga_traffic_cuts.py`
+  on the real file of 22 October (`backend/tests/fixtures/malaga_cortes_trafico_2026-10-22.geojson`).
+  First local run: 110 features, 101 kept as events (all awaiting validation).
+  Production runs it only once its id is added to `OFFICIAL_FEEDS_SCHEDULED_SOURCES`.
+- **Not connected: Catalonia (SCT).** Permitted, but no record has an end time, so
+  under the 15 October display rule every record would be hidden from the map
+  (about 200 events a reviewer would have to date by hand). Ready to build if
+  that rule changes.
+- **Still held: DGT** (licence version and commercial reuse to be confirmed by nap@dgt.es).

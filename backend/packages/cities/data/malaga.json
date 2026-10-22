@@ -1,0 +1,36 @@
+{
+  "id": "malaga",
+  "name": "Málaga",
+  "area_name": "City of Málaga",
+  "country": "ES",
+  "region": "Andalusia",
+  "timezone": "Europe/Madrid",
+  "language": "es",
+  "bbox": [
+    36.6,
+    -4.62,
+    36.82,
+    -4.28
+  ],
+  "map": {
+    "center": [
+      -4.4214,
+      36.7213
+    ],
+    "zoom": 12.2
+  },
+  "scope_terms": [
+    "Málaga",
+    "Malaga"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "malaga-traffic-cuts"
+  ],
+  "gis_sources": []
+}

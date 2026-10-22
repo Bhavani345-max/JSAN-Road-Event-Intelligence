@@ -84,6 +84,7 @@ from .official.taichung_traffic_plans import TaichungTrafficPlansConnector, taic
 from .official.spain_dgt import SpainDgtIncidentsConnector, dgt_source
 from .official.barcelona import BarcelonaWorksConnector, barcelona_source
 from .official.madrid import MadridInformoConnector, madrid_source
+from .official.malaga import MalagaTrafficCutsConnector, malaga_source
 from .official.euskadi import EuskadiTrafficIncidencesConnector, euskadi_source
 from .official.ndw import (
     NdwCurrentSituationsConnector,
@@ -329,6 +330,7 @@ def _official_sources(
             (barcelona_source, BarcelonaWorksConnector),
             (madrid_source, MadridInformoConnector),
             (euskadi_source, EuskadiTrafficIncidencesConnector),
+            (malaga_source, MalagaTrafficCutsConnector),
             (ndw_current_source, NdwCurrentSituationsConnector),
             (ndw_planned_source, NdwPlannedWorksConnector),
             (cita_source, CitaTrafficEventsConnector),
