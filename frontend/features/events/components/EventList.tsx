@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { revealInScroller } from "@/lib/reveal";
 import { getTimeState, type TimeState } from "../filters";
 import { isManualEntry, type RoadEvent } from "../model";
 import {
@@ -64,9 +65,10 @@ function EventListItem({
 }: EventListItemProps) {
   const ref = useRef<HTMLButtonElement>(null);
 
-  // Keep the selected row visible when the selection was made on the map.
+  // Keep the selected row visible when the selection was made on the map,
+  // scrolling the list only (never the page).
   useEffect(() => {
-    if (isSelected) ref.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    if (isSelected && ref.current) revealInScroller(ref.current);
   }, [isSelected]);
 
   const confidence = formatConfidence(event.confidence);

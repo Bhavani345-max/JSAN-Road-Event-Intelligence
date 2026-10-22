@@ -139,7 +139,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative isolate flex min-h-dvh flex-col overflow-x-hidden bg-[color:var(--login-page)] text-[color:var(--login-headline)]" style={themeStyle}>
+    <main className="login-screen relative isolate flex h-dvh flex-col overflow-hidden bg-[color:var(--login-page)] text-[color:var(--login-headline)]" style={themeStyle}>
       {/* Decorative backdrop: a still of the city everywhere, the live WebGL city on desktop. */}
       <div aria-hidden="true" className="login-backdrop" />
       {scene === "on" && (
@@ -156,9 +156,9 @@ export default function LoginPage() {
         </span>
       </header>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1560px] flex-1 flex-col px-5 pb-5 sm:px-8 sm:pb-6 lg:px-12 lg:pb-7 xl:px-16">
-        <div className="flex flex-1 flex-col justify-center pt-6 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:items-center lg:gap-10 lg:py-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,452px)] xl:gap-24">
-          <section className="max-w-[34rem] login-reveal" style={{ animationDelay: "90ms" }}>
+      <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-[1560px] flex-1 flex-col px-5 pb-5 sm:px-8 sm:pb-6 lg:px-12 lg:pb-7 xl:px-16">
+        <div className="flex min-h-0 flex-1 flex-col justify-center pt-4 sm:pt-6 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:items-center lg:gap-10 lg:py-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,452px)] xl:gap-24">
+          <section className="login-hero max-w-[34rem] shrink-0 login-reveal" style={{ animationDelay: "90ms" }}>
             <h1 className="login-headline text-[2.5rem] font-bold leading-[1.02] tracking-[-0.045em] sm:text-[3.1rem] lg:text-[3.5rem] xl:text-[4.1rem] 2xl:text-[4.5rem]">
               See what&apos;s
               <br />
@@ -166,10 +166,10 @@ export default function LoginPage() {
               <br />
               on the road.
             </h1>
-            <p className="mt-5 max-w-[27rem] text-[15px] leading-7 lg:max-w-[24rem] xl:max-w-[27rem] text-[color:var(--login-body)] lg:mt-6 lg:text-[16.5px] lg:leading-8">
+            <p className="login-hero-copy mt-5 max-w-[27rem] text-[15px] leading-7 lg:max-w-[24rem] xl:max-w-[27rem] text-[color:var(--login-body)] lg:mt-6 lg:text-[16.5px] lg:leading-8">
               REI collects road events from official feeds, detects them in local news, places each one on the map and sends it for human review.
             </p>
-            <ul className="mt-8 hidden gap-x-6 gap-y-4 sm:grid sm:grid-cols-2 lg:mt-10 lg:grid-cols-1 lg:gap-y-[18px]" aria-label="How REI works">
+            <ul className="login-features mt-10 hidden lg:grid lg:grid-cols-1 lg:gap-y-[18px]" aria-label="How REI works">
               {features.map((feature) => (
                 <li key={feature.title} className="flex items-center gap-3.5">
                   <span className="login-feature-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">{feature.icon}</span>
@@ -183,9 +183,11 @@ export default function LoginPage() {
           </section>
 
           {/* Phones and tablets: a band of the city between the copy and the card. */}
-          <div aria-hidden="true" className="login-city-band lg:hidden" />
+          <div aria-hidden="true" className="login-city-band lg:hidden">
+            <div className="login-city-image" />
+          </div>
 
-          <section className="relative w-full max-w-[452px] self-center justify-self-end login-reveal lg:self-auto" style={{ animationDelay: "160ms" }}>
+          <section className="relative w-full max-w-[452px] shrink-0 self-center justify-self-end login-reveal lg:self-auto" style={{ animationDelay: "160ms" }}>
             <div className={`login-panel rounded-[22px] p-6 sm:p-9 ${succeeded ? "login-panel--success" : ""}`}>
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -196,11 +198,20 @@ export default function LoginPage() {
                   <LockMark />
                 </div>
               </div>
-              <p className="mt-1.5 text-[13.5px] leading-6 text-[color:var(--login-body)]">
+              <p className="login-card-helper mt-1.5 text-[13.5px] leading-6 text-[color:var(--login-body)]">
                 Use the account provided by your REI administrator.
               </p>
 
-              <form onSubmit={submit} className="mt-7 space-y-5" noValidate={false}>
+              {/* One message at a time keeps the card one height on the locked screen:
+                  signing in closes the password note, opening the note clears an old error. */}
+              <form
+                onSubmit={(event) => {
+                  setShowReset(false);
+                  void submit(event);
+                }}
+                className="login-form mt-7 space-y-5"
+                noValidate={false}
+              >
                 <div>
                   <label htmlFor="email" className="mb-2 block text-[13px] font-semibold text-[color:var(--login-label)]">Work email</label>
                   <div className="relative">
@@ -262,7 +273,10 @@ export default function LoginPage() {
                   <div className="mt-2.5 flex justify-end">
                     <button
                       type="button"
-                      onClick={() => setShowReset((visible) => !visible)}
+                      onClick={() => {
+                        if (!showReset) setError(null);
+                        setShowReset(!showReset);
+                      }}
                       className="login-link rounded text-[12.5px] font-semibold"
                       aria-expanded={showReset}
                       aria-controls="login-reset-help"
@@ -309,7 +323,7 @@ export default function LoginPage() {
                 </button>
               </form>
 
-              <p className="mt-6 flex items-start gap-2.5 border-t border-[color:var(--login-card-border)] pt-5 text-[12.5px] leading-5 text-[color:var(--login-helper)]">
+              <p className="login-session-note mt-6 flex items-start gap-2.5 border-t border-[color:var(--login-card-border)] pt-5 text-[12.5px] leading-5 text-[color:var(--login-helper)]">
                 <LockMark className="mt-0.5 h-4 w-4 shrink-0" />
                 Sessions expire automatically. Accounts are provisioned by your REI administrator.
               </p>
@@ -317,11 +331,11 @@ export default function LoginPage() {
           </section>
         </div>
 
-        <footer className="mt-8 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 pt-4 text-[11.5px] text-[color:var(--login-helper)] login-reveal lg:mt-0" style={{ animationDelay: "240ms" }}>
+        <footer className="login-footer mt-4 flex shrink-0 flex-wrap items-center justify-between gap-x-4 gap-y-2 pt-3 text-[11.5px] text-[color:var(--login-helper)] login-reveal lg:mt-0" style={{ animationDelay: "240ms" }}>
           <span className="flex items-center gap-3">
             <span>© {new Date().getFullYear()} JSAN Consulting</span>
-            <span aria-hidden="true" className="h-3 w-px bg-[color:var(--login-divider)]" />
-            <span>Road Event Intelligence</span>
+            <span aria-hidden="true" className="hidden h-3 w-px bg-[color:var(--login-divider)] sm:block" />
+            <span className="hidden sm:inline">Road Event Intelligence</span>
           </span>
           <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Secure access</span>
         </footer>

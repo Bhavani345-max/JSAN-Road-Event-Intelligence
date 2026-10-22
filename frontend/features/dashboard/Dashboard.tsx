@@ -204,7 +204,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex h-dvh flex-col bg-white text-slate-900">
+    <div className="flex h-dvh flex-col overflow-clip bg-white text-slate-900">
       <Header
         cities={cities}
         city={city}

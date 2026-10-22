@@ -13,16 +13,29 @@
 @keyframes rei-login-reveal {
   from {
     opacity: 0;
-    transform: translateY(12px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
+/* A fade only: nothing on the page moves. */
 .login-reveal {
-  animation: rei-login-reveal 720ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation: rei-login-reveal 600ms ease-out both;
+}
+
+/* ---------------------------------------------------------
+   ONE LOCKED SCREEN
+   The sign-in page is exactly one screen: html and body do
+   not scroll (no scroll bar, no bounce). The compact steps at
+   the end of this section keep the form whole on short screens.
+   --------------------------------------------------------- */
+
+html:has(.login-screen),
+html:has(.login-screen) body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 /* ---------------------------------------------------------
@@ -47,21 +60,39 @@
 }
 
 /* Phones and tablets: a full-bleed band of the city between the copy and
-   the card; the card overlaps its lower part. */
+   the card. It takes whatever height the screen has left (up to a maximum),
+   so the page never needs to scroll, and the picture only shows when that
+   leaves room for more than a sliver. */
 .login-city-band {
-  height: 280px;
-  margin: 0.75rem -1.25rem -4rem;
-  background: url("/login/rei-city-1280.webp") 55% 85% / 170% auto no-repeat;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 72%, transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 72%, transparent 100%);
+  flex: 1 1 0;
+  min-height: 0;
+  max-height: 300px;
+  margin: 0.25rem -1.25rem 0;
+  container-type: size;
+}
+
+.login-city-image {
+  height: 100%;
+  background: url("/login/rei-city-1280.webp") 55% 72% / 170% auto no-repeat;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 70%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 70%, transparent 100%);
+}
+
+@container (max-height: 96px) {
+  .login-city-image {
+    display: none;
+  }
 }
 
 @media (min-width: 640px) {
   .login-city-band {
-    height: 420px;
-    margin: 1.5rem -2rem -5rem;
+    max-height: 440px;
+    margin: 0.5rem -2rem 0;
+  }
+
+  .login-city-image {
     background-image: url("/login/rei-city-1920.webp");
-    background-position: 52% 85%;
+    background-position: 52% 72%;
     background-size: 115% auto;
   }
 }
@@ -275,11 +306,241 @@
    ACCESSIBILITY
    --------------------------------------------------------- */
 
+/* ---------------------------------------------------------
+   COMPACT STEPS FOR SHORTER SCREENS (the page never scrolls,
+   so less important parts give way before the form does)
+   --------------------------------------------------------- */
+
+/* Phones */
+@media (max-width: 639px) {
+  .login-headline {
+    font-size: 2.25rem;
+  }
+
+  .login-hero-copy {
+    margin-top: 0.75rem;
+    font-size: 14px;
+    line-height: 1.5rem;
+  }
+
+  .login-panel {
+    padding: 1.25rem;
+  }
+
+  .login-form {
+    margin-top: 1.25rem;
+  }
+
+  .login-form > :not(:last-child) {
+    margin-block-end: 1rem;
+  }
+
+  .login-session-note {
+    display: none;
+  }
+}
+
+/* Phones and tablets: a little room between the headline and the card. */
+@media (max-width: 1023px) {
+  .login-hero {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Phones and tablets, by height */
+@media (max-width: 1023px) and (max-height: 780px) {
+  .login-hero-copy,
+  .login-city-band {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 660px) {
+  .login-headline {
+    font-size: 1.9rem;
+  }
+
+  .login-card-helper,
+  .login-footer {
+    display: none;
+  }
+}
+
+/* Desktop, by height */
+@media (min-width: 1024px) and (max-height: 880px) {
+  .login-headline {
+    font-size: 3.2rem;
+  }
+
+  .login-features {
+    margin-top: 1.75rem;
+    row-gap: 0.75rem;
+  }
+
+  .login-panel {
+    padding: 1.75rem;
+  }
+
+  .login-form {
+    margin-top: 1.25rem;
+  }
+
+  .login-form > :not(:last-child) {
+    margin-block-end: 1rem;
+  }
+
+  .login-session-note {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 760px) {
+  .login-features,
+  .login-session-note {
+    display: none;
+  }
+
+  .login-panel {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 620px) {
+  .login-hero-copy {
+    display: none;
+  }
+
+  .login-headline {
+    font-size: 2.6rem;
+  }
+}
+
+/* The card's message slot: while an error, the success line or the password
+   note shows, the helper line gives way, so the card hardly changes height. */
+.login-panel:has(.login-error, .login-status, .login-note) .login-card-helper {
+  display: none;
+}
+
+/* Short phones */
+@media (max-width: 1023px) and (max-height: 700px) {
+  .login-screen > header {
+    height: 3.5rem;
+  }
+
+  .login-headline {
+    font-size: 1.8rem;
+  }
+
+  .login-input {
+    height: 2.75rem;
+  }
+
+  .login-button {
+    height: 3rem;
+  }
+
+  .login-form > :not(:last-child) {
+    margin-block-end: 0.875rem;
+  }
+}
+
+/* Short desktops and laptops */
+@media (min-width: 1024px) and (max-height: 640px) {
+  .login-screen > header {
+    height: 3rem;
+  }
+
+  .login-hero-copy,
+  .login-footer,
+  .login-card-helper {
+    display: none;
+  }
+
+  .login-headline {
+    font-size: 2.6rem;
+  }
+
+  .login-input {
+    height: 2.75rem;
+  }
+
+  .login-button {
+    height: 3rem;
+  }
+
+  .login-form {
+    margin-top: 1rem;
+  }
+
+  .login-form > :not(:last-child) {
+    margin-block-end: 0.875rem;
+  }
+}
+
+/* Very short screens (a phone held sideways): only the form, with email and
+   password side by side. */
+@media (max-height: 520px) {
+  .login-screen > header {
+    height: 3rem;
+  }
+
+  .login-hero,
+  .login-city-band,
+  .login-footer,
+  .login-card-helper,
+  .login-session-note,
+  .login-panel .login-feature-icon,
+  .login-panel p.uppercase {
+    display: none;
+  }
+
+  .login-panel {
+    padding: 1rem 1.25rem;
+  }
+
+  .login-panel h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+
+  .login-form {
+    margin-top: 0.75rem;
+  }
+
+  .login-form > :not(:last-child) {
+    margin-block-end: 0.625rem;
+  }
+
+  .login-input {
+    height: 2.5rem;
+  }
+
+  .login-button {
+    height: 2.75rem;
+  }
+}
+
+@media (max-height: 520px) and (min-width: 640px) {
+  .login-screen section:has(> .login-panel) {
+    max-width: 640px;
+  }
+
+  .login-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.75rem;
+  }
+
+  .login-form > :nth-child(n + 3) {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .login-reveal {
     animation: none;
     opacity: 1;
-    transform: none;
   }
 
   .login-button,
