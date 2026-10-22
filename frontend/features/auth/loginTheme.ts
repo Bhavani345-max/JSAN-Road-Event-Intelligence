@@ -5,46 +5,48 @@
  */
 export const loginColors = {
   // Page and scene
-  pageBackground: "#F4F7FB",
+  pageBackground: "#F3F7FC",
   pageWhite: "#FFFFFF",
-  sceneHaze: "#F4F7FB",
-  sceneGround: "#EDF1F6",
-  sceneRoad: "#E2E8EF",
+  sceneHaze: "#F3F7FC",
+  sceneGround: "#E7EDF4",
   sceneMassing: "#FFFFFF",
-  roadBlue: "#168BCE",
-  roadBlueDeep: "#0F6FA8",
-  eventAmber: "#D97706",
 
   // Hero copy on the light page
-  headlineText: "#0B1F33",
-  accentText: "#0F6FA8",
+  headlineText: "#0B1F3A",
+  accentText: "#1667D6",
   bodyText: "#475569",
-  eyebrowText: "#004674",
-  chipText: "#334155",
+  eyebrowText: "#1D5FB8",
+  featureIconBackground: "#E6F0FC",
 
-  // White header bar (matches the console header)
-  headerBackground: "#FFFFFF",
-  headerTitleText: "#002C4A",
+  // Header (sits on the page, no bar)
+  headerTitleText: "#0B1F3A",
   headerSubtitleText: "#5F6E80",
-  headerPillBackground: "#EEF6FB",
-  headerPillText: "#004674",
+  headerPillBackground: "#FFFFFF",
+  headerPillBorder: "#D3E2F3",
+  headerPillText: "#1D4F91",
+  divider: "#C5D2E1",
 
   // Sign-in card
   cardBackground: "#FFFFFF",
-  cardBorder: "#E2E8F0",
-  inputBackground: "#F8FAFC",
-  inputBorder: "#CBD5E1",
+  cardBorder: "#E3EAF2",
+  inputBackground: "#FFFFFF",
+  inputBorder: "#CFD9E5",
   labelText: "#0F172A",
   placeholderText: "#5B6B7F",
   helperText: "#5B6B7F",
-  focusRing: "#0F6FA8",
+  focusRing: "#1667D6",
+  linkText: "#1667D6",
+  noteBackground: "#EEF5FD",
+  noteText: "#1D4F91",
 
-  // Primary button
-  buttonBackground: "#0F6FA8",
-  buttonHoverBackground: "#0B5C8C",
+  // Primary button: a vertical blue gradient (both stops carry white text)
+  buttonBackground: "#1A6FDB",
+  buttonBackgroundEnd: "#0E5BC4",
+  buttonHoverBackground: "#155FC4",
+  buttonHoverBackgroundEnd: "#0B4FAD",
   buttonText: "#FFFFFF",
-  buttonDisabledBackground: "#E2E8F0",
-  buttonDisabledText: "#4B5A6C",
+  buttonDisabledBackground: "#D7E5F8",
+  buttonDisabledText: "#1D4F91",
 
   // Feedback
   errorBackground: "#FFF1F2",
@@ -55,6 +57,38 @@ export const loginColors = {
 
 export type LoginColor = keyof typeof loginColors;
 
+/**
+ * Event colours used by the decorative scene. They are copies of
+ * EVENT_TYPE_COLORS in features/events/presentation.ts (kept in sync by
+ * loginTheme.test.ts) so the sign-in page matches the console map without
+ * pulling the events module into the login bundle.
+ */
+export const loginEventColors = {
+  EMERGENCY_ROAD_CLOSURE: "#dc2626",
+  ROAD_CONSTRUCTION: "#d97706",
+  TRAFFIC_DIVERSION: "#2563eb",
+  MARATHON: "#16a34a",
+} as const;
+
+/** Realistic scene colours (asphalt, concrete, glass, greenery, water, vehicles, route lines). */
+export const loginSceneColors = {
+  asphalt: "#6B7583",
+  minorStreet: "#A7B0BB",
+  kerb: "#E4E9EF",
+  concrete: "#E2E7ED",
+  barrier: "#D2D9E1",
+  park: "#CBE6CD",
+  water: "#9FCDEC",
+  windowGlass: "#BFD6EC",
+  towerGlass: "#9DC1E3",
+  treeTrunk: "#8B6B4A",
+  treeCrowns: ["#6FAE69", "#5E9F5B", "#86BE7F"],
+  cars: ["#F4F6F8", "#F4F6F8", "#F4F6F8", "#C9CED4", "#C9CED4", "#3A4049", "#1F3A5F", "#B91C1C", "#2563EB"],
+  trailBlue: "#3B82F6",
+  trailCyan: "#7DD3FC",
+  route: "#1D74E8",
+} as const;
+
 /** CSS custom properties consumed by the login-* rules in globals.css. */
 export const loginCssVariables: Record<string, string> = {
   "--login-page": loginColors.pageBackground,
@@ -63,12 +97,13 @@ export const loginCssVariables: Record<string, string> = {
   "--login-accent": loginColors.accentText,
   "--login-body": loginColors.bodyText,
   "--login-eyebrow": loginColors.eyebrowText,
-  "--login-chip-text": loginColors.chipText,
-  "--login-header-bg": loginColors.headerBackground,
+  "--login-feature-bg": loginColors.featureIconBackground,
   "--login-header-title": loginColors.headerTitleText,
   "--login-header-subtitle": loginColors.headerSubtitleText,
   "--login-header-pill-bg": loginColors.headerPillBackground,
+  "--login-header-pill-border": loginColors.headerPillBorder,
   "--login-header-pill-text": loginColors.headerPillText,
+  "--login-divider": loginColors.divider,
   "--login-card": loginColors.cardBackground,
   "--login-card-border": loginColors.cardBorder,
   "--login-input-bg": loginColors.inputBackground,
@@ -77,8 +112,13 @@ export const loginCssVariables: Record<string, string> = {
   "--login-placeholder": loginColors.placeholderText,
   "--login-helper": loginColors.helperText,
   "--login-focus": loginColors.focusRing,
+  "--login-link": loginColors.linkText,
+  "--login-note-bg": loginColors.noteBackground,
+  "--login-note-text": loginColors.noteText,
   "--login-button": loginColors.buttonBackground,
+  "--login-button-end": loginColors.buttonBackgroundEnd,
   "--login-button-hover": loginColors.buttonHoverBackground,
+  "--login-button-hover-end": loginColors.buttonHoverBackgroundEnd,
   "--login-button-text": loginColors.buttonText,
   "--login-button-disabled": loginColors.buttonDisabledBackground,
   "--login-button-disabled-text": loginColors.buttonDisabledText,
@@ -86,7 +126,6 @@ export const loginCssVariables: Record<string, string> = {
   "--login-error-text": loginColors.errorText,
   "--login-success-bg": loginColors.successBackground,
   "--login-success-text": loginColors.successText,
-  "--login-road-blue": loginColors.roadBlue,
 };
 
 function channel(value: number): number {

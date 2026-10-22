@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { contrastRatio, hexToRgb, loginColors, relativeLuminance } from "./loginTheme";
+import { EVENT_TYPE_COLORS } from "@/features/events/presentation";
+import { contrastRatio, hexToRgb, loginColors, loginEventColors, relativeLuminance } from "./loginTheme";
+
+describe("scene event colours match the console map", () => {
+  it.each(Object.keys(loginEventColors) as (keyof typeof loginEventColors)[])("%s", (type) => {
+    expect(loginEventColors[type]).toBe(EVENT_TYPE_COLORS[type]);
+  });
+});
 
 describe("contrast helpers", () => {
   it("parses hex colours and computes WCAG luminance", () => {
@@ -14,8 +21,10 @@ describe("contrast helpers", () => {
 
 describe("sign-in page colour pairs meet WCAG AA (4.5:1) for text on the light theme", () => {
   const textPairs: [string, string, string][] = [
-    ["button text on enabled button", loginColors.buttonText, loginColors.buttonBackground],
-    ["button text on hovered button", loginColors.buttonText, loginColors.buttonHoverBackground],
+    ["button text on the top of the button gradient", loginColors.buttonText, loginColors.buttonBackground],
+    ["button text on the bottom of the button gradient", loginColors.buttonText, loginColors.buttonBackgroundEnd],
+    ["button text on the hovered gradient (top)", loginColors.buttonText, loginColors.buttonHoverBackground],
+    ["button text on the hovered gradient (bottom)", loginColors.buttonText, loginColors.buttonHoverBackgroundEnd],
     ["disabled button text on disabled button", loginColors.buttonDisabledText, loginColors.buttonDisabledBackground],
     ["placeholder on input", loginColors.placeholderText, loginColors.inputBackground],
     ["typed value on input", loginColors.labelText, loginColors.inputBackground],
@@ -23,17 +32,17 @@ describe("sign-in page colour pairs meet WCAG AA (4.5:1) for text on the light t
     ["body copy on card", loginColors.bodyText, loginColors.cardBackground],
     ["helper text on card", loginColors.helperText, loginColors.cardBackground],
     ["eyebrow on card", loginColors.eyebrowText, loginColors.cardBackground],
+    ["forgot-password link on card", loginColors.linkText, loginColors.cardBackground],
+    ["password help note", loginColors.noteText, loginColors.noteBackground],
     ["error text on error box", loginColors.errorText, loginColors.errorBackground],
     ["success text on success box", loginColors.successText, loginColors.successBackground],
-    ["header title on white header", loginColors.headerTitleText, loginColors.headerBackground],
-    ["header subtitle on white header", loginColors.headerSubtitleText, loginColors.headerBackground],
+    ["header title on the page", loginColors.headerTitleText, loginColors.pageBackground],
+    ["header subtitle on the page", loginColors.headerSubtitleText, loginColors.pageBackground],
     ["header pill text on pill", loginColors.headerPillText, loginColors.headerPillBackground],
     ["headline on page background", loginColors.headlineText, loginColors.pageBackground],
     ["headline accent on page background", loginColors.accentText, loginColors.pageBackground],
-    ["eyebrow on page background", loginColors.eyebrowText, loginColors.pageBackground],
     ["hero copy on page background", loginColors.bodyText, loginColors.pageBackground],
-    ["helper/footer text on page background", loginColors.helperText, loginColors.pageBackground],
-    ["chip text on white chip", loginColors.chipText, loginColors.pageWhite],
+    ["feature detail / footer text on page background", loginColors.helperText, loginColors.pageBackground],
     ["hero copy on the scene haze (scene dissolves into page)", loginColors.bodyText, loginColors.sceneHaze],
   ];
 
@@ -41,15 +50,11 @@ describe("sign-in page colour pairs meet WCAG AA (4.5:1) for text on the light t
     expect(contrastRatio(foreground, background)).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("keeps the focus ring visible against the card, the input and the page (>= 3:1, non-text)", () => {
+  it("keeps the focus ring and the feature icons visible (>= 3:1, non-text)", () => {
     expect(contrastRatio(loginColors.focusRing, loginColors.cardBackground)).toBeGreaterThanOrEqual(3);
     expect(contrastRatio(loginColors.focusRing, loginColors.inputBackground)).toBeGreaterThanOrEqual(3);
     expect(contrastRatio(loginColors.focusRing, loginColors.pageBackground)).toBeGreaterThanOrEqual(3);
-  });
-
-  it("documents that white on the road blue alone would fail, which is why the button is darker", () => {
-    expect(contrastRatio("#FFFFFF", loginColors.roadBlue)).toBeLessThan(4.5);
-    expect(contrastRatio(loginColors.buttonText, loginColors.buttonBackground)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(loginColors.accentText, loginColors.featureIconBackground)).toBeGreaterThanOrEqual(3);
   });
 
   it("keeps the scene dissolving into the page: haze equals the page background", () => {
