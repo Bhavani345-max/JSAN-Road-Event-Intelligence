@@ -1,8 +1,10 @@
+import threading
+import weakref
 from collections import Counter
 from collections.abc import Sequence
 from datetime import datetime, timedelta
 
-from sqlalchemy import and_, func, or_, select
+from sqlalchemy import Engine, and_, event, func, or_, select
 from sqlalchemy.orm import Session, contains_eager
 
 from app.models import Event, EventMergeCandidate, EventVersion, Source, SourceArtifact
@@ -276,42 +278,46 @@ class EventRepository:
         listed_review: what the review queue lists, on its map or not (it also
         lists located events with no stated start that are not known to be
         over, decision 0038).
+
+        Counting reads every event, seconds with tens of thousands, and the
+        console asks for both groupings at once and again after each decision.
+        So one count of both serves every request until anything is committed
+        to the database, or for at most `_TALLY_MAX_AGE` (the rules depend on
+        the time, and the command-line tools write from other processes).
+        Requests that arrive during a count wait for it. Given `now`, the
+        events are counted afresh.
         """
-        now = ensure_utc(now or utc_now())
+        if now is not None:
+            return _copied(self._count_all(ensure_utc(now))[by])
+        shared = _shared_tally(self.session.get_bind().engine)
+        with shared.lock:
+            now = utc_now()
+            if (
+                shared.counts is None
+                or shared.counted_at is None
+                or shared.counted_version != shared.version
+                or now - shared.counted_at >= _TALLY_MAX_AGE
+            ):
+                version = shared.version
+                shared.counts = self._count_all(now)
+                shared.counted_version, shared.counted_at = version, now
+            return _copied(shared.counts[by])
+
+    def _count_all(self, now: datetime) -> "dict[str, dict[str | None, Counter]]":
+        """`tally` for both groupings in one pass: {"source": ..., "city": ...}."""
         recent_since = now - timedelta(days=7)
-        key_column = Event.source_id if by == "source" else Event.city
         rows = self.session.execute(
-            select(*_light_columns(), key_column.label("key"), Event.merged_into, Event.created_at)
+            select(*_light_columns(), Event.source_id, Event.city, Event.merged_into, Event.created_at)
             .outerjoin(Event.artifact)
         )
-        review = {status.value for status in REVIEW_STATUSES}
-        operational = {status.value for status in OPERATIONAL_STATUSES}
-        counts: dict[str | None, Counter] = {}
+        by_source: dict[str | None, Counter] = {}
+        by_city: dict[str | None, Counter] = {}
         for row in rows:
-            found = counts.setdefault(row.key, Counter())
-            if row.merged_into:
-                found["merged"] += 1
-                continue
-            found["detected"] += 1
-            if row.created_at is not None and ensure_utc(row.created_at) >= recent_since:
-                found["recent"] += 1
-            if row.status in review:
-                group = "pending_review"
-            elif row.status in operational:
-                group = "validated"
-            else:
-                found["rejected" if row.status == EventStatus.REJECTED.value else "closed"] += 1
-                continue
-            found[group] += 1
-            if in_review_status(row.status, row.start_time) and _listed_for_review(row, now):
-                found["listed_review"] += 1
-            map_name = "review" if group == "pending_review" else "operations"
-            rule = map_rule(**_row_facts(row), now=now)
-            if rule is None:
-                found[f"on_map_{map_name}"] += 1
-            else:
-                found[f"hidden_{map_name}_{rule}"] += 1
-        return counts
+            found = (by_source.setdefault(row.source_id, Counter()), by_city.setdefault(row.city, Counter()))
+            for name in _tally_names(row, now, recent_since):
+                for counts in found:
+                    counts[name] += 1
+        return {"source": by_source, "city": by_city}
 
     def get(self, event_id: str) -> Event | None:
         return self.session.get(Event, event_id)
@@ -373,13 +379,16 @@ _CONSOLE_VIEWS = frozenset(
 def _light_columns() -> tuple:
     """What the view rules read, without the event's or its article's full records.
 
+    Of the detection record only the two facts the rules read, taken out by the
+    database: parsing every whole record was most of the cost of a count.
     `reported_at` is when the source published the event, else when REI stored it.
     """
     return (
         Event.event_id,
         Event.status,
         Event.event_type,
-        Event.detection,
+        Event.detection["source_reports_ended"].as_boolean().label("source_reports_ended"),
+        Event.detection["method"].as_string().label("detection_method"),
         Event.start_time,
         Event.end_time,
         Event.geometry.is_not(None).label("located"),
@@ -389,14 +398,80 @@ def _light_columns() -> tuple:
 
 def _row_facts(row) -> dict:
     """The facts `map_rule` reads, from a row of `_light_columns`."""
-    detection = row.detection or {}
     return {
         "located": bool(row.located),
         "start": row.start_time,
         "end": row.end_time,
-        "source_ended": bool(detection.get("source_reports_ended")),
-        "method": detection.get("method"),
+        "source_ended": bool(row.source_reports_ended),
+        "method": row.detection_method,
     }
+
+
+_REVIEW_VALUES = frozenset(status.value for status in REVIEW_STATUSES)
+_OPERATIONAL_VALUES = frozenset(status.value for status in OPERATIONAL_STATUSES)
+
+
+def _tally_names(row, now: datetime, recent_since: datetime) -> list[str]:
+    """The `tally` keys one event counts under, from a row of `_light_columns`."""
+    if row.merged_into:
+        return ["merged"]
+    names = ["detected"]
+    if row.created_at is not None and ensure_utc(row.created_at) >= recent_since:
+        names.append("recent")
+    if row.status in _REVIEW_VALUES:
+        group = "pending_review"
+    elif row.status in _OPERATIONAL_VALUES:
+        group = "validated"
+    else:
+        names.append("rejected" if row.status == EventStatus.REJECTED.value else "closed")
+        return names
+    names.append(group)
+    if in_review_status(row.status, row.start_time) and _listed_for_review(row, now):
+        names.append("listed_review")
+    map_name = "review" if group == "pending_review" else "operations"
+    rule = map_rule(**_row_facts(row), now=now)
+    names.append(f"on_map_{map_name}" if rule is None else f"hidden_{map_name}_{rule}")
+    return names
+
+
+def _copied(counts: "dict[str | None, Counter]") -> "dict[str | None, Counter]":
+    """A shared count, safe for the caller to change."""
+    return {key: Counter(found) for key, found in counts.items()}
+
+
+# How long one count may serve requests when nothing has been committed.
+_TALLY_MAX_AGE = timedelta(seconds=60)
+
+
+class _SharedTally:
+    """The last count of one database's events, shared by its requests."""
+
+    def __init__(self) -> None:
+        self.lock = threading.Lock()
+        self.version = 0  # raised by every commit to the database
+        self.counted_version = -1
+        self.counted_at: datetime | None = None
+        self.counts: dict[str, dict[str | None, Counter]] | None = None
+
+
+_SHARED_TALLIES: "weakref.WeakKeyDictionary[Engine, _SharedTally]" = weakref.WeakKeyDictionary()
+_SHARED_TALLIES_LOCK = threading.Lock()
+
+
+def _shared_tally(engine: Engine) -> _SharedTally:
+    with _SHARED_TALLIES_LOCK:
+        shared = _SHARED_TALLIES.get(engine)
+        if shared is None:
+            shared = _SHARED_TALLIES[engine] = _SharedTally()
+        return shared
+
+
+@event.listens_for(Engine, "commit")
+def _count_again_after_commit(connection) -> None:
+    """Any commit may change a count: the next `tally` counts again."""
+    shared = _SHARED_TALLIES.get(connection.engine)
+    if shared is not None:
+        shared.version += 1
 
 
 def _listed_for_review(row, now: datetime) -> bool:
