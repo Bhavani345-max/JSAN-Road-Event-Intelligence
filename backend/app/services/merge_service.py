@@ -258,6 +258,26 @@ def _open_events_of_cities(session: Session, event_ids: list[str], city: str | N
     return _open_events_where(session, [or_(*conditions)])
 
 
+def _candidates_involving(
+    session: Session, event_ids: Iterable[str], *, status: str | None = None
+) -> list[EventMergeCandidate]:
+    """The recorded candidates that concern any of `event_ids`, by either event,
+    in id order. Never every candidate: on 23 October 2026 production held far
+    more than any one run concerns, and loading all of them at every run, and at
+    every event list, used up its memory."""
+    ids = list(dict.fromkeys(event_ids))
+    found: dict[int, EventMergeCandidate] = {}
+    for start in range(0, len(ids), 500):
+        chunk = ids[start : start + 500]
+        for column in (EventMergeCandidate.event_a, EventMergeCandidate.event_b):
+            query = select(EventMergeCandidate).where(column.in_(chunk))
+            if status is not None:
+                query = query.where(EventMergeCandidate.status == status)
+            for candidate in session.scalars(query):
+                found[candidate.id] = candidate
+    return [found[key] for key in sorted(found)]
+
+
 # compare() finds two events anything but DIFFERENT only if they share an article
 # or a link, a place or a road name, or lie within SAME_SPOT_KM (services/merging).
 # Events are indexed by those keys, per city, and only events sharing one are
@@ -325,10 +345,13 @@ def find_candidates(
     )
     by_id = {row.event_id: row for row in pool}
     focus = [by_id[i] for i in focus_ids if i in by_id] if focus_ids is not None else pool
-    known = {
-        (c.event_a, c.event_b)
-        for c in session.scalars(select(EventMergeCandidate))
-    }
+    # Every pair compared below involves an event of `focus`: only their
+    # recorded pairs can be known already.
+    known = (
+        {(c.event_a, c.event_b) for c in _candidates_involving(session, focus_ids)}
+        if focus_ids is not None
+        else {(a, b) for a, b in session.execute(select(EventMergeCandidate.event_a, EventMergeCandidate.event_b))}
+    )
     facts_of: dict[str, EventFacts] = {}
 
     def fact(row: Event) -> EventFacts:
@@ -434,7 +457,9 @@ def merge_listed_rows(session: Session, source_id: str) -> MatchRun:
         external_id = row.artifact.external_id if row.artifact else None
         if key := key_of(to_rei_event(row), external_id):
             groups.setdefault(key, []).append(row)
-    known = {(c.event_a, c.event_b): c for c in session.scalars(select(EventMergeCandidate))}
+    # Only pairs of rows listed for one event are looked up below.
+    listed_ids = [row.event_id for rows_of_event in groups.values() if len(rows_of_event) > 1 for row in rows_of_event]
+    known = {(c.event_a, c.event_b): c for c in _candidates_involving(session, listed_ids)}
     now = utc_now()
 
     for key, rows_of_event in groups.items():
@@ -630,7 +655,8 @@ def _repoint_candidates(session: Session, old: str, new: str) -> None:
             or_(EventMergeCandidate.event_a == old, EventMergeCandidate.event_b == old),
         )
     )
-    existing = {(c.event_a, c.event_b) for c in session.scalars(select(EventMergeCandidate))}
+    # Every pair checked below involves `new`.
+    existing = {(c.event_a, c.event_b) for c in _candidates_involving(session, [new])}
     for candidate in pending:
         other = candidate.event_b if candidate.event_a == old else candidate.event_a
         if other == new:
@@ -744,15 +770,18 @@ def confirm_all(
 
 
 def pending_candidates_by_event(
-    session: Session, now: datetime | None = None
+    session: Session, now: datetime | None = None, *, event_ids: Iterable[str] | None = None
 ) -> dict[str, list[EventMergeCandidate]]:
     """Pending candidates a reviewer is asked about: both events still current.
+    With `event_ids`, only those concerning these events (a page of a list).
 
     A candidate involving an event that is over stays recorded (and comes back
     if the event is extended), but nobody is asked about it.
     """
-    pending = list(
-        session.scalars(select(EventMergeCandidate).where(EventMergeCandidate.status == "PENDING"))
+    pending = (
+        list(session.scalars(select(EventMergeCandidate).where(EventMergeCandidate.status == "PENDING")))
+        if event_ids is None
+        else _candidates_involving(session, event_ids, status="PENDING")
     )
     ids = {i for c in pending for i in (c.event_a, c.event_b)}
     now = now or utc_now()

@@ -60,9 +60,10 @@ class EventMergeCandidate(Base):
     __table_args__ = (UniqueConstraint("event_a", "event_b", name="uq_event_merge_candidates_pair"),)
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    # The pair, in id order.
+    # The pair, in id order. The unique constraint indexes event_a first; event_b
+    # has its own index (migration 0008): candidates are looked up by either event.
     event_a: Mapped[str] = mapped_column(ForeignKey("events.event_id"))
-    event_b: Mapped[str] = mapped_column(ForeignKey("events.event_id"))
+    event_b: Mapped[str] = mapped_column(ForeignKey("events.event_id"), index=True)
     # SAME (clearly the same event) or POSSIBLE (needs review).
     classification: Mapped[str] = mapped_column(String(16))
     reasons: Mapped[list[Any]] = mapped_column(JsonType)

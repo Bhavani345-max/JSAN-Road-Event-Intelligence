@@ -535,7 +535,10 @@ def to_event_outs(session: Session, rows: list[Event]) -> list[EventOut]:
             members.setdefault(member.merged_into, []).append(member)
     from app.services.merge_service import pending_candidates_by_event
 
-    candidates = {i: c for i, c in pending_candidates_by_event(session).items() if i in set(ids)}
+    wanted = set(ids)
+    candidates = {
+        i: c for i, c in pending_candidates_by_event(session, event_ids=ids).items() if i in wanted
+    }
     other_ids = {
         other
         for event_id, found in candidates.items()
