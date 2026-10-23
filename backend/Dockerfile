@@ -2,9 +2,14 @@
 #   docker build -f backend/Dockerfile .
 FROM python:3.12-slim
 
+# MALLOC_ARENA_MAX: feeds run on worker threads, and glibc gives each thread its
+# own memory arena that keeps what a large run freed; on Railway the API grew to
+# about 20 GB and was killed every few minutes (23 October 2026). Two arenas
+# make later runs reuse that memory.
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PYTHONPATH=/srv/backend
+    PYTHONPATH=/srv/backend \
+    MALLOC_ARENA_MAX=2
 
 WORKDIR /srv
 
