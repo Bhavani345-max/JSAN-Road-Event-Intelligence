@@ -168,6 +168,14 @@ function ListMessage({ title, children }: { title: string; children: React.React
 const linkButtonClass =
   "mt-3 cursor-pointer rounded-lg bg-white px-3 py-1.5 text-xs font-semibold text-brand-700 shadow-sm transition hover:bg-brand-50";
 
+/** What an empty list says: whether filters hide events, or why there are none to list. */
+export interface EmptyListMessage {
+  title: string;
+  lines: string[];
+  /** The filters hide the loaded events: offer to clear them. */
+  clearFilters: boolean;
+}
+
 export type EventListState =
   | { status: "loading" }
   | { status: "error"; message: string }
@@ -175,7 +183,8 @@ export type EventListState =
       status: "ready";
       events: RoadEvent[];
       now: Date;
-      isFiltered: boolean;
+      /** Shown when `events` is empty. */
+      empty: EmptyListMessage;
     };
 
 interface EventListProps {
@@ -186,8 +195,6 @@ interface EventListProps {
   onSelect: (eventId: string) => void;
   onClearFilters: () => void;
   onRetry: () => void;
-  /** The selected city, named in the empty-list message. */
-  cityName?: string;
 }
 
 export default function EventList({
@@ -197,7 +204,6 @@ export default function EventList({
   onSelect,
   onClearFilters,
   onRetry,
-  cityName = "Hyderabad",
 }: EventListProps) {
   if (state.status === "loading") {
     return (
@@ -225,19 +231,17 @@ export default function EventList({
   }
 
   if (state.events.length === 0) {
-    return state.isFiltered ? (
-      <ListMessage title="No events match your filters">
-        <p>Try a different search term or loosen the filters.</p>
-        <button type="button" onClick={onClearFilters} className={linkButtonClass}>
-          Clear filters
-        </button>
-      </ListMessage>
-    ) : (
-      <ListMessage title="No current events">
-        <p>
-          Upcoming and ongoing events appear here when a connected source reports them for{" "}
-          {cityName}. Completed ones are not shown.
-        </p>
+    const { title, lines, clearFilters } = state.empty;
+    return (
+      <ListMessage title={title}>
+        {lines.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
+        {clearFilters && (
+          <button type="button" onClick={onClearFilters} className={linkButtonClass}>
+            Clear filters
+          </button>
+        )}
       </ListMessage>
     );
   }

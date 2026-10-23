@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import type { EmptyListMessage } from "@/features/events/components/EventList";
 import type { EventListView } from "@/features/events/filters";
 import { apiFetch, apiPost, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
 import type { ApiCityCoverage, ApiEventCoverage, ApiIngestionResult, ApiIngestionRun, ApiSource } from "@/types/api";
@@ -318,6 +319,82 @@ export function notOnThisMap(totals: CoverageTotals, view: EventListView): strin
     if (hidden > 0) parts.push(`${number(hidden)} validated${reasons(totals.hiddenOperations)}`);
   }
   return parts;
+}
+
+/** "1 event is" / "3 events are", with `other` before "event" when given. */
+function eventsAre(value: number, other = ""): string {
+  const words = other ? `${other} ` : "";
+  return value === 1 ? `1 ${words}event is` : `${number(value)} ${words}events are`;
+}
+
+/**
+ * Why an empty event list is empty, for the choice `placeName` names
+ * (`areaIds` as for `coverageTotals`). `filtered`: the filters hide every
+ * loaded event. Otherwise the coverage counts say whether REI holds no events
+ * for the choice, or holds some this view does not list: neither view lists
+ * an event without a location, so those are counted apart (the first rule
+ * hiding an event, decision 0035). With no counts yet, or counts that say
+ * this view lists events (loaded at another moment than the list), the
+ * message gives no numbers.
+ */
+export function emptyListMessage({
+  placeName,
+  view,
+  filtered,
+  coverage,
+  areaIds,
+}: {
+  placeName: string;
+  view: EventListView;
+  filtered: boolean;
+  coverage: ApiCityCoverage[];
+  areaIds: string[] | null;
+}): EmptyListMessage {
+  if (filtered) {
+    return {
+      title: "No events match your filters",
+      lines: ["Try a different search term or loosen the filters."],
+      clearFilters: true,
+    };
+  }
+  const review = view === "validation";
+  const counted = coverage.some((row) => areaIds === null || areaIds.includes(row.city_id));
+  const totals = counted ? coverageTotals(coverage, areaIds) : null;
+  if (totals === null || (review ? totals.listedReview : totals.onMapOperations) > 0) {
+    return review
+      ? {
+          title: `No events to review for ${placeName}`,
+          lines: ["The review queue lists located events that are not known to be over."],
+          clearFilters: false,
+        }
+      : {
+          title: "No current events",
+          lines: [
+            `Upcoming and ongoing events appear here when a connected source reports them for ${placeName}. Completed ones are not shown.`,
+          ],
+          clearFilters: false,
+        };
+  }
+  if (totals.detected === 0) {
+    return {
+      title: `No events for ${placeName} yet`,
+      lines: [`No source has reported a road event for ${placeName} yet.`],
+      clearFilters: false,
+    };
+  }
+  const lines: string[] = [];
+  const unlocated = (totals.hiddenReview.no_location ?? 0) + (totals.hiddenOperations.no_location ?? 0);
+  if (unlocated > 0) lines.push(`${eventsAre(unlocated)} awaiting location verification.`);
+  // Located, and listed in the other view.
+  const elsewhere = review ? totals.onMapOperations : totals.listedReview;
+  if (elsewhere > 0) {
+    lines.push(review ? `${eventsAre(elsewhere, "validated")} shown in operations.` : `${eventsAre(elsewhere)} in the review queue.`);
+  }
+  const rest = totals.detected - unlocated - elsewhere;
+  if (rest > 0) {
+    lines.push(`${eventsAre(rest, lines.length > 0 ? "other" : "")} not listed in this view; the counts above say why.`);
+  }
+  return { title: `No events to show for ${placeName}`, lines, clearFilters: false };
 }
 
 /**

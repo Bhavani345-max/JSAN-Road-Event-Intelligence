@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { ApiCityCoverage, ApiSource } from "@/types/api";
 import {
   coverageTotals,
+  emptyListMessage,
   groupSources,
   notOnThisMap,
   shownOnMap,
@@ -110,24 +111,25 @@ describe("sources in the console", () => {
   });
 });
 
+const row = (cityId: string, values: Partial<ApiCityCoverage>): ApiCityCoverage => ({
+  city_id: cityId,
+  city_name: cityId,
+  country: "IN",
+  detected: 0,
+  merged: 0,
+  rejected: 0,
+  closed: 0,
+  pending_review: 0,
+  validated: 0,
+  recent: 0,
+  on_map_review: 0,
+  on_map_operations: 0,
+  hidden_review: {},
+  hidden_operations: {},
+  ...values,
+});
+
 describe("coverage from detection to the map, per view", () => {
-  const row = (cityId: string, values: Partial<ApiCityCoverage>): ApiCityCoverage => ({
-    city_id: cityId,
-    city_name: cityId,
-    country: "IN",
-    detected: 0,
-    merged: 0,
-    rejected: 0,
-    closed: 0,
-    pending_review: 0,
-    validated: 0,
-    recent: 0,
-    on_map_review: 0,
-    on_map_operations: 0,
-    hidden_review: {},
-    hidden_operations: {},
-    ...values,
-  });
   // As counted locally on 16 October 2026: 3,982 US work zones await review, none validated.
   const coverage = [
     row("hyderabad", {
@@ -200,6 +202,102 @@ describe("coverage from detection to the map, per view", () => {
     );
     expect(sourceCounts(source, "current_upcoming")).toEqual(["127 awaiting review", "3 validated", "0 on this map"]);
     expect(sourceCounts(source, "validation")).toEqual(["127 awaiting review", "3 validated", "109 on this map"]);
+  });
+});
+
+describe("why an event list is empty", () => {
+  // As counted locally on 23 October 2026: one SAnews article, awaiting review, with no location.
+  const southAfrica = row("south-africa", {
+    city_name: "South Africa", country: "ZA", detected: 1, pending_review: 1, recent: 1,
+    hidden_review: { no_location: 1 },
+  });
+  const message = (values: Partial<Parameters<typeof emptyListMessage>[0]>) =>
+    emptyListMessage({
+      placeName: "South Africa",
+      view: "current_upcoming",
+      filtered: false,
+      coverage: [southAfrica],
+      areaIds: ["south-africa"],
+      ...values,
+    });
+
+  it("says an event without a location awaits verification, in either view, with no filter to clear", () => {
+    for (const view of ["current_upcoming", "validation"] as const) {
+      expect(message({ view })).toEqual({
+        title: "No events to show for South Africa",
+        lines: ["1 event is awaiting location verification."],
+        clearFilters: false,
+      });
+    }
+  });
+
+  it("blames the filters only when they hide loaded events", () => {
+    expect(message({ filtered: true })).toEqual({
+      title: "No events match your filters",
+      lines: ["Try a different search term or loosen the filters."],
+      clearFilters: true,
+    });
+    // Opening the review queue is not a filter.
+    expect(message({ view: "validation" }).title).toBe("No events to show for South Africa");
+  });
+
+  it("says when REI holds no events at all for the choice", () => {
+    expect(message({ placeName: "Japan", coverage: [row("japan", {})], areaIds: ["japan"] })).toEqual({
+      title: "No events for Japan yet",
+      lines: ["No source has reported a road event for Japan yet."],
+      clearFilters: false,
+    });
+  });
+
+  it("gives no numbers before the counts are loaded", () => {
+    expect(message({ coverage: [] })).toEqual({
+      title: "No current events",
+      lines: [
+        "Upcoming and ongoing events appear here when a connected source reports them for South Africa. Completed ones are not shown.",
+      ],
+      clearFilters: false,
+    });
+    expect(message({ coverage: [], view: "validation" }).title).toBe("No events to review for South Africa");
+    // A choice the counts do not cover is not counted as empty.
+    expect(message({ areaIds: ["kenya"] }).lines).not.toContainEqual(expect.stringMatching(/\d/));
+  });
+
+  it("gives no numbers when the counts say this view lists events (loaded at another moment)", () => {
+    const listed = row("south-africa", { detected: 2, pending_review: 2, on_map_review: 1, listed_review: 1 });
+    expect(message({ view: "validation", coverage: [listed] }).title).toBe("No events to review for South Africa");
+    const shown = row("south-africa", { detected: 1, validated: 1, on_map_operations: 1 });
+    expect(message({ coverage: [shown] }).title).toBe("No current events");
+  });
+
+  it("points to the other view and counts the rest, without counting any event twice", () => {
+    // 3 without a location, 5 listed for review, 2 ended, 1 rejected.
+    const city = row("pune", {
+      detected: 11, pending_review: 10, rejected: 1, on_map_review: 4, listed_review: 5,
+      hidden_review: { no_location: 3, ended: 2, no_start: 1 },
+    });
+    expect(message({ placeName: "Pune", coverage: [city], areaIds: ["pune"] }).lines).toEqual([
+      "3 events are awaiting location verification.",
+      "5 events are in the review queue.",
+      "3 other events are not listed in this view; the counts above say why.",
+    ]);
+    const validated = row("pune", { detected: 4, validated: 4, on_map_operations: 3, hidden_operations: { ended: 1 } });
+    expect(message({ placeName: "Pune", view: "validation", coverage: [validated], areaIds: ["pune"] }).lines).toEqual([
+      "3 validated events are shown in operations.",
+      "1 other event is not listed in this view; the counts above say why.",
+    ]);
+    expect(
+      message({ placeName: "Pune", coverage: [row("pune", { detected: 2, rejected: 2 })], areaIds: ["pune"] }).lines,
+    ).toEqual(["2 events are not listed in this view; the counts above say why."]);
+  });
+
+  it("adds a country entry and its cities together", () => {
+    const coverage = [
+      southAfrica,
+      row("cape-town", { detected: 1233, validated: 1233, hidden_operations: { no_location: 1233 } }),
+    ];
+    expect(message({ coverage, areaIds: ["south-africa", "cape-town"] }).lines).toEqual([
+      "1,234 events are awaiting location verification.",
+    ]);
   });
 });
 

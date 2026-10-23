@@ -46,7 +46,7 @@ import ReviewActions from "@/features/qc/components/ReviewActions";
 import type { Basemap } from "@/lib/config";
 import CoverageSummary from "./components/CoverageSummary";
 import SourceStatusBar from "./components/SourceStatusBar";
-import { sourcesForCity, useCoverage, useSources } from "./sources";
+import { emptyListMessage, sourcesForCity, useCoverage, useSources } from "./sources";
 
 // MapLibre needs the browser (WebGL, workers), so the map is client-only.
 const EventMap = dynamic(() => import("@/features/map/components/EventMap"), {
@@ -173,14 +173,22 @@ export default function Dashboard() {
   // An event hidden by the filters is no longer selected.
   const selectedEvent = visibleEvents.find((event) => event.id === selectedEventId) ?? null;
 
+  // An empty list says why: the filters hide the loaded events, or the
+  // coverage counts tell no events apart from events this view does not list.
+  const emptyList = useMemo(
+    () =>
+      emptyListMessage({
+        placeName: city.name,
+        view,
+        filtered: hasActiveFilters(filters) && allEvents.length > 0,
+        coverage,
+        areaIds: area,
+      }),
+    [city.name, view, filters, allEvents.length, coverage, area],
+  );
   const listState: EventListState =
     state.status === "ready"
-      ? {
-          status: "ready",
-          events: visibleEvents,
-          now: state.loadedAt,
-          isFiltered: hasActiveFilters(filters) || view !== "current_upcoming",
-        }
+      ? { status: "ready", events: visibleEvents, now: state.loadedAt, empty: emptyList }
       : state;
 
   // After a source check or a review decision, reload without a loading flash.
@@ -302,7 +310,6 @@ export default function Dashboard() {
                   articleMatchIds={articleMatchIds}
                   onSelect={selectEvent}
                   onClearFilters={() => setFilters(DEFAULT_FILTERS)}
-                  cityName={city.name}
                   onRetry={() => {
                     reload();
                     refreshSources();
