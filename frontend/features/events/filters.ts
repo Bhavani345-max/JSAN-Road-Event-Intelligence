@@ -49,6 +49,18 @@ export function hasDateRange(filters: EventFilters): boolean {
   return filters.from !== "" || filters.to !== "";
 }
 
+/** How many of the filter boxes (not the search) are set: shown on the Filters button. */
+export function setFilterCount(filters: EventFilters): number {
+  return [
+    filters.sourceId !== ALL,
+    filters.eventTypes.length > 0,
+    filters.status !== ALL,
+    filters.severity !== ALL,
+    filters.from !== "",
+    filters.to !== "",
+  ].filter(Boolean).length;
+}
+
 export function hasActiveFilters(filters: EventFilters): boolean {
   return (
     filters.search.trim() !== "" ||

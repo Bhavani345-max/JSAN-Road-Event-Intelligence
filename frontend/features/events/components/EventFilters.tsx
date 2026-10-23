@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ALL, UNCLASSIFIED, type EventFilters as Filters, type TypeChoice } from "../filters";
+import { ALL, setFilterCount, UNCLASSIFIED, type EventFilters as Filters, type TypeChoice } from "../filters";
 import {
   EVENT_SEVERITIES,
   EVENT_TYPES,
@@ -198,69 +198,93 @@ export default function EventFilters({
   sourceOptions,
   onChange,
 }: EventFiltersProps) {
+  // The filter boxes fold behind a button so the console fits one screen;
+  // the button says how many are set, so a set filter is never out of sight.
+  const [open, setOpen] = useState(false);
+  const setCount = setFilterCount(filters);
   return (
     <div className="space-y-2">
-      <label className="relative block">
-        <span className="sr-only">Search events, roads, places, sources and article text</span>
-        <svg
-          viewBox="0 0 20 20"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
-          aria-hidden="true"
+      <div className="flex gap-1.5">
+        <label className="relative block min-w-0 flex-1">
+          <span className="sr-only">Search events, roads, places, sources and article text</span>
+          <svg
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+            aria-hidden="true"
+          >
+            <circle cx="9" cy="9" r="5.5" />
+            <path d="m13.5 13.5 3.5 3.5" strokeLinecap="round" />
+          </svg>
+          <input
+            type="search"
+            value={filters.search}
+            onChange={(e) => onChange({ ...filters, search: e.target.value })}
+            placeholder="Search events, roads, places, article text"
+            className="h-9 w-full rounded-lg bg-white pl-9 pr-3 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-white/70"
+          />
+        </label>
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-controls="event-filter-boxes"
+          className={`flex h-9 shrink-0 cursor-pointer items-center gap-1.5 rounded-lg px-3 text-xs font-semibold shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
+            setCount > 0
+              ? "bg-brand-50 text-brand-700 ring-2 ring-sky-300"
+              : "bg-white/10 text-white ring-1 ring-inset ring-white/20 hover:bg-white/20"
+          }`}
         >
-          <circle cx="9" cy="9" r="5.5" />
-          <path d="m13.5 13.5 3.5 3.5" strokeLinecap="round" />
-        </svg>
-        <input
-          type="search"
-          value={filters.search}
-          onChange={(e) => onChange({ ...filters, search: e.target.value })}
-          placeholder="Search events, roads, places, article text"
-          className="h-9 w-full rounded-lg bg-white pl-9 pr-3 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-white/70"
-        />
-      </label>
-      <div className="grid grid-cols-2 gap-1.5">
-        <FilterSelect<string>
-          label="Source"
-          allLabel="All Sources"
-          value={filters.sourceId}
-          options={sourceOptions.map((source) => source.id)}
-          getLabel={(id) => sourceOptions.find((source) => source.id === id)?.name ?? id}
-          onChange={(sourceId) => onChange({ ...filters, sourceId })}
-        />
-        <TypeMultiSelect
-          value={filters.eventTypes}
-          onChange={(eventTypes) => onChange({ ...filters, eventTypes })}
-        />
-        <FilterSelect<EventStatus>
-          label="Status"
-          value={filters.status}
-          options={statusOptions}
-          getLabel={getStatusLabel}
-          onChange={(status) => onChange({ ...filters, status })}
-        />
-        <FilterSelect<EventSeverity>
-          label="Severity"
-          value={filters.severity}
-          options={EVENT_SEVERITIES}
-          getLabel={getSeverityLabel}
-          onChange={(severity) => onChange({ ...filters, severity })}
-        />
-        <DateTimeFilter
-          label="From"
-          value={filters.from}
-          max={filters.to || undefined}
-          onChange={(from) => onChange({ ...filters, from })}
-        />
-        <DateTimeFilter
-          label="To"
-          value={filters.to}
-          min={filters.from || undefined}
-          onChange={(to) => onChange({ ...filters, to })}
-        />
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5" aria-hidden="true">
+            <path d="M2.5 4h11M4.5 8h7M6.5 12h3" strokeLinecap="round" />
+          </svg>
+          {setCount > 0 ? `Filters · ${setCount}` : "Filters"}
+        </button>
       </div>
+      {open && (
+        <div id="event-filter-boxes" className="grid grid-cols-2 gap-1.5">
+          <FilterSelect<string>
+            label="Source"
+            allLabel="All Sources"
+            value={filters.sourceId}
+            options={sourceOptions.map((source) => source.id)}
+            getLabel={(id) => sourceOptions.find((source) => source.id === id)?.name ?? id}
+            onChange={(sourceId) => onChange({ ...filters, sourceId })}
+          />
+          <TypeMultiSelect
+            value={filters.eventTypes}
+            onChange={(eventTypes) => onChange({ ...filters, eventTypes })}
+          />
+          <FilterSelect<EventStatus>
+            label="Status"
+            value={filters.status}
+            options={statusOptions}
+            getLabel={getStatusLabel}
+            onChange={(status) => onChange({ ...filters, status })}
+          />
+          <FilterSelect<EventSeverity>
+            label="Severity"
+            value={filters.severity}
+            options={EVENT_SEVERITIES}
+            getLabel={getSeverityLabel}
+            onChange={(severity) => onChange({ ...filters, severity })}
+          />
+          <DateTimeFilter
+            label="From"
+            value={filters.from}
+            max={filters.to || undefined}
+            onChange={(from) => onChange({ ...filters, from })}
+          />
+          <DateTimeFilter
+            label="To"
+            value={filters.to}
+            min={filters.from || undefined}
+            onChange={(to) => onChange({ ...filters, to })}
+          />
+        </div>
+      )}
     </div>
   );
 }

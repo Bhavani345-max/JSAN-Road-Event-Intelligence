@@ -6,6 +6,7 @@ import {
   filterEvents,
   hasActiveFilters,
   getTimeState,
+  setFilterCount,
   UNCLASSIFIED,
   matchesLocally,
 } from "./filters";
@@ -28,6 +29,19 @@ describe("filterEvents", () => {
   it("returns everything with default filters", () => {
     expect(filterEvents(events, DEFAULT_FILTERS)).toEqual(events);
     expect(hasActiveFilters(DEFAULT_FILTERS)).toBe(false);
+  });
+
+  it("counts the set filter boxes for the folded Filters button, not the search", () => {
+    expect(setFilterCount(DEFAULT_FILTERS)).toBe(0);
+    expect(setFilterCount({ ...DEFAULT_FILTERS, search: "flyover" })).toBe(0);
+    expect(
+      setFilterCount({
+        ...DEFAULT_FILTERS,
+        sourceId: "the-hindu",
+        eventTypes: ["PLANNED_ROAD_CLOSURE", "ROAD_WORKS"],
+        from: "2026-10-23T08:00",
+      }),
+    ).toBe(3);
   });
 
   it("filters by an individual source", () => {

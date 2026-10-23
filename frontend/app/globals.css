@@ -26,13 +26,17 @@
 
 /* ---------------------------------------------------------
    ONE LOCKED SCREEN
-   The sign-in page is exactly one screen: html and body do
-   not scroll (no scroll bar, no bounce). The compact steps at
-   the end of this section keep the form whole on short screens.
+   The sign-in page and the console are each exactly one
+   screen: html and body do not scroll (no scroll bar, no
+   bounce). The compact steps at the end of this section keep
+   the sign-in form whole on short screens; in the console only
+   the event list scrolls, inside the sidebar.
    --------------------------------------------------------- */
 
 html:has(.login-screen),
-html:has(.login-screen) body {
+html:has(.login-screen) body,
+html:has(.console-screen),
+html:has(.console-screen) body {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;

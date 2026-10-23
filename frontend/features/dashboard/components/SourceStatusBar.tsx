@@ -179,7 +179,8 @@ function SourceRow({
 
 /** Every source in the registry, grouped by state, with checks for connected ones. */
 export default function SourceStatusBar({ sources, view, onChecked, canRun = true }: SourceStatusBarProps) {
-  const [expanded, setExpanded] = useState(true);
+  // Folded to its summary line, so the console fits one screen; opened on request.
+  const [expanded, setExpanded] = useState(false);
   // Only the polled group opens by itself; the others on request.
   const [openGroups, setOpenGroups] = useState<ReadonlySet<string>>(new Set(["polled"]));
   const all = useCheck(undefined, onChecked);

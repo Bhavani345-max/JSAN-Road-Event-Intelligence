@@ -212,7 +212,8 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex h-dvh flex-col overflow-clip bg-white text-slate-900">
+    // One locked screen (globals.css): the page itself never scrolls.
+    <div className="console-screen flex h-dvh flex-col overflow-clip bg-white text-slate-900">
       <Header
         cities={cities}
         city={city}
@@ -221,9 +222,10 @@ export default function Dashboard() {
         onSignOut={signOut}
       />
       <main className="flex min-h-0 flex-1 flex-col-reverse md:flex-row">
-        {/* The whole sidebar scrolls when the window is too short to show it all;
-            the source list and the event list keep their own scrollbars inside it. */}
-        <aside className="rei-sidebar-scroll flex min-h-0 flex-1 flex-col overflow-y-auto bg-linear-to-b from-brand-600 to-brand-700 md:w-[420px] md:flex-none">
+        {/* From tablet width up the sidebar fits the screen: only the event list
+            (and the source list, when opened) scroll inside it. On a phone, below
+            the map, the sidebar itself scrolls. */}
+        <aside className="rei-sidebar-scroll flex min-h-0 flex-1 flex-col overflow-y-auto bg-linear-to-b from-brand-600 to-brand-700 md:w-[420px] md:flex-none md:overflow-hidden">
           <div className="space-y-3 border-b border-white/15 p-4 md:shrink-0">
             {showCountryCities && country && (
               <CountryCities
@@ -287,9 +289,9 @@ export default function Dashboard() {
             </button>
             )}
           </div>
-          {/* Never shorter than a few events, so the list stays usable; set in
-              from the edge so its scrollbar is not mistaken for the sidebar's. */}
-          <div className="md:flex md:min-h-[26rem] md:flex-1 md:flex-col md:pr-2">
+          {/* The rest of the sidebar; set in from the edge so its scrollbar is
+              not mistaken for the page's. */}
+          <div className="md:flex md:min-h-0 md:flex-1 md:flex-col md:pr-2">
             <div className="rei-sidebar-scroll p-4 md:min-h-0 md:flex-1 md:overflow-y-auto md:pr-2">
               {overview ? (
                 <CityOverviewList
