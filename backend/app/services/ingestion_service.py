@@ -11,7 +11,7 @@ from app.repositories.ingestion_store import SqlIngestionStore
 from app.repositories.sources import SourceRepository
 from app.schemas.source import IngestionResultOut
 from app.services.retention_service import slim_unrelated_articles
-from connectors.base import ConnectorError, SourceConnector
+from connectors.base import ConnectorError, SourceConnector, could_not_reach
 from connectors.html import ArticlePageConnector
 from connectors.registry import OFFICIAL_SOURCE_IDS, registered_sources
 from packages.cities import DEFAULT_CITY_ID, City, get_city, load_cities
@@ -24,6 +24,33 @@ from services.geo_resolution.placement import Placer
 from services.ingestion import IngestionResult, run_ingestion
 
 logger = logging.getLogger(__name__)
+
+# A source that could not be reached (no network, its name not found, no answer in
+# time) is tried again before its interval is up: after 15 minutes, then 30, 60 and
+# so on, never later than its interval. One that answered with a refusal (429, 503,
+# 403) waits its full interval, as it asked (decision 0041).
+UNREACHABLE_RETRY = timedelta(minutes=15)
+
+
+def wait_before_next_poll(interval_minutes: int | None, misses: int) -> timedelta:
+    """How long a source waits after its last poll, given how many polls in a row
+    could not reach it."""
+    interval = timedelta(minutes=interval_minutes or 0)
+    if not misses:
+        return interval
+    # The doubling stops at 2**10 (over ten days), far past any interval.
+    return min(interval, UNREACHABLE_RETRY * 2 ** min(misses - 1, 10))
+
+
+def _duration(wait: timedelta) -> str:
+    minutes = int(wait.total_seconds() // 60)
+    if minutes < 1:
+        # No interval: polled at every round of the scheduler.
+        return "a minute"
+    if minutes >= 60 and minutes % 60 == 0:
+        hours = minutes // 60
+        return f"{hours} hour{'s' if hours != 1 else ''}"
+    return f"{minutes} minute{'s' if minutes != 1 else ''}"
 
 
 class UnknownSource(Exception):
@@ -101,6 +128,9 @@ class IngestionService:
         # One run at a time: the scheduler and a manual run must not race to
         # insert the same articles.
         self._lock = threading.Lock()
+        # source_id -> polls in a row that could not reach it. Kept in memory: a
+        # restart forgets it, and each source then waits its own interval.
+        self._unreachable: dict[str, int] = {}
         self._match_after = settings.event_matching_after_ingestion
         self._text_days = settings.unrelated_article_text_days
 
@@ -225,7 +255,8 @@ class IngestionService:
         return [self.run_source(source_id) for source_id in self._active_source_ids()]
 
     def run_due(self) -> list[IngestionResultOut]:
-        """Poll every active source whose polling interval has elapsed."""
+        """Poll every active source whose polling interval has elapsed (sooner
+        for one the last poll could not reach)."""
         now = utc_now()
         with self._session_factory() as session:
             due = [
@@ -234,9 +265,10 @@ class IngestionService:
                 if self._is_pollable(source)
                 and (
                     source.last_poll_at is None
-                    or source.polling_frequency_minutes is None
                     or now - source.last_poll_at
-                    >= timedelta(minutes=source.polling_frequency_minutes)
+                    >= wait_before_next_poll(
+                        source.polling_frequency_minutes, self._unreachable.get(source.source_id, 0)
+                    )
                 )
             ]
         results = []
@@ -289,18 +321,31 @@ class IngestionService:
             )
         except ConnectorError as error:
             session.rollback()
-            logger.warning("Ingestion failed for %s: %s", source_id, error)
-            self._record_poll(session, source_id, error=str(error))
+            message = str(error)
+            if could_not_reach(error):
+                misses = self._unreachable[source_id] = self._unreachable.get(source_id, 0) + 1
+                source = SourceRepository(session).get(source_id)
+                interval = source.polling_frequency_minutes if source else None
+                wait = wait_before_next_poll(interval, misses)
+                message = (
+                    f"{message.rstrip('.')}. The site could not be reached; "
+                    f"REI tries again in {_duration(wait)}."
+                )
+            else:
+                self._unreachable.pop(source_id, None)
+            logger.warning("Ingestion failed for %s: %s", source_id, message)
+            self._record_poll(session, source_id, error=message)
             return IngestionResultOut(
                 source_id=source_id,
                 status="failed",
-                error=str(error),
+                error=message,
                 started_at=started_at,
                 finished_at=utc_now(),
             )
         except Exception as error:
             # A parser or storage fault in one source is recorded on that source
             # and never stops the others (decision 0034).
+            self._unreachable.pop(source_id, None)
             session.rollback()
             logger.exception("Ingestion failed unexpectedly for %s", source_id)
             message = f"Unexpected error while reading the source: {type(error).__name__}: {error}"[:500]
@@ -313,6 +358,7 @@ class IngestionService:
                 finished_at=utc_now(),
             )
 
+        self._unreachable.pop(source_id, None)
         self._record_poll(session, source_id, error=None)
         self._match(session, result)
         return self._to_out(result)

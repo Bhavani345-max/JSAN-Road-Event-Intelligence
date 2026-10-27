@@ -9,6 +9,19 @@ class ConnectorError(Exception):
     """The source could not be fetched or its response could not be read."""
 
 
+def could_not_reach(error: BaseException) -> bool:
+    """Whether a fetch failed before the site answered: no network, its name not
+    found, the connection dropped or no answer in time (an httpx transport error
+    the connector raised its error from). A site that answered, even with a
+    refusal (429, 503, 403) or something unreadable, was reached."""
+    cause = error.__cause__
+    while cause is not None:
+        if isinstance(cause, httpx.TransportError):
+            return True
+        cause = cause.__cause__
+    return False
+
+
 class SourceConnector(Protocol):
     """What the ingestion service needs from any connector, whatever its type."""
 
