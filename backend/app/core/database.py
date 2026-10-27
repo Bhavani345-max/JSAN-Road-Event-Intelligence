@@ -11,9 +11,22 @@ from .config import REPO_ROOT
 
 ALEMBIC_INI = REPO_ROOT / "database" / "alembic.ini"
 
+# No parallel query in REI's PostgreSQL sessions (migrations included). Parallel
+# workers share their work through /dev/shm, which production's database container
+# keeps small: from 26 October 2026 NDW's runs failed there with "could not resize
+# shared memory segment ... No space left on device" (decision 0042). REI's queries
+# are lookups and lists by indexed columns; they do not need parallel workers.
+POSTGRES_SESSION_OPTIONS = (
+    "-c max_parallel_workers_per_gather=0 -c max_parallel_maintenance_workers=0"
+)
+
 
 def create_db_engine(database_url: str) -> Engine:
     url = make_url(database_url)
+    if url.get_backend_name() == "postgresql":
+        return create_engine(
+            url, pool_pre_ping=True, connect_args={"options": POSTGRES_SESSION_OPTIONS}
+        )
     if url.get_backend_name() != "sqlite":
         return create_engine(url, pool_pre_ping=True)
 

@@ -1,6 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import type { ApiCityCoverage, ApiSource } from "@/types/api";
 import {
+  checkFailureMessage,
+  checkSourcesNow,
   coverageTotals,
   emptyListMessage,
   groupSources,
@@ -336,5 +338,30 @@ describe("which sources a choice lists", () => {
 
   it("lists every source for all cities together", () => {
     expect(ids(null)).toHaveLength(sources.length);
+  });
+});
+
+describe("a check that gets no answer", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  async function checkAnswered(response: Response): Promise<unknown> {
+    vi.stubGlobal("fetch", vi.fn(async () => response.clone()));
+    return checkSourcesNow("nl-ndw-planningsfeed-wegwerkzaamheden").catch((error: unknown) => error);
+  }
+
+  it("says the check may still be running when the proxy gave up after 30 seconds", async () => {
+    // The web server's proxy answers a bare 500 when the API takes longer than 30 s.
+    const failure = await checkAnswered(new Response("Internal Server Error", { status: 500 }));
+    const text = checkFailureMessage(failure);
+    expect(text).toContain("No answer within 30 seconds");
+    expect(text).toContain("may still be running");
+    expect(text).not.toContain("start-rei.cmd");
+  });
+
+  it("passes on the API's own reason when it refused", async () => {
+    const failure = await checkAnswered(
+      Response.json({ detail: "Only administrators can run sources." }, { status: 403 }),
+    );
+    expect(checkFailureMessage(failure)).toBe("Only administrators can run sources.");
   });
 });

@@ -38,7 +38,7 @@ from typing import Any
 
 import httpx
 
-from connectors.base import ConnectorError
+from connectors.base import ConnectorError, could_not_reach
 from connectors.html.article import download_page, parse_article_page
 from connectors.restricted import readable_publisher, removed_publisher, restricted_publisher
 from packages.cities import DEFAULT_CITY_ID, City, get_city, load_cities
@@ -371,20 +371,25 @@ class SerperNewsConnector:
         self._pages_read = 0
         retrieved_at = utc_now()
         records: dict[str, RawSourceRecord] = {}
-        skipped: list[str] = []
+        skipped: list[ConnectorError] = []
         for query in self.queries:
             try:
                 results = self._search_allowed(query)
             except (_TemporarySearchError, _RefusedSearch) as error:
                 logger.warning("%s: skipped the search %r (%s)", self.source.source_id, query, error)
-                skipped.append(query)
+                skipped.append(error)
                 continue
             for result in results:
                 record = self._to_record(result, query, retrieved_at)
                 if record is not None:
                     records.setdefault(record.external_id, record)
         if self.queries and len(skipped) == len(self.queries):
-            raise ConnectorError(f"Serper news search failed: all {len(skipped)} searches failed")
+            message = f"Serper news search failed: all {len(skipped)} searches failed"
+            # No search reached Serper (no network), so none used a credit: the
+            # scheduler tries again before the source's interval (decision 0041).
+            if all(could_not_reach(error) for error in skipped):
+                raise ConnectorError(message) from skipped[-1]
+            raise ConnectorError(message)
         if skipped:
             logger.warning(
                 "%s: %d of %d searches skipped after a retry",

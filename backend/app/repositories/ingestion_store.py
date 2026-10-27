@@ -164,6 +164,10 @@ class SqlIngestionStore:
             .where(
                 Event.source_id == source_id,
                 Event.status.not_in(("REJECTED", "CANCELLED", "SUPERSEDED", "EXPIRED")),
+                # An event's record is its own source's. Saying so lets PostgreSQL
+                # read only this source's records (its index) instead of joining
+                # against every source's (27 October 2026, decision 0042).
+                SourceArtifact.source_id == source_id,
             )
         ).all()
         for row, external_id in rows:

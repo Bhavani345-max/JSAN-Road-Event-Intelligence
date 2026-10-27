@@ -156,6 +156,23 @@ function toOutcome(results: ApiIngestionResult[]): IngestionOutcome {
   };
 }
 
+/**
+ * What to say when a check fails. A check runs inside the request, and the web
+ * server stops waiting for the API after 30 seconds: a large feed (NDW's planned
+ * works, 14,000 records) takes minutes, and a check waits for a run already in
+ * progress. No answer then is not the API being down (decision 0042).
+ */
+export function checkFailureMessage(cause: unknown): string {
+  if (isUnreachable(cause)) {
+    return (
+      "No answer within 30 seconds. A large feed takes minutes to check, and a check waits " +
+      "for any run in progress, so it may still be running: reload in a few minutes to see " +
+      "the result."
+    );
+  }
+  return cause instanceof Error ? cause.message : "The sources could not be checked.";
+}
+
 /** Fetch one source now, or every connected source when no id is given. */
 export async function checkSourcesNow(sourceId?: string): Promise<IngestionOutcome> {
   const query = sourceId ? `?source_id=${encodeURIComponent(sourceId)}` : "";

@@ -16,7 +16,7 @@ from connectors.api.serper_news import (
     parse_result_date,
     serper_news_source,
 )
-from connectors.base import ConnectorError
+from connectors.base import ConnectorError, could_not_reach
 from connectors.registry import registered_sources
 from connectors.rss.telangana_today import TELANGANA_TODAY
 from services.extraction import KeywordClassifier
@@ -326,6 +326,16 @@ def test_the_poll_fails_when_every_search_fails():
     connector, _ = flaky_connector(lambda q, n: "timeout")
     with pytest.raises(ConnectorError, match="all .* searches failed"):
         connector.fetch()
+
+
+@pytest.mark.parametrize("failure, reached", [("timeout", False), (500, True), (429, True)])
+def test_only_a_poll_that_never_reached_serper_is_tried_again_early(failure, reached):
+    # Decision 0041: no network means no credit used, so the scheduler may ask
+    # sooner; Serper's own refusals and errors wait the full interval.
+    connector, _ = flaky_connector(lambda q, n: failure)
+    with pytest.raises(ConnectorError) as raised:
+        connector.fetch()
+    assert could_not_reach(raised.value) is not reached
 
 
 def plan_refusing_connector(refuse):

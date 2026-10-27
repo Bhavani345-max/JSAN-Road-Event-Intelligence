@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { EventListView } from "@/features/events/filters";
 import { formatDateTime, timeZoneOf } from "@/features/events/presentation";
 import {
+  checkFailureMessage,
   checkSourcesNow,
   groupSources,
   sourceCounts,
@@ -73,10 +74,7 @@ function useCheck(sourceId: string | undefined, onChecked: () => void) {
       setMessage(describe(await checkSourcesNow(sourceId)));
       onChecked();
     } catch (cause) {
-      setMessage({
-        text: cause instanceof Error ? cause.message : "The sources could not be checked.",
-        isError: true,
-      });
+      setMessage({ text: checkFailureMessage(cause), isError: true });
     } finally {
       setChecking(false);
     }

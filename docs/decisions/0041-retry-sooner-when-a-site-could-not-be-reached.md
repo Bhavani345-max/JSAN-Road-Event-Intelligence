@@ -56,3 +56,16 @@ and 503, 429, 403 and an unreadable answer as reached.
 
 Production's source status: the Railway CLI on this machine has been logged out
 since the 22 October security incident and the live API needs a sign-in.
+
+## Update, 27 October 2026 (afternoon): every source, the searches included
+
+The user asked whether the early retry covers every country's sources (RSS feeds
+included) or only the Netherlands'. The retry is the scheduler's, for every source;
+it depends only on the connector passing on the network error. A test now cuts the
+network for every registered connector (`tests/unit/test_every_source_retries_when_offline.py`,
+74 sources: RSS news, every country's official feeds, GDELT, the city searches):
+66 already passed; the 8 Google News searches (Serper) did not, because a poll whose
+every search failed raised a new error without its cause. Such a poll now passes on
+the network error when no search reached Serper (no credit is used then); when
+Serper itself answered (429, 5xx, a refusal) the poll waits its full interval as
+before.
