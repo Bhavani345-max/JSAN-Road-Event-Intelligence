@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
+import { useCallback, useMemo, useState, useSyncExternalStore, type CSSProperties } from "react";
 import Header from "@/components/layout/Header";
 import { useAuth } from "@/features/auth/AuthGate";
 import { canReview, canRunSources } from "@/features/auth/permissions";
@@ -43,6 +43,7 @@ import BasemapToggle from "@/features/map/components/BasemapToggle";
 import MapLegend from "@/features/map/components/MapLegend";
 import AddEventPanel from "@/features/qc/components/AddEventPanel";
 import ReviewActions from "@/features/qc/components/ReviewActions";
+import { themeStyle, useTheme } from "@/features/theme/themes";
 import type { Basemap } from "@/lib/config";
 import CoverageSummary from "./components/CoverageSummary";
 import SourceStatusBar from "./components/SourceStatusBar";
@@ -60,7 +61,9 @@ const subscribeToNothing = () => () => {};
 const NO_IDS: ReadonlySet<string> = new Set();
 
 export default function Dashboard() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, updateUser } = useAuth();
+  // The colour theme chosen in this browser recolours everything brand-* below.
+  const theme = useTheme();
   // The API enforces these too; the console leaves out what it would refuse.
   const mayReview = canReview(user);
   const mayRunSources = canRunSources(user);
@@ -213,13 +216,17 @@ export default function Dashboard() {
 
   return (
     // Keep the overall page fixed; only the left blue sidebar scrolls.
-    <div className="console-screen flex h-dvh flex-col overflow-hidden bg-white text-slate-900">
+    <div
+      className="console-screen flex h-dvh flex-col overflow-hidden bg-white text-slate-900"
+      style={themeStyle(theme) as CSSProperties}
+    >
       <Header
         cities={cities}
         city={city}
         onCityChange={changeCity}
         user={user}
         onSignOut={signOut}
+        onUserChange={updateUser}
       />
       <main className="flex min-h-0 flex-1 flex-col-reverse md:flex-row">
         {/* The entire left blue sidebar scrolls; the page and map stay fixed. */}
@@ -332,6 +339,7 @@ export default function Dashboard() {
             onPickPoint={setPickedPoint}
             cityBubbles={cityBubbles}
             onSelectCity={changeCity}
+            accent={theme.palette[600]}
           />
           <div className="pointer-events-none absolute left-3 top-3 flex flex-col items-start gap-2">
             <div className="pointer-events-auto">

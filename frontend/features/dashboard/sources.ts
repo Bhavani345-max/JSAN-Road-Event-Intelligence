@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { EmptyListMessage } from "@/features/events/components/EventList";
 import type { EventListView } from "@/features/events/filters";
-import { apiFetch, apiPost, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
+import { apiFetch, apiPost, isSessionEnded, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
 import type { ApiCityCoverage, ApiEventCoverage, ApiIngestionResult, ApiIngestionRun, ApiSource } from "@/types/api";
 
 /**
@@ -195,8 +195,10 @@ function useLoaded<T>(load: () => Promise<T>, empty: T, what: string): { value: 
       // The event list already reports an unreachable API; stay quiet here
       // and try again until it answers.
       .catch((error: unknown) => {
+        // A session that ended (signing out, expiry) is AuthGate's to handle, not a failure.
+        if (cancelled || isSessionEnded(error)) return;
         console.error(`Failed to load ${what}`, error);
-        if (!cancelled && isUnreachable(error)) {
+        if (isUnreachable(error)) {
           retry = setTimeout(() => setAttempt((n) => n + 1), RECONNECT_MS);
         }
       });

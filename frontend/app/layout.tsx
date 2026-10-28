@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+// Country flags (MIT), served with the console: the header's country choice.
+import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 
 const geistSans = Geist({

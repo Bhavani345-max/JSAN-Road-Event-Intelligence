@@ -17,3 +17,8 @@ export function canReview(user: AuthUser | null | undefined): boolean {
 export function canRunSources(user: AuthUser | null | undefined): boolean {
   return !!user && ADMIN_ROLES.includes(user.role);
 }
+
+/** Reset another account's password, keep recovery codes (decision 0044). */
+export function canManageAccounts(user: AuthUser | null | undefined): boolean {
+  return !!user && ADMIN_ROLES.includes(user.role);
+}

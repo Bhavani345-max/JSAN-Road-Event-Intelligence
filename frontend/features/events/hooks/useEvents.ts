@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
+import { isSessionEnded, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
 import { apiEventRepository } from "../api/eventRepository";
 import type { EventListView } from "../filters";
 import type { RoadEvent } from "../model";
@@ -38,7 +38,8 @@ export function useEvents(view: EventListView, cityId: string | null, enabled = 
         if (!cancelled) setState({ status: "ready", events, loadedAt: new Date(), queryKey });
       })
       .catch((error: unknown) => {
-        if (cancelled) return;
+        // A session that ended is AuthGate's to handle: back to signing in, no error shown.
+        if (cancelled || isSessionEnded(error)) return;
         console.error("Failed to load events", error);
         setState({
           status: "error",

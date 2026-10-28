@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { apiFetch, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
+import { apiFetch, isSessionEnded, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
 import type { EventListView } from "@/features/events/filters";
 import { ROAD_CLOSURE_EVENT_TYPES } from "@/features/events/model";
 import type { EventStats } from "@/features/events/stats";
@@ -71,7 +71,7 @@ export function useCityCounts(view: EventListView, enabled: boolean) {
         if (!cancelled) setState({ status: "ready", counts, queryKey: view });
       })
       .catch((error: unknown) => {
-        if (cancelled) return;
+        if (cancelled || isSessionEnded(error)) return;
         console.error("Failed to load the overview", error);
         setState({ status: "error", message: error instanceof Error ? error.message : "Unknown error" });
         if (isUnreachable(error)) retry = setTimeout(() => setAttempt((n) => n + 1), RECONNECT_MS);

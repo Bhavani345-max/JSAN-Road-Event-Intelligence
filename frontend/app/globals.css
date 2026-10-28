@@ -562,7 +562,11 @@ html:has(.console-screen) body {
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
 
+/* Not inline: brand-* classes read these variables, so the console's colour
+   theme (features/theme/themes.ts) can replace them on its own element. */
+@theme {
   --color-brand-50: #eef6fb;
   --color-brand-100: #d9eaf5;
   --color-brand-200: #b3d4ea;
@@ -617,4 +621,26 @@ html:has(.console-screen) body {
 
 .rei-hover-popup {
   pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   LONGER FORMS: RECOVERY CODE (0044), REGISTER, RESET LINK (0045)
+   Longer than signing in: below desktop width only the card
+   shows, so the locked screen still holds all of it.
+   --------------------------------------------------------- */
+
+@media (max-width: 1023.98px) {
+  .login-screen--long-form .login-hero,
+  .login-screen--long-form .login-city-band,
+  .login-screen--long-form .login-footer,
+  .login-screen--long-form .login-card-helper,
+  .login-screen--long-form .login-session-note {
+    display: none;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .login-screen--long-form .login-panel h2 {
+    font-size: 1.5rem;
+  }
 }

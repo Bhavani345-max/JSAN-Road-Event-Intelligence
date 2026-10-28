@@ -8,6 +8,7 @@ import {
   Popup,
   ScaleControl,
   setWorkerUrl,
+  type ExpressionSpecification,
   type GeoJSONSource,
   type MapMouseEvent,
   type PointLike,
@@ -51,6 +52,8 @@ interface EventMapProps {
    */
   cityBubbles?: CityBubbleCollection | null;
   onSelectCity?: (cityId: string) => void;
+  /** The console theme's colour: numbered circles, the overview's bubbles, the chosen spot's pin. */
+  accent?: string;
 }
 
 type MapStatus = "loading" | "ready" | "error";
@@ -314,6 +317,14 @@ function addEventLayers(map: MapLibreMap) {
   });
 }
 
+// JSAN Blue, until the console's theme says otherwise (the accent prop).
+const BRAND_COLOR = "#00558c";
+
+/** A country's bubble: the theme's colour, grey while it has no events. */
+function bubbleColor(accent: string): ExpressionSpecification {
+  return ["case", [">", ["get", "count"], 0], accent, "#94a3b8"];
+}
+
 /** Numbered circles for nearby markers while zoomed out, and the overview's city bubbles. */
 function addGroupLayers(map: MapLibreMap) {
   const font = labelFont(map);
@@ -327,7 +338,7 @@ function addGroupLayers(map: MapLibreMap) {
     source: ANCHOR_SOURCE,
     filter: ["has", "point_count"],
     paint: {
-      "circle-color": "#00558c",
+      "circle-color": BRAND_COLOR,
       "circle-opacity": 0.92,
       "circle-stroke-color": "#ffffff",
       "circle-stroke-width": 2,
@@ -355,7 +366,7 @@ function addGroupLayers(map: MapLibreMap) {
     // Where bubbles overlap (Toronto by New York), the smaller is drawn on top.
     layout: { "circle-sort-key": ["-", 0, ["get", "count"]] },
     paint: {
-      "circle-color": ["case", [">", ["get", "count"], 0], "#00558c", "#94a3b8"],
+      "circle-color": bubbleColor(BRAND_COLOR),
       "circle-opacity": 0.92,
       "circle-stroke-color": "#ffffff",
       "circle-stroke-width": 2.5,
@@ -514,6 +525,7 @@ export default function EventMap({
   onPickPoint,
   cityBubbles = null,
   onSelectCity,
+  accent = BRAND_COLOR,
 }: EventMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -733,11 +745,19 @@ export default function EventMap({
     if (!map || map !== mapRef.current) return;
     map.getCanvas().style.cursor = picking ? "crosshair" : "";
     if (!picking || !pickedPoint) return;
-    const pin = new Marker({ color: "#00558c" }).setLngLat(pickedPoint).addTo(map);
+    const pin = new Marker({ color: accent }).setLngLat(pickedPoint).addTo(map);
     return () => {
       pin.remove();
     };
-  }, [loadedMap, picking, pickedPoint]);
+  }, [loadedMap, picking, pickedPoint, accent]);
+
+  // Follow the console's colour theme.
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    map.setPaintProperty(LAYERS.clusters, "circle-color", accent);
+    map.setPaintProperty(LAYERS.cityBubble, "circle-color", bubbleColor(accent));
+  }, [loadedMap, accent]);
 
   // Push event data into the map whenever events or the selection change.
   useEffect(() => {

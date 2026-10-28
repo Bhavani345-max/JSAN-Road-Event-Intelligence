@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { isSessionEnded } from "@/lib/apiClient";
 import { searchEventIds } from "../api/eventRepository";
 import type { EventListView } from "../filters";
 
@@ -31,7 +32,9 @@ export function useEventSearch(
           if (!cancelled) setResult({ query, ids });
         })
         // The list still shows what could be matched in the browser.
-        .catch((error: unknown) => console.error("Event search failed", error));
+        .catch((error: unknown) => {
+          if (!isSessionEnded(error)) console.error("Event search failed", error);
+        });
     }, DEBOUNCE_MS);
     return () => {
       cancelled = true;

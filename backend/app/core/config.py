@@ -122,6 +122,48 @@ class Settings(BaseSettings):
     place_lookup_daily_credits: int = 0
     place_lookup_cache_path: str = str(DATA_DIR / "google_places_cache.json")
 
+    # --- Email, registration and reset links (decision 0045) ----------------------
+    # Self-registration (decision 0046: off). Accounts are created by an
+    # administrator in User management. True, with email configured and
+    # ALLOWED_EMAIL_DOMAINS set, opens the Register form and its API again.
+    registration_enabled: bool = False
+    # The transactional email service: "resend" (resend.com, an HTTP API: Railway
+    # may block outgoing SMTP). Empty, or any value incomplete below: no email is
+    # ever sent, and registration and reset links are unavailable (the console
+    # says so). Nothing pretends an email was sent.
+    email_provider: str = ""
+    # The sender, on a domain verified with the provider: "JSAN REI <rei@mail.example.com>".
+    email_from: str | None = None
+    # The provider's API key. Only in .env or Railway variables, never in code.
+    email_api_key: str | None = None
+    # The console's public address, for the links in emails: https://jsan-rei.up.railway.app
+    app_base_url: str | None = None
+    # Comma-separated company email domains that may register: "jsanconsulting.com".
+    # Empty: registration is closed. Never guessed: set it explicitly.
+    allowed_email_domains: str = ""
+    # How long a link stays valid.
+    email_verification_minutes: int = 24 * 60
+    password_reset_minutes: int = 30
+
+    @property
+    def email_configured(self) -> bool:
+        """Whether emails can be sent: a known provider with its key, a sender and the console's address."""
+        return (
+            self.email_provider.strip().lower() == "resend"
+            and bool(self.email_api_key and self.email_from and self.app_base_url)
+        )
+
+    @property
+    def allowed_email_domain_set(self) -> frozenset[str]:
+        return frozenset(
+            domain.strip().lower().lstrip("@") for domain in self.allowed_email_domains.split(",") if domain.strip()
+        )
+
+    @property
+    def registration_open(self) -> bool:
+        """Registration needs both: ownership is proved by an emailed link, and only company domains may register."""
+        return self.registration_enabled and self.email_configured and bool(self.allowed_email_domain_set)
+
     @property
     def ai_configured(self) -> bool:
         return bool(self.openrouter_api_key and self.ai_model)

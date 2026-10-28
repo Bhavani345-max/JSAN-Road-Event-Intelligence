@@ -119,15 +119,22 @@ def test_a_password_needs_at_least_eight_characters(engine, session):
         assert sign_in(client, (USER[0], "Abcd@034")).json()["role"] == "user"
 
 
-def test_there_is_no_registration(client):
-    for path in ("/api/auth/register", "/api/auth/signup", "/api/users", "/api/auth/users"):
-        assert client.post(path, json={"email": "new@example.com", "password": "a new password 1"}).status_code in (
-            401, 404, 405,
-        ), path  # fmt: skip
+def test_there_is_no_public_registration(client, session):
+    """Self-registration is off (decision 0046): only an administrator creates
+    accounts (test_user_management.py). No route open to the public creates one."""
+    before = accounts(session)
+    body = {"full_name": "New Person", "email": "new@example.com", "password": "a new password 1", "role": "admin"}
+    closed = client.post("/api/auth/register", json=body)
+    assert closed.status_code == 404 and "administrator" in closed.json()["detail"]
+    assert client.post("/api/auth/verify-email", json={"token": "anything"}).status_code == 404
+    for path in ("/api/auth/signup", "/api/users", "/api/auth/users", "/api/admin/users"):
+        assert client.post(path, json=body).status_code in (401, 404, 405), path
+    assert client.get("/api/auth/options").json() == {"registration_open": False, "email_reset": False, "allowed_domains": []}
+    assert accounts(session).keys() == before.keys()
     assert sign_in(client, ("new@example.com", "a new password 1")).status_code == 401
     assert sign_in(client, ADMIN).status_code == 200
     paths = client.get("/api/openapi.json").json()["paths"]
-    assert not [path for path in paths if "register" in path or "signup" in path or path.startswith("/api/users")]
+    assert not [path for path in paths if "signup" in path or path.startswith("/api/users")]
 
 
 # --- signing in -----------------------------------------------------------------------
@@ -148,18 +155,21 @@ def test_invalid_credentials_are_refused_alike(client):
     assert wrong.json() == unknown.json()
 
 
-def test_eight_failures_lock_that_account_only(client):
-    for _ in range(8):
+def test_five_failures_lock_that_account_only(client):
+    # The user's rule (28 October 2026, decision 0044): warned from the third, locked at the fifth.
+    for _ in range(4):
         assert sign_in(client, USER, password="wrong password").status_code == 401
-    # The ninth try, even with the right password, waits out the window.
+    assert sign_in(client, USER, password="wrong password").status_code == 429
+    # Even the right password now waits out the 30 minutes.
     assert sign_in(client, USER).status_code == 429
     # The other account is not affected.
     assert sign_in(client, ADMIN).status_code == 200
 
 
-def test_eight_failures_on_the_admin_do_not_lock_out_the_user(client):
-    for _ in range(8):
+def test_five_failures_on_the_admin_do_not_lock_out_the_user(client):
+    for _ in range(4):
         assert sign_in(client, ADMIN, password="wrong password").status_code == 401
+    assert sign_in(client, ADMIN, password="wrong password").status_code == 429
     assert sign_in(client, ADMIN).status_code == 429
     assert sign_in(client, USER).status_code == 200
 

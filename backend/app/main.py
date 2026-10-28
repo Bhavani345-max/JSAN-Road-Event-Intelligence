@@ -11,6 +11,7 @@ from app.core.config import Settings, get_settings
 from app.core.database import create_db_engine, create_session_factory, run_migrations
 from app.services.bootstrap import sync_reference_data
 from app.services.auth_service import USER_ROLE, normalize_email, seed_account, seed_admin_user
+from app.services.email_service import email_sender
 from app.services.ingestion_service import IngestionService
 from app.services.ai_reading_service import AiReadingService
 from app.services.scheduler import poll_sources_forever, read_articles_forever
@@ -117,6 +118,8 @@ def create_app(settings: Settings | None = None, engine: Engine | None = None) -
         app.state.session_factory, settings, app.state.ingestion_service
     )
     app.state.settings = settings
+    # None without a complete email configuration: no email is ever sent (decision 0045).
+    app.state.email_sender = email_sender(settings)
 
     app.add_middleware(
         CORSMiddleware,

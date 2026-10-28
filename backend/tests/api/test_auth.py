@@ -97,5 +97,6 @@ def test_changes_from_another_website_are_refused(anonymous):
 def test_repeated_failed_sign_ins_are_slowed_down(anonymous, monkeypatch):
     monkeypatch.setattr(auth, "_ATTEMPT_LIMIT", 2)
     assert sign_in(anonymous, password="wrong password one").status_code == 401
-    assert sign_in(anonymous, password="wrong password two").status_code == 401
+    # The failure that reaches the limit locks the account at once.
+    assert sign_in(anonymous, password="wrong password two").status_code == 429
     assert sign_in(anonymous).status_code == 429

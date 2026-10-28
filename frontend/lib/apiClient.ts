@@ -28,6 +28,30 @@ export function isUnreachable(error: unknown): boolean {
 /** How long to wait before trying an unreachable API again. */
 export const RECONNECT_MS = 5000;
 
+/**
+ * Sent on `window` when the API says the session is over: signed out in another
+ * tab, expired, suspended, or its password changed or reset. AuthGate then goes
+ * back to the sign-in page instead of leaving the console to show errors.
+ */
+export const SESSION_ENDED = "rei:session-ended";
+
+// Routes used without a session, or by AuthGate itself: their 401 means a wrong
+// password or no session yet, not a session that ended.
+const BEFORE_SIGN_IN = [
+  "/auth/login", "/auth/me", "/auth/logout", "/auth/options", "/auth/recover",
+  "/auth/register", "/auth/verify-email", "/auth/forgot", "/auth/reset-password",
+];
+
+/** Whether an answer means the open session has ended. */
+export function endsSession(path: string, status: number | null): boolean {
+  return status === 401 && !BEFORE_SIGN_IN.some((route) => path === route || path.startsWith(`${route}?`));
+}
+
+/** Whether an error is the API refusing a session that has ended (AuthGate handles it: not a failure to report). */
+export function isSessionEnded(error: unknown): boolean {
+  return error instanceof ApiError && error.status === 401;
+}
+
 async function request(path: string, init?: RequestInit): Promise<Response | null> {
   try {
     return await fetch(`/api${path}`, {
@@ -50,6 +74,9 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
   if (response === null) throw new ApiError(UNREACHABLE, null);
 
   if (!response.ok) {
+    if (endsSession(path, response.status) && typeof window !== "undefined") {
+      window.dispatchEvent(new Event(SESSION_ENDED));
+    }
     // FastAPI reports errors as {"detail": "..."}; the Next.js proxy answers
     // with a bare 5xx when the API server is down.
     const detail = await response

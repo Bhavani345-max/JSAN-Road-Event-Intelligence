@@ -2,12 +2,15 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ApiError, apiFetch, isUnreachable } from "@/lib/apiClient";
+import { ApiError, apiFetch, isSessionEnded, isUnreachable, SESSION_ENDED } from "@/lib/apiClient";
+import NewPasswordScreen from "./NewPasswordScreen";
 import type { AuthUser } from "./types";
 
 interface AuthContextValue {
   user: AuthUser;
   signOut: () => Promise<void>;
+  /** The account after a change to its own profile (name, email). */
+  updateUser: (user: AuthUser) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -54,7 +57,44 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
     };
   }, [attempt, router]);
 
+  // The session ended while the console was open (signed out in another tab,
+  // expired, suspended, password changed or reset): back to signing in, saying
+  // why, instead of a console full of errors. Not while signing out on purpose:
+  // requests still under way then are refused too.
+  const [signingOut, setSigningOut] = useState(false);
+  useEffect(() => {
+    if (!user || signingOut) return;
+    let active = true;
+    const endSession = () => {
+      if (!active) return;
+      active = false;
+      setChecking(true);
+      setUser(null);
+      const next = `${window.location.pathname}${window.location.search}`;
+      router.replace(`/login?ended=1&next=${encodeURIComponent(next)}`);
+    };
+    // Back on the tab after a while: is the session still on?
+    const onVisible = () => {
+      if (document.visibilityState !== "visible") return;
+      apiFetch<AuthUser>("/auth/me")
+        .then((current) => {
+          if (active) setUser(current);
+        })
+        .catch((error: unknown) => {
+          if (isSessionEnded(error)) endSession();
+        });
+    };
+    window.addEventListener(SESSION_ENDED, endSession);
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      active = false;
+      window.removeEventListener(SESSION_ENDED, endSession);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [user, signingOut, router]);
+
   const signOut = useCallback(async () => {
+    setSigningOut(true);
     try {
       await apiFetch<{ ok: boolean }>("/auth/logout", { method: "POST" });
     } catch {
@@ -65,7 +105,7 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
       router.replace("/login");
     }
   }, [router]);
-  const context = useMemo(() => (user ? { user, signOut } : null), [user, signOut]);
+  const context = useMemo(() => (user ? { user, signOut, updateUser: setUser } : null), [user, signOut]);
 
   if (checking || (!user && !apiDown)) {
     return (
@@ -103,6 +143,11 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
         </section>
       </main>
     );
+  }
+
+  // A temporary password: nothing but choosing a new one (decision 0044; the API refuses the rest).
+  if (user.must_change_password) {
+    return <NewPasswordScreen user={user} onDone={setUser} onSignOut={signOut} />;
   }
 
   return <AuthContext.Provider value={context}>{children}</AuthContext.Provider>;

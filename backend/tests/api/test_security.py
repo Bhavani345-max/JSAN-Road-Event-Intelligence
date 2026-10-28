@@ -75,8 +75,8 @@ def test_a_signed_in_user_can_read_the_documentation(client):
 
 def test_one_accounts_failures_do_not_lock_out_another(client, monkeypatch):
     monkeypatch.setattr(auth, "_ATTEMPT_LIMIT", 2)
-    for _ in range(2):
-        assert sign_in(client, "viewer@example.com", "wrong password").status_code == 401
+    assert sign_in(client, "viewer@example.com", "wrong password").status_code == 401
+    assert sign_in(client, "viewer@example.com", "wrong password").status_code == 429  # locked
     assert sign_in(client, "viewer@example.com").status_code == 429
     # Same connection (the console's proxy), another account: still allowed.
     assert sign_in(client, "reviewer@example.com").status_code == 200
@@ -90,7 +90,8 @@ def test_forwarded_address_headers_neither_lift_nor_spread_an_accounts_limit(cli
     for n in range(3):
         headers = {"X-Forwarded-For": f"203.0.113.{n}", "X-Real-IP": f"198.51.100.{n}"}
         response = client.post("/api/auth/login", json={"email": "viewer@example.com", "password": "wrong"}, headers=headers)
-        assert response.status_code == 401
+        # The third failure reaches the limit and locks the account.
+        assert response.status_code == (429 if n == 2 else 401)
     fresh = {"X-Forwarded-For": "192.0.2.99", "X-Real-IP": "192.0.2.99"}
     assert sign_in(client, "viewer@example.com", forwarded="192.0.2.99").status_code == 429
     assert client.post("/api/auth/login", json={"email": "viewer@example.com", "password": PASSWORD}, headers=fresh).status_code == 429

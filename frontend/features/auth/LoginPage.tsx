@@ -2,17 +2,24 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
+import { useEffect, useState, useSyncExternalStore, type CSSProperties, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { ApiError, apiFetch, isUnreachable } from "@/lib/apiClient";
 import type { AuthUser } from "./types";
+import { authOptions, CLOSED, type AuthOptions } from "./accountApi";
 import { loginCssVariables } from "./loginTheme";
+import RecoveryForm from "./RecoveryForm";
+import RegisterForm from "./RegisterForm";
+import ResetLinkForm from "./ResetLinkForm";
 
 // The WebGL scene is only requested on large screens; phones and tablets show
 // a still image of the same scene and never download three.js.
 const RoadScene = dynamic(() => import("./RoadScene"), { ssr: false });
 
 const themeStyle = loginCssVariables as CSSProperties;
+// The address does not change while the page is open.
+const subscribeToNothing = () => () => {};
+const sessionEndedHere = () => new URLSearchParams(window.location.search).get("ended") === "1";
 
 function LockMark({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -97,6 +104,24 @@ export default function LoginPage() {
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Forgot password with a recovery code (decision 0044) or an emailed link, and
+  // registering (decision 0045); and what the last of them left to say.
+  const [mode, setMode] = useState<"signin" | "recover" | "forgot" | "register">("signin");
+  const [notice, setNotice] = useState<string | null>(null);
+  // What the API can offer: registration and reset links need email. Closed until it says.
+  const [options, setOptions] = useState<AuthOptions>(CLOSED);
+  // Sent here because the session ended while the console was open.
+  const sessionEnded = useSyncExternalStore(subscribeToNothing, sessionEndedHere, () => false);
+
+  useEffect(() => {
+    let cancelled = false;
+    authOptions()
+      .then((loaded) => !cancelled && setOptions(loaded))
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [scene, setScene] = useState<"off" | "on" | "unavailable">("off");
 
   useEffect(() => {
@@ -110,6 +135,7 @@ export default function LoginPage() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
+    setNotice(null);
     setSubmitting(true);
     try {
       await apiFetch<AuthUser>("/auth/login", {
@@ -125,10 +151,9 @@ export default function LoginPage() {
       router.replace(safeDestination);
       router.refresh();
     } catch (cause) {
-      if (cause instanceof ApiError && cause.status === 401) {
-        setError("That email and password combination did not match. Try again.");
-      } else if (cause instanceof ApiError && cause.status === 429) {
-        setError("Too many attempts. Wait a few minutes before trying again.");
+      // The API's answer says how many attempts are left, or how long the lock lasts.
+      if (cause instanceof ApiError && (cause.status === 401 || cause.status === 429)) {
+        setError(cause.message);
       } else if (isUnreachable(cause)) {
         setError("We could not reach the sign-in service. Check the connection and retry.");
       } else {
@@ -139,7 +164,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="login-screen relative isolate flex h-dvh flex-col overflow-hidden bg-[color:var(--login-page)] text-[color:var(--login-headline)]" style={themeStyle}>
+    <main className={`login-screen ${mode === "signin" ? "" : "login-screen--long-form"} relative isolate flex h-dvh flex-col overflow-hidden bg-[color:var(--login-page)] text-[color:var(--login-headline)]`} style={themeStyle}>
       {/* Decorative backdrop: a still of the city everywhere, the live WebGL city on desktop. */}
       <div aria-hidden="true" className="login-backdrop" />
       {scene === "on" && (
@@ -192,18 +217,49 @@ export default function LoginPage() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[color:var(--login-eyebrow)]">Operator access</p>
-                  <h2 className="mt-2 text-[1.9rem] font-bold tracking-[-0.035em] text-[color:var(--login-headline)]">Sign in</h2>
+                  <h2 className="mt-2 text-[1.9rem] font-bold tracking-[-0.035em] text-[color:var(--login-headline)]">
+                    {mode === "register" ? "Register" : mode === "signin" ? "Sign in" : "Reset password"}
+                  </h2>
                 </div>
                 <div className="login-feature-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
                   <LockMark />
                 </div>
               </div>
               <p className="login-card-helper mt-1.5 text-[13.5px] leading-6 text-[color:var(--login-body)]">
-                Use the account provided by your REI administrator.
+                {mode === "recover"
+                  ? "For administrators, with one of the recovery codes they keep."
+                  : mode === "forgot"
+                    ? "We email you a link to choose a new password."
+                    : mode === "register"
+                      ? "For employees with a company email. An administrator approves each account."
+                      : options.registration_open
+                        ? "Use the account provided by your REI administrator, or register."
+                        : "Use the account provided by your REI administrator."}
               </p>
 
               {/* One message at a time keeps the card one height on the locked screen:
                   signing in closes the password note, opening the note clears an old error. */}
+              {mode === "register" ? (
+                <RegisterForm options={options} onBack={() => setMode("signin")} />
+              ) : mode === "forgot" ? (
+                <ResetLinkForm initialEmail={email} onBack={() => setMode("signin")} />
+              ) : mode === "recover" ? (
+                <RecoveryForm
+                  initialEmail={email}
+                  onBack={() => setMode("signin")}
+                  onDone={(recoveredEmail, codesLeft) => {
+                    setEmail(recoveredEmail);
+                    setPassword("");
+                    setError(null);
+                    setShowReset(false);
+                    setNotice(
+                      `Password reset. Sign in with your new password. ${codesLeft} recovery code${codesLeft === 1 ? "" : "s"} left` +
+                        (codesLeft <= 3 ? ": create a new set under Profile and settings." : "."),
+                    );
+                    setMode("signin");
+                  }}
+                />
+              ) : (
               <form
                 onSubmit={(event) => {
                   setShowReset(false);
@@ -285,11 +341,60 @@ export default function LoginPage() {
                     </button>
                   </div>
                   {showReset && (
-                    <p id="login-reset-help" className="login-note mt-2 rounded-xl px-3.5 py-2.5 text-[12.5px] leading-5">
-                      Passwords are reset by your REI administrator. Ask them to set a new one for your account.
-                    </p>
+                    <div id="login-reset-help" className="login-note mt-2 space-y-1.5 rounded-xl px-3.5 py-2.5 text-[12.5px] leading-5">
+                      {options.email_reset && (
+                        <p>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setError(null);
+                              setNotice(null);
+                              setMode("forgot");
+                            }}
+                            className="login-link rounded font-semibold underline underline-offset-2"
+                          >
+                            Email me a reset link
+                          </button>{" "}
+                          (accounts with a confirmed email).
+                        </p>
+                      )}
+                      <p>
+                        {options.email_reset ? "Otherwise, contact " : "Contact "}
+                        <span className="font-semibold">your REI administrator</span>
+                        {options.email_reset ? "" : " (reset links by email are not set up)"}: they set a temporary
+                        password, and you choose your own when you sign in.
+                      </p>
+                      <p>
+                        <span className="font-semibold">Administrators</span> can also{" "}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setError(null);
+                            setNotice(null);
+                            setMode("recover");
+                          }}
+                          className="login-link rounded font-semibold underline underline-offset-2"
+                        >
+                          use one of their recovery codes
+                        </button>
+                        . No codes left? Another administrator, or a developer with server access, can reset it.
+                      </p>
+                    </div>
                   )}
                 </div>
+
+                {notice && !error && (
+                  <p role="status" className="login-status flex gap-2.5 rounded-xl px-3.5 py-3 text-[13px] leading-5">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true"><circle cx="10" cy="10" r="7.5" /><path d="m6.5 10.2 2.3 2.3 4.7-4.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <span>{notice}</span>
+                  </p>
+                )}
+
+                {sessionEnded && !notice && !error && !submitting && !succeeded && !showReset && (
+                  <p role="status" className="login-note rounded-xl px-3.5 py-3 text-[13px] leading-5">
+                    Your session ended. Sign in again to continue.
+                  </p>
+                )}
 
                 {error && (
                   <div id="login-error" role="alert" className="login-error flex gap-2.5 rounded-xl px-3.5 py-3 text-[13px] leading-5">
@@ -322,10 +427,30 @@ export default function LoginPage() {
                   )}
                 </button>
               </form>
+              )}
+
+              {/* Self-registration is off unless switched on (decision 0046). */}
+              {mode === "signin" && options.registration_open && (
+                <p className="login-register mt-4 text-center text-[13px] text-[color:var(--login-body)]">
+                  New to REI?{" "}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setError(null);
+                      setNotice(null);
+                      setShowReset(false);
+                      setMode("register");
+                    }}
+                    className="login-link rounded font-semibold underline underline-offset-2"
+                  >
+                    Register
+                  </button>
+                </p>
+              )}
 
               <p className="login-session-note mt-6 flex items-start gap-2.5 border-t border-[color:var(--login-card-border)] pt-5 text-[12.5px] leading-5 text-[color:var(--login-helper)]">
                 <LockMark className="mt-0.5 h-4 w-4 shrink-0" />
-                Sessions expire automatically. Accounts are provisioned by your REI administrator.
+                Sessions expire automatically. Accounts are created by your REI administrator.
               </p>
             </div>
           </section>

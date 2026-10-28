@@ -8,6 +8,7 @@ import {
   countryName,
   countryOf,
   groupByCountry,
+  searchCountries,
   toCity,
 } from "./cities";
 
@@ -112,5 +113,48 @@ describe("countries first, then their cities (decision 0036)", () => {
   it("names countries in English", () => {
     expect(countryName("CA")).toBe("Canada");
     expect(countryName("US")).toBe("United States");
+  });
+});
+
+describe("searching the country list (decision 0043)", () => {
+  const choices = countryChoices(CITIES);
+  const found = (query: string) =>
+    searchCountries(choices, CITIES, query).map(({ choice, city }) => (city ? `${choice.name} (${city})` : choice.name));
+
+  it("lists every country while nothing is typed", () => {
+    expect(found("")).toEqual(["Canada", "India", "Japan", "United States"]);
+    expect(found("   ")).toEqual(["Canada", "India", "Japan", "United States"]);
+  });
+
+  it("finds a country by the start of its name, in any case", () => {
+    expect(found("in")).toEqual(["India"]);
+    expect(found("JAP")).toEqual(["Japan"]);
+    expect(found("united")).toEqual(["United States"]);
+  });
+
+  it("puts names starting with the text before names containing it", () => {
+    expect(found("ja")).toEqual(["Japan"]);
+    expect(found("an")).toEqual(["Canada", "Japan"]); // both contain "an"; no name starts with it
+    // One letter: names only, not other names (America).
+    expect(found("a")).toEqual(["Canada", "India", "Japan", "United States"]);
+    expect(found("states")).toEqual(["United States"]);
+  });
+
+  it("finds a country by its code or a common other name", () => {
+    expect(found("ca")).toEqual(["Canada"]);
+    expect(found("us")).toEqual(["United States"]);
+    expect(found("usa")).toEqual(["United States"]);
+    expect(found("america")).toEqual(["United States"]);
+  });
+
+  it("finds a country by one of its cities, naming the city", () => {
+    expect(found("toron")).toEqual(["Canada (Toronto)"]);
+    expect(found("hyd")).toEqual(["India (Hyderabad)"]);
+    expect(found("new york")).toEqual(["United States (New York City)"]);
+  });
+
+  it("ignores accents and finds nothing for an unknown name", () => {
+    expect(found("Jápan")).toEqual(["Japan"]);
+    expect(found("atlantis")).toEqual([]);
   });
 });

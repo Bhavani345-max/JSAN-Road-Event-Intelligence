@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { apiFetch, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
+import { apiFetch, isSessionEnded, isUnreachable, RECONNECT_MS } from "@/lib/apiClient";
 import { HYDERABAD_VIEW } from "@/lib/config";
 import type { ApiCity } from "@/types/api";
 
@@ -130,6 +130,51 @@ export function countryChoices(cities: City[]): City[] {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/** Other names a country is often searched by. */
+const COUNTRY_ALIASES: Record<string, readonly string[]> = {
+  GB: ["uk", "britain", "great britain", "england", "scotland"],
+  US: ["usa", "america"],
+  NL: ["holland"],
+};
+
+/** Lower case, without accents or surrounding spaces ("Málaga " -> "malaga"). */
+function fold(text: string): string {
+  return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+}
+
+/** One country found by a search; `city` names the city of it that matched, if that is how it was found. */
+export interface CountryMatch {
+  choice: City;
+  city?: string;
+}
+
+/**
+ * The country choices that match what was typed, best first: a name or (from
+ * two letters) other name starting with it, or its code (GB); then a name containing it; then a
+ * country one of whose cities starts with it (Toronto: Canada). In each group
+ * the choices keep their order. Nothing typed: every choice.
+ */
+export function searchCountries(choices: City[], cities: City[], query: string): CountryMatch[] {
+  const typed = fold(query);
+  if (typed === "") return choices.map((choice) => ({ choice }));
+  const ranked: CountryMatch[][] = [[], [], []];
+  for (const choice of choices) {
+    const name = fold(choice.name);
+    const aliases = COUNTRY_ALIASES[choice.country] ?? [];
+    // Other names from two letters on: "a" alone should not put America first.
+    const byAlias = typed.length >= 2 && aliases.some((alias) => alias.startsWith(typed));
+    if (name.startsWith(typed) || fold(choice.country) === typed || byAlias) {
+      ranked[0].push({ choice });
+    } else if (name.includes(typed)) {
+      ranked[1].push({ choice });
+    } else {
+      const city = cities.find((other) => other.parentId === choice.id && fold(other.name).startsWith(typed));
+      if (city) ranked[2].push({ choice, city: city.name });
+    }
+  }
+  return ranked.flat();
+}
+
 /** The country a choice lies in: the country itself, a city's country; null for all countries. */
 export function countryOf(city: City, cities: City[]): City | null {
   if (city.id === ALL_CITIES_ID) return null;
@@ -157,6 +202,7 @@ export function useCities(): City[] {
       // Without the API there is only the default city; the event list reports
       // the error. Try again until the API answers.
       .catch((error: unknown) => {
+        if (cancelled || isSessionEnded(error)) return;
         console.error("Failed to load cities", error);
         if (!cancelled && isUnreachable(error)) {
           retry = setTimeout(() => setAttempt((n) => n + 1), RECONNECT_MS);
