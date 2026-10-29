@@ -526,6 +526,12 @@ def _matches(row: Event, terms: list[str]) -> bool:
     return all(term in text for term in terms)
 
 
+# A page of an event list loads no more than this many pending possible matches
+# per event, as either event of a pair: a reviewer is asked about a few, and a
+# fault that pairs one event with thousands cannot run the API out of memory.
+LISTED_MATCHES_PER_EVENT = 10
+
+
 def to_event_outs(session: Session, rows: list[Event]) -> list[EventOut]:
     """API forms of several events, loading merged evidence and candidates in bulk."""
     ids = [row.event_id for row in rows]
@@ -537,7 +543,11 @@ def to_event_outs(session: Session, rows: list[Event]) -> list[EventOut]:
 
     wanted = set(ids)
     candidates = {
-        i: c for i, c in pending_candidates_by_event(session, event_ids=ids).items() if i in wanted
+        i: c
+        for i, c in pending_candidates_by_event(
+            session, event_ids=ids, per_event=LISTED_MATCHES_PER_EVENT
+        ).items()
+        if i in wanted
     }
     other_ids = {
         other

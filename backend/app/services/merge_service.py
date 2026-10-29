@@ -27,13 +27,14 @@ same way, by `merge_listed_rows`.
 """
 
 import json
+import logging
 import math
 from collections import Counter, defaultdict
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field, replace
 from datetime import datetime
 
-from sqlalchemy import or_, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session, defer, load_only, selectinload
 
 from app.models import Event, EventMergeCandidate, EventVersion, SourceArtifact
@@ -54,6 +55,8 @@ from packages.geo_models import positions_of
 from services.merging import EventFacts, MatchClass, compare
 from services.lifecycle import is_current
 from services.merging.matcher import headline_key, normalise
+
+logger = logging.getLogger(__name__)
 
 AUTOMATIC = "auto-merge"
 # Who changes events without a person deciding.
@@ -139,6 +142,8 @@ class MatchRun:
     candidates: int = 0
     auto_merged: int = 0
     examples: list[str] = field(default_factory=list)
+    # Events whose pairs were not recorded: more than MAX_MATCHES_PER_EVENT.
+    too_many: list[str] = field(default_factory=list)
 
 
 # --- facts ----------------------------------------------------------------------
@@ -259,20 +264,48 @@ def _open_events_of_cities(session: Session, event_ids: list[str], city: str | N
 
 
 def _candidates_involving(
-    session: Session, event_ids: Iterable[str], *, status: str | None = None
+    session: Session, event_ids: Iterable[str], *, status: str | None = None, per_event: int | None = None
 ) -> list[EventMergeCandidate]:
     """The recorded candidates that concern any of `event_ids`, by either event,
     in id order. Never every candidate: on 23 October 2026 production held far
     more than any one run concerns, and loading all of them at every run, and at
-    every event list, used up its memory."""
+    every event list, used up its memory.
+
+    With `per_event`, an event's first `per_event` candidates as either event of
+    a pair (the earliest recorded), and an event with more is logged. On 29
+    October 2026 some Dutch events had about 14,000 pending candidates each
+    (the 22 October matching fault), and one page of the review queue loading
+    all of them used up the API's 24 GB."""
     ids = list(dict.fromkeys(event_ids))
     found: dict[int, EventMergeCandidate] = {}
     for start in range(0, len(ids), 500):
         chunk = ids[start : start + 500]
         for column in (EventMergeCandidate.event_a, EventMergeCandidate.event_b):
-            query = select(EventMergeCandidate).where(column.in_(chunk))
+            conditions = [column.in_(chunk)]
             if status is not None:
-                query = query.where(EventMergeCandidate.status == status)
+                conditions.append(EventMergeCandidate.status == status)
+            query = select(EventMergeCandidate).where(*conditions)
+            if per_event is not None:
+                ranked = (
+                    select(
+                        EventMergeCandidate.id,
+                        column.label("event_id"),
+                        func.row_number()
+                        .over(partition_by=column, order_by=EventMergeCandidate.id)
+                        .label("rank"),
+                    )
+                    .where(*conditions)
+                    .subquery()
+                )
+                for event_id in session.scalars(select(ranked.c.event_id).where(ranked.c.rank == per_event + 1)):
+                    logger.warning(
+                        "Event %s has more than %d recorded possible matches as one side of a pair; "
+                        "only the first %d are loaded",
+                        event_id, per_event, per_event,
+                    )  # fmt: skip
+                query = select(EventMergeCandidate).where(
+                    EventMergeCandidate.id.in_(select(ranked.c.id).where(ranked.c.rank <= per_event))
+                )
             for candidate in session.scalars(query):
                 found[candidate.id] = candidate
     return [found[key] for key in sorted(found)]
@@ -320,6 +353,13 @@ def _lookup_keys(city: str | None, facts: EventFacts) -> set[tuple]:
 # 14,343 Dutch events were all compared with one another as "the same article"
 # (7.7 GB of memory, millions of pairs).
 SHARED_URL_EVENTS = 10
+
+# An event that may be the same as more open events than this, in one run, is
+# not one event reported many times: a match rule has gone wrong. Its pairs are
+# not recorded and it is logged. On 22 October 2026 252 NDW situations were each
+# paired with about 14,000 NDW roadworks: 3.5 million pending pairs, which later
+# made every review-queue page of the Netherlands run the API out of memory.
+MAX_MATCHES_PER_EVENT = 100
 
 
 def _pair(a: str, b: str) -> tuple[str, str]:
@@ -376,6 +416,29 @@ def find_candidates(
     for row in pool:
         file(row)
 
+    def comparable(row: Event, other: Event) -> bool:
+        if other.event_id == row.event_id or row.merged_into or other.merged_into:
+            return False
+        if row.city != other.city:
+            return False
+        mine, theirs = fact(row), fact(other)
+        # compare(): separate records of one official source are separate events.
+        return not (mine.source_id == theirs.source_id and mine.official and theirs.official)
+
+    def too_many_matches(row: Event, others: list[Event]) -> int | None:
+        """How many others `row` may be the same as, once that is more than MAX_MATCHES_PER_EVENT."""
+        found = 0
+        for other in others:
+            if (
+                comparable(row, other)
+                and _pair(row.event_id, other.event_id) not in known
+                and compare(fact(row), fact(other)).classification is not MatchClass.DIFFERENT
+            ):
+                found += 1
+                if found > MAX_MATCHES_PER_EVENT:
+                    return found
+        return None
+
     for row in focus:
         if row.merged_into:
             continue
@@ -383,14 +446,17 @@ def find_candidates(
         nearby: dict[str, Event] = {}
         for match_key in _lookup_keys(row.city, fact(row)):
             nearby.update(filed.get(match_key, {}))
-        for other in sorted(nearby.values(), key=lambda event: order[event.event_id]):
-            if other.event_id == row.event_id or row.merged_into or other.merged_into:
-                continue
-            if row.city != other.city:
-                continue
-            mine, theirs = fact(row), fact(other)
-            if mine.source_id == theirs.source_id and mine.official and theirs.official:
-                # compare(): separate records of one official source are separate events.
+        others = sorted(nearby.values(), key=lambda event: order[event.event_id])
+        if too_many_matches(row, others):
+            logger.warning(
+                "%s (%s) may be the same as more than %d open events: no pair recorded for it, "
+                "as one event is not reported that often (check the match rules)",
+                row.event_id, row.source_id, MAX_MATCHES_PER_EVENT,
+            )  # fmt: skip
+            run.too_many.append(row.event_id)
+            continue
+        for other in others:
+            if not comparable(row, other):
                 continue
             key = _pair(row.event_id, other.event_id)
             if key in known:
@@ -770,10 +836,15 @@ def confirm_all(
 
 
 def pending_candidates_by_event(
-    session: Session, now: datetime | None = None, *, event_ids: Iterable[str] | None = None
+    session: Session,
+    now: datetime | None = None,
+    *,
+    event_ids: Iterable[str] | None = None,
+    per_event: int | None = None,
 ) -> dict[str, list[EventMergeCandidate]]:
     """Pending candidates a reviewer is asked about: both events still current.
-    With `event_ids`, only those concerning these events (a page of a list).
+    With `event_ids`, only those concerning these events (a page of a list);
+    with `per_event` too, no more than that many loaded per event and side.
 
     A candidate involving an event that is over stays recorded (and comes back
     if the event is extended), but nobody is asked about it.
@@ -781,7 +852,7 @@ def pending_candidates_by_event(
     pending = (
         list(session.scalars(select(EventMergeCandidate).where(EventMergeCandidate.status == "PENDING")))
         if event_ids is None
-        else _candidates_involving(session, event_ids, status="PENDING")
+        else _candidates_involving(session, event_ids, status="PENDING", per_event=per_event)
     )
     ids = {i for c in pending for i in (c.event_a, c.event_b)}
     now = now or utc_now()
