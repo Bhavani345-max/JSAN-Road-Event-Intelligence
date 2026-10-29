@@ -90,9 +90,11 @@ const LAYERS = {
   placeLabels: "rei-event-place-labels",
 } as const;
 
-/** Layers a click or hover can hit, and how forgiving the hit test is. */
+/** Layers a click or hover can hit, and how forgiving the hit test is: a
+ *  fingertip on a phone or tablet covers far more than a mouse pointer. */
 const INTERACTIVE_LAYERS = [LAYERS.anchor, LAYERS.line, LAYERS.lineDashed, LAYERS.fill];
 const HIT_TOLERANCE_PX = 6;
+const TOUCH_HIT_TOLERANCE_PX = 18;
 
 const EMPTY_COLLECTION = { type: "FeatureCollection" as const, features: [] };
 
@@ -168,6 +170,7 @@ function labelFont(map: MapLibreMap): SymbolLayout["text-font"] | undefined {
 }
 
 function addEventLayers(map: MapLibreMap) {
+  const font = labelFont(map);
   map.addSource(GEOMETRY_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
   map.addSource(ANCHOR_SOURCE, {
     type: "geojson",
@@ -248,6 +251,7 @@ function addEventLayers(map: MapLibreMap) {
     type: "symbol",
     source: PLACE_SOURCE,
     layout: {
+      ...(font ? { "text-font": font } : {}),
       "text-field": ["get", "label"],
       "text-size": 11,
       "text-offset": [0, 1.1],
@@ -418,9 +422,10 @@ function addLocationPointLayer(map: MapLibreMap) {
 }
 
 function hitBox(e: MapMouseEvent): [PointLike, PointLike] {
+  const tolerance = window.matchMedia("(pointer: coarse)").matches ? TOUCH_HIT_TOLERANCE_PX : HIT_TOLERANCE_PX;
   return [
-    [e.point.x - HIT_TOLERANCE_PX, e.point.y - HIT_TOLERANCE_PX],
-    [e.point.x + HIT_TOLERANCE_PX, e.point.y + HIT_TOLERANCE_PX],
+    [e.point.x - tolerance, e.point.y - tolerance],
+    [e.point.x + tolerance, e.point.y + tolerance],
   ];
 }
 

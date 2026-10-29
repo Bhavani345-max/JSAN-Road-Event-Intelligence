@@ -122,7 +122,7 @@ export default function AddEventPanel({ onClose, onCreated }: AddEventPanelProps
   return (
     <section
       aria-label="Add a road event"
-      className="flex max-h-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-xl ring-1 ring-slate-900/10 md:rounded-2xl"
+      className="flex max-h-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-xl ring-1 ring-slate-900/10 wide:rounded-2xl"
     >
       <div className="h-1 shrink-0 bg-brand-600" />
       <header className="flex items-start gap-3 px-4 pb-3 pt-3.5">

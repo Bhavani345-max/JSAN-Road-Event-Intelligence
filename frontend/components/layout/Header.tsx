@@ -47,7 +47,9 @@ export default function Header({ cities, city, onCityChange, user, onSignOut, on
           className="h-9 w-9 shrink-0"
         />
         <div className="flex min-w-0 items-center gap-2.5">
-          <h1 className="truncate text-[15px] font-semibold tracking-tight text-brand-800">
+          {/* On a phone held upright only the JSAN mark shows: the country and
+              account buttons leave the name no more than a few letters. */}
+          <h1 className="truncate text-[15px] font-semibold tracking-tight text-brand-800 max-sm:sr-only">
             JSAN Road Event Intelligence
           </h1>
           {cities.length > 0 ? (
@@ -87,7 +89,7 @@ export default function Header({ cities, city, onCityChange, user, onSignOut, on
         >
           <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
           PoC
-          <span className="hidden font-normal tracking-normal text-amber-700/80 md:inline">
+          <span className="hidden font-normal tracking-normal text-amber-700/80 md:inline sideways:hidden">
             · real source events, pending validation
           </span>
         </span>

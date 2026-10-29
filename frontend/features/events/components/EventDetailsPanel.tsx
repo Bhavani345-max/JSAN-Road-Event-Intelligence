@@ -385,7 +385,7 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
   return (
     <section
       aria-label="Event details"
-      className="flex max-h-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-xl ring-1 ring-slate-900/10 md:rounded-2xl"
+      className="flex max-h-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-xl ring-1 ring-slate-900/10 wide:rounded-2xl"
     >
       <div className="h-1 shrink-0" style={{ backgroundColor: typeColor }} />
 

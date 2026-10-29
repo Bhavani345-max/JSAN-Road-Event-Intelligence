@@ -24,12 +24,12 @@ function StatTile({ label, title, value, numberSize, hint, highlight = false }: 
   return (
     <div
       title={title}
-      className={`rounded-lg px-2 py-2 ring-1 ring-inset ${
+      className={`rounded-lg px-2 py-2 ring-1 ring-inset @max-[23rem]:px-1.5 ${
         emphasised ? "bg-amber-300/20 ring-amber-200/50" : "bg-white/10 ring-white/15"
       }`}
     >
       <dt
-        className={`truncate text-[11px] font-medium tracking-tight ${
+        className={`truncate text-[11px] font-medium tracking-tight @max-[23rem]:text-[10px] ${
           emphasised ? "text-amber-100" : "text-brand-100"
         }`}
       >
@@ -61,7 +61,10 @@ export default function StatsBar({ stats, unfilteredTotal }: StatsBarProps) {
       : [stats.total, stats.active, stats.scheduled, stats.roadClosures, stats.needsReview],
   );
   return (
-    <dl className="grid grid-cols-5 gap-1.5">
+    // A row narrower than 23rem (a phone up to ~390 px wide, or held sideways)
+    // gives its tiles less padding and 10 px labels, so "Scheduled" (52 px at
+    // 11 px) is not cut short.
+    <dl className="@container grid grid-cols-5 gap-1.5">
       <StatTile
         label="Total"
         title="Total events"

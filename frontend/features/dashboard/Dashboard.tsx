@@ -228,10 +228,10 @@ export default function Dashboard() {
         onSignOut={signOut}
         onUserChange={updateUser}
       />
-      <main className="flex min-h-0 flex-1 flex-col-reverse md:flex-row">
+      <main className="flex min-h-0 flex-1 flex-col-reverse wide:flex-row">
         {/* The entire left blue sidebar scrolls; the page and map stay fixed. */}
-        <aside className="rei-sidebar-scroll flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto bg-linear-to-b from-brand-600 to-brand-700 md:w-[420px] md:flex-none">
-          <div className="space-y-3 border-b border-white/15 p-4 md:shrink-0">
+        <aside className="rei-sidebar-scroll flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto bg-linear-to-b from-brand-600 to-brand-700 wide:w-[420px] wide:flex-none sideways:w-[360px]">
+          <div className="space-y-3 border-b border-white/15 p-4 wide:shrink-0">
             {showCountryCities && country && (
               <CountryCities
                 country={country}
@@ -327,7 +327,7 @@ export default function Dashboard() {
           </div>
         </aside>
 
-        <section className="relative h-[42dvh] shrink-0 md:h-auto md:flex-1">
+        <section className="relative h-[42dvh] shrink-0 wide:h-auto wide:flex-1">
           <EventMap
             events={mapEvents}
             selectedEventId={selectedEvent?.id ?? null}
@@ -345,7 +345,7 @@ export default function Dashboard() {
             <div className="pointer-events-auto">
               <BasemapToggle value={basemap} onChange={setBasemap} />
             </div>
-            <div className="hidden md:block">
+            <div className="hidden wide:block sideways:hidden">
               <MapLegend eventTypes={visibleTypes} overview={overview} />
             </div>
           </div>
@@ -366,7 +366,7 @@ export default function Dashboard() {
             </p>
           )}
           {isAdding && (
-            <div className="fixed inset-x-0 bottom-0 z-20 flex max-h-[80dvh] flex-col md:absolute md:inset-x-auto md:bottom-auto md:right-3 md:top-3 md:max-h-[calc(100%-1.5rem)] md:w-[380px]">
+            <div className="fixed inset-x-0 bottom-0 z-20 flex max-h-[80dvh] flex-col wide:absolute wide:inset-x-auto wide:bottom-auto wide:right-3 wide:top-3 wide:max-h-[calc(100%-1.5rem)] wide:w-[380px] sideways:fixed sideways:left-2 sideways:right-auto sideways:top-16 sideways:bottom-2 sideways:max-h-none sideways:w-[344px]">
               <AddEventPanel
                 onClose={() => setIsAdding(false)}
                 onCreated={(eventId) => {
@@ -378,7 +378,7 @@ export default function Dashboard() {
             </div>
           )}
           {selectedEvent && !isAdding && (
-            <div className="fixed inset-x-0 bottom-0 z-20 flex max-h-[60dvh] flex-col md:absolute md:inset-x-auto md:bottom-auto md:right-3 md:top-3 md:max-h-[calc(100%-1.5rem)] md:w-[380px]">
+            <div className="fixed inset-x-0 bottom-0 z-20 flex max-h-[60dvh] flex-col wide:absolute wide:inset-x-auto wide:bottom-auto wide:right-3 wide:top-3 wide:max-h-[calc(100%-1.5rem)] wide:w-[380px] sideways:fixed sideways:left-2 sideways:right-auto sideways:top-16 sideways:bottom-2 sideways:max-h-none sideways:w-[344px]">
               <EventDetailsPanel
                 event={selectedEvent}
                 onClose={() => setSelectedEventId(null)}

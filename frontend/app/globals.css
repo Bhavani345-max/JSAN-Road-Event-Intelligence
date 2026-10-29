@@ -644,3 +644,56 @@ html:has(.console-screen) body {
     font-size: 1.5rem;
   }
 }
+
+/* ---------------------------------------------------------
+   TOUCH SCREENS (phones and tablets, any make)
+   Buttons, links laid out as boxes and form fields are at
+   least 44 px each way: what a fingertip hits (Apple asks
+   44 pt, Android 48 dp). Links inside a sentence keep their
+   size. Fields use 16 px text, because iPhone Safari zooms
+   into a smaller field when it is tapped and the locked
+   screen then stays zoomed. Screens used with a mouse or
+   trackpad are unchanged.
+   --------------------------------------------------------- */
+
+@media (pointer: coarse) {
+  button,
+  a,
+  select,
+  input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"]) {
+    min-height: 44px;
+  }
+
+  button,
+  a {
+    min-width: 44px;
+  }
+
+  input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"]),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* The console's two layouts. Below "wide" the map sits above the list (a
+   phone held upright); from "wide" on, the list is beside the map. A phone
+   held sideways (at least 640 px wide, no taller than the sign-in page's
+   "very short screens" step) is wide too: iPhone Safari keeps the notch area
+   clear, so sideways it is often under 768 px, and stacked its map and list
+   would each get about 150 px. */
+@custom-variant wide {
+  @media (min-width: 48rem) {
+    @slot;
+  }
+
+  @media (min-width: 40rem) and (max-height: 520px) {
+    @slot;
+  }
+}
+
+/* A phone held sideways: the list narrows so the map keeps room, event
+   details open over the list instead of over the map, the map key gives way
+   as it does on a phone held upright, and the header's PoC badge keeps only
+   "PoC" so the title still shows. */
+@custom-variant sideways (@media (min-width: 40rem) and (max-height: 520px));
