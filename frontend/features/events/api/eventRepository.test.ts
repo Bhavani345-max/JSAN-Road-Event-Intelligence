@@ -3,7 +3,7 @@ import { toManualEventBody } from "@/features/qc/api";
 import { isManualEntry } from "../model";
 import { offMapNote } from "../presentation";
 import { locatedApiEvent, realApiEvent } from "../testing/fixtures";
-import { apiEventRepository, mapApiEvent, searchEventIds } from "./eventRepository";
+import { apiEventRepository, LIST_STEP, mapApiEvent, searchEvents } from "./eventRepository";
 
 afterEach(() => vi.unstubAllGlobals());
 
@@ -79,17 +79,18 @@ describe("mapApiEvent", () => {
   });
 });
 
-describe("searchEventIds", () => {
-  it("asks the API to search and returns the ids it found", async () => {
+describe("searchEvents", () => {
+  it("asks the API to search and returns the events it found", async () => {
     const fetchMock = stubFetch(json({ items: [locatedApiEvent], total: 1 }));
 
-    const ids = await searchEventIds("  DLF Gate ", "current_upcoming", "hyderabad");
+    const page = await searchEvents("  DLF Gate ", "current_upcoming", "hyderabad");
 
     expect(fetchMock).toHaveBeenCalledWith(
       "/api/events?view=current_upcoming&q=DLF+Gate&city=hyderabad&limit=500&offset=0",
       expect.anything(),
     );
-    expect([...ids]).toEqual(["EVT-LOCATED00001"]);
+    expect(page.events.map((event) => event.id)).toEqual(["EVT-LOCATED00001"]);
+    expect(page.total).toBe(1);
   });
 });
 
@@ -97,32 +98,61 @@ describe("apiEventRepository.listEvents", () => {
   it("loads events from the API in the order the API returns them", async () => {
     const fetchMock = stubFetch(json({ items: [realApiEvent, locatedApiEvent], total: 2 }));
 
-    const events = await apiEventRepository.listEvents("current_upcoming");
+    const { events, total } = await apiEventRepository.listEvents("current_upcoming");
 
     expect(fetchMock).toHaveBeenCalledWith(
       "/api/events?view=current_upcoming&limit=500&offset=0",
       expect.anything(),
     );
     expect(events.map((event) => event.id)).toEqual(["EVT-0123456789AB", "EVT-LOCATED00001"]);
+    expect(total).toBe(2);
   });
 
   it("returns an empty list when there are no events", async () => {
     stubFetch(json({ items: [], total: 0 }));
-    expect(await apiEventRepository.listEvents("current_upcoming")).toEqual([]);
+    expect(await apiEventRepository.listEvents("current_upcoming")).toEqual({ events: [], total: 0 });
   });
 
-  it("loads every server-filtered page instead of truncating map and counts at 500", async () => {
+  it("loads the pages up to the newest LIST_STEP, not only the first 500", async () => {
     const fetchMock = vi
       .fn()
       .mockResolvedValueOnce(json({ items: Array(500).fill(realApiEvent), total: 501 }))
       .mockResolvedValueOnce(json({ items: [locatedApiEvent], total: 501 }));
     vi.stubGlobal("fetch", fetchMock);
 
-    const events = await apiEventRepository.listEvents("history");
+    const { events, total } = await apiEventRepository.listEvents("history");
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock.mock.calls[1][0]).toBe("/api/events?view=history&limit=500&offset=500");
     expect(events).toHaveLength(501);
+    expect(total).toBe(501);
+  });
+
+  it("stops at the limit and says how many the list holds (the Netherlands' 34,000)", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(json({ items: Array(500).fill(realApiEvent), total: 34012 }))
+      .mockResolvedValueOnce(json({ items: Array(500).fill(realApiEvent), total: 34012 }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const first = await apiEventRepository.listEvents("validation", "netherlands");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(first.events).toHaveLength(LIST_STEP);
+    expect(first.total).toBe(34012);
+
+    // "Show more" asks only for what is still wanted: a last page of 200 here.
+    fetchMock.mockReset();
+    fetchMock
+      .mockResolvedValueOnce(json({ items: Array(500).fill(realApiEvent), total: 34012 }))
+      .mockResolvedValueOnce(json({ items: Array(500).fill(realApiEvent), total: 34012 }))
+      .mockResolvedValueOnce(json({ items: Array(200).fill(realApiEvent), total: 34012 }));
+    const more = await apiEventRepository.listEvents("validation", "netherlands", 1200);
+    expect(fetchMock.mock.calls.map(([url]) => url)).toEqual([
+      "/api/events?view=validation&city=netherlands&limit=500&offset=0",
+      "/api/events?view=validation&city=netherlands&limit=500&offset=500",
+      "/api/events?view=validation&city=netherlands&limit=200&offset=1000",
+    ]);
+    expect(more.events).toHaveLength(1200);
   });
 
   it("explains how to start the API when it cannot be reached", async () => {

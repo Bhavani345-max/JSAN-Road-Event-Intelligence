@@ -177,9 +177,11 @@ class EventRepository:
         order = (func.coalesce(SourceArtifact.published_at, Event.created_at).desc(), Event.event_id)
         terms = (q or "").lower().split()
         now = now or utc_now()
-        if not terms and (view in CLOSED_VIEWS or (view in _CONSOLE_VIEWS and not include_hidden)):
+        if view in CLOSED_VIEWS or (view in _CONSOLE_VIEWS and not include_hidden):
             # `include_hidden` changes nothing for history and rejected.
             view_filters, keep = _view_rule(view, now)
+            if terms:
+                return self._search_light(filters + view_filters, order, limit, offset, keep=keep, terms=terms)
             return self._list_light(filters + view_filters, order, limit, offset, keep=keep)
 
         query = (
@@ -235,6 +237,49 @@ class EventRepository:
             ).unique()
         }
         return [rows[event_id] for event_id in page], len(ids)
+
+    def _search_light(
+        self, filters, order, limit: int, offset: int, *, keep, terms: "list[str]"
+    ) -> "tuple[list[Event], int]":
+        """A view with a text search: the view's events chosen as in `_list_light`,
+        then read in full 500 at a time to match the words (the article's text is
+        in the full record). Nothing else is read, and each batch is let go before
+        the next: on 29 October 2026 a search of the Netherlands' review queue read
+        all 28,000 Dutch events of every list at once, about 1 GB, for each page."""
+        ids = [
+            row.event_id
+            for row in self.session.execute(
+                select(*_light_columns()).outerjoin(Event.artifact).where(*filters).order_by(*order)
+            )
+            if keep(row)
+        ]
+        matched: list[str] = []
+        for start in range(0, len(ids), 500):
+            chunk = ids[start : start + 500]
+            found = {
+                row.event_id
+                for row in self.session.scalars(
+                    select(Event)
+                    .outerjoin(Event.artifact)
+                    .options(contains_eager(Event.artifact))
+                    .where(Event.event_id.in_(chunk))
+                ).unique()
+                if _matches(row, terms)
+            }
+            matched += [event_id for event_id in chunk if event_id in found]
+        page = matched[offset : offset + limit]
+        if not page:
+            return [], len(matched)
+        rows = {
+            row.event_id: row
+            for row in self.session.scalars(
+                select(Event)
+                .outerjoin(Event.artifact)
+                .options(contains_eager(Event.artifact))
+                .where(Event.event_id.in_(page))
+            ).unique()
+        }
+        return [rows[event_id] for event_id in page], len(matched)
 
     def count_shown_by_city(
         self, view: EventListView, *, now: datetime | None = None

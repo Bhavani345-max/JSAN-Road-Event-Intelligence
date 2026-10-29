@@ -31,7 +31,8 @@ from services.lifecycle.transitions import REQUIRES_LOCATION_AND_TIME
 
 CHANGED_BY = "source-update"
 # Refreshes in a row without an official record before its event is flagged
-# for review. Absence alone never ends an event.
+# for review. Absence alone ends an event only for a source that lists only
+# what is in force (NDW's current picture, decision 0049).
 ABSENCE_REVIEW_AFTER = 3
 
 # What a source revision may change on an event in review.

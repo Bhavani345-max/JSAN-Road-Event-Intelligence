@@ -29,6 +29,7 @@ import {
   type EventListView,
   type EventFilters as Filters,
 } from "@/features/events/filters";
+import { LIST_STEP } from "@/features/events/api/eventRepository";
 import { useEventSearch } from "@/features/events/hooks/useEventSearch";
 import { useEvents } from "@/features/events/hooks/useEvents";
 import {
@@ -47,7 +48,7 @@ import { themeStyle, useTheme } from "@/features/theme/themes";
 import type { Basemap } from "@/lib/config";
 import CoverageSummary from "./components/CoverageSummary";
 import SourceStatusBar from "./components/SourceStatusBar";
-import { emptyListMessage, sourcesForCity, useCoverage, useSources } from "./sources";
+import { count, emptyListMessage, partialListNote, sourcesForCity, useCoverage, useSources } from "./sources";
 
 // MapLibre needs the browser (WebGL, workers), so the map is client-only.
 const EventMap = dynamic(() => import("@/features/map/components/EventMap"), {
@@ -96,9 +97,16 @@ export default function Dashboard() {
   // country's events are loaded and drawn only once it is chosen.
   const overview = allCities;
   const showCountryCities = !overview && country !== null && countryCities.length > 0;
-  const { state, reload, refresh: refreshEvents } = useEvents(view, cityFilter, !overview);
-  // The per-entry counts: the overview's, and each city's number once a country is open.
-  const { state: countsState, refresh: refreshCounts } = useCityCounts(view, overview || showCountryCities);
+  const { state, reload, refresh: refreshEvents, showMore, loadingMore } = useEvents(view, cityFilter, !overview);
+  // The list holds more than was loaded (the newest LIST_STEP first).
+  const listTotal = state.status === "ready" ? state.total : 0;
+  const partial = state.status === "ready" && state.events.length < state.total;
+  // The per-entry counts: the overview's, each city's number once a country is
+  // open, and the exact tiles of a list not loaded whole.
+  const { state: countsState, refresh: refreshCounts } = useCityCounts(
+    view,
+    overview || showCountryCities || partial,
+  );
   const cityBubbles = useMemo(
     () => (overview && countsState.status === "ready" ? toCityBubbles(cities, countsState.counts) : null),
     [overview, countsState, cities],
@@ -125,8 +133,13 @@ export default function Dashboard() {
     setPicking(active);
     setPickedPoint(null);
   }, []);
-  // The API's search also covers the full article text behind each event.
-  const serverMatches = useEventSearch(filters.search, view, cityFilter);
+  // The API's search also covers the full article text behind each event, and
+  // the events the list has not loaded: its matches replace the loaded ones.
+  const serverSearch = useEventSearch(filters.search, view, cityFilter);
+  const serverMatches = useMemo(
+    () => (serverSearch ? new Set(serverSearch.events.map((event) => event.id)) : null),
+    [serverSearch],
+  );
 
   const loadedEvents = state.status === "ready" ? state.events : NO_EVENTS;
   const loadedAt = state.status === "ready" ? state.loadedAt : null;
@@ -134,8 +147,8 @@ export default function Dashboard() {
   // map rendering. The same returned page is the source for each surface.
   const allEvents = loadedAt ? loadedEvents : NO_EVENTS;
   const visibleEvents = useMemo(
-    () => filterEvents(allEvents, filters, serverMatches),
-    [allEvents, filters, serverMatches],
+    () => filterEvents(serverSearch ? serverSearch.events : allEvents, filters, serverMatches),
+    [serverSearch, allEvents, filters, serverMatches],
   );
   // Events found only because their article text matched the search.
   const articleMatchIds = useMemo(
@@ -149,7 +162,23 @@ export default function Dashboard() {
           ),
     [visibleEvents, filters.search],
   );
+  const filtered = hasActiveFilters(filters);
+  // A list not loaded whole: its tiles are the API's counts for the place (the
+  // same rules), so they stay exact; with filters, they count what is loaded.
+  const areaStats = useMemo(
+    () =>
+      partial && !filtered && countsState.status === "ready"
+        ? sumStats(countsState.counts.filter((entry) => area === null || area.includes(entry.cityId)))
+        : null,
+    [partial, filtered, countsState, area],
+  );
   const stats = useMemo(() => computeEventStats(visibleEvents), [visibleEvents]);
+  const listNote = partialListNote({
+    loaded: allEvents.length,
+    total: listTotal,
+    search: serverSearch ? { loaded: serverSearch.events.length, total: serverSearch.total } : null,
+    filtered,
+  });
   const statusOptions = useMemo(
     () => EVENT_STATUSES.filter((status) => allEvents.some((event) => event.status === status)),
     [allEvents],
@@ -248,8 +277,8 @@ export default function Dashboard() {
               />
             ) : (
               <StatsBar
-                stats={state.status === "ready" ? stats : null}
-                unfilteredTotal={allEvents.length}
+                stats={state.status !== "ready" || (partial && !filtered && !areaStats) ? null : (areaStats ?? stats)}
+                unfilteredTotal={partial ? listTotal : allEvents.length}
               />
             )}
             <div className="flex min-h-9 items-center justify-between gap-3">
@@ -310,18 +339,33 @@ export default function Dashboard() {
                   }}
                 />
               ) : (
-                <EventList
-                  state={listState}
-                  selectedEventId={selectedEvent?.id ?? null}
-                  articleMatchIds={articleMatchIds}
-                  onSelect={selectEvent}
-                  onClearFilters={() => setFilters(DEFAULT_FILTERS)}
-                  onRetry={() => {
-                    reload();
-                    refreshSources();
-                    refreshCoverage();
-                  }}
-                />
+                <>
+                  {listNote && <p className="mb-3 text-[11px] leading-4 text-brand-100">{listNote}</p>}
+                  <EventList
+                    state={listState}
+                    selectedEventId={selectedEvent?.id ?? null}
+                    articleMatchIds={articleMatchIds}
+                    onSelect={selectEvent}
+                    onClearFilters={() => setFilters(DEFAULT_FILTERS)}
+                    onRetry={() => {
+                      reload();
+                      refreshSources();
+                      refreshCoverage();
+                    }}
+                  />
+                  {partial && !serverSearch && (
+                    <button
+                      type="button"
+                      onClick={showMore}
+                      disabled={loadingMore}
+                      className="mt-3 flex h-9 w-full cursor-pointer items-center justify-center rounded-lg bg-white/10 text-xs font-semibold text-white ring-1 ring-inset ring-white/20 transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-wait disabled:opacity-70"
+                    >
+                      {loadingMore
+                        ? "Loading…"
+                        : `Show ${count(Math.min(LIST_STEP, listTotal - allEvents.length))} more`}
+                    </button>
+                  )}
+                </>
               )}
             </div>
           </div>

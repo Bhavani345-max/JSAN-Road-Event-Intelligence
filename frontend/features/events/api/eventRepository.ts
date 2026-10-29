@@ -13,9 +13,23 @@ import {
   type RoadEvent,
 } from "../model";
 
+/**
+ * How many events a list loads at first, and how many more each "Show more"
+ * adds. The Netherlands' review queue held about 34,000 on 29 October 2026:
+ * loaded whole, nothing showed for over a minute and phones gave up.
+ */
+export const LIST_STEP = 1000;
+
+/** The newest events of a list, and how many the list holds in all. */
+export interface EventPage {
+  events: RoadEvent[];
+  /** What the API lists for this view and place; more than `events` while not all are loaded. */
+  total: number;
+}
+
 /** The single entry point the UI uses to obtain events. */
 export interface EventRepository {
-  listEvents(view: EventListView, cityId?: string | null): Promise<RoadEvent[]>;
+  listEvents(view: EventListView, cityId?: string | null, limit?: number): Promise<EventPage>;
 }
 
 /** `value` if it is one of `allowed`, otherwise null. */
@@ -283,41 +297,49 @@ function toAiReading(ai: ApiAiReading | null): AiReadingView | null {
   };
 }
 
-async function fetchEventPages(path: string, params: URLSearchParams): Promise<ApiEvent[]> {
+/** The API's pages of a list, newest first, until `limit` events or the end. */
+async function fetchEventPages(
+  path: string,
+  params: URLSearchParams,
+  limit: number,
+): Promise<{ items: ApiEvent[]; total: number }> {
   const items: ApiEvent[] = [];
   let total = 0;
   do {
-    params.set("limit", "500");
+    params.set("limit", String(Math.min(500, limit - items.length)));
     params.set("offset", String(items.length));
     const page = await apiFetch<ApiEventList>(`${path}?${params.toString()}`);
     total = page.total;
     items.push(...page.items);
     if (page.items.length === 0) break;
-  } while (items.length < total);
-  return items;
+  } while (items.length < Math.min(total, limit));
+  return { items, total };
+}
+
+function toEventPage({ items, total }: { items: ApiEvent[]; total: number }): EventPage {
+  return { events: items.map(mapApiEvent).filter((event) => event !== null), total };
 }
 
 /** Events from the server-classified view, most recently published first. */
 export const apiEventRepository: EventRepository = {
-  async listEvents(view, cityId = null) {
+  async listEvents(view, cityId = null, limit = LIST_STEP) {
     const params = new URLSearchParams({ view });
     if (cityId) params.set("city", cityId);
-    const list = await fetchEventPages("/events", params);
-    return list.map(mapApiEvent).filter((event) => event !== null);
+    return toEventPage(await fetchEventPages("/events", params, limit));
   },
 };
 
 /**
- * Ids of the events matching a text search. The API searches each event, its
- * source, and the full text of the article it came from.
+ * The events matching a text search, newest first, at most LIST_STEP of them.
+ * The API searches each event, its source, and the full text of the article
+ * it came from, including events the list has not loaded.
  */
-export async function searchEventIds(
+export async function searchEvents(
   query: string,
   view: EventListView,
   cityId?: string | null,
-): Promise<Set<string>> {
+): Promise<EventPage> {
   const params = new URLSearchParams({ view, q: query.trim() });
   if (cityId) params.set("city", cityId);
-  const list = await fetchEventPages("/events", params);
-  return new Set(list.map((event) => event.event_id));
+  return toEventPage(await fetchEventPages("/events", params, LIST_STEP));
 }

@@ -237,13 +237,17 @@ class Observation(BaseModel):
     """Whether an official source still lists the record (refresh by refresh).
 
     Absence from a feed is not proof that an event has ended: it is only
-    counted, and after a threshold flagged for a reviewer.
+    counted, and after a threshold flagged for a reviewer. The exception is a
+    source that lists only what is in force (NDW's current picture, decision
+    0049): there, after the threshold, the source is taken to report it over.
     """
 
     last_seen_at: datetime | None = None
     missing_since: datetime | None = None
     missed_refreshes: int = 0
     review_required: bool = False
+    # Taken as over because such a source stopped listing it (not the source's own word).
+    ended_by_absence: bool = False
 
 
 class PeriodRevision(BaseModel):

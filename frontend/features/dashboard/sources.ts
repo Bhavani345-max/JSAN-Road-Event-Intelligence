@@ -448,3 +448,31 @@ export function sourcesForCity(
       (source.city === null && (source.country === null || source.country === area.country)),
   );
 }
+
+/**
+ * What a list shows when it holds more than was loaded (the newest LIST_STEP
+ * first, decision 0049): "Showing the newest 1,000 of 34,012 events." With a
+ * search, the newest matches the API found; with filters, they apply to the
+ * events loaded. Null when everything is on screen.
+ */
+export function partialListNote({
+  loaded,
+  total,
+  search,
+  filtered,
+}: {
+  loaded: number;
+  total: number;
+  /** The search's own count, when its result is on screen. */
+  search?: { loaded: number; total: number } | null;
+  filtered: boolean;
+}): string | null {
+  if (search) {
+    return search.loaded < search.total
+      ? `Showing the newest ${number(search.loaded)} of ${number(search.total)} matches. Add words to narrow the search.`
+      : null;
+  }
+  if (loaded >= total) return null;
+  const shown = `Showing the newest ${number(loaded)} of ${number(total)} events, on the list and the map.`;
+  return filtered ? `${shown} The filters look through these ${number(loaded)}.` : shown;
+}

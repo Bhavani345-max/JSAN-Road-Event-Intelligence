@@ -15,14 +15,17 @@ import pytest
 from sqlalchemy import select
 
 from app.models import Event
+from app.repositories.events import EventRepository
 from app.repositories.ingestion_store import SqlIngestionStore
 from app.repositories.sources import SourceRepository
 from app.services.source_revision import ABSENCE_REVIEW_AFTER
 from connectors.official import tfl_source
+from connectors.official.ndw import NdwCurrentSituationsConnector, NdwPlannedWorksConnector
 from connectors.official.tfl import revision_key, to_record
 from packages.cities import get_city
 from services.extraction import KeywordClassifier
 from services.ingestion import run_ingestion
+from services.lifecycle.current import EventListView
 from tests.support import FakeConnector
 
 
@@ -142,3 +145,94 @@ def test_a_decided_event_that_the_source_clears_is_flagged_not_changed(london):
     event = event_for(london, "TIMS-235412")
     assert event.status == "APPROVED"
     assert "the source now reports it ended" in event.detection["pending_source_revision"]["changes"]
+
+
+# A source that lists only what is in force (NDW's current picture, decision 0049).
+
+
+class InForceRefresh(Refresh):
+    """A feed rebuilt with only what is in force now."""
+
+    lists_only_what_is_in_force = True
+
+
+def in_force_refresh(session, records, observed):
+    result = run_ingestion(
+        InForceRefresh(records, observed), KeywordClassifier.for_city(LONDON), SqlIngestionStore(session), None,
+        LONDON,
+    )  # fmt: skip
+    session.commit()
+    return result
+
+
+def listed(session, view) -> set[str]:
+    rows, _ = EventRepository(session).list(cities=["London"], view=view, limit=500)
+    return {row.event_id for row in rows}
+
+
+def test_a_source_that_lists_only_what_is_in_force_reports_an_unlisted_event_over(london):
+    event_id = event_for(london, "TIMS-235412").event_id
+    for _ in range(ABSENCE_REVIEW_AFTER - 1):
+        in_force_refresh(london, [OTHER], {"TIMS-235733"})
+    assert event_for(london, "TIMS-235412").detection["source_reports_ended"] is False
+
+    in_force_refresh(london, [OTHER], {"TIMS-235733"})
+    event = event_for(london, "TIMS-235412")
+    assert event.detection["source_reports_ended"] is True
+    assert event.detection["observation"]["ended_by_absence"] is True
+    # Nothing made up: same status and end as the source stated; one version saying why.
+    assert event.status == "VALIDATION_REQUIRED"
+    assert event.end_time.isoformat().startswith("2026-11-07")
+    notes = [v.change_reason for v in event.versions if "taken as over" in (v.change_reason or "")]
+    assert len(notes) == 1 and "current picture" in notes[0]
+    # It leaves the review queue for history; nothing is deleted.
+    assert event_id not in listed(london, EventListView.VALIDATION)
+    assert event_id in listed(london, EventListView.HISTORY)
+
+    for _ in range(2):
+        in_force_refresh(london, [OTHER], {"TIMS-235733"})
+    event = event_for(london, "TIMS-235412")
+    assert event.detection["observation"]["ended_by_absence"] is True
+    assert len([v for v in event.versions if "taken as over" in (v.change_reason or "")]) == 1
+
+
+def test_a_refresh_that_lists_nothing_ends_nothing(london):
+    for _ in range(ABSENCE_REVIEW_AFTER + 1):
+        in_force_refresh(london, [], set())
+    assert event_for(london, "TIMS-235412").detection["source_reports_ended"] is False
+    # The next refresh that lists something, without the record, ends it.
+    in_force_refresh(london, [OTHER], {"TIMS-235733"})
+    assert event_for(london, "TIMS-235412").detection["source_reports_ended"] is True
+
+
+def test_an_event_the_source_lists_again_is_current_again(london):
+    for _ in range(ABSENCE_REVIEW_AFTER):
+        in_force_refresh(london, [OTHER], {"TIMS-235733"})
+    in_force_refresh(london, [WORKS, OTHER], {"TIMS-235412", "TIMS-235733"})
+    event = event_for(london, "TIMS-235412")
+    assert event.detection["source_reports_ended"] is False
+    assert not event.detection["observation"].get("ended_by_absence")
+    assert "no longer taken as over" in event.versions[-1].change_reason
+    assert event.event_id in listed(london, EventListView.VALIDATION)
+
+
+def test_a_decided_event_is_flagged_not_ended_by_absence(london):
+    event = event_for(london, "TIMS-235412")
+    event.status = "APPROVED"
+    london.commit()
+    for _ in range(ABSENCE_REVIEW_AFTER):
+        in_force_refresh(london, [OTHER], {"TIMS-235733"})
+    event = event_for(london, "TIMS-235412")
+    assert event.detection["source_reports_ended"] is False
+    assert event.detection["observation"]["review_required"] is True
+
+
+def test_other_official_sources_still_never_end_an_event_by_absence(london):
+    for _ in range(ABSENCE_REVIEW_AFTER + 2):
+        refresh(london, [OTHER], {"TIMS-235733"})
+    assert event_for(london, "TIMS-235412").detection["source_reports_ended"] is False
+
+
+def test_only_the_ndw_current_picture_lists_only_what_is_in_force():
+    assert NdwCurrentSituationsConnector.lists_only_what_is_in_force is True
+    assert getattr(NdwPlannedWorksConnector, "lists_only_what_is_in_force", False) is False

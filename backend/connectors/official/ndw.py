@@ -257,6 +257,9 @@ class NdwCurrentSituationsConnector(_NdwConnector):
     """The current picture, without the planned works now in force (unless asked)."""
 
     endpoint = CURRENT_URL
+    # Rebuilt every minute with only what is in force: a situation it stops
+    # listing is over (decision 0049). The planned feed also lists future works.
+    lists_only_what_is_in_force = True
 
     def __init__(self, source: SourceDefinition, user_agent: str, *, include_planned_measures: bool = False, **options) -> None:
         super().__init__(source, user_agent, **options)

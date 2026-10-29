@@ -248,10 +248,14 @@ def run_ingestion(
             result.event_ids.append(event.event_id)
 
     # An official source's refresh lists its current records. Which held ones
-    # it no longer lists is counted, never taken as the event ending.
+    # it no longer lists is counted, not taken as the event ending, except for
+    # a source that lists only what is in force (decision 0049).
     observed = getattr(connector, "observed_ids", None)
     if observed is not None and hasattr(store, "record_observation"):
-        store.record_observation(source_id, set(observed), utc_now())
+        store.record_observation(
+            source_id, set(observed), utc_now(),
+            in_force_only=getattr(connector, "lists_only_what_is_in_force", False),
+        )  # fmt: skip
 
     for record in revised_records:
         classification = classify(record, classifier, city)

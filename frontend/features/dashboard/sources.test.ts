@@ -7,6 +7,7 @@ import {
   emptyListMessage,
   groupSources,
   notOnThisMap,
+  partialListNote,
   shownOnMap,
   sourceCounts,
   sourcesForCity,
@@ -363,5 +364,30 @@ describe("a check that gets no answer", () => {
       Response.json({ detail: "Only administrators can run sources." }, { status: 403 }),
     );
     expect(checkFailureMessage(failure)).toBe("Only administrators can run sources.");
+  });
+});
+
+describe("partialListNote", () => {
+  it("says how many of the list are shown when not all are loaded", () => {
+    expect(partialListNote({ loaded: 1000, total: 34012, filtered: false })).toBe(
+      "Showing the newest 1,000 of 34,012 events, on the list and the map.",
+    );
+  });
+
+  it("says the filters look only through what is loaded", () => {
+    expect(partialListNote({ loaded: 2000, total: 34012, filtered: true })).toBe(
+      "Showing the newest 2,000 of 34,012 events, on the list and the map. The filters look through these 2,000.",
+    );
+  });
+
+  it("says nothing when the whole list is on screen", () => {
+    expect(partialListNote({ loaded: 120, total: 120, filtered: true })).toBeNull();
+  });
+
+  it("speaks of a search's matches when its result is on screen", () => {
+    expect(partialListNote({ loaded: 1000, total: 34012, search: { loaded: 1000, total: 1500 }, filtered: true })).toBe(
+      "Showing the newest 1,000 of 1,500 matches. Add words to narrow the search.",
+    );
+    expect(partialListNote({ loaded: 1000, total: 34012, search: { loaded: 12, total: 12 }, filtered: true })).toBeNull();
   });
 });
