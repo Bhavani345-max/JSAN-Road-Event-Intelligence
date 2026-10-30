@@ -14,6 +14,7 @@ from packages.cities import get_city
 from packages.common.hashing import sha256_hex
 from packages.event_schema import AiReading, EventType, LocationClass
 from packages.source_models import RawSourceRecord
+from services.ai_reading.client import provider_name
 from services.ai_reading.reading import DEFAULT_CONFIG_PATH
 from services.ai_reading import (
     AiConfig,
@@ -333,6 +334,52 @@ def test_client_sends_the_configured_model_reasoning_and_json_format():
     assert seen["response_format"] == {"type": "json_object"}
     assert seen["auth"] == "Bearer test-key"
     assert client.requests_sent == 1
+
+
+def test_client_asks_a_thinking_model_not_to_think_only_when_configured():
+    # NVIDIA NIM's Nemotron thinks by default and filled max_tokens with thinking (30 Oct 2026).
+    bodies = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        bodies.append(json.loads(request.content))
+        return _reply('{"articles": []}')
+
+    _client(handler, reasoning=False, disable_thinking=True).chat_json("system", "user", max_tokens=100)
+    _client(handler).chat_json("system", "user", max_tokens=100)
+    assert bodies[0]["chat_template_kwargs"] == {"enable_thinking": False}
+    assert "reasoning" not in bodies[0]
+    # OpenRouter's requests stay exactly as they were.
+    assert "chat_template_kwargs" not in bodies[1]
+
+
+NVIDIA_NIM = "https://integrate.api.nvidia.com/v1"
+
+
+def test_messages_name_the_configured_provider():
+    assert provider_name("https://openrouter.ai/api/v1") == "OpenRouter"
+    assert provider_name(NVIDIA_NIM) == "NVIDIA NIM"
+    assert provider_name("https://llm.example.org/v1") == "llm.example.org"
+
+    def refused(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(401, json={"error": {"message": "User not found."}})
+
+    for base_url, expected in ((NVIDIA_NIM, "NVIDIA NIM answered 401"), (None, "OpenRouter answered 401")):
+        client = _client(refused, **({"base_url": base_url} if base_url else {}))
+        with pytest.raises(AiError) as raised:
+            client.chat_json("system", "user", max_tokens=100)
+        assert str(raised.value).startswith(expected)
+
+
+def test_only_openrouter_is_asked_for_the_free_requests_left():
+    asked = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        asked.append(request.url.path)
+        return httpx.Response(404)
+
+    # NVIDIA NIM has no /key: it is not asked (no pointless request each run).
+    assert _client(handler, base_url=NVIDIA_NIM).free_requests_remaining() is None
+    assert asked == []
 
 
 def test_client_waits_and_asks_again_when_rate_limited_and_counts_only_answers():

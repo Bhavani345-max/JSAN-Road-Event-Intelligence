@@ -191,7 +191,7 @@ def test_excluded_sources_are_never_sent(app, tmp_path):
 def test_nothing_is_sent_without_a_key(app, tmp_path):
     fake = model()
     result = reader(app, tmp_path, fake, openrouter_api_key=None).run()
-    assert fake.requests_sent == 0 and "No OpenRouter key" in result.stopped
+    assert fake.requests_sent == 0 and "No AI key or model is configured" in result.stopped
 
 
 class BrokenModel(FakeModel):

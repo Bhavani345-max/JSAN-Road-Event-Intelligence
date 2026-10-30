@@ -1,4 +1,5 @@
-"""Reads articles with a language model (OpenRouter) and checks the answers against them."""
+"""Reads articles with a language model (OpenRouter, or any OpenAI-compatible API such as
+NVIDIA NIM) and checks the answers against them."""
 
 from .client import AiError, ChatResult, OpenRouterClient, parse_json_answer
 from .reading import (

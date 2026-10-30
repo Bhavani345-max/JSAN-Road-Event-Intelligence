@@ -1,8 +1,10 @@
-"""A small OpenRouter chat client that asks for, and parses, a JSON answer.
+"""A small chat client that asks for, and parses, a JSON answer.
 
-The key, the model and its fallbacks come from configuration (see the API's
-settings); nothing here names a model. The answer is untrusted: callers check
-it against the article before using any of it (reading.py).
+Made for OpenRouter; any OpenAI-compatible API works through its base URL (NVIDIA
+NIM since 30 October 2026). The key, the model and its fallbacks come from
+configuration (see the API's settings); nothing here names a model. The answer
+is untrusted: callers check it against the article before using any of it
+(reading.py).
 """
 
 import json
@@ -11,12 +13,22 @@ import re
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from urllib.parse import urlsplit
 
 import httpx
 
 logger = logging.getLogger(__name__)
 
 DEFAULT_BASE_URL = "https://openrouter.ai/api/v1"
+OPENROUTER = "OpenRouter"
+# Known providers by host, for messages and logs; any other is named by its host.
+_PROVIDERS = {"openrouter.ai": OPENROUTER, "integrate.api.nvidia.com": "NVIDIA NIM"}
+
+
+def provider_name(base_url: str) -> str:
+    """Who answers at `base_url`, as messages and logs name it."""
+    host = (urlsplit(base_url).hostname or "").lower()
+    return _PROVIDERS.get(host, host or "the AI service")
 # Answers worth waiting for and asking again: rate limits, overloaded or
 # unavailable upstream providers, gateway timeouts.
 _RETRY_STATUSES = {408, 429, 500, 502, 503, 504}
@@ -70,6 +82,7 @@ class OpenRouterClient:
         fallback_models: list[str] | None = None,
         base_url: str = DEFAULT_BASE_URL,
         reasoning: bool = True,
+        disable_thinking: bool = False,
         timeout_seconds: float = 240,
         retries: int = 2,
         retry_delays: tuple[float, ...] = (20, 60),
@@ -78,10 +91,12 @@ class OpenRouterClient:
         sleep: Callable[[float], None] = time.sleep,
     ) -> None:
         if not api_key:
-            raise ValueError("An OpenRouter API key is required.")
+            raise ValueError("An API key for AI reading is required.")
+        self.provider = provider_name(base_url)
         self.model = model
         self.fallback_models = [m for m in (fallback_models or []) if m and m != model]
         self._reasoning = reasoning
+        self._disable_thinking = disable_thinking
         self._retries = retries
         self._retry_delays = retry_delays
         self._sleep = sleep
@@ -105,7 +120,11 @@ class OpenRouterClient:
         self._http.close()
 
     def free_requests_remaining(self) -> int | None:
-        """Free-model requests the key has left today, or None if not known."""
+        """Free-model requests the key has left today, or None if not known.
+
+        Only OpenRouter says (its /key); other providers are not asked."""
+        if self.provider != OPENROUTER:
+            return None
         try:
             response = self._http.get("/key", timeout=30)
             response.raise_for_status()
@@ -133,6 +152,10 @@ class OpenRouterClient:
             body["model"] = self.model
         if self._reasoning:
             body["reasoning"] = {"enabled": True}
+        if self._disable_thinking:
+            # NVIDIA NIM's chat template option: a model that thinks by default
+            # (Nemotron) answers at once, instead of spending max_tokens thinking.
+            body["chat_template_kwargs"] = {"enable_thinking": False}
 
         attempt = 0
         while True:
@@ -153,18 +176,18 @@ class OpenRouterClient:
         except httpx.TimeoutException:
             raise AiError("The model did not answer in time.", retryable=True) from None
         except httpx.HTTPError as error:
-            raise AiError(f"OpenRouter could not be reached: {error}", retryable=True) from None
+            raise AiError(f"{self.provider} could not be reached: {error}", retryable=True) from None
 
         if response.status_code != 200:
             raise AiError(
-                f"OpenRouter answered {response.status_code}: {_error_message(response)}",
+                f"{self.provider} answered {response.status_code}: {_error_message(response)}",
                 retryable=response.status_code in _RETRY_STATUSES,
             )
         self.requests_sent += 1
         try:
             payload = response.json()
         except ValueError:
-            raise AiError("OpenRouter's reply is not JSON.", retryable=True) from None
+            raise AiError(f"{self.provider}'s reply is not JSON.", retryable=True) from None
         # OpenRouter can return 200 with an error object when the provider failed mid-way.
         if payload.get("error"):
             error = payload["error"]

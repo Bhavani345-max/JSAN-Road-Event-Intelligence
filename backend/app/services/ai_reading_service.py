@@ -137,6 +137,7 @@ class AiReadingService:
             fallback_models=self._settings.ai_fallback_model_list,
             base_url=self._settings.openrouter_base_url,
             reasoning=self._settings.ai_reasoning,
+            disable_thinking=self._settings.ai_disable_thinking,
         )
 
     # --- what is waiting -------------------------------------------------------------
@@ -218,7 +219,7 @@ class AiReadingService:
         """
         result = AiRunResult()
         if not self.configured:
-            result.stopped = "No OpenRouter key or model is configured."
+            result.stopped = "No AI key or model is configured (OPENROUTER_API_KEY, AI_MODEL)."
             return result
         days = self._settings.ai_lookback_days if lookback_days == -1 else lookback_days
 

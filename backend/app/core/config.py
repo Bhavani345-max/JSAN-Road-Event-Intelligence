@@ -95,6 +95,10 @@ class Settings(BaseSettings):
     ai_fallback_models: str = ""
     # Ask the model to reason before it answers (slower, usually more careful).
     ai_reasoning: bool = True
+    # For a provider whose models think by default (NVIDIA NIM's Nemotron, at
+    # OPENROUTER_BASE_URL=https://integrate.api.nvidia.com/v1): ask them not to,
+    # or the thinking fills max_tokens and leaves no answer. Off for OpenRouter.
+    ai_disable_thinking: bool = False
     # Switch the background reading off while keeping the key configured.
     ai_reading_enabled: bool = True
     # Requests this API sends to OpenRouter per day (UTC). A free key allows 50;
