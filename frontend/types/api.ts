@@ -171,6 +171,8 @@ export interface ApiEvent {
     published_at: string | null;
     retrieved_at: string | null;
     how: string | null;
+    /** Absent from an API before decision 0050. */
+    image?: ApiArticleImage;
   }[];
   /** For an event in QC_PENDING: every QC requirement it does not yet meet. */
   approval_blockers?: string[];
@@ -196,8 +198,30 @@ export interface ApiEvent {
     published_at: string | null;
     retrieved_at: string;
     content_hash: string;
+    /** Absent from an API before decision 0050. */
+    image?: ApiArticleImage;
   } | null;
   version: number;
+}
+
+/** The image published with the source article, and whether REI may show it (decision 0050). */
+export interface ApiArticleImage {
+  /** AVAILABLE: REI may show it; WITHHELD: the article has one, not shown (`reason`); NONE. */
+  status: string;
+  /** Only when AVAILABLE. */
+  url: string | null;
+  /** The article the image was published with. */
+  source_url: string | null;
+  found_in: string | null;
+  caption: string | null;
+  alt_text: string | null;
+  /** The photo credit as the source states it; null when it states none. */
+  credit: string | null;
+  /** The permission REI shows it under, quoted. */
+  licence: string | null;
+  /** The credit line the permission requires. */
+  attribution: string | null;
+  reason: string | null;
 }
 
 export interface ApiEventList {

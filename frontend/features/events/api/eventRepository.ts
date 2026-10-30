@@ -1,9 +1,10 @@
 import { getRepresentativePoint } from "@/features/map/geometry";
 import { apiFetch } from "@/lib/apiClient";
-import type { ApiAiReading, ApiEvent, ApiEventList, ApiGeometry } from "@/types/api";
+import type { ApiAiReading, ApiArticleImage, ApiEvent, ApiEventList, ApiGeometry } from "@/types/api";
 import type { EventListView } from "../filters";
 import {
   type AiReadingView,
+  type ArticleImage,
   EVENT_DIRECTIONS,
   EVENT_SEVERITIES,
   EVENT_STATUSES,
@@ -70,6 +71,32 @@ function toCandidate(candidate: {
   };
 }
 
+const IMAGE_STATUSES: Record<string, ArticleImage["status"]> = {
+  AVAILABLE: "available",
+  WITHHELD: "withheld",
+};
+
+/**
+ * The article's image as the web model holds it. An available image without an
+ * address, an unknown status or an API from before decision 0050 is no image.
+ */
+function toArticleImage(dto: ApiArticleImage | undefined, sourceName: string): ArticleImage {
+  const status = (dto && IMAGE_STATUSES[dto.status]) ?? "none";
+  const available = status === "available" && Boolean(dto?.url);
+  return {
+    status: status === "available" && !available ? "none" : status,
+    url: available ? dto!.url : null,
+    sourceUrl: dto?.source_url ?? null,
+    sourceName,
+    caption: dto?.caption ?? null,
+    altText: dto?.alt_text ?? null,
+    credit: dto?.credit ?? null,
+    licence: dto?.licence ?? null,
+    attribution: dto?.attribution ?? null,
+    reason: dto?.reason ?? null,
+  };
+}
+
 function toRevisionNote(
   note: { revision: number; revised_at: string; changes: string[] } | null | undefined,
 ) {
@@ -121,6 +148,7 @@ export function mapApiEvent(dto: ApiEvent): RoadEvent | null {
       title: other.title,
       publishedAt: other.published_at,
       how: other.how,
+      image: toArticleImage(other.image, other.source.source_name),
     })),
     mergeCandidates: (dto.merge_candidates ?? []).map((candidate) => ({
       candidateId: candidate.candidate_id,
@@ -141,6 +169,7 @@ export function mapApiEvent(dto: ApiEvent): RoadEvent | null {
       title: dto.evidence.title,
       publishedAt: dto.evidence.published_at,
       retrievedAt: dto.evidence.retrieved_at,
+      image: toArticleImage(dto.evidence.image, dto.source.source_name),
     },
     detection: dto.detection && {
       method: dto.detection.method,

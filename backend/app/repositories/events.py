@@ -15,6 +15,7 @@ from app.schemas.event import (
     MergeCandidateOut,
     SourceSummary,
 )
+from app.services.article_image import article_image
 from packages.common.text import html_to_text
 from packages.common.time import ensure_utc, utc_now
 from packages.cities import default_city
@@ -91,6 +92,7 @@ def to_event_out(
                 published_at=member.artifact.published_at if member.artifact else None,
                 retrieved_at=member.artifact.retrieved_at if member.artifact else None,
                 how=how.get(member.event_id),
+                image=article_image(member.artifact, member.source),
             )
             for member in members or []
         ],
@@ -118,6 +120,7 @@ def to_event_out(
                 published_at=artifact.published_at,
                 retrieved_at=artifact.retrieved_at,
                 content_hash=artifact.content_hash,
+                image=article_image(artifact, row.source),
             )
             if artifact
             else None

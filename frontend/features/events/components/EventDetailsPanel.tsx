@@ -19,6 +19,7 @@ import {
 import { SeverityIndicator, SourceBadge, StatusBadge } from "./EventBadges";
 import AiSection from "./AiSection";
 import GisSection from "./GisSection";
+import SourceImage from "./SourceImage";
 
 interface EventDetailsPanelProps {
   event: RoadEvent;
@@ -408,6 +409,7 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
       <StreetViewActions event={event} />
 
       <div className="min-h-0 space-y-3.5 overflow-y-auto border-t border-slate-100 px-4 py-3.5">
+        <SourceImage event={event} />
         <Evidence event={event} />
 
         <dl className="grid grid-cols-2 gap-x-4 gap-y-3.5">

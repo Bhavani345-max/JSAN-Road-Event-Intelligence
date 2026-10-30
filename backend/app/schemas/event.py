@@ -16,6 +16,33 @@ class SourceSummary(BaseModel):
     discovery_only: bool = False
 
 
+class ArticleImageOut(BaseModel):
+    """The image published with the source article, and whether REI may show it (decision 0050).
+
+    Read from the stored evidence; never fetched, stored or guessed. Fields the
+    source does not state stay empty.
+    """
+
+    # AVAILABLE: REI may show it; WITHHELD: the article has one, not shown
+    # (`reason` says why); NONE: the stored article has no image.
+    status: str = "NONE"
+    # Only when AVAILABLE: the address of the image on the publisher's site.
+    url: str | None = None
+    # The article the image was published with.
+    source_url: str | None = None
+    # Where in the stored evidence it was found: "article_markup".
+    found_in: str | None = None
+    caption: str | None = None
+    alt_text: str | None = None
+    # The photo credit as the source states it.
+    credit: str | None = None
+    # The permission REI shows it under, quoted.
+    licence: str | None = None
+    # The credit line the permission requires.
+    attribution: str | None = None
+    reason: str | None = None
+
+
 class EvidenceOut(BaseModel):
     """The stored source artifact an event was derived from."""
 
@@ -25,6 +52,7 @@ class EvidenceOut(BaseModel):
     published_at: datetime | None
     retrieved_at: datetime
     content_hash: str
+    image: ArticleImageOut = ArticleImageOut()
 
 
 class ContributingEvidenceOut(BaseModel):
@@ -39,6 +67,7 @@ class ContributingEvidenceOut(BaseModel):
     retrieved_at: datetime | None
     # "automatic" or "reviewer".
     how: str | None = None
+    image: ArticleImageOut = ArticleImageOut()
 
 
 class MergeCandidateOut(BaseModel):

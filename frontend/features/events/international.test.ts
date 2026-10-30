@@ -316,6 +316,8 @@ describe("merged events", () => {
         title: "Why has one-way traffic around KBR Park been made permanent",
         publishedAt: "2026-10-06T05:00:00Z",
         how: "automatic",
+        // The API gave no image for it (decision 0050): none is shown.
+        image: expect.objectContaining({ status: "none", url: null, sourceName: "NewsMeter" }),
       },
     ]);
     expect(canonical.detection?.provenance.start_time).toEqual({ eventId: "EVT-B", sourceId: "newsmeter" });

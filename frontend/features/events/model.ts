@@ -226,6 +226,40 @@ export interface EventEvidence {
   title: string;
   publishedAt: string | null;
   retrievedAt: string;
+  image: ArticleImage;
+}
+
+/**
+ * The image published with the source article (decision 0050). Shown only when
+ * the publisher permits it; never one found elsewhere, never a stand-in.
+ */
+export interface ArticleImage {
+  /**
+   * "available": REI may show it; "withheld": the article has one REI may not
+   * show (`reason` says why); "none": the stored article has no image.
+   */
+  status: "available" | "withheld" | "none";
+  /** Only when available. */
+  url: string | null;
+  /** The article it was published with. */
+  sourceUrl: string | null;
+  /** Who published it: the source's name. */
+  sourceName: string;
+  caption: string | null;
+  altText: string | null;
+  /** The photo credit as the source states it; null when it states none. */
+  credit: string | null;
+  /** The permission REI shows it under, quoted. */
+  licence: string | null;
+  /** The credit line the permission requires. */
+  attribution: string | null;
+  reason: string | null;
+}
+
+/** The image to show for an event: its own article's, else a merged report's; null when none may be shown. */
+export function eventImage(event: RoadEvent): ArticleImage | null {
+  const images = [event.evidence?.image, ...event.otherEvidence.map((other) => other.image)];
+  return images.find((image) => image?.status === "available") ?? null;
 }
 
 /**
@@ -399,6 +433,7 @@ export interface OtherEvidence {
   publishedAt: string | null;
   /** "automatic" or "reviewer". */
   how: string | null;
+  image: ArticleImage;
 }
 
 /** An event that may be the same as this one, awaiting a reviewer. */

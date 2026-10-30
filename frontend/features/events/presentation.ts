@@ -4,6 +4,7 @@ import type {
   EventStatus,
   EventType,
   LocationClass,
+  RoadEvent,
   SourceAuthority,
 } from "./model";
 
@@ -91,6 +92,40 @@ export const LOCATION_CLASS_LABELS: Record<LocationClass, { label: string; meani
     meaning: "Named, but no position is known; not drawn on the map.",
   },
 };
+
+/** Where an event stands with its location, in a few words, for a list card. */
+export interface GisStatus {
+  label: string;
+  meaning: string;
+  /** exact: a position of the event itself; approximate: of a place it names; pending: awaits a reviewer; none: not located. */
+  tone: "exact" | "approximate" | "pending" | "none";
+}
+
+const EXACT_CLASSES: readonly LocationClass[] = ["SOURCE_PROVIDED", "GIS_RESOLVED", "HUMAN_CORRECTED", "QC_APPROVED"];
+
+/** The event's location status: not located, a road-network match awaiting review, or how it was located. */
+export function gisStatus(event: RoadEvent): GisStatus | null {
+  if (!event.geometry) {
+    return { label: "Not located", meaning: LOCATION_CLASS_LABELS.UNRESOLVED.meaning, tone: "none" };
+  }
+  const gis = event.detection?.gis ?? null;
+  if (gis?.applied && gis.reviewStatus === "PENDING") {
+    return {
+      label: "GIS review pending",
+      meaning: "Matched to the road network; a reviewer has not yet accepted the match.",
+      tone: "pending",
+    };
+  }
+  const locationClass = event.detection?.locationClass ?? null;
+  if (!locationClass) return null;
+  const { label, meaning } = LOCATION_CLASS_LABELS[locationClass];
+  const tone = EXACT_CLASSES.includes(locationClass)
+    ? "exact"
+    : locationClass === "APPROXIMATE"
+      ? "approximate"
+      : "none";
+  return { label, meaning, tone };
+}
 
 /** What kind of source an event came from, and how far its word carries, in plain words. */
 export function describeSourceAuthority(authority: SourceAuthority): {
@@ -299,6 +334,16 @@ export function formatDate(iso: string | null, zone: string = displayTimeZone): 
     date,
   );
   return `${weekday}, ${day} ${month} ${year}`;
+}
+
+/** "26 Oct" for a date in the year of `now`, "26 Oct 2025" otherwise; null if missing or invalid. */
+export function formatShortDate(iso: string | null, now: Date, zone: string = displayTimeZone): string | null {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  const format = cachedFormat("short-date", { day: "numeric", month: "short", year: "numeric" }, zone);
+  const { day, month, year } = dateParts(format, date);
+  return year === dateParts(format, now).year ? `${day} ${month}` : `${day} ${month} ${year}`;
 }
 
 const DAY_MS = 24 * 60 * 60 * 1000;

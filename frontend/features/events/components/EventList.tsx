@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import { revealInScroller } from "@/lib/reveal";
 import { getTimeState, type TimeState } from "../filters";
-import { isManualEntry, type RoadEvent } from "../model";
+import { isManualEntry, isSourceProvided, type RoadEvent } from "../model";
 import {
   formatConfidence,
   formatDateTime,
   formatEventPeriod,
+  formatShortDate,
   getEventTypeColor,
+  gisStatus,
   isWholeDayPeriod,
   offMapNote,
   timeZoneOf,
@@ -14,11 +16,12 @@ import {
 import {
   AttributionBadge,
   EventTypeLabel,
-  GisPendingBadge,
+  GisStatusBadge,
   SeverityIndicator,
   SourceBadge,
   StatusBadge,
 } from "./EventBadges";
+import EventThumbnail from "./EventThumbnail";
 
 interface EventListItemProps {
   event: RoadEvent;
@@ -56,6 +59,21 @@ function getTimeLine(event: RoadEvent, now: Date): string {
   return published ? `Reported ${published} · event time not available` : "Event time not available";
 }
 
+/**
+ * When the source published its report (news) or last updated its record
+ * (official feeds), as a short date with the full time on hover. Null when the
+ * time line already says it ("Reported …", "Added …").
+ */
+function getPublishedLine(event: RoadEvent, now: Date): { text: string; title: string } | null {
+  if (isManualEntry(event) || !getTimeState(event, now)) return null;
+  const zone = timeZoneOf(event.city, event.source.id);
+  const at = event.evidence?.publishedAt ?? null;
+  const date = formatShortDate(at, now, zone);
+  if (!date) return null;
+  const verb = isSourceProvided(event) ? "Updated" : "Published";
+  return { text: `${verb} ${date}`, title: `${verb} by ${event.source.name}: ${formatDateTime(at, zone)}` };
+}
+
 function EventListItem({
   event,
   isSelected,
@@ -74,6 +92,8 @@ function EventListItem({
   const confidence = formatConfidence(event.confidence);
   const place = event.affectedRoad ?? event.detection?.location?.placeName ?? null;
   const attributedTo = event.detection?.attributedTo ?? [];
+  const gis = gisStatus(event);
+  const published = getPublishedLine(event, now);
 
   return (
     <li>
@@ -93,27 +113,30 @@ function EventListItem({
           style={{ backgroundColor: getEventTypeColor(event.eventType) }}
           aria-hidden="true"
         />
-        <span className="flex items-start justify-between gap-2">
-          <span
-            className="line-clamp-2 text-sm font-semibold leading-5 text-slate-900"
-            title={event.title}
-          >
-            {event.title}
+        <span className="flex items-start gap-3">
+          <EventThumbnail event={event} />
+          <span className="min-w-0 flex-1">
+            <span
+              className="line-clamp-2 text-sm font-semibold leading-5 text-slate-900"
+              title={event.title}
+            >
+              {event.title}
+            </span>
+            <span className="mt-0.5 block truncate text-xs text-slate-500">
+              {event.city && <span className="font-medium text-slate-600">{event.city}</span>}
+              {event.city && " · "}
+              {place ?? <span className="italic text-slate-400">Road not identified yet</span>}
+            </span>
+            <span className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <EventTypeLabel eventType={event.eventType} />
+              {event.severity && <SeverityIndicator severity={event.severity} />}
+              <span className="ml-auto">
+                <StatusBadge status={event.status} />
+              </span>
+            </span>
           </span>
-          <StatusBadge status={event.status} />
         </span>
-        <span
-          className={`mt-0.5 block truncate text-xs ${
-            place ? "text-slate-500" : "italic text-slate-400"
-          }`}
-        >
-          {place ?? "Road not identified yet"}
-        </span>
-        <span className="mt-2 flex items-center justify-between gap-2">
-          <EventTypeLabel eventType={event.eventType} />
-          {event.severity && <SeverityIndicator severity={event.severity} />}
-        </span>
-        <span className="mt-1.5 block text-[11px] text-slate-400">{getTimeLine(event, now)}</span>
+        <span className="mt-2 block text-[11px] text-slate-400">{getTimeLine(event, now)}</span>
         {!event.mapEligible && (
           <span className="mt-1 block text-[11px] font-medium text-amber-700">
             {offMapNote(event.offMapReason)}
@@ -125,7 +148,8 @@ function EventListItem({
           </span>
         )}
         <span className="mt-2 flex flex-wrap items-center gap-1.5 border-t border-slate-100 pt-2">
-          <SourceBadge event={event} />
+          <SourceBadge event={event} className="max-w-[9.5rem]" />
+          {gis && <GisStatusBadge status={gis} />}
           {event.otherEvidence.length > 0 && (
             <span
               className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-700 ring-1 ring-inset ring-brand-200"
@@ -142,14 +166,18 @@ function EventListItem({
               Possible duplicate
             </span>
           )}
-          {!event.geometry && <GisPendingBadge />}
           {attributedTo.length > 0 && <AttributionBadge authorities={attributedTo} />}
-          <span className="ml-auto text-[11px] text-slate-400">
-            Confidence{" "}
-            <span className={confidence ? "font-semibold text-slate-600" : ""}>
-              {confidence ?? "not assessed"}
+          {(published || confidence) && (
+            <span className="ml-auto flex items-center gap-2 whitespace-nowrap text-[11px] text-slate-400">
+              {published && <span title={published.title}>{published.text}</span>}
+              {/* Shown once assessed; the details panel says when it is not. */}
+              {confidence && (
+                <span>
+                  Confidence <span className="font-semibold text-slate-600">{confidence}</span>
+                </span>
+              )}
             </span>
-          </span>
+          )}
         </span>
       </button>
     </li>
@@ -210,8 +238,14 @@ export default function EventList({
       <ul className="space-y-2" aria-busy="true" aria-label="Loading events">
         {[0, 1, 2, 3].map((i) => (
           <li key={i} className="animate-pulse rounded-xl bg-white/10 p-3">
-            <div className="h-4 w-2/3 rounded bg-white/25" />
-            <div className="mt-2 h-3 w-1/2 rounded bg-white/15" />
+            <div className="flex gap-3">
+              <div className="h-16 w-16 shrink-0 rounded-lg bg-white/20" />
+              <div className="min-w-0 flex-1">
+                <div className="h-4 w-4/5 rounded bg-white/25" />
+                <div className="mt-2 h-3 w-1/2 rounded bg-white/15" />
+                <div className="mt-3 h-3 w-2/3 rounded bg-white/15" />
+              </div>
+            </div>
             <div className="mt-3 h-3 w-full rounded bg-white/15" />
           </li>
         ))}
