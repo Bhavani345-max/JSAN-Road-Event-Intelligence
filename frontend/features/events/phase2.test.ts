@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { ApiEvent } from "@/types/api";
 import { mapApiEvent } from "./api/eventRepository";
-import { DEFAULT_FILTERS, filterEvents, matchesLocation, setFilterCount, withoutStaleChoices } from "./filters";
+import { DEFAULT_FILTERS, filterEvents, matchesLocation, setFilterCount } from "./filters";
 import { historyStages, type EventVersionView } from "./history";
 import { locationStatusOf, type RoadEvent } from "./model";
 import { gisStatus } from "./presentation";
@@ -40,27 +40,21 @@ describe("location status (map toolbar, sidebar filter, card badge)", () => {
   });
 });
 
-describe("choices the loaded events no longer hold", () => {
+describe("a filter choice no loaded event has", () => {
   const roadWorks = event({ event_id: "EVT-1", event_type: "ROAD_WORKS" }, { location_class: "SOURCE_PROVIDED" });
 
-  it("are left out, so a new view never keeps a hidden filter that empties it", () => {
-    const filters = {
-      ...DEFAULT_FILTERS,
-      eventTypes: ["ACCIDENT" as const, "ROAD_WORKS" as const],
-      locations: ["APPROXIMATE" as const],
-      status: "APPROVED" as const,
-      sourceId: "gone-source",
-    };
-    const kept = withoutStaleChoices(filters, [roadWorks], ["the-hindu"]);
-    expect(kept.eventTypes).toEqual(["ROAD_WORKS"]);
-    expect(kept.locations).toEqual([]);
-    expect(kept.status).toBe("ALL");
-    expect(kept.sourceId).toBe("ALL");
+  it("stays chosen and empties the list, which then offers to clear it (30 Oct 2026 fix)", () => {
+    // A choice the loaded events lack used to be dropped at once, so it unticked
+    // itself in the Filters panel: in the operations view, nearly every type did.
+    const filters = { ...DEFAULT_FILTERS, eventTypes: ["VIP_MOVEMENT" as const], locations: ["APPROXIMATE" as const] };
+    expect(filterEvents([roadWorks], filters)).toEqual([]);
+    expect(filters.eventTypes).toEqual(["VIP_MOVEMENT"]);
+    expect(setFilterCount(filters)).toBe(2);
   });
 
-  it("leave valid filters exactly as chosen", () => {
-    const filters = { ...DEFAULT_FILTERS, eventTypes: ["ROAD_WORKS" as const], search: "kbr" };
-    expect(withoutStaleChoices(filters, [roadWorks], [])).toBe(filters);
+  it("leaves the events it matches", () => {
+    const filters = { ...DEFAULT_FILTERS, eventTypes: ["ROAD_WORKS" as const] };
+    expect(filterEvents([roadWorks], filters).map((e) => e.id)).toEqual(["EVT-1"]);
   });
 });
 

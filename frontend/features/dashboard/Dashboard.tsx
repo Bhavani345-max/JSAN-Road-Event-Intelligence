@@ -28,7 +28,6 @@ import {
   matchesLocally,
   setFilterCount,
   UNCLASSIFIED,
-  withoutStaleChoices,
   type EventListView,
   type EventFilters as Filters,
   type TypeChoice,
@@ -164,19 +163,10 @@ export default function Dashboard() {
   // map rendering. The same returned page is the source for each surface.
   const allEvents = loadedAt ? loadedEvents : NO_EVENTS;
   const searchedEvents = serverSearch ? serverSearch.events : allEvents;
-  // One filter state for the sidebar's Filters and the map toolbar. A choice
-  // the loaded events no longer hold (another view, a reload) is left out
-  // rather than silently emptying the list; changing place resets them all.
-  const filters = useMemo(
-    () =>
-      state.status === "ready"
-        ? withoutStaleChoices(chosenFilters, searchedEvents, [
-            ...sources.map((source) => source.id),
-            ...searchedEvents.map((event) => event.source.id),
-          ])
-        : chosenFilters,
-    [state.status, chosenFilters, searchedEvents, sources],
-  );
+  // One filter state for the sidebar's Filters and the map toolbar, exactly as
+  // chosen: a choice no loaded event has empties the list, which then says so
+  // and offers to clear the filters. Changing place resets them all.
+  const filters = chosenFilters;
   const visibleEvents = useMemo(
     () => filterEvents(searchedEvents, filters, serverMatches),
     [searchedEvents, filters, serverMatches],

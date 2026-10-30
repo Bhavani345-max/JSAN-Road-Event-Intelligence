@@ -132,35 +132,6 @@ export function matchesLocation(event: RoadEvent, chosen: readonly LocationStatu
 }
 
 /**
- * The filters with every choice the loaded events no longer offer removed, so a
- * new place or view never keeps a hidden filter that empties it. Types and
- * location statuses stay chosen only while some loaded event has them; a
- * source or status likewise.
- */
-export function withoutStaleChoices(
-  filters: EventFilters,
-  events: readonly RoadEvent[],
-  sourceIds: readonly string[],
-): EventFilters {
-  const types = new Set(events.map((event) => event.eventType ?? UNCLASSIFIED));
-  const locations = new Set(events.map(locationStatusOf));
-  const statuses = new Set(events.map((event) => event.status));
-  const next: EventFilters = {
-    ...filters,
-    eventTypes: filters.eventTypes.filter((type) => types.has(type)),
-    locations: filters.locations.filter((location) => locations.has(location)),
-    status: filters.status === ALL || statuses.has(filters.status) ? filters.status : ALL,
-    sourceId: filters.sourceId === ALL || sourceIds.includes(filters.sourceId) ? filters.sourceId : ALL,
-  };
-  const changed =
-    next.eventTypes.length !== filters.eventTypes.length ||
-    next.locations.length !== filters.locations.length ||
-    next.status !== filters.status ||
-    next.sourceId !== filters.sourceId;
-  return changed ? next : filters;
-}
-
-/**
  * Whether an event falls in the chosen period. An event with stated times
  * matches when its period overlaps; one without matches by when it was reported.
  */

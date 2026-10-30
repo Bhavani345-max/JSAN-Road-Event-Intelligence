@@ -30,9 +30,11 @@ details panel.
   the map all follow it.
 - **Counts.** Each choice's count is taken with every other filter applied, so
   the chosen counts add up to the list's.
-- **No stale choices.** Changing place resets every filter. A choice that the
-  loaded events no longer hold (another view, a reload) is left out rather than
-  silently emptying the list.
+- **Choices stay as chosen.** Changing place resets every filter. A choice that
+  no loaded event has empties the list, which says so and offers to clear the
+  filters. (Until 30 October 2026, evening, such a choice was dropped at once:
+  it unticked itself in the Filters panel, which made Type and Location look
+  broken, above all in the operations view.)
 - **"Traffic congestion" is not offered:** REI has no such category.
 - **Layers.** Event markers, clusters (MapLibre's `setClusterOptions`) and an
   optional heatmap. Clustering only changes how markers are drawn, never the
