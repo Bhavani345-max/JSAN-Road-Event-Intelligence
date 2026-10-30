@@ -12,14 +12,18 @@ import {
   getEventTypeColor,
   getEventTypeLabel,
   getSiteName,
+  getStatusLabel,
+  gisStatus,
   googleMapsUrl,
   isWholeDayPeriod,
   streetViewUrl,
 } from "../presentation";
 import { SeverityIndicator, SourceBadge, StatusBadge } from "./EventBadges";
 import AiSection from "./AiSection";
+import DetailSection from "./DetailSection";
 import GisSection from "./GisSection";
 import SourceImage from "./SourceImage";
+import ValidationHistory from "./ValidationHistory";
 
 interface EventDetailsPanelProps {
   event: RoadEvent;
@@ -56,7 +60,7 @@ function StreetViewActions({ event }: { event: RoadEvent }) {
   const linkClass =
     "inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1";
   return (
-    <div className="px-4 pb-3">
+    <div>
       <div className="flex flex-wrap items-center gap-2">
         <a
           href={streetViewUrl(event.latitude, event.longitude)}
@@ -129,7 +133,7 @@ function Evidence({ event }: { event: RoadEvent }) {
   const official = isSourceProvided(event);
   const authority = describeSourceAuthority(event.sourceAuthority);
   return (
-    <div className="rounded-lg bg-brand-50/70 p-3 ring-1 ring-inset ring-brand-100">
+    <div>
       <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5">
         <div className="col-span-2">
           <Field label="Source">
@@ -382,6 +386,7 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
   const location = event.detection?.location ?? null;
   const locationRevision = event.detection?.locationRevision ?? null;
   const attributedTo = event.detection?.attributedTo ?? [];
+  const gis = gisStatus(event);
 
   return (
     <section
@@ -406,16 +411,16 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
           </svg>
         </button>
       </header>
-      <StreetViewActions event={event} />
 
-      <div className="min-h-0 space-y-3.5 overflow-y-auto border-t border-slate-100 px-4 py-3.5">
-        <SourceImage event={event} />
-        <Evidence event={event} />
-
+      {/* Scrolls on its own; reaching its end never scrolls the page behind. */}
+      <div className="min-h-0 flex-1 space-y-2.5 overflow-y-auto overscroll-contain border-t border-slate-100 bg-slate-50/60 px-3 py-3">
+        <DetailSection title="Event overview" summary={getStatusLabel(event.status)}>
         <dl className="grid grid-cols-2 gap-x-4 gap-y-3.5">
-          <Field label="Event type">
+          <Field label="Category">
             {event.eventType ? (
-              <span className="font-medium" style={{ color: typeColor }}>
+              // The map colour as a mark, the name in text colour: readable on light and dark.
+              <span className="inline-flex items-center gap-1.5 font-medium">
+                <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: typeColor }} aria-hidden="true" />
                 {getEventTypeLabel(event.eventType)}
               </span>
             ) : (
@@ -426,7 +431,7 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
             <StatusBadge status={event.status} />
           </Field>
           <div className="col-span-2">
-            <Field label="Affected road">
+            <Field label="Road or place">
               {event.affectedRoad ? (
                 <>
                   <span className="font-medium">{event.affectedRoad}</span>
@@ -500,11 +505,48 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
           </Field>
           <Field label="Confidence">{confidence ?? NOT_ASSESSED}</Field>
           <PublicEventWhere event={event} />
-          {event.detection?.ai && (
-            <div className="col-span-2">
+          <div className="col-span-2">
+            <Field label={manual ? "Details" : "Description"}>
+              {event.description ? (
+                <span className="leading-relaxed text-slate-600">{event.description}</span>
+              ) : (
+                NOT_AVAILABLE
+              )}
+            </Field>
+          </div>
+        </dl>
+        </DetailSection>
+
+        <DetailSection title="Source evidence" summary={event.source.name}>
+          <div className="space-y-3">
+            <SourceImage event={event} />
+            <Evidence event={event} />
+            {event.detection?.ai && (
               <AiSection ai={event.detection.ai} zone={zone} eventColor={getEventTypeColor(event.eventType)} />
-            </div>
-          )}
+            )}
+          </div>
+        </DetailSection>
+
+        <DetailSection title="Location and GIS" summary={gis?.label}>
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-3.5">
+          <div className="col-span-2">
+            <Field label="Map point (latitude, longitude)">
+              {event.latitude !== null && event.longitude !== null ? (
+                <>
+                  <span className="font-mono text-[13px]">
+                    {event.latitude.toFixed(5)}, {event.longitude.toFixed(5)}
+                  </span>
+                  <span className="mt-0.5 block text-xs text-slate-400">
+                    {event.detection?.locationClass === "APPROXIMATE"
+                      ? "The named place's position, not a surveyed position of the event."
+                      : "The point the map draws for this event."}
+                  </span>
+                </>
+              ) : (
+                <Unknown>Not located</Unknown>
+              )}
+            </Field>
+          </div>
           <div className="col-span-2">
             <LocationSummary event={event} />
           </div>
@@ -548,17 +590,16 @@ export default function EventDetailsPanel({ event, onClose, footer }: EventDetai
             )}
           </Field>
           <div className="col-span-2">
-            <Field label={manual ? "Details" : "Article summary"}>
-              {event.description ? (
-                <span className="leading-relaxed text-slate-600">{event.description}</span>
-              ) : (
-                NOT_AVAILABLE
-              )}
-            </Field>
+            <StreetViewActions event={event} />
           </div>
         </dl>
+        </DetailSection>
 
-        <p className="border-t border-slate-100 pt-3 text-[11px] leading-relaxed text-slate-400">
+        <DetailSection title="Validation history" defaultOpen={false} lazy>
+          <ValidationHistory eventId={event.id} version={event.version} zone={zone} />
+        </DetailSection>
+
+        <p className="px-1 pt-1 text-[11px] leading-relaxed text-slate-400">
           <span className="font-mono">{event.id}</span> · Times in {timeZoneLabel(new Date(), zone)} ·{" "}
           {manual
             ? "Entered by a reviewer and not verified against an official notice."

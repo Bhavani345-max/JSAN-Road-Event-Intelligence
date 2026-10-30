@@ -28,6 +28,7 @@ import {
   type StackedEvent,
 } from "../geojson";
 import { getBoundingBox } from "../geometry";
+import { DEFAULT_MAP_LAYERS, type MapLayers } from "../layers";
 
 interface EventMapProps {
   /** Events to draw. Events that have no geometry yet are simply not drawn. */
@@ -54,6 +55,8 @@ interface EventMapProps {
   onSelectCity?: (cityId: string) => void;
   /** The console theme's colour: numbered circles, the overview's bubbles, the chosen spot's pin. */
   accent?: string;
+  /** Which layers are drawn (map toolbar); markers and clusters on, heatmap off by default. */
+  layers?: MapLayers;
 }
 
 type MapStatus = "loading" | "ready" | "error";
@@ -70,6 +73,9 @@ const CLUSTER_RADIUS = 46;
 
 const SATELLITE_SOURCE = "rei-satellite";
 const SATELLITE_LAYER = "rei-satellite";
+// One point per drawn event, never clustered: the optional heat layer.
+const HEAT_SOURCE = "rei-event-heat";
+const HEAT_LAYER = "rei-event-heat";
 
 const LAYERS = {
   fill: "rei-event-fill",
@@ -93,6 +99,12 @@ const LAYERS = {
 /** Layers a click or hover can hit, and how forgiving the hit test is: a
  *  fingertip on a phone or tablet covers far more than a mouse pointer. */
 const INTERACTIVE_LAYERS = [LAYERS.anchor, LAYERS.line, LAYERS.lineDashed, LAYERS.fill];
+// What "Event markers" shows or hides: every drawing of the events themselves.
+// The selected event's places and GIS points stay, as they belong to the details.
+const MARKER_LAYERS = [
+  LAYERS.fill, LAYERS.halo, LAYERS.casing, LAYERS.line, LAYERS.lineDashed,
+  LAYERS.leaders, LAYERS.anchorHalo, LAYERS.anchor, LAYERS.clusters, LAYERS.clusterCount,
+];
 const HIT_TOLERANCE_PX = 6;
 const TOUCH_HIT_TOLERANCE_PX = 18;
 
@@ -321,6 +333,40 @@ function addEventLayers(map: MapLibreMap) {
   });
 }
 
+/**
+ * The optional heat layer: where events are dense. Drawn under every event
+ * layer and never queried by clicks, so markers stay selectable through it; it
+ * fades as the map zooms in to street level, where markers say more.
+ */
+function addHeatLayer(map: MapLibreMap) {
+  map.addSource(HEAT_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
+  map.addLayer(
+    {
+      id: HEAT_LAYER,
+      type: "heatmap",
+      source: HEAT_SOURCE,
+      layout: { visibility: "none" },
+      paint: {
+        "heatmap-weight": 1,
+        "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 4, 0.6, 14, 1.6],
+        "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 4, 10, 10, 22, 15, 34],
+        "heatmap-opacity": ["interpolate", ["linear"], ["zoom"], 12, 0.75, 17, 0.25],
+        // A restrained single-hue ramp to amber at the densest: never mistaken
+        // for an event type's colour.
+        "heatmap-color": [
+          "interpolate", ["linear"], ["heatmap-density"],
+          0, "rgba(14, 116, 144, 0)",
+          0.2, "rgba(56, 189, 248, 0.45)",
+          0.5, "rgba(14, 116, 144, 0.7)",
+          0.8, "rgba(245, 158, 11, 0.8)",
+          1, "rgba(217, 119, 6, 0.9)",
+        ],
+      },
+    },
+    LAYERS.fill,
+  );
+}
+
 // JSAN Blue, until the console's theme says otherwise (the accent prop).
 const BRAND_COLOR = "#00558c";
 
@@ -531,6 +577,7 @@ export default function EventMap({
   cityBubbles = null,
   onSelectCity,
   accent = BRAND_COLOR,
+  layers = DEFAULT_MAP_LAYERS,
 }: EventMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -601,6 +648,7 @@ export default function EventMap({
       labelLayersRef.current = getTextLabelLayers(map);
       addSatelliteLayer(map);
       addEventLayers(map);
+      addHeatLayer(map);
       addLocationPointLayer(map);
       addGroupLayers(map);
       // Keep the event's selectable marker above GIS point features. A GIS
@@ -779,6 +827,38 @@ export default function EventMap({
     map.getSource<GeoJSONSource>(ANCHOR_SOURCE)?.setData(markers.anchors);
     map.getSource<GeoJSONSource>(LEADER_SOURCE)?.setData(markers.leaders);
   }, [loadedMap, markers]);
+
+  // The heat layer: the same events, one point each.
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    map.getSource<GeoJSONSource>(HEAT_SOURCE)?.setData(mapData.anchors);
+  }, [loadedMap, mapData]);
+
+  // The map toolbar's layers. Clustering is only how markers are drawn: the
+  // events, their ids and every count stay the same whether it is on or off.
+  const { markers: showMarkers, clusters: clustered, heatmap } = layers;
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    for (const id of MARKER_LAYERS) map.setLayoutProperty(id, "visibility", showMarkers ? "visible" : "none");
+    map.setLayoutProperty(HEAT_LAYER, "visibility", heatmap ? "visible" : "none");
+  }, [loadedMap, showMarkers, heatmap]);
+  // What the anchor source of which map was last set to (a new map starts clustered).
+  const clusterStateRef = useRef<{ map: MapLibreMap | null; clustered: boolean }>({ map: null, clustered: true });
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    const current = clusterStateRef.current.map === map ? clusterStateRef.current.clustered : true;
+    clusterStateRef.current = { map, clustered };
+    if (current === clustered) return;
+    map
+      .getSource<GeoJSONSource>(ANCHOR_SOURCE)
+      ?.setClusterOptions(
+        clustered ? { cluster: true, clusterMaxZoom: CLUSTER_MAX_ZOOM, clusterRadius: CLUSTER_RADIUS } : { cluster: false },
+      )
+      .catch((error: unknown) => console.error("Could not change marker grouping", error));
+  }, [loadedMap, clustered]);
 
   // The overview's city bubbles (none once a city is open).
   useEffect(() => {

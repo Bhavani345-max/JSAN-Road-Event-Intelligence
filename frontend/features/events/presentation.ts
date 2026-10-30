@@ -1,11 +1,13 @@
-import type {
-  EventDirection,
-  EventSeverity,
-  EventStatus,
-  EventType,
-  LocationClass,
-  RoadEvent,
-  SourceAuthority,
+import {
+  locationStatusOf,
+  type EventDirection,
+  type EventSeverity,
+  type EventStatus,
+  type EventType,
+  type LocationClass,
+  type LocationStatus,
+  type RoadEvent,
+  type SourceAuthority,
 } from "./model";
 
 /**
@@ -101,30 +103,25 @@ export interface GisStatus {
   tone: "exact" | "approximate" | "pending" | "none";
 }
 
-const EXACT_CLASSES: readonly LocationClass[] = ["SOURCE_PROVIDED", "GIS_RESOLVED", "HUMAN_CORRECTED", "QC_APPROVED"];
+/** Each location status in a few words, what it means, and its tone (map toolbar, filters, cards). */
+export const LOCATION_STATUS_LABELS: Record<LocationStatus, GisStatus> = {
+  SOURCE_PROVIDED: { ...LOCATION_CLASS_LABELS.SOURCE_PROVIDED, tone: "exact" },
+  GIS_RESOLVED: { ...LOCATION_CLASS_LABELS.GIS_RESOLVED, tone: "exact" },
+  GIS_PENDING: {
+    label: "GIS review pending",
+    meaning: "Matched to the road network; a reviewer has not yet accepted the match.",
+    tone: "pending",
+  },
+  APPROXIMATE: { ...LOCATION_CLASS_LABELS.APPROXIMATE, tone: "approximate" },
+  HUMAN_CORRECTED: { ...LOCATION_CLASS_LABELS.HUMAN_CORRECTED, tone: "exact" },
+  QC_APPROVED: { ...LOCATION_CLASS_LABELS.QC_APPROVED, tone: "exact" },
+  NOT_LOCATED: { ...LOCATION_CLASS_LABELS.UNRESOLVED, tone: "none" },
+};
 
 /** The event's location status: not located, a road-network match awaiting review, or how it was located. */
 export function gisStatus(event: RoadEvent): GisStatus | null {
-  if (!event.geometry) {
-    return { label: "Not located", meaning: LOCATION_CLASS_LABELS.UNRESOLVED.meaning, tone: "none" };
-  }
-  const gis = event.detection?.gis ?? null;
-  if (gis?.applied && gis.reviewStatus === "PENDING") {
-    return {
-      label: "GIS review pending",
-      meaning: "Matched to the road network; a reviewer has not yet accepted the match.",
-      tone: "pending",
-    };
-  }
-  const locationClass = event.detection?.locationClass ?? null;
-  if (!locationClass) return null;
-  const { label, meaning } = LOCATION_CLASS_LABELS[locationClass];
-  const tone = EXACT_CLASSES.includes(locationClass)
-    ? "exact"
-    : locationClass === "APPROXIMATE"
-      ? "approximate"
-      : "none";
-  return { label, meaning, tone };
+  const status = locationStatusOf(event);
+  return status ? LOCATION_STATUS_LABELS[status] : null;
 }
 
 /** What kind of source an event came from, and how far its word carries, in plain words. */

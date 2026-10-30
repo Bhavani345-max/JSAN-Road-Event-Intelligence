@@ -117,10 +117,17 @@ const GIS_TONE_CLASSES: Record<GisStatus["tone"], string> = {
   none: "bg-white text-slate-500 ring-slate-300",
 };
 
-/** Where an event stands with its location: how it was placed, a match awaiting review, or not located. */
+/**
+ * Where an event stands with its location: how it was placed, a match awaiting
+ * review, or not located. Square-cornered with a pin, so it never reads as the
+ * round validation-status pill.
+ */
 export function GisStatusBadge({ status }: { status: GisStatus }) {
   return (
-    <span className={`${BADGE_BASE} ${GIS_TONE_CLASSES[status.tone]}`} title={status.meaning}>
+    <span
+      className={`inline-flex items-center gap-1 whitespace-nowrap rounded-md px-1.5 py-0.5 text-[11px] font-medium ring-1 ring-inset ${GIS_TONE_CLASSES[status.tone]}`}
+      title={`Location: ${status.label}. ${status.meaning}`}
+    >
       <svg
         viewBox="0 0 16 16"
         fill={status.tone === "exact" ? "currentColor" : "none"}

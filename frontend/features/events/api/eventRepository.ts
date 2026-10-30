@@ -1,7 +1,15 @@
 import { getRepresentativePoint } from "@/features/map/geometry";
 import { apiFetch } from "@/lib/apiClient";
-import type { ApiAiReading, ApiArticleImage, ApiEvent, ApiEventList, ApiGeometry } from "@/types/api";
+import type {
+  ApiAiReading,
+  ApiArticleImage,
+  ApiEvent,
+  ApiEventDetail,
+  ApiEventList,
+  ApiGeometry,
+} from "@/types/api";
 import type { EventListView } from "../filters";
+import { toVersionViews, type EventVersionView } from "../history";
 import {
   type AiReadingView,
   type ArticleImage,
@@ -164,6 +172,7 @@ export function mapApiEvent(dto: ApiEvent): RoadEvent | null {
     mapEligible: dto.map_eligible ?? true,
     offMapReason: dto.off_map_reason ?? null,
     sourceReference: dto.source_reference,
+    version: dto.version,
     evidence: dto.evidence && {
       url: dto.evidence.url,
       title: dto.evidence.title,
@@ -347,6 +356,12 @@ async function fetchEventPages(
 
 function toEventPage({ items, total }: { items: ApiEvent[]; total: number }): EventPage {
   return { events: items.map(mapApiEvent).filter((event) => event !== null), total };
+}
+
+/** Every recorded version of one event, oldest first (read only). */
+export async function fetchEventHistory(eventId: string): Promise<EventVersionView[]> {
+  const detail = await apiFetch<ApiEventDetail>(`/events/${encodeURIComponent(eventId)}`);
+  return toVersionViews(detail.versions ?? []);
 }
 
 /** Events from the server-classified view, most recently published first. */

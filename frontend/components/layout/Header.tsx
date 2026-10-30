@@ -9,6 +9,7 @@ import { canManageAccounts } from "@/features/auth/permissions";
 import type { AuthUser } from "@/features/auth/types";
 import { initials } from "@/features/profile/profile";
 import ProfileDialog from "@/features/profile/ProfileDialog";
+import AppearanceToggle from "@/features/theme/AppearanceToggle";
 import { useWaitingRegistrations } from "@/features/users/useWaitingRegistrations";
 
 interface HeaderProps {
@@ -92,6 +93,21 @@ export default function Header({ cities, city, onCityChange, user, onSignOut, on
           <span className="hidden font-normal tracking-normal text-amber-700/80 md:inline sideways:hidden">
             · real source events, pending validation
           </span>
+        </span>
+        <Link
+          href="/analytics"
+          title="Analytics: counts of the events by status, place, category, source and day"
+          className="flex h-8 items-center gap-1.5 rounded-lg px-2 text-[11px] font-semibold text-slate-600 ring-1 ring-inset ring-slate-200 transition hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+        >
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-3.5 w-3.5" aria-hidden="true">
+            <path d="M3.5 16.5h13M6 13.5V9M10 13.5V5M14 13.5v-6" strokeLinecap="round" />
+          </svg>
+          <span className="hidden lg:inline">Analytics</span>
+          <span className="sr-only lg:hidden">Analytics</span>
+        </Link>
+        {/* Phones held upright have no room for it: it is in the profile's Theme tab too. */}
+        <span className="max-sm:hidden">
+          <AppearanceToggle />
         </span>
         {isAdmin && (
           <Link

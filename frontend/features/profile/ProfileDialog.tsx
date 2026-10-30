@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { canManageAccounts } from "@/features/auth/permissions";
 import type { AuthUser } from "@/features/auth/types";
+import { saveAppearance, useAppearance } from "@/features/theme/appearance";
 import { saveTheme, THEMES, useTheme } from "@/features/theme/themes";
 import {
   changePassword,
@@ -195,8 +196,28 @@ function PasswordTab() {
 
 function ThemeTab() {
   const theme = useTheme();
+  const appearance = useAppearance();
   return (
     <div className="space-y-3">
+      {/* The header's light/dark switch too (decision 0051): one choice, kept in this browser. */}
+      <div role="radiogroup" aria-label="Appearance" className="grid grid-cols-2 gap-2">
+        {(["light", "dark"] as const).map((option) => (
+          <button
+            key={option}
+            type="button"
+            role="radio"
+            aria-checked={appearance === option}
+            onClick={() => saveAppearance(option)}
+            className={`rounded-xl p-2 text-xs font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              appearance === option
+                ? "bg-slate-50 text-slate-900 ring-2 ring-slate-900/70"
+                : "text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50"
+            }`}
+          >
+            {option === "light" ? "Light" : "Dark"}
+          </button>
+        ))}
+      </div>
       <div role="radiogroup" aria-label="Theme colour" className="grid grid-cols-2 gap-2 sm:grid-cols-3">
         {THEMES.map((option) => {
           const checked = option.id === theme.id;

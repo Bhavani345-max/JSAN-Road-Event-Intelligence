@@ -7,6 +7,7 @@ import { useAuth } from "@/features/auth/AuthGate";
 import { canManageAccounts } from "@/features/auth/permissions";
 import ConfirmWithPassword, { copyText, errorText, PRIMARY, SECONDARY } from "@/features/profile/ConfirmWithPassword";
 import { resetAccountPassword, roleLabel } from "@/features/profile/profile";
+import AppearanceToggle from "@/features/theme/AppearanceToggle";
 import { themeStyle, useTheme } from "@/features/theme/themes";
 import {
   accountHistory,
@@ -355,13 +356,16 @@ export default function UserManagement() {
     setAccounts((list) => list?.map((account) => (account.id === changed.id ? changed : account)) ?? null);
 
   return (
-    <div className="min-h-dvh bg-slate-50 text-slate-900" style={themeStyle(theme) as CSSProperties}>
+    <div className="rei-app min-h-dvh bg-slate-50 text-slate-900" style={themeStyle(theme) as CSSProperties}>
       <header className="flex h-14 items-center justify-between gap-3 border-b border-slate-200 bg-white px-4">
         <div className="flex min-w-0 items-center gap-3">
           <Image src="/jsan-mark.png" alt="JSAN" width={32} height={32} className="h-8 w-8 shrink-0" />
           <h1 className="truncate text-[15px] font-semibold tracking-tight text-brand-800">User management</h1>
         </div>
-        <Link href="/" className={SECONDARY}>Back to the console</Link>
+        <div className="flex shrink-0 items-center gap-2">
+          <AppearanceToggle />
+          <Link href="/" className={SECONDARY}>Back to the console</Link>
+        </div>
       </header>
       <main className="mx-auto max-w-3xl space-y-6 px-4 py-6">
         {isAdmin && accounts && (

@@ -1,5 +1,7 @@
 from collections import Counter
+from datetime import date
 from typing import Annotated
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from fastapi import APIRouter, HTTPException, Query
 
@@ -22,10 +24,11 @@ from app.schemas.event import (
     SeverityIn,
     StatusUpdateIn,
 )
-from app.services import review_service
+from app.schemas.analytics import AnalyticsOut
+from app.services import analytics_service, review_service
 from app.services.manual_event_service import create_manual_event
 from packages.cities import default_city, load_cities
-from packages.event_schema import EventSeverity, EventStatus
+from packages.event_schema import EventSeverity, EventStatus, EventType
 from services.lifecycle import InvalidTransition
 from services.lifecycle.current import EventListView
 
@@ -187,6 +190,52 @@ def event_coverage(session: SessionDep) -> EventCoverageOut:
             )
         )
     return EventCoverageOut(cities=cities)
+
+
+@router.get("/analytics", response_model=AnalyticsOut)
+def event_analytics(
+    session: SessionDep,
+    city: Annotated[
+        str | None, Query(description="A configured city id, or a country's (its cities included)")
+    ] = None,
+    start: Annotated[date | None, Query(description="First day detected (YYYY-MM-DD), in `tz`")] = None,
+    end: Annotated[date | None, Query(description="Last day detected (YYYY-MM-DD), in `tz`, included")] = None,
+    tz: Annotated[str, Query(description="IANA time zone of the days, e.g. Asia/Kolkata")] = "UTC",
+    event_type: Annotated[list[str] | None, Query(description="Event types; UNCLASSIFIED for none")] = None,
+    status_group: Annotated[
+        list[str] | None, Query(description="awaiting_review, validated, closed or rejected")
+    ] = None,
+    source_id: Annotated[list[str] | None, Query()] = None,
+) -> AnalyticsOut:
+    """Counts of the stored events for the Analytics page: totals by mutually
+    exclusive status group, overlapping subsets (published, GIS pending), and
+    by city, category, status, location status, day detected and source.
+    Read only: nothing is changed. The answer says what each number counts."""
+    try:
+        zone = ZoneInfo(tz)
+    except (ZoneInfoNotFoundError, ValueError):
+        raise HTTPException(status_code=422, detail=f"Unknown time zone {tz!r}") from None
+    if start and end and start > end:
+        raise HTTPException(status_code=422, detail="start is after end")
+    groups = status_group or []
+    if unknown := [g for g in groups if g not in analytics_service.GROUP_STATUSES]:
+        raise HTTPException(status_code=422, detail=f"Unknown status group {unknown[0]!r}")
+    types = event_type or []
+    known_types = {t.value for t in EventType} | {analytics_service.UNCLASSIFIED}
+    if unknown := [t for t in types if t not in known_types]:
+        raise HTTPException(status_code=422, detail=f"Unknown event type {unknown[0]!r}")
+    return AnalyticsOut.model_validate(
+        analytics_service.event_analytics(
+            session,
+            cities=area_names(city),
+            start=start,
+            end=end,
+            zone=zone,
+            event_types=types,
+            status_groups=groups,
+            source_ids=source_id or [],
+        )
+    )
 
 
 @router.get("/{event_id}", response_model=EventDetailOut)

@@ -1,4 +1,11 @@
-import type { EventSeverity, EventStatus, EventType, RoadEvent } from "./model";
+import {
+  locationStatusOf,
+  type EventSeverity,
+  type EventStatus,
+  type EventType,
+  type LocationStatus,
+  type RoadEvent,
+} from "./model";
 import { zonedInputToTime } from "./presentation";
 
 export const ALL = "ALL";
@@ -23,6 +30,8 @@ export interface EventFilters {
   search: string;
   /** Event types to show; several may be chosen. Empty means every type. */
   eventTypes: TypeChoice[];
+  /** Location statuses to show (the map toolbar's and the Filters panel's); empty means all. */
+  locations: LocationStatus[];
   status: EventStatus | All;
   severity: EventSeverity | All;
   /** Id of one source, or all sources. */
@@ -38,6 +47,7 @@ export interface EventFilters {
 export const DEFAULT_FILTERS: EventFilters = {
   search: "",
   eventTypes: [],
+  locations: [],
   status: ALL,
   severity: ALL,
   sourceId: ALL,
@@ -54,6 +64,7 @@ export function setFilterCount(filters: EventFilters): number {
   return [
     filters.sourceId !== ALL,
     filters.eventTypes.length > 0,
+    filters.locations.length > 0,
     filters.status !== ALL,
     filters.severity !== ALL,
     filters.from !== "",
@@ -65,6 +76,7 @@ export function hasActiveFilters(filters: EventFilters): boolean {
   return (
     filters.search.trim() !== "" ||
     filters.eventTypes.length > 0 ||
+    filters.locations.length > 0 ||
     filters.status !== ALL ||
     filters.severity !== ALL ||
     filters.sourceId !== ALL ||
@@ -110,6 +122,42 @@ export function inCity(event: RoadEvent, cityName: string, isDefaultCity: boolea
 export function matchesType(event: RoadEvent, chosen: readonly TypeChoice[]): boolean {
   if (chosen.length === 0) return true;
   return chosen.includes(event.eventType ?? UNCLASSIFIED);
+}
+
+/** Whether the event's location status is among the chosen ones (none chosen: every event). */
+export function matchesLocation(event: RoadEvent, chosen: readonly LocationStatus[]): boolean {
+  if (chosen.length === 0) return true;
+  const status = locationStatusOf(event);
+  return status !== null && chosen.includes(status);
+}
+
+/**
+ * The filters with every choice the loaded events no longer offer removed, so a
+ * new place or view never keeps a hidden filter that empties it. Types and
+ * location statuses stay chosen only while some loaded event has them; a
+ * source or status likewise.
+ */
+export function withoutStaleChoices(
+  filters: EventFilters,
+  events: readonly RoadEvent[],
+  sourceIds: readonly string[],
+): EventFilters {
+  const types = new Set(events.map((event) => event.eventType ?? UNCLASSIFIED));
+  const locations = new Set(events.map(locationStatusOf));
+  const statuses = new Set(events.map((event) => event.status));
+  const next: EventFilters = {
+    ...filters,
+    eventTypes: filters.eventTypes.filter((type) => types.has(type)),
+    locations: filters.locations.filter((location) => locations.has(location)),
+    status: filters.status === ALL || statuses.has(filters.status) ? filters.status : ALL,
+    sourceId: filters.sourceId === ALL || sourceIds.includes(filters.sourceId) ? filters.sourceId : ALL,
+  };
+  const changed =
+    next.eventTypes.length !== filters.eventTypes.length ||
+    next.locations.length !== filters.locations.length ||
+    next.status !== filters.status ||
+    next.sourceId !== filters.sourceId;
+  return changed ? next : filters;
 }
 
 /**
@@ -166,6 +214,7 @@ export function filterEvents(
   return events.filter(
     (event) =>
       matchesType(event, filters.eventTypes) &&
+      matchesLocation(event, filters.locations) &&
       (filters.status === ALL || event.status === filters.status) &&
       (filters.severity === ALL || event.severity === filters.severity) &&
       (filters.sourceId === ALL || event.source.id === filters.sourceId) &&

@@ -94,6 +94,8 @@ function EventListItem({
   const attributedTo = event.detection?.attributedTo ?? [];
   const gis = gisStatus(event);
   const published = getPublishedLine(event, now);
+  const where = [event.city, place].filter(Boolean).join(" · ");
+  const timeLine = getTimeLine(event, now);
 
   return (
     <li>
@@ -102,10 +104,12 @@ function EventListItem({
         type="button"
         onClick={() => onSelect(event.id)}
         aria-pressed={isSelected}
-        className={`relative w-full cursor-pointer rounded-xl bg-white p-3 pl-4 text-left outline-none transition focus-visible:ring-2 focus-visible:ring-white ${
+        // Hover and selection change only shadows and rings (painted outside the
+        // layout), never size or position: the list does not shift.
+        className={`rei-event-card group relative w-full cursor-pointer rounded-xl bg-white p-3 pl-4 text-left outline-none transition-shadow duration-150 ease-out focus-visible:ring-2 focus-visible:ring-white ${
           isSelected
-            ? "shadow-lg ring-[3px] ring-sky-300"
-            : "opacity-95 shadow-sm hover:opacity-100 hover:shadow-md"
+            ? "rei-event-card-selected shadow-lg ring-[3px] ring-sky-300"
+            : "shadow-[0_1px_2px_rgb(15_23_42/0.08)] ring-1 ring-slate-900/5 hover:shadow-md hover:ring-slate-900/10"
         }`}
       >
         <span
@@ -117,17 +121,17 @@ function EventListItem({
           <EventThumbnail event={event} />
           <span className="min-w-0 flex-1">
             <span
-              className="line-clamp-2 text-sm font-semibold leading-5 text-slate-900"
+              className="line-clamp-2 text-[15px] font-semibold leading-[1.3] tracking-[-0.01em] text-slate-900 group-hover:text-brand-800"
               title={event.title}
             >
               {event.title}
             </span>
-            <span className="mt-0.5 block truncate text-xs text-slate-500">
+            <span className="mt-1 block truncate text-xs text-slate-500" title={where || undefined}>
               {event.city && <span className="font-medium text-slate-600">{event.city}</span>}
               {event.city && " · "}
               {place ?? <span className="italic text-slate-400">Road not identified yet</span>}
             </span>
-            <span className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
               <EventTypeLabel eventType={event.eventType} />
               {event.severity && <SeverityIndicator severity={event.severity} />}
               <span className="ml-auto">
@@ -136,18 +140,20 @@ function EventListItem({
             </span>
           </span>
         </span>
-        <span className="mt-2 block text-[11px] text-slate-400">{getTimeLine(event, now)}</span>
+        <span className="mt-2.5 block text-[11px] leading-4 text-slate-500" title={timeLine}>
+          {timeLine}
+        </span>
         {!event.mapEligible && (
-          <span className="mt-1 block text-[11px] font-medium text-amber-700">
+          <span className="mt-1 block text-[11px] font-medium leading-4 text-amber-700">
             {offMapNote(event.offMapReason)}
           </span>
         )}
         {matchedInArticle && (
-          <span className="mt-1.5 block text-[11px] font-medium text-brand-600">
+          <span className="mt-1 block text-[11px] font-medium leading-4 text-brand-600">
             Search matched the article text
           </span>
         )}
-        <span className="mt-2 flex flex-wrap items-center gap-1.5 border-t border-slate-100 pt-2">
+        <span className="mt-2.5 flex flex-wrap items-center gap-1.5 border-t border-slate-100 pt-2">
           <SourceBadge event={event} className="max-w-[9.5rem]" />
           {gis && <GisStatusBadge status={gis} />}
           {event.otherEvidence.length > 0 && (

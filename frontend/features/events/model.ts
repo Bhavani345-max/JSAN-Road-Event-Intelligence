@@ -514,6 +514,34 @@ export interface RoadEvent {
   sourceReference: string | null;
   evidence: EventEvidence | null;
   detection: EventDetection | null;
+  /** Raised by every recorded change; each value is a version in its history. */
+  version: number;
+}
+
+/**
+ * Where an event stands with its location, as the map toolbar and the filters
+ * offer it: the backend's location class, a road-network match awaiting a
+ * reviewer (GIS_PENDING), or not located at all (no geometry, or UNRESOLVED).
+ */
+export const LOCATION_STATUSES = [
+  "SOURCE_PROVIDED",
+  "GIS_RESOLVED",
+  "GIS_PENDING",
+  "APPROXIMATE",
+  "HUMAN_CORRECTED",
+  "QC_APPROVED",
+  "NOT_LOCATED",
+] as const;
+export type LocationStatus = (typeof LOCATION_STATUSES)[number];
+
+/** The event's location status; null for a located event whose source recorded no location class. */
+export function locationStatusOf(event: RoadEvent): LocationStatus | null {
+  if (!event.geometry) return "NOT_LOCATED";
+  const gis = event.detection?.gis ?? null;
+  if (gis?.applied && gis.reviewStatus === "PENDING") return "GIS_PENDING";
+  const locationClass = event.detection?.locationClass ?? null;
+  if (locationClass === "UNRESOLVED") return "NOT_LOCATED";
+  return locationClass;
 }
 
 /** An event that has been located and can be drawn on the map. */

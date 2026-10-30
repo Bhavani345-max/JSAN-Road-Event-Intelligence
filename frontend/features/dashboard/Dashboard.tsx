@@ -26,22 +26,38 @@ import {
   filterEvents,
   hasActiveFilters,
   matchesLocally,
+  setFilterCount,
+  UNCLASSIFIED,
+  withoutStaleChoices,
   type EventListView,
   type EventFilters as Filters,
+  type TypeChoice,
 } from "@/features/events/filters";
 import { LIST_STEP } from "@/features/events/api/eventRepository";
 import { useEventSearch } from "@/features/events/hooks/useEventSearch";
 import { useEvents } from "@/features/events/hooks/useEvents";
 import {
   EVENT_STATUSES,
+  EVENT_TYPES,
   isLocated,
+  LOCATION_STATUSES,
+  locationStatusOf,
+  type EventType,
+  type LocationStatus,
   type Position,
   type RoadEvent,
 } from "@/features/events/model";
-import { setCityTimeZones, setDisplayTimeZone } from "@/features/events/presentation";
+import {
+  getEventTypeColor,
+  getEventTypeLabel,
+  LOCATION_STATUS_LABELS,
+  setCityTimeZones,
+  setDisplayTimeZone,
+} from "@/features/events/presentation";
 import { computeEventStats } from "@/features/events/stats";
-import BasemapToggle from "@/features/map/components/BasemapToggle";
 import MapLegend from "@/features/map/components/MapLegend";
+import MapToolbar from "@/features/map/components/MapToolbar";
+import { DEFAULT_MAP_LAYERS, type MapLayers } from "@/features/map/layers";
 import AddEventPanel from "@/features/qc/components/AddEventPanel";
 import ReviewActions from "@/features/qc/components/ReviewActions";
 import { themeStyle, useTheme } from "@/features/theme/themes";
@@ -121,9 +137,10 @@ export default function Dashboard() {
     () => sourcesForCity(allSources, area === null ? null : { ids: area, country: city.country }),
     [allSources, area, city.country],
   );
-  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
+  const [chosenFilters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [basemap, setBasemap] = useState<Basemap>("map");
+  const [mapLayers, setMapLayers] = useState<MapLayers>(DEFAULT_MAP_LAYERS);
   // Whether the form for entering an event by hand is open.
   const [isAdding, setIsAdding] = useState(false);
   // While a reviewer corrects an event's location, map clicks choose the spot.
@@ -135,7 +152,7 @@ export default function Dashboard() {
   }, []);
   // The API's search also covers the full article text behind each event, and
   // the events the list has not loaded: its matches replace the loaded ones.
-  const serverSearch = useEventSearch(filters.search, view, cityFilter);
+  const serverSearch = useEventSearch(chosenFilters.search, view, cityFilter);
   const serverMatches = useMemo(
     () => (serverSearch ? new Set(serverSearch.events.map((event) => event.id)) : null),
     [serverSearch],
@@ -146,10 +163,52 @@ export default function Dashboard() {
   // The API classifies and filters events before counts, list rendering, or
   // map rendering. The same returned page is the source for each surface.
   const allEvents = loadedAt ? loadedEvents : NO_EVENTS;
-  const visibleEvents = useMemo(
-    () => filterEvents(serverSearch ? serverSearch.events : allEvents, filters, serverMatches),
-    [serverSearch, allEvents, filters, serverMatches],
+  const searchedEvents = serverSearch ? serverSearch.events : allEvents;
+  // One filter state for the sidebar's Filters and the map toolbar. A choice
+  // the loaded events no longer hold (another view, a reload) is left out
+  // rather than silently emptying the list; changing place resets them all.
+  const filters = useMemo(
+    () =>
+      state.status === "ready"
+        ? withoutStaleChoices(chosenFilters, searchedEvents, [
+            ...sources.map((source) => source.id),
+            ...searchedEvents.map((event) => event.source.id),
+          ])
+        : chosenFilters,
+    [state.status, chosenFilters, searchedEvents, sources],
   );
+  const visibleEvents = useMemo(
+    () => filterEvents(searchedEvents, filters, serverMatches),
+    [searchedEvents, filters, serverMatches],
+  );
+  // The toolbar's choices with how many events each would show, given every
+  // other filter: chosen ones add up to the list's count.
+  const typeOptions = useMemo(() => {
+    const counts = new Map<TypeChoice, number>();
+    for (const event of filterEvents(searchedEvents, { ...filters, eventTypes: [] }, serverMatches)) {
+      const type = event.eventType ?? UNCLASSIFIED;
+      counts.set(type, (counts.get(type) ?? 0) + 1);
+    }
+    return [...EVENT_TYPES, UNCLASSIFIED].map((type) => ({
+      value: type as TypeChoice,
+      label: type === UNCLASSIFIED ? "Unclassified" : getEventTypeLabel(type as EventType),
+      color: getEventTypeColor(type === UNCLASSIFIED ? null : (type as EventType)),
+      count: counts.get(type as TypeChoice) ?? 0,
+    }));
+  }, [searchedEvents, filters, serverMatches]);
+  const locationOptions = useMemo(() => {
+    const counts = new Map<LocationStatus, number>();
+    for (const event of filterEvents(searchedEvents, { ...filters, locations: [] }, serverMatches)) {
+      const status = locationStatusOf(event);
+      if (status) counts.set(status, (counts.get(status) ?? 0) + 1);
+    }
+    return LOCATION_STATUSES.map((status) => ({
+      value: status,
+      label: LOCATION_STATUS_LABELS[status].label,
+      tone: LOCATION_STATUS_LABELS[status].tone,
+      count: counts.get(status) ?? 0,
+    }));
+  }, [searchedEvents, filters, serverMatches]);
   // Events found only because their article text matched the search.
   const articleMatchIds = useMemo(
     () =>
@@ -246,7 +305,7 @@ export default function Dashboard() {
   return (
     // Keep the overall page fixed; only the left blue sidebar scrolls.
     <div
-      className="console-screen flex h-dvh flex-col overflow-hidden bg-white text-slate-900"
+      className="rei-app console-screen flex h-dvh flex-col overflow-hidden bg-white text-slate-900"
       style={themeStyle(theme) as CSSProperties}
     >
       <Header
@@ -384,11 +443,32 @@ export default function Dashboard() {
             cityBubbles={cityBubbles}
             onSelectCity={changeCity}
             accent={theme.palette[600]}
+            layers={mapLayers}
           />
-          <div className="pointer-events-none absolute left-3 top-3 flex flex-col items-start gap-2">
-            <div className="pointer-events-auto">
-              <BasemapToggle value={basemap} onChange={setBasemap} />
-            </div>
+          {/* Above the map's own controls (attribution, scale), below the details panel. */}
+          <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-col items-start gap-2">
+            <MapToolbar
+              basemap={basemap}
+              onBasemapChange={setBasemap}
+              layers={mapLayers}
+              onLayersChange={setMapLayers}
+              typeOptions={typeOptions}
+              selectedTypes={filters.eventTypes}
+              onTypesChange={(eventTypes) => setFilters({ ...filters, eventTypes })}
+              locationOptions={locationOptions}
+              selectedLocations={filters.locations}
+              onLocationsChange={(locations) => setFilters({ ...filters, locations })}
+              onClearAll={() => setFilters({ ...filters, eventTypes: [], locations: [] })}
+              matchCount={visibleEvents.length}
+              onMapCount={mapEvents.length}
+              otherFilterCount={
+                setFilterCount(filters) -
+                (filters.eventTypes.length > 0 ? 1 : 0) -
+                (filters.locations.length > 0 ? 1 : 0) +
+                (filters.search.trim() ? 1 : 0)
+              }
+              filtersDisabled={overview}
+            />
             <div className="hidden wide:block sideways:hidden">
               <MapLegend eventTypes={visibleTypes} overview={overview} />
             </div>

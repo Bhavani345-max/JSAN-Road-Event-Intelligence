@@ -229,6 +229,56 @@ export interface ApiEventList {
   total: number;
 }
 
+/** GET /events/analytics: counts for the Analytics page (decision 0051). */
+export interface ApiAnalytics {
+  generated_at: string;
+  time_zone: string;
+  /** What each number counts, in words. */
+  definitions: Record<string, string>;
+  totals: {
+    /** = awaiting_review + validated + closed + rejected. */
+    total: number;
+    awaiting_review: number;
+    validated: number;
+    closed: number;
+    rejected: number;
+    /** Subsets overlapping the groups. */
+    published: number;
+    in_review_queue: number;
+    gis_pending: number;
+    /** Reports merged into another event: not in `total`. */
+    merged: number;
+  };
+  by_city: { key: string; count: number }[];
+  by_category: { key: string; count: number }[];
+  by_status: { key: string; count: number }[];
+  by_location: { key: string; count: number }[];
+  by_day: { date: string; count: number }[];
+  validation_by_city: ({ key: string } & ApiStatusGroups)[];
+  by_source: ({ source_id: string; source_name: string; total: number } & ApiStatusGroups)[];
+}
+
+export interface ApiStatusGroups {
+  awaiting_review: number;
+  validated: number;
+  closed: number;
+  rejected: number;
+}
+
+/** One recorded version of an event (GET /events/{id}). */
+export interface ApiEventVersion {
+  version: number;
+  status: string;
+  change_reason: string | null;
+  changed_by: string;
+  created_at: string;
+}
+
+/** GET /events/{id}: the event with every recorded version. */
+export interface ApiEventDetail extends ApiEvent {
+  versions: ApiEventVersion[];
+}
+
 export interface ApiSource {
   source_id: string;
   source_name: string;

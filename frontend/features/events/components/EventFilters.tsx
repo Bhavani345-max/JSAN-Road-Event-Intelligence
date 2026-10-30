@@ -3,10 +3,12 @@ import { ALL, setFilterCount, UNCLASSIFIED, type EventFilters as Filters, type T
 import {
   EVENT_SEVERITIES,
   EVENT_TYPES,
+  LOCATION_STATUSES,
   type EventSeverity,
   type EventStatus,
+  type LocationStatus,
 } from "../model";
-import { EVENT_TYPE_LABELS, getSeverityLabel, getStatusLabel } from "../presentation";
+import { EVENT_TYPE_LABELS, getSeverityLabel, getStatusLabel, LOCATION_STATUS_LABELS } from "../presentation";
 
 interface EventFiltersProps {
   filters: Filters;
@@ -59,27 +61,37 @@ function FilterSelect<T extends string>({
   );
 }
 
-interface TypeMultiSelectProps {
-  value: readonly TypeChoice[];
-  onChange: (value: TypeChoice[]) => void;
+interface MultiSelectProps<T extends string> {
+  /** "Type", "Location": the box's name. */
+  label: string;
+  /** What several chosen are called: "types", "locations". */
+  plural: string;
+  choices: readonly { value: T; label: string }[];
+  value: readonly T[];
+  onChange: (value: T[]) => void;
 }
 
-/** Choose one or several event types; none chosen means every type. */
-function TypeMultiSelect({ value, onChange }: TypeMultiSelectProps) {
+const TYPE_CHOICES: { value: TypeChoice; label: string }[] = [
+  ...EVENT_TYPES.map((type) => ({ value: type, label: EVENT_TYPE_LABELS[type] })),
+  { value: UNCLASSIFIED, label: "Unclassified (no type yet)" },
+];
+const LOCATION_CHOICES = LOCATION_STATUSES.map((status) => ({
+  value: status,
+  label: LOCATION_STATUS_LABELS[status].label,
+}));
+
+/** Choose one or several values; none chosen means every one. */
+function MultiSelect<T extends string>({ label, plural, choices, value, onChange }: MultiSelectProps<T>) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
-  const choices: { value: TypeChoice; label: string }[] = [
-    ...EVENT_TYPES.map((type) => ({ value: type, label: EVENT_TYPE_LABELS[type] })),
-    { value: UNCLASSIFIED, label: "Unclassified (no type yet)" },
-  ];
-  const labelOf = (choice: TypeChoice) => choices.find((c) => c.value === choice)?.label ?? choice;
+  const labelOf = (choice: T) => choices.find((c) => c.value === choice)?.label ?? choice;
   const isSet = value.length > 0;
   const summary =
     value.length === 0
-      ? "Type: All"
+      ? `${label}: All`
       : value.length === 1
         ? labelOf(value[0])
-        : `${value.length} types`;
+        : `${value.length} ${plural}`;
 
   useEffect(() => {
     if (!open) return;
@@ -97,7 +109,7 @@ function TypeMultiSelect({ value, onChange }: TypeMultiSelectProps) {
     };
   }, [open]);
 
-  const toggle = (choice: TypeChoice) =>
+  const toggle = (choice: T) =>
     onChange(value.includes(choice) ? value.filter((c) => c !== choice) : [...value, choice]);
 
   return (
@@ -106,8 +118,8 @@ function TypeMultiSelect({ value, onChange }: TypeMultiSelectProps) {
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label="Type"
-        title={isSet ? value.map(labelOf).join(", ") : "Choose one or more event types"}
+        aria-label={label}
+        title={isSet ? value.map(labelOf).join(", ") : `Choose one or more ${plural}`}
         onClick={() => setOpen((o) => !o)}
         className={`flex h-9 w-full cursor-pointer items-center justify-between gap-1 rounded-lg px-2 text-left text-xs shadow-sm outline-none transition focus-visible:ring-2 focus-visible:ring-white/70 ${
           isSet
@@ -124,11 +136,11 @@ function TypeMultiSelect({ value, onChange }: TypeMultiSelectProps) {
         <div
           role="listbox"
           aria-multiselectable="true"
-          aria-label="Event types"
+          aria-label={label}
           className="absolute left-0 z-30 mt-1 max-h-64 w-56 overflow-y-auto rounded-lg bg-white p-1.5 text-xs text-slate-800 shadow-lg ring-1 ring-slate-900/10"
         >
           <div className="flex items-center justify-between px-1.5 pb-1 text-[11px] text-slate-500">
-            <span>{value.length === 0 ? "All types shown" : `${value.length} chosen`}</span>
+            <span>{value.length === 0 ? `All ${plural} shown` : `${value.length} chosen`}</span>
             {isSet && (
               <button
                 type="button"
@@ -253,9 +265,20 @@ export default function EventFilters({
             getLabel={(id) => sourceOptions.find((source) => source.id === id)?.name ?? id}
             onChange={(sourceId) => onChange({ ...filters, sourceId })}
           />
-          <TypeMultiSelect
+          <MultiSelect<TypeChoice>
+            label="Type"
+            plural="types"
+            choices={TYPE_CHOICES}
             value={filters.eventTypes}
             onChange={(eventTypes) => onChange({ ...filters, eventTypes })}
+          />
+          {/* The same choice as the map toolbar's location filter: one state for both. */}
+          <MultiSelect<LocationStatus>
+            label="Location"
+            plural="locations"
+            choices={LOCATION_CHOICES}
+            value={filters.locations}
+            onChange={(locations) => onChange({ ...filters, locations })}
           />
           <FilterSelect<EventStatus>
             label="Status"

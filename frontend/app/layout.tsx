@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 // Country flags (MIT), served with the console: the header's country choice.
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
+import { APPEARANCE_SCRIPT } from "@/features/theme/appearanceScript";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,10 +22,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
+    // data-theme is set by the script below before the first paint (a saved
+    // dark appearance), so the server's markup differs from it on purpose.
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: APPEARANCE_SCRIPT }} />
+      </head>
       <body className="h-full font-sans">{children}</body>
     </html>
   );

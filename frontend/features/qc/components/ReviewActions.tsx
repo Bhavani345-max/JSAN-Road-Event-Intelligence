@@ -109,6 +109,8 @@ export default function ReviewActions({
   // "Approve anyway": the reviewer's reason for overriding the unmet QC checks.
   const [forcing, setForcing] = useState(false);
   const [forceReason, setForceReason] = useState("");
+  // Folded away by the reviewer to read the details; open for every new event.
+  const [collapsed, setCollapsed] = useState(false);
   const assessment = event.detection?.severityAssessment ?? null;
 
   const review = REVIEW_ACTIONS[event.status];
@@ -190,11 +192,32 @@ export default function ReviewActions({
     <div
       role="region"
       aria-label="Human review"
-      className="max-h-[45vh] shrink-0 overflow-y-auto overscroll-contain border-t border-slate-200 bg-slate-50 px-4 py-3 [scrollbar-gutter:stable]"
+      className={`shrink-0 overscroll-contain border-t border-slate-200 bg-slate-50 px-4 [scrollbar-gutter:stable] ${
+        // A phone's details sheet is short: the review keeps a smaller share of it.
+        collapsed ? "py-2" : "max-h-[28dvh] overflow-y-auto py-3 wide:max-h-[45vh]"
+      }`}
     >
-      <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+      {/* Folding it away gives the details above the room; nothing in it is reset. */}
+      <button
+        type="button"
+        onClick={() => setCollapsed((value) => !value)}
+        aria-expanded={!collapsed}
+        className="flex w-full cursor-pointer items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-500 hover:text-slate-700"
+      >
+        <svg
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          className={`h-3 w-3 transition-transform ${collapsed ? "" : "rotate-90"}`}
+          aria-hidden="true"
+        >
+          <path d="m6 3.5 4.5 4.5L6 12.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
         Human review
-      </p>
+        {collapsed && <span className="ml-auto font-normal normal-case tracking-normal">Show actions</span>}
+      </button>
+      <div hidden={collapsed}>
       <MergeCandidates candidates={event.mergeCandidates} onDecided={onUpdated} />
       <GisReview event={event} onDecided={onUpdated} />
       {editing === "period" ? (
@@ -419,6 +442,7 @@ export default function ReviewActions({
           {error}
         </p>
       )}
+      </div>
     </div>
   );
 }

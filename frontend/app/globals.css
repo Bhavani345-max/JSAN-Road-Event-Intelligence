@@ -697,3 +697,269 @@ html:has(.console-screen) body {
    as it does on a phone held upright, and the header's PoC badge keeps only
    "PoC" so the title still shows. */
 @custom-variant sideways (@media (min-width: 40rem) and (max-height: 520px));
+
+/* ---------------------------------------------------------
+   DARK APPEARANCE (decision 0051)
+   <html data-theme="dark">, set before the first paint by the
+   root layout's script (features/theme/appearance*.ts). Only the
+   signed-in app (.rei-app) changes; the sign-in page and the map's
+   own tiles and imagery do not.
+
+   One place recolours every screen: the neutral (slate) scale and
+   the status tints are re-stepped for a navy surface (light tints
+   become dark tints, dark text becomes light text), white surfaces
+   become navy, and brand text is lightened. Inside the blue sidebar
+   the tints are text on blue, so they keep their light values there,
+   except inside its white surfaces (cards, inputs, menus).
+   Measured contrast on the card surface #111d31: muted text 5.1:1,
+   secondary 6.6:1, links 7.6:1, headings 14.5:1.
+   Generated from Tailwind's own colour values (node_modules/tailwindcss/theme.css).
+   --------------------------------------------------------- */
+
+:root[data-theme="dark"] .rei-app {
+  color-scheme: dark;
+  --rei-surface-0: #0b1424;
+  --rei-surface-1: #111d31;
+  --rei-surface-2: #182740;
+}
+
+:root[data-theme="dark"] .rei-app,
+:root[data-theme="dark"] .rei-app .rei-sidebar-scroll :is(.bg-white, [role="listbox"]) {
+  --color-slate-50: #15233a;
+  --color-slate-100: #1b2a43;
+  --color-slate-200: #273952;
+  --color-slate-300: #364a66;
+  --color-slate-400: #7d8fa9;
+  --color-slate-500: #93a3ba;
+  --color-slate-600: #aebccf;
+  --color-slate-700: #c5d0de;
+  --color-slate-800: #dbe3ec;
+  --color-slate-900: #e8eef5;
+  --color-slate-950: #f3f6fa;
+  --color-amber-50: color-mix(in oklab, oklch(76.9% 0.188 70.08) 14%, var(--rei-surface-1));
+  --color-amber-100: color-mix(in oklab, oklch(76.9% 0.188 70.08) 22%, var(--rei-surface-1));
+  --color-amber-200: color-mix(in oklab, oklch(76.9% 0.188 70.08) 40%, var(--rei-surface-1));
+  --color-amber-600: oklch(82.8% 0.189 84.429);
+  --color-amber-700: oklch(87.9% 0.169 91.605);
+  --color-amber-800: oklch(92.4% 0.12 95.746);
+  --color-amber-900: oklch(96.2% 0.059 95.617);
+  --color-emerald-50: color-mix(in oklab, oklch(69.6% 0.17 162.48) 14%, var(--rei-surface-1));
+  --color-emerald-100: color-mix(in oklab, oklch(69.6% 0.17 162.48) 22%, var(--rei-surface-1));
+  --color-emerald-200: color-mix(in oklab, oklch(69.6% 0.17 162.48) 40%, var(--rei-surface-1));
+  --color-emerald-600: oklch(76.5% 0.177 163.223);
+  --color-emerald-700: oklch(84.5% 0.143 164.978);
+  --color-emerald-800: oklch(90.5% 0.093 164.15);
+  --color-emerald-900: oklch(95% 0.052 163.051);
+  --color-sky-50: color-mix(in oklab, oklch(68.5% 0.169 237.323) 14%, var(--rei-surface-1));
+  --color-sky-100: color-mix(in oklab, oklch(68.5% 0.169 237.323) 22%, var(--rei-surface-1));
+  --color-sky-200: color-mix(in oklab, oklch(68.5% 0.169 237.323) 40%, var(--rei-surface-1));
+  --color-sky-600: oklch(74.6% 0.16 232.661);
+  --color-sky-700: oklch(82.8% 0.111 230.318);
+  --color-sky-800: oklch(90.1% 0.058 230.902);
+  --color-sky-900: oklch(95.1% 0.026 236.824);
+  --color-red-50: color-mix(in oklab, oklch(63.7% 0.237 25.331) 14%, var(--rei-surface-1));
+  --color-red-100: color-mix(in oklab, oklch(63.7% 0.237 25.331) 22%, var(--rei-surface-1));
+  --color-red-200: color-mix(in oklab, oklch(63.7% 0.237 25.331) 40%, var(--rei-surface-1));
+  --color-red-600: oklch(70.4% 0.191 22.216);
+  --color-red-700: oklch(80.8% 0.114 19.571);
+  --color-red-800: oklch(88.5% 0.062 18.334);
+  --color-red-900: oklch(93.6% 0.032 17.717);
+  --color-indigo-50: color-mix(in oklab, oklch(58.5% 0.233 277.117) 14%, var(--rei-surface-1));
+  --color-indigo-100: color-mix(in oklab, oklch(58.5% 0.233 277.117) 22%, var(--rei-surface-1));
+  --color-indigo-200: color-mix(in oklab, oklch(58.5% 0.233 277.117) 40%, var(--rei-surface-1));
+  --color-indigo-600: oklch(67.3% 0.182 276.935);
+  --color-indigo-700: oklch(78.5% 0.115 274.713);
+  --color-indigo-800: oklch(87% 0.065 274.039);
+  --color-indigo-900: oklch(93% 0.034 272.788);
+  --color-orange-50: color-mix(in oklab, oklch(70.5% 0.213 47.604) 14%, var(--rei-surface-1));
+  --color-orange-100: color-mix(in oklab, oklch(70.5% 0.213 47.604) 22%, var(--rei-surface-1));
+  --color-orange-200: color-mix(in oklab, oklch(70.5% 0.213 47.604) 40%, var(--rei-surface-1));
+  --color-orange-600: oklch(75% 0.183 55.934);
+  --color-orange-700: oklch(83.7% 0.128 66.29);
+  --color-orange-800: oklch(90.1% 0.076 70.697);
+  --color-orange-900: oklch(95.4% 0.038 75.164);
+}
+
+:root[data-theme="dark"] .rei-app .rei-sidebar-scroll {
+  --color-slate-50: oklch(98.4% 0.003 247.858);
+  --color-slate-100: oklch(96.8% 0.007 247.896);
+  --color-slate-200: oklch(92.9% 0.013 255.508);
+  --color-slate-300: oklch(86.9% 0.022 252.894);
+  --color-slate-400: oklch(70.4% 0.04 256.788);
+  --color-slate-500: oklch(55.4% 0.046 257.417);
+  --color-slate-600: oklch(44.6% 0.043 257.281);
+  --color-slate-700: oklch(37.2% 0.044 257.287);
+  --color-slate-800: oklch(27.9% 0.041 260.031);
+  --color-slate-900: oklch(20.8% 0.042 265.755);
+  --color-slate-950: oklch(12.9% 0.042 264.695);
+  --color-amber-50: oklch(98.7% 0.022 95.277);
+  --color-amber-100: oklch(96.2% 0.059 95.617);
+  --color-amber-200: oklch(92.4% 0.12 95.746);
+  --color-amber-600: oklch(66.6% 0.179 58.318);
+  --color-amber-700: oklch(55.5% 0.163 48.998);
+  --color-amber-800: oklch(47.3% 0.137 46.201);
+  --color-amber-900: oklch(41.4% 0.112 45.904);
+  --color-emerald-50: oklch(97.9% 0.021 166.113);
+  --color-emerald-100: oklch(95% 0.052 163.051);
+  --color-emerald-200: oklch(90.5% 0.093 164.15);
+  --color-emerald-600: oklch(59.6% 0.145 163.225);
+  --color-emerald-700: oklch(50.8% 0.118 165.612);
+  --color-emerald-800: oklch(43.2% 0.095 166.913);
+  --color-emerald-900: oklch(37.8% 0.077 168.94);
+  --color-sky-50: oklch(97.7% 0.013 236.62);
+  --color-sky-100: oklch(95.1% 0.026 236.824);
+  --color-sky-200: oklch(90.1% 0.058 230.902);
+  --color-sky-600: oklch(58.8% 0.158 241.966);
+  --color-sky-700: oklch(50% 0.134 242.749);
+  --color-sky-800: oklch(44.3% 0.11 240.79);
+  --color-sky-900: oklch(39.1% 0.09 240.876);
+  --color-red-50: oklch(97.1% 0.013 17.38);
+  --color-red-100: oklch(93.6% 0.032 17.717);
+  --color-red-200: oklch(88.5% 0.062 18.334);
+  --color-red-600: oklch(57.7% 0.245 27.325);
+  --color-red-700: oklch(50.5% 0.213 27.518);
+  --color-red-800: oklch(44.4% 0.177 26.899);
+  --color-red-900: oklch(39.6% 0.141 25.723);
+  --color-indigo-50: oklch(96.2% 0.018 272.314);
+  --color-indigo-100: oklch(93% 0.034 272.788);
+  --color-indigo-200: oklch(87% 0.065 274.039);
+  --color-indigo-600: oklch(51.1% 0.262 276.966);
+  --color-indigo-700: oklch(45.7% 0.24 277.023);
+  --color-indigo-800: oklch(39.8% 0.195 277.366);
+  --color-indigo-900: oklch(35.9% 0.144 278.697);
+  --color-orange-50: oklch(98% 0.016 73.684);
+  --color-orange-100: oklch(95.4% 0.038 75.164);
+  --color-orange-200: oklch(90.1% 0.076 70.697);
+  --color-orange-600: oklch(64.6% 0.222 41.116);
+  --color-orange-700: oklch(55.3% 0.195 38.402);
+  --color-orange-800: oklch(47% 0.157 37.304);
+  --color-orange-900: oklch(40.8% 0.123 38.172);
+}
+
+/* Chart roles of the Analytics page, light and dark: the status set passes
+   the palette checks in both (lightness band, chroma, colour-blind
+   separation, contrast 3:1+ on each surface). */
+.rei-app {
+  --viz-surface: #ffffff;
+  --viz-series: #0f6fa8;
+  --viz-grid: #e5e9ef;
+  --viz-axis: #c3cbd6;
+  --viz-muted: #6b7686;
+  --viz-validated: #0ca30c;
+  --viz-awaiting: #2a78d6;
+  --viz-rejected: #d03b3b;
+  --viz-closed: #9085e9;
+}
+
+:root[data-theme="dark"] .rei-app {
+  --viz-surface: #111d31;
+  --viz-series: #4ea3dc;
+  --viz-grid: #22324a;
+  --viz-axis: #3a4d68;
+  --viz-muted: #8b9bb2;
+  --viz-awaiting: #3987e5;
+}
+
+/* Surfaces: white becomes navy; the page plane sits below the cards. */
+:root[data-theme="dark"] .rei-app.bg-white,
+:root[data-theme="dark"] .rei-app .bg-white,
+:root[data-theme="dark"] .rei-app .focus\:bg-white:focus {
+  background-color: var(--rei-surface-1);
+}
+:root[data-theme="dark"] .rei-app .bg-white\/95,
+:root[data-theme="dark"] .rei-app .bg-white\/97 {
+  background-color: rgb(17 29 49 / 0.95);
+}
+:root[data-theme="dark"] .rei-app.bg-slate-50 {
+  background-color: var(--rei-surface-0);
+}
+:root[data-theme="dark"] .rei-app dialog::backdrop {
+  background-color: rgb(2 6 16 / 0.65);
+}
+
+/* Brand: text and tints lightened for the navy surface (the colour theme's own hue). */
+:root[data-theme="dark"] .rei-app :is(.text-brand-600, .text-brand-700, .text-brand-800) {
+  color: var(--color-brand-300);
+}
+:root[data-theme="dark"] .rei-app :is(.hover\:text-brand-700, .hover\:text-brand-800):hover,
+:root[data-theme="dark"] .rei-app .group:hover .group-hover\:text-brand-800 {
+  color: var(--color-brand-200);
+}
+:root[data-theme="dark"] .rei-app :is(.bg-brand-50, .hover\:bg-brand-50:hover) {
+  background-color: color-mix(in oklab, var(--color-brand-400) 18%, var(--rei-surface-1));
+}
+:root[data-theme="dark"] .rei-app .bg-brand-100 {
+  background-color: color-mix(in oklab, var(--color-brand-400) 26%, var(--rei-surface-1));
+}
+:root[data-theme="dark"] .rei-app :is(.ring-brand-100, .ring-brand-200, .ring-brand-300) {
+  --tw-ring-color: color-mix(in oklab, var(--color-brand-400) 45%, var(--rei-surface-1));
+}
+
+/* The sidebar: a deep navy in the theme's hue; its white text keeps 12:1 or more. */
+:root[data-theme="dark"] .rei-app .rei-sidebar-scroll {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--color-brand-700) 55%, #0b1424),
+    color-mix(in oklab, var(--color-brand-900) 60%, #0b1424)
+  );
+}
+
+/* Dark-on-light pairs that must stay so: chart tooltips and switch knobs. */
+:root[data-theme="dark"] .rei-app .rei-viz-tooltip {
+  background-color: #e8eef5;
+  color: #0b1424;
+}
+:root[data-theme="dark"] .rei-app .rei-switch-knob {
+  background-color: #e8eef5;
+}
+
+/* MapLibre's own controls, attribution and popups; tiles and imagery are untouched. */
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-group {
+  background-color: var(--rei-surface-1);
+  box-shadow:
+    0 1px 3px rgb(0 0 0 / 0.4),
+    0 0 0 1px rgb(255 255 255 / 0.08);
+}
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-group button + button {
+  border-top-color: #273952;
+}
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-group button:not(:disabled):hover {
+  background-color: var(--rei-surface-2);
+}
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl button .maplibregl-ctrl-icon,
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-attrib-button {
+  filter: invert(1) hue-rotate(180deg);
+}
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-scale {
+  background-color: rgb(17 29 49 / 0.8);
+  border-color: #93a3ba;
+  color: #dbe3ec;
+}
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-attrib,
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-attrib.maplibregl-compact {
+  background-color: rgb(17 29 49 / 0.85);
+  color: #aebccf;
+}
+:root[data-theme="dark"] .rei-app .maplibregl-ctrl-attrib a {
+  color: #c5d0de;
+}
+:root[data-theme="dark"] .rei-app .maplibregl-popup:not(.rei-hover-popup) .maplibregl-popup-content {
+  background-color: var(--rei-surface-1);
+  color: #dbe3ec;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.45);
+}
+:root[data-theme="dark"] .rei-app .maplibregl-popup:not(.rei-hover-popup) .maplibregl-popup-close-button {
+  color: #aebccf;
+}
+:root[data-theme="dark"] .rei-app :is(.maplibregl-popup-anchor-bottom, .maplibregl-popup-anchor-bottom-left, .maplibregl-popup-anchor-bottom-right):not(.rei-hover-popup) .maplibregl-popup-tip {
+  border-top-color: var(--rei-surface-1);
+}
+:root[data-theme="dark"] .rei-app :is(.maplibregl-popup-anchor-top, .maplibregl-popup-anchor-top-left, .maplibregl-popup-anchor-top-right):not(.rei-hover-popup) .maplibregl-popup-tip {
+  border-bottom-color: var(--rei-surface-1);
+}
+:root[data-theme="dark"] .rei-app .maplibregl-popup-anchor-left:not(.rei-hover-popup) .maplibregl-popup-tip {
+  border-right-color: var(--rei-surface-1);
+}
+:root[data-theme="dark"] .rei-app .maplibregl-popup-anchor-right:not(.rei-hover-popup) .maplibregl-popup-tip {
+  border-left-color: var(--rei-surface-1);
+}
