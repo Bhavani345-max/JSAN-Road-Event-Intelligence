@@ -70,7 +70,7 @@ export const loginEventColors = {
   MARATHON: "#16a34a",
 } as const;
 
-/** Realistic scene colours (asphalt, concrete, glass, greenery, water, vehicles, route lines). */
+/** Realistic scene colours (asphalt, concrete, glass, greenery, water, vehicles). */
 export const loginSceneColors = {
   asphalt: "#6B7583",
   minorStreet: "#A7B0BB",
@@ -84,7 +84,6 @@ export const loginSceneColors = {
   treeTrunk: "#8B6B4A",
   treeCrowns: ["#6FAE69", "#5E9F5B", "#86BE7F"],
   cars: ["#F4F6F8", "#F4F6F8", "#F4F6F8", "#C9CED4", "#C9CED4", "#3A4049", "#1F3A5F", "#B91C1C", "#2563EB"],
-  route: "#1D74E8",
 } as const;
 
 /** CSS custom properties consumed by the login-* rules in globals.css. */

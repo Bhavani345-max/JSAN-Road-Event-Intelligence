@@ -11,9 +11,8 @@ import { loginColors, loginEventColors, loginSceneColors } from "./loginTheme";
  * Decorative daylight "smart city" for the sign-in page, seen from a high,
  * almost isometric angle: white buildings with glass windows, glass towers on
  * the skyline, asphalt avenues with lane markings, a flyover and a viaduct on
- * pillars, street trees, a canal, small cars in both
- * directions, a blue route line around a closure and four map pins in the
- * console's own event colours, each with a glowing ring on the road.
+ * pillars, street trees, a canal, small cars in both directions and four map
+ * pins in the console's own event colours, each with a glowing ring on the road.
  *
  * Real 3D: all geometry, the sun/sky lighting, the shadow map (rendered once)
  * and the depth-based depth of field. Purely procedural and purely
@@ -734,29 +733,6 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     });
     scene.add(legs);
 
-    // The diversion as a GIS route line: a soft glow under a flowing core.
-    const routeColour = new THREE.Color(loginSceneColors.route);
-    scene.add(new THREE.Mesh(
-      track(createStripGeometry(network.detour, 0.7, 0.05)),
-      track(new THREE.MeshBasicMaterial({ color: routeColour, transparent: true, opacity: 0.16, depthWrite: false })),
-    ));
-    const routeMaterial = track(new THREE.ShaderMaterial({
-      uniforms: { uColor: { value: routeColour }, uTime: { value: 0 } },
-      vertexShader: quadVertexShader,
-      fragmentShader: `
-        uniform vec3 uColor; uniform float uTime; varying vec2 vUv;
-        void main() {
-          float edge = smoothstep(0.0, 0.25, vUv.y) * smoothstep(1.0, 0.75, vUv.y);
-          float flow = fract(vUv.x * 0.5 - uTime * 0.35);
-          float dash = smoothstep(0.0, 0.1, flow) * (1.0 - smoothstep(0.6, 0.7, flow));
-          gl_FragColor = vec4(mix(uColor, vec3(1.0), dash * 0.25), edge * (0.55 + 0.45 * dash));
-        }
-      `,
-      transparent: true,
-      depthWrite: false,
-    }));
-    scene.add(new THREE.Mesh(track(createStripGeometry(network.detour, 0.24, 0.07)), routeMaterial));
-
     // Map pins (sprites, always readable) over glowing rings on the road ------
     const haloGeometry = track(new THREE.PlaneGeometry(1, 1));
     haloGeometry.rotateX(-Math.PI / 2);
@@ -1017,7 +993,6 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
 
       updateCars(delta);
       placePins(elapsed);
-      routeMaterial.uniforms.uTime.value = elapsed;
 
       render();
       markReady();
