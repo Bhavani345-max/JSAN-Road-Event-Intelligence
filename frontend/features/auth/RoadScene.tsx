@@ -14,6 +14,10 @@ import { loginColors, loginEventColors, loginSceneColors } from "./loginTheme";
  * pillars, street trees, a canal, small cars in both directions and four map
  * pins in the console's own event colours, each with a glowing ring on the road.
  *
+ * Calm by design: only the cars, the pins' gentle bob and a slow camera drift
+ * move. Nothing flashes, pulses or blinks, and the flat ground layers are built
+ * so they cannot flicker (see GROUND_ORDER and vertexNormals).
+ *
  * Real 3D: all geometry, the sun/sky lighting, the shadow map (rendered once)
  * and the depth-based depth of field. Purely procedural and purely
  * illustrative: no real place and no product data.
@@ -27,12 +31,24 @@ type RoadSceneProps = {
 const SKY = new THREE.Color(loginColors.pageBackground);
 const HAZE = new THREE.Color(loginColors.sceneHaze);
 const DECK_THICKNESS = 0.6;
+/** Lowest deck top, so the ends of the ramps stay clear of the ground plane. */
+const DECK_MIN_HEIGHT = 0.06;
 const TARGET_FPS = 30;
 const IDLE_STOP_MS = 15_000;
 const ROAD_TILE = 12; // world units covered by one repeat of the asphalt texture
 const CAMERA_FOV = 34;
 const CAMERA_POSITION = new THREE.Vector3(-12, 40, 42);
 const CAMERA_TARGET = new THREE.Vector3(5, 0, -18);
+
+/**
+ * Draw order of the flat layers on the ground, bottom to top. They are painted
+ * in this order right after the ground plane and do not write depth, so where
+ * two overlap (a kerb under a crossing avenue, two avenues at a junction) the
+ * upper one always wins, at any distance and while the camera moves: no depth
+ * fighting, no flicker. Everything else keeps render order 0 and is drawn after
+ * them; their small lifts only keep them clear of the ground plane.
+ */
+const GROUND_ORDER = { ground: -7, water: -6, minorStreets: -5, parks: -4, banks: -3, kerbs: -2, avenues: -1 } as const;
 
 type Route = { line: Polyline; heights: number[] | null; cumulative: number[]; length: number; width: number };
 type Car = { route: number; distance: number; speed: number; direction: 1 | -1; lane: number };
@@ -50,40 +66,57 @@ function sideNormal(from: Point, to: Point): [number, number] {
   return [-(to.z - from.z) / length, (to.x - from.x) / length];
 }
 
+/**
+ * Side normal at every vertex of a polyline: the bisector of its two segments,
+ * lengthened on a bend (a mitre) so offset edges stay parallel to the line.
+ * Strips built on these share their edge at every vertex, so they neither
+ * overlap at a bend (overlapping pieces made the road edge lines flicker) nor
+ * open a gap. A closed polyline (the ring road) is joined at its seam too.
+ */
+function vertexNormals(line: Polyline): [number, number][] {
+  const last = line.length - 1;
+  const closed = last > 1 && Math.hypot(line[0].x - line[last].x, line[0].z - line[last].z) < 1e-6;
+  return line.map((point, index) => {
+    const previous = index > 0 ? line[index - 1] : closed ? line[last - 1] : null;
+    const next = index < last ? line[index + 1] : closed ? line[1] : null;
+    if (!previous) return sideNormal(point, next ?? point);
+    if (!next) return sideNormal(previous, point);
+    const [bx, bz] = sideNormal(previous, point);
+    const [ax, az] = sideNormal(point, next);
+    // (b + a) * 2 / |b + a|^2 is the bisector scaled by 1 / cos(half the turn), capped at 2.
+    const x = bx + ax;
+    const z = bz + az;
+    const lengthSquared = Math.max(x * x + z * z, 1);
+    return [(2 * x) / lengthSquared, (2 * z) / lengthSquared];
+  });
+}
+
 /** The polyline moved sideways by `offset` (positive = left of travel). */
 function offsetLine(line: Polyline, offset: number): Polyline {
-  return line.map((point, index) => {
-    const [nx, nz] = sideNormal(line[Math.max(0, index - 1)], line[Math.min(line.length - 1, index + 1)]);
-    return { x: point.x + nx * offset, z: point.z + nz * offset };
-  });
+  const sides = vertexNormals(line);
+  return line.map((point, index) => ({ x: point.x + sides[index][0] * offset, z: point.z + sides[index][1] * offset }));
 }
 
 /** Flat strip following a polyline; optional per-point heights (deck tops). */
 function createStripGeometry(line: Polyline, halfWidth: number, lift: number, heights: number[] | null = null): THREE.BufferGeometry {
+  const sides = vertexNormals(line);
   const positions: number[] = [];
   const normals: number[] = [];
   const uvs: number[] = [];
   const indices: number[] = [];
   let travelled = 0;
-  for (let index = 1; index < line.length; index += 1) {
-    const from = line[index - 1];
-    const to = line[index];
-    const [nx, nz] = sideNormal(from, to);
-    const length = Math.hypot(to.x - from.x, to.z - from.z);
-    const yFrom = (heights ? heights[index - 1] : 0) + lift;
-    const yTo = (heights ? heights[index] : 0) + lift;
-    const base = positions.length / 3;
-    positions.push(
-      from.x + nx * halfWidth, yFrom, from.z + nz * halfWidth,
-      from.x - nx * halfWidth, yFrom, from.z - nz * halfWidth,
-      to.x + nx * halfWidth, yTo, to.z + nz * halfWidth,
-      to.x - nx * halfWidth, yTo, to.z - nz * halfWidth,
-    );
-    normals.push(0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0);
-    uvs.push(travelled, 0, travelled, 1, travelled + length, 0, travelled + length, 1);
-    indices.push(base, base + 2, base + 1, base + 1, base + 2, base + 3);
-    travelled += length;
-  }
+  line.forEach((point, index) => {
+    if (index > 0) {
+      travelled += Math.hypot(point.x - line[index - 1].x, point.z - line[index - 1].z);
+      const base = (index - 1) * 2;
+      indices.push(base, base + 2, base + 1, base + 1, base + 2, base + 3);
+    }
+    const [nx, nz] = sides[index];
+    const y = (heights ? heights[index] : 0) + lift;
+    positions.push(point.x + nx * halfWidth, y, point.z + nz * halfWidth, point.x - nx * halfWidth, y, point.z - nz * halfWidth);
+    normals.push(0, 1, 0, 0, 1, 0);
+    uvs.push(travelled, 0, travelled, 1);
+  });
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
   geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
@@ -94,23 +127,18 @@ function createStripGeometry(line: Polyline, halfWidth: number, lift: number, he
 
 /** Thin vertical wall along a polyline edge (crash barriers). */
 function createWallGeometry(line: Polyline, offset: number, heights: number[], lift: number, height: number): THREE.BufferGeometry {
+  const sides = vertexNormals(line);
   const positions: number[] = [];
   const indices: number[] = [];
-  for (let index = 1; index < line.length; index += 1) {
-    const from = line[index - 1];
-    const to = line[index];
-    const [nx, nz] = sideNormal(from, to);
-    const base = positions.length / 3;
-    const yFrom = heights[index - 1] + lift;
-    const yTo = heights[index] + lift;
-    positions.push(
-      from.x + nx * offset, yFrom, from.z + nz * offset,
-      from.x + nx * offset, yFrom + height, from.z + nz * offset,
-      to.x + nx * offset, yTo, to.z + nz * offset,
-      to.x + nx * offset, yTo + height, to.z + nz * offset,
-    );
-    indices.push(base, base + 2, base + 1, base + 1, base + 2, base + 3);
-  }
+  line.forEach((point, index) => {
+    if (index > 0) {
+      const base = (index - 1) * 2;
+      indices.push(base, base + 2, base + 1, base + 1, base + 2, base + 3);
+    }
+    const [nx, nz] = sides[index];
+    const y = heights[index] + lift;
+    positions.push(point.x + nx * offset, y, point.z + nz * offset, point.x + nx * offset, y + height, point.z + nz * offset);
+  });
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
   geometry.setIndex(indices);
@@ -126,16 +154,18 @@ function createDeckGeometry(road: ElevatedRoad): THREE.BufferGeometry {
     positions.push(...a, ...b, ...c, ...a, ...c, ...d);
   };
   const { line, heights } = road;
+  const sides = vertexNormals(line);
   for (let index = 1; index < line.length; index += 1) {
     const from = line[index - 1];
     const to = line[index];
-    const [nx, nz] = sideNormal(from, to);
+    const [fx, fz] = sides[index - 1];
+    const [tx, tz] = sides[index];
     const topFrom = heights[index - 1];
     const topTo = heights[index];
-    const fl = [from.x + nx * half, topFrom, from.z + nz * half];
-    const fr = [from.x - nx * half, topFrom, from.z - nz * half];
-    const tl = [to.x + nx * half, topTo, to.z + nz * half];
-    const tr = [to.x - nx * half, topTo, to.z - nz * half];
+    const fl = [from.x + fx * half, topFrom, from.z + fz * half];
+    const fr = [from.x - fx * half, topFrom, from.z - fz * half];
+    const tl = [to.x + tx * half, topTo, to.z + tz * half];
+    const tr = [to.x - tx * half, topTo, to.z - tz * half];
     const flb = [fl[0], topFrom - DECK_THICKNESS, fl[2]];
     const frb = [fr[0], topFrom - DECK_THICKNESS, fr[2]];
     const tlb = [tl[0], topTo - DECK_THICKNESS, tl[2]];
@@ -261,12 +291,15 @@ function addWindows(material: THREE.MeshStandardMaterial, key: string, glass: st
         `#include <color_fragment>
         if (abs(vReiNormal.y) < 0.5) {
           float along = abs(vReiNormal.x) > 0.5 ? vReiWorld.z : vReiWorld.x;
-          float band = fract(vReiWorld.y / ${floor.toFixed(3)});
-          float col = fract(along / ${column.toFixed(3)});
+          vec2 cell = vec2(along / ${column.toFixed(3)}, vReiWorld.y / ${floor.toFixed(3)});
+          // Pane edges at least one screen pixel soft, so they do not shimmer
+          // as the camera drifts; panes too small to draw cleanly fade to their average.
+          vec2 soft = max(fwidth(cell), vec2(0.06));
+          vec2 inCell = fract(cell);
           float edge = 0.5 * (1.0 - ${cover.toFixed(3)});
-          float pane = smoothstep(edge, edge + 0.06, band) * (1.0 - smoothstep(1.0 - edge - 0.06, 1.0 - edge, band))
-            * smoothstep(edge, edge + 0.06, col) * (1.0 - smoothstep(1.0 - edge - 0.06, 1.0 - edge, col))
-            * step(0.3, vReiWorld.y);
+          vec2 open = smoothstep(vec2(edge), vec2(edge) + soft, inCell) * (1.0 - smoothstep(vec2(1.0 - edge) - soft, vec2(1.0 - edge), inCell));
+          float detail = 1.0 - smoothstep(0.2, 0.4, max(soft.x, soft.y));
+          float pane = mix(${(cover * cover).toFixed(3)}, open.x * open.y, detail) * step(0.3, vReiWorld.y);
           float fade = 1.0 - smoothstep(70.0, 125.0, length(vViewPosition));
           diffuseColor.rgb = mix(diffuseColor.rgb, uGlass, pane * fade * 0.9);
         }`,
@@ -387,20 +420,16 @@ const quadVertexShader = `
   }
 `;
 
-/** Glowing ring on the road under a pin, with a slow outward pulse. */
+/** Steady glowing ring on the road under a pin (it does not pulse). */
 const haloFragmentShader = `
   uniform vec3 uColor;
-  uniform float uTime;
-  uniform float uPhase;
   varying vec2 vUv;
   void main() {
     float r = length(vUv * 2.0 - 1.0);
     if (r > 1.0) discard;
     float disc = (1.0 - smoothstep(0.0, 0.6, r)) * 0.32;
     float ring = smoothstep(0.5, 0.57, r) * (1.0 - smoothstep(0.6, 0.68, r)) * 0.8;
-    float t = fract(uTime * 0.4 + uPhase);
-    float wave = smoothstep(t - 0.08, t, r) * (1.0 - smoothstep(t, t + 0.05, r)) * (1.0 - t) * 0.7;
-    gl_FragColor = vec4(uColor, max(disc, max(ring, wave)));
+    gl_FragColor = vec4(uColor, max(disc, ring));
   }
 `;
 
@@ -535,16 +564,28 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     const ground = new THREE.Mesh(track(new THREE.PlaneGeometry(260, 260)), standard({ color: loginColors.sceneGround, roughness: 0.95 }));
     ground.rotation.x = -Math.PI / 2;
     ground.receiveShadow = true;
+    ground.renderOrder = GROUND_ORDER.ground;
     scene.add(ground);
 
-    const river = new THREE.Mesh(track(createStripGeometry(network.river, 3.8, 0.012)), standard({ color: loginSceneColors.water, roughness: 0.25, metalness: 0.1 }));
-    river.receiveShadow = true;
-    const banks = new THREE.Mesh(
-      track(mergeGeometries([1, -1].map((side) => createStripGeometry(offsetLine(network.river, side * 4.05), 0.28, 0.02)))),
-      standard({ color: loginSceneColors.kerb }),
+    // A flat layer on the ground, painted in GROUND_ORDER without writing depth.
+    const addGroundLayer = (mesh: THREE.Mesh<THREE.BufferGeometry, THREE.Material>, order: number) => {
+      mesh.material.depthWrite = false;
+      mesh.renderOrder = order;
+      mesh.receiveShadow = true;
+      scene.add(mesh);
+    };
+
+    addGroundLayer(
+      new THREE.Mesh(track(createStripGeometry(network.river, 3.8, 0.012)), standard({ color: loginSceneColors.water, roughness: 0.25, metalness: 0.1 })),
+      GROUND_ORDER.water,
     );
-    banks.receiveShadow = true;
-    scene.add(river, banks);
+    addGroundLayer(
+      new THREE.Mesh(
+        track(mergeGeometries([1, -1].map((side) => createStripGeometry(offsetLine(network.river, side * 4.05), 0.28, 0.02)))),
+        standard({ color: loginSceneColors.kerb }),
+      ),
+      GROUND_ORDER.banks,
+    );
 
     const parkGeometry = track(new THREE.PlaneGeometry(1, 1));
     parkGeometry.rotateX(-Math.PI / 2);
@@ -554,8 +595,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
       matrix.setPosition(park.x + park.w / 2, 0.015, park.z + park.d / 2);
       parks.setMatrixAt(index, matrix);
     });
-    parks.receiveShadow = true;
-    scene.add(parks);
+    addGroundLayer(parks, GROUND_ORDER.parks);
 
     // Buildings: white massing with windows and darker bases; glass towers ---
     const blockGeometry = track(createShadedBox());
@@ -619,23 +659,29 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     // Roads: kerbs, asphalt avenues with markings, minor streets, crossings -----
     const asphaltTexture = createAsphaltTexture(rng);
     if (asphaltTexture) track(asphaltTexture);
-    const asphaltMaterial = standard({ color: 0xffffff, map: asphaltTexture, roughness: 0.95 });
-    const kerbMaterial = standard({ color: loginSceneColors.kerb });
-    const minorMaterial = standard({ color: loginSceneColors.minorStreet });
-
-    const kerbs = track(mergeGeometries(network.arterials.map((line, index) => createStripGeometry(line, network.arterialHalfWidths[index] + 0.5, 0.018 + index * 0.003))));
-    const kerbMesh = new THREE.Mesh(kerbs, kerbMaterial);
-    kerbMesh.receiveShadow = true;
-    scene.add(kerbMesh);
-    const avenues = track(mergeGeometries(network.arterials.map((line, index) => createStripGeometry(line, network.arterialHalfWidths[index], 0.03 + index * 0.003))));
-    const avenueMesh = new THREE.Mesh(avenues, asphaltMaterial);
-    avenueMesh.receiveShadow = true;
-    scene.add(avenueMesh);
-
-    const minorStreets = track(mergeGeometries(network.streets.map(([from, to]) => createStripGeometry([from, to], 0.38, 0.014))));
-    const minorMesh = new THREE.Mesh(minorStreets, minorMaterial);
-    minorMesh.receiveShadow = true;
-    scene.add(minorMesh);
+    addGroundLayer(
+      new THREE.Mesh(
+        track(mergeGeometries(network.streets.map(([from, to]) => createStripGeometry([from, to], 0.38, 0.014)))),
+        standard({ color: loginSceneColors.minorStreet }),
+      ),
+      GROUND_ORDER.minorStreets,
+    );
+    // Every kerb lies under every avenue, so no kerb shows across a junction.
+    addGroundLayer(
+      new THREE.Mesh(
+        track(mergeGeometries(network.arterials.map((line, index) => createStripGeometry(line, network.arterialHalfWidths[index] + 0.5, 0.02)))),
+        standard({ color: loginSceneColors.kerb }),
+      ),
+      GROUND_ORDER.kerbs,
+    );
+    // One draw: at a junction the later avenue is painted over the earlier one.
+    addGroundLayer(
+      new THREE.Mesh(
+        track(mergeGeometries(network.arterials.map((line, index) => createStripGeometry(line, network.arterialHalfWidths[index], 0.03)))),
+        standard({ color: 0xffffff, map: asphaltTexture, roughness: 0.95 }),
+      ),
+      GROUND_ORDER.avenues,
+    );
 
     const zebraTexture = createZebraTexture();
     if (zebraTexture) track(zebraTexture);
@@ -650,20 +696,22 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     scene.add(crossings);
 
     // Elevated roads: concrete decks, asphalt tops, barriers, pillars ---------
+    const decks = network.elevated.map((road) => ({ ...road, heights: road.heights.map((height) => Math.max(height, DECK_MIN_HEIGHT)) }));
     const concrete = standard({ color: loginSceneColors.concrete });
     const barrierMaterial = standard({ color: loginSceneColors.barrier, side: THREE.DoubleSide });
-    const deckMesh = new THREE.Mesh(track(mergeGeometries(network.elevated.map(createDeckGeometry))), concrete);
+    const deckMesh = new THREE.Mesh(track(mergeGeometries(decks.map(createDeckGeometry))), concrete);
     deckMesh.castShadow = true;
     deckMesh.receiveShadow = true;
     scene.add(deckMesh);
+    // The polygon offset keeps the asphalt in front of the concrete just under it at any distance.
     const deckTops = new THREE.Mesh(
-      track(mergeGeometries(network.elevated.map((road) => createStripGeometry(road.line, road.width / 2 - 0.3, 0.02, road.heights)))),
-      asphaltMaterial,
+      track(mergeGeometries(decks.map((road) => createStripGeometry(road.line, road.width / 2 - 0.3, 0.02, road.heights)))),
+      standard({ color: 0xffffff, map: asphaltTexture, roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }),
     );
     deckTops.receiveShadow = true;
     scene.add(deckTops);
     const barriers = new THREE.Mesh(
-      track(mergeGeometries(network.elevated.flatMap((road) => [
+      track(mergeGeometries(decks.flatMap((road) => [
         createWallGeometry(road.line, road.width / 2 - 0.12, road.heights, 0, 0.42),
         createWallGeometry(road.line, -(road.width / 2 - 0.12), road.heights, 0, 0.42),
       ]))),
@@ -675,7 +723,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     const capGeometry = track(new THREE.BoxGeometry(1, 1, 1));
     type PillarSpot = { x: number; z: number; height: number; angle: number; width: number };
     const pillarSpots: PillarSpot[] = [];
-    for (const road of network.elevated) {
+    for (const road of decks) {
       for (let index = 0; index < road.line.length; index += 2) {
         const height = road.heights[index] - DECK_THICKNESS;
         if (height < 1.1) continue;
@@ -698,7 +746,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     caps.castShadow = true;
     scene.add(pillars, caps);
 
-    // Road events: works cones, closure barrier, route line around it ---------
+    // Road events: works cones and the closure barrier ------------------------
     const closure = network.closures[0];
     const closureIndex = network.arterials[0].findIndex((point) => point === closure);
     const closureAngle = headingAt(network.arterials[0], Math.max(0, closureIndex));
@@ -736,7 +784,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     // Map pins (sprites, always readable) over glowing rings on the road ------
     const haloGeometry = track(new THREE.PlaneGeometry(1, 1));
     haloGeometry.rotateX(-Math.PI / 2);
-    type Pin = { sprite: THREE.Sprite; lift: number; phase: number; halo: THREE.ShaderMaterial };
+    type Pin = { sprite: THREE.Sprite; lift: number; phase: number };
     const pins: Pin[] = network.events.map((event, index) => {
       const texture = createPinTexture(event.type);
       if (texture) track(texture);
@@ -746,7 +794,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
       sprite.position.set(event.point.x, event.lift + 0.25, event.point.z);
       sprite.renderOrder = 10;
       const halo = track(new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(loginEventColors[event.type]) }, uTime: { value: 0 }, uPhase: { value: index * 0.27 } },
+        uniforms: { uColor: { value: new THREE.Color(loginEventColors[event.type]) } },
         vertexShader: quadVertexShader,
         fragmentShader: haloFragmentShader,
         transparent: true,
@@ -757,13 +805,10 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
       haloMesh.position.set(event.point.x, event.lift + 0.09, event.point.z);
       haloMesh.renderOrder = 5;
       scene.add(haloMesh, sprite);
-      return { sprite, lift: event.lift, phase: index * 1.3, halo };
+      return { sprite, lift: event.lift, phase: index * 1.3 };
     });
     const placePins = (elapsed: number) => {
-      for (const pin of pins) {
-        pin.sprite.position.y = pin.lift + 0.25 + Math.sin(elapsed * 1.4 + pin.phase) * 0.14;
-        pin.halo.uniforms.uTime.value = elapsed;
-      }
+      for (const pin of pins) pin.sprite.position.y = pin.lift + 0.25 + Math.sin(elapsed * 1.4 + pin.phase) * 0.14;
     };
     placePins(0);
 
@@ -777,7 +822,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     cabinGeometry.dispose();
     const routes: Route[] = [
       ...network.arterials.map((line, index) => ({ line, heights: null, cumulative: cumulativeDistances(line), length: 0, width: network.arterialHalfWidths[index] })),
-      ...network.elevated.map((road) => ({ line: road.line, heights: road.heights, cumulative: cumulativeDistances(road.line), length: 0, width: road.width / 2 - 0.3 })),
+      ...decks.map((road) => ({ line: road.line, heights: road.heights, cumulative: cumulativeDistances(road.line), length: 0, width: road.width / 2 - 0.3 })),
     ];
     for (const route of routes) route.length = route.cumulative[route.cumulative.length - 1];
     const totalLength = routes.reduce((sum, route) => sum + route.length, 0);
