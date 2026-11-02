@@ -11,7 +11,7 @@ import { loginColors, loginEventColors, loginSceneColors } from "./loginTheme";
  * Decorative daylight "smart city" for the sign-in page, seen from a high,
  * almost isometric angle: white buildings with glass windows, glass towers on
  * the skyline, asphalt avenues with lane markings, a flyover and a viaduct on
- * pillars with blue light trails, street trees, a canal, small cars in both
+ * pillars, street trees, a canal, small cars in both
  * directions, a blue route line around a closure and four map pins in the
  * console's own event colours, each with a glowing ring on the road.
  *
@@ -30,7 +30,6 @@ const HAZE = new THREE.Color(loginColors.sceneHaze);
 const DECK_THICKNESS = 0.6;
 const TARGET_FPS = 30;
 const IDLE_STOP_MS = 15_000;
-const AVENUE_HALF = 1.3;
 const ROAD_TILE = 12; // world units covered by one repeat of the asphalt texture
 const CAMERA_FOV = 34;
 const CAMERA_POSITION = new THREE.Vector3(-12, 40, 42);
@@ -389,20 +388,6 @@ const quadVertexShader = `
   }
 `;
 
-/** Faint lane line with bright streaks travelling along it (uv.x is distance in world units). */
-const trailFragmentShader = `
-  uniform vec3 uColor;
-  uniform float uTime;
-  uniform float uSpeed;
-  varying vec2 vUv;
-  void main() {
-    float across = smoothstep(0.0, 0.4, vUv.y) * smoothstep(1.0, 0.6, vUv.y);
-    float s = fract(vUv.x * 0.045 - uTime * uSpeed);
-    float streak = smoothstep(0.0, 0.015, s) * (1.0 - smoothstep(0.015, 0.4, s));
-    gl_FragColor = vec4(mix(uColor, vec3(1.0), streak * 0.35), across * (0.22 + 0.78 * streak));
-  }
-`;
-
 /** Glowing ring on the road under a pin, with a slow outward pulse. */
 const haloFragmentShader = `
   uniform vec3 uColor;
@@ -714,26 +699,6 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
     caps.castShadow = true;
     scene.add(pillars, caps);
 
-    // Light trails on the decks and the ring road (one per direction) -------
-    const trailMaterial = (colour: string, speed: number) =>
-      track(new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(colour) }, uTime: { value: 0 }, uSpeed: { value: speed } },
-        vertexShader: quadVertexShader,
-        fragmentShader: trailFragmentShader,
-        transparent: true,
-        depthWrite: false,
-        fog: false,
-      }));
-    const trailsAhead = trailMaterial(loginSceneColors.trailBlue, 0.55);
-    const trailsBack = trailMaterial(loginSceneColors.trailCyan, -0.48);
-    const ring = network.arterials[7];
-    const trailGeometry = (side: 1 | -1) =>
-      track(mergeGeometries([
-        ...network.elevated.map((road) => createStripGeometry(offsetLine(road.line, side * (road.width / 4)), 0.16, 0.07, road.heights)),
-        createStripGeometry(offsetLine(ring, side * AVENUE_HALF * 0.5), 0.12, 0.07),
-      ]));
-    scene.add(new THREE.Mesh(trailGeometry(-1), trailsAhead), new THREE.Mesh(trailGeometry(1), trailsBack));
-
     // Road events: works cones, closure barrier, route line around it ---------
     const closure = network.closures[0];
     const closureIndex = network.arterials[0].findIndex((point) => point === closure);
@@ -850,7 +815,7 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
         route += 1;
       }
       const direction: 1 | -1 = rng() < 0.5 ? -1 : 1;
-      cars.push({ route, distance: pick, speed: 2.6 + rng() * 2.2, direction, lane: routes[route].width * 0.5 });
+      cars.push({ route, distance: pick, speed: 1.3 + rng() * 1.1, direction, lane: routes[route].width * 0.5 });
     }
     const carMesh = new THREE.InstancedMesh(carGeometry, standard({ color: 0xffffff, roughness: 0.35, metalness: 0.25 }), carCount);
     const carColour = new THREE.Color();
@@ -1053,8 +1018,6 @@ export default function RoadScene({ onReady, onUnavailable }: RoadSceneProps) {
       updateCars(delta);
       placePins(elapsed);
       routeMaterial.uniforms.uTime.value = elapsed;
-      trailsAhead.uniforms.uTime.value = elapsed;
-      trailsBack.uniforms.uTime.value = elapsed;
 
       render();
       markReady();

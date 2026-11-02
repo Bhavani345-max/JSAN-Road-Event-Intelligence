@@ -84,8 +84,6 @@ export const loginSceneColors = {
   treeTrunk: "#8B6B4A",
   treeCrowns: ["#6FAE69", "#5E9F5B", "#86BE7F"],
   cars: ["#F4F6F8", "#F4F6F8", "#F4F6F8", "#C9CED4", "#C9CED4", "#3A4049", "#1F3A5F", "#B91C1C", "#2563EB"],
-  trailBlue: "#3B82F6",
-  trailCyan: "#7DD3FC",
   route: "#1D74E8",
 } as const;
 
