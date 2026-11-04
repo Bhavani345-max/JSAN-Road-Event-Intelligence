@@ -70,10 +70,16 @@ def test_commercial_providers_have_no_tier_until_approved():
     for definition in REGISTRY.values():
         if definition.source_class is SourceClass.COMMERCIAL:
             assert definition.source_tier is None, definition.source_id
-            assert definition.integration_status in (
+            # Never connected: needing access, not usable, or (TomTom since decision
+            # 0054) blocked by terms that were read and restrict REI's use.
+            blocked_by_terms = (
+                definition.integration_status is IntegrationStatus.TERMS_REVIEW_REQUIRED
+                and definition.terms_status is TermsStatus.RESTRICTED
+            )
+            assert blocked_by_terms or definition.integration_status in (
                 IntegrationStatus.REQUIRES_ACCESS,
                 IntegrationStatus.NOT_USABLE,
-            )
+            ), definition.source_id
 
 
 def test_hyderabad_sources_say_where_they_are_about():
