@@ -54,7 +54,9 @@ def test_norway_sweden_and_denmark_are_country_entries_and_norway_covers_every_s
         ("DK", "country", "Europe/Copenhagen"),
     }
     assert {"Norge", "Sverige", "Danmark"} <= {term for c in ("norway", "sweden", "denmark") for term in cities[c].scope_terms}
-    assert cities["sweden"].official_sources == () and cities["denmark"].official_sources == ()
+    # Sweden: Trafikverket, connected with the user's key later the same day (decision 0053).
+    assert cities["sweden"].official_sources == ("se-trafikverket-situations",)
+    assert cities["denmark"].official_sources == ()
     assert NORWAY.official_sources == (vegvesen.SOURCE_ID,) and NORWAY in area_of(NORWAY)
     for feature in FEED["features"]:
         position = feature["geometry"]["coordinates"]
