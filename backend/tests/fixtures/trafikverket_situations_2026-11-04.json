@@ -1,0 +1,671 @@
+{
+ "RESPONSE": {
+  "RESULT": [
+   {
+    "Situation": [
+     {
+      "CountryCode": "SE",
+      "Deleted": false,
+      "Deviation": [
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         18
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2025-04-29T08:11:36.993+02:00",
+        "EndTime": "2030-12-31T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (15.0369597049335 59.0152715312051)",
+         "Point": {
+          "WGS84": "POINT (15.0369597049335 59.0152715312051)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (15.036967356640863 59.01526200955977, 15.037097086076296 59.01509951297469)"
+         }
+        },
+        "IconId": "roadwork",
+        "Id": "SE_STA_TRISSID_1_22375059",
+        "ManagedCause": true,
+        "Message": "Tillfälliga cirkulationsplatser.   ",
+        "MessageCode": "Vägarbete",
+        "MessageCodeValue": "roadworks",
+        "MessageType": "Vägarbete",
+        "MessageTypeValue": "MaintenanceWorks",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "Väg 50",
+        "RoadNumberNumeric": 50,
+        "SeverityCode": 2,
+        "SeverityText": "Liten påverkan",
+        "StartTime": "2025-05-12T15:33:00.000+02:00",
+        "LocationDescriptor": "Väg 50 vid Åsbro, i båda riktningar.",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-05-26T15:34:13.873+02:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         18
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2025-04-29T08:11:36.993+02:00",
+        "EndTime": "2030-12-31T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (15.0369597049335 59.0152715312051)",
+         "Point": {
+          "WGS84": "POINT (15.0369597049335 59.0152715312051)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (15.036967356640863 59.01526200955977, 15.037097086076296 59.01509951297469)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_TRISSID_2_22375059",
+        "Message": "Tillfälliga cirkulationsplatser.   ",
+        "MessageCode": "Körfältsavstängningar",
+        "MessageCodeValue": "laneClosures",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "RoadOrCarriagewayOrLaneManagement",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "Väg 50",
+        "RoadNumberNumeric": 50,
+        "SeverityCode": 2,
+        "SeverityText": "Liten påverkan",
+        "StartTime": "2025-05-12T15:33:00.000+02:00",
+        "LocationDescriptor": "Väg 50 vid Åsbro, i båda riktningar.",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-05-26T15:34:13.873+02:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         18
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-05-26T15:34:13.873+02:00",
+        "EndTime": "2030-12-31T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (15.0367774697633 59.0155131618654)",
+         "Point": {
+          "WGS84": "POINT (15.0367774697633 59.0155131618654)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (15.035514156462813 59.01741255687878, 15.036959704933466 59.015271531205045, 15.038252425765496 59.01365383505288)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_SPEEDMANAGEMENTID_1_52114205",
+        "MessageCode": "Hastighetsbegränsning gäller",
+        "MessageCodeValue": "speedRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "SpeedManagement",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "Väg 50",
+        "RoadNumberNumeric": 50,
+        "StartTime": "2025-05-12T15:33:00.000+02:00",
+        "TemporaryLimit": "Rekommenderad hastighet: 50km/h",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-05-26T15:34:13.873+02:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         18
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-05-26T15:34:13.873+02:00",
+        "EndTime": "2030-12-31T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (15.0367774697633 59.0155131618654)",
+         "Point": {
+          "WGS84": "POINT (15.0367774697633 59.0155131618654)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (15.035514156462813 59.01741255687878, 15.036959704933466 59.015271531205045, 15.038252425765496 59.01365383505288)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_SPEEDMANAGEMENTID_1_52114225",
+        "MessageCode": "Hastighetsbegränsning gäller",
+        "MessageCodeValue": "speedRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "SpeedManagement",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "Väg 50",
+        "RoadNumberNumeric": 50,
+        "StartTime": "2025-05-12T15:33:00.000+02:00",
+        "TemporaryLimit": "Hastighet: 50km/h",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-05-26T15:34:13.873+02:00"
+       }
+      ],
+      "Id": "GUID90afee90-2cd8-440e-ab80-86e2ef2dd011",
+      "PublicationTime": "2026-05-26T15:34:46.673+02:00",
+      "VersionTime": "2026-05-26T15:34:13.873+02:00",
+      "ModifiedTime": "2026-05-26T13:34:47.082Z"
+     },
+     {
+      "CountryCode": "SE",
+      "Deleted": false,
+      "Deviation": [
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         2,
+         1
+        ],
+        "Creator": "Stockholms Stad",
+        "CreationTime": "2025-08-13T11:15:31.997+02:00",
+        "EndTime": "2026-12-31T00:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (18.0475031822212 59.2851782742594)",
+         "Point": {
+          "WGS84": "POINT (18.0475031822212 59.2851782742594)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (18.046021777155893 59.28439879827393, 18.0470495531826 59.285041072035455, 18.047879412635705 59.28529248554289, 18.048556401060186 59.28538005997428, 18.048782794234445 59.28544880339386, 18.049001130483628 59.28558450368196, 18.04918927019457 59.28577330153406)"
+         }
+        },
+        "IconId": "roadwork",
+        "Id": "SE_STA_TRISSID_1_5595521",
+        "ManagedCause": true,
+        "Message": "Bussens väg (kollektivkörfält) avstängd för motorfordonstrafik. Avsmalnat körfält på Huddingevägen. Gång- och cykelbana avstängd mellan busshållplats Tussmötevägen och Östberga återvinningscentral. Trafik hänvisas till Tussmötevägen och Sockenvägen.",
+        "MessageCode": "Vägarbete",
+        "MessageCodeValue": "roadworks",
+        "MessageType": "Vägarbete",
+        "MessageTypeValue": "MaintenanceWorks",
+        "RoadName": "Bussens väg",
+        "SeverityCode": 2,
+        "SeverityText": "Liten påverkan",
+        "StartTime": "2025-08-25T00:00:00.000+02:00",
+        "LocationDescriptor": "Bussens Väg i Stockholms stad i Stockholms län, i båda riktningar.",
+        "VersionTime": "2026-10-01T00:03:15.417+02:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         2,
+         1
+        ],
+        "Creator": "Stockholms Stad",
+        "CreationTime": "2025-08-13T11:15:31.997+02:00",
+        "EndTime": "2026-12-31T00:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (18.0475031822212 59.2851782742594)",
+         "Point": {
+          "WGS84": "POINT (18.0475031822212 59.2851782742594)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (18.046021777155893 59.28439879827393, 18.0470495531826 59.285041072035455, 18.047879412635705 59.28529248554289, 18.048556401060186 59.28538005997428, 18.048782794234445 59.28544880339386, 18.049001130483628 59.28558450368196, 18.04918927019457 59.28577330153406)"
+         }
+        },
+        "IconId": "roadClosed",
+        "Id": "SE_STA_TRISSID_2_5595521",
+        "Message": "Bussens väg (kollektivkörfält) avstängd för motorfordonstrafik. Avsmalnat körfält på Huddingevägen. Gång- och cykelbana avstängd mellan busshållplats Tussmötevägen och Östberga återvinningscentral. Trafik hänvisas till Tussmötevägen och Sockenvägen.",
+        "MessageCode": "Vägen avstängd",
+        "MessageCodeValue": "roadClosed",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "RoadOrCarriagewayOrLaneManagement",
+        "RoadName": "Bussens väg",
+        "SeverityCode": 2,
+        "SeverityText": "Liten påverkan",
+        "StartTime": "2025-08-25T00:00:00.000+02:00",
+        "LocationDescriptor": "Bussens Väg i Stockholms stad i Stockholms län, i båda riktningar.",
+        "VersionTime": "2026-10-01T00:03:15.417+02:00"
+       }
+      ],
+      "Id": "GUID0fbb131a-ed22-4dd5-8d41-39324dd667a2",
+      "PublicationTime": "2026-10-01T00:03:42.469+02:00",
+      "VersionTime": "2026-10-01T00:03:15.417+02:00",
+      "ModifiedTime": "2026-09-30T22:03:42.602Z"
+     },
+     {
+      "CountryCode": "SE",
+      "Deleted": false,
+      "Deviation": [
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         3
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2000-03-01T15:55:22.207+01:00",
+        "Geometry": {
+         "WGS84": "POINT (18.4463019078204 60.3405755642325)",
+         "Point": {
+          "WGS84": "POINT (18.4463019078204 60.3405755642325)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (18.44608578198353 60.340405562219594, 18.446439113579636 60.34068155794398, 18.446583701162098 60.340730381825466)"
+         }
+        },
+        "Header": "Gräsöleden",
+        "IconId": "ferryDepartureOnSchedule",
+        "Id": "SE_STA_TRISSID_1_1030734",
+        "ManagedCause": true,
+        "MessageCode": "Färja",
+        "MessageCodeValue": "ferry",
+        "MessageType": "Färjor",
+        "MessageTypeValue": "TransitInformation",
+        "RoadName": "Skatgränd",
+        "RoadNumber": "Väg 1184",
+        "RoadNumberNumeric": 1184,
+        "StartTime": "2025-08-31T10:30:59.000+02:00",
+        "LocationDescriptor": "Väg 1184 mellan Gräsöleden, Öregrund och Gräsöleden, Gräsö, i båda riktningar.",
+        "ValidUntilFurtherNotice": true,
+        "WebLink": "http://www.trafikverket.se/grasoleden",
+        "VersionTime": "2025-08-31T10:31:00.360+02:00"
+       }
+      ],
+      "Id": "GUID123804e2-dcdb-496d-811e-c5b04b61ce19",
+      "PublicationTime": "2025-08-31T10:31:12.802+02:00",
+      "VersionTime": "2025-08-31T10:31:00.360+02:00",
+      "ModifiedTime": "2025-08-31T08:31:12.886Z"
+     },
+     {
+      "CountryCode": "SE",
+      "Deleted": false,
+      "Deviation": [
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         25
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-08-20T14:48:01.007+02:00",
+        "Geometry": {
+         "WGS84": "POINT (21.2288633847083 66.3061184773804)",
+         "Point": {
+          "WGS84": "POINT (21.2288633847083 66.3061184773804)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (21.118873572898007 66.27748464010925, 21.1229910768865 66.27751690327598, 21.122906935182435 66.27916087706639, 21.132018560920283 66.27986728482071, 21.148363447386487 66.28335338572218, 21.15099240236419 66.28463433430461, 21.154953712069123 66.2894670487456, 21.155317612725433 66.2938455942213, 21.170563698220757 66.2993420904495, 21.180553400695374 66.30194190612382, 21.189169074368795 66.30356097129975, 21.193977672357097 66.30409609614215, 21.216847916178796 66.30487414930944, 21.226234022982055 66.3061587786503, 21.25032506614475 66.30422251962143, 21.263415354136978 66.30451763399837, 21.27198289333061 66.30582076894827, 21.291583883157234 66.30568170602191, 21.304441998481533 66.30504047218757, 21.31684201785611 66.30177142882789, 21.332319758813114 66.30088859109455, 21.367721129139163 66.30754630456903)"
+         }
+        },
+        "IconId": "frostDamage",
+        "Id": "SE_STA_TRISSID_1_15718401",
+        "ManagedCause": true,
+        "MessageCode": "Tjälskada",
+        "MessageCodeValue": "severeFrostDamagedRoadway",
+        "MessageType": "Hinder",
+        "MessageTypeValue": "GeneralObstruction",
+        "RoadNumber": "Väg 813",
+        "RoadNumberNumeric": 813,
+        "StartTime": "2026-08-21T06:00:00.000+02:00",
+        "LocationDescriptor": "Lakaträsk - Mårdsel",
+        "ValidUntilFurtherNotice": true,
+        "VersionTime": "2026-08-20T14:48:01.007+02:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         25
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-08-20T14:48:01.007+02:00",
+        "Geometry": {
+         "WGS84": "POINT (21.2288633847083 66.3061184773804)",
+         "Point": {
+          "WGS84": "POINT (21.2288633847083 66.3061184773804)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (21.118873572898007 66.27748464010925, 21.1229910768865 66.27751690327598, 21.122906935182435 66.27916087706639, 21.132018560920283 66.27986728482071, 21.148363447386487 66.28335338572218, 21.15099240236419 66.28463433430461, 21.154953712069123 66.2894670487456, 21.155317612725433 66.2938455942213, 21.170563698220757 66.2993420904495, 21.180553400695374 66.30194190612382, 21.189169074368795 66.30356097129975, 21.193977672357097 66.30409609614215, 21.216847916178796 66.30487414930944, 21.226234022982055 66.3061587786503, 21.25032506614475 66.30422251962143, 21.263415354136978 66.30451763399837, 21.27198289333061 66.30582076894827, 21.291583883157234 66.30568170602191, 21.304441998481533 66.30504047218757, 21.31684201785611 66.30177142882789, 21.332319758813114 66.30088859109455, 21.367721129139163 66.30754630456903)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_ROADORCARRIAGEWAYORLANEMANAGEMENTID_1_15718421",
+        "MessageCode": "Viktbegränsning gäller",
+        "MessageCodeValue": "weightRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "RoadOrCarriagewayOrLaneManagement",
+        "RoadNumber": "Väg 813",
+        "RoadNumberNumeric": 813,
+        "StartTime": "2026-08-21T06:00:00.000+02:00",
+        "TemporaryLimit": "bruttovikt 12 ton",
+        "ValidUntilFurtherNotice": true,
+        "VersionTime": "2026-08-20T14:48:01.007+02:00"
+       }
+      ],
+      "Id": "GUID866f12dd-e14a-4d71-a9f5-6f1320a75e6a",
+      "PublicationTime": "2026-08-20T14:48:20.025+02:00",
+      "VersionTime": "2026-08-20T14:48:01.007+02:00",
+      "ModifiedTime": "2026-08-20T12:48:20.128Z"
+     },
+     {
+      "CountryCode": "SE",
+      "Deleted": false,
+      "Deviation": [
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         25
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-08-20T14:47:49.797+02:00",
+        "Geometry": {
+         "WGS84": "POINT (20.9826616425196 66.2673022698409)",
+         "Point": {
+          "WGS84": "POINT (20.9826616425196 66.2673022698409)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (20.873503538942295 66.23033952837753, 20.878851484001476 66.23138459455448, 20.928979522881676 66.23744391802552, 20.932966197240766 66.23840174420809, 20.935950509471528 66.24020471452197, 20.93656945992918 66.24161214521968, 20.934073286692975 66.24898469818375, 20.937482130138324 66.25371580410601, 20.94279535140763 66.2569922512153, 20.94514874880629 66.25780757069725, 20.948892917274343 66.2582242684882, 20.960066632544454 66.25827025226396, 20.970667715497445 66.26374395017079, 20.98832681791103 66.26888590632039, 20.992664086891406 66.2689344241596, 21.006410102502155 66.26643315591662, 21.040902316879254 66.2648152613866, 21.06131713021555 66.26550054027692, 21.067846418387695 66.26503645567028, 21.073865049165303 66.26389645270469, 21.07942350054872 66.26445698036521, 21.088548858277147 66.26748210255343, 21.089666764686072 66.2742413260388, 21.091929016427866 66.27605738987968, 21.094657582971955 66.27714181389703, 21.09867522453054 66.27791370978629, 21.104818613928774 66.27834322664202, 21.118540104093285 66.2775082679188)"
+         }
+        },
+        "IconId": "frostDamage",
+        "Id": "SE_STA_TRISSID_1_15718361",
+        "ManagedCause": true,
+        "MessageCode": "Tjälskada",
+        "MessageCodeValue": "severeFrostDamagedRoadway",
+        "MessageType": "Hinder",
+        "MessageTypeValue": "GeneralObstruction",
+        "RoadNumber": "Väg 813",
+        "RoadNumberNumeric": 813,
+        "StartTime": "2026-08-21T06:00:00.000+02:00",
+        "LocationDescriptor": "Edefors - Lakaträsk",
+        "ValidUntilFurtherNotice": true,
+        "VersionTime": "2026-08-20T14:47:49.797+02:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         25
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-08-20T14:47:49.797+02:00",
+        "Geometry": {
+         "WGS84": "POINT (20.9826616425196 66.2673022698409)",
+         "Point": {
+          "WGS84": "POINT (20.9826616425196 66.2673022698409)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (20.873503538942295 66.23033952837753, 20.878851484001476 66.23138459455448, 20.928979522881676 66.23744391802552, 20.932966197240766 66.23840174420809, 20.935950509471528 66.24020471452197, 20.93656945992918 66.24161214521968, 20.934073286692975 66.24898469818375, 20.937482130138324 66.25371580410601, 20.94279535140763 66.2569922512153, 20.94514874880629 66.25780757069725, 20.948892917274343 66.2582242684882, 20.960066632544454 66.25827025226396, 20.970667715497445 66.26374395017079, 20.98832681791103 66.26888590632039, 20.992664086891406 66.2689344241596, 21.006410102502155 66.26643315591662, 21.040902316879254 66.2648152613866, 21.06131713021555 66.26550054027692, 21.067846418387695 66.26503645567028, 21.073865049165303 66.26389645270469, 21.07942350054872 66.26445698036521, 21.088548858277147 66.26748210255343, 21.089666764686072 66.2742413260388, 21.091929016427866 66.27605738987968, 21.094657582971955 66.27714181389703, 21.09867522453054 66.27791370978629, 21.104818613928774 66.27834322664202, 21.118540104093285 66.2775082679188)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_ROADORCARRIAGEWAYORLANEMANAGEMENTID_1_15718381",
+        "MessageCode": "Viktbegränsning gäller",
+        "MessageCodeValue": "weightRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "RoadOrCarriagewayOrLaneManagement",
+        "RoadNumber": "Väg 813",
+        "RoadNumberNumeric": 813,
+        "StartTime": "2026-08-21T06:00:00.000+02:00",
+        "TemporaryLimit": "bruttovikt 12 ton",
+        "ValidUntilFurtherNotice": true,
+        "VersionTime": "2026-08-20T14:47:49.797+02:00"
+       }
+      ],
+      "Id": "GUID581b8fee-36c3-475e-a5f4-a46db4a6fe0a",
+      "PublicationTime": "2026-08-20T14:48:20.141+02:00",
+      "VersionTime": "2026-08-20T14:47:49.797+02:00",
+      "ModifiedTime": "2026-08-20T12:48:20.207Z"
+     },
+     {
+      "CountryCode": "SE",
+      "Deleted": false,
+      "Deviation": [
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         21
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2024-10-15T12:16:03.553+02:00",
+        "EndTime": "2026-12-11T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (16.9203137026687 61.5955982874617)",
+         "Point": {
+          "WGS84": "POINT (16.9203137026687 61.5955982874617)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (16.915175644165046 61.61110521783632, 16.913083286130814 61.61007462133822, 16.911833885742574 61.609210817557845, 16.909167234623343 61.60675653921566, 16.909585228706067 61.605552791802566, 16.910613326183807 61.60489098065765, 16.91010762278344 61.60421710687704, 16.909074778874253 61.60366849944438, 16.908644956091525 61.60246527741831, 16.908749478782486 61.60129949280099, 16.90976542491354 61.600261690734506, 16.91039822160088 61.59975590365417, 16.911936764630305 61.59917027761664, 16.91320789375076 61.59808254207653, 16.914379190907123 61.597696800259484, 16.916850558651355 61.596298840408, 16.918850627337203 61.59572875012254, 16.920115101404257 61.59572113866006, 16.922510331709002 61.59461886133052, 16.922886366611753 61.5941629606787, 16.921967488895685 61.59336823553999, 16.921999636548488 61.59302618875209, 16.923181778266887 61.592646860848305, 16.924717902087448 61.59190711339594, 16.927416399863265 61.59150440761975, 16.929377569588773 61.591759331160326, 16.931352717058598 61.59232302801038, 16.932922428739094 61.592367735599154, 16.93455164123456 61.59217873364619, 16.93365737477648 61.59142899489559, 16.934892470813566 61.590611581907254, 16.935251725629335 61.588161979892504, 16.938502518061593 61.58666205097159, 16.939053871719718 61.58627293985644, 16.93952129787259 61.5854546989138, 16.940002263527635 61.58505841092624, 16.94096566024705 61.58454894633377, 16.94199684615499 61.584322367333776)"
+         }
+        },
+        "IconId": "roadwork",
+        "Id": "SE_STA_TRISSID_1_6922242",
+        "ManagedCause": true,
+        "Message": "Ledningsarbete. Risk för begränsad framkomlighet.",
+        "MessageCode": "Vägarbete",
+        "MessageCodeValue": "roadworks",
+        "MessageType": "Vägarbete",
+        "MessageTypeValue": "MaintenanceWorks",
+        "RoadNumber": "Väg 667",
+        "RoadNumberNumeric": 667,
+        "SeverityCode": 2,
+        "SeverityText": "Liten påverkan",
+        "StartTime": "2024-10-25T06:35:00.000+02:00",
+        "LocationDescriptor": "Väg 667 från Näset till Trafikplats Enånger (211) båda riktningarna i Gävleborgs län (X)",
+        "VersionTime": "2026-04-05T08:58:41.163+02:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         21
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-04-05T08:58:41.163+02:00",
+        "EndTime": "2026-12-11T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (16.9201680418809 61.595681152845)",
+         "Point": {
+          "WGS84": "POINT (16.9201680418809 61.595681152845)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (16.91550473737924 61.61126727340188, 16.913083286130814 61.61007462133822, 16.911833885742574 61.609210817557845, 16.909167234623343 61.60675653921566, 16.909585228706067 61.605552791802566, 16.910613326183807 61.60489098065765, 16.91010762278344 61.60421710687704, 16.909074778874253 61.60366849944438, 16.908644956091525 61.60246527741831, 16.908749478782486 61.60129949280099, 16.90976542491354 61.600261690734506, 16.91039822160088 61.59975590365417, 16.911936764630305 61.59917027761664, 16.91320789375076 61.59808254207653, 16.914379190907123 61.597696800259484, 16.916850558651355 61.596298840408, 16.918850627337203 61.59572875012254, 16.920115101404257 61.59572113866006, 16.922510331709002 61.59461886133052, 16.922886366611753 61.5941629606787, 16.921967488895685 61.59336823553999, 16.921999636548488 61.59302618875209, 16.923181778266887 61.592646860848305, 16.924717902087448 61.59190711339594, 16.927416399863265 61.59150440761975, 16.929377569588773 61.591759331160326, 16.931352717058598 61.59232302801038, 16.932922428739094 61.592367735599154, 16.93455164123456 61.59217873364619, 16.93365737477648 61.59142899489559, 16.934892470813566 61.590611581907254, 16.935251725629335 61.588161979892504, 16.938502518061593 61.58666205097159, 16.939053871719718 61.58627293985644, 16.93952129787259 61.5854546989138, 16.940002263527635 61.58505841092624, 16.94096566024705 61.58454894633377, 16.942005649132433 61.584321523821515)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_SPEEDMANAGEMENTID_1_51726365",
+        "MessageCode": "Hastighetsbegränsning gäller",
+        "MessageCodeValue": "speedRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "SpeedManagement",
+        "RoadNumber": "Väg 667",
+        "RoadNumberNumeric": 667,
+        "StartTime": "2024-10-25T06:35:00.000+02:00",
+        "TemporaryLimit": "Rekommenderad hastighet: 50km/h",
+        "VersionTime": "2026-04-05T08:58:41.163+02:00"
+       }
+      ],
+      "Id": "GUID26ac9d52-dcae-4b21-b1e6-000d3ee2d81e",
+      "PublicationTime": "2026-04-05T08:59:03.273+02:00",
+      "VersionTime": "2026-04-05T08:58:41.163+02:00",
+      "ModifiedTime": "2026-04-05T06:59:03.476Z"
+     },
+     {
+      "CountryCode": "SE",
+      "Deleted": false,
+      "Deviation": [
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         23
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2025-04-08T09:00:50.557+02:00",
+        "EndTime": "2026-11-30T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (14.5437064412221 62.945965632545)",
+         "Point": {
+          "WGS84": "POINT (14.5437064412221 62.945965632545)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (14.43955879726234 62.767432184902475, 14.450024483951445 62.778355967845165, 14.466919359005063 62.788794064352494, 14.486222170392924 62.79532196518874, 14.51005285094877 62.80100898405373, 14.51687439903667 62.80529172731163, 14.516273138675025 62.82261825748048, 14.519660683468047 62.83663246474627, 14.518544120806284 62.86257469064863, 14.522745650526666 62.872413801031456, 14.524539475103 62.89093763727307, 14.522769717113231 62.90814478902263, 14.535482114440699 62.925919242470066, 14.545145477737185 62.95074614645467, 14.553189347337412 62.95836850373744, 14.568204403222538 62.98064196068021, 14.61982688652108 62.99806662101779, 14.682815776386091 63.00579181490512, 14.731696311710728 63.01685938129739, 14.766472259386962 63.028634080629104, 14.794479094989574 63.03149216358799, 14.813421237068324 63.03897298544682, 14.831931700333193 63.056446560839404, 14.839650095435564 63.06774059913382)"
+         }
+        },
+        "IconId": "roadwork",
+        "Id": "SE_STA_TRISSID_1_7116282",
+        "ManagedCause": true,
+        "Message": "Räckesarbeten och nya anslutningsvägar utförs mellan Svenstavik och Brunflo. Trafiken regleras med trafikljus förbi arbetsområdet",
+        "MessageCode": "Vägarbete",
+        "MessageCodeValue": "roadworks",
+        "MessageType": "Vägarbete",
+        "MessageTypeValue": "MaintenanceWorks",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "E45",
+        "RoadNumberNumeric": 45,
+        "SeverityCode": 4,
+        "SeverityText": "Stor påverkan",
+        "StartTime": "2026-11-02T07:00:00.000+01:00",
+        "LocationDescriptor": "E 45 mellan Svenstavik och Brunflo, i båda riktningar.",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-11-02T07:54:42.940+01:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         23
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2025-04-08T09:00:50.557+02:00",
+        "EndTime": "2026-11-30T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (14.5437064412221 62.945965632545)",
+         "Point": {
+          "WGS84": "POINT (14.5437064412221 62.945965632545)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (14.43955879726234 62.767432184902475, 14.450024483951445 62.778355967845165, 14.466919359005063 62.788794064352494, 14.486222170392924 62.79532196518874, 14.51005285094877 62.80100898405373, 14.51687439903667 62.80529172731163, 14.516273138675025 62.82261825748048, 14.519660683468047 62.83663246474627, 14.518544120806284 62.86257469064863, 14.522745650526666 62.872413801031456, 14.524539475103 62.89093763727307, 14.522769717113231 62.90814478902263, 14.535482114440699 62.925919242470066, 14.545145477737185 62.95074614645467, 14.553189347337412 62.95836850373744, 14.568204403222538 62.98064196068021, 14.61982688652108 62.99806662101779, 14.682815776386091 63.00579181490512, 14.731696311710728 63.01685938129739, 14.766472259386962 63.028634080629104, 14.794479094989574 63.03149216358799, 14.813421237068324 63.03897298544682, 14.831931700333193 63.056446560839404, 14.839650095435564 63.06774059913382)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_TRISSID_2_7116282",
+        "Message": "Räckesarbeten och nya anslutningsvägar utförs mellan Svenstavik och Brunflo. Trafiken regleras med trafikljus förbi arbetsområdet",
+        "MessageCode": "Körfältsavstängningar",
+        "MessageCodeValue": "laneClosures",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "RoadOrCarriagewayOrLaneManagement",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "E45",
+        "RoadNumberNumeric": 45,
+        "SeverityCode": 4,
+        "SeverityText": "Stor påverkan",
+        "StartTime": "2026-11-02T07:00:00.000+01:00",
+        "LocationDescriptor": "E 45 mellan Svenstavik och Brunflo, i båda riktningar.",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-11-02T07:54:42.940+01:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "Suspended": true,
+        "CountyNo": [
+         23
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-03-26T15:09:05.600+01:00",
+        "EndTime": "2026-10-30T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (14.5437064412221 62.945965632545)",
+         "Point": {
+          "WGS84": "POINT (14.5437064412221 62.945965632545)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (14.43955879726234 62.767432184902475, 14.450024483951445 62.778355967845165, 14.466919359005063 62.788794064352494, 14.486222170392924 62.79532196518874, 14.51005285094877 62.80100898405373, 14.51687439903667 62.80529172731163, 14.516273138675025 62.82261825748048, 14.519660683468047 62.83663246474627, 14.518544120806284 62.86257469064863, 14.522745650526666 62.872413801031456, 14.524539475103 62.89093763727307, 14.522769717113231 62.90814478902263, 14.535482114440699 62.925919242470066, 14.545145477737185 62.95074614645467, 14.553189347337412 62.95836850373744, 14.568204403222538 62.98064196068021, 14.61982688652108 62.99806662101779, 14.682815776386091 63.00579181490512, 14.731696311710728 63.01685938129739, 14.766472259386962 63.028634080629104, 14.794479094989574 63.03149216358799, 14.813421237068324 63.03897298544682, 14.831931700333193 63.056446560839404, 14.839650095435564 63.06774059913382)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_SPEEDMANAGEMENTID_1_12244561",
+        "MessageCode": "Hastighetsbegränsning gäller",
+        "MessageCodeValue": "speedRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "SpeedManagement",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "Väg 45",
+        "RoadNumberNumeric": 45,
+        "StartTime": "2026-03-26T18:00:00.000+01:00",
+        "TemporaryLimit": "Rekommenderad hastighet: 50km/h",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-03-27T10:32:56.763+01:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "Suspended": true,
+        "CountyNo": [
+         23
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-03-26T15:09:05.600+01:00",
+        "EndTime": "2026-10-30T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (14.5437064412221 62.945965632545)",
+         "Point": {
+          "WGS84": "POINT (14.5437064412221 62.945965632545)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (14.43955879726234 62.767432184902475, 14.450024483951445 62.778355967845165, 14.466919359005063 62.788794064352494, 14.486222170392924 62.79532196518874, 14.51005285094877 62.80100898405373, 14.51687439903667 62.80529172731163, 14.516273138675025 62.82261825748048, 14.519660683468047 62.83663246474627, 14.518544120806284 62.86257469064863, 14.522745650526666 62.872413801031456, 14.524539475103 62.89093763727307, 14.522769717113231 62.90814478902263, 14.535482114440699 62.925919242470066, 14.545145477737185 62.95074614645467, 14.553189347337412 62.95836850373744, 14.568204403222538 62.98064196068021, 14.61982688652108 62.99806662101779, 14.682815776386091 63.00579181490512, 14.731696311710728 63.01685938129739, 14.766472259386962 63.028634080629104, 14.794479094989574 63.03149216358799, 14.813421237068324 63.03897298544682, 14.831931700333193 63.056446560839404, 14.839650095435564 63.06774059913382)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_SPEEDMANAGEMENTID_1_12244581",
+        "MessageCode": "Hastighetsbegränsning gäller",
+        "MessageCodeValue": "speedRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "SpeedManagement",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "Väg 45",
+        "RoadNumberNumeric": 45,
+        "StartTime": "2026-03-26T18:00:00.000+01:00",
+        "TemporaryLimit": "Hastighet: 60km/h",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-03-27T10:32:56.763+01:00"
+       },
+       {
+        "AffectedDirection": "Båda riktningarna",
+        "AffectedDirectionValue": "BothDirections",
+        "CountyNo": [
+         23
+        ],
+        "Creator": "Trafikverket",
+        "CreationTime": "2026-11-02T07:54:42.940+01:00",
+        "EndTime": "2026-11-30T16:00:00.000+01:00",
+        "Geometry": {
+         "WGS84": "POINT (14.5437064412221 62.945965632545)",
+         "Point": {
+          "WGS84": "POINT (14.5437064412221 62.945965632545)"
+         },
+         "Line": {
+          "WGS84": "LINESTRING (14.43955879726234 62.767432184902475, 14.450024483951445 62.778355967845165, 14.466919359005063 62.788794064352494, 14.486222170392924 62.79532196518874, 14.51005285094877 62.80100898405373, 14.51687439903667 62.80529172731163, 14.516273138675025 62.82261825748048, 14.519660683468047 62.83663246474627, 14.518544120806284 62.86257469064863, 14.522745650526666 62.872413801031456, 14.524539475103 62.89093763727307, 14.522769717113231 62.90814478902263, 14.535482114440699 62.925919242470066, 14.545145477737185 62.95074614645467, 14.553189347337412 62.95836850373744, 14.568204403222538 62.98064196068021, 14.61982688652108 62.99806662101779, 14.682815776386091 63.00579181490512, 14.731696311710728 63.01685938129739, 14.766472259386962 63.028634080629104, 14.794479094989574 63.03149216358799, 14.813421237068324 63.03897298544682, 14.831931700333193 63.056446560839404, 14.839650095435564 63.06774059913382)"
+         }
+        },
+        "IconId": "trafficMessage",
+        "Id": "SE_STA_SPEEDMANAGEMENTID_1_53415245",
+        "MessageCode": "Hastighetsbegränsning gäller",
+        "MessageCodeValue": "speedRestrictionInOperation",
+        "MessageType": "Trafikmeddelande",
+        "MessageTypeValue": "SpeedManagement",
+        "NumberOfLanesRestricted": 1,
+        "RoadNumber": "E45",
+        "RoadNumberNumeric": 45,
+        "StartTime": "2026-11-02T07:00:00.000+01:00",
+        "TemporaryLimit": "Rekommenderad hastighet: 50km/h",
+        "TrafficRestrictionType": "Körfält blockerade",
+        "VersionTime": "2026-11-02T07:54:42.940+01:00"
+       }
+      ],
+      "Id": "GUIDc44320a1-69eb-48ea-a747-d80a227b0094",
+      "PublicationTime": "2026-11-02T07:55:13.558+01:00",
+      "VersionTime": "2026-11-02T07:54:42.940+01:00",
+      "ModifiedTime": "2026-11-02T06:55:13.921Z"
+     }
+    ]
+   }
+  ]
+ }
+}

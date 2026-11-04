@@ -110,6 +110,7 @@ class IngestionService:
             official_feed_max_records=settings.official_feed_max_records,
             tfl_app_key=settings.tfl_app_key,
             gdelt_enabled=settings.gdelt_search_enabled,
+            trafikverket_api_key=settings.trafikverket_api_key,
         )
         unknown = settings.official_feeds_scheduled_source_ids - OFFICIAL_SOURCE_IDS
         if unknown:

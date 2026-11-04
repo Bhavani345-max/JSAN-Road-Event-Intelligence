@@ -1,0 +1,41 @@
+{
+  "id": "estonia",
+  "name": "Estonia",
+  "area_name": "Estonia",
+  "country": "EE",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Tallinn",
+  "language": "et",
+  "bbox": [
+    57.5,
+    21.7,
+    59.85,
+    28.25
+  ],
+  "map": {
+    "center": [
+      25.0,
+      58.6
+    ],
+    "zoom": 6.6
+  },
+  "scope_terms": [
+    "Estonia",
+    "Eesti",
+    "Tallinn",
+    "Tartu"
+  ],
+  "other_cities": [
+    "Latvia",
+    "Finland",
+    "Russia"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

@@ -33,10 +33,12 @@ from .event_factory import (
     event_id_for,
     location_from_placed,
     point_of,
+    publication_day_known,
 )
 from .keyword_classifier import ClassificationResult
 from .road_mentions import find_road_mentions
 from .stated_period import find_stated_period
+from .stated_weekday import check_stated_weekdays
 
 AI_METHOD = "ai_reading"
 # Where traffic is sent instead: never where the event is.
@@ -63,6 +65,41 @@ def is_ai_road_event(reading: AiReading | None) -> bool:
         and reading.stage == "full"
         and reading.is_road_event
         and reading.in_scope
+    )
+
+
+def check_reading_weekdays(reading: AiReading, record: RawSourceRecord, zone) -> AiReading:
+    """The reading with the model's dates checked against the weekday the article names.
+
+    Readings stored before the check existed are corrected here when their
+    events are re-derived; a reading already checked passes unchanged.
+    """
+    if not reading.period_text or reading.period_read_by != "ai":
+        return reading
+    check = check_stated_weekdays(
+        words=reading.period_text,
+        start=reading.start_time,
+        end=reading.end_time,
+        published_at=record.published_at,
+        zone=zone,
+        publication_day_known=publication_day_known(record),
+        context=(record.title, record.summary, record.content_text),
+    )
+    if check.note is None:
+        return reading
+    discarded = [*reading.discarded, check.note]
+    if check.removed:
+        return reading.model_copy(
+            update={
+                "period_text": None,
+                "period_read_by": None,
+                "start_time": None,
+                "end_time": None,
+                "discarded": discarded,
+            }
+        )
+    return reading.model_copy(
+        update={"start_time": check.start, "end_time": check.end, "discarded": discarded}
     )
 
 
@@ -115,6 +152,7 @@ def build_event_from_ai(
         ]
     )
 
+    reading = check_reading_weekdays(reading, record, city.tz if city else IST)
     if reading.period_text:
         start, end, period_text = reading.start_time, reading.end_time, reading.period_text
     else:

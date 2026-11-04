@@ -1,0 +1,36 @@
+{
+  "id": "copenhagen",
+  "name": "Copenhagen",
+  "area_name": "Københavns Kommune",
+  "country": "DK",
+  "region": "Hovedstaden",
+  "timezone": "Europe/Copenhagen",
+  "language": "da",
+  "bbox": [
+    55.6,
+    12.45,
+    55.74,
+    12.66
+  ],
+  "map": {
+    "center": [
+      12.5683,
+      55.6761
+    ],
+    "zoom": 11.2
+  },
+  "scope_terms": [
+    "Copenhagen",
+    "København"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "copenhagen-excavation-permits"
+  ],
+  "gis_sources": []
+}

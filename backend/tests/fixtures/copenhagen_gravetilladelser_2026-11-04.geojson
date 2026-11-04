@@ -1,0 +1,531 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-296a",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      12.50946647,
+      55.66342066
+     ],
+     [
+      12.51996114,
+      55.663432
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 10195,
+    "lokation": "Lyshøjgårdsvej 80 - 25",
+    "projekt_start": "21-10-26",
+    "projekt_slut": "06-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "17:00",
+    "kategori": "Brolægningsarbejder",
+    "sagsnr": 816988,
+    "gravetype": "Kørebane, Fortov",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2968",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       12.50754096,
+       55.663498
+      ],
+      [
+       12.50754498,
+       55.66337205
+      ],
+      [
+       12.50786684,
+       55.6633694
+      ],
+      [
+       12.50786081,
+       55.66349271
+      ],
+      [
+       12.50754096,
+       55.663498
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 10197,
+    "lokation": "Lyshøjgårdsvej 80 - 25",
+    "projekt_start": "21-10-26",
+    "projekt_slut": "06-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "17:00",
+    "kategori": "Brolægningsarbejder",
+    "sagsnr": 816988,
+    "gravetype": "Kørebane, Fortov",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2439",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.56299761,
+     55.6835251
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 12000,
+    "lokation": "Nørre Søgade 29",
+    "projekt_start": "05-11-26",
+    "projekt_slut": "06-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "09:00",
+    "tidspunkt_til": "14:00",
+    "kategori": "Vejbelysnings mast",
+    "sagsnr": 820721,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2438",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       12.5627321,
+       55.68351229
+      ],
+      [
+       12.56275088,
+       55.68349716
+      ],
+      [
+       12.56275356,
+       55.68350783
+      ],
+      [
+       12.5627321,
+       55.68351229
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 12001,
+    "lokation": "Nørre Søgade 29",
+    "projekt_start": "05-11-26",
+    "projekt_slut": "06-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "09:00",
+    "tidspunkt_til": "14:00",
+    "kategori": "Vejbelysnings mast",
+    "sagsnr": 820721,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2c1c",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.56656,
+     55.67850898
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 8640,
+    "lokation": "Vester Voldgade 5",
+    "projekt_start": "30-10-26",
+    "projekt_slut": "20-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "16:00",
+    "kategori": "Asfaltarbejder",
+    "sagsnr": 813187,
+    "gravetype": "Kørebane, Cykelsti",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2a63",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      12.5644078,
+      55.68492814
+     ],
+     [
+      12.56388546,
+      55.68472321
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 9675,
+    "lokation": "Nørre Søgade 9A - 17",
+    "projekt_start": "12-10-26",
+    "projekt_slut": "15-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "19:00",
+    "kategori": "Andet",
+    "sagsnr": 815779,
+    "gravetype": "Cykelsti",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-294d",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      12.54969421,
+      55.69791116
+     ],
+     [
+      12.55002834,
+      55.69821321
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 10257,
+    "lokation": "Thorsgade 66 - 68",
+    "projekt_start": "26-10-26",
+    "projekt_slut": "13-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "17:00",
+    "kategori": "Fibernet",
+    "sagsnr": 817094,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-294c",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      12.5499792,
+      55.69806911
+     ],
+     [
+      12.549945,
+      55.69803434
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 10258,
+    "lokation": "Thorsgade 66 - 68",
+    "projekt_start": "26-10-26",
+    "projekt_slut": "13-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "17:00",
+    "kategori": "Fibernet",
+    "sagsnr": 817094,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2984",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.53792195,
+     55.69602136
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 10142,
+    "lokation": "Lundtoftegade 73",
+    "projekt_start": "17-10-26",
+    "projekt_slut": "06-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "15:00",
+    "kategori": "Fjernvarme",
+    "sagsnr": 816923,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2983",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       12.53807724,
+       55.6962055
+      ],
+      [
+       12.53812504,
+       55.6962055
+      ],
+      [
+       12.53812504,
+       55.69623245
+      ],
+      [
+       12.53807724,
+       55.69623245
+      ],
+      [
+       12.53807724,
+       55.6962055
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 10143,
+    "lokation": "Lundtoftegade 73",
+    "projekt_start": "17-10-26",
+    "projekt_slut": "06-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "15:00",
+    "kategori": "Fjernvarme",
+    "sagsnr": 816923,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2982",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       12.53817715,
+       55.69605471
+      ],
+      [
+       12.53821698,
+       55.69605471
+      ],
+      [
+       12.53821698,
+       55.69607717
+      ],
+      [
+       12.53817715,
+       55.69607717
+      ],
+      [
+       12.53817715,
+       55.69605471
+      ]
+     ]
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 10145,
+    "lokation": "Lundtoftegade 73",
+    "projekt_start": "17-10-26",
+    "projekt_slut": "06-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "15:00",
+    "kategori": "Fjernvarme",
+    "sagsnr": 816923,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2c32",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.6104,
+     55.65444431
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 8561,
+    "lokation": "Amagerbrogade 160",
+    "projekt_start": "01-10-26",
+    "projekt_slut": "28-02-27",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "23:30",
+    "kategori": "Asfaltarbejder",
+    "sagsnr": 813056,
+    "gravetype": "Fortov",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2cc1",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.54060149,
+     55.6393814
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 8151,
+    "lokation": "Bådehavnsgade 57",
+    "projekt_start": "26-10-26",
+    "projekt_slut": "22-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "16:30",
+    "kategori": "Fjernvarme",
+    "sagsnr": 812009,
+    "gravetype": "P-Areal, Fortov",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-22a8",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.58397679,
+     55.63907713
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 161715,
+    "lokation": "Ørestads Boulevard 31B",
+    "projekt_start": "01-07-28",
+    "projekt_slut": "08-07-28",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "06:30",
+    "tidspunkt_til": "18:00",
+    "kategori": "Andet",
+    "sagsnr": 782980,
+    "gravetype": "Kørebane",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-244a",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.63276201,
+     55.65062329
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 11981,
+    "lokation": "Engvej 118",
+    "projekt_start": "30-10-26",
+    "projekt_slut": "05-11-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "07:00",
+    "tidspunkt_til": "16:00",
+    "kategori": "Brolægningsarbejder",
+    "sagsnr": 821082,
+    "gravetype": "Fortov",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gravetilladelser_aktiv_aabne.fid--11d80a7a_1a1a6306c11_-2641",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     12.60414049,
+     55.65914295
+    ]
+   },
+   "geometry_name": "wkb_geometry",
+   "properties": {
+    "ogc_fid": 11406,
+    "lokation": "Tingvej 17",
+    "projekt_start": "09-11-26",
+    "projekt_slut": "22-12-26",
+    "sagstype": "Gravetilladelser",
+    "tidspunkt_fra": "00:00",
+    "tidspunkt_til": "00:00",
+    "kategori": "Andet",
+    "sagsnr": 819499,
+    "gravetype": "Kørebane, P-Areal, Fortov",
+    "bygherre": "[developer]",
+    "entreprenoer": "[contractor]"
+   }
+  }
+ ],
+ "totalFeatures": 16,
+ "numberMatched": 16,
+ "numberReturned": 16,
+ "timeStamp": "2026-11-04T10:57:08.562Z",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4326"
+  }
+ }
+}

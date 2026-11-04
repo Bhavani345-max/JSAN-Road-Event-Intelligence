@@ -1,0 +1,35 @@
+{
+  "id": "brazil",
+  "name": "Brazil",
+  "area_name": "Brazil",
+  "country": "BR",
+  "level": "country",
+  "region": "National",
+  "timezone": "America/Sao_Paulo",
+  "language": "pt",
+  "bbox": [
+    -33.76,
+    -74.0,
+    5.28,
+    -32.38
+  ],
+  "map": {
+    "center": [
+      -51.9,
+      -14.2
+    ],
+    "zoom": 3.6
+  },
+  "scope_terms": [
+    "Brazil",
+    "Brasil"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

@@ -49,6 +49,7 @@ from services.ai_reading import (
 )
 from services.ai_reading.reading import DEFAULT_CONFIG_PATH
 from services.extraction.ai_event import ROUTE_ROLES, resolve_place
+from services.extraction.event_factory import publication_day_known
 
 logger = logging.getLogger(__name__)
 
@@ -306,6 +307,7 @@ class AiReadingService:
                         body=record.content_text,
                         published_at=record.published_at,
                         city=tools[2],
+                        publication_day_known=publication_day_known(record),
                     ),
                     tools,
                 )

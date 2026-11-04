@@ -1,0 +1,35 @@
+{
+  "id": "denmark",
+  "name": "Denmark",
+  "area_name": "Denmark",
+  "country": "DK",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Copenhagen",
+  "language": "da",
+  "bbox": [
+    54.5,
+    8.0,
+    57.8,
+    15.25
+  ],
+  "map": {
+    "center": [
+      10.4,
+      56.0
+    ],
+    "zoom": 6.2
+  },
+  "scope_terms": [
+    "Denmark",
+    "Danmark"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

@@ -32,7 +32,8 @@ def test_the_connected_official_feeds_can_be_named():
     # eleven US WZDx feeds, Tokushima, Brussels and Hamburg since 16 October 2026 (0034).
     # + Austin and SFMTA work zones, and 20 more feeds in six countries (21 October 2026, 0039, 0040).
     # + Málaga's traffic cuts (22 October 2026).
-    assert len(OFFICIAL_SOURCE_IDS) == 53
+    # + Norway, Copenhagen and Sweden (4 November 2026, decision 0053).
+    assert len(OFFICIAL_SOURCE_IDS) == 56
     assert {TFL, TORONTO, "nyc-street-closures", "finland-digitraffic-road-events"} <= OFFICIAL_SOURCE_IDS
     # Removed for giving no location (decision 0029): not an official feed to schedule.
     assert not OFFICIAL_SOURCE_IDS & {
@@ -63,7 +64,11 @@ def test_naming_a_news_restricted_or_removed_source_schedules_nothing():
 
 def test_the_switch_for_every_feed_still_schedules_them_all():
     feeds = official(registered_sources(official_feeds_scheduled=True))
-    assert all(d.active for d in feeds.values()) and len(feeds) == 53
+    # Sweden's feed needs its key: without it, it is never scheduled (decision 0053).
+    assert {source_id for source_id, d in feeds.items() if not d.active} == {"se-trafikverket-situations"}
+    assert len(feeds) == 56
+    with_key = official(registered_sources(official_feeds_scheduled=True, trafikverket_api_key="k"))
+    assert all(d.active for d in with_key.values())
 
 
 def test_the_setting_is_a_comma_separated_list():

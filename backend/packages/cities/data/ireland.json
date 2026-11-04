@@ -1,0 +1,41 @@
+{
+  "id": "ireland",
+  "name": "Ireland",
+  "area_name": "Republic of Ireland",
+  "country": "IE",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Dublin",
+  "language": "en",
+  "bbox": [
+    51.35,
+    -10.7,
+    55.45,
+    -5.95
+  ],
+  "map": {
+    "center": [
+      -8.0,
+      53.4
+    ],
+    "zoom": 6.2
+  },
+  "scope_terms": [
+    "Ireland",
+    "Éire",
+    "Republic of Ireland",
+    "Dublin",
+    "Cork"
+  ],
+  "other_cities": [
+    "Northern Ireland",
+    "Belfast"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

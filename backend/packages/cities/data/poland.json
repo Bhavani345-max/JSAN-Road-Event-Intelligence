@@ -1,0 +1,44 @@
+{
+  "id": "poland",
+  "name": "Poland",
+  "area_name": "Poland",
+  "country": "PL",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Warsaw",
+  "language": "pl",
+  "bbox": [
+    49.0,
+    14.1,
+    54.9,
+    24.2
+  ],
+  "map": {
+    "center": [
+      19.4,
+      52.0
+    ],
+    "zoom": 5.6
+  },
+  "scope_terms": [
+    "Poland",
+    "Polska",
+    "Warsaw",
+    "Warszawa"
+  ],
+  "other_cities": [
+    "Germany",
+    "Czechia",
+    "Slovakia",
+    "Ukraine",
+    "Belarus",
+    "Lithuania"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

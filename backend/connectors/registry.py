@@ -21,6 +21,7 @@ from .api.serper_news import SerperNewsConnector, searched_cities, serper_news_s
 from .base import SourceConnector
 from .discovered import DISCOVERED_SOURCES
 from .discovered_2026_10_15 import DISCOVERED_2026_10_15
+from .discovered_2026_11_04 import DISCOVERED_2026_11_04
 from .discovery.gdelt import GdeltConnector, gdelt_source
 from .discovery.google_news_rss import GoogleNewsRssConnector, google_news_rss_source
 from .official import (
@@ -93,6 +94,9 @@ from .official.ndw import (
     ndw_planned_source,
 )
 from .official.cita import CitaTrafficEventsConnector, cita_source
+from .official.norway_vegvesen import VegvesenSituationsConnector, vegvesen_source
+from .official.copenhagen_excavation import CopenhagenExcavationPermitsConnector, copenhagen_source
+from .official.trafikverket import TrafikverketSituationsConnector, trafikverket_source
 from .restricted import RESTRICTED_PUBLISHERS
 from .rss import create_rss_connector
 from .rss.models import awaiting_permission, restricted_by_terms
@@ -277,6 +281,7 @@ def _official_sources(
     max_records: int | None,
     tfl_app_key: str | None,
     chosen: frozenset[str] = frozenset(),
+    trafikverket_api_key: str | None = None,
 ) -> tuple[RegisteredSource, ...]:
     """Connected official/open-data sources; scheduled or run by hand.
 
@@ -334,6 +339,9 @@ def _official_sources(
             (ndw_current_source, NdwCurrentSituationsConnector),
             (ndw_planned_source, NdwPlannedWorksConnector),
             (cita_source, CitaTrafficEventsConnector),
+            # 4 November 2026 (decision 0053): Norway (Statens vegvesen) and Denmark (Copenhagen).
+            (vegvesen_source, VegvesenSituationsConnector),
+            (copenhagen_source, CopenhagenExcavationPermitsConnector),
         )
         if (definition := _scheduled_if_chosen(make, scheduled, chosen))
     )
@@ -373,12 +381,25 @@ def _official_sources(
             finland,
             lambda user_agent: FinlandDigitrafficConnector(finland, user_agent),
         ),
+        _trafikverket(scheduled, chosen, trafikverket_api_key),
     ) + tuple(
         RegisteredSource(
             definition,
             lambda user_agent, definition=definition, connector=connector: connector(definition, user_agent),
         )
         for definition, connector in feature_feeds
+    )
+
+
+def _trafikverket(scheduled: bool, chosen: frozenset[str], api_key: str | None) -> RegisteredSource:
+    """Sweden (decision 0053): connected only with TRAFIKVERKET_API_KEY; listed as
+    needing access, and never fetched, without it."""
+    if not api_key:
+        return RegisteredSource(trafikverket_source(scheduled=False, connected=False))
+    definition = _scheduled_if_chosen(partial(trafikverket_source, connected=True), scheduled, chosen)
+    return RegisteredSource(
+        definition,
+        lambda user_agent: TrafikverketSituationsConnector(definition, user_agent, api_key=api_key),
     )
 
 
@@ -391,6 +412,7 @@ def registered_sources(
     official_feed_max_records: int | None = None,
     tfl_app_key: str | None = None,
     gdelt_enabled: bool = False,
+    trafikverket_api_key: str | None = None,
 ) -> tuple[RegisteredSource, ...]:
     """Every source REI knows about, given the credentials and switches configured.
 
@@ -424,6 +446,7 @@ def registered_sources(
             tfl_app_key,
             official_feeds_scheduled_sources,
             gdelt_enabled,
+            trafikverket_api_key,
         )
     )
 
@@ -456,6 +479,7 @@ def _registered_rest(
     tfl_app_key: str | None,
     official_feeds_scheduled_sources: Collection[str],
     gdelt_enabled: bool,
+    trafikverket_api_key: str | None = None,
 ) -> tuple[RegisteredSource, ...]:
     return (
         _official_sources(
@@ -463,13 +487,14 @@ def _registered_rest(
             official_feed_max_records or None,
             tfl_app_key,
             frozenset(official_feeds_scheduled_sources),
+            trafikverket_api_key,
         )
         + _google_news_rss_sources(google_news_rss_enabled)
         + _gdelt_sources(gdelt_enabled)
         + (RegisteredSource(MANUAL_ENTRY),)
         + tuple(
             RegisteredSource(definition)
-            for definition in DISCOVERED_SOURCES + DISCOVERED_2026_10_15
+            for definition in DISCOVERED_SOURCES + DISCOVERED_2026_10_15 + DISCOVERED_2026_11_04
         )
     )
 

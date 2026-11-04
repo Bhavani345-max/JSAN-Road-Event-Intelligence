@@ -1,0 +1,42 @@
+{
+  "id": "latvia",
+  "name": "Latvia",
+  "area_name": "Latvia",
+  "country": "LV",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Riga",
+  "language": "lv",
+  "bbox": [
+    55.65,
+    20.95,
+    58.1,
+    28.25
+  ],
+  "map": {
+    "center": [
+      24.6,
+      56.9
+    ],
+    "zoom": 6.5
+  },
+  "scope_terms": [
+    "Latvia",
+    "Latvija",
+    "Riga",
+    "Rīga"
+  ],
+  "other_cities": [
+    "Estonia",
+    "Lithuania",
+    "Russia",
+    "Belarus"
+  ],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

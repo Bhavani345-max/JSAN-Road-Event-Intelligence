@@ -18,17 +18,22 @@ Nothing here deletes anything:
 from dataclasses import dataclass, field
 from datetime import datetime
 
+from sqlalchemy import String, cast, select
 from sqlalchemy.orm import Session
 
 from app.models import Event, SourceArtifact
+from app.services.ingestion_service import UnknownSource
 from app.services.reprocess_service import (
     AI_CHANGED_BY,
     CHANGED_BY,
     SUPERSEDED_KEY,
+    ai_reading_of,
+    record_from_artifact,
     rederive_artifact,
 )
-from packages.common.time import utc_now
+from packages.common.time import IST, utc_now
 from packages.event_schema import EventStatus
+from services.extraction.ai_event import AI_METHOD, check_reading_weekdays
 
 # The keyword fields of classification_details, kept with a superseded reading.
 _KEYWORD_FIELDS = ("method", "classifier_version", "score", "matched_keywords", "in_scope_city", "relevant_by")
@@ -150,4 +155,70 @@ def reject_again(session: Session, event_ids: list[str], *, reason: str) -> Corr
         row.updated_at = utc_now()
         events.record_version(row, change_reason=reason, changed_by=CHANGED_BY)
         result.changed.append(event_id)
+    return result
+
+
+# --- AI dates against the weekday the article names (4 November 2026) -----------------
+
+
+def readings_with_wrong_weekdays(session: Session, service) -> list[tuple[SourceArtifact, Event | None, str]]:
+    """Stored AI readings whose model dates miss the weekday the article names,
+    with the article's event (if any) and the note the check gives.
+
+    Only readings whose dates the model gave are looked at (`period_read_by`
+    "ai"); REI's own date rules never count weekdays.
+    """
+    query = select(SourceArtifact).where(
+        cast(SourceArtifact.classification_details, String).like('%"period_read_by": "ai"%')
+    )
+    found = []
+    for artifact in session.scalars(query):
+        reading = ai_reading_of(artifact)
+        if reading is None or reading.period_read_by != "ai" or not reading.period_text:
+            continue
+        try:
+            _, _, city = service.tools_for_source(artifact.source_id)
+        except UnknownSource:
+            continue
+        record = record_from_artifact(artifact, service.rebuild_for_source(artifact.source_id))
+        checked = check_reading_weekdays(reading, record, city.tz if city else IST)
+        if checked is reading:
+            continue
+        row = session.scalars(select(Event).where(Event.source_artifact_id == artifact.artifact_id)).first()
+        found.append((artifact, row, checked.discarded[-1]))
+    return found
+
+
+def recheck_weekdays(session: Session, service, *, reason: str) -> CorrectionResult:
+    """Re-derive the events of `readings_with_wrong_weekdays`, each change a new version.
+
+    The stored reading is left as the model gave it; the event takes the
+    checked dates and the note. An event a person has touched is never changed.
+    """
+    result = CorrectionResult()
+    for artifact, row, _ in readings_with_wrong_weekdays(session, service):
+        if row is None:
+            result.skipped[artifact.artifact_id] = "the article has no event"
+            continue
+        if (row.detection or {}).get("method") != AI_METHOD:
+            # Its dates are REI's own rules', not the model's: nothing to correct.
+            result.skipped[row.event_id] = "the event's dates are not the model's"
+            continue
+        classifier, resolver, city = service.tools_for_source(artifact.source_id)
+        outcome, _ = rederive_artifact(
+            session,
+            artifact,
+            row,
+            classifier=classifier,
+            resolver=resolver,
+            city=city,
+            rebuild=service.rebuild_for_source(artifact.source_id),
+            reason=reason,
+            changed_by=AI_CHANGED_BY,
+            placer=service.placer_for_source(artifact.source_id),
+        )
+        if outcome == "updated":
+            result.changed.append(row.event_id)
+        else:
+            result.skipped[row.event_id] = f"re-derivation gave {outcome!r}"
     return result

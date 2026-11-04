@@ -27,6 +27,7 @@ from packages.cities import City
 from packages.common.time import IST, end_of_day, start_of_day
 from packages.event_schema import AiPlace, AiReading, EventType
 from services.extraction.stated_period import find_stated_period
+from services.extraction.stated_weekday import check_stated_weekdays
 
 DEFAULT_CONFIG_PATH = Path(__file__).parent / "config" / "ai_reading.json"
 
@@ -86,6 +87,9 @@ class ArticleText:
     body: str | None
     published_at: datetime | None
     city: City
+    # Whether `published_at` is the publisher's own, so a day can be counted
+    # from it (services/extraction/event_factory.publication_day_known).
+    publication_day_known: bool = True
 
     def fields(self) -> list[tuple[str, str]]:
         return [
@@ -437,7 +441,21 @@ def _period(value, article: ArticleText, discarded: list[str]) -> _Period | None
     if start and end and end < start:
         discarded.append("the model's end date is before its start date")
         return None
-    return _Period(text=quote, read_by="ai", start=start, end=end)
+    # The weekday the article names wins over the model's counting.
+    weekdays = check_stated_weekdays(
+        words=quote,
+        start=start,
+        end=end,
+        published_at=article.published_at,
+        zone=zone,
+        publication_day_known=article.publication_day_known,
+        context=(article.title, article.summary, article.body),
+    )
+    if weekdays.note:
+        discarded.append(weekdays.note)
+    if weekdays.removed:
+        return None
+    return _Period(text=quote, read_by="ai", start=weekdays.start, end=weekdays.end)
 
 
 ScopeCheck = Callable[[ArticleText, AiReading], bool]

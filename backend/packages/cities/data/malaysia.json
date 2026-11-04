@@ -1,0 +1,34 @@
+{
+  "id": "malaysia",
+  "name": "Malaysia",
+  "area_name": "Malaysia",
+  "country": "MY",
+  "level": "country",
+  "region": "National",
+  "timezone": "Asia/Kuala_Lumpur",
+  "language": "ms",
+  "bbox": [
+    0.85,
+    99.6,
+    7.42,
+    119.3
+  ],
+  "map": {
+    "center": [
+      109.5,
+      4.2
+    ],
+    "zoom": 5.2
+  },
+  "scope_terms": [
+    "Malaysia"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

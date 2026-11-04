@@ -73,6 +73,9 @@ class Settings(BaseSettings):
     official_feed_max_records: int = 0
     # Optional TfL app key: raises TfL's limit from 50 to 500 requests a minute.
     tfl_app_key: str | None = None
+    # Trafikverket's API key (Sweden, decision 0053): free after registration at
+    # https://data.trafikverket.se/get-started. Without it Sweden's feed is not fetched.
+    trafikverket_api_key: str | None = None
     # After each ingestion run, compare the new events with the city's open
     # events: merge clear duplicates, record possible matches for review.
     event_matching_after_ingestion: bool = True
