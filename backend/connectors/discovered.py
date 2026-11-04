@@ -398,7 +398,14 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
     # --- Commercial traffic data providers ----------------------------------
     SourceDefinition(
         source_id="tomtom-traffic-incidents",
-        source_class=SourceClass.COMMERCIAL, cost_category=CostCategory.FREE_WITH_LIMITS, rate_limit="2,500 requests a month on the free plan, as listed in the API documentation on 2 October 2026", provides_geometry=True, provides_direction=True, real_time=True, commercial_use=CommercialUse.CONTRACT_REQUIRED,
+        source_class=SourceClass.COMMERCIAL, cost_category=CostCategory.FREE_WITH_LIMITS, rate_limit="Free daily limits on the free plan (TomTom terms, clause 8)", provides_geometry=True, provides_direction=True, real_time=True, commercial_use=CommercialUse.CONTRACT_REQUIRED,
+        terms_status=TermsStatus.RESTRICTED,
+        licence=(
+            "TomTom developer terms (docs.tomtom.com/legal/terms-and-conditions, read 4 November 2026): "
+            "11.4 'The caching or storing of any Results shall be prohibited' (client caching within the "
+            "cache-control max-age only); 11.6.1 no 'secondary or derived database'; 2.2 without a paid "
+            "plan, 'Evaluation Use only' (internal evaluation and testing)"
+        ),
         source_name="TomTom Traffic Incidents API",
         organization="TomTom",
         authority_type="COMMERCIAL",
@@ -409,10 +416,14 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
         notes=(
             "Incidents with geometry, category (road closed, road works, flooding, "
             "jam, accident, …), start and end times; planned incidents can be "
-            "requested. India is listed in the coverage table; coverage and quality "
-            "for Hyderabad have not been tested. The free allowance listed for this "
-            "API is 2,500 requests a month. Storage and redistribution terms have "
-            "not been reviewed. No tier assigned: it is not yet an approved source."
+            "requested. The user gave a free key on 4 November 2026. An evaluation "
+            "that day (counts only, nothing stored), road events in force or planned, "
+            "jams and weather left out: Warsaw 164, Tallinn 49, Riga 58, Dublin 59, "
+            "São Paulo 239, Kuala Lumpur 62. Not connected: TomTom's terms forbid "
+            "storing results and building a derived database, which is what REI's "
+            "ingestion does, and the free key is for internal evaluation only. "
+            "Connecting needs a written TomTom licence that permits storing incidents "
+            "and showing them to REI's users. No tier assigned: not an approved source."
         ),
     ),
     SourceDefinition(
@@ -441,11 +452,21 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
         source_url="https://www.mappls.com/",
         access_method="Commercial APIs under contract",
         integration_status=S.REQUIRES_ACCESS,
+        terms_status=TermsStatus.RESTRICTED,
+        licence=(
+            "Mappls API terms (about.mappls.com/api/terms-&-conditions, read 4 November 2026): §3 no "
+            "commercial applications 'without paying a fee', no derivative product, no co-mingling with "
+            "maps from any other party unless agreed in writing; §7 no Mappls Search content on a "
+            "non-Mappls map; §11 map data is Confidential Information; §4/§10 'Powered by Mappls' logo"
+        ),
         notes=(
             "Advertises real-time incident and road-closure data, including closures "
-            "supplied by traffic police in some cities. No public documentation of "
-            "an incidents API, and no evidence of Hyderabad coverage, was found. "
-            "No tier assigned."
+            "supplied by traffic police in some cities. On 4 November 2026 (the user has a "
+            "Mappls console account): the public REST APIs (github.com/mappls-api/"
+            "mappls-rest-apis, 26 + reserved) have no incidents, events or closures API; "
+            "closures only feed its routing ('route_traffic'). A key alone gives no road "
+            "events, and the terms forbid using its data on REI's non-Mappls map. Road "
+            "event data would need a written agreement with Mappls. No tier assigned."
         ),
     ),
     SourceDefinition(
