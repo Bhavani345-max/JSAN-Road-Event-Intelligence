@@ -423,7 +423,10 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
             "storing results and building a derived database, which is what REI's "
             "ingestion does, and the free key is for internal evaluation only. "
             "Connecting needs a written TomTom licence that permits storing incidents "
-            "and showing them to REI's users. No tier assigned: not an approved source."
+            "and showing them to REI's users. Since 4 November 2026 (decision 0054) "
+            "the console has a 'TomTom live incidents' map layer: asked for the area "
+            "on screen, never stored, not REI events. No tier assigned: not an "
+            "approved source."
         ),
     ),
     SourceDefinition(

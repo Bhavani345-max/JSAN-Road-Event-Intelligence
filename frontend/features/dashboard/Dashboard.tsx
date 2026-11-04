@@ -57,6 +57,7 @@ import { computeEventStats } from "@/features/events/stats";
 import MapLegend from "@/features/map/components/MapLegend";
 import MapToolbar from "@/features/map/components/MapToolbar";
 import { DEFAULT_MAP_LAYERS, type MapLayers } from "@/features/map/layers";
+import type { FocusedPlace } from "@/features/map/placeSearch";
 import AddEventPanel from "@/features/qc/components/AddEventPanel";
 import ReviewActions from "@/features/qc/components/ReviewActions";
 import { themeStyle, useTheme } from "@/features/theme/themes";
@@ -140,6 +141,8 @@ export default function Dashboard() {
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [basemap, setBasemap] = useState<Basemap>("map");
   const [mapLayers, setMapLayers] = useState<MapLayers>(DEFAULT_MAP_LAYERS);
+  // A place found with "Find place": the map moves there and pins it (decision 0055).
+  const [focusPlace, setFocusPlace] = useState<FocusedPlace | null>(null);
   // Whether the form for entering an event by hand is open.
   const [isAdding, setIsAdding] = useState(false);
   // While a reviewer corrects an event's location, map clicks choose the spot.
@@ -285,6 +288,7 @@ export default function Dashboard() {
     setSelectedEventId(null);
     setIsAdding(false);
     setFilters(DEFAULT_FILTERS);
+    setFocusPlace(null);
   }, []);
 
   const selectEvent = useCallback((eventId: string | null) => {
@@ -434,6 +438,7 @@ export default function Dashboard() {
             onSelectCity={changeCity}
             accent={theme.palette[600]}
             layers={mapLayers}
+            focusPlace={focusPlace}
           />
           {/* Above the map's own controls (attribution, scale), below the details panel. */}
           <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-col items-start gap-2">
@@ -458,6 +463,8 @@ export default function Dashboard() {
                 (filters.search.trim() ? 1 : 0)
               }
               filtersDisabled={overview}
+              placeScope={{ cityId: overview ? null : city.id, label: overview ? null : city.name }}
+              onPlaceChosen={(place) => setFocusPlace({ ...place, key: Date.now() })}
             />
             <div className="hidden wide:block sideways:hidden">
               <MapLegend eventTypes={visibleTypes} overview={overview} />

@@ -10,6 +10,8 @@ from app.api.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.database import create_db_engine, create_session_factory, run_migrations
 from app.services.bootstrap import sync_reference_data
+from app.services.place_search import PlaceSearch
+from app.services.tomtom_live import TomTomLive
 from app.services.auth_service import USER_ROLE, normalize_email, seed_account, seed_admin_user
 from app.services.email_service import email_sender
 from app.services.ingestion_service import IngestionService
@@ -118,6 +120,8 @@ def create_app(settings: Settings | None = None, engine: Engine | None = None) -
         app.state.session_factory, settings, app.state.ingestion_service
     )
     app.state.settings = settings
+    app.state.tomtom_live = TomTomLive(settings.tomtom_api_key, settings.tomtom_daily_request_limit)
+    app.state.place_search = PlaceSearch()
     # None without a complete email configuration: no email is ever sent (decision 0045).
     app.state.email_sender = email_sender(settings)
 

@@ -4,6 +4,8 @@ import type { LocationStatus } from "@/features/events/model";
 import type { GisStatus } from "@/features/events/presentation";
 import { BASEMAPS, type Basemap } from "@/lib/config";
 import type { MapLayers } from "../layers";
+import type { FoundPlace } from "../placeSearch";
+import PlaceSearchPanel from "./PlaceSearchPanel";
 
 /** One choice of a filter, with how many events it would show (given the other filters). */
 export interface FacetOption<T extends string> {
@@ -37,6 +39,10 @@ interface MapToolbarProps {
   otherFilterCount: number;
   /** The overview of all countries: nothing to filter until a country is chosen. */
   filtersDisabled?: boolean;
+  /** Where "Find a place" searches: the chosen city or country (id and name), or all countries. */
+  placeScope: { cityId: string | null; label: string | null };
+  /** A place chosen in "Find a place": the map moves there. */
+  onPlaceChosen: (place: FoundPlace) => void;
 }
 
 const BASEMAP_LABELS: Record<Basemap, string> = { map: "Map", satellite: "Satellite" };
@@ -165,6 +171,12 @@ const FILTER_ICON = (
     <path d="M2.5 3.5h11l-4.2 5v3.8l-2.6 1.2v-5l-4.2-5Z" strokeLinejoin="round" />
   </svg>
 );
+const SEARCH_ICON = (
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-3.5 w-3.5" aria-hidden="true">
+    <circle cx="7" cy="7" r="4.5" />
+    <path d="m10.5 10.5 3 3" strokeLinecap="round" />
+  </svg>
+);
 const LAYERS_ICON = (
   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-3.5 w-3.5" aria-hidden="true">
     <path d="m8 2 6 3-6 3-6-3 6-3Z" strokeLinejoin="round" />
@@ -184,8 +196,9 @@ export default function MapToolbar(props: MapToolbarProps) {
     typeOptions, selectedTypes, onTypesChange,
     locationOptions, selectedLocations, onLocationsChange,
     onClearAll, matchCount, onMapCount, otherFilterCount, filtersDisabled = false,
+    placeScope, onPlaceChosen,
   } = props;
-  const [open, setOpen] = useState<"filters" | "layers" | null>(null);
+  const [open, setOpen] = useState<"place" | "filters" | "layers" | null>(null);
   const root = useRef<HTMLDivElement>(null);
   const activeCount = selectedTypes.length + selectedLocations.length;
 
@@ -236,6 +249,13 @@ export default function MapToolbar(props: MapToolbarProps) {
         </div>
         <span className="mx-0.5 h-5 w-px bg-slate-200" aria-hidden="true" />
         <ToolbarButton
+          label="Find place"
+          icon={SEARCH_ICON}
+          open={open === "place"}
+          title="Find a place, street or PIN code and move the map there"
+          onClick={() => setOpen(open === "place" ? null : "place")}
+        />
+        <ToolbarButton
           label="Filters"
           icon={FILTER_ICON}
           open={open === "filters"}
@@ -248,10 +268,23 @@ export default function MapToolbar(props: MapToolbarProps) {
           label="Layers"
           icon={LAYERS_ICON}
           open={open === "layers"}
-          title="Markers, clusters and heatmap"
+          title="Markers, clusters, heatmap and TomTom live incidents"
           onClick={() => setOpen(open === "layers" ? null : "layers")}
         />
       </div>
+
+      {open === "place" && (
+        <PlaceSearchPanel
+          key={placeScope.cityId ?? "all"}
+          cityId={placeScope.cityId}
+          scopeLabel={placeScope.label}
+          className={PANEL_CLASS}
+          onChoose={(place) => {
+            onPlaceChosen(place);
+            setOpen(null);
+          }}
+        />
+      )}
 
       {open === "filters" && !filtersDisabled && (
         <div className={PANEL_CLASS} role="dialog" aria-label="Map filters">
@@ -330,6 +363,12 @@ export default function MapToolbar(props: MapToolbarProps) {
             hint="Where events are dense, under the markers. Markers stay clickable."
             checked={layers.heatmap}
             onChange={(heatmap) => onLayersChange({ ...layers, heatmap })}
+          />
+          <Switch
+            label="TomTom live incidents"
+            hint="Closures, works and accidents from TomTom for the area on screen, once zoomed in to a city. Not REI events: never stored, not in the list or counts. © TomTom."
+            checked={layers.tomtomLive}
+            onChange={(tomtomLive) => onLayersChange({ ...layers, tomtomLive })}
           />
         </div>
       )}

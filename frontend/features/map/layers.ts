@@ -10,6 +10,11 @@ export interface MapLayers {
   clusters: boolean;
   /** Where events are dense, as a heat layer under the markers (never clickable). */
   heatmap: boolean;
+  /**
+   * TomTom's live incidents for the area on screen, under REI's events (decision
+   * 0054). Not REI events: never stored, never in the list or the counts.
+   */
+  tomtomLive: boolean;
 }
 
-export const DEFAULT_MAP_LAYERS: MapLayers = { markers: true, clusters: true, heatmap: false };
+export const DEFAULT_MAP_LAYERS: MapLayers = { markers: true, clusters: true, heatmap: false, tomtomLive: false };

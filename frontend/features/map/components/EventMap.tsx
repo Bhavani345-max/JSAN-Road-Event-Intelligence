@@ -29,6 +29,13 @@ import {
 } from "../geojson";
 import { getBoundingBox } from "../geometry";
 import { DEFAULT_MAP_LAYERS, type MapLayers } from "../layers";
+import {
+  describeIncident,
+  fetchLiveIncidents,
+  liveBbox,
+  type LiveIncidentProperties,
+} from "../liveIncidents";
+import type { FocusedPlace } from "../placeSearch";
 
 interface EventMapProps {
   /** Events to draw. Events that have no geometry yet are simply not drawn. */
@@ -57,6 +64,8 @@ interface EventMapProps {
   accent?: string;
   /** Which layers are drawn (map toolbar); markers and clusters on, heatmap off by default. */
   layers?: MapLayers;
+  /** A place found with "Find place": the map moves there and pins it. */
+  focusPlace?: FocusedPlace | null;
 }
 
 type MapStatus = "loading" | "ready" | "error";
@@ -108,6 +117,21 @@ const MARKER_LAYERS = [
 const HIT_TOLERANCE_PX = 6;
 const TOUCH_HIT_TOLERANCE_PX = 18;
 
+// TomTom's live incidents (decision 0054): drawn under REI's events, never stored.
+const LIVE_SOURCE = "tomtom-live";
+const LIVE_LINE = "tomtom-live-line";
+const LIVE_POINT = "tomtom-live-point";
+const LIVE_LAYERS = [LIVE_LINE, LIVE_POINT];
+const LIVE_COLOR = "#6d28d9";
+// Wait for the map to settle before asking TomTom for the new area.
+const LIVE_DEBOUNCE_MS = 700;
+
+type LiveStatus =
+  | { kind: "loading" }
+  | { kind: "zoom" }
+  | { kind: "ok"; count: number; attribution: string }
+  | { kind: "error"; message: string };
+
 const EMPTY_COLLECTION = { type: "FeatureCollection" as const, features: [] };
 
 /**
@@ -132,6 +156,82 @@ function addSatelliteLayer(map: MapLibreMap) {
     },
     firstLabelLayer?.id,
   );
+}
+
+/** TomTom's live incidents, hidden until the layer is switched on; added before
+ *  REI's event layers so REI's markers stay on top and clickable. */
+function addLiveLayers(map: MapLibreMap) {
+  map.addSource(LIVE_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
+  map.addLayer({
+    id: LIVE_LINE,
+    type: "line",
+    source: LIVE_SOURCE,
+    filter: ["==", ["geometry-type"], "LineString"],
+    layout: { visibility: "none", "line-cap": "round", "line-join": "round" },
+    paint: { "line-color": LIVE_COLOR, "line-width": 3.5, "line-opacity": 0.8, "line-dasharray": [1.6, 1.1] },
+  });
+  map.addLayer({
+    id: LIVE_POINT,
+    type: "circle",
+    source: LIVE_SOURCE,
+    filter: ["==", ["geometry-type"], "Point"],
+    layout: { visibility: "none" },
+    paint: {
+      "circle-radius": 5,
+      "circle-color": LIVE_COLOR,
+      "circle-opacity": 0.85,
+      "circle-stroke-color": "#ffffff",
+      "circle-stroke-width": 1.5,
+    },
+  });
+}
+
+/** A rendered live feature's properties (MapLibre turns arrays into JSON text). */
+function liveProperties(raw: Record<string, unknown>): LiveIncidentProperties {
+  const text = (value: unknown) => (typeof value === "string" && value !== "" && value !== "null" ? value : null);
+  let roads: string[] = [];
+  if (Array.isArray(raw.roads)) roads = raw.roads.map(String);
+  else if (typeof raw.roads === "string") {
+    try {
+      const parsed: unknown = JSON.parse(raw.roads);
+      if (Array.isArray(parsed)) roads = parsed.map(String);
+    } catch {
+      roads = [];
+    }
+  }
+  return {
+    id: text(raw.id),
+    category: text(raw.category) ?? "",
+    label: text(raw.label) ?? "Incident",
+    description: text(raw.description),
+    from: text(raw.from),
+    to: text(raw.to),
+    roads,
+    start: text(raw.start),
+    end: text(raw.end),
+    delay: text(raw.delay),
+  };
+}
+
+/** The popup for one live incident: what TomTom says, and that it is not an REI event. */
+function liveIncidentContent(incident: LiveIncidentProperties): HTMLElement {
+  const box = document.createElement("div");
+  box.className = "text-xs text-slate-700";
+  const title = document.createElement("p");
+  title.className = "font-semibold text-slate-900";
+  title.textContent = describeIncident(incident);
+  box.append(title);
+  if (incident.description && incident.description !== incident.label) {
+    const description = document.createElement("p");
+    description.className = "mt-1";
+    description.textContent = `TomTom: ${incident.description}`;
+    box.append(description);
+  }
+  const note = document.createElement("p");
+  note.className = "mt-1.5 text-[11px] text-slate-500";
+  note.textContent = "Live from TomTom, not an REI event: not stored, not in the list or counts.";
+  box.append(note);
+  return box;
 }
 
 /** A basemap text label layer and its original paint, so it can be restored. */
@@ -578,6 +678,7 @@ export default function EventMap({
   onSelectCity,
   accent = BRAND_COLOR,
   layers = DEFAULT_MAP_LAYERS,
+  focusPlace = null,
 }: EventMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -647,6 +748,7 @@ export default function EventMap({
     map.on("load", () => {
       labelLayersRef.current = getTextLabelLayers(map);
       addSatelliteLayer(map);
+      addLiveLayers(map);
       addEventLayers(map);
       addHeatLayer(map);
       addLocationPointLayer(map);
@@ -718,6 +820,15 @@ export default function EventMap({
         return;
       }
       const picked = pickEvent(map, e);
+      if (!picked) {
+        // A TomTom live incident: shown in a popup; it is not an REI event to select.
+        const [live] = map.queryRenderedFeatures(hitBox(e), { layers: LIVE_LAYERS });
+        if (live) {
+          hoverPopup.remove();
+          chooserPopup.setLngLat(e.lngLat).setDOMContent(liveIncidentContent(liveProperties(live.properties))).addTo(map);
+          return;
+        }
+      }
       pickedOnMapRef.current = picked?.id ?? null;
       onSelectEventRef.current(picked?.id ?? null);
     });
@@ -752,6 +863,18 @@ export default function EventMap({
       const picked = pickEvent(map, e);
       map.getCanvas().style.cursor = picked ? "pointer" : "";
       if (!picked) {
+        const [live] = map.queryRenderedFeatures(hitBox(e), { layers: LIVE_LAYERS });
+        if (live) {
+          map.getCanvas().style.cursor = "pointer";
+          const incident = liveProperties(live.properties);
+          const key = `live:${incident.id ?? describeIncident(incident)}`;
+          hoverPopup.setLngLat(e.lngLat);
+          if (key !== hoveredId) {
+            hoveredId = key;
+            hoverPopup.setText(`TomTom live: ${describeIncident(incident)}`).addTo(map);
+          }
+          return;
+        }
         hoveredId = null;
         hoverPopup.remove();
         return;
@@ -860,6 +983,97 @@ export default function EventMap({
       .catch((error: unknown) => console.error("Could not change marker grouping", error));
   }, [loadedMap, clustered]);
 
+  // TomTom's live incidents for the area on screen (decision 0054): asked for once
+  // the map settles, drawn under REI's events, and dropped when the layer is off.
+  // Nothing is kept: TomTom's terms forbid storing its results.
+  const { tomtomLive } = layers;
+  const [liveStatus, setLiveStatus] = useState<LiveStatus | null>(null);
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    const source = map.getSource<GeoJSONSource>(LIVE_SOURCE);
+    for (const id of LIVE_LAYERS) map.setLayoutProperty(id, "visibility", tomtomLive ? "visible" : "none");
+    if (!tomtomLive) {
+      source?.setData(EMPTY_COLLECTION);
+      return;
+    }
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let controller: AbortController | null = null;
+    let lastBbox: string | null = null;
+    const refresh = () => {
+      const bounds = map.getBounds();
+      const bbox = liveBbox([bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()]);
+      if (!bbox) {
+        controller?.abort();
+        lastBbox = null;
+        source?.setData(EMPTY_COLLECTION);
+        setLiveStatus({ kind: "zoom" });
+        return;
+      }
+      if (bbox === lastBbox) return;
+      lastBbox = bbox;
+      controller?.abort();
+      const current = new AbortController();
+      controller = current;
+      setLiveStatus({ kind: "loading" });
+      fetchLiveIncidents(bbox, current.signal)
+        .then((collection) => {
+          if (current.signal.aborted) return;
+          source?.setData(collection as unknown as Parameters<GeoJSONSource["setData"]>[0]);
+          setLiveStatus({ kind: "ok", count: collection.features.length, attribution: collection.attribution });
+        })
+        .catch((error: unknown) => {
+          if (current.signal.aborted) return;
+          lastBbox = null;
+          source?.setData(EMPTY_COLLECTION);
+          setLiveStatus({
+            kind: "error",
+            message: error instanceof Error ? error.message : "TomTom live incidents could not be loaded.",
+          });
+        });
+    };
+    const schedule = () => {
+      clearTimeout(timer);
+      timer = setTimeout(refresh, LIVE_DEBOUNCE_MS);
+    };
+    timer = setTimeout(refresh, 0);
+    map.on("moveend", schedule);
+    return () => {
+      map.off("moveend", schedule);
+      clearTimeout(timer);
+      controller?.abort();
+      setLiveStatus(null);
+    };
+  }, [loadedMap, tomtomLive]);
+
+  // A place found with "Find place" (decision 0055): move there and pin it until
+  // another is chosen or the city changes.
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current || !focusPlace) return;
+    const { latitude, longitude, box, name } = focusPlace;
+    const hasArea = box !== null && box[2] - box[0] > 0.0005 && box[3] - box[1] > 0.0005;
+    if (hasArea) {
+      map.fitBounds(
+        [
+          [box[0], box[1]],
+          [box[2], box[3]],
+        ],
+        { padding: 60, maxZoom: 16, duration: 700 },
+      );
+    } else {
+      map.flyTo({ center: [longitude, latitude], zoom: Math.max(map.getZoom(), 15), duration: 700 });
+    }
+    const pin = new Marker({ color: accent })
+      .setLngLat([longitude, latitude])
+      .setPopup(new Popup({ offset: 28, closeButton: false }).setText(name))
+      .addTo(map);
+    pin.togglePopup();
+    return () => {
+      pin.remove();
+    };
+  }, [loadedMap, focusPlace, accent]);
+
   // The overview's city bubbles (none once a city is open).
   useEffect(() => {
     const map = loadedMap;
@@ -949,6 +1163,20 @@ export default function EventMap({
             <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-slate-300 border-t-slate-600" />
             Loading map…
           </div>
+        </div>
+      )}
+
+      {tomtomLive && liveStatus && status === "ready" && (
+        <div
+          role="status"
+          className="pointer-events-none absolute bottom-9 left-1/2 z-10 max-w-[calc(100%-7rem)] -translate-x-1/2 rounded-full bg-white/95 px-3 py-1 text-center text-[11px] text-slate-600 shadow-sm ring-1 ring-slate-900/10"
+        >
+          <span className="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={{ backgroundColor: LIVE_COLOR }} />
+          {liveStatus.kind === "loading" && "Loading TomTom live incidents…"}
+          {liveStatus.kind === "zoom" && "TomTom live: zoom in to a city to see incidents"}
+          {liveStatus.kind === "ok" &&
+            `TomTom live · ${liveStatus.count} incident${liveStatus.count === 1 ? "" : "s"} here · ${liveStatus.attribution} · not stored`}
+          {liveStatus.kind === "error" && `TomTom live: ${liveStatus.message}`}
         </div>
       )}
 

@@ -76,6 +76,13 @@ class Settings(BaseSettings):
     # Trafikverket's API key (Sweden, decision 0053): free after registration at
     # https://data.trafikverket.se/get-started. Without it Sweden's feed is not fetched.
     trafikverket_api_key: str | None = None
+    # TomTom's API key for the live incidents map layer (decision 0054). Incidents
+    # are fetched for the area a signed-in user views and never stored: TomTom's
+    # terms forbid storing results. Without the key the layer is unavailable.
+    tomtom_api_key: str | None = None
+    # TomTom requests the live layer may make per day (UTC), within the free
+    # plan's daily allowance; the layer pauses until the next day after that.
+    tomtom_daily_request_limit: int = 2000
     # After each ingestion run, compare the new events with the city's open
     # events: merge clear duplicates, record possible matches for review.
     event_matching_after_ingestion: bool = True
