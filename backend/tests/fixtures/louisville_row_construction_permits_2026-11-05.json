@@ -1,0 +1,501 @@
+{
+ "fetched_at": "2026-11-05T09:00:15+00:00",
+ "request": "https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/Louisville_KY_ROW_Construction_Permits_new/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&orderByFields=OBJECTID&resultOffset=0&resultRecordCount=1000&f=geojson",
+ "note": "A trimmed sample (19 of the 281 features of the one page; no exceededTransferLimit), items unchanged but for APPLICANT_NAME (a person or an organisation; placeholder) and WORK_DESCRIPTION (free text naming contact persons with phones and e-mails in 277 of the 281 permits; replaced by a placeholder).",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 1,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.743291558623,
+     38.226140849263
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03232",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1792987200000,
+    "TO_DATE": 1795755600000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Lane Closure",
+    "STREET_ADDRESS": "1456 BLAND ST",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40217",
+    "LONGITUDE": -85.743291558623,
+    "LATITUDE": 38.226140849263,
+    "ObjectId": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 2,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.761932590259,
+     38.257212249409
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03234",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1792382400000,
+    "TO_DATE": 1794200400000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Road Closure",
+    "STREET_ADDRESS": "727 W MAIN ST",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40202",
+    "LONGITUDE": -85.761932590259,
+    "LATITUDE": 38.257212249409,
+    "ObjectId": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 3,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.677736500002,
+     38.119716000003
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03242",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1792382400000,
+    "TO_DATE": 1797656400000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Road Closure",
+    "STREET_ADDRESS": "9101 PRESTON HWY",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40219",
+    "LONGITUDE": -85.677736500002,
+    "LATITUDE": 38.119716000003,
+    "ObjectId": 3
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 4,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.883637572392,
+     38.168194727275
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03238",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1791950400000,
+    "TO_DATE": 1797051600000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Lane Closure",
+    "STREET_ADDRESS": "7201 LOGISTICS DR",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40258",
+    "LONGITUDE": -85.883637572392,
+    "LATITUDE": 38.168194727275,
+    "ObjectId": 4
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 5,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.7220661746,
+     38.258566996445
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03240",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1791950400000,
+    "TO_DATE": 1794373200000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Lane Closure",
+    "STREET_ADDRESS": "1570 STORY AVE",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40206",
+    "LONGITUDE": -85.7220661746,
+    "LATITUDE": 38.258566996445,
+    "ObjectId": 5
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.720609606531,
+     38.258309689182
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03241",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1791950400000,
+    "TO_DATE": 1794373200000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Lane Closure",
+    "STREET_ADDRESS": "1630 FRANKFORT AVE",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40206",
+    "LONGITUDE": -85.720609606531,
+    "LATITUDE": 38.258309689182,
+    "ObjectId": 6
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 8,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.768429500002,
+     38.169126000003
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03255",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1792036800000,
+    "TO_DATE": 1794459600000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Lane Closure",
+    "STREET_ADDRESS": "5601 S 3RD ST",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40214",
+    "LONGITUDE": -85.768429500002,
+    "LATITUDE": 38.169126000003,
+    "ObjectId": 8
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 10,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.543715361593,
+     38.300470192485
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03253",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1793595600000,
+    "TO_DATE": 1794200400000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation",
+    "STREET_ADDRESS": "3737 DIANN MARIE RD",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40241",
+    "LONGITUDE": -85.543715361593,
+    "LATITUDE": 38.300470192485,
+    "ObjectId": 10
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 39,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.791890244299,
+     38.179618697071
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03326",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1792555200000,
+    "TO_DATE": 1795150800000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Road Closure",
+    "STREET_ADDRESS": "1607 BLUEGRASS AVE",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40215",
+    "LONGITUDE": -85.791890244299,
+    "LATITUDE": 38.179618697071,
+    "ObjectId": 39
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 70,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.628541390707,
+     38.195622000003
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03405",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1792382400000,
+    "TO_DATE": 1793595600000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Lane Closure",
+    "STREET_ADDRESS": "6911 BARTLETT RD",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40218",
+    "LONGITUDE": -85.628541390707,
+    "LATITUDE": 38.195622000003,
+    "ObjectId": 70
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 73,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.606524000002,
+     38.271996000003
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03411",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1793505600000,
+    "TO_DATE": 1800766800000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Lane Closure",
+    "STREET_ADDRESS": "1704 ORMSBY LN",
+    "CITY": "GRAYMOOR/DEVONDALE",
+    "STATE": "KY",
+    "ZIP": "40222",
+    "LONGITUDE": -85.606524000002,
+    "LATITUDE": 38.271996000003,
+    "ObjectId": 73
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 76,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.74904607143,
+     38.255802428574
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03427",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1793160000000,
+    "TO_DATE": 1793768400000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Road Closure",
+    "STREET_ADDRESS": "242 E MAIN ST",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40202",
+    "LONGITUDE": -85.74904607143,
+    "LATITUDE": 38.255802428574,
+    "ObjectId": 76
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 81,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.814829000002,
+     38.271672000003
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03421",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1792555200000,
+    "TO_DATE": 1793768400000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Lane Closure",
+    "STREET_ADDRESS": "4201 BANK ST",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40212",
+    "LONGITUDE": -85.814829000002,
+    "LATITUDE": 38.271672000003,
+    "ObjectId": 81
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 105,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.758099711701,
+     38.251210930545
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03479",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1794027600000,
+    "TO_DATE": 1794632400000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Lane Closure",
+    "STREET_ADDRESS": "412 W MUHAMMAD ALI BLVD",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40202",
+    "LONGITUDE": -85.758099711701,
+    "LATITUDE": 38.251210930545,
+    "ObjectId": 105
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 119,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.677916500002,
+     38.203281000003
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03503",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1793941200000,
+    "TO_DATE": 1796533200000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Lane Closure",
+    "STREET_ADDRESS": "3201 GOLDEN TURTLE CIR Unit 101",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40218",
+    "LONGITUDE": -85.677916500002,
+    "LATITUDE": 38.203281000003,
+    "ObjectId": 119
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 121,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.754479458452,
+     38.249401288805
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03452",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1793595600000,
+    "TO_DATE": 1796619600000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Lane Closure ,Utility Cut",
+    "STREET_ADDRESS": "545 S 2ND ST",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40202",
+    "LONGITUDE": -85.754479458452,
+    "LATITUDE": 38.249401288805,
+    "ObjectId": 121
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 123,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.688892000002,
+     38.198277000003
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03514",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1793941200000,
+    "TO_DATE": 1796619600000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Lane Closure",
+    "STREET_ADDRESS": "1516 GARDINER LN",
+    "CITY": "WATTERSON PARK",
+    "STATE": "KY",
+    "ZIP": "40218",
+    "LONGITUDE": -85.688892000002,
+    "LATITUDE": 38.198277000003,
+    "ObjectId": 123
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 146,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.771576090294,
+     38.195753219467
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-00910",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1790568000000,
+    "TO_DATE": 1795410000000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Lane Closure ,Road Closure",
+    "STREET_ADDRESS": "723 DENMARK ST",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40215",
+    "LONGITUDE": -85.771576090294,
+    "LATITUDE": 38.195753219467,
+    "ObjectId": 146
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 275,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.741417689826,
+     38.24482566636
+    ]
+   },
+   "properties": {
+    "PERMIT_NO": "PW-REP-26-03214",
+    "APPLICANT_NAME": "[applicant]",
+    "FROM_DATE": 1790913600000,
+    "TO_DATE": 1796101200000,
+    "WORK_DESCRIPTION": "[work description: free text naming contact persons with phone numbers and e-mail addresses; replaced]",
+    "WORK_TYPE": "Excavation ,Utility Cut",
+    "STREET_ADDRESS": "706 E BROADWAY",
+    "CITY": "LOUISVILLE",
+    "STATE": "KY",
+    "ZIP": "40202",
+    "LONGITUDE": -85.741417689826,
+    "LATITUDE": 38.24482566636,
+    "ObjectId": 275
+   }
+  }
+ ]
+}

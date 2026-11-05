@@ -1,0 +1,41 @@
+{
+  "id": "switzerland",
+  "name": "Switzerland",
+  "area_name": "Switzerland",
+  "country": "CH",
+  "level": "country",
+  "region": "National",
+  "timezone": "Europe/Zurich",
+  "language": "de",
+  "bbox": [
+    45.81,
+    5.95,
+    47.81,
+    10.5
+  ],
+  "map": {
+    "center": [
+      8.23,
+      46.8
+    ],
+    "zoom": 6.8
+  },
+  "scope_terms": [
+    "Switzerland",
+    "Schweiz",
+    "Suisse",
+    "Svizzera",
+    "Zürich",
+    "Genève",
+    "Geneva",
+    "Schwyz"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

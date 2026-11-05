@@ -1,0 +1,437 @@
+{
+ "fetched_at": "2026-11-05T09:05:14+00:00",
+ "request": "https://data.cambridgema.gov/resource/nuxx-d95m.json?$select=id,full_address,latitude,longitude,coordinates,status,permit_type,issue_date,start_date,end_date,public_roadway,public_sidewalk,cutting_the_street_and_or,number_of_street_cuts,number_of_sidewalk_cuts,utilities,other_utility,performing_utility_work,new_gas_main&$where=status='Active' AND public_roadway=true AND end_date>='2026-11-05'&$limit=5000",
+ "note": "A trimmed sample (17 of the 91 rows), rows unchanged. The $select leaves out applicant_name, the company, contractor, subcontractor and client names and the hoisting licence, so no personal data was fetched.",
+ "items": [
+  {
+   "id": "1234746",
+   "full_address": "468 Massachusetts Ave, Cambridge, MA 02139",
+   "latitude": "42.363742",
+   "longitude": "-71.101232",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.101232,
+     42.363742
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-10-21T00:00:00.000",
+   "start_date": "2026-10-22T00:00:00.000",
+   "end_date": "2027-02-22T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Eversource Gas",
+   "performing_utility_work": true,
+   "new_gas_main": "No"
+  },
+  {
+   "id": "1220157",
+   "full_address": "299 Elm St, Cambridge, MA 02139",
+   "latitude": "42.373505",
+   "longitude": "-71.095268",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.095268,
+     42.373505
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-07-09T00:00:00.000",
+   "start_date": "2026-07-14T00:00:00.000",
+   "end_date": "2026-11-16T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Eversource Gas",
+   "performing_utility_work": true,
+   "new_gas_main": "No"
+  },
+  {
+   "id": "1206712",
+   "full_address": "49 Sixth St, Cambridge, MA 02141",
+   "latitude": "42.37046",
+   "longitude": "-71.085174",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.085174,
+     42.37046
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-06-10T00:00:00.000",
+   "start_date": "2026-04-09T00:00:00.000",
+   "end_date": "2026-11-20T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "5",
+   "number_of_sidewalk_cuts": "7",
+   "utilities": "Water Service",
+   "performing_utility_work": true
+  },
+  {
+   "id": "1192823",
+   "full_address": "455 Columbia St, Cambridge, MA 02141",
+   "latitude": "42.374167",
+   "longitude": "-71.094055",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.094055,
+     42.374167
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2025-12-11T00:00:00.000",
+   "start_date": "2025-12-15T00:00:00.000",
+   "end_date": "2026-12-31T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Eversource Gas",
+   "performing_utility_work": true,
+   "new_gas_main": "No"
+  },
+  {
+   "id": "1212145",
+   "full_address": "390 Washington St, Cambridge, MA 02139",
+   "latitude": "42.365745",
+   "longitude": "-71.100131",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.100131,
+     42.365745
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-09-04T00:00:00.000",
+   "start_date": "2026-08-19T00:00:00.000",
+   "end_date": "2026-11-19T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "3",
+   "number_of_sidewalk_cuts": "2",
+   "utilities": "Sewer Service",
+   "performing_utility_work": true
+  },
+  {
+   "id": "1222976",
+   "full_address": "4 Chetwynd Rd, Cambridge, MA 02140",
+   "latitude": "42.386363",
+   "longitude": "-71.12881",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.12881,
+     42.386363
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-07-28T00:00:00.000",
+   "start_date": "2026-08-03T00:00:00.000",
+   "end_date": "2027-12-31T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Other",
+   "other_utility": "Water, Sewer, Drain, Sidewalk",
+   "performing_utility_work": true
+  },
+  {
+   "id": "262005",
+   "full_address": "4 Reed Street Ter, Cambridge, MA 02140",
+   "latitude": "42.39633",
+   "longitude": "-71.132641",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.132641,
+     42.39633
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2024-03-18T00:00:00.000",
+   "start_date": "2024-03-20T00:00:00.000",
+   "end_date": "2026-12-31T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": false,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "utilities": "Eversource Gas",
+   "performing_utility_work": true,
+   "new_gas_main": "Yes"
+  },
+  {
+   "id": "1179043",
+   "full_address": "195 Binney St, Unit 4104, Cambridge, MA 02142",
+   "latitude": "42.366056",
+   "longitude": "-71.08416",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.08416,
+     42.366056
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2025-10-03T00:00:00.000",
+   "start_date": "2025-09-01T00:00:00.000",
+   "end_date": "2028-12-31T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street",
+   "number_of_street_cuts": "3",
+   "number_of_sidewalk_cuts": "2",
+   "utilities": "Other",
+   "other_utility": "Eversource Electric",
+   "performing_utility_work": true
+  },
+  {
+   "id": "1182040",
+   "full_address": "1103 Cambridge St, Cambridge, MA 02139",
+   "latitude": "42.373156",
+   "longitude": "-71.095605",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.095605,
+     42.373156
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2025-09-04T00:00:00.000",
+   "start_date": "2025-09-16T00:00:00.000",
+   "end_date": "2026-11-24T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "3",
+   "number_of_sidewalk_cuts": "3",
+   "performing_utility_work": false
+  },
+  {
+   "id": "1206066",
+   "full_address": "20 Essex St, Cambridge, MA 02139",
+   "latitude": "42.366114",
+   "longitude": "-71.101989",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.101989,
+     42.366114
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-05-07T00:00:00.000",
+   "start_date": "2026-05-05T00:00:00.000",
+   "end_date": "2029-07-15T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Cambridge Water Department",
+   "performing_utility_work": true
+  },
+  {
+   "id": "1232936",
+   "full_address": "108 Clay St, Cambridge, MA 02140",
+   "latitude": "42.396594",
+   "longitude": "-71.134563",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.134563,
+     42.396594
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-10-28T00:00:00.000",
+   "start_date": "2026-10-06T00:00:00.000",
+   "end_date": "2026-11-10T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Other",
+   "other_utility": "Cut & cap of both the Water & Serwer Services (water at main, sewer at PL)",
+   "performing_utility_work": true
+  },
+  {
+   "id": "258569",
+   "full_address": "2400 Massachusetts Ave, Cambridge, MA 02140",
+   "latitude": "42.39717",
+   "longitude": "-71.130227",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.130227,
+     42.39717
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2024-02-22T00:00:00.000",
+   "start_date": "2024-02-16T00:00:00.000",
+   "end_date": "2026-12-31T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Eversource Gas",
+   "performing_utility_work": true,
+   "new_gas_main": "Yes"
+  },
+  {
+   "id": "1153982",
+   "full_address": "16 Centre St, Cambridge, MA 02139",
+   "latitude": "42.369546",
+   "longitude": "-71.109204",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.109204,
+     42.369546
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2025-03-03T00:00:00.000",
+   "start_date": "2025-03-04T00:00:00.000",
+   "end_date": "2027-06-30T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "2",
+   "utilities": "Stormwater",
+   "performing_utility_work": true
+  },
+  {
+   "id": "1221314",
+   "full_address": "400 Technology Sq, Cambridge, MA 02142",
+   "latitude": "42.363855",
+   "longitude": "-71.091952",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.091952,
+     42.363855
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-07-21T00:00:00.000",
+   "start_date": "2026-07-27T00:00:00.000",
+   "end_date": "2026-11-21T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "performing_utility_work": false
+  },
+  {
+   "id": "1184216",
+   "full_address": "229 Vassar St, Cambridge, MA 02139",
+   "latitude": "42.357119",
+   "longitude": "-71.101387",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.101387,
+     42.357119
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2025-10-24T00:00:00.000",
+   "start_date": "2025-09-29T00:00:00.000",
+   "end_date": "2026-12-31T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "2",
+   "number_of_sidewalk_cuts": "4",
+   "utilities": "Eversource Electric",
+   "performing_utility_work": true
+  },
+  {
+   "id": "1186909",
+   "full_address": "17 Fifth St, Cambridge, MA 02141",
+   "latitude": "42.372456",
+   "longitude": "-71.083044",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.083044,
+     42.372456
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-05-11T00:00:00.000",
+   "start_date": "2026-05-11T00:00:00.000",
+   "end_date": "2026-11-11T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Street & Sidewalk",
+   "number_of_street_cuts": "1",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Sewer Main Line",
+   "performing_utility_work": true
+  },
+  {
+   "id": "1234830",
+   "full_address": "330 Mt Auburn St, Cambridge, MA 02138",
+   "latitude": "42.374308",
+   "longitude": "-71.134234",
+   "coordinates": {
+    "type": "Point",
+    "coordinates": [
+     -71.134234,
+     42.374308
+    ]
+   },
+   "status": "Active",
+   "permit_type": "Excavation",
+   "issue_date": "2026-10-22T00:00:00.000",
+   "start_date": "2026-10-27T00:00:00.000",
+   "end_date": "2027-02-28T00:00:00.000",
+   "public_roadway": true,
+   "public_sidewalk": true,
+   "cutting_the_street_and_or": "Yes - Sidewalk",
+   "number_of_sidewalk_cuts": "1",
+   "utilities": "Other",
+   "other_utility": "Power feed from utility manhole to provide power to new flow meter.",
+   "performing_utility_work": true
+  }
+ ]
+}

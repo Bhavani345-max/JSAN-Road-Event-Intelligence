@@ -125,17 +125,26 @@ def queries_for(city_id: str = CITY_ID) -> tuple[str, ...]:
 
 
 def searched_cities() -> tuple[City, ...]:
-    """The cities searched besides Hyderabad (decision 0037): each Indian city
-    with a place list (to locate what it finds) and searches of its own."""
+    """The places searched besides Hyderabad: each Indian city with a place
+    list (to locate what it finds) and searches of its own (decision 0037), and
+    each entry the user chose to search although not in India (Brazil,
+    decision 0057), with a place list and searches of its own too."""
     return tuple(
         city
         for city in load_cities().values()
         if city.id != DEFAULT_CITY_ID
-        and city.level == "city"
-        and city.country == "IN"
         and city.gazetteer
         and city.discovery.queries
+        and ((city.level == "city" and city.country == "IN") or city.discovery.serper_search)
     )
+
+
+def search_language(city: City) -> str:
+    """The language Google is asked for (Serper's `hl`): Brazil's searches in
+    Brazilian Portuguese, the Indian cities' in English."""
+    if city.language == "pt" and city.country == "BR":
+        return "pt-br"
+    return city.language or "en"
 
 
 def source_id_for(city_id: str) -> str:
@@ -247,7 +256,7 @@ def _city_source(city: City, *, connected: bool) -> SourceDefinition:
         ),
         active=connected,
         polling_frequency_minutes=CITY_POLLING_FREQUENCY_MINUTES,
-        language="en",
+        language=city.language or "en",
         events_supported=tuple(event_type.value for event_type in EventType),
         parser_type="serper_news",
         terms_reviewed=False,
@@ -277,10 +286,19 @@ _UNIT = {
     "month": timedelta(days=30),
 }
 _DATE_FORMATS = ("%b %d, %Y", "%d %b %Y", "%B %d, %Y", "%d %B %Y")
+# The same in Brazilian Portuguese (searches with hl=pt-br, decision 0057):
+# "há 3 dias", "há 1 mês", "5 de nov. de 2026".
+_AGO_PT = re.compile(r"h[aá]\s+(\d+)\s+(minuto|hora|dia|semana|m[eê]s)(?:es|s)?", re.IGNORECASE)
+_UNIT_PT = {"minuto": "minute", "hora": "hour", "dia": "day", "semana": "week", "mes": "month", "mês": "month"}
+_MONTHS_PT = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
+_DATE_PT = re.compile(
+    rf"(\d{{1,2}})\s+de\s+({'|'.join(_MONTHS_PT)})[a-zç]*\.?\s+de\s+(\d{{4}})", re.IGNORECASE
+)
 
 
 def parse_result_date(text: str | None, *, now: datetime) -> datetime | None:
-    """When Google says a result was published: "3 days ago" or "Oct 3, 2026".
+    """When Google says a result was published: "3 days ago" or "Oct 3, 2026"
+    (or, in Portuguese, "há 3 dias" or "3 de out. de 2026").
 
     A relative date is only as exact as its unit. None when it cannot be read.
     """
@@ -288,6 +306,16 @@ def parse_result_date(text: str | None, *, now: datetime) -> datetime | None:
     match = _AGO.fullmatch(text)
     if match:
         return now - int(match.group(1)) * _UNIT[match.group(2).lower()]
+    match = _AGO_PT.fullmatch(text)
+    if match:
+        return now - int(match.group(1)) * _UNIT[_UNIT_PT[match.group(2).lower()]]
+    match = _DATE_PT.fullmatch(text)
+    if match:
+        day, month, year = int(match.group(1)), _MONTHS_PT.index(match.group(2).lower()[:3]) + 1, int(match.group(3))
+        try:
+            return ensure_utc(datetime(year, month, day))
+        except ValueError:
+            return None
     for date_format in _DATE_FORMATS:
         try:
             return ensure_utc(datetime.strptime(text, date_format))
@@ -309,6 +337,7 @@ class SerperNewsConnector:
         scope_terms: tuple[str, ...] = DEFAULT_SCOPE_TERMS,
         other_cities: tuple[str, ...] = CROWDING_CITIES,
         country: str = "in",
+        language: str = "en",
         read_any_publisher: bool = True,
         whole_words: bool = False,
         window: str = DEFAULT_WINDOW,
@@ -320,6 +349,7 @@ class SerperNewsConnector:
         self.window = window
         self.results_per_query = results_per_query
         self._country = country
+        self._language = language
         # Whether any page not refused is read (every city's search, decision
         # 0037), or only those of publishers whose terms permit it.
         self._read_any_publisher = read_any_publisher
@@ -355,6 +385,7 @@ class SerperNewsConnector:
                 "scope_terms": tuple(dict.fromkeys((city.name, *city.scope_terms))),
                 "other_cities": other_cities_for(city),
                 "country": city.country.lower(),
+                "language": search_language(city),
                 "read_any_publisher": True,
                 "whole_words": True,
                 **options,
@@ -474,11 +505,11 @@ class SerperNewsConnector:
             response = self._client.post(
                 ENDPOINT,
                 headers={"X-API-KEY": self._api_key, "User-Agent": self._user_agent},
-                # The city's country's results, in English, from the chosen window.
+                # The city's country's results, in its language, from the chosen window.
                 json={
                     "q": query,
                     "gl": self._country,
-                    "hl": "en",
+                    "hl": self._language,
                     "tbs": self.window,
                     "num": self.results_per_query,
                 },

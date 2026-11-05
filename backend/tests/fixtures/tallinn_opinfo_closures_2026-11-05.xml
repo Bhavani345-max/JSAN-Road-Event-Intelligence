@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='utf-8'?>
+<o:objektide_nimekiri xmlns:o="https://opinfo.tallinn.ee/opendata/xsd">
+  <paring>
+    
+    <lehekylg>1</lehekylg>
+    
+                  <filter>
+        <nimetus>Olulisus</nimetus>
+        <vaartus>Kõik objektid</vaartus>
+      </filter>
+          <filter>
+        <nimetus>Töö liik</nimetus>
+        <vaartus>2</vaartus>
+      </filter>
+      </paring>
+  <vastus>
+    <kirjeid>
+      5    </kirjeid>
+    <lehekylgi_kokku>
+      1    </lehekylgi_kokku>
+          <objektid>
+                    <objekt>
+  <id>
+    256937  </id>
+  <menetlus_id>
+    105301  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/105301  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <tellija>[removed]</tellija>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2024-04-03 18:17:11  </tekkimise_aeg>
+  <too_liik>
+    Tänava ajutine sulgemine  </too_liik>
+  <pohjus>
+    Ehitustööd  </pohjus>
+  <pohjuse_selgitus>
+    Ajutise liikluskorralduse vajadus seoses Rail Baltica Harjumaa põhitrassi I etapi ehitustöödega.  </pohjuse_selgitus>
+  <kirjeldus>
+    Esialgu teede sulgemist liiklusele ei ole. Skeemil näidatud infotahvlite ja ajutise liikluskorraldusvahendite paiknemine.  </kirjeldus>
+  <algus>
+    2024-04-03 08:00  </algus>
+  <lopp>
+    2027-06-30 08:30  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Lasnamäe linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind>Suur-Sõjamäe tn</ads_liikluspind>
+  <ads_nimi>Suur-Sõjamäe tn</ads_nimi>
+  <ads_aadressinumber>35b</ads_aadressinumber>
+  <ads_hoone_osa />
+  <ads_adr_id>2112203</ads_adr_id>
+  <ads_ads_oid>CU00455974</ads_ads_oid>
+  <ads_adob_id>6478291</ads_adob_id>
+  <tekst>Suur-Sõjamäe tn 35b</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Sõidutee</liik>
+                    <street_name>Suur-Sõjamäe tn 35b, Tallinn</street_name>
+                                <ala>kogulaius 7 m, suletav laius 0 m</ala>
+                            </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Point","coordinates":[549415.36429804,6586762.2928742]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Point&gt;&lt;coordinates&gt;24.870292998667818,59.41586683604354&lt;/coordinates&gt;&lt;/Point&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    273410  </id>
+  <menetlus_id>
+    112622  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/112622  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <tellija>[removed]</tellija>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2025-10-02 10:42:05  </tekkimise_aeg>
+  <too_liik>
+    Tänava ajutine sulgemine  </too_liik>
+  <pohjus>
+    Ehitustööd  </pohjus>
+  <pohjuse_selgitus>
+      </pohjuse_selgitus>
+  <kirjeldus>
+    Tartu mnt 1 äri- ja büroohoone ehitusega seoses eramaal oleva kõnnitee sulgemine.
+A.Laikmaa tänavale objektilt ajutise väljasõidutee kasutamine üle olemasoleva kõnnitee.  </kirjeldus>
+  <algus>
+    2024-10-07 08:00  </algus>
+  <lopp>
+    2026-12-01 18:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Kesklinna linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind>Tartu mnt</ads_liikluspind>
+  <ads_nimi>Tartu mnt</ads_nimi>
+  <ads_aadressinumber>1</ads_aadressinumber>
+  <ads_hoone_osa />
+  <ads_adr_id>2249878</ads_adr_id>
+  <ads_ads_oid>EE04064863</ads_ads_oid>
+  <ads_adob_id>10725273</ads_adob_id>
+  <tekst>Tartu mnt 1</tekst>
+</aadress>
+    <aadressi_tapsustus>
+    Seoses Tartu mnt 1 ehitustöödega kinnistu sisese (eramaal asuva) jalakäijate läbipääsu sulgemine ehituse perioodiks.
+  </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Kõnnitee1(paaritud numbrid)</liik>
+                    <street_name>Tartu mnt 1, Kesklinna linnaosa, Tallinn, Harju maakond</street_name>
+                                <ala>kogulaius 3 m, suletav laius 3 m</ala>
+                                <protsent>100</protsent>
+                </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[543009.7609922,6588807.1058707],[543010.42245186,6588801.1527338],[543051.82982634,6588790.9662551],[543056.85691973,6588790.7016712],[543069.95382092,6588787.1297891],[543071.67361603,6588791.3631309],[543009.7609922,6588807.1058707]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.75789605781686,59.43491813100501 24.757906527478433,59.43486463049536 24.75863409372681,59.43476899839785 24.758722617928445,59.43476611320908 24.758952671998745,59.43473272323133 24.758983818639795,59.43477054566159 24.75789605781686,59.43491813100501&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    275767  </id>
+  <menetlus_id>
+    113106  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/113106  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <tellija>[removed]</tellija>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2025-11-24 09:02:06  </tekkimise_aeg>
+  <too_liik>
+    Tänava ajutine sulgemine  </too_liik>
+  <pohjus>
+    Ehitustööd, Elektrikaabli paigaldamine, Vee- ja kanalisatsioonitrasside ehitus  </pohjus>
+  <pohjuse_selgitus>
+      </pohjuse_selgitus>
+  <kirjeldus>
+    Seoses Rail Baltica Harju I trassi ehitusega tuleb ehituse ajaks sulgeda Nuia ja Tapri tn vaheline põhja poolne sõidutee ja kõnnitee. Uus tee rajatakse peale trasside ehitust uude asukohta.  </kirjeldus>
+  <algus>
+    2024-10-17 08:00  </algus>
+  <lopp>
+    2026-11-30 18:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Lasnamäe linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind />
+  <ads_nimi />
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>3703466</ads_adr_id>
+  <ads_ads_oid>CU04072890</ads_ads_oid>
+  <ads_adob_id>10882823</ads_adob_id>
+  <tekst>Visase tänav T4</tekst>
+</aadress>
+    <aadressi_tapsustus>
+    Nuia tn ja Tapri tn ühendustee sulgemine (Raudteeäärne riigimaa).  </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Kõnnitee1(paaritud numbrid)</liik>
+                    <street_name>Visase tänav T4, Lasnamäe linnaosa, Tallinn, Harju maakond</street_name>
+                                <ala>kogulaius 3 m, suletav laius 3 m</ala>
+                                <protsent>100</protsent>
+                </toimumiskoht>
+            <toimumiskoht>
+      <liik>Sõidutee</liik>
+                    <street_name>Visase tänav T4, Lasnamäe linnaosa, Tallinn, Harju maakond</street_name>
+                                <ala>kogulaius 7 m, suletav laius 7 m</ala>
+                                <protsent>100</protsent>
+                </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[548473.57721849,6587180.9985087],[548461.40636081,6587182.8505958],[548467.49178965,6587210.3673175],[548620.68584604,6587187.6131053],[548620.15667831,6587160.8901352],[548473.57721849,6587180.9985087]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.853802109350774,59.41973359750833 24.853588173001537,59.41975161143603 24.85370151695531,59.41999789465033 24.85639445214573,59.41977613417952 24.85637912347683,59.419536340937704 24.853802109350774,59.41973359750833&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    307040  </id>
+  <menetlus_id>
+    126731  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/126731  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <tellija>[removed]</tellija>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2026-08-06 10:27:24  </tekkimise_aeg>
+  <too_liik>
+    Tänava ajutine sulgemine  </too_liik>
+  <pohjus>
+    Tööd tõstukilt  </pohjus>
+  <pohjuse_selgitus>
+    Trolli kontaktliinide remonditööd  </pohjuse_selgitus>
+  <kirjeldus>
+    Trolli kontaktliini remonditööd. Töid tehakse õhtusel ja öisel ajal.  </kirjeldus>
+  <algus>
+    2025-10-23 00:00  </algus>
+  <lopp>
+    2026-12-31 23:59  </lopp>
+    <perioodi_tyyp>iga päev</perioodi_tyyp>
+  <kellaajad>
+                <kellaaeg>
+      <algus>00:00</algus>
+      <lopp>05:00</lopp>
+    </kellaaeg>
+            <kellaaeg>
+      <algus>09:00</algus>
+      <lopp>15:30</lopp>
+    </kellaaeg>
+            <kellaaeg>
+      <algus>20:00</algus>
+      <lopp>23:59</lopp>
+    </kellaaeg>
+              </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Kristiine linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind>Sõpruse pst</ads_liikluspind>
+  <ads_nimi>Sõpruse pst</ads_nimi>
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>2125083</ads_adr_id>
+  <ads_ads_oid>LP00014857</ads_ads_oid>
+  <ads_adob_id>11105626</ads_adob_id>
+  <tekst>Sõpruse pst</tekst>
+</aadress>
+    <aadressi_tapsustus>
+    Trolli kontaktvõrgu tööd Sõpruse puiesteel, lõigul Koskla tn. - Ehitajate tee.  </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Sõidutee</liik>
+                    <street_name>Sõpruse pst, Kristiine linnaosa, Tallinn, Harju maakond</street_name>
+                                <ala>kogulaius 10 m, suletav laius 3 m</ala>
+                                <protsent>30</protsent>
+                </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"LineString","coordinates":[[540797.63500948,6587831.6808331],[540628.30133747,6587433.7467039],[540448.38431097,6587020.9958784],[540321.38405697,6586728.8952942],[540192.04069949,6586343.7700975],[539963.44024229,6585797.6690053],[539811.03993748,6585416.6682433],[539671.33965808,6585213.4678369],[539404.63912468,6584929.8339363],[539205.67206008,6584845.1671003],[538227.77010428,6584603.8666177]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;LineString&gt;&lt;coordinates&gt;24.718734000569167,59.426381545307905 24.71567627316763,59.422826031367286 24.712430015509668,59.41913845898653 24.71013882186166,59.41652870989635 24.70778943192217,59.41308416780152 24.70366314961374,59.40820404299073 24.700909833850123,59.404798557955495 24.69841321237332,59.40298773791748 24.693666654104874,59.40046671551559 24.69014901492499,59.3997251776668 24.67289327822827,59.39764847143708&lt;/coordinates&gt;&lt;/LineString&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    324335  </id>
+  <menetlus_id>
+    133500  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/133500  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+              <tellija>[removed]</tellija>
+              <valdaja>[removed]</valdaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2026-08-13 13:22:00  </tekkimise_aeg>
+  <too_liik>
+    Tänava ajutine sulgemine  </too_liik>
+  <pohjus>
+    Soojustrassi ehitus  </pohjus>
+  <pohjuse_selgitus>
+      </pohjuse_selgitus>
+  <kirjeldus>
+      </kirjeldus>
+  <algus>
+    2026-10-13 18:00  </algus>
+  <lopp>
+    2026-11-12 18:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Kesklinna linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind>Toompea tn</ads_liikluspind>
+  <ads_nimi>Toompea tn</ads_nimi>
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>2266893</ads_adr_id>
+  <ads_ads_oid>LP00017480</ads_ads_oid>
+  <ads_adob_id>11104028</ads_adob_id>
+  <tekst>Toompea tn</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Sõidutee</liik>
+                    <street_name>Toompea tn, Kesklinna linnaosa, Tallinn, Harju maakond</street_name>
+                                <ala>kogulaius 7.5 m, suletav laius 3.8 m</ala>
+                                <protsent>50</protsent>
+                </toimumiskoht>
+            <toimumiskoht>
+      <liik>Kõnnitee1(paaritud numbrid)</liik>
+                    <street_name>Toompea tn, Kesklinna linnaosa, Tallinn, Harju maakond</street_name>
+                                <ala>kogulaius 2 m, suletav laius 2 m</ala>
+                                <protsent>100</protsent>
+                </toimumiskoht>
+            <toimumiskoht>
+      <liik>Kõnnitee2(paarisnumbrid)</liik>
+                    <street_name>Toompea tn, Kesklinna linnaosa, Tallinn, Harju maakond</street_name>
+                                <ala>kogulaius 3.5 m, suletav laius 1.5 m</ala>
+                                <protsent>50</protsent>
+                </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[541926.43117106,6588784.4058312],[541952.88955731,6588782.2891603],[541954.08018469,6588775.1453961],[541925.63741947,6588776.9974831],[541925.63741947,6588776.9974831],[541926.43117106,6588784.4058312]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.738803330808608,59.434822869015626 24.73926911639412,59.434801253789466 24.73928870787047,59.4347370156927 24.738787907138832,59.434756452346676 24.738787907138832,59.434756452346676 24.738803330808608,59.434822869015626&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    </objektid>
+      </vastus>
+</o:objektide_nimekiri>

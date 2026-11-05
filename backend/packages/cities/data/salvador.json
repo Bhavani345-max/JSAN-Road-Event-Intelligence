@@ -1,0 +1,56 @@
+{
+  "id": "salvador",
+  "name": "Salvador",
+  "area_name": "Salvador",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Bahia",
+  "language": "pt",
+  "bbox": [
+    -13.02,
+    -38.55,
+    -12.78,
+    -38.3
+  ],
+  "map": {
+    "center": [
+      -38.5,
+      -12.97
+    ],
+    "zoom": 11.0
+  },
+  "scope_terms": [
+    "Salvador",
+    "BA",
+    "Transalvador",
+    "Avenida Paralela"
+  ],
+  "other_cities": [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Brasília",
+    "Belo Horizonte",
+    "Curitiba",
+    "Porto Alegre",
+    "Recife",
+    "Fortaleza",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "salvador_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Salvador interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

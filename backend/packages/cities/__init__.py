@@ -57,6 +57,9 @@ class Discovery(BaseModel):
     # GDELT DOC searches (connectors/discovery/gdelt.py); empty: the city's
     # name with REI's road phrases.
     gdelt_queries: tuple[str, ...] = ()
+    # Searched on Google News through Serper (connectors/api/serper_news.py)
+    # although not an Indian city: the user's choice for Brazil (decision 0057).
+    serper_search: bool = False
 
 
 class City(BaseModel):

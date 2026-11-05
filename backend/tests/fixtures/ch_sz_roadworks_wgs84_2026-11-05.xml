@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding="UTF-8" ?>
+<wfs:FeatureCollection
+   xmlns:ms="http://mapserver.gis.umn.edu/mapserver"
+   xmlns:gml="http://www.opengis.net/gml/3.2"
+   xmlns:wfs="http://www.opengis.net/wfs/2.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://mapserver.gis.umn.edu/mapserver https://map.geo.sz.ch/mapserv_proxy?ogcserver=source%20for%20image%2Fpng&amp;SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=ms:ch.sz.a083a.baustellen.erweitert&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B%20version%3D3.2 http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0/wfs.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"
+   timeStamp="2026-11-05T09:00:24" numberMatched="14" numberReturned="14">
+      <wfs:boundedBy>
+      	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+      		<gml:lowerCorner>46.972426 8.445718</gml:lowerCorner>
+      		<gml:upperCorner>47.202079 8.955173</gml:upperCorner>
+      	</gml:Envelope>
+      </wfs:boundedBy>
+<!-- WARNING: No featureid defined for typename 'ch.sz.a083a.baustellen.erweitert'. Output will not validate. -->
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.027173 8.615094</gml:lowerCorner>
+        		<gml:upperCorner>47.029000 8.622001</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.027173 8.615094 47.027196 8.615355 47.027233 8.615620 47.027283 8.615880 47.027352 8.616182 47.027419 8.616417 47.027541 8.616766 47.027631 8.617021 47.027751 8.617377 47.027839 8.617645 47.027891 8.617792 47.027949 8.617934 47.028015 8.618069 47.028274 8.618621 47.028449 8.619022 47.028536 8.619223 47.028730 8.619734 47.028790 8.619911 47.028828 8.620030 47.028861 8.620151 47.028891 8.620275 47.028919 8.620444 47.028936 8.620617 47.028943 8.620791 47.028959 8.621219 47.028980 8.621643 47.028998 8.621952 47.029000 8.622001 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>2 / Lauerzerstrasse / Zingel in Seewen SZ</ms:lokalname>
+        <ms:baubeginn>2025-08-18</ms:baubeginn>
+        <ms:bauende>2027-10-01</ms:bauende>
+        <ms:beschreibung>Strasseninstandstellung, Errichtung einer neuen Stützmauer,  Renaturierung</ms:beschreibung>
+        <ms:behinderungsbemerkung>mittel: Einspurig, mit LSA oder Drehkelle geregelt. Der Rad-Gehweg ist ständig geöffnet. &lt;br&gt;</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>46.997620 8.608645</gml:lowerCorner>
+        		<gml:upperCorner>46.998830 8.609477</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">46.998830 8.609477 46.998563 8.609412 46.998439 8.609380 46.998361 8.609352 46.998312 8.609330 46.998262 8.609305 46.998175 8.609254 46.998129 8.609220 46.998087 8.609189 46.998035 8.609145 46.997983 8.609098 46.997942 8.609059 46.997895 8.609010 46.997849 8.608960 46.997823 8.608930 46.997779 8.608877 46.997754 8.608846 46.997680 8.608737 46.997620 8.608645 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>Bahnhofareal - ÖV - Drehscheibe</ms:lokalname>
+        <ms:baubeginn>2026-08-31</ms:baubeginn>
+        <ms:bauende>2028-11-24</ms:bauende>
+        <ms:beschreibung>Umgestaltung des gesamten Bahnhofareals</ms:beschreibung>
+        <ms:behinderungsbemerkung>mittel: Gegenverkehr mit provisorischer 2-spuriger Verkehrsführung.
+Von September - Dezember 2026 wird auf der Bahnhofstrasse und Rosengartenstrasse in Brunnen ein Einbahnregime eingerichtet. Velos werden über die ganze Bauzeit mit MIV geführt.
+Ausnahmefahrten / Sondertransporte müssen sich im Vorfeld anmelden.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>46.998852 8.609483</gml:lowerCorner>
+        		<gml:upperCorner>46.998862 8.609497</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">46.998852 8.609483 46.998862 8.609497 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>Bahnhofareal - ÖV - Drehscheibe</ms:lokalname>
+        <ms:baubeginn>2026-08-31</ms:baubeginn>
+        <ms:bauende>2028-11-24</ms:bauende>
+        <ms:beschreibung>Umgestaltung des gesamten Bahnhofareals</ms:beschreibung>
+        <ms:behinderungsbemerkung>mittel: Gegenverkehr mit provisorischer 2-spuriger Verkehrsführung.
+Von September - Dezember 2026 wird auf der Bahnhofstrasse und Rosengartenstrasse in Brunnen ein Einbahnregime eingerichtet. Velos werden über die ganze Bauzeit mit MIV geführt.
+Ausnahmefahrten / Sondertransporte müssen sich im Vorfeld anmelden.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>46.999334 8.609060</gml:lowerCorner>
+        		<gml:upperCorner>46.999446 8.609282</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">46.999446 8.609060 46.999410 8.609131 46.999348 8.609255 46.999334 8.609282 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>Bahnhofareal - ÖV - Drescheibe</ms:lokalname>
+        <ms:baubeginn>2026-08-31</ms:baubeginn>
+        <ms:bauende>2028-11-24</ms:bauende>
+        <ms:beschreibung>Umgestaltung des gesamten Banhofareals</ms:beschreibung>
+        <ms:behinderungsbemerkung>mittel: Gegenverkehr mit provisorischer 2-spuriger Verkehrsführung.
+Von September - Dezember 2026 wird auf der Bahnhofstrasse und Rosengartenstrasse in Brunnen ein Einbahnregime eingerichtet. Velos werden über die ganze Bauzeit mit MIV geführt.
+Ausnahmefahrten / Sondertransporte müssen sich im Vorfeld anmelden.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>46.972426 8.753409</gml:lowerCorner>
+        		<gml:upperCorner>46.975567 8.766501</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">46.975567 8.753409 46.975556 8.753441 46.975530 8.753530 46.975506 8.753620 46.975327 8.754417 46.975277 8.754649 46.975204 8.754961 46.975182 8.755053 46.975163 8.755132 46.975135 8.755236 46.975081 8.755420 46.974792 8.756269 46.974740 8.756425 46.974678 8.756621 46.974593 8.756916 46.974555 8.757037 46.974514 8.757156 46.974468 8.757271 46.974370 8.757505 46.974330 8.757592 46.974286 8.757675 46.974203 8.757809 46.974171 8.757869 46.974144 8.757933 46.974023 8.758229 46.973485 8.759524 46.973444 8.759631 46.973404 8.759741 46.973374 8.759831 46.973346 8.759920 46.973307 8.760067 46.972889 8.761786 46.972643 8.762816 46.972593 8.763031 46.972570 8.763155 46.972550 8.763269 46.972535 8.763395 46.972522 8.763511 46.972514 8.763638 46.972426 8.766501 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>387 / Ibach - Muotathal, Wegscheide bis Einmündung Markstrasse, Muotathal</ms:lokalname>
+        <ms:baubeginn>2026-03-09</ms:baubeginn>
+        <ms:bauende>2026-11-30</ms:bauende>
+        <ms:beschreibung>Sanierung Kantonsstrasse inkl. Strassenentwässerung, Werkleitungen und Strassenoberbau</ms:beschreibung>
+        <ms:behinderungsbemerkung>stark: Beachtung Signale Beschilderung / Umleitung</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link>&lt;a href=&quot;https://data.geo.sz.ch/public/Themen/A083a/pdf/387IbachMuotathalWegscheidebisEinmündungMarkstrasseMuotathal/14114.01-PG9223_Übersicht Baustellen 2026 nach DB-Einbau.pdf&quot; target=&quot;_blank&quot;&gt;Beilage&lt;/a&gt;</ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.068706 8.493528</gml:lowerCorner>
+        		<gml:upperCorner>47.074791 8.505992</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.074791 8.493528 47.074777 8.493556 47.074746 8.493620 47.074699 8.493711 47.074655 8.493790 47.074604 8.493880 47.074551 8.493970 47.074451 8.494133 47.074344 8.494296 47.073832 8.495063 47.073756 8.495178 47.073627 8.495377 47.073505 8.495574 47.073440 8.495679 47.073398 8.495749 47.073354 8.495829 47.073311 8.495911 47.073201 8.496126 47.073081 8.496378 47.072952 8.496655 47.072835 8.496911 47.072599 8.497414 47.072552 8.497522 47.072506 8.497631 47.072455 8.497763 47.072410 8.497882 47.072339 8.498086 47.072253 8.498364 47.072211 8.498509 47.072174 8.498641 47.072091 8.498944 47.072008 8.499241 47.071974 8.499353 47.071939 8.499463 47.071880 8.499641 47.071860 8.499698 47.071836 8.499765 47.071805 8.499844 47.071773 8.499922 47.071716 8.500053 47.071656 8.500180 47.071606 8.500279 47.071551 8.500384 47.071482 8.500506 47.071411 8.500626 47.071354 8.500717 47.071298 8.500810 47.070972 8.501330 47.070907 8.501438 47.070773 8.501665 47.070711 8.501773 47.070614 8.501956 47.070571 8.502042 47.070529 8.502131 47.070523 8.502148 47.070492 8.502230 47.070465 8.502314 47.070458 8.502335 47.070441 8.502417 47.070424 8.502499 47.070410 8.502609 47.070399 8.502719 47.070391 8.502833 47.070378 8.503078 47.070369 8.503205 47.070361 8.503285 47.070353 8.503364 47.070340 8.503474 47.070325 8.503573 47.070308 8.503665 47.070289 8.503757 47.070264 8.503865 47.070235 8.503982 47.070178 8.504181 47.070133 8.504315 47.070091 8.504440 47.069990 8.504711 47.069932 8.504859 47.069875 8.504995 47.069842 8.505062 47.069810 8.505120 47.069777 8.505164 47.069739 8.505202 47.069699 8.505236 47.069658 8.505267 47.069511 8.505364 47.069293 8.505492 47.069128 8.505578 47.068995 8.505650 47.068939 8.505694 47.068885 8.505743 47.068872 8.505756 47.068780 8.505859 47.068747 8.505912 47.068714 8.505967 47.068707 8.505990 47.068706 8.505992 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>2 / Arth - Immensee</ms:lokalname>
+        <ms:baubeginn>2026-10-27</ms:baubeginn>
+        <ms:bauende>2026-11-05</ms:bauende>
+        <ms:beschreibung>Lokaler Ersatz Deckbelag in mehreren Abschnitten auf der Luzernerstrasse</ms:beschreibung>
+        <ms:behinderungsbemerkung>mittel: Die Bauarbeiten werden unter einem jeweiligen Spurabbau mit Verkehrsdienst tagsüber umgesetzt. Lokal werden Schachtoberbauten und Deckbeläge ersetzt. Bei schlechter oder zu kalter Witterung können sich die Arbeiten verschieben.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.136396 8.745566</gml:lowerCorner>
+        		<gml:upperCorner>47.137362 8.745841</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.136396 8.745566 47.137362 8.745841 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>386.1 / Zürichstrasse</ms:lokalname>
+        <ms:baubeginn>2026-10-05</ms:baubeginn>
+        <ms:bauende>2026-10-31</ms:bauende>
+        <ms:beschreibung>Neubau Bushaltestelle Zürichstrasse Nord, Einsiedeln</ms:beschreibung>
+        <ms:behinderungsbemerkung>mittel: Die Verkehrsregelung erfolgt einspurig mittels Lichtsignalanlage (LSA) oder Verkehrsdienst. Zufussgehende und Velofahrende können die Baustelle jederzeit passieren. Ausserhalb der Arbeitszeiten ist die Strasse wieder in beiden Richtungen befahrbar. </ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.089864 8.445718</gml:lowerCorner>
+        		<gml:upperCorner>47.091931 8.447706</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.089864 8.445718 47.089923 8.445802 47.090050 8.445975 47.090179 8.446145 47.090215 8.446195 47.090252 8.446245 47.090290 8.446293 47.090464 8.446495 47.090648 8.446677 47.090841 8.446838 47.091358 8.447254 47.091680 8.447507 47.091842 8.447634 47.091931 8.447706 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>2 / Zugerstrasse</ms:lokalname>
+        <ms:baubeginn>2026-06-15</ms:baubeginn>
+        <ms:bauende>2026-11-06</ms:bauende>
+        <ms:beschreibung>Instandsetzung Bohrpfahlwand Frohsinn, Küssnacht</ms:beschreibung>
+        <ms:behinderungsbemerkung>gering: Gegenverkehr mit provisorischer 2-spuriger Verkehrsführung.
+- Verschwenkung der Fahrspuren und Aufhebung beider Radstreifen im Baustellenbereich.
+- Signalisierte Höchstgeschwindigkeit 60 km/h.
+- Teilsperrung Gribschweg während ganzer Bauzeit, mit Umleitung.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.201775 8.796326</gml:lowerCorner>
+        		<gml:upperCorner>47.201828 8.797115</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.201828 8.796326 47.201810 8.796692 47.201775 8.797115 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>3 / Churerstrasse</ms:lokalname>
+        <ms:baubeginn>2026-08-31</ms:baubeginn>
+        <ms:bauende>2026-12-11</ms:bauende>
+        <ms:beschreibung>Neubau Busspur, Pfäffikon Ost</ms:beschreibung>
+        <ms:behinderungsbemerkung>gering: Die Verkehrsführung erfolgt ohne Einschränkungen. Radfahrer werden im Mischverkehr geführt. Für Fussgänger ist eine separate Führung vorgesehen.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.202016 8.792336</gml:lowerCorner>
+        		<gml:upperCorner>47.202079 8.793797</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.202079 8.792336 47.202079 8.792369 47.202078 8.792413 47.202078 8.792426 47.202078 8.792471 47.202078 8.792516 47.202077 8.792527 47.202075 8.792657 47.202071 8.792787 47.202070 8.792799 47.202060 8.793078 47.202016 8.793797 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>3 / Churerstrasse</ms:lokalname>
+        <ms:baubeginn>2026-08-31</ms:baubeginn>
+        <ms:bauende>2026-12-11</ms:bauende>
+        <ms:beschreibung>Neubau Busspur, Pfäffikon Ost</ms:beschreibung>
+        <ms:behinderungsbemerkung>gering: Die Verkehrsführung erfolgt ohne Einschränkungen. Radfahrer werden im Mischverkehr geführt. Für Fussgänger ist eine separate Führung vorgesehen.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.201855 8.793933</gml:lowerCorner>
+        		<gml:upperCorner>47.202039 8.796173</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.201855 8.796173 47.201859 8.796159 47.201882 8.795856 47.201903 8.795575 47.201940 8.795147 47.201981 8.794703 47.202000 8.794477 47.202025 8.794125 47.202034 8.794017 47.202039 8.793933 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>3 / Churerstrasse </ms:lokalname>
+        <ms:baubeginn>2026-08-31</ms:baubeginn>
+        <ms:bauende>2026-12-11</ms:bauende>
+        <ms:beschreibung>Neubau Busspur, Pfäffikon Ost</ms:beschreibung>
+        <ms:behinderungsbemerkung>mittel: Die Verkehrsführung erfolgt ohne Einschränkungen. Radfahrer werden im Mischverkehr geführt. Für Fussgänger ist eine separate Führung vorgesehen.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.010119 8.636399</gml:lowerCorner>
+        		<gml:upperCorner>47.010607 8.639145</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.010119 8.636399 47.010174 8.636587 47.010318 8.637057 47.010362 8.637195 47.010401 8.637336 47.010434 8.637480 47.010472 8.637662 47.010503 8.637833 47.010520 8.637937 47.010542 8.638090 47.010543 8.638106 47.010545 8.638121 47.010546 8.638137 47.010558 8.638247 47.010569 8.638358 47.010578 8.638468 47.010587 8.638596 47.010594 8.638724 47.010598 8.638852 47.010607 8.639145 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>8 / Gotthardstrasse</ms:lokalname>
+        <ms:baubeginn>2026-07-13</ms:baubeginn>
+        <ms:bauende>2026-12-16</ms:bauende>
+        <ms:beschreibung>Knoten Diesel, Ibach</ms:beschreibung>
+        <ms:behinderungsbemerkung>gering: Gegenverkehr mit provisorischer 2-spuriger Verkehrsführung ab 04.09.2026</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.185420 8.865474</gml:lowerCorner>
+        		<gml:upperCorner>47.185718 8.866208</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.185718 8.865474 47.185699 8.865525 47.185656 8.865640 47.185619 8.865737 47.185602 8.865779 47.185580 8.865832 47.185445 8.866146 47.185420 8.866208 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>3 / Kantonsstrasse</ms:lokalname>
+        <ms:baubeginn>2026-08-31</ms:baubeginn>
+        <ms:bauende>2026-12-04</ms:bauende>
+        <ms:beschreibung>Lärmschutzwand Höfli, Galgenen</ms:beschreibung>
+        <ms:behinderungsbemerkung>gering: Gegenverkehr mit provisorischer 2-spuriger Verkehrsführung.
+</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+    <wfs:member>
+      <ms:ch.sz.a083a.baustellen.erweitert>
+        <gml:boundedBy>
+        	<gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        		<gml:lowerCorner>47.008063 8.713489</gml:lowerCorner>
+        		<gml:upperCorner>47.008077 8.714133</gml:upperCorner>
+        	</gml:Envelope>
+        </gml:boundedBy>
+        <ms:geom>
+          <gml:LineString gml:id=".1" srsName="urn:ogc:def:crs:EPSG::4326">
+            <gml:posList srsDimension="2">47.008066 8.713489 47.008070 8.713537 47.008075 8.713743 47.008077 8.713971 47.008071 8.714089 47.008063 8.714133 </gml:posList>
+          </gml:LineString>
+        </ms:geom>
+        <ms:lokalname>Ibergereggstrasse / Rickenbach - lbergeregg Passhöhe</ms:lokalname>
+        <ms:baubeginn>2026-03-23</ms:baubeginn>
+        <ms:bauende>2026-11-20</ms:bauende>
+        <ms:beschreibung>Hangsicherung Hundsbüel: Stabilisierung instabiler Hang mittels verankerter Riegel und lnstandsetzung Strasse</ms:beschreibung>
+        <ms:behinderungsbemerkung>gering: Einspurig, mit LSA oder Drehkelle geregelt.  Der Verkehr auf der lbergereggstrasse soll während der
+Bauarbeiten möglichst zweispurig offengehalten werden. Um das Queren von Baufahrzeugen sowie die An- und Abtransporte von
+grösseren LKW ermöglichen zu können, wird aber trotzdem bei Baustart eine Lichtsignalanlage eingerichtet, welche bei Bedarf
+in Betrieb genommen oder allenfalls für eine kurzzeitige Vollsperrung (max. 5 Minuten) eingeschaltet werden kann. Der öffentliche Verkehr wird dabei priorisiert.</ms:behinderungsbemerkung>
+        <ms:kontaktbauleitung>[Kontakt Bauleitung]</ms:kontaktbauleitung>
+        <ms:kontakttba>[Kontakt TBA]</ms:kontakttba>
+        <ms:link></ms:link>
+      </ms:ch.sz.a083a.baustellen.erweitert>
+    </wfs:member>
+</wfs:FeatureCollection>
+

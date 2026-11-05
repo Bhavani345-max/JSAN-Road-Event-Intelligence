@@ -229,7 +229,9 @@ DISCOVERED_2026_11_04: tuple[SourceDefinition, ...] = (
             "code, name, e-mail, purpose); the key 'will only become valid once an employee of the "
             "Transport Administration has reviewed your registration'. Terms (tarktee.ee/en/terms) "
             "require a credit or link to the Service and the Administrator and say nothing on "
-            "commercial use; the site calls the data 'for free use'. Not connected."
+            "commercial use; the site calls the data 'for free use'. On 5 November 2026 the Estonian "
+            "open data portal listed the dataset (liikluspiirangute-andmed) with licence CC BY. "
+            "Not connected."
         ),
     ),
     _researched(
@@ -275,7 +277,10 @@ DISCOVERED_2026_11_04: tuple[SourceDefinition, ...] = (
             "Datasets 'Road works', 'Road closures', 'Lane closures', 'Short term road works', "
             "'Accidents and incidents' (LVC, state roads). Terms: 'API access require[s] user "
             "registration'; the road-works metadata says Private visibility, Push, georeferencing "
-            "OpenLR (coordinate system WGS84): check after access whether points are given. Not connected."
+            "OpenLR (coordinate system WGS84): check after access whether points are given. The "
+            "August 2024 sample files (read 5 November 2026) carry WGS84 points and point chains in "
+            "their OpenLR fields (one sample with latitude and longitude swapped); an account needs "
+            "only an e-mail (Cabinet Regulation No. 188, point 8). Not connected."
         ),
     ),
     # --- Poland -------------------------------------------------------------------------

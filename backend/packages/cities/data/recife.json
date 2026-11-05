@@ -1,0 +1,58 @@
+{
+  "id": "recife",
+  "name": "Recife",
+  "area_name": "Recife",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Recife",
+  "language": "pt",
+  "bbox": [
+    -8.16,
+    -35.02,
+    -7.93,
+    -34.85
+  ],
+  "map": {
+    "center": [
+      -34.9,
+      -8.05
+    ],
+    "zoom": 11.0
+  },
+  "scope_terms": [
+    "Recife",
+    "PE",
+    "CTTU",
+    "Olinda",
+    "Boa Viagem",
+    "Avenida Agamenon Magalhães"
+  ],
+  "other_cities": [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Brasília",
+    "Belo Horizonte",
+    "Curitiba",
+    "Porto Alegre",
+    "Salvador",
+    "Fortaleza",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "recife_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Recife interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

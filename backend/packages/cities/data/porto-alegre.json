@@ -1,0 +1,56 @@
+{
+  "id": "porto-alegre",
+  "name": "Porto Alegre",
+  "area_name": "Porto Alegre",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Sao_Paulo",
+  "language": "pt",
+  "bbox": [
+    -30.27,
+    -51.3,
+    -29.93,
+    -51.08
+  ],
+  "map": {
+    "center": [
+      -51.22,
+      -30.03
+    ],
+    "zoom": 10.8
+  },
+  "scope_terms": [
+    "Porto Alegre",
+    "RS",
+    "EPTC",
+    "Canoas"
+  ],
+  "other_cities": [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Brasília",
+    "Belo Horizonte",
+    "Curitiba",
+    "Salvador",
+    "Recife",
+    "Fortaleza",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "porto-alegre_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Porto Alegre interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

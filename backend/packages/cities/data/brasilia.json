@@ -1,0 +1,64 @@
+{
+  "id": "brasilia",
+  "name": "Brasília",
+  "area_name": "Brasília",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Sao_Paulo",
+  "language": "pt",
+  "bbox": [
+    -15.95,
+    -48.15,
+    -15.65,
+    -47.75
+  ],
+  "map": {
+    "center": [
+      -47.9,
+      -15.79
+    ],
+    "zoom": 10.5
+  },
+  "scope_terms": [
+    "Brasília",
+    "Brasilia",
+    "Distrito Federal",
+    "DF",
+    "Detran-DF",
+    "DER-DF",
+    "Eixo Monumental",
+    "Esplanada dos Ministérios",
+    "Taguatinga",
+    "Ceilândia",
+    "EPTG",
+    "EPIA"
+  ],
+  "other_cities": [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Belo Horizonte",
+    "Curitiba",
+    "Porto Alegre",
+    "Salvador",
+    "Recife",
+    "Fortaleza",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "brasilia_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Brasília interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

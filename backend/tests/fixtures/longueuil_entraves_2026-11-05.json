@@ -1,0 +1,914 @@
+{
+ "fetched_at": "2026-11-05T08:59:10+00:00",
+ "request": "https://geomatique.longueuil.quebec/public/rest/services/Communication/Gestion_des_entraves_Diffusion/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+ "note": "A trimmed sample of the real response of 5 November 2026 (457 points), features unchanged; `domains` are the layer's coded-value domains as FeatureServer/0?f=json states them. The layer carries no personal data.",
+ "domains": {
+  "TYPE_ENTRAVE": {
+   "type": "codedValue",
+   "name": "COM_GestionEntraves_CategorieEntrave",
+   "description": "",
+   "codedValues": [
+    {
+     "name": "Parcs et espaces verts",
+     "code": 1
+    },
+    {
+     "name": "Réseau cyclable",
+     "code": 3
+    },
+    {
+     "name": "Voies de circulation et trottoirs",
+     "code": 4
+    },
+    {
+     "name": "Événements spéciaux",
+     "code": 5
+    },
+    {
+     "name": "Bâtiments et stationnements municipaux",
+     "code": 2
+    },
+    {
+     "name": "Tournages",
+     "code": 6
+    }
+   ],
+   "mergePolicy": "esriMPTDefaultValue",
+   "splitPolicy": "esriSPTDefaultValue"
+  },
+  "RESPONSABLE": {
+   "type": "codedValue",
+   "name": "COM_GestionEntraves_ResponsableTravaux",
+   "description": "",
+   "codedValues": [
+    {
+     "name": "Ville de Longueuil",
+     "code": 1
+    },
+    {
+     "name": "Hydro-Québec",
+     "code": 3
+    },
+    {
+     "name": "Ministère des Transports et de la mobilité durable",
+     "code": 2
+    },
+    {
+     "name": "Énergir",
+     "code": 4
+    },
+    {
+     "name": "Bell",
+     "code": 5
+    },
+    {
+     "name": "Vidéotron",
+     "code": 6
+    },
+    {
+     "name": "Entrepreneur ou promoteur (travaux privés)",
+     "code": 7
+    },
+    {
+     "name": "Autre",
+     "code": 8
+    }
+   ],
+   "mergePolicy": "esriMPTDefaultValue",
+   "splitPolicy": "esriSPTDefaultValue"
+  },
+  "DEBUT_PREVU": {
+   "type": "codedValue",
+   "name": "COM_GestionEntraves_PrevisionEntrave",
+   "description": "Liste des mois ou saisons prévus pour le début ou la fin d'une entrave",
+   "codedValues": [
+    {
+     "name": "Janvier",
+     "code": 1
+    },
+    {
+     "name": "Février",
+     "code": 2
+    },
+    {
+     "name": "Mars",
+     "code": 3
+    },
+    {
+     "name": "Avril",
+     "code": 4
+    },
+    {
+     "name": "Mai",
+     "code": 5
+    },
+    {
+     "name": "Juin",
+     "code": 6
+    },
+    {
+     "name": "Juillet",
+     "code": 7
+    },
+    {
+     "name": "Août",
+     "code": 8
+    },
+    {
+     "name": "Septembre",
+     "code": 9
+    },
+    {
+     "name": "Octobre",
+     "code": 10
+    },
+    {
+     "name": "Novembre",
+     "code": 11
+    },
+    {
+     "name": "Décembre",
+     "code": 12
+    },
+    {
+     "name": "Printemps",
+     "code": 13
+    },
+    {
+     "name": "Été",
+     "code": 14
+    },
+    {
+     "name": "Automne",
+     "code": 15
+    },
+    {
+     "name": "Hiver",
+     "code": 16
+    }
+   ],
+   "mergePolicy": "esriMPTDefaultValue",
+   "splitPolicy": "esriSPTDefaultValue"
+  },
+  "FIN_PREVUE": {
+   "type": "codedValue",
+   "name": "COM_GestionEntraves_PrevisionEntrave",
+   "description": "Liste des mois ou saisons prévus pour le début ou la fin d'une entrave",
+   "codedValues": [
+    {
+     "name": "Janvier",
+     "code": 1
+    },
+    {
+     "name": "Février",
+     "code": 2
+    },
+    {
+     "name": "Mars",
+     "code": 3
+    },
+    {
+     "name": "Avril",
+     "code": 4
+    },
+    {
+     "name": "Mai",
+     "code": 5
+    },
+    {
+     "name": "Juin",
+     "code": 6
+    },
+    {
+     "name": "Juillet",
+     "code": 7
+    },
+    {
+     "name": "Août",
+     "code": 8
+    },
+    {
+     "name": "Septembre",
+     "code": 9
+    },
+    {
+     "name": "Octobre",
+     "code": 10
+    },
+    {
+     "name": "Novembre",
+     "code": 11
+    },
+    {
+     "name": "Décembre",
+     "code": 12
+    },
+    {
+     "name": "Printemps",
+     "code": 13
+    },
+    {
+     "name": "Été",
+     "code": 14
+    },
+    {
+     "name": "Automne",
+     "code": 15
+    },
+    {
+     "name": "Hiver",
+     "code": 16
+    }
+   ],
+   "mergePolicy": "esriMPTDefaultValue",
+   "splitPolicy": "esriSPTDefaultValue"
+  },
+  "STATUT_ENTRAVE": {
+   "type": "codedValue",
+   "name": "COM_GestionEntraves_StatutEntrave",
+   "description": "",
+   "codedValues": [
+    {
+     "name": "Entraves en cours",
+     "code": 1
+    },
+    {
+     "name": "Entraves planifiées dans l'année",
+     "code": 2
+    },
+    {
+     "name": "Entraves terminées",
+     "code": 0
+    },
+    {
+     "name": "Entraves proposées (non publiée)",
+     "code": 3
+    }
+   ],
+   "mergePolicy": "esriMPTDefaultValue",
+   "splitPolicy": "esriSPTDefaultValue"
+  }
+ },
+ "items": [
+  {
+   "type": "Feature",
+   "id": 2249,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.41385817072302,
+     45.47922072404277
+    ]
+   },
+   "properties": {
+    "OBJECTID": 2249,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Le boulevard Maricourt sera complètement fermé pour toute la durée des travaux entre les rues Beauséjour et Ouellette. Les usagers sont invités à emprunter le détour en place.",
+    "DATE_DEBUT": 1789488000000,
+    "DATE_FIN": 1797613200000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{80052932-C5EC-4DD8-AC15-CFD9F9CE18D8}",
+    "NOM_ENTRAVE": "Reconstruction du ponceau Maricourt (ruisseau Daigneault)",
+    "NATURE_ENTRAVE": "Repavage,Travaux_Souterrains,Recons_Ajout_Bordures_Trottoirs",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete,Circ_Deviee_Alternance,Trottoirs_Liens_Cyclable_Inacces",
+    "DEBUT_PREVU": 9,
+    "FIN_PREVUE": 12,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 7364,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.46098411471424,
+     45.513798825945656
+    ]
+   },
+   "properties": {
+    "OBJECTID": 7364,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1780329600000,
+    "DATE_FIN": 1796058000000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{B69447F2-9386-498D-9D65-FBFE7E7A154E}",
+    "NOM_ENTRAVE": "Réfection rue de Lyon",
+    "NATURE_ENTRAVE": "Repavage,Travaux_Souterrains,Rempl_Ajout_Feux_Circul_Ecl,Recons_Ajout_Bordures_Trottoirs",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete,Circ_Deviee_Alternance,Retrait_Temporaire_Stationnement,Trottoirs_Liens_Cyclable_Inacces",
+    "DEBUT_PREVU": 6,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://longueuil.quebec/delyon",
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 8001,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.47047563944325,
+     45.49823579533462
+    ]
+   },
+   "properties": {
+    "OBJECTID": 8001,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1782748800000,
+    "DATE_FIN": 1796058000000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{CF0D267B-FEFD-420E-9700-7551370E2E82}",
+    "NOM_ENTRAVE": "Resurfaçage 2026 - Rue Windsor de Gaulle à boulevard Édouard",
+    "NATURE_ENTRAVE": "Repavage",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance,Retrait_Temporaire_Stationnement,Trottoirs_Liens_Cyclable_Inacces",
+    "DEBUT_PREVU": 6,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 7684,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.47103270854168,
+     45.50885557041721
+    ]
+   },
+   "properties": {
+    "OBJECTID": 7684,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1788883200000,
+    "DATE_FIN": 1794070800000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{0C43FE4C-67E4-4D73-B141-B3E9B4578FC8}",
+    "NOM_ENTRAVE": "Mise aux normes des feux de circulation",
+    "NATURE_ENTRAVE": "Rempl_Ajout_Feux_Circul_Ecl",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance",
+    "DEBUT_PREVU": 9,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 13,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.47121581592603,
+     45.573106180757286
+    ]
+   },
+   "properties": {
+    "OBJECTID": 13,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Sans objet",
+    "DATE_DEBUT": 1787241600000,
+    "DATE_FIN": 1796058000000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{77E561EB-62B9-4A22-B5A3-C1685D7D8993}",
+    "NOM_ENTRAVE": "Réfection des infrastructures sous le passage à niveau de la rue de la Métropole",
+    "NATURE_ENTRAVE": "Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete",
+    "DEBUT_PREVU": 8,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 12489,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.4815051681233,
+     45.510592332739414
+    ]
+   },
+   "properties": {
+    "OBJECTID": 12489,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1793376000000,
+    "DATE_FIN": 1793984400000,
+    "RESPONSABLE": 3,
+    "GLOBALID": "{D0D62882-D5B8-4E1D-8B41-906BAE42728E}",
+    "NOM_ENTRAVE": "Déterrement du PTC 00123-4410",
+    "NATURE_ENTRAVE": "Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance,Retrait_Temporaire_Stationnement,Trottoirs_Liens_Cyclable_Inacces",
+    "DEBUT_PREVU": 10,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 11529,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.4677168002713,
+     45.555885016579985
+    ]
+   },
+   "properties": {
+    "OBJECTID": 11529,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Le boulevard Jean-Paul-Vincent sera fermé à la circulation dans les deux sens, entre le boulevard Fernand-Lafontaine et la rue du Caribou. La circulation locale sera permise sur le boulevard Jean-Paul-Vincent, uniquement pour les automobilistes souhaitant se rendre à une résidence située sur le tronçon des travaux. Clientèle du transport collectif : voir le site du RTL pour les détours et arrêts non desservis : Travaux sur le boulevard Jean-Paul-Vincent - RTL",
+    "DATE_DEBUT": 1790006400000,
+    "DATE_FIN": 1795453200000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{B7A81595-7CE2-4869-B98E-3E69C14D9E87}",
+    "NOM_ENTRAVE": "Travaux d'aqueduc sur le boulevard Jean-Paul Vincent",
+    "NATURE_ENTRAVE": "Repavage,Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete",
+    "DEBUT_PREVU": 9,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://www.rtl-longueuil.qc.ca/liens-utiles/salle-de-presse/travaux-boulevard-jean-paul-vincent",
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 2250,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.51863200425113,
+     45.53366965895369
+    ]
+   },
+   "properties": {
+    "OBJECTID": 2250,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "CIRCULATION ET ACCÈS LOCAL : Du 21 novembre dès 22 h jusqu’au 22 novembre à 9 h, la route 132 (en directions Est et Ouest) et tous ses accès seront fermés entre les boulevards Taschereau et Roland-Therrien. La rue du Bord-de-l’Eau sera fermée entre les rues Jean-Béliveau et de Châteauguay.  Le chemin de la Rive sera fermé, une voie sera maintenue uniquement pour la circulation locale. ",
+    "DATE_DEBUT": 1794848400000,
+    "DATE_FIN": 1797181200000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{FF1E2F05-A6A0-4004-8617-A232C50D0E07}",
+    "NOM_ENTRAVE": "Déconstruction de la passerelle Victoria",
+    "NATURE_ENTRAVE": "Change_Config_Rue",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete,Circ_Deviee_Alternance,Retrait_Temporaire_Stationnement,Trottoirs_Liens_Cyclable_Inacces",
+    "DEBUT_PREVU": 15,
+    "FIN_PREVUE": 16,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://www.longueuil.quebec/mario-petrone",
+    "STATUT_ENTRAVE": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 11203,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.49966603412429,
+     45.55032021758165
+    ]
+   },
+   "properties": {
+    "OBJECTID": 11203,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1790179200000,
+    "DATE_FIN": 1798045200000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{68259FC5-A2E3-476D-A39C-DD8DC36078E7}",
+    "NOM_ENTRAVE": "Travaux de réfection du pont Roland-Therrien (P-16137) et de la passerelle Edna-Maricourt (P-15863B)",
+    "NATURE_ENTRAVE": "Repavage",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete,Circ_Deviee_Alternance",
+    "DEBUT_PREVU": 15,
+    "FIN_PREVUE": 13,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://longueuil.quebec/fr/viaducrolandtherrien",
+    "STATUT_ENTRAVE": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 12162,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.47389772476235,
+     45.56882151695829
+    ]
+   },
+   "properties": {
+    "OBJECTID": 12162,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Travaux de remplacement de câbles",
+    "DATE_DEBUT": null,
+    "DATE_FIN": 1803142800000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{6B00251C-FBDE-453C-BFFD-436E42244650}",
+    "NOM_ENTRAVE": "Projet de conversion - travaux civils et électriques - réseau 122 site Le Breton",
+    "NATURE_ENTRAVE": "Travaux_elec_telecom,Rempl_Ajout_Feux_Circul_Ecl",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance,Retrait_Temporaire_Stationnement,Trottoirs_Liens_Cyclable_Inacces",
+    "DEBUT_PREVU": 10,
+    "FIN_PREVUE": 2,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://longueuil.quebec/fr/DEL",
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 2566,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.37972469257669,
+     45.46066686045421
+    ]
+   },
+   "properties": {
+    "OBJECTID": 2566,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Travaux prévus automne 2025 - au besoin, suite en 2026",
+    "DATE_DEBUT": 1775059200000,
+    "DATE_FIN": null,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{1AC07FF0-FD7E-4D36-B865-871E9194627B}",
+    "NOM_ENTRAVE": "Mise en place d'un système de traitement des odeurs",
+    "NATURE_ENTRAVE": "Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance",
+    "DEBUT_PREVU": 13,
+    "FIN_PREVUE": 13,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 8649,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.4686896714735,
+     45.54014100681899
+    ]
+   },
+   "properties": {
+    "OBJECTID": 8649,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Réfection de gazon après travaux civils et électriques",
+    "DATE_DEBUT": null,
+    "DATE_FIN": null,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{A0F9E5EA-924B-48A8-ABB2-5BCA41D3A918}",
+    "NOM_ENTRAVE": "Projet de conversion - travaux civils et électriques - réseau 360",
+    "NATURE_ENTRAVE": "Travaux_elec_telecom,Rempl_Ajout_Feux_Circul_Ecl",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance",
+    "DEBUT_PREVU": 5,
+    "FIN_PREVUE": 2,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://longueuil.quebec/del",
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 2885,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.43949851914398,
+     45.49979865810057
+    ]
+   },
+   "properties": {
+    "OBJECTID": 2885,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Boul. Gareau. De Kimber à Cousineau.",
+    "DATE_DEBUT": null,
+    "DATE_FIN": null,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{92090BB7-1D75-433A-9970-B4486F44D548}",
+    "NOM_ENTRAVE": "Repavage des chaussées",
+    "NATURE_ENTRAVE": "Repavage",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance",
+    "DEBUT_PREVU": 13,
+    "FIN_PREVUE": 15,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://longueuil.quebec/fr/services/info-travaux/travaux-de-repavage",
+    "STATUT_ENTRAVE": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 3209,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.48276611894075,
+     45.5149071068309
+    ]
+   },
+   "properties": {
+    "OBJECTID": 3209,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Dans le cadre de son Programme de sécurisation aux abords des écoles (PSAÉ), la Ville met en place des aménagements visant à améliorer la sécurité des déplacements actifs pour les élèves, les parents et les résidentes et résidents demeurant près de l’école primaire Hubert-Perron, incluant la fermeture permanente de la rue Cartier, de la rue Beauregard à la sure Saint-Georges afin de créer une rue-école piétonne permanente. Dès la mi-août, la rue sera donc fermée à la circulation. Afin de palier cette fermeture et pour améliorer la fluidité de la circulation du secteur, des mises en sens unique de rue seront aménagées.",
+    "DATE_DEBUT": null,
+    "DATE_FIN": null,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{CB71DE55-E305-41AD-9687-CF30F69BE559}",
+    "NOM_ENTRAVE": "Fermeture permanente de la rue Cartier",
+    "NATURE_ENTRAVE": "Change_Config_Rue",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete",
+    "DEBUT_PREVU": 8,
+    "FIN_PREVUE": 8,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://longueuil.quebec/securite-ecoles",
+    "STATUT_ENTRAVE": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 2889,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.47381323457266,
+     45.47610737345334
+    ]
+   },
+   "properties": {
+    "OBJECTID": 2889,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Travaux de remplacement d’un compteur d’eau sur le boulevard Lapinière. Aucune coupure d’eau n’est prévue.",
+    "DATE_DEBUT": null,
+    "DATE_FIN": null,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{52963A4C-32F6-438F-A218-DE2BD4864474}",
+    "NOM_ENTRAVE": "Travaux de remplacement d’un compteur d’eau ",
+    "NATURE_ENTRAVE": "Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Aucune",
+    "DEBUT_PREVU": 13,
+    "FIN_PREVUE": 13,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 12165,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.4844798881811,
+     45.554957530955186
+    ]
+   },
+   "properties": {
+    "OBJECTID": 12165,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": "Réfection de gazon après travaux civils et électriques",
+    "DATE_DEBUT": null,
+    "DATE_FIN": null,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{6C80E502-1680-48D2-A175-FCF56A3CB8BB}",
+    "NOM_ENTRAVE": "Projet de conversion - travaux civils et électriques - réseau 1014",
+    "NATURE_ENTRAVE": "Travaux_elec_telecom,Rempl_Ajout_Feux_Circul_Ecl",
+    "REPERCUSSIONS_ENTRAVE": "Retrait_Temporaire_Stationnement,Trottoirs_Liens_Cyclable_Inacces",
+    "DEBUT_PREVU": 9,
+    "FIN_PREVUE": 2,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": "https://longueuil.quebec/fr/DEL",
+    "STATUT_ENTRAVE": 2
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 14,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.4874638997968,
+     45.487617387759244
+    ]
+   },
+   "properties": {
+    "OBJECTID": 14,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1785772800000,
+    "DATE_FIN": 1796058000000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{71748367-FB79-45A9-BA2F-8C43D86B9F0C}",
+    "NOM_ENTRAVE": "Intégration d'un bassin de rétention des eaux pluviales sous la chaussée de la rue Murray",
+    "NATURE_ENTRAVE": "Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete",
+    "DEBUT_PREVU": 8,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 3
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 8646,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.49392774395417,
+     45.492197263516374
+    ]
+   },
+   "properties": {
+    "OBJECTID": 8646,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1785772800000,
+    "DATE_FIN": 1796058000000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{8185DAE3-4840-40BE-B1AF-1E18139BDBC9}",
+    "NOM_ENTRAVE": "Intégration d'un bassin de rétention des eaux pluviales sous la chaussée de la rue Murray",
+    "NATURE_ENTRAVE": "Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete",
+    "DEBUT_PREVU": 8,
+    "FIN_PREVUE": 11,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 8644,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.5196730807359,
+     45.51802501930694
+    ]
+   },
+   "properties": {
+    "OBJECTID": 8644,
+    "TYPE_ENTRAVE": 4,
+    "DESCRIPTION": null,
+    "DATE_DEBUT": 1779724800000,
+    "DATE_FIN": 1786118400000,
+    "RESPONSABLE": 3,
+    "GLOBALID": "{494DED83-50B5-4CAD-81D3-E40F0D3D8346}",
+    "NOM_ENTRAVE": "Agrandissement du nouveau poste Hydro-Québec",
+    "NATURE_ENTRAVE": "Travaux_Souterrains",
+    "REPERCUSSIONS_ENTRAVE": "Circ_Deviee_Alternance,Retrait_Temporaire_Stationnement,Trottoirs_Liens_Cyclable_Inacces,Sentier_Ferme",
+    "DEBUT_PREVU": 5,
+    "FIN_PREVUE": 8,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 11533,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.47763081660756,
+     45.54537927806855
+    ]
+   },
+   "properties": {
+    "OBJECTID": 11533,
+    "TYPE_ENTRAVE": 5,
+    "DESCRIPTION": "Pour sortir du quartier, vous pourrez emprunter la rue  Adoncour en direction du boulevard Curé-Poirier Est. Pour revenir dans le secteur, veuillez emprunter le boulevard Fernand-Lafontaine, puis la rue Adoncour. Une preuve de résidence pourrait être demandée par le personnel du Service de police de l’agglomération de Longueuil.",
+    "DATE_DEBUT": 1789920000000,
+    "DATE_FIN": 1789920000000,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{E28720E7-F7E8-4BDA-9634-62AC194DE852}",
+    "NOM_ENTRAVE": " Demi-marathon Sun Life de Longueuil",
+    "NATURE_ENTRAVE": "Occu_Rue_Evenement",
+    "REPERCUSSIONS_ENTRAVE": "Fermeture_Complete",
+    "DEBUT_PREVU": 9,
+    "FIN_PREVUE": 9,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 0
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 12174,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.49599915654908,
+     45.53905894059531
+    ]
+   },
+   "properties": {
+    "OBJECTID": 12174,
+    "TYPE_ENTRAVE": 6,
+    "DESCRIPTION": "Tournage au 810 de Provence (série américaine) préparation le 26 et tournage le 27 octobre de 14h à 20h. Stationnement des camions sur De Normandie, Touraine, Provence, Savoie. Fermeture par intermittence sur Touraine et De Provence.",
+    "DATE_DEBUT": 1793030400000,
+    "DATE_FIN": 1793116800000,
+    "RESPONSABLE": 8,
+    "GLOBALID": "{8665A7B3-58C0-4186-801D-88B53D760A11}",
+    "NOM_ENTRAVE": "Tournage",
+    "NATURE_ENTRAVE": "Equipement_Tournage",
+    "REPERCUSSIONS_ENTRAVE": "Retrait_Temporaire_Stationnement",
+    "DEBUT_PREVU": 10,
+    "FIN_PREVUE": 10,
+    "AUTRE_RESPONSABLE": "Maison de production privée",
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 1
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 321,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.41343129841026,
+     45.47011526462734
+    ]
+   },
+   "properties": {
+    "OBJECTID": 321,
+    "TYPE_ENTRAVE": 1,
+    "DESCRIPTION": "Sans objet",
+    "DATE_DEBUT": null,
+    "DATE_FIN": null,
+    "RESPONSABLE": 1,
+    "GLOBALID": "{21E09714-AC50-41FA-84F2-0A06E5AB405C}",
+    "NOM_ENTRAVE": "Parc Quevillon - Réaménagement des aires de jeux pour enfants",
+    "NATURE_ENTRAVE": "Aire_Jeux",
+    "REPERCUSSIONS_ENTRAVE": "Aucune",
+    "DEBUT_PREVU": 10,
+    "FIN_PREVUE": 12,
+    "AUTRE_RESPONSABLE": null,
+    "AUTRE_NATURE": null,
+    "AUTRES_REPERCUSSIONS": null,
+    "URL": null,
+    "STATUT_ENTRAVE": 1
+   }
+  }
+ ]
+}

@@ -1,0 +1,465 @@
+<?xml version='1.0' encoding='utf-8'?>
+<o:objektide_nimekiri xmlns:o="https://opinfo.tallinn.ee/opendata/xsd">
+  <paring>
+    
+    <lehekylg>1</lehekylg>
+    
+                  <filter>
+        <nimetus>Olulisus</nimetus>
+        <vaartus>Kõik objektid</vaartus>
+      </filter>
+      </paring>
+  <vastus>
+    <kirjeid>
+      8    </kirjeid>
+    <lehekylgi_kokku>
+      1    </lehekylgi_kokku>
+          <objektid>
+                    <objekt>
+  <id>
+    256937  </id>
+  <menetlus_id>
+    105301  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/105301  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <tellija>[removed]</tellija>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2024-04-03 18:17:11  </tekkimise_aeg>
+  <too_liik>
+    Tänava ajutine sulgemine  </too_liik>
+  <pohjus>
+    Ehitustööd  </pohjus>
+  <pohjuse_selgitus>
+    Ajutise liikluskorralduse vajadus seoses Rail Baltica Harjumaa põhitrassi I etapi ehitustöödega.  </pohjuse_selgitus>
+  <kirjeldus>
+    Esialgu teede sulgemist liiklusele ei ole. Skeemil näidatud infotahvlite ja ajutise liikluskorraldusvahendite paiknemine.  </kirjeldus>
+  <algus>
+    2024-04-03 08:00  </algus>
+  <lopp>
+    2027-06-30 08:30  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Lasnamäe linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind>Suur-Sõjamäe tn</ads_liikluspind>
+  <ads_nimi>Suur-Sõjamäe tn</ads_nimi>
+  <ads_aadressinumber>35b</ads_aadressinumber>
+  <ads_hoone_osa />
+  <ads_adr_id>2112203</ads_adr_id>
+  <ads_ads_oid>CU00455974</ads_ads_oid>
+  <ads_adob_id>6478291</ads_adob_id>
+  <tekst>Suur-Sõjamäe tn 35b</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Sõidutee</liik>
+                    <street_name>Suur-Sõjamäe tn 35b, Tallinn</street_name>
+                                <ala>kogulaius 7 m, suletav laius 0 m</ala>
+                            </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Point","coordinates":[549415.36429804,6586762.2928742]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Point&gt;&lt;coordinates&gt;24.870292998667818,59.41586683604354&lt;/coordinates&gt;&lt;/Point&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    266577  </id>
+  <menetlus_id>
+    109080  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/109080  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+              <tellija>[removed]</tellija>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2024-08-30 09:06:32  </tekkimise_aeg>
+  <too_liik>
+    Kaevetöö  </too_liik>
+  <pohjus>
+    Ehitustööd  </pohjus>
+  <pohjuse_selgitus>
+    Rail Baltica Harjumaa põhitrassi Raudteetaristu I etapi ehitustööd.
+Vee- ja kanalistasioonitrasside ehitus.Gaasitrassi ehitus.Elektrikaablite paigaldamine.
+Sidekaablite paigaldamine. Rail Baltica raudtee mudkeha ehtitamine. Raudtee hooldusteede ehitus.  </pohjuse_selgitus>
+  <kirjeldus>
+    Rail Baltica Harjumaa põhitrassi raudteetaristu I etapi ehitustööd  </kirjeldus>
+  <algus>
+    2024-08-30 08:00  </algus>
+  <lopp>
+    2027-06-30 17:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Lasnamäe linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind />
+  <ads_nimi />
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>2348801</ads_adr_id>
+  <ads_ads_oid>CU00456125</ads_ads_oid>
+  <ads_adob_id>10213754</ads_adob_id>
+  <tekst>Vesse tänav</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Sõidutee ja haljasala</liik>
+                    <street_name>Vesse tänav, Tallinn</street_name>
+                                        </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[547391.447573256,6587515.289740512],[547398.359585821,6587511.865122336],[547375.27248575,6587479.9415745],[547398.02669792,6587488.5405501],[547443.93199807,6587462.3467477],[547387.44334342,6587469.490512],[547373.28810678,6587471.342599],[547370.50997622,6587475.5759408],[547367.20267794,6587480.3384503],[547391.447573256,6587515.289740512]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.83481700200226,59.42285631874032 24.83493799609549,59.42282480854037 24.83452435516632,59.42254085452804 24.834927018832477,59.422615493809815 24.835729818987847,59.422375257497954 24.834736434123368,59.42244569067324 24.834487519237083,59.422463895187725 24.834439514715527,59.422502202178165 24.834382305602844,59.42254531783071 24.83481700200226,59.42285631874032&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    266579  </id>
+  <menetlus_id>
+    109080  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/109080  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+              <tellija>[removed]</tellija>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2024-08-30 09:06:32  </tekkimise_aeg>
+  <too_liik>
+    Kaevetöö  </too_liik>
+  <pohjus>
+    Ehitustööd  </pohjus>
+  <pohjuse_selgitus>
+    Rail Baltica Harjumaa põhitrassi Raudteetaristu I etapi ehitustööd.
+Vee- ja kanalistasioonitrasside ehitus.Gaasitrassi ehitus.Elektrikaablite paigaldamine.
+Sidekaablite paigaldamine. Rail Baltica raudtee mudkeha ehtitamine. Raudtee hooldusteede ehitus.  </pohjuse_selgitus>
+  <kirjeldus>
+    Rail Baltica Harjumaa põhitrassi raudteetaristu I etapi ehitustööd  </kirjeldus>
+  <algus>
+    2024-08-30 08:00  </algus>
+  <lopp>
+    2027-06-30 17:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Lasnamäe linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind />
+  <ads_nimi />
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>2489428</ads_adr_id>
+  <ads_ads_oid>CU03548656</ads_ads_oid>
+  <ads_adob_id>7396022</ads_adob_id>
+  <tekst>Suur-Sõjamäe põik T2</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Sõidutee ja haljasala</liik>
+                    <street_name>Suur-Sõjamäe põik T2, Tallinn</street_name>
+                                        </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[547473.91747497,6587340.5807922],[547473.78518304,6587333.172444],[547472.46226372,6587319.2817913],[547478.79547963,6587318.3417168],[547476.28193294,6587304.583356],[547492.17376148,6587302.3484241],[547493.479884,6587315.0344185],[547503.02169984,6587313.7255301],[547505.7998304,6587339.5224567],[547474.0497669,6587343.8880905],[547473.91747497,6587340.5807922]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.83623122292552,59.42127898096185 24.836227266161572,59.42121250140763 24.836200915963023,59.42108797251719 24.836312254021607,59.42107882606599 24.836264962685203,59.42095561782559 24.836544367335783,59.4209337792801 24.836570158202658,59.421047497460364 24.83673792674985,59.4210346811178 24.83679252515989,59.421265912878866 24.836234279176622,59.42130865113872 24.83623122292552,59.42127898096185&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    266582  </id>
+  <menetlus_id>
+    109080  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/109080  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+              <tellija>[removed]</tellija>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+              <valdaja>[removed]</valdaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2024-08-30 09:06:32  </tekkimise_aeg>
+  <too_liik>
+    Kaevetöö  </too_liik>
+  <pohjus>
+    Ehitustööd  </pohjus>
+  <pohjuse_selgitus>
+    Rail Baltica Harjumaa põhitrassi Raudteetaristu I etapi ehitustööd.
+Vee- ja kanalistasioonitrasside ehitus.Gaasitrassi ehitus.Elektrikaablite paigaldamine.
+Sidekaablite paigaldamine. Rail Baltica raudtee mudkeha ehtitamine. Raudtee hooldusteede ehitus.  </pohjuse_selgitus>
+  <kirjeldus>
+    Rail Baltica Harjumaa põhitrassi raudteetaristu I etapi ehitustööd  </kirjeldus>
+  <algus>
+    2024-08-30 08:00  </algus>
+  <lopp>
+    2027-06-30 17:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Lasnamäe linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind />
+  <ads_nimi />
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>2430417</ads_adr_id>
+  <ads_ads_oid>CU03657433</ads_ads_oid>
+  <ads_adob_id>9741579</ads_adob_id>
+  <tekst>Betooni põik T2</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Haljasala</liik>
+                    <street_name>Betooni põik T2, Tallinn</street_name>
+                                        </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[548345.90750072,6587353.8006723],[548341.14499119,6587354.8590077],[548337.70540098,6587338.7193921],[548289.55113801,6587341.6298146],[548291.40322504,6587360.9444366],[548264.68025493,6587363.8548591],[548260.97608086,6587326.8131183],[548290.87405732,6587322.5797765],[548292.46156049,6587337.6610567],[548342.99707823,6587333.6922987],[548345.90750072,6587353.8006723]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.851592246867778,59.421299163731675 24.851508602973876,59.42130920559334 24.85144441410225,59.42116473521283 24.85059694196465,59.421196341767654 24.85063387628524,59.421369490770424 24.850163861939556,59.42139865449104 24.850090352735126,59.42106660495884 24.850615987028192,59.42102520614732 24.85064731564932,59.42116038860012 24.851536490260845,59.42111901121614 24.851592246867778,59.421299163731675&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    278191  </id>
+  <menetlus_id>
+    114437  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/114437  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2024-11-08 15:51:24  </tekkimise_aeg>
+  <too_liik>
+    Veoluba  </too_liik>
+  <pohjus>
+      </pohjus>
+  <pohjuse_selgitus>
+      </pohjuse_selgitus>
+  <kirjeldus>
+      </kirjeldus>
+  <algus>
+    2024-11-25 00:00  </algus>
+  <lopp>
+    2027-11-24 23:59  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+    <aadressi_tapsustus>
+    Marsruut:
+Esmaspäev: Kangru 13, Kangru, Randla, Pelguranna, Sõle, Tulika, Endla, Tehnika, Filtri tee, Peterburi tee, Tartu maantee, Kanali tee, Juhtme, Mõigu, Kaabli, 13.30-14.00 peatus teeninduseks Kaabli 6, Kaabli, Mõigu, Kanali tee, Tartu maantee, Peterburi tee, 14.15-14.45 peatus teeninduseks Peterburi tee 14a, Peterburi tee, Pae, Võidujooksu, Paekaare, Pae 14.55-15.25 peatus teeninduseks Pae 43,  Pae, Võidujooksu, Laagna tee, Mahtra, 15.45- 16.15 peatus teeninduseks Mahtra 9, Mahtra, Laagna tee, Ümera, 17.00-17.30 peatus teeninduseks Ümera 13a, Ümera, Raadiku, Laagna tee, Mustakivi tee, K.Lärberi, Ussimäe tee, Linnamäe tee, 17.45-18.15 peatusteeninduseks Linnamäe tee 37a, Linnamäe tee, Mustakivi tee, Narva mnt, Martsa, 18.30-19.00 peatus teeninduseks Martsa 2a, Martsa, Narva maantee, Reidi tee, Ahtri, Mere puiestee, Põhja puiestee, Kalasadama, Kalaranna, Tööstuse, Kopli, Pelguranna, Tuulemaa ja garaaž Kangru 13.
+Teispäev: Kangru 13, Kangru, Randla, Pelguranna, Sõle, Kopli, Ristiku, Kolde puiestee, 13.15-13.45 peatus teeninduseks Kolde pst 42, Kolde pst, Sõle, Paldiski mnt, Järveotsa tee,  Astangu, 14.10-14.40 peatus teeninduseks Astangu 22, Astangu, Paldiski maantee, Sõudebaasi tee, Pikaliiva, 15.05-15.30 peatus teeninduseks Pikaliiva 88a, Pikaliiva, Rannamõisa tee, Keskpäeva tee, Taludevahe, 16.25-16.50 peatus teeninduseks Taludevahe 116, Taludevahe, Vahepere, Rannamõisa tee, Vana Rannamõisa tee, Kakumäe tee, Vabaõhumuuseumi tee, 17.05-17.30 peatus teeninduseks Lesta 1a, Vabaõhumuuseumi tee, Mõisa, Paldiski mnt, Piibelehe, 17.55-18.20 peatus teeninduseks Piibelehe 3, Piibelehe, Laki, Humala, Mureli, 18.30-19.00 peatus teeninduseks Mureli 5, Mureli, Humala, Paldiski mnt, Sõle, Pelguranna, Tuulemaa ja garaaž Kangru 13.
+Kolmapäev: Kangru 13, Kangru, Randla, Pelguranna, Sõle, Tulika, Sõpruse pst, A.H. Tammsaare tee, Pärnu mnt, Viljandi mnt, 13.40-14.10 peatus teeninduseks Viljandi mnt 36b1, Viljandi mnt, Valdeku, Vabaduse pst, Lõuna, Sihi, Nurme, 14.25-15.00 peatus teeninduseks Nurme 40, Nurme, Vabaduse pst, Kõla, J.V.Jannseni 15.10-15.40 peatus teeninduseks J.V.Jannseni 35, Vabaduse pst, Pärnu mnt 16.30-17.00 peatus teeninduseks Pärnu mnt 453e, Pärnu mnt, Hirve põik, Põdra, Paplite pst, Pärnade pst, Kaskede pst, Tammede pst, Paplite pst, 17.15-17.45 peatus teeninduseks Paplite pst 1, Paplite pst, Põdra, Hirve põik, Pärnu mnt, Lauliku, 18.00-18.30 peatus teeninduseks Lauliku 21 vastas, Lauliku, Hommiku, Kadaka pst, Kadaka tee, Mustamäe tee, Paldiski mnt, Sõle, Pelguranna, Tuulemaa ja  garaaž Kangru 13.
+Neljapäev: väljasõit Kangru 13, Kangru, Randla, Pelguranna, Kopli, Tööstuse, Kalaranna, Kalasadama, Põhja pst, Suur Rannavärava, Mere pst, Ahtri, Reidi tee, Narva mnt, Pirita tee, Kloostrimetsa tee, 13.40-14.10 peatus teeninduseks Kloostrimetsa tee 58a, Kloostrimetsa tee, Lükati tee, Kose tee, Haljas tee Urva 14.25-15.00 peatus teeninduseks Urva 5, Urva, Kose tee, Vabaõhukooli tee, Metsakooli tee 15.10-15.45 peatus teeninduseks Vabaõhukooli tee 62, Metsakooli tee, Rahvakooli tee, Puhkekodu tee, Kelluka tee, Narva mnt,  Kose tee, Rummu tee, Pirita tee, Merivälja tee, Randvere tee, Võsa tee, Padriku tee, 16.55-17.25 peatus teeninduseks Padriku tee 10, Padriku tee, Võsa tee, Randvere tee, Merivälja tee, Ranniku tee, Ranniku põik, Tõusu tee, Haaviku tee, 17.45-18.15 peatus teeninduseks Haaviku tee 16, Haaviku tee, Kesktee, Tõusu tee, Viimsi tee, Väina tee, 18.25-19.00 peatus teeninduseks Väina tee 11, Väina tee, Ranna tee, Merivälja tee, Pirita tee, Narva mnt, Reidi tee, Ahtri, Mere puiestee, Põhja puiestee, Kalasadama, Kalaranna, Tööstuse, Kopli, Pelguranna, Tuulema ja garaaž Kangru 13.
+Vastavalt (ajutistele) teetöödele või -märkidele võib marsruut muutuda.
+Reedeti külastab raamatukogubuss erinevaid asutusi.
+  </aadressi_tapsustus>
+  <toimumiskohad>
+                  </toimumiskohad>
+  <ruumiobjekt_geojson>
+    
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    309501  </id>
+  <menetlus_id>
+    127922  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/127922  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+    2025-11-18 11:21:22  </tekkimise_aeg>
+  <too_liik>
+    Massipiirangu luba  </too_liik>
+  <pohjus>
+      </pohjus>
+  <pohjuse_selgitus>
+    Veame igapäevaselt Eesti Pandipakendi taarat üle Tallinna kõikidest kauplustest.
+Hetkel need kolm autot teenindavad eri piirkondi, kuid võivad aeg-ajalt vajadusel ka teineteise piirkondades tööd teha.  </pohjuse_selgitus>
+  <kirjeldus>
+      </kirjeldus>
+  <algus>
+    2025-11-17 00:00  </algus>
+  <lopp>
+    2026-11-17 00:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+    <aadressi_tapsustus>
+    Tallinn  </aadressi_tapsustus>
+  <toimumiskohad>
+                  </toimumiskohad>
+  <ruumiobjekt_geojson>
+    
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    344256  </id>
+  <menetlus_id>
+    141666  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/141666  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+              <tellija>[removed]</tellija>
+              <valdaja>[removed]</valdaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+      </tekkimise_aeg>
+  <too_liik>
+    Teetöö  </too_liik>
+  <pohjus>
+    Hooldus ja jooksev remont  </pohjus>
+  <pohjuse_selgitus>
+    Lasnamäe teede ja kõnniteede taastusremont.  </pohjuse_selgitus>
+  <kirjeldus>
+    Kõnniteede taastusremont  </kirjeldus>
+  <algus>
+    2026-09-25 08:00  </algus>
+  <lopp>
+    2026-11-07 22:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Lasnamäe linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind>Läänemere tee</ads_liikluspind>
+  <ads_nimi>Läänemere tee</ads_nimi>
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>2280355</ads_adr_id>
+  <ads_ads_oid>LP00018264</ads_ads_oid>
+  <ads_adob_id>11082074</ads_adob_id>
+  <tekst>Läänemere tee</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Kõnnitee</liik>
+                    <street_name>Läänemere tee, Lasnamäe linnaosa, Tallinn, Harju maakond</street_name>
+                                        </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[549002.790904964,6590548.964156146],[549003.630904964,6590546.024156147],[549132.710904964,6590600.344156146],[549173.030904965,6590501.644156145],[549125.010904965,6590483.864156145],[549126.270904965,6590481.204156144],[549173.730904965,6590500.244156145],[549182.690904965,6590479.524156145],[549185.210904965,6590480.784156145],[549135.230904964,6590601.464156145],[549229.779351386,6590641.741048982],[549228.659351386,6590644.821048982],[549133.459351386,6590604.081048982],[549094.959351383,6590693.961048973],[549092.439351383,6590692.981048972],[549130.799351384,6590602.821048978],[549060.48043834,6590573.191592455],[549002.790904964,6590548.964156146]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.863886501155516,59.44990199535393 24.863900640662997,59.44987551042188 24.866188345926673,59.45034811499993 24.866876604670697,59.44945756311625 24.866026102457983,59.44930354728326 24.866047707148734,59.44927952656751 24.866888624721657,59.44944491628832 24.86704184257898,59.44925790553422 24.867086549838344,59.44926892221244 24.866233022466126,59.45035787540071 24.867908872095356,59.45070840819152 24.86788983150046,59.450736182625185 24.86620238993668,59.45038156852557 24.86554417173251,59.45119274235572 24.865499526143275,59.45118423828668 24.866155213639594,59.45037056777875 24.864908923462185,59.450112774579594 24.863886501155516,59.44990199535393&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    <objekt>
+  <id>
+    354030  </id>
+  <menetlus_id>
+    145105  </menetlus_id>
+  <menetlus_url>
+    https://opinfo.tallinn.ee/menetlus/145105  </menetlus_url>
+  <taotleja>[removed]</taotleja>
+              <teostaja>[removed]</teostaja>
+              <tellija>[removed]</tellija>
+              <valdaja>[removed]</valdaja>
+    <olulise_mojuga>
+    false  </olulise_mojuga>
+  <tekkimise_aeg>
+      </tekkimise_aeg>
+  <too_liik>
+    Avariikaevetöö  </too_liik>
+  <pohjus>
+    Elektrikaabli rike  </pohjus>
+  <pohjuse_selgitus>
+      </pohjuse_selgitus>
+  <kirjeldus>
+    Avariikaevetöö  </kirjeldus>
+  <algus>
+    2026-11-03 12:00  </algus>
+  <lopp>
+    2026-11-05 12:00  </lopp>
+    <perioodi_tyyp>pidev</perioodi_tyyp>
+  <kellaajad>
+                  </kellaajad>
+          <aadress>
+  <ehak_linnaosa>Pirita linnaosa</ehak_linnaosa>
+  <ads_vaikekoht />
+  <ads_liikluspind>Supluse pst</ads_liikluspind>
+  <ads_nimi>Supluse pst</ads_nimi>
+  <ads_aadressinumber />
+  <ads_hoone_osa />
+  <ads_adr_id>2292102</ads_adr_id>
+  <ads_ads_oid>LP00020402</ads_ads_oid>
+  <ads_adob_id>11082132</ads_adob_id>
+  <tekst>Supluse pst</tekst>
+</aadress>
+    <aadressi_tapsustus>
+      </aadressi_tapsustus>
+  <toimumiskohad>
+                <toimumiskoht>
+      <liik>Sõidutee, kõnnitee ja haljasala</liik>
+                    <street_name>Supluse pst, Pirita linnaosa, Tallinn, Harju maakond</street_name>
+                                        </toimumiskoht>
+              </toimumiskohad>
+  <ruumiobjekt_geojson>
+    {"type":"Polygon","coordinates":[[[547341.455070714,6592881.45567352],[547345.935070714,6592879.91567352],[547343.555070714,6592873.82567352],[547340.755070714,6592872.98567352],[547338.655070714,6592874.10567352],[547341.455070714,6592881.45567352]]]}
+  </ruumiobjekt_geojson>
+  <ruumiobjekt_kml>
+    &lt;Polygon&gt;&lt;outerBoundaryIs&gt;&lt;LinearRing&gt;&lt;coordinates&gt;24.835113258451702,59.47102598228756 24.83519194019918,59.4710116594704 24.835148623374348,59.470957265118074 24.835099051517997,59.47095003866524 24.835062256931966,59.47096032580681 24.835113258451702,59.47102598228756&lt;/coordinates&gt;&lt;/LinearRing&gt;&lt;/outerBoundaryIs&gt;&lt;/Polygon&gt;
+  </ruumiobjekt_kml>
+</objekt>
+                    </objektid>
+      </vastus>
+</o:objektide_nimekiri>

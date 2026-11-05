@@ -1,0 +1,37 @@
+{
+  "id": "new-zealand",
+  "name": "New Zealand",
+  "area_name": "New Zealand",
+  "country": "NZ",
+  "level": "country",
+  "region": "National",
+  "timezone": "Pacific/Auckland",
+  "language": "en",
+  "bbox": [
+    -47.4,
+    166.3,
+    -34.3,
+    178.6
+  ],
+  "map": {
+    "center": [
+      172.5,
+      -41.0
+    ],
+    "zoom": 4.8
+  },
+  "scope_terms": [
+    "New Zealand",
+    "Aotearoa",
+    "New Plymouth",
+    "Taranaki"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

@@ -1,0 +1,56 @@
+{
+  "id": "fortaleza",
+  "name": "Fortaleza",
+  "area_name": "Fortaleza",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Fortaleza",
+  "language": "pt",
+  "bbox": [
+    -3.9,
+    -38.65,
+    -3.68,
+    -38.4
+  ],
+  "map": {
+    "center": [
+      -38.53,
+      -3.77
+    ],
+    "zoom": 11.0
+  },
+  "scope_terms": [
+    "Fortaleza",
+    "CE",
+    "AMC",
+    "Beira Mar"
+  ],
+  "other_cities": [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Brasília",
+    "Belo Horizonte",
+    "Curitiba",
+    "Porto Alegre",
+    "Salvador",
+    "Recife",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "fortaleza_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Fortaleza interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

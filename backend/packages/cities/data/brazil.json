@@ -22,7 +22,16 @@
   },
   "scope_terms": [
     "Brazil",
-    "Brasil"
+    "Brasil",
+    "São Paulo",
+    "Rio de Janeiro",
+    "Brasília",
+    "Belo Horizonte",
+    "Curitiba",
+    "Porto Alegre",
+    "Salvador",
+    "Recife",
+    "Fortaleza"
   ],
   "other_cities": [],
   "gazetteer": null,

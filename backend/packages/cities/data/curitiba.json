@@ -1,0 +1,56 @@
+{
+  "id": "curitiba",
+  "name": "Curitiba",
+  "area_name": "Curitiba",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Sao_Paulo",
+  "language": "pt",
+  "bbox": [
+    -25.65,
+    -49.4,
+    -25.33,
+    -49.18
+  ],
+  "map": {
+    "center": [
+      -49.27,
+      -25.43
+    ],
+    "zoom": 10.8
+  },
+  "scope_terms": [
+    "Curitiba",
+    "PR",
+    "Setran",
+    "Linha Verde"
+  ],
+  "other_cities": [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Brasília",
+    "Belo Horizonte",
+    "Porto Alegre",
+    "Salvador",
+    "Recife",
+    "Fortaleza",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "curitiba_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Curitiba interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

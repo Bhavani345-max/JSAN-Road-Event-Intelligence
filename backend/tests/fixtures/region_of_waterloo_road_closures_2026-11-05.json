@@ -1,0 +1,1967 @@
+{
+ "fetched_at": "2026-11-05T09:05:20+00:00",
+ "requests": {
+  "current": "https://utility.arcgis.com/usrsvcs/servers/fe45821bc236443d84b5fc3698f583bf/rest/services/OpenData/OpenData/MapServer/24/query",
+  "future": "https://utility.arcgis.com/usrsvcs/servers/737980ba63a34f9ca0cb8e1b5cea6c6d/rest/services/OpenData/OpenData/MapServer/25/query",
+  "kitchener": "https://services1.arcgis.com/qAo1OsXi67t7XgmS/arcgis/rest/services/Traffic_Closures/FeatureServer/0/query",
+  "cambridge": "https://maps.cambridge.ca/arcgispub03/rest/services/RoadClosuresPingStreet/MapServer/1/query"
+ },
+ "note": "Trimmed samples of the real responses of 5 November 2026 (Region: 62 current and 26 future closures; City of Kitchener: 34; City of Cambridge: 155), features unchanged except the columns naming people (Region CONTACT; Kitchener CONTACT, ALTERNATE_CONTACT, CREATE_BY, UPDATE_BY; Cambridge CONTACT, ORGANIZATION), replaced by a placeholder.",
+ "current": [
+  {
+   "type": "Feature",
+   "id": 5846066,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.47290371244654,
+      43.458358497921026
+     ],
+     [
+      -80.47071371196996,
+      43.45906849830736
+     ],
+     [
+      -80.46963371199813,
+      43.45940849838821
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 5846066,
+    "CLOSURE_ID": 4068961,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Frederick St(6)",
+    "STREET_FROM": "Edna St(62)",
+    "STREET_TO": "Ann St",
+    "MUNICIPALITY": "Kitchener",
+    "DATE_FROM": 1764608400000,
+    "DATE_TO": 1795230000000,
+    "REASON": "Bridge Reconstruction",
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Closed.  No Access.",
+    "DETOUR": "Edna Street - Victoria Street - Bruce Street",
+    "ORGANIZATION": "MTO",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "Frederick St from Edna St to Ann St",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1763495241000,
+    "Edit_Date": 1764608417000,
+    "GlobalID": "{089E995E-A0BD-40E1-95E5-C4FF8712666A}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6012210,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.488383710908,
+      43.38113848392851
+     ],
+     [
+      -80.4869937102617,
+      43.37698848286501
+     ],
+     [
+      -80.48582370935415,
+      43.37458848251315
+     ],
+     [
+      -80.4856437087436,
+      43.37410848262486
+     ],
+     [
+      -80.485213709024,
+      43.372788482807316
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6012210,
+    "CLOSURE_ID": 4069288,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Fischer-Hallman Rd(58)",
+    "STREET_FROM": "Huron Rd",
+    "STREET_TO": "Plains Rd",
+    "MUNICIPALITY": "Kitchener",
+    "DATE_FROM": 1779379200000,
+    "DATE_TO": 1794286800000,
+    "REASON": "Road Reconstruction",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "D&C",
+    "Description": "Fischer-Hallman Rd from 31m East of Huron Rd to 206m South of Plains Rd",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1779230887000,
+    "Edit_Date": 1779379226000,
+    "GlobalID": "{37A2F99D-391F-4926-ACAF-D036F7601E65}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6176722,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -80.49716832267008,
+       43.45162556991876
+      ],
+      [
+       -80.496858620435,
+       43.45140073925878
+      ],
+      [
+       -80.4971683228595,
+       43.45117590930881
+      ],
+      [
+       -80.49747802387414,
+       43.45140073913338
+      ],
+      [
+       -80.49716832267008,
+       43.45162556991876
+      ]
+     ],
+     [
+      [
+       -80.49820371993397,
+       43.45173849553787
+      ],
+      [
+       -80.49693371994358,
+       43.45132849543312
+      ],
+      [
+       -80.4958937194426,
+       43.45098849578215
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6176722,
+    "CLOSURE_ID": 4069644,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Charles St W and Francis St S",
+    "STREET_FROM": "",
+    "STREET_TO": "",
+    "MUNICIPALITY": "Kitchener",
+    "DATE_FROM": 1788166800000,
+    "DATE_TO": 1794304740000,
+    "REASON": "Other",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "30 Francis St S\r\nCharles St W from 44m East of Victoria St S to 71m West of Water St S",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1787879173000,
+    "Edit_Date": 1788166927000,
+    "GlobalID": "{50651AB1-72CA-4968-B9BA-85CC12F4752D}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6010596,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.45974370540551,
+      43.4214484925966
+     ],
+     [
+      -80.45934370450826,
+      43.42136849256084
+     ],
+     [
+      -80.45903370517111,
+      43.421298492199625
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6010596,
+    "CLOSURE_ID": 4069244,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Courtland Ave E(53)",
+    "STREET_FROM": "Shelley Dr",
+    "STREET_TO": "Shelley Dr",
+    "MUNICIPALITY": "Kitchener",
+    "DATE_FROM": 1780246800000,
+    "DATE_TO": 1811811600000,
+    "REASON": "Other",
+    "STATUS": "No Closure",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "No lane closures; work occurring off road; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "City of Kitchener",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "Courtland Ave E from 34m West of Shelley Dr to 26m East of Shelley Dr",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1777937199000,
+    "Edit_Date": 1780246823000,
+    "GlobalID": "{606480F8-6A54-4F22-9472-63E52B5BC2C1}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6107039,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4296737000116,
+      43.4758885028492
+     ],
+     [
+      -80.42612369964809,
+      43.4780585039142
+     ],
+     [
+      -80.42357369941122,
+      43.47913850452208
+     ],
+     [
+      -80.42318369851202,
+      43.479298504625774
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6107039,
+    "CLOSURE_ID": 4069564,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Victoria St N(55)",
+    "STREET_FROM": "Centennial Rd",
+    "STREET_TO": "Shirley Dr",
+    "MUNICIPALITY": "Kitchener",
+    "DATE_FROM": 1786420800000,
+    "DATE_TO": 1796058000000,
+    "REASON": "Other",
+    "STATUS": "Partially Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "Victoria St N from Centennial Rd to 244m East of Shirley Dr",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1786146854000,
+    "Edit_Date": 1786420829000,
+    "GlobalID": "{7A01E385-74DB-4566-A4BE-FD104D0CC441}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6307042,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.45485370520204,
+      43.43736332590942
+     ],
+     [
+      -80.45454407633626,
+      43.43713849491206
+     ],
+     [
+      -80.45485370514348,
+      43.43691366525267
+     ],
+     [
+      -80.45516333403411,
+      43.43713849452011
+     ],
+     [
+      -80.45485370520204,
+      43.43736332590942
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6307042,
+    "CLOSURE_ID": 4069770,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Weber St E(8) and Ross Ave",
+    "STREET_FROM": "",
+    "STREET_TO": "",
+    "MUNICIPALITY": "Kitchener",
+    "DATE_FROM": 1792432800000,
+    "DATE_TO": 1797728400000,
+    "REASON": "Other",
+    "STATUS": "Partially Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "Weber St E at Ross Ave",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1790716595000,
+    "Edit_Date": 1792432828000,
+    "GlobalID": "{77A08626-930F-48A0-AFBB-71B075CAB23F}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 5951014,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.32016365728661,
+      43.38272849174131
+     ],
+     [
+      -80.32397365968781,
+      43.3952984940622
+     ],
+     [
+      -80.32703366205757,
+      43.4047584958955
+     ],
+     [
+      -80.3281136618097,
+      43.40802849638531
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 5951014,
+    "CLOSURE_ID": 4069137,
+    "CLOSURE_TYPE": "Boulevard",
+    "STREET_NAME": "Hespeler Rd(24)",
+    "STREET_FROM": "Munch Ave",
+    "STREET_TO": "Pinebush Rd",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1773684000000,
+    "DATE_TO": 1798765200000,
+    "REASON": "Horticultural",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; pedestrian traffic maintained around work zone",
+    "DETOUR": "",
+    "ORGANIZATION": "City of Cambridge",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "Hespeler Rd from Munch Ave to Pinebush Rd",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1773700825000,
+    "Edit_Date": 1779904554000,
+    "GlobalID": "{2E7739BA-8967-4736-8D05-F4F19609CC8C}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6391498,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -80.38722691093291,
+       43.41705371043281
+      ],
+      [
+       -80.38691738697061,
+       43.41682887998689
+      ],
+      [
+       -80.38722691200432,
+       43.4166040503002
+      ],
+      [
+       -80.38753643598548,
+       43.41682887991717
+      ],
+      [
+       -80.38722691093291,
+       43.41705371043281
+      ]
+     ],
+     [
+      [
+       -80.38739368223729,
+       43.41661849453928
+      ],
+      [
+       -80.38771368138342,
+       43.41616849514961
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6391498,
+    "CLOSURE_ID": 4069853,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Maple Grove Rd and Cherry Blossom Rd",
+    "STREET_FROM": "",
+    "STREET_TO": "",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1793032200000,
+    "DATE_TO": 1797823800000,
+    "REASON": "Utility Work",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "Maple Grove Rd at Cherry Blossom Rd\r\nMaple Grove Rd from 27m South of Cherry Blossom Rd to 84m South of Cherry Blossom Rd",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1792608023000,
+    "Edit_Date": 1793032209000,
+    "GlobalID": "{54B06316-4CB7-4BD5-A496-13D6DCDD2288}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6452977,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.35305403429366,
+      43.404051490210705
+     ],
+     [
+      -80.35274457654255,
+      43.40382665910406
+     ],
+     [
+      -80.35305403512208,
+      43.40360182923192
+     ],
+     [
+      -80.35336349289314,
+      43.40382665950996
+     ],
+     [
+      -80.35305403429366,
+      43.404051490210705
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6452977,
+    "CLOSURE_ID": 4069892,
+    "CLOSURE_TYPE": "Sidewalk",
+    "STREET_NAME": "Eagle St N and Russ St",
+    "STREET_FROM": "",
+    "STREET_TO": "",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1793638800000,
+    "DATE_TO": 1795230000000,
+    "REASON": "Utility Work",
+    "STATUS": "No Closure",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "No lane closures; work occurring off road; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "D&C",
+    "Description": "Eagle St N at Russ St",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1793400842000,
+    "Edit_Date": 1793638826000,
+    "GlobalID": "{8AC32025-B06C-412A-9D0F-82CD091AC5FB}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6424897,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.28133364885635,
+      43.41621849944622
+     ],
+     [
+      -80.28015364719997,
+      43.41347849906823
+     ],
+     [
+      -80.2800836474086,
+      43.41264849934377
+     ],
+     [
+      -80.28032364710229,
+      43.41174849934153
+     ],
+     [
+      -80.2801436469012,
+      43.41161849901265
+     ],
+     [
+      -80.28016364758675,
+      43.41143849906817
+     ],
+     [
+      -80.27941364674753,
+      43.41110849875326
+     ],
+     [
+      -80.2789636465957,
+      43.41060849862786
+     ],
+     [
+      -80.26925364180377,
+      43.3864984953593
+     ],
+     [
+      -80.26920364149586,
+      43.386408495242605
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6424897,
+    "CLOSURE_ID": 4069875,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Townline Rd(33)",
+    "STREET_FROM": "County Rd 32",
+    "STREET_TO": "Gore Rd",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1793199600000,
+    "DATE_TO": 1798777800000,
+    "REASON": "Utility Work",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "Townline Rd from County Rd 32 to Gore Rd",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1793053456000,
+    "Edit_Date": 1793199620000,
+    "GlobalID": "{524511D0-5992-43A8-B8A9-029FC4A685A3}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6030555,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.58533853899988,
+      43.604668552747206
+     ],
+     [
+      -80.58540720371523,
+      43.60398572182559
+     ],
+     [
+      -80.58533853899988,
+      43.604668552747206
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6030555,
+    "CLOSURE_ID": 4069407,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Floradale Rd",
+    "STREET_FROM": "Line 86 & Church St W",
+    "STREET_TO": "Reid Woods Dr",
+    "MUNICIPALITY": "Woolwich",
+    "DATE_FROM": 1782165952000,
+    "DATE_TO": null,
+    "REASON": "Emergency",
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "  WA26091145",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1782167627000,
+    "Edit_Date": 1782254045000,
+    "GlobalID": "{5060BBFD-3E78-4D4F-AE32-B2BDB4C03C69}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 5866300,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -80.523040892098,
+       43.467874593972596
+      ],
+      [
+       -80.5227311066971,
+       43.46764976335541
+      ],
+      [
+       -80.52304089199586,
+       43.46742493363791
+      ],
+      [
+       -80.52335067741144,
+       43.46764976342467
+      ],
+      [
+       -80.523040892098,
+       43.467874593972596
+      ]
+     ],
+     [
+      [
+       -80.50534932308778,
+       43.46554286362885
+      ],
+      [
+       -80.50503954961638,
+       43.465318032801534
+      ],
+      [
+       -80.50534932293559,
+       43.465093203176295
+      ],
+      [
+       -80.50565909642224,
+       43.465318033173254
+      ],
+      [
+       -80.50534932308778,
+       43.46554286362885
+      ]
+     ],
+     [
+      [
+       -80.48694988047131,
+       43.45055047289247
+      ],
+      [
+       -80.48664018325816,
+       43.45032564157186
+      ],
+      [
+       -80.48694987967414,
+       43.450100811333186
+      ],
+      [
+       -80.4872595769031,
+       43.45032564182383
+      ],
+      [
+       -80.48694988047131,
+       43.45055047289247
+      ]
+     ],
+     [
+      [
+       -80.4822740890808,
+       43.42705967145433
+      ],
+      [
+       -80.48196451332353,
+       43.42683484068038
+      ],
+      [
+       -80.48227408911625,
+       43.42661000987879
+      ],
+      [
+       -80.48258366488945,
+       43.42683483982352
+      ],
+      [
+       -80.4822740890808,
+       43.42705967145433
+      ]
+     ],
+     [
+      [
+       -80.5126221752547,
+       43.47039196282775
+      ],
+      [
+       -80.51231237740299,
+       43.47016713195468
+      ],
+      [
+       -80.51262217590774,
+       43.4699423027316
+      ],
+      [
+       -80.51293197377446,
+       43.47016713277421
+      ],
+      [
+       -80.5126221752547,
+       43.47039196282775
+      ]
+     ],
+     [
+      [
+       -80.52120259787242,
+       43.465585316780015
+      ],
+      [
+       -80.52089282472133,
+       43.465360486555554
+      ],
+      [
+       -80.52120259888561,
+       43.465135656277155
+      ],
+      [
+       -80.52151237205145,
+       43.46536048567125
+      ],
+      [
+       -80.52120259787242,
+       43.465585316780015
+      ]
+     ],
+     [
+      [
+       -80.52185550015538,
+       43.46803123880154
+      ],
+      [
+       -80.52154571340822,
+       43.46780640857674
+      ],
+      [
+       -80.52185549896092,
+       43.46758157847882
+      ],
+      [
+       -80.5221652857228,
+       43.46780640787319
+      ],
+      [
+       -80.52185550015538,
+       43.46803123880154
+      ]
+     ],
+     [
+      [
+       -80.49527696940645,
+       43.45721129998792
+      ],
+      [
+       -80.49496723845773,
+       43.45698646878811
+      ],
+      [
+       -80.49527696917004,
+       43.4567616389205
+      ],
+      [
+       -80.49558669890575,
+       43.4569864683843
+      ],
+      [
+       -80.49527696940645,
+       43.45721129998792
+      ]
+     ],
+     [
+      [
+       -80.51366712488965,
+       43.471358149127674
+      ],
+      [
+       -80.5133573219665,
+       43.471133318396426
+      ],
+      [
+       -80.5136671252776,
+       43.470908489102285
+      ],
+      [
+       -80.51397692821571,
+       43.471133319003016
+      ],
+      [
+       -80.51366712488965,
+       43.471358149127674
+      ]
+     ],
+     [
+      [
+       -80.52514797935584,
+       43.46754288885114
+      ],
+      [
+       -80.52483819523802,
+       43.46731805852942
+      ],
+      [
+       -80.52514797844712,
+       43.467093228479484
+      ],
+      [
+       -80.52545776257955,
+       43.467318057970786
+      ],
+      [
+       -80.52514797935584,
+       43.46754288885114
+      ]
+     ],
+     [
+      [
+       -80.50780906295752,
+       43.48369809087506
+      ],
+      [
+       -80.50749919687784,
+       43.48347325976966
+      ],
+      [
+       -80.50780906311334,
+       43.48324843003655
+      ],
+      [
+       -80.50811892920818,
+       43.483473260311044
+      ],
+      [
+       -80.50780906295752,
+       43.48369809087506
+      ]
+     ],
+     [
+      [
+       -80.51087593803754,
+       43.4688117702861
+      ],
+      [
+       -80.51056614849469,
+       43.468586940065215
+      ],
+      [
+       -80.51087593916827,
+       43.46836211007463
+      ],
+      [
+       -80.5111857287262,
+       43.46858693946508
+      ],
+      [
+       -80.51087593803754,
+       43.4688117702861
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 5866300,
+    "CLOSURE_ID": 4069043,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Bridgeport Rd W and King St N",
+    "STREET_FROM": "",
+    "STREET_TO": "",
+    "MUNICIPALITY": "Waterloo",
+    "DATE_FROM": 1768928400000,
+    "DATE_TO": 1798772400000,
+    "REASON": "Other",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Two-way traffic maintained; pedestrian traffic maintained around work zone",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "Road Closed",
+    "Responsible": "Transportation",
+    "Description": "King St N at Bridgeport Rd W\r\nUnion St E at Weber St S\r\nFrederick St at Duke St E\r\nHomer Watson Blvd at Ottawa St S\r\nWeber St N at Bridgeport Rd E\r...",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1768343620000,
+    "Edit_Date": 1768928401000,
+    "GlobalID": "{152E841A-A0E1-4FEC-9ACB-917FBDF8A361}"
+   }
+  }
+ ],
+ "future": [
+  {
+   "type": "Feature",
+   "id": 6358714,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.45566369251105,
+      43.289698468966925
+     ],
+     [
+      -80.45156369081879,
+      43.28675846905659
+     ],
+     [
+      -80.45092369084776,
+      43.28556846891681
+     ],
+     [
+      -80.44984368969463,
+      43.28563846900323
+     ],
+     [
+      -80.44834368976358,
+      43.285758469064604
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6358714,
+    "CLOSURE_ID": 4069816,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Northumberland St(58)",
+    "STREET_FROM": "Inglis St",
+    "STREET_TO": "St Andrew St",
+    "MUNICIPALITY": "North Dumfries",
+    "DATE_FROM": 1795905000000,
+    "DATE_TO": 1795912200000,
+    "REASON": "Special Event",
+    "STATUS": "Partially Closed",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "Controlled by Waterloo Regional Police Services",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "",
+    "Responsible": "Transportation",
+    "SHAPE.STLength()": 818.4804208824007,
+    "Description": "Northumberland St at Inglis St, to Stanley St, to St Andrew St",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1791920190000,
+    "Edit_Date": 1791920190000,
+    "GlobalID": "{B064ABE2-8A76-40EC-8F33-33AEB0EB283E}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6438332,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.71298392340626,
+      43.378260761905764
+     ],
+     [
+      -80.71267459557333,
+      43.3780359310263
+     ],
+     [
+      -80.7129839222855,
+      43.37781110116618
+     ],
+     [
+      -80.71329325012728,
+      43.378035931217866
+     ],
+     [
+      -80.71298392340626,
+      43.378260761905764
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6438332,
+    "CLOSURE_ID": 4069883,
+    "CLOSURE_TYPE": "Bridge",
+    "STREET_NAME": "Huron St and Waterloo St",
+    "STREET_FROM": "",
+    "STREET_TO": "",
+    "MUNICIPALITY": "Wilmot",
+    "DATE_FROM": 1794218400000,
+    "DATE_TO": 1795168800000,
+    "REASON": "Engineering Study",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "Two-way traffic maintained with flagging operation; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "",
+    "Responsible": "D&C",
+    "SHAPE.STLength()": 141.4969467403973,
+    "Description": "Huron St 69m East of Waterloo St",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1793220567000,
+    "Edit_Date": 1793220567000,
+    "GlobalID": "{9A1F3655-0A6E-412A-8D54-543321F555DB}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6488784,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.32306365617553,
+      43.35253848652937
+     ],
+     [
+      -80.32365365656267,
+      43.35244848705561
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6488784,
+    "CLOSURE_ID": 4069903,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Cedar St",
+    "STREET_FROM": "Glenmorris St",
+    "STREET_TO": "St Andrews St(75)",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1794243600000,
+    "DATE_TO": 1794358800000,
+    "REASON": "Water Repair",
+    "STATUS": "Partially Closed",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "Eastbound lane closure; westbound traffic maintained; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "City of Cambridge",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "",
+    "Responsible": "Transportation",
+    "SHAPE.STLength()": 48.849424885560325,
+    "Description": "Cedar St from Glenmorris St to St Andrews St",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1793827609000,
+    "Edit_Date": 1793827609000,
+    "GlobalID": "{CC3C0F9F-F128-4095-B922-86710EB6FE35}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6473126,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.31359365320779,
+      43.358918488473165
+     ],
+     [
+      -80.31363365398678,
+      43.358548488337085
+     ],
+     [
+      -80.31372365351861,
+      43.35786848812516
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6473126,
+    "CLOSURE_ID": 4069895,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Ainslie St S(24)",
+    "STREET_FROM": "Main St",
+    "STREET_TO": "Valour Pl",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1794546000000,
+    "DATE_TO": 1794596400000,
+    "REASON": "Utility Work",
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "Closed to through traffic; open to businesses and residences; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "",
+    "Responsible": "Transportation",
+    "SHAPE.STLength()": 117.0915018426018,
+    "Description": "Ainslie St S from Main St to Valour Pl",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1793640659000,
+    "Edit_Date": 1793640659000,
+    "GlobalID": "{CDB5CFF7-2491-4D41-B835-E5451BF71302}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6432674,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.3586870093172,
+      43.396245553003304
+     ],
+     [
+      -80.35837759108416,
+      43.396020722664474
+     ],
+     [
+      -80.35868700977409,
+      43.39579589228581
+     ],
+     [
+      -80.35899642801736,
+      43.396020722696655
+     ],
+     [
+      -80.3586870093172,
+      43.396245553003304
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6432674,
+    "CLOSURE_ID": 4069879,
+    "CLOSURE_TYPE": "Sidewalk",
+    "STREET_NAME": "King St E and Westminster Dr S",
+    "STREET_FROM": "",
+    "STREET_TO": "",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1794337200000,
+    "DATE_TO": 1794531600000,
+    "REASON": "Utility Work",
+    "STATUS": "No Closure",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "No lane closures; work occurring off road; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "",
+    "Responsible": "Transportation",
+    "SHAPE.STLength()": 141.50085777286944,
+    "Description": "656 King St E",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1793145077000,
+    "Edit_Date": 1793145077000,
+    "GlobalID": "{6108D6B9-8A75-4829-9A5F-48BD1DECDE04}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6430064,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.5081837207054,
+      43.41892848917879
+     ],
+     [
+      -80.50727371957937,
+      43.41939848937351
+     ],
+     [
+      -80.50663371995364,
+      43.419578489857884
+     ],
+     [
+      -80.50613371916143,
+      43.419668489968835
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6430064,
+    "CLOSURE_ID": 4069876,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Ottawa St S(4)",
+    "STREET_FROM": "Williamsburg Rd",
+    "STREET_TO": "Howe Dr",
+    "MUNICIPALITY": "Kitchener",
+    "DATE_FROM": 1794243600000,
+    "DATE_TO": 1794886200000,
+    "REASON": "Utility Work",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "Two-way traffic maintained; expect delays; pedestrian traffic maintained around work zone.",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "",
+    "Responsible": "Transportation",
+    "SHAPE.STLength()": 187.51131284754905,
+    "Description": "Ottawa St S from Williamsburg Rd to Howe Dr",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1793114393000,
+    "Edit_Date": 1793114393000,
+    "GlobalID": "{35E9C73E-4E86-4762-A2F5-1A73BACA38BF}"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6366379,
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -80.31541365343907,
+       43.35706848818774
+      ],
+      [
+       -80.31533365445556,
+       43.359928488361184
+      ],
+      [
+       -80.31532365419638,
+       43.36094848894912
+      ]
+     ],
+     [
+      [
+       -80.31384365318776,
+       43.35701848829748
+      ],
+      [
+       -80.31359365332611,
+       43.35885848797496
+      ],
+      [
+       -80.31355365312616,
+       43.35990848885193
+      ],
+      [
+       -80.3135436531191,
+       43.36091848888711
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 6366379,
+    "CLOSURE_ID": 4069831,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "Water St S",
+    "STREET_FROM": "Warnock St",
+    "STREET_TO": "Thorne St",
+    "MUNICIPALITY": "Cambridge",
+    "DATE_FROM": 1794549600000,
+    "DATE_TO": 1795096800000,
+    "REASON": "Other",
+    "STATUS": "Lane Reduced",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": "Two-way traffic maintained; pedestrian traffic maintained around work zone",
+    "DETOUR": "",
+    "ORGANIZATION": "Region of Waterloo",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "OPEN_STATUS": "",
+    "Responsible": "Transportation",
+    "SHAPE.STLength()": 865.1617944864843,
+    "Description": "Water St S at Warnock St, to Water St N, to Thorne St",
+    "EMERGENCY_REASON": null,
+    "Create_Date": 1792095106000,
+    "Edit_Date": 1792095106000,
+    "GlobalID": "{77E881AB-FBB4-481A-8470-51E70B6A3BC3}"
+   }
+  }
+ ],
+ "kitchener": [
+  {
+   "type": "Feature",
+   "id": 355934,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4260947229415,
+      43.4476339034607
+     ],
+     [
+      -80.425257874072,
+      43.4476806380544
+     ],
+     [
+      -80.4252551922225,
+      43.4476806380815
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 355934,
+    "TRAFFICCLOSURESID": 294457,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "MICHENER CRES",
+    "STREET_FROM": null,
+    "STREET_TO": null,
+    "DATE_FROM": null,
+    "DATE_TO": null,
+    "REASON": null,
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Future",
+    "DETAILS": null,
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1793793680057,
+    "CREATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "UPDATE_DATE": 1793793680057,
+    "UPDATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "STATUS_DATE": null,
+    "ALTERNATE_CONTACT": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Closed",
+    "Shape__Length": 68.13032187739906
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 678514,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.5230267689753,
+      43.4465650390279
+     ],
+     [
+      -80.5238793231571,
+      43.4464852393962
+     ],
+     [
+      -80.524400890444,
+      43.446255800336
+     ],
+     [
+      -80.5275892408302,
+      43.4451906638644
+     ],
+     [
+      -80.5281563351948,
+      43.4450618862744
+     ],
+     [
+      -80.5289634396907,
+      43.4450276988125
+     ],
+     [
+      -80.5301881544386,
+      43.4451629636978
+     ],
+     [
+      -80.5306815882699,
+      43.4451455728613
+     ],
+     [
+      -80.5317817290722,
+      43.4448358886484
+     ],
+     [
+      -80.5324232796042,
+      43.444610926373
+     ],
+     [
+      -80.5325828405518,
+      43.4444390143855
+     ],
+     [
+      -80.5328214873974,
+      43.4438970880105
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 678514,
+    "TRAFFICCLOSURESID": 5083001,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "WESTWOOD DR",
+    "STREET_FROM": "HUNTINGTON PL",
+    "STREET_TO": "WESTMOUNT RD W",
+    "DATE_FROM": 1774263600000,
+    "DATE_TO": 1797631200000,
+    "REASON": "Road Reconstruction",
+    "STATUS": "Local Access Only",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Westwood Drive is undergoing a full road reconstruction between Westmount Rd and Huntington Place. Local access to be maintained as much as possible, access to business will be maintained. ",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1793793680057,
+    "CREATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "UPDATE_DATE": 1793793680057,
+    "UPDATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "STATUS_DATE": 1774953577000,
+    "ALTERNATE_CONTACT": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Local Access Only",
+    "Shape__Length": 895.6750750732746
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 689393,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.5100991263815,
+      43.4334563491823
+     ],
+     [
+      -80.5080213603673,
+      43.4341945339079
+     ],
+     [
+      -80.5074655241548,
+      43.4344007620645
+     ],
+     [
+      -80.5072947032061,
+      43.4344794592944
+     ],
+     [
+      -80.5040828808507,
+      43.4362473923272
+     ],
+     [
+      -80.5036115374217,
+      43.4365581604705
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 689393,
+    "TRAFFICCLOSURESID": 5107231,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "QUEENS BLVD",
+    "STREET_FROM": "WESTMOUNT RD W",
+    "STREET_TO": "BELMONT AVE W",
+    "DATE_FROM": 1779102000000,
+    "DATE_TO": 1796076000000,
+    "REASON": "Road Reconstruction",
+    "STATUS": "Partially Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "Queens Blvd is undergoing a full road reconstruction from Westmount Rd to Belmont Ave for 2026 and most of 2027. Traffic from Westmount to Belmont (towards WRHN Queens) will remain open to vehicle traffic, no traffic southbound is permitted. Blueridge & Queens intersection is currently closed, use alternate route.",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1793793680057,
+    "CREATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "UPDATE_DATE": 1793793680057,
+    "UPDATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "STATUS_DATE": 1780399895000,
+    "ALTERNATE_CONTACT": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Partially Closed",
+    "Shape__Length": 631.121129335765
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 701233,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4770841606038,
+      43.4443012018277
+     ],
+     [
+      -80.4717191713426,
+      43.441916296209
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 701233,
+    "TRAFFICCLOSURESID": 5128605,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "KING ST E",
+    "STREET_FROM": "STIRLING AVE N",
+    "STREET_TO": "OTTAWA ST N",
+    "DATE_FROM": 1785841200000,
+    "DATE_TO": 1819749600000,
+    "REASON": "Road Reconstruction",
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "Existing",
+    "DETAILS": "King St E will be closed between Stirling Ave N & Ottawa St N for a road reconstruction project that is scheduled to begin Tuesday, August 4. King St E will be closed for approximately 12 months, local access will be maintained depending on staging and status of project. ",
+    "DETOUR": "Ottawa - Charles - Stirling",
+    "ORGANIZATION": "Kitchener",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1793793680057,
+    "CREATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "UPDATE_DATE": 1793793680057,
+    "UPDATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "STATUS_DATE": null,
+    "ALTERNATE_CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Closed",
+    "Shape__Length": 508.5631244357541
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 722353,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.4583380713217,
+      43.439983260432
+     ],
+     [
+      -80.4586066581661,
+      43.4400787883435
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 722353,
+    "TRAFFICCLOSURESID": 5147481,
+    "CLOSURE_TYPE": "Road",
+    "STREET_NAME": "BRENTWOOD AVE",
+    "STREET_FROM": "MONTGOMERY RD",
+    "STREET_TO": "JACKSON AVE",
+    "DATE_FROM": 1793793600000,
+    "DATE_TO": 1794434400000,
+    "REASON": "Site Servicing",
+    "STATUS": "Closed",
+    "CLOSURE_SCHEDULED": "New",
+    "DETAILS": "Brentwood Ave is closed for through traffic between Montgomery Rd and Jackson Ave for site servicing at 154 Brentwood Ave. Local access is maintained. ",
+    "DETOUR": null,
+    "ORGANIZATION": "Kitchener",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "WATER": null,
+    "TIME": null,
+    "INSTRUCTIONS": null,
+    "INSTRUCTION_TEXT": null,
+    "UPDATES": null,
+    "CREATE_DATE": 1793793680057,
+    "CREATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "UPDATE_DATE": 1793793680057,
+    "UPDATE_BY": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "STATUS_DATE": 1793723568000,
+    "ALTERNATE_CONTACT": null,
+    "DOWNTOWN": "N",
+    "MAP_CLASS": "Road - Closed",
+    "Shape__Length": 24.18673137195946
+   }
+  }
+ ],
+ "cambridge": [
+  {
+   "type": "Feature",
+   "id": 12,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.31165855420059,
+      43.35136813833007
+     ],
+     [
+      -80.3103566838722,
+      43.35158901062058
+     ],
+     [
+      -80.30945794215562,
+      43.351753770883995
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 12,
+    "STREET_NAME": "BIRCH ST",
+    "STREET_FROM": "ALBERT ST",
+    "STREET_TO": "ELM ST",
+    "LAT_FROM": 43.351358999999995,
+    "LONG_FROM": -80.31165399999999,
+    "LAT_TO": 43.351745,
+    "LONG_TO": -80.309454,
+    "DATE_FROM": 1788246000000,
+    "DATE_TO": 1796058000000,
+    "REASON": "Reconstruction",
+    "STATUS": "HIGH",
+    "DETAILS": "High - All Lanes - Both_Directions",
+    "ORGANIZATION": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "REFERENCE_INFO": "HOP_NOCHARGE# 1209323",
+    "LAST_UPDATED": 1789665158000,
+    "CLOSURE_ID": 12,
+    "SHAPE.LEN": 183.42624300680703
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 25,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.31032989101583,
+      43.421451457437726
+     ],
+     [
+      -80.31031368310524,
+      43.42158032594985
+     ],
+     [
+      -80.31008850035563,
+      43.42504451007658
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 25,
+    "STREET_NAME": "FRANKLIN BLVD",
+    "STREET_FROM": "WINSTON BLVD",
+    "STREET_TO": "THOMAS ST",
+    "LAT_FROM": 43.421442,
+    "LONG_FROM": -80.310326,
+    "LAT_TO": 43.425035,
+    "LONG_TO": -80.310084,
+    "DATE_FROM": 1793178000000,
+    "DATE_TO": 1793979000000,
+    "REASON": "Site Construction",
+    "STATUS": "MODERATE",
+    "DETAILS": "Moderate - One Lane - Southbound",
+    "ORGANIZATION": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "REFERENCE_INFO": "HOP_CHARGEABLE# 1212186",
+    "LAST_UPDATED": 1793178761000,
+    "CLOSURE_ID": 61,
+    "SHAPE.LEN": 399.53885504375705
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 74,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.38722691147333,
+      43.416828880370915
+     ],
+     [
+      -80.38392668385347,
+      43.41559045833494
+     ],
+     [
+      -80.37963993877273,
+      43.41398094338759
+     ],
+     [
+      -80.37671860728356,
+      43.41288395135816
+     ],
+     [
+      -80.37664961606436,
+      43.41285622892142
+     ],
+     [
+      -80.37651668770627,
+      43.41280925131118
+     ],
+     [
+      -80.376379671364,
+      43.41276899465562
+     ],
+     [
+      -80.37623920608324,
+      43.412735650617954
+     ],
+     [
+      -80.37609594615026,
+      43.41270936952709
+     ],
+     [
+      -80.37595056214323,
+      43.41269027839242
+     ],
+     [
+      -80.37580373000236,
+      43.41267846283544
+     ],
+     [
+      -80.37565613212746,
+      43.41267398060276
+     ],
+     [
+      -80.37550845996017,
+      43.41267685077471
+     ],
+     [
+      -80.37536140031617,
+      43.41268706179502
+     ],
+     [
+      -80.37526140990809,
+      43.412698263637616
+     ],
+     [
+      -80.37456748447435,
+      43.41284467042226
+     ],
+     [
+      -80.37286934751168,
+      43.41320316545207
+     ],
+     [
+      -80.36548980218585,
+      43.41476072663308
+     ],
+     [
+      -80.36534869422422,
+      43.414787281877366
+     ],
+     [
+      -80.36514040851866,
+      43.41482019481603
+     ],
+     [
+      -80.36493024393282,
+      43.414846006872125
+     ],
+     [
+      -80.36471866060147,
+      43.414864663863845
+     ],
+     [
+      -80.36450611483389,
+      43.41487612329716
+     ],
+     [
+      -80.36429307015409,
+      43.414880361630786
+     ],
+     [
+      -80.36407998253478,
+      43.414877368791444
+     ],
+     [
+      -80.36386732012102,
+      43.41486715188528
+     ],
+     [
+      -80.36365553854563,
+      43.4148497332598
+     ],
+     [
+      -80.36344509822014,
+      43.41482515059991
+     ],
+     [
+      -80.36343392678678,
+      43.41482363960564
+     ],
+     [
+      -80.36109386083622,
+      43.41449282507486
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 74,
+    "STREET_NAME": "CHERRY BLOSSOM RD",
+    "STREET_FROM": "MAPLE GROVE RD",
+    "STREET_TO": "BOXWOOD DR",
+    "LAT_FROM": 43.41682,
+    "LONG_FROM": -80.38722299999999,
+    "LAT_TO": 43.414483999999995,
+    "LONG_TO": -80.36108999999999,
+    "DATE_FROM": 1792395000000,
+    "DATE_TO": 1801760400000,
+    "REASON": "Utility Repair",
+    "STATUS": "HIGH",
+    "DETAILS": "High - All Lanes - Eastbound",
+    "ORGANIZATION": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "REFERENCE_INFO": "HOP_NOCHARGE# 1210934",
+    "LAST_UPDATED": 1791546408000,
+    "CLOSURE_ID": 39,
+    "SHAPE.LEN": 2263.76731879661
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 97,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.353821540862,
+      43.40590811067919
+     ],
+     [
+      -80.35365148866873,
+      43.405716959254256
+     ],
+     [
+      -80.35305401698338,
+      43.40382670104579
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 97,
+    "STREET_NAME": "RUSS ST",
+    "STREET_FROM": "END",
+    "STREET_TO": "EAGLE ST N",
+    "LAT_FROM": 43.405899,
+    "LONG_FROM": -80.35381699999999,
+    "LAT_TO": 43.403818,
+    "LONG_TO": -80.35305,
+    "DATE_FROM": 1793602800000,
+    "DATE_TO": 1795194000000,
+    "REASON": "Utility Repair",
+    "STATUS": "LOW",
+    "DETAILS": "Low - One Lane - Both_Directions",
+    "ORGANIZATION": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "REFERENCE_INFO": "HOP_CHARGEABLE# 1212423",
+    "LAST_UPDATED": 1793603529000,
+    "CLOSURE_ID": 133,
+    "SHAPE.LEN": 240.738252333376
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 123,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.29388021002386,
+      43.44714207675468
+     ],
+     [
+      -80.29389419566088,
+      43.44717347123333
+     ],
+     [
+      -80.29452003453588,
+      43.44855218253526
+     ],
+     [
+      -80.29530616136034,
+      43.450351621773486
+     ],
+     [
+      -80.2957349198223,
+      43.45138274281491
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 123,
+    "STREET_NAME": "TOWNLINE RD",
+    "STREET_FROM": "RIVER RD",
+    "STREET_TO": "ROSZELL RD",
+    "LAT_FROM": 43.447133,
+    "LONG_FROM": -80.293876,
+    "LAT_TO": 43.451374,
+    "LONG_TO": -80.29573099999999,
+    "DATE_FROM": 1793257200000,
+    "DATE_TO": 1793984400000,
+    "REASON": "Reconstruction",
+    "STATUS": "MODERATE",
+    "DETAILS": "Moderate - One Lane - Both_Directions",
+    "ORGANIZATION": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "REFERENCE_INFO": "HOP_NOCHARGE# 1211893",
+    "LAST_UPDATED": 1793257962000,
+    "CLOSURE_ID": 158,
+    "SHAPE.LEN": 494.32899224592705
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 1,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -80.2982740553549,
+      43.383555521145354
+     ],
+     [
+      -80.29823961750144,
+      43.38346718330615
+     ],
+     [
+      -80.29802134626388,
+      43.382907250115466
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 1,
+    "STREET_NAME": "ADDISON CRT",
+    "STREET_FROM": "BAYNE CRES",
+    "STREET_TO": "END",
+    "LAT_FROM": 43.383545999999996,
+    "LONG_FROM": -80.29827,
+    "LAT_TO": 43.382898,
+    "LONG_TO": -80.298017,
+    "DATE_FROM": 1789369200000,
+    "DATE_TO": 1797620400000,
+    "REASON": "Site Construction",
+    "STATUS": "LOW",
+    "DETAILS": "Low - Parking Lane - N/A",
+    "ORGANIZATION": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "CONTACT": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "REFERENCE_INFO": "HOP_NOCHARGE# 1208605",
+    "LAST_UPDATED": 1789369956000,
+    "CLOSURE_ID": 1,
+    "SHAPE.LEN": 74.8505914974774
+   }
+  }
+ ]
+}

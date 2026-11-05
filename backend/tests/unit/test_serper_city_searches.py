@@ -30,7 +30,10 @@ DELHI = get_city("delhi")
 
 
 def test_every_other_indian_city_with_a_place_list_is_searched():
-    assert {city.id for city in searched_cities()} == OTHER_CITIES
+    # Plus Brazil's nine cities, the ones outside India the user chose to search (decision 0057).
+    brazil = {city.id for city in searched_cities() if city.country == "BR"}
+    assert len(brazil) == 9
+    assert {city.id for city in searched_cities()} == OTHER_CITIES | brazil
 
 
 def test_each_city_search_is_registered_on_the_key_and_listed_without_it():

@@ -1,0 +1,1209 @@
+{
+ "fetched_at": "2026-11-05T08:57:43+00:00",
+ "request": "https://quebec.gewi.com/wzdx4waze/pull",
+ "note": "A trimmed sample of the real WZDx 3.1 response of 5 November 2026 (355 features), features unchanged. The feed carries no personal data.",
+ "road_event_feed_info": {
+  "update_date": "2026-11-05T08:57:00Z",
+  "publisher": "Ville de Québec",
+  "version": "3.1",
+  "data_sources": [
+   {
+    "organization_name": "Quebec",
+    "location_method": "unknown"
+   }
+  ]
+ },
+ "items": [
+  {
+   "id": "ARIV-20261026-EC-001",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue Jean-Clément"
+    ],
+    "direction": "eastbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-11-11T13:00:00Z",
+    "end_date": "2026-11-11T21:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "planned",
+    "vehicle_impact": "all-lanes-closed",
+    "restrictions": [
+     "reduced-width"
+    ],
+    "description": "Québec, Rue Jean-Clément à Carré Mérimée dans les deux sens chantier privé (pour la gestion de conteneurs, stationnement, matériaux, etc.), sur 2026-11-11 du 08:00 jusqu'au 16:00",
+    "update_date": "2026-10-26T17:41:20.083Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "unknown"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ARIV20261026-EC-001-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.3293206,
+      46.8551388
+     ],
+     [
+      -71.32894,
+      46.85473
+     ],
+     [
+      -71.3278581,
+      46.8552169
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ARIV-20261026-EC-001_1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue Jean-Clément"
+    ],
+    "direction": "westbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-11-11T13:00:00Z",
+    "end_date": "2026-11-11T21:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "planned",
+    "vehicle_impact": "all-lanes-closed",
+    "restrictions": [
+     "reduced-width"
+    ],
+    "description": "Québec, Rue Jean-Clément à Carré Mérimée dans les deux sens chantier privé (pour la gestion de conteneurs, stationnement, matériaux, etc.), sur 2026-11-11 du 08:00 jusqu'au 16:00",
+    "update_date": "2026-10-26T17:41:20.083Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "unknown"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ARIV20261026-EC-001-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.3278582,
+      46.8552168
+     ],
+     [
+      -71.32894,
+      46.85473
+     ],
+     [
+      -71.3293206,
+      46.8551388
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ACL-20261022-SPA-01",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue Arago O"
+    ],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-10-26T13:00:00Z",
+    "end_date": "2026-11-06T20:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "all-lanes-closed",
+    "restrictions": [],
+    "description": "Québec, Rue Arago O entre Rue St-Luc et Côte de l'Aqueduc travaux d'utilités publiques, du 2026-10-26 09:00 jusqu'au 2026-11-06 15:00, déviation recommandée: via Rue St-Sauveur, Rue Châteauguay et Rue de l'Aqueduc",
+    "update_date": "2026-10-22T17:42:26.21Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "sidewalk"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ACL-20261022-SPA-01-WZP"
+     ],
+     "children": [
+      "ACL-20261022-SPA-01-D0"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2346544,
+      46.8061361
+     ],
+     [
+      -71.23456,
+      46.80619
+     ],
+     [
+      -71.2344633,
+      46.8062476
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ACL-20261022-SPA-01",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue St-Germain"
+    ],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-10-26T13:00:00Z",
+    "end_date": "2026-11-06T20:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "all-lanes-closed",
+    "restrictions": [],
+    "description": "Québec, Rue St-Germain entre Rue Arago O et Rue Franklin travaux d'utilités publiques, du 2026-10-26 09:00 jusqu'au 2026-11-06 15:00",
+    "update_date": "2026-10-22T17:41:43.583Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "open",
+      "type": "sidewalk"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ACL-20261022-SPA-01-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2345829,
+      46.8062047
+     ],
+     [
+      -71.2346854,
+      46.8062706
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ACL-20261022-SPA-01-D0",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "detour",
+    "road_names": [
+     "Rue St-Sauveur",
+     "Rue de l'Aqueduc"
+    ],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-10-26T13:00:00Z",
+    "end_date": "2026-11-06T20:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "unknown",
+    "description": "via Rue St-Sauveur, Rue Châteauguay et Rue de l'Aqueduc",
+    "update_date": "2026-10-22T17:42:26.21Z",
+    "relationship": {
+     "parents": [
+      "ACL-20261022-SPA-01"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2369214,
+      46.8048955
+     ],
+     [
+      -71.23732,
+      46.80522
+     ],
+     [
+      -71.23748,
+      46.80534
+     ],
+     [
+      -71.23771,
+      46.80553
+     ],
+     [
+      -71.23634,
+      46.80633
+     ],
+     [
+      -71.23559,
+      46.80678
+     ],
+     [
+      -71.23524,
+      46.80671
+     ],
+     [
+      -71.23484,
+      46.80662
+     ],
+     [
+      -71.2342572,
+      46.8065034
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ASSC-20260512-SPA-01-D2",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "detour",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-06-01T13:00:00Z",
+    "end_date": "2026-11-20T21:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "unknown",
+    "description": "Québec, Route de l'Église entre Rue de Summerside et Chemin St-Louis dans les deux sens travaux de réaménagement des routes, du 2026-06-01 09:00 jusqu'au 2026-11-20 16:00, déviation recommandées: via Rue de Rouville, Rue de Valmont et Rue de Summerside, via Côte Ross et Boulevard Liégeois",
+    "update_date": "2026-09-11T14:01:18.957Z",
+    "relationship": {
+     "parents": [
+      "ASSC-20260512-SPA-01"
+     ]
+    }
+   }
+  },
+  {
+   "id": "TMI-20241221001-1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue Dauphine"
+    ],
+    "direction": "southbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2024-12-20T18:00:00Z",
+    "end_date": "2026-12-31T21:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "all-lanes-open",
+    "restrictions": [
+     "reduced-width",
+     "reduced-height",
+     "gross-weight-limit"
+    ],
+    "description": "Québec, Rue Dauphine entre Rue d'Auteuil et RTE-175, Avenue Honoré-Mercier dans les deux sens travaux de structure, du 2024-12-20 13:00 jusqu'au 2026-12-31 16:00, déviation recommandée: via RTE-175, Avenue Honoré-Mercier, Rue St-Jean et Rue d'Auteuil",
+    "update_date": "2026-01-22T18:37:29.6Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "open",
+      "type": "lane",
+      "restrictions": [
+       {
+        "restriction_type": "reduced-height",
+        "restriction_value": 9,
+        "restriction_units": "feet"
+       },
+       {
+        "restriction_type": "gross-weight-limit",
+        "restriction_value": 8,
+        "restriction_units": "tons"
+       }
+      ]
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "TMI-20241221001-WZP"
+     ],
+     "children": [
+      "TMI-20241221001-1-D0"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2123859,
+      46.8119983
+     ],
+     [
+      -71.21261,
+      46.81191
+     ],
+     [
+      -71.21275,
+      46.81185
+     ],
+     [
+      -71.21316,
+      46.81164
+     ],
+     [
+      -71.21352,
+      46.81145
+     ],
+     [
+      -71.21359,
+      46.81141
+     ],
+     [
+      -71.21375,
+      46.81132
+     ],
+     [
+      -71.21407,
+      46.81115
+     ],
+     [
+      -71.21419,
+      46.81109
+     ],
+     [
+      -71.21422,
+      46.8110775
+     ]
+    ]
+   }
+  },
+  {
+   "id": "TMI-20241221001-1_1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue Dauphine"
+    ],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2024-12-20T18:00:00Z",
+    "end_date": "2026-12-31T21:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "all-lanes-closed",
+    "restrictions": [
+     "reduced-width",
+     "reduced-height",
+     "gross-weight-limit"
+    ],
+    "description": "Québec, Rue Dauphine entre Rue d'Auteuil et RTE-175, Avenue Honoré-Mercier dans les deux sens travaux de structure, du 2024-12-20 13:00 jusqu'au 2026-12-31 16:00, déviation recommandée: via RTE-175, Avenue Honoré-Mercier, Rue St-Jean et Rue d'Auteuil",
+    "update_date": "2026-01-22T18:37:29.6Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "TMI-20241221001-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2142201,
+      46.8110775
+     ],
+     [
+      -71.21419,
+      46.81109
+     ],
+     [
+      -71.21407,
+      46.81115
+     ],
+     [
+      -71.21375,
+      46.81132
+     ],
+     [
+      -71.21359,
+      46.81141
+     ],
+     [
+      -71.21352,
+      46.81145
+     ],
+     [
+      -71.21316,
+      46.81164
+     ],
+     [
+      -71.21275,
+      46.81185
+     ],
+     [
+      -71.21261,
+      46.81191
+     ],
+     [
+      -71.2123859,
+      46.8119983
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ACHA-20261103-EC-01",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Boulevard Henri-Bourassa"
+    ],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-11-04T14:00:00Z",
+    "end_date": "2026-11-05T20:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "pending",
+    "vehicle_impact": "some-lanes-closed",
+    "restrictions": [],
+    "description": "Québec, Boulevard Henri-Bourassa vers le nord à AUT-40, AUT-40/Rue Antoine-Silvy entretien des routes, du 2026-11-04 jusqu'au 2026-11-05, mer. et jeu. entre 09:00 et 15:00",
+    "update_date": "2026-11-03T15:11:48.24Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "open",
+      "type": "lane"
+     },
+     {
+      "order": 3,
+      "status": "open",
+      "type": "lane"
+     },
+     {
+      "order": 4,
+      "status": "open",
+      "type": "sidewalk"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ACHA-20261103-EC-01-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.238332,
+      46.8469171
+     ],
+     [
+      -71.23852,
+      46.84709
+     ],
+     [
+      -71.23876,
+      46.84731
+     ],
+     [
+      -71.2388,
+      46.84734
+     ],
+     [
+      -71.23888,
+      46.84742
+     ],
+     [
+      -71.23907,
+      46.84758
+     ],
+     [
+      -71.23927,
+      46.84775
+     ],
+     [
+      -71.23946,
+      46.8479
+     ],
+     [
+      -71.23954,
+      46.84796
+     ],
+     [
+      -71.23965,
+      46.84804
+     ],
+     [
+      -71.23971,
+      46.84809
+     ],
+     [
+      -71.2399,
+      46.84822
+     ],
+     [
+      -71.24008,
+      46.84834
+     ],
+     [
+      -71.24029,
+      46.84847
+     ],
+     [
+      -71.24046,
+      46.84857
+     ],
+     [
+      -71.24058,
+      46.84864
+     ],
+     [
+      -71.24073,
+      46.84873
+     ],
+     [
+      -71.24085,
+      46.8488
+     ],
+     [
+      -71.24107,
+      46.84892
+     ],
+     [
+      -71.2411,
+      46.84894
+     ],
+     [
+      -71.24126,
+      46.84901
+     ],
+     [
+      -71.24153,
+      46.84913
+     ],
+     [
+      -71.24199,
+      46.84935
+     ],
+     [
+      -71.2420418,
+      46.8493727
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ACL_20260527_CAF_01",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "RTE-138",
+     "Chemin de la Canardière"
+    ],
+    "direction": "eastbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-10-28T13:00:00Z",
+    "end_date": "2026-11-11T20:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "pending",
+    "vehicle_impact": "all-lanes-closed",
+    "restrictions": [],
+    "description": "RTE-138 Québec, Chemin de la Canardière vers l’est entre RTE-138 et RTE-360/Chemin de la Canardière travaux d'aqueduc et égouts, du 2026-10-28 jusqu'au 2026-11-11, mer. - ven. entre 09:00 et 15:00, déviation recommandée: vers l’est via 18e Rue et Avenue de la Vérendrye",
+    "update_date": "2026-10-27T17:13:49.29Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "bike-lane"
+     },
+     {
+      "order": 3,
+      "status": "closed",
+      "type": "sidewalk"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ACL_20260527_CAF_01-WZP"
+     ],
+     "children": [
+      "ACL_20260527_CAF_01-D0"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2215875,
+      46.8388326
+     ],
+     [
+      -71.22148,
+      46.83904
+     ],
+     [
+      -71.22128,
+      46.83944
+     ],
+     [
+      -71.2209922,
+      46.8399771
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ARIV-20260722-02-JFP_EC-P9_1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "RTE-369",
+     "Boulevard Bastien"
+    ],
+    "direction": "westbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-11-09T12:00:00Z",
+    "end_date": "2026-11-27T21:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "planned",
+    "vehicle_impact": "all-lanes-open",
+    "restrictions": [],
+    "description": "RTE-369 Quebec, Boulevard Bastien vers l’ouest entre Rue Maurice-Proulx et Rue André-Morin travaux d'aqueduc et égouts, du 2026-11-09 07:00 jusqu'au 2026-11-27 16:00",
+    "update_date": "2026-11-03T15:22:16.19Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "open",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "open",
+      "type": "lane"
+     },
+     {
+      "order": 3,
+      "status": "open",
+      "type": "sidewalk"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ARIV-20260722-02-JFP-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.3242494,
+      46.8572611
+     ],
+     [
+      -71.32428,
+      46.85727
+     ],
+     [
+      -71.32451,
+      46.85733
+     ],
+     [
+      -71.32473,
+      46.85736
+     ],
+     [
+      -71.32491,
+      46.85737
+     ],
+     [
+      -71.32533,
+      46.85737
+     ],
+     [
+      -71.32558,
+      46.85737
+     ],
+     [
+      -71.32583,
+      46.85735
+     ],
+     [
+      -71.32614,
+      46.85731
+     ],
+     [
+      -71.32682,
+      46.85721
+     ],
+     [
+      -71.32708,
+      46.85718
+     ],
+     [
+      -71.32736,
+      46.85716
+     ],
+     [
+      -71.32772,
+      46.85716
+     ],
+     [
+      -71.32798,
+      46.85717
+     ],
+     [
+      -71.3279856,
+      46.8571704
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ASSC_202611-03_NB_01_P1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-11-05T14:00:00Z",
+    "end_date": "2026-11-05T20:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "planned",
+    "vehicle_impact": "some-lanes-closed",
+    "restrictions": [],
+    "description": "Québec entre Avenue Roland-Beaudin et Rue Montreuil analyse du sol, sur 2026-11-05 du 09:00 jusqu'au 15:00",
+    "update_date": "2026-11-03T20:42:47.28Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 3,
+      "status": "closed",
+      "type": "unknown"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ASSC_20261103_NB_01-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2953773,
+      46.7699868
+     ],
+     [
+      -71.2942625,
+      46.770717
+     ]
+    ]
+   }
+  },
+  {
+   "id": "PAM230613 - Chantier Buade",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue de Buade"
+    ],
+    "direction": "westbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-03-23T04:01:00Z",
+    "end_date": "2026-12-05T04:59:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "all-lanes-closed",
+    "restrictions": [
+     "reduced-width"
+    ],
+    "description": "Québec, Rue de Buade entre Rue Port-Dauphin et Rue des Jardins travaux de réaménagement des routes, du 2026-03-23 00:01 jusqu'au 2026-12-04 23:59, déviation recommandée: vers le nord via Rue Port-Dauphin, Rue des Remparts, Côte de la Canoterie, Côte Dinan, Côte du Palais, Rue St-Jean et Côte de la Fabrique",
+    "update_date": "2026-05-26T18:54:30.97Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "closed",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "sidewalk"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ACL-20260322-DK-001-WZP"
+     ],
+     "children": [
+      "PAM230613 - Chantier Buade-D0"
+     ]
+    },
+    "types_of_work": [
+     {
+      "type_name": "roadway-relocation"
+     }
+    ]
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.20537,
+      46.8135
+     ],
+     [
+      -71.20614,
+      46.81358
+     ],
+     [
+      -71.20677,
+      46.81363
+     ],
+     [
+      -71.2067728,
+      46.8136304
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ACL_20260927_NB_01",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "RTE-175",
+     "Côte d'Abraham"
+    ],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2026-10-01T13:00:00Z",
+    "end_date": "2026-11-06T07:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "some-lanes-closed",
+    "restrictions": [],
+    "description": "RTE-175 Québec, Côte d'Abraham vers le nord entre Côte Ste-Geneviève et Rue St-Vallier E travaux de réaménagement des routes, du 2026-10-01 09:00 jusqu'au 2026-11-06 02:00",
+    "update_date": "2026-10-27T23:50:02.563Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "open",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "unknown"
+     },
+     {
+      "order": 3,
+      "status": "closed",
+      "type": "sidewalk"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "ACL_20260927_NB_01-WZP"
+     ]
+    },
+    "types_of_work": [
+     {
+      "type_name": "roadway-relocation"
+     }
+    ]
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2220132,
+      46.8123444
+     ],
+     [
+      -71.22221,
+      46.81229
+     ],
+     [
+      -71.2229325,
+      46.8120809
+     ]
+    ]
+   }
+  },
+  {
+   "id": "20250211566-1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Boulevard Henri-Bourassa"
+    ],
+    "direction": "southbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2025-08-25T04:00:00Z",
+    "end_date": "2027-03-21T03:59:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "all-lanes-open",
+    "restrictions": [],
+    "description": "Québec, Boulevard Henri-Bourassa vers le sud entre 22e Rue et RTE-138/18e Rue chantier privé (pour la gestion de conteneurs, stationnement, matériaux, etc.), du 2025-08-25 00:00 jusqu'au 2027-03-20 23:59",
+    "update_date": "2026-06-13T14:13:20.483Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "open",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "open",
+      "type": "lane"
+     },
+     {
+      "order": 3,
+      "status": "open",
+      "type": "sidewalk"
+     }
+    ]
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2281629,
+      46.837407
+     ],
+     [
+      -71.22748,
+      46.83692
+     ],
+     [
+      -71.2273476,
+      46.8368233
+     ]
+    ]
+   }
+  },
+  {
+   "id": "20250269927-1_1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue Jacques-Normand"
+    ],
+    "direction": "northbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2025-09-15T11:00:00Z",
+    "end_date": "2027-12-17T22:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "alternating-one-way",
+    "restrictions": [],
+    "description": "Québec, Rue Jacques-Normand entre Rue Boisseau et Rue Napoléon dans les deux sens chantier privé (pour la gestion de conteneurs, stationnement, matériaux, etc.), du 2025-09-15 07:00 jusqu'au 2027-12-17 17:00",
+    "update_date": "2026-07-19T02:30:32.327Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "alternating-flow",
+      "type": "lane"
+     },
+     {
+      "order": 2,
+      "status": "closed",
+      "type": "lane"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "20250269927-1-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.23471,
+      46.81082
+     ],
+     [
+      -71.23515,
+      46.81113
+     ]
+    ]
+   }
+  },
+  {
+   "id": "20250269927-1",
+   "type": "Feature",
+   "properties": {
+    "data_source_id": "TIC-Quebec/1",
+    "event_type": "work-zone",
+    "road_names": [
+     "Rue Jacques-Normand"
+    ],
+    "direction": "southbound",
+    "beginning_accuracy": "estimated",
+    "ending_accuracy": "estimated",
+    "start_date": "2025-09-15T11:00:00Z",
+    "end_date": "2027-12-17T22:00:00Z",
+    "start_date_accuracy": "estimated",
+    "end_date_accuracy": "estimated",
+    "event_status": "active",
+    "vehicle_impact": "alternating-one-way",
+    "restrictions": [],
+    "description": "Québec, Rue Jacques-Normand entre Rue Boisseau et Rue Napoléon dans les deux sens chantier privé (pour la gestion de conteneurs, stationnement, matériaux, etc.), du 2025-09-15 07:00 jusqu'au 2027-12-17 17:00",
+    "update_date": "2026-07-19T02:30:32.327Z",
+    "lanes": [
+     {
+      "order": 1,
+      "status": "alternating-flow",
+      "type": "lane"
+     }
+    ],
+    "relationship": {
+     "parents": [
+      "20250269927-1-WZP"
+     ]
+    }
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.23515,
+      46.81113
+     ],
+     [
+      -71.23471,
+      46.81082
+     ]
+    ]
+   }
+  }
+ ]
+}

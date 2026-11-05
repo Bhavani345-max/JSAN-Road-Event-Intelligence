@@ -29,7 +29,7 @@ import httpx
 
 from packages.cities import DEFAULT_CITY_ID, get_city
 
-from .names import normalise_name
+from .names import latin_script, normalise_name
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 # Tried in order when a server is overloaded.
@@ -198,11 +198,13 @@ def build_places(elements: list[dict]) -> tuple[list[dict], Counter]:
         if kind is None or "lat" not in position:
             continue
         ref = f"{element['type']}/{element['id']}"
+        # Names in the Latin alphabet, accents included ("Praça da Sé", decision
+        # 0057); names in other scripts are not matched by REI.
         spellings = {
             spelling.strip()
             for tag in NAME_TAGS
             for spelling in tags.get(tag, "").split(";")
-            if spelling.strip().isascii()
+            if latin_script(spelling.strip())
         }
         if kind == "ward":
             # "Ward 131 Quthbullapur" is written "Quthbullapur" in an article.

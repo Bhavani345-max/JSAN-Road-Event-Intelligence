@@ -22,6 +22,7 @@ from .base import SourceConnector
 from .discovered import DISCOVERED_SOURCES
 from .discovered_2026_10_15 import DISCOVERED_2026_10_15
 from .discovered_2026_11_04 import DISCOVERED_2026_11_04
+from .discovered_2026_11_05 import DISCOVERED_2026_11_05
 from .discovery.gdelt import GdeltConnector, gdelt_source
 from .discovery.google_news_rss import GoogleNewsRssConnector, google_news_rss_source
 from .official import (
@@ -96,6 +97,7 @@ from .official.ndw import (
 from .official.cita import CitaTrafficEventsConnector, cita_source
 from .official.norway_vegvesen import VegvesenSituationsConnector, vegvesen_source
 from .official.copenhagen_excavation import CopenhagenExcavationPermitsConnector, copenhagen_source
+from .official.tallinn_opinfo import TallinnStreetClosuresConnector, tallinn_source
 from .official.trafikverket import TrafikverketSituationsConnector, trafikverket_source
 from .restricted import RESTRICTED_PUBLISHERS
 from .rss import create_rss_connector
@@ -342,6 +344,8 @@ def _official_sources(
             # 4 November 2026 (decision 0053): Norway (Statens vegvesen) and Denmark (Copenhagen).
             (vegvesen_source, VegvesenSituationsConnector),
             (copenhagen_source, CopenhagenExcavationPermitsConnector),
+            # 5 November 2026 (decision 0058): Estonia (Tallinn).
+            (tallinn_source, TallinnStreetClosuresConnector),
         )
         if (definition := _scheduled_if_chosen(make, scheduled, chosen))
     )
@@ -494,7 +498,9 @@ def _registered_rest(
         + (RegisteredSource(MANUAL_ENTRY),)
         + tuple(
             RegisteredSource(definition)
-            for definition in DISCOVERED_SOURCES + DISCOVERED_2026_10_15 + DISCOVERED_2026_11_04
+            for definition in (
+                DISCOVERED_SOURCES + DISCOVERED_2026_10_15 + DISCOVERED_2026_11_04 + DISCOVERED_2026_11_05
+            )
         )
     )
 

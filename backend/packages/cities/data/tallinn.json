@@ -1,0 +1,36 @@
+{
+  "id": "tallinn",
+  "name": "Tallinn",
+  "area_name": "Tallinna linn",
+  "country": "EE",
+  "region": "Harju maakond",
+  "timezone": "Europe/Tallinn",
+  "language": "et",
+  "bbox": [
+    59.33,
+    24.54,
+    59.51,
+    24.96
+  ],
+  "map": {
+    "center": [
+      24.7536,
+      59.437
+    ],
+    "zoom": 11.2
+  },
+  "scope_terms": [
+    "Tallinn",
+    "Tallinna"
+  ],
+  "other_cities": [],
+  "gazetteer": null,
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": []
+  },
+  "official_sources": [
+    "tallinn-street-closures-and-works"
+  ],
+  "gis_sources": []
+}

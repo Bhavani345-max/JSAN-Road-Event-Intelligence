@@ -1,0 +1,68 @@
+{
+  "id": "sao-paulo",
+  "name": "São Paulo",
+  "area_name": "São Paulo",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Sao_Paulo",
+  "language": "pt",
+  "bbox": [
+    -23.8,
+    -46.83,
+    -23.4,
+    -46.36
+  ],
+  "map": {
+    "center": [
+      -46.63,
+      -23.55
+    ],
+    "zoom": 10.3
+  },
+  "scope_terms": [
+    "São Paulo",
+    "Sao Paulo",
+    "SP",
+    "CET-SP",
+    "Marginal Tietê",
+    "Marginal Pinheiros",
+    "Avenida Paulista",
+    "Radial Leste",
+    "Avenida 23 de Maio",
+    "Minhocão",
+    "Guarulhos",
+    "Osasco",
+    "Santo André",
+    "São Bernardo do Campo",
+    "São Caetano do Sul",
+    "Diadema"
+  ],
+  "other_cities": [
+    "Rio de Janeiro",
+    "Brasília",
+    "Belo Horizonte",
+    "Curitiba",
+    "Porto Alegre",
+    "Salvador",
+    "Recife",
+    "Fortaleza",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "sao-paulo_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "São Paulo interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

@@ -1,0 +1,63 @@
+{
+  "id": "rio-de-janeiro",
+  "name": "Rio de Janeiro",
+  "area_name": "Rio de Janeiro",
+  "country": "BR",
+  "level": "city",
+  "region": null,
+  "timezone": "America/Sao_Paulo",
+  "language": "pt",
+  "bbox": [
+    -23.08,
+    -43.8,
+    -22.75,
+    -43.1
+  ],
+  "map": {
+    "center": [
+      -43.2,
+      -22.91
+    ],
+    "zoom": 10.3
+  },
+  "scope_terms": [
+    "Rio de Janeiro",
+    "RJ",
+    "CET-Rio",
+    "Linha Vermelha",
+    "Linha Amarela",
+    "Avenida Brasil",
+    "Niterói",
+    "Copacabana",
+    "Barra da Tijuca",
+    "Ponte Rio-Niterói",
+    "Aterro do Flamengo"
+  ],
+  "other_cities": [
+    "São Paulo",
+    "Brasília",
+    "Belo Horizonte",
+    "Curitiba",
+    "Porto Alegre",
+    "Salvador",
+    "Recife",
+    "Fortaleza",
+    "Portugal",
+    "Lisboa",
+    "Angola",
+    "Luanda",
+    "Moçambique",
+    "Maputo",
+    "El Salvador"
+  ],
+  "gazetteer": "rio-de-janeiro_places.json",
+  "keywords": "traffic_keywords.json",
+  "discovery": {
+    "queries": [
+      "Rio de Janeiro interdição OR bloqueio OR desvio trânsito"
+    ],
+    "serper_search": true
+  },
+  "official_sources": [],
+  "gis_sources": []
+}

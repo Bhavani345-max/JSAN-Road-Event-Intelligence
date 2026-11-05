@@ -1,0 +1,1043 @@
+{
+ "fetched_at": "2026-11-05T09:10:30+00:00",
+ "request": "https://services1.arcgis.com/xbWF6o8qyXoMFa8L/arcgis/rest/services/Road_Closures_Open_Date_View/FeatureServer/1/query",
+ "note": "A trimmed sample of the real response of 5 November 2026 (92 lines: every line not yet ended and four ended ones), features unchanged except `pocname` and `pocemail` (City staff names and e-mail addresses), replaced by a placeholder.",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 192,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8620112987185,
+      43.3135881157493
+     ],
+     [
+      -79.8639799315108,
+      43.3149467787452
+     ],
+     [
+      -79.8642435645888,
+      43.3151447741307
+     ],
+     [
+      -79.8644767699315,
+      43.3153199168965
+     ],
+     [
+      -79.8646587766929,
+      43.3154569246928
+     ],
+     [
+      -79.864846441044,
+      43.3155804679838
+     ],
+     [
+      -79.8650558913373,
+      43.3156952135602
+     ],
+     [
+      -79.8652228611991,
+      43.3157689769186
+     ],
+     [
+      -79.8653586810802,
+      43.3158153909841
+     ],
+     [
+      -79.8655201478626,
+      43.3158530448286
+     ],
+     [
+      -79.8657080314026,
+      43.3158819469653
+     ],
+     [
+      -79.8659116094089,
+      43.3158974849627
+     ],
+     [
+      -79.8660851603286,
+      43.3159082177015
+     ],
+     [
+      -79.8664805502076,
+      43.3159076268486
+     ],
+     [
+      -79.8667785079126,
+      43.3159556440836
+     ],
+     [
+      -79.8670521122903,
+      43.3160259535192
+     ],
+     [
+      -79.8672791417154,
+      43.3161093217258
+     ],
+     [
+      -79.8674641254937,
+      43.3161697394701
+     ],
+     [
+      -79.8676490248303,
+      43.3162346636907
+     ],
+     [
+      -79.8679915524481,
+      43.316377760914
+     ],
+     [
+      -79.8681992168907,
+      43.316506002966
+     ],
+     [
+      -79.8684274967707,
+      43.3166885299893
+     ],
+     [
+      -79.8685516089086,
+      43.3168249595421
+     ],
+     [
+      -79.8686569408673,
+      43.3169747232687
+     ],
+     [
+      -79.8687452865822,
+      43.3171243193083
+     ],
+     [
+      -79.8688918467208,
+      43.3175110222369
+     ],
+     [
+      -79.8689273975482,
+      43.317630875162
+     ],
+     [
+      -79.8690618331254,
+      43.3180017570276
+     ],
+     [
+      -79.8691638862333,
+      43.3182866905693
+     ],
+     [
+      -79.8693030029314,
+      43.318571990081
+     ],
+     [
+      -79.8693871373443,
+      43.318699010558
+     ],
+     [
+      -79.8694793296453,
+      43.3188080831653
+     ],
+     [
+      -79.8695870475293,
+      43.3189128015204
+     ],
+     [
+      -79.869683601151,
+      43.318994876936
+     ],
+     [
+      -79.871378428343,
+      43.320219409023
+     ],
+     [
+      -79.8723013089569,
+      43.3208864897461
+     ],
+     [
+      -79.8725453102527,
+      43.3210556425804
+     ],
+     [
+      -79.8727111149996,
+      43.3211519178758
+     ],
+     [
+      -79.8728878971593,
+      43.3212392865629
+     ],
+     [
+      -79.8731439637277,
+      43.3213409558856
+     ],
+     [
+      -79.8739211331109,
+      43.3215784478906
+     ],
+     [
+      -79.8741638022051,
+      43.3216529426034
+     ],
+     [
+      -79.8743482874184,
+      43.321699824681
+     ],
+     [
+      -79.8747679695394,
+      43.3218076057449
+     ],
+     [
+      -79.8754854836012,
+      43.3219723936815
+     ],
+     [
+      -79.8759570739725,
+      43.3220716665827
+     ],
+     [
+      -79.8760715426959,
+      43.3221043379463
+     ],
+     [
+      -79.8761913348357,
+      43.3221415683267
+     ],
+     [
+      -79.8762895898665,
+      43.3221740795377
+     ],
+     [
+      -79.8763815845381,
+      43.3222110366996
+     ],
+     [
+      -79.8765134823747,
+      43.322261905533
+     ],
+     [
+      -79.8766397271131,
+      43.322326238989
+     ],
+     [
+      -79.8767582490351,
+      43.3223904965675
+     ],
+     [
+      -79.8768703453078,
+      43.3224682108694
+     ],
+     [
+      -79.876994546379,
+      43.3225595648306
+     ],
+     [
+      -79.8771062285284,
+      43.322659808565
+     ],
+     [
+      -79.8771948284665,
+      43.3227553199621
+     ],
+     [
+      -79.8772732235431,
+      43.3228597439637
+     ],
+     [
+      -79.878005647842,
+      43.3239350250835
+     ],
+     [
+      -79.8786635065824,
+      43.3248247934126
+     ],
+     [
+      -79.8790199652737,
+      43.325305999958
+     ],
+     [
+      -79.87920131357,
+      43.3255240996897
+     ],
+     [
+      -79.8793110445786,
+      43.3256468566174
+     ],
+     [
+      -79.8795771992276,
+      43.3259153595348
+     ],
+     [
+      -79.8799193073322,
+      43.3262116462523
+     ],
+     [
+      -79.8801695564108,
+      43.326421404915
+     ],
+     [
+      -79.880595179989,
+      43.3267545605699
+     ],
+     [
+      -79.8808716877217,
+      43.3269645741752
+     ],
+     [
+      -79.8810861164783,
+      43.3271063803418
+     ],
+     [
+      -79.8814617497093,
+      43.3273444019952
+     ],
+     [
+      -79.8820879482259,
+      43.3277335923353
+     ],
+     [
+      -79.8824945886055,
+      43.3280079678961
+     ],
+     [
+      -79.8830481268903,
+      43.3284009506101
+     ],
+     [
+      -79.8833425775725,
+      43.3286021198
+     ],
+     [
+      -79.8835837994808,
+      43.3287577023116
+     ],
+     [
+      -79.8837664674023,
+      43.3288631386587
+     ],
+     [
+      -79.8839607190993,
+      43.328968687871
+     ],
+     [
+      -79.8841490419154,
+      43.329060658722
+     ],
+     [
+      -79.8843640635602,
+      43.3291709163926
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 192,
+    "blocknm": "Waterdown Road",
+    "locdesc": "Temporary lane restrictions due to road construction.",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "No",
+    "direction": "Both",
+    "blockoccur": "Recurring",
+    "active": "Yes",
+    "startdate": 1709557200000,
+    "enddate": 1798761600000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "4e3f9b72-68a4-41e7-b54a-fa981bcc7d3b"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 337,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.7758902859868,
+      43.3469028255826
+     ],
+     [
+      -79.767500336188,
+      43.3408012543585
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 337,
+    "blocknm": null,
+    "locdesc": null,
+    "blocktype": "Event",
+    "comment": null,
+    "fullclose": null,
+    "direction": null,
+    "blockoccur": null,
+    "active": null,
+    "startdate": null,
+    "enddate": null,
+    "pocname": null,
+    "pocemail": null,
+    "Shape__Length": null,
+    "GlobalID": "e1278eb5-a233-4f68-b906-652b5fd2ee76"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 424,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.7781974582384,
+      43.3579413142305
+     ],
+     [
+      -79.7781994698951,
+      43.3579427768635
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 424,
+    "blocknm": null,
+    "locdesc": null,
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": null,
+    "direction": null,
+    "blockoccur": null,
+    "active": null,
+    "startdate": null,
+    "enddate": null,
+    "pocname": null,
+    "pocemail": null,
+    "Shape__Length": null,
+    "GlobalID": "778d55c7-04bd-4620-a75d-b12d56623021"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 464,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8619951488063,
+      43.3135769695107
+     ],
+     [
+      -79.8620112987185,
+      43.3135881157492
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 464,
+    "blocknm": "Waterdown Road",
+    "locdesc": "Temporary lane restrictions due to road construction.",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "No",
+    "direction": "Both",
+    "blockoccur": "Recurring",
+    "active": "No",
+    "startdate": 1709557200000,
+    "enddate": 1798761600000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "8598e476-0555-4e21-9fbf-da12f8f6fe3e"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 483,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.7377669391189,
+      43.3678530232167
+     ],
+     [
+      -79.7376596507583,
+      43.3676580370204
+     ],
+     [
+      -79.7375791844879,
+      43.3674825489078
+     ],
+     [
+      -79.7374853071724,
+      43.367084773973
+     ],
+     [
+      -79.7373418089901,
+      43.3663993860414
+     ],
+     [
+      -79.7373444911991,
+      43.3663486884758
+     ],
+     [
+      -79.7373646077667,
+      43.3663106652737
+     ],
+     [
+      -79.7374075231109,
+      43.3662706921382
+     ],
+     [
+      -79.7376994125232,
+      43.3660569401221
+     ],
+     [
+      -79.7371133498534,
+      43.3656578974912
+     ],
+     [
+      -79.7376927070007,
+      43.366055681783
+     ],
+     [
+      -79.7384920052873,
+      43.3655253021476
+     ],
+     [
+      -79.7387655906068,
+      43.3653420081073
+     ],
+     [
+      -79.739554160057,
+      43.3647765230033
+     ],
+     [
+      -79.7387763194426,
+      43.3653342083488
+     ],
+     [
+      -79.7393985919341,
+      43.3657865926949
+     ],
+     [
+      -79.7394683293685,
+      43.3658294910354
+     ],
+     [
+      -79.739559524475,
+      43.3658450904244
+     ],
+     [
+      -79.7396024398193,
+      43.3658723893455
+     ],
+     [
+      -79.7395809821472,
+      43.3659347868334
+     ],
+     [
+      -79.7394844226226,
+      43.3659503861953
+     ],
+     [
+      -79.7392966679916,
+      43.3660556817834
+     ],
+     [
+      -79.7379341058118,
+      43.3669799352133
+     ],
+     [
+      -79.737794630943,
+      43.3670618304076
+     ],
+     [
+      -79.7374834946972,
+      43.3670774294797
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 483,
+    "blocknm": null,
+    "locdesc": null,
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": null,
+    "direction": null,
+    "blockoccur": null,
+    "active": null,
+    "startdate": null,
+    "enddate": null,
+    "pocname": null,
+    "pocemail": null,
+    "Shape__Length": null,
+    "GlobalID": "1e7d2193-1f0a-4c3c-abd4-7153603a267f"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 515,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8883729484977,
+      43.3254133185014
+     ],
+     [
+      -79.8888557461203,
+      43.3248825836486
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 515,
+    "blocknm": null,
+    "locdesc": null,
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": null,
+    "direction": null,
+    "blockoccur": null,
+    "active": null,
+    "startdate": null,
+    "enddate": null,
+    "pocname": null,
+    "pocemail": null,
+    "Shape__Length": null,
+    "GlobalID": "86920f23-15ee-40ce-b1d2-58b590e78e64"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 516,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8892419842185,
+      43.3095126766899
+     ],
+     [
+      -79.8897140530051,
+      43.3108554543094
+     ],
+     [
+      -79.8906367329062,
+      43.3128695651155
+     ],
+     [
+      -79.8908513096274,
+      43.3131193726556
+     ],
+     [
+      -79.891301920742,
+      43.3134628563468
+     ],
+     [
+      -79.8915379551352,
+      43.3137907253318
+     ],
+     [
+      -79.8916452434959,
+      43.3140873671751
+     ],
+     [
+      -79.892031481594,
+      43.3165228980842
+     ],
+     [
+      -79.8921173122825,
+      43.3169444223707
+     ],
+     [
+      -79.8922889736594,
+      43.3172410488194
+     ],
+     [
+      -79.8923533466758,
+      43.3175532856221
+     ],
+     [
+      -79.8923533466758,
+      43.3179279676676
+     ],
+     [
+      -79.8922675159873,
+      43.3183182590081
+     ],
+     [
+      -79.8919885662498,
+      43.3186304902755
+     ],
+     [
+      -79.8918812778892,
+      43.3188178282658
+     ],
+     [
+      -79.8919671085777,
+      43.3191612797479
+     ],
+     [
+      -79.8923318890037,
+      43.3195983970083
+     ],
+     [
+      -79.8926108387412,
+      43.319707675832
+     ],
+     [
+      -79.8931687382164,
+      43.3197701207859
+     ],
+     [
+      -79.8934262302818,
+      43.3198013432388
+     ],
+     [
+      -79.8935978916588,
+      43.3199418440782
+     ],
+     [
+      -79.8936837223472,
+      43.3201447891615
+     ],
+     [
+      -79.8937051800194,
+      43.320394566795
+     ],
+     [
+      -79.8935549763145,
+      43.320691176401
+     ],
+     [
+      -79.8931472805442,
+      43.3213780562452
+     ],
+     [
+      -79.8931687382164,
+      43.3215809965312
+     ],
+     [
+      -79.8932116535606,
+      43.3217839361393
+     ],
+     [
+      -79.8931901958885,
+      43.3219712644067
+     ],
+     [
+      -79.8930829075279,
+      43.3221429814777
+     ],
+     [
+      -79.8928254154625,
+      43.32223664513
+     ],
+     [
+      -79.8924820927085,
+      43.3223615297752
+     ],
+     [
+      -79.8917739895286,
+      43.3227517926368
+     ],
+     [
+      -79.8909371403159,
+      43.3233137667532
+     ],
+     [
+      -79.8899715450705,
+      43.3238601254937
+     ],
+     [
+      -79.8888557461203,
+      43.3248279489152
+     ],
+     [
+      -79.8889201191367,
+      43.3250152677965
+     ],
+     [
+      -79.8890917805136,
+      43.325171366423
+     ],
+     [
+      -79.8892634418906,
+      43.3252806352229
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 516,
+    "blocknm": "Snake Road",
+    "locdesc": "Temporary lane restrictions will be in place on Snake Road (from Old York Road to the north City Limit at the CPKC Bridge crossing).  Lane restrictions are required for road reconstruction work.",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "No",
+    "direction": "Both",
+    "blockoccur": "Continuous",
+    "active": "No",
+    "startdate": 1784520000000,
+    "enddate": 1796101200000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "0c9b2d61-2afe-4772-a82b-c5f70759c62b"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 517,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8001623223726,
+      43.3672295095364
+     ],
+     [
+      -79.7966325353093,
+      43.3646556148181
+     ],
+     [
+      -79.7966432641453,
+      43.364663414664
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 517,
+    "blocknm": "Blair Road",
+    "locdesc": "ES-26-03 Blair Road and Landmark Road Minor Reconstruction.  Temporary rolling lane restrictions are needed to complete construction.",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "No",
+    "direction": "Both",
+    "blockoccur": "Recurring",
+    "active": "No",
+    "startdate": 1784545200000,
+    "enddate": 1796166000000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "05ec3746-cc89-444d-adc4-ac574f36c4e9"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 518,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.7984778951114,
+      43.3660205725884
+     ],
+     [
+      -79.796214110703,
+      43.3682356386903
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 518,
+    "blocknm": "Landmark Road",
+    "locdesc": "ES-26-03 Blair Road and Landmark Road Minor Reconstruction.  Temporary rolling lane restrictions are needed to complete construction.",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "No",
+    "direction": "Both",
+    "blockoccur": "Recurring",
+    "active": "No",
+    "startdate": 1784545200000,
+    "enddate": 1796166000000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "7ec17050-5460-4853-9db9-5cd6e6c170f1"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 519,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8001730512086,
+      43.3672295095364
+     ],
+     [
+      -79.7966432641453,
+      43.3646478149712
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 519,
+    "blocknm": "Blair Road",
+    "locdesc": "ES-26-03 Blair Road and Landmark Road Minor Reconstruction.  Temporary rolling lane restrictions are needed to complete construction.",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "No",
+    "direction": "Both",
+    "blockoccur": "Recurring",
+    "active": "No",
+    "startdate": 1784545200000,
+    "enddate": 1796166000000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "3c18a23f-ff3b-4116-a40b-c8fb42ebd65c"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 435,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8493707011246,
+      43.4454784586903
+     ],
+     [
+      -79.8447358439472,
+      43.4422068025522
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 435,
+    "blocknm": "Bell School Line",
+    "locdesc": "Adjacent to Burlington's Executive Airpark Airport. Full closure with PDO and signage to alert and detour drivers",
+    "blocktype": "Event",
+    "comment": null,
+    "fullclose": "Yes",
+    "direction": "Both",
+    "blockoccur": "Continuous",
+    "active": "Yes",
+    "startdate": 1684436400000,
+    "enddate": 1684490400000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "5bb6471f-57b1-48d6-8a33-a1c02615c16e"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 409,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.8861254426699,
+      43.2891142704524
+     ],
+     [
+      -79.8860396119814,
+      43.2890049366201
+     ],
+     [
+      -79.8862541887026,
+      43.2879584457109
+     ],
+     [
+      -79.8861683580141,
+      43.2878803486524
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 409,
+    "blocknm": "Springs Garden Rd",
+    "locdesc": "Woodland Cemetery entrance to Valley Inn Rd",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "Yes",
+    "direction": "Both",
+    "blockoccur": "Continuous",
+    "active": "Yes",
+    "startdate": 1642680000000,
+    "enddate": 1647813600000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "22ff050f-9ee3-43d1-91a0-be25dce47b77"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 227,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.7537149726427,
+      43.3673672277723
+     ],
+     [
+      -79.7622551261463,
+      43.3736688946093
+     ],
+     [
+      -79.7622551261463,
+      43.3736688946093
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 227,
+    "blocknm": "Appleby Line",
+    "locdesc": "Street festival",
+    "blocktype": "Event",
+    "comment": null,
+    "fullclose": "Yes",
+    "direction": "Both",
+    "blockoccur": "Continuous",
+    "active": "No",
+    "startdate": 1569771000000,
+    "enddate": 1569794400000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "2ce8f52b-605f-4001-957b-3bfcff480f31"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 476,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -79.774160110687,
+      43.3486028742905
+     ],
+     [
+      -79.770501577591,
+      43.3519498014515
+     ]
+    ]
+   },
+   "properties": {
+    "OBJECTID": 476,
+    "blocknm": "New Street",
+    "locdesc": "A Temporary lane restriction will be in place due to watermain installation on New Street (from Woodview Rd. to Elwood Rd.).  \n\nThe lane restriction will be occurring in the westbound curbside lane of New Street.",
+    "blocktype": "Construction",
+    "comment": null,
+    "fullclose": "No",
+    "direction": "West",
+    "blockoccur": "Continuous",
+    "active": "Yes",
+    "startdate": 1730696400000,
+    "enddate": 1748577600000,
+    "pocname": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "pocemail": "A Person - person@example.invalid - 555-0100 (placeholder)",
+    "Shape__Length": null,
+    "GlobalID": "b5b7f52b-0d58-4b32-8a7e-de8111f32b89"
+   }
+  }
+ ]
+}

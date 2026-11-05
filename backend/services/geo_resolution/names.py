@@ -5,6 +5,8 @@ place; so are "RTC X Roads" and "RTC Cross Road".
 """
 
 import re
+import unicodedata
+from functools import lru_cache
 
 _WORD = re.compile(r"[A-Za-z0-9]+")
 
@@ -20,15 +22,49 @@ _VARIANTS = {
     "stn": "station",
     "rly": "railway",
     "twp": "township",
+    # Brazilian Portuguese street words as the press abbreviates them (decision
+    # 0057): "Av. Paulista" is "Avenida Paulista". None of these is a word of
+    # any other place list; "marg" (Hindi: road) is deliberately not one.
+    "av": "avenida",
+    "estr": "estrada",
+    "rod": "rodovia",
+    "pca": "praca",
+    "vd": "viaduto",
 }
+
+
+@lru_cache(maxsize=4096)
+def _fold(char: str) -> str:
+    """A letter with accents as its plain letter ("ã" → "a", "ç" → "c"), else itself.
+
+    One character in, one out, so positions in the folded text are positions
+    in the original: "São Paulo" and "Sao Paulo" read alike.
+    """
+    if char.isascii():
+        return char
+    base = unicodedata.normalize("NFKD", char)
+    if base[0].isascii() and base[0].isalpha() and all(unicodedata.combining(mark) for mark in base[1:]):
+        return base[0]
+    return char
+
+
+def _folded(text: str) -> str:
+    return text if text.isascii() else "".join(_fold(char) for char in text)
+
+
+def latin_script(text: str) -> bool:
+    """Whether a name is written in the Latin alphabet, accents allowed ("Praça da Sé")."""
+    return _folded(text).isascii()
 
 
 def name_tokens(text: str) -> list[tuple[str, int]]:
     """The normalised words of `text`, each with the position it started at.
 
     A possessive "'s" is dropped: "Gachibowli's" reads as "gachibowli".
+    Accents are dropped: "Praça da Sé" reads as "praca da se".
     """
     tokens: list[tuple[str, int]] = []
+    text = _folded(text)
     for match in _WORD.finditer(text):
         word = match.group().lower()
         if word == "s" and match.start() > 0 and text[match.start() - 1] in "'’":

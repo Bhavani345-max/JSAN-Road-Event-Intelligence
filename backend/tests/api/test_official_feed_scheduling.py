@@ -33,7 +33,8 @@ def test_the_connected_official_feeds_can_be_named():
     # + Austin and SFMTA work zones, and 20 more feeds in six countries (21 October 2026, 0039, 0040).
     # + Málaga's traffic cuts (22 October 2026).
     # + Norway, Copenhagen and Sweden (4 November 2026, decision 0053).
-    assert len(OFFICIAL_SOURCE_IDS) == 56
+    # + Tallinn (5 November 2026, decision 0058).
+    assert len(OFFICIAL_SOURCE_IDS) == 57
     assert {TFL, TORONTO, "nyc-street-closures", "finland-digitraffic-road-events"} <= OFFICIAL_SOURCE_IDS
     # Removed for giving no location (decision 0029): not an official feed to schedule.
     assert not OFFICIAL_SOURCE_IDS & {
@@ -66,7 +67,7 @@ def test_the_switch_for_every_feed_still_schedules_them_all():
     feeds = official(registered_sources(official_feeds_scheduled=True))
     # Sweden's feed needs its key: without it, it is never scheduled (decision 0053).
     assert {source_id for source_id, d in feeds.items() if not d.active} == {"se-trafikverket-situations"}
-    assert len(feeds) == 56
+    assert len(feeds) == 57
     with_key = official(registered_sources(official_feeds_scheduled=True, trafikverket_api_key="k"))
     assert all(d.active for d in with_key.values())
 

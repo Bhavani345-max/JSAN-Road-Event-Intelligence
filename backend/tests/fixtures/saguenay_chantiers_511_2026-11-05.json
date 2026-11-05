@@ -1,0 +1,1961 @@
+{
+ "fetched_at": "2026-11-05T09:01:55+00:00",
+ "request": "https://www.donneesquebec.ca/recherche/dataset/221d146e-f285-4eb4-9f47-09b4b36cc429/resource/6df36e69-fdfd-43ea-bcea-ec41525b6c86/download/sag_chantiers511.geojson",
+ "note": "The whole real response of 5 November 2026 (20 features), unchanged. No personal data.",
+ "items": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0818633532,
+      48.3835983617
+     ],
+     [
+      -71.0808350013,
+      48.3845320085
+     ],
+     [
+      -71.0804131558,
+      48.3848833855
+     ]
+    ]
+   },
+   "properties": {
+    "id": 34911,
+    "municipalite": "94068",
+    "etat": "Restriction de voies",
+    "type": "Travaux prévus",
+    "localisation": "Boulevard Talbot",
+    "arrondissement": "Chicoutimi",
+    "description": "En raison de travaux d'installation d'un nouveau service aqueduc et égout, il y aura fermeture de la voie de droite en direction nord sur le boulevard Talbot à la hauteur de la rue des Routiers le jeudi 5 novembre de 7 h 30 à 17 h.",
+    "date_debut": "2026-11-05T07:30:00",
+    "date_fin": "2026-11-05T17:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0599153572,
+      48.429082051
+     ],
+     [
+      -71.0623070301,
+      48.4290524011
+     ],
+     [
+      -71.0629563365,
+      48.4291166426
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35085,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux prévus",
+    "localisation": "Boulevard du Saguenay Est",
+    "arrondissement": "Chicoutimi",
+    "description": "En raison de travaux de réfection d'égout et d'aqueduc, fermeture des deux voies de circulation en direction ouest sur le boulevard du Saguenay Est, entre les rues de l'Hôtel-de-Ville et La Fontaine. La circulation se déviée par la rue du Carnaval-Souvenir du lundi 5 octobre au vendredi 6 novembre.",
+    "date_debut": "2026-10-05T07:00:00",
+    "date_fin": "2026-11-06T12:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0629563365,
+      48.4291166426
+     ],
+     [
+      -71.0653913753,
+      48.4293340855
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35086,
+    "municipalite": "94068",
+    "etat": "Circulation à contresens",
+    "type": "Travaux prévus",
+    "localisation": "Boulevard du Saguenay Est",
+    "arrondissement": "Chicoutimi",
+    "description": "En raison de travaux de réfection du service aqueduc et égout, la circulation sefera à contresens sur le boulevard du Saguenay Est en direciton ouest entre les rues Morin et de l'Hôtel-de-Ville du lundi 5 octobre au vendredi 6 novmebre.",
+    "date_debut": "2026-10-05T07:00:00",
+    "date_fin": "2026-11-06T12:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.3900419172,
+      48.4672276894
+     ],
+     [
+      -71.3901322204,
+      48.4670967469
+     ],
+     [
+      -71.3902119328,
+      48.4669651416
+     ],
+     [
+      -71.3902837523,
+      48.4668197063
+     ],
+     [
+      -71.3903544518,
+      48.4667369094
+     ],
+     [
+      -71.3904971855,
+      48.4666999725
+     ],
+     [
+      -71.3906872768,
+      48.4666767947
+     ],
+     [
+      -71.390897847,
+      48.4667115973
+     ],
+     [
+      -71.3910588991,
+      48.4667804344
+     ],
+     [
+      -71.3915021697,
+      48.4670281017
+     ],
+     [
+      -71.3919012362,
+      48.4672403476
+     ],
+     [
+      -71.3920940933,
+      48.4673005013
+     ],
+     [
+      -71.3922744786,
+      48.4673190739
+     ],
+     [
+      -71.3924409824,
+      48.4673113324
+     ],
+     [
+      -71.3926822568,
+      48.4672519057
+     ],
+     [
+      -71.393130874,
+      48.4671114824
+     ],
+     [
+      -71.3937908432,
+      48.4669408245
+     ],
+     [
+      -71.3945857801,
+      48.4668057989
+     ],
+     [
+      -71.3949653949,
+      48.4667698525
+     ],
+     [
+      -71.3951695721,
+      48.4667680163
+     ],
+     [
+      -71.3953466353,
+      48.4667869821
+     ],
+     [
+      -71.3960998099,
+      48.4669535383
+     ],
+     [
+      -71.3964550047,
+      48.4670279009
+     ],
+     [
+      -71.3995329085,
+      48.4675444944
+     ],
+     [
+      -71.4000069886,
+      48.4675694415
+     ],
+     [
+      -71.4006572209,
+      48.467594745
+     ],
+     [
+      -71.4010343519,
+      48.4676553024
+     ],
+     [
+      -71.4023272289,
+      48.4680101898
+     ],
+     [
+      -71.4027390931,
+      48.4680927615
+     ],
+     [
+      -71.4052414467,
+      48.4685479397
+     ],
+     [
+      -71.4062041023,
+      48.4687136201
+     ],
+     [
+      -71.4093490354,
+      48.4692583225
+     ],
+     [
+      -71.4097795532,
+      48.4693452843
+     ],
+     [
+      -71.4104040159,
+      48.4694808252
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35141,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux d'urgence",
+    "localisation": "Chemin Saint-Wilbrod",
+    "arrondissement": "Jonquière",
+    "description": "En raison de travaux, le chemin Saint-Wilbrod à la hauteur du 6105, dans l'arrondissement de Jonquière, sera fermé à la circulation à compter du mercredi 5 août, dès 9 h 30, et ce, pour une durée indéterminée.Les citoyens qui le peuvent sont invités à emprunter le détour par la rue Montée-Bergeron ainsi que par la rue Montée-Dupérré.Nous vous remercions de votre compréhension.",
+    "date_debut": "2026-08-05T09:30:00",
+    "date_fin": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.4104040159,
+      48.4694808252
+     ],
+     [
+      -71.4118300818,
+      48.4697327135
+     ],
+     [
+      -71.4124527309,
+      48.4698499605
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35142,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux d'urgence",
+    "localisation": "Chemin Saint-Wilbrod",
+    "arrondissement": "Jonquière",
+    "description": "",
+    "date_debut": "2026-08-05T09:46:02.666",
+    "date_fin": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.5578957561,
+      48.3753983893
+     ],
+     [
+      -71.5574991583,
+      48.3755695738
+     ],
+     [
+      -71.5569592308,
+      48.3757113062
+     ],
+     [
+      -71.5566371733,
+      48.3757535302
+     ],
+     [
+      -71.5563084533,
+      48.3757704558
+     ],
+     [
+      -71.5557419849,
+      48.3757502971
+     ],
+     [
+      -71.5544471988,
+      48.3756615541
+     ],
+     [
+      -71.5530566595,
+      48.3755736741
+     ],
+     [
+      -71.5516661261,
+      48.3754857763
+     ],
+     [
+      -71.5501034245,
+      48.3753847092
+     ],
+     [
+      -71.5496285989,
+      48.3753424146
+     ],
+     [
+      -71.5488919689,
+      48.3751675306
+     ],
+     [
+      -71.5483222208,
+      48.3749273136
+     ],
+     [
+      -71.5475270066,
+      48.3745296318
+     ],
+     [
+      -71.5470901692,
+      48.374363458
+     ],
+     [
+      -71.5467843889,
+      48.3742713489
+     ],
+     [
+      -71.5465303695,
+      48.3742184428
+     ],
+     [
+      -71.5462656551,
+      48.3741828121
+     ],
+     [
+      -71.545890832,
+      48.3741665874
+     ],
+     [
+      -71.5455448303,
+      48.3741787312
+     ],
+     [
+      -71.5450468359,
+      48.3742335656
+     ],
+     [
+      -71.544635243,
+      48.3743277097
+     ],
+     [
+      -71.5441565452,
+      48.3744985126
+     ],
+     [
+      -71.5436180464,
+      48.3747946183
+     ],
+     [
+      -71.543368604,
+      48.3749956635
+     ],
+     [
+      -71.5430857611,
+      48.3753113877
+     ],
+     [
+      -71.542667542,
+      48.3761394668
+     ],
+     [
+      -71.5419906656,
+      48.3775690048
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35276,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux d'urgence",
+    "localisation": "Route des Fondateurs",
+    "arrondissement": "Lac-Kénogami",
+    "description": "En raison de travaux de remplacement d’un ponceau, la route des Fondateurs sera fermée à la circulation entre les adresses 285 et 325, du lundi 31 août au vendredi 18 décembre 2026 inclusivement.Nous vous invitons à prévoir vos déplacements en conséquence et à respecter la signalisation en place durant la période des travaux.",
+    "date_debut": "2026-08-31T07:00:00",
+    "date_fin": "2026-12-18T16:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2177650888,
+      48.4443938183
+     ],
+     [
+      -71.2176913314,
+      48.4443473393
+     ],
+     [
+      -71.2173212324,
+      48.4441057447
+     ],
+     [
+      -71.2171272703,
+      48.4439934455
+     ],
+     [
+      -71.2167558382,
+      48.4438122747
+     ],
+     [
+      -71.2158632891,
+      48.4434538726
+     ],
+     [
+      -71.2155209205,
+      48.4433092408
+     ],
+     [
+      -71.2152573928,
+      48.4431811541
+     ],
+     [
+      -71.2150448861,
+      48.4430585931
+     ],
+     [
+      -71.2147892901,
+      48.4428696844
+     ],
+     [
+      -71.2145737993,
+      48.4426594895
+     ],
+     [
+      -71.214428975,
+      48.4424780729
+     ],
+     [
+      -71.2142983871,
+      48.4422795892
+     ],
+     [
+      -71.2141848648,
+      48.442078786
+     ],
+     [
+      -71.2141022303,
+      48.4418611425
+     ],
+     [
+      -71.2140896591,
+      48.4418116822
+     ],
+     [
+      -71.2140304638,
+      48.4415840431
+     ],
+     [
+      -71.2139072556,
+      48.4411770584
+     ],
+     [
+      -71.2138009013,
+      48.4409437227
+     ],
+     [
+      -71.2135894168,
+      48.4406060191
+     ],
+     [
+      -71.213313175,
+      48.4402896938
+     ],
+     [
+      -71.2131540408,
+      48.4401388985
+     ],
+     [
+      -71.2127775834,
+      48.4398424525
+     ],
+     [
+      -71.21256134,
+      48.4396842043
+     ],
+     [
+      -71.212390795,
+      48.4395784651
+     ],
+     [
+      -71.2121169172,
+      48.4394298428
+     ],
+     [
+      -71.2111758629,
+      48.4389817468
+     ],
+     [
+      -71.2104000736,
+      48.4386098534
+     ],
+     [
+      -71.2101274123,
+      48.4384842
+     ],
+     [
+      -71.2078093152,
+      48.4374158757
+     ],
+     [
+      -71.2070162332,
+      48.4370280135
+     ],
+     [
+      -71.2062573854,
+      48.4366109313
+     ],
+     [
+      -71.2045074706,
+      48.435522709
+     ],
+     [
+      -71.203808702,
+      48.4350855003
+     ],
+     [
+      -71.2027576318,
+      48.4344344585
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35311,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux prévus",
+    "localisation": "Route du Pont",
+    "arrondissement": "Jonquière",
+    "description": "Des travaux de pavage auront lieu sur la route du Pont, secteur Arvida, entre le pont d'Aluminium et la rue de la Villégiature, du 19 octobre à 7 h au 6 novembre à 16 h.La circulation sera redirigée par le boulevard du Saguenay puis vers le pont Kénogami pendant la durée des travaux. Les usagers de la route sont invités à prévoir leurs déplacements, à respecter la signalisation en place et à faire preuve de prudence à l'approche de la zone de travaux.",
+    "date_debut": "2026-10-19T08:32:51.88",
+    "date_fin": "2026-11-06T16:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -70.9152640599,
+      48.4178359963
+     ],
+     [
+      -70.9157359209,
+      48.4179473749
+     ],
+     [
+      -70.9168156844,
+      48.4181766183
+     ],
+     [
+      -70.9168309164,
+      48.4181798522
+     ],
+     [
+      -70.9171237975,
+      48.4182573172
+     ],
+     [
+      -70.917429836,
+      48.418345734
+     ],
+     [
+      -70.9180374839,
+      48.4185579417
+     ],
+     [
+      -70.9183415252,
+      48.4186818244
+     ],
+     [
+      -70.9185990893,
+      48.4187919375
+     ],
+     [
+      -70.9190294415,
+      48.4189959807
+     ],
+     [
+      -70.9192600199,
+      48.4191038352
+     ],
+     [
+      -70.9218464964,
+      48.4203494128
+     ],
+     [
+      -70.9227760003,
+      48.4207970083
+     ],
+     [
+      -70.9240606839,
+      48.4213972752
+     ],
+     [
+      -70.925431981,
+      48.4220379813
+     ],
+     [
+      -70.9258323278,
+      48.4222294627
+     ],
+     [
+      -70.9262362008,
+      48.4224176172
+     ],
+     [
+      -70.9287045815,
+      48.423567506
+     ],
+     [
+      -70.9292030013,
+      48.4238210087
+     ],
+     [
+      -70.930044109,
+      48.424230571
+     ],
+     [
+      -70.930790735,
+      48.4246496394
+     ],
+     [
+      -70.9315553537,
+      48.4250790791
+     ],
+     [
+      -70.9318190142,
+      48.4251900445
+     ],
+     [
+      -70.9318391556,
+      48.4251985212
+     ],
+     [
+      -70.9322253131,
+      48.4253360335
+     ],
+     [
+      -70.9326492713,
+      48.425458237
+     ],
+     [
+      -70.9341769081,
+      48.4258362086
+     ],
+     [
+      -70.9353083055,
+      48.4261074247
+     ],
+     [
+      -70.9357336189,
+      48.4262159582
+     ],
+     [
+      -70.9365600005,
+      48.4264140086
+     ],
+     [
+      -70.9377080023,
+      48.4267000733
+     ],
+     [
+      -70.9381446749,
+      48.4267918432
+     ],
+     [
+      -70.9385650016,
+      48.426866008
+     ],
+     [
+      -70.9390101227,
+      48.4269156772
+     ],
+     [
+      -70.9390274353,
+      48.4269176087
+     ],
+     [
+      -70.9392214961,
+      48.4269221386
+     ],
+     [
+      -70.9395369134,
+      48.426918299
+     ],
+     [
+      -70.9399027534,
+      48.4268982982
+     ],
+     [
+      -70.9430305641,
+      48.4265534947
+     ],
+     [
+      -70.9441086774,
+      48.4264346241
+     ],
+     [
+      -70.945089974,
+      48.4263514449
+     ],
+     [
+      -70.9457490005,
+      48.4263220087
+     ],
+     [
+      -70.9469099948,
+      48.4263603495
+     ],
+     [
+      -70.9483039123,
+      48.4264321001
+     ],
+     [
+      -70.9489741155,
+      48.42652484
+     ],
+     [
+      -70.9493209192,
+      48.4265897485
+     ],
+     [
+      -70.9496658812,
+      48.4266718864
+     ],
+     [
+      -70.9499969636,
+      48.4267698222
+     ],
+     [
+      -70.9503195939,
+      48.4268823692
+     ],
+     [
+      -70.9509677978,
+      48.4271595314
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35543,
+    "municipalite": "94068",
+    "etat": "Circulation en alternance avec feu ou signaleur",
+    "type": "Travaux d'urgence",
+    "localisation": "Rang Saint-Martin",
+    "arrondissement": "Chicoutimi",
+    "description": "la Ville de Saguenay désire vous informer de la fermeture d’une voie dans le rang Saint-Martin, à la hauteur du numéro 3974. Un début d’affaissement du ponceau, qui canalise le ruisseau Saint-Martin, force cette décision. La circulation se fera en alternance avec des feux de signalisation à cet endroit à compter de ce lundi 5 octobre, et ce jusqu’à nouvel ordre. Il n’y a pas de fermeture complète du rang pour le moment.",
+    "date_debut": "2026-10-05T07:00:00",
+    "date_fin": "2026-12-31T17:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0559224594,
+      48.4796427184
+     ],
+     [
+      -71.0560572729,
+      48.4794326172
+     ],
+     [
+      -71.0562210784,
+      48.4791475007
+     ],
+     [
+      -71.0563187703,
+      48.4788105944
+     ],
+     [
+      -71.056353281,
+      48.4786167239
+     ],
+     [
+      -71.0563747673,
+      48.4783107711
+     ],
+     [
+      -71.0563762588,
+      48.4779913225
+     ],
+     [
+      -71.056314442,
+      48.4777135262
+     ],
+     [
+      -71.0560740768,
+      48.4772332593
+     ],
+     [
+      -71.0559567348,
+      48.4770678584
+     ],
+     [
+      -71.0558324263,
+      48.4769467027
+     ],
+     [
+      -71.0556355419,
+      48.4767669762
+     ],
+     [
+      -71.0553685128,
+      48.4765875878
+     ],
+     [
+      -71.0550258799,
+      48.4764147944
+     ],
+     [
+      -71.0545755621,
+      48.4762934956
+     ],
+     [
+      -71.0544003732,
+      48.476235433
+     ],
+     [
+      -71.0542245726,
+      48.4761828853
+     ],
+     [
+      -71.0540456407,
+      48.4761046069
+     ],
+     [
+      -71.0538576748,
+      48.4759938725
+     ],
+     [
+      -71.0536077334,
+      48.4758327623
+     ],
+     [
+      -71.0534901185,
+      48.4757388473
+     ],
+     [
+      -71.0534332845,
+      48.4756646385
+     ],
+     [
+      -71.0533813766,
+      48.4755912586
+     ],
+     [
+      -71.053319022,
+      48.4754174656
+     ],
+     [
+      -71.0533051768,
+      48.4753169951
+     ],
+     [
+      -71.0532942682,
+      48.4750194879
+     ],
+     [
+      -71.0532633336,
+      48.4745246148
+     ],
+     [
+      -71.0532901375,
+      48.4743292226
+     ],
+     [
+      -71.0533119893,
+      48.4742262519
+     ],
+     [
+      -71.0533879523,
+      48.4740919575
+     ],
+     [
+      -71.0536254016,
+      48.4736976375
+     ],
+     [
+      -71.05384082,
+      48.4733548513
+     ],
+     [
+      -71.0542061438,
+      48.4727765168
+     ],
+     [
+      -71.0545823,
+      48.4721899931
+     ],
+     [
+      -71.0550532652,
+      48.4716628906
+     ],
+     [
+      -71.0551346461,
+      48.4715577213
+     ],
+     [
+      -71.0552651078,
+      48.4713276251
+     ],
+     [
+      -71.0553435527,
+      48.4710706176
+     ],
+     [
+      -71.0555009268,
+      48.4706943707
+     ],
+     [
+      -71.0555526655,
+      48.4705961965
+     ],
+     [
+      -71.0556348557,
+      48.4704965253
+     ],
+     [
+      -71.0557877282,
+      48.4703593692
+     ],
+     [
+      -71.0560004031,
+      48.4702215508
+     ],
+     [
+      -71.0564226534,
+      48.4700815975
+     ],
+     [
+      -71.0568494526,
+      48.4699348518
+     ],
+     [
+      -71.0570902276,
+      48.4698337224
+     ],
+     [
+      -71.0573059557,
+      48.4697030269
+     ],
+     [
+      -71.0574387327,
+      48.4695862263
+     ],
+     [
+      -71.0575394127,
+      48.4695060481
+     ],
+     [
+      -71.0576237691,
+      48.4694191964
+     ],
+     [
+      -71.0576878444,
+      48.4693351438
+     ],
+     [
+      -71.0577757584,
+      48.4692023515
+     ],
+     [
+      -71.05783942,
+      48.4690804818
+     ],
+     [
+      -71.057913977,
+      48.4688410508
+     ],
+     [
+      -71.0579178205,
+      48.4686357298
+     ],
+     [
+      -71.0579128741,
+      48.4682771492
+     ],
+     [
+      -71.0579155984,
+      48.4679698565
+     ],
+     [
+      -71.0579193974,
+      48.467760483
+     ],
+     [
+      -71.0579340606,
+      48.4676158896
+     ],
+     [
+      -71.0579510215,
+      48.4674955971
+     ],
+     [
+      -71.057964053,
+      48.4673874796
+     ],
+     [
+      -71.0579943339,
+      48.4672779286
+     ],
+     [
+      -71.0580517113,
+      48.4671326901
+     ],
+     [
+      -71.0581790895,
+      48.4667892573
+     ],
+     [
+      -71.0582322831,
+      48.4666569865
+     ],
+     [
+      -71.0584728326,
+      48.4660869352
+     ],
+     [
+      -71.0585177981,
+      48.4659312482
+     ],
+     [
+      -71.0585614622,
+      48.4657607539
+     ],
+     [
+      -71.0585839004,
+      48.4655854573
+     ],
+     [
+      -71.0586015621,
+      48.4653276172
+     ],
+     [
+      -71.0586155049,
+      48.4651968524
+     ],
+     [
+      -71.0586617057,
+      48.4648747263
+     ],
+     [
+      -71.058694268,
+      48.4647714857
+     ],
+     [
+      -71.0587343172,
+      48.464692546
+     ],
+     [
+      -71.0587821781,
+      48.4646307896
+     ],
+     [
+      -71.0589585772,
+      48.4644855042
+     ],
+     [
+      -71.0591032868,
+      48.464323947
+     ],
+     [
+      -71.0591633824,
+      48.4642126436
+     ],
+     [
+      -71.0592335101,
+      48.4640842993
+     ],
+     [
+      -71.0592815902,
+      48.4639645578
+     ],
+     [
+      -71.059300622,
+      48.4638364618
+     ],
+     [
+      -71.0592466033,
+      48.4637257128
+     ],
+     [
+      -71.0591383572,
+      48.4636401473
+     ],
+     [
+      -71.0589829577,
+      48.4636035212
+     ],
+     [
+      -71.0569262499,
+      48.4632079549
+     ]
+    ]
+   },
+   "properties": {
+    "id": 35887,
+    "municipalite": "94068",
+    "etat": "Circulation en alternance avec feu ou signaleur",
+    "type": "Travaux prévus",
+    "localisation": "Route Madoc",
+    "arrondissement": "Canton-Tremblay",
+    "description": "Des travaux de contournement d’une conduite d’eau potable entraîneront des entraves suivantes : • Du mercredi 4 novembre au vendredi 20 novembre : la route Madoc sera complètement fermée à la circulation devant le 160, route Madoc;• La circulation se fera en alternance par un chemin de contournement mis en place temporairement au coin rue Delisle et route Madoc pendant la durée des travaux.",
+    "date_debut": "2026-11-04T07:00:00",
+    "date_fin": "2026-11-20T00:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2666599231,
+      48.5505186317
+     ],
+     [
+      -71.2664436837,
+      48.5505394952
+     ],
+     [
+      -71.2662083358,
+      48.5505440566
+     ],
+     [
+      -71.2660204673,
+      48.5505253875
+     ],
+     [
+      -71.2650546841,
+      48.5503723875
+     ],
+     [
+      -71.2641303545,
+      48.5502789323
+     ],
+     [
+      -71.2621225003,
+      48.5499834992
+     ],
+     [
+      -71.2617845089,
+      48.5499608379
+     ],
+     [
+      -71.2614094517,
+      48.5499682988
+     ],
+     [
+      -71.2610575009,
+      48.5500154433
+     ],
+     [
+      -71.2605642659,
+      48.5501481746
+     ],
+     [
+      -71.2601763662,
+      48.5503001275
+     ],
+     [
+      -71.2599523951,
+      48.5504464347
+     ],
+     [
+      -71.2598076403,
+      48.550540994
+     ],
+     [
+      -71.2595994175,
+      48.5506118139
+     ],
+     [
+      -71.259350232,
+      48.5506348259
+     ],
+     [
+      -71.2586825197,
+      48.5506605961
+     ],
+     [
+      -71.2580787975,
+      48.5506592306
+     ],
+     [
+      -71.2577815617,
+      48.5506985815
+     ],
+     [
+      -71.2574687025,
+      48.5507700861
+     ],
+     [
+      -71.2570449961,
+      48.550965183
+     ],
+     [
+      -71.256429791,
+      48.5512737198
+     ],
+     [
+      -71.2562457848,
+      48.5513497167
+     ],
+     [
+      -71.2560369184,
+      48.551377798
+     ],
+     [
+      -71.2548213274,
+      48.5513697482
+     ],
+     [
+      -71.2545885524,
+      48.5514140104
+     ],
+     [
+      -71.2544124341,
+      48.5514792682
+     ],
+     [
+      -71.2541216754,
+      48.5519754066
+     ],
+     [
+      -71.2540056904,
+      48.5522177006
+     ],
+     [
+      -71.2537168056,
+      48.5525250691
+     ],
+     [
+      -71.2533414471,
+      48.5528215501
+     ],
+     [
+      -71.2530320459,
+      48.5531049147
+     ],
+     [
+      -71.2527397877,
+      48.5534172034
+     ],
+     [
+      -71.2524907762,
+      48.5536595407
+     ],
+     [
+      -71.252297026,
+      48.553786816
+     ],
+     [
+      -71.2518329147,
+      48.5539196764
+     ],
+     [
+      -71.2513616318,
+      48.5539571189
+     ],
+     [
+      -71.2503715122,
+      48.5539292103
+     ],
+     [
+      -71.2499445111,
+      48.5538479858
+     ],
+     [
+      -71.2495600476,
+      48.5537007496
+     ],
+     [
+      -71.2493160705,
+      48.5535867955
+     ],
+     [
+      -71.2490470718,
+      48.5533959761
+     ]
+    ]
+   },
+   "properties": {
+    "id": 36004,
+    "municipalite": "94068",
+    "etat": "Circulation en alternance avec feu ou signaleur",
+    "type": "Travaux prévus",
+    "localisation": "Route de Portage-Lapointe",
+    "arrondissement": "Shipshaw",
+    "description": "En raison d'un glissement de terrain qui s'est produit en mai 2026, la circulation sur la route de Portage-Lapointe se fera en alternance, à l'aide de feux de chantier, sur une distance d'environ 40 mètres.Cette signalisation temporaire sera en place au moins jusqu'au printemps 2027.Merci de votre compréhension et de votre prudence à l'approche de cette zone de travaux.",
+    "date_debut": "2026-07-29T15:21:59.633",
+    "date_fin": "2027-05-31T18:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -70.8820024152,
+      48.3413739574
+     ],
+     [
+      -70.8820865175,
+      48.3414714471
+     ],
+     [
+      -70.8824251858,
+      48.342462374
+     ]
+    ]
+   },
+   "properties": {
+    "id": 36688,
+    "municipalite": "94068",
+    "etat": "Circulation à contresens",
+    "type": "Travaux prévus",
+    "localisation": "Rue Albert",
+    "arrondissement": "La Baie",
+    "description": "En raison de travaux visant à reconstruire le mur de soutènement, la circulation sur la rue Albert, entre les adresses civiques 703 et 782, se fera à contresens sur une seule voie à compter du lundi 14 septembre à 7 h, et ce, jusqu’au vendredi 20 novembre 2026 à 12 h.",
+    "date_debut": "2026-09-14T07:00:00",
+    "date_fin": "2026-11-20T12:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -70.9147339287,
+       48.3318830582
+      ],
+      [
+       -70.9139829789,
+       48.3316671338
+      ],
+      [
+       -70.9132598895,
+       48.3314250991
+      ],
+      [
+       -70.9127573279,
+       48.3312302976
+      ],
+      [
+       -70.9121844549,
+       48.3309866224
+      ],
+      [
+       -70.9094298136,
+       48.3296402388
+      ]
+     ],
+     [
+      [
+       -70.8994840972,
+       48.3298823825
+      ],
+      [
+       -70.8964319375,
+       48.3311062705
+      ],
+      [
+       -70.8960834378,
+       48.3312175441
+      ],
+      [
+       -70.895744909,
+       48.3313039642
+      ],
+      [
+       -70.8953956645,
+       48.3313714492
+      ],
+      [
+       -70.8950183989,
+       48.3314234229
+      ],
+      [
+       -70.8948968097,
+       48.3314289337
+      ],
+      [
+       -70.8947674657,
+       48.3314235667
+      ],
+      [
+       -70.8946516387,
+       48.3314072416
+      ],
+      [
+       -70.8938810686,
+       48.3312052497
+      ]
+     ],
+     [
+      [
+       -70.8787670481,
+       48.3324181543
+      ],
+      [
+       -70.8807020871,
+       48.3318789812
+      ]
+     ],
+     [
+      [
+       -70.8834334028,
+       48.3314482824
+      ],
+      [
+       -70.8858057256,
+       48.3310670831
+      ]
+     ],
+     [
+      [
+       -70.9050547891,
+       48.3286201133
+      ],
+      [
+       -70.9052260706,
+       48.3285898874
+      ],
+      [
+       -70.9056318655,
+       48.3285262645
+      ],
+      [
+       -70.905868577,
+       48.3285050707
+      ],
+      [
+       -70.9060468412,
+       48.3284960573
+      ],
+      [
+       -70.9062957489,
+       48.3284963935
+      ],
+      [
+       -70.9065338217,
+       48.3285099166
+      ],
+      [
+       -70.9067772634,
+       48.3285388054
+      ],
+      [
+       -70.9070626173,
+       48.3285913425
+      ],
+      [
+       -70.9072860014,
+       48.3286450087
+      ],
+      [
+       -70.9075025753,
+       48.3287049879
+      ],
+      [
+       -70.9076236284,
+       48.3287479353
+      ],
+      [
+       -70.9077231814,
+       48.3287954701
+      ],
+      [
+       -70.9079347884,
+       48.3288986796
+      ],
+      [
+       -70.9094298139,
+       48.3296402392
+      ]
+     ],
+     [
+      [
+       -70.8994840972,
+       48.3298823825
+      ],
+      [
+       -70.9000940014,
+       48.329709008
+      ],
+      [
+       -70.9009690024,
+       48.3294401526
+      ],
+      [
+       -70.9020721448,
+       48.3291608275
+      ],
+      [
+       -70.9037066294,
+       48.3288580092
+      ],
+      [
+       -70.9040098408,
+       48.328804506
+      ]
+     ],
+     [
+      [
+       -70.8915561494,
+       48.3305306918
+      ],
+      [
+       -70.8921335552,
+       48.3306815507
+      ],
+      [
+       -70.8938810686,
+       48.3312052497
+      ]
+     ],
+     [
+      [
+       -70.8879419786,
+       48.3307545297
+      ],
+      [
+       -70.889581129,
+       48.3304369683
+      ],
+      [
+       -70.8899539707,
+       48.3303833077
+      ],
+      [
+       -70.8906140086,
+       48.3304225494
+      ]
+     ],
+     [
+      [
+       -70.8807020871,
+       48.3318789812
+      ],
+      [
+       -70.8811626377,
+       48.3317950737
+      ],
+      [
+       -70.8834334028,
+       48.3314482824
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": 37620,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux prévus",
+    "localisation": "Avenue du Port",
+    "arrondissement": "La Baie",
+    "description": "En raison de travaux effectués par un entrepreneur privé, l’avenue du Port sera fermée à la circulation ce jeudi 5 novembre, de 4 h à 6 h 30.Un détour sera mis en place par la route 170 et la 6e Rue.Nous vous remercions de votre compréhension et de votre collaboration.",
+    "date_debut": "2026-11-05T04:00:00",
+    "date_fin": "2026-11-05T06:30:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0459551517,
+      48.4208798837
+     ],
+     [
+      -71.0466697384,
+      48.4198457327
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2774377,
+    "municipalite": "94068",
+    "etat": "Circulation locale",
+    "type": "Travaux prévus",
+    "localisation": "Rue du Père-Lacasse",
+    "arrondissement": "Chicoutimi",
+    "description": "En raison de travaux de réparation d'un regard, seule une circulation locale sera permise sur la rue du Père-Lacasse le mercredi 4 novembre de 7 h à 17 h.",
+    "date_debut": "2026-11-04T07:00:00",
+    "date_fin": "2026-11-04T17:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.5405943627,
+      48.3895087426
+     ],
+     [
+      -71.540353355,
+      48.389088398
+     ],
+     [
+      -71.5393610131,
+      48.3871942454
+     ],
+     [
+      -71.5392082365,
+      48.3868938355
+     ],
+     [
+      -71.5389937077,
+      48.3864812337
+     ],
+     [
+      -71.5388007834,
+      48.3860401843
+     ],
+     [
+      -71.5386930265,
+      48.3854769449
+     ],
+     [
+      -71.5386819026,
+      48.3850082725
+     ],
+     [
+      -71.5387956933,
+      48.3844251489
+     ],
+     [
+      -71.539148037,
+      48.38357627
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2775860,
+    "municipalite": "94068",
+    "etat": "Circulation en alternance avec feu ou signaleur",
+    "type": "Travaux d'urgence",
+    "localisation": "Route des Fondateurs",
+    "arrondissement": "Lac-Kénogami",
+    "description": "En raison de l’apparition d’une cheminée dans la chaussée, il y a fermeture de la voie en direction sud sur la route des Fondateurs entre le 450 et le 462.  Cette mesure vise à éviter qu’un usager de la route ait un accident et que le trou ne s’aggrave avec le passage des véhicules. La route des Fondateurs restera donc ouverte et aucun chemin de détour n’est nécessaire. La circulation se fera en alternance à cette hauteur.",
+    "date_debut": "2026-06-11T15:53:38.052",
+    "date_fin": ""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -71.0654170054,
+       48.4292080454
+      ],
+      [
+       -71.0629495382,
+       48.4289343999
+      ]
+     ],
+     [
+      [
+       -71.0629495382,
+       48.4289343999
+      ],
+      [
+       -71.0618558526,
+       48.4289010976
+      ],
+      [
+       -71.060660618,
+       48.4288854562
+      ],
+      [
+       -71.059923593,
+       48.4288955879
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2777905,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux prévus",
+    "localisation": "Boulevard du Saguenay Est",
+    "arrondissement": "Chicoutimi",
+    "description": "En raison de travaux de réfection d'égout et d'aqueduc, fermeture des deux voies de circulation en direction est sur le boulevard du Saguenay Est, entre les rues de l'Hôtel-de-Ville et La Fontaine. La circulation se fera à contresens (1 voie par direction) sur les voies restantes, entre les rues Morin et La Fontaine. Travaux prévus jusqu'au 6 novembre 2026. Notez que le stationnement de l'hôtel-de-ville de Saguenay n'est pas accessible. ",
+    "date_debut": "2026-08-03T08:00:00",
+    "date_fin": "2026-11-06T12:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.1379795181,
+      48.4390086511
+     ],
+     [
+      -71.1385565465,
+      48.4383265829
+     ],
+     [
+      -71.1389055516,
+      48.4379196412
+     ],
+     [
+      -71.1393760065,
+      48.4373730981
+     ],
+     [
+      -71.1398018767,
+      48.4368715733
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2777982,
+    "municipalite": "94068",
+    "etat": "Fermeture complète",
+    "type": "Travaux prévus",
+    "localisation": "Rue Croft",
+    "arrondissement": "Jonquière",
+    "description": "En raison de travaux visant la reconstruction du mur de soutènement, la rue Croft sera fermée entre les adresses 1700 et 2222, à compter du lundi 24 août à 7 h, et ce, jusqu’au vendredi 13 novembre 2026 à 12 h.On demande aux citoyens entre les adresses 1700 et 2222, rue Croft, de sortir leur véhicule de leur entrée avant le début des travaux.",
+    "date_debut": "2026-08-24T07:00:00",
+    "date_fin": "2026-11-13T17:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+     [
+      [
+       -71.0845277062,
+       48.4418935234
+      ],
+      [
+       -71.0844242061,
+       48.442481226
+      ],
+      [
+       -71.0844088389,
+       48.4425947893
+      ],
+      [
+       -71.0844268098,
+       48.4427081824
+      ],
+      [
+       -71.0845913295,
+       48.4432597471
+      ],
+      [
+       -71.0846143785,
+       48.4438179167
+      ],
+      [
+       -71.0846620623,
+       48.4440975432
+      ],
+      [
+       -71.0847491265,
+       48.4443729367
+      ]
+     ],
+     [
+      [
+       -71.0847491265,
+       48.4443729367
+      ],
+      [
+       -71.0848385048,
+       48.4445721638
+      ],
+      [
+       -71.085058461,
+       48.4449652181
+      ],
+      [
+       -71.0852733128,
+       48.4453244712
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2778834,
+    "municipalite": "94068",
+    "etat": "Circulation locale",
+    "type": "Travaux prévus",
+    "localisation": "Rue Sainte-Marie Sud",
+    "arrondissement": "Chicoutimi",
+    "description": "En raison de travaux majeurs de réfection des infrastructures, la rue Sainte-Marie Sud sera fermée à la circulation entre les rues Monseigneur-Martel et Roussel, du mardi 8 septembre à 7 h jusqu’au vendredi 13 novembre à 17 h.Un détour sera mis en place par les rues Saint-Armand et Monseigneur-Martel.Également, ces travaux de réfection majeure nécessiteront des opérations de dynamitage. Il est donc possible d’entendre des détonations ou de ressentir des vibrations liées à ces travaux.",
+    "date_debut": "2026-09-08T07:00:00",
+    "date_fin": "2026-11-13T17:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0572529658,
+      48.4364501547
+     ],
+     [
+      -71.0585939858,
+      48.4364698854
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2780000,
+    "municipalite": "94068",
+    "etat": "Restriction de voies",
+    "type": "Travaux prévus",
+    "localisation": "Rue du Rocher",
+    "arrondissement": "Chicoutimi",
+    "description": "La Ville de Saguenay souhaite vous informer qu’en raison de travaux de réparation du mur de soutènement et de l’escalier situés sur la rue du Rocher, la circulation sera maintenue en alternance pour les résidents des adresses 110 à 140, du mercredi 4 novembre à 7 h jusqu’au vendredi 4 décembre à midi.",
+    "date_debut": "2026-11-04T07:00:00",
+    "date_fin": "2026-12-04T12:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -70.8555336327,
+      48.314090049
+     ],
+     [
+      -70.8545275438,
+      48.3143137921
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2780977,
+    "municipalite": "94068",
+    "etat": "Circulation locale",
+    "type": "Travaux prévus",
+    "localisation": "Rue du Prince-Albert",
+    "arrondissement": "La Baie",
+    "description": "",
+    "date_debut": "2026-11-04T08:00:00",
+    "date_fin": "2026-11-04T14:00:00"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.0541645813,
+      48.4421487091
+     ],
+     [
+      -71.055536675,
+      48.4424258466
+     ],
+     [
+      -71.0557698004,
+      48.4424194946
+     ],
+     [
+      -71.0559139994,
+      48.4423976239
+     ],
+     [
+      -71.0560482643,
+      48.4423627699
+     ],
+     [
+      -71.0561975871,
+      48.4422980166
+     ],
+     [
+      -71.0563741206,
+      48.4421624804
+     ],
+     [
+      -71.0564657903,
+      48.4420382468
+     ],
+     [
+      -71.0565490723,
+      48.4418338646
+     ]
+    ]
+   },
+   "properties": {
+    "id": 2783278,
+    "municipalite": "94068",
+    "etat": "Circulation locale",
+    "type": "Travaux prévus",
+    "localisation": "Rue Colbert",
+    "arrondissement": "Chicoutimi",
+    "description": "En raison des travaux de réfection des réseaux d'égouts contenus dans la rue Colbert et du Parc Bon-Air, la rue Colbert sera fermée à la circulation entre le boulevard de Tadoussac et la rue Boileau du lundi 24 août 2026 au vendredi 20 novembre 2026.",
+    "date_debut": "2026-08-24T07:00:00",
+    "date_fin": "2026-11-20T17:00:00"
+   }
+  }
+ ]
+}
