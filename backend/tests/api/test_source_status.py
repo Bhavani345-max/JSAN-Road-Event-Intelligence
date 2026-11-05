@@ -33,12 +33,26 @@ def _row(source_id: str, **polling) -> Source:
         ("manual-entry", "MANUAL_ONLY"),
         ("tfl-road-disruptions", "NOT_SCHEDULED"),  # connected, official feeds not scheduled here
         ("google-news-rss-hyderabad", "BLOCKED_BY_TERMS"),
+        ("tomtom-traffic-incidents", "LIVE_LAYER_ONLY"),  # decision 0054
     ],
 )
 def test_each_kind_of_source_has_its_own_state(source_id, code):
     state = source_state(_row(source_id))
     assert state.code == code and state.label
     assert state.polled is False
+
+
+def test_tomtom_says_it_is_used_live_and_never_stored():
+    state = source_state(_row("tomtom-traffic-incidents"))
+    assert state.label == "Live map layer only: never stored"
+    assert state.reason.startswith("Shown on the map as Layers → TomTom live incidents")
+    assert "11.4" in state.reason and "11.6.1" in state.reason
+
+
+@pytest.mark.parametrize("source_id", ["siasat", "new-indian-express-chennai", "the-hans-india"])
+def test_a_reason_cut_from_its_prefix_starts_with_a_capital(source_id):
+    reason = source_state(_row(source_id)).reason
+    assert reason and reason[0].isupper(), reason
 
 
 def test_a_polled_source_is_collecting_quiet_failing_or_not_polled_yet():
@@ -65,8 +79,8 @@ def test_a_polled_source_is_collecting_quiet_failing_or_not_polled_yet():
 def test_every_registered_source_gets_a_known_state():
     known = {
         "COLLECTING", "NO_RECENT_EVENTS", "FAILING", "NOT_POLLED_YET", "NOT_SCHEDULED", "DISABLED",
-        "AWAITING_PERMISSION", "BLOCKED_BY_TERMS", "BLOCKED", "REMOVED", "NEEDS_CREDENTIALS",
-        "RESEARCHED", "MANUAL_ONLY",
+        "AWAITING_PERMISSION", "BLOCKED_BY_TERMS", "LIVE_LAYER_ONLY", "BLOCKED", "REMOVED",
+        "NEEDS_CREDENTIALS", "RESEARCHED", "MANUAL_ONLY",
     }  # fmt: skip
     states = {s.definition.source_id: source_state(_row(s.definition.source_id)) for s in REGISTERED_SOURCES}
     assert {state.code for state in states.values()} <= known

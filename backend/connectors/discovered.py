@@ -411,12 +411,13 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
         authority_type="COMMERCIAL",
         source_type=SourceType.API,
         source_url="https://docs.tomtom.com/traffic-api/documentation/traffic-incidents/incident-details",
-        # Not ingested: its terms forbid storing results (decision 0054). Shown in the
-        # sources list as "Blocked by the source's terms", as Siasat is (decision 0024).
+        # Not ingested: its terms forbid storing results (decision 0054). "Live only:"
+        # makes the sources list say "Live map layer only: never stored" rather than
+        # "Blocked", since the live layer does use it.
         access_method=(
-            "Not accessed: its terms forbid storing results (11.4) and derived databases "
-            "(11.6.1), so TomTom is never ingested. Live only, as the map layer "
-            "Layers → TomTom live incidents (decision 0054)."
+            "Live only: shown on the map as Layers → TomTom live incidents. "
+            "TomTom's terms forbid storing results (11.4) and building a derived database "
+            "(11.6.1), so its incidents never become REI events (decision 0054)."
         ),
         integration_status=S.TERMS_REVIEW_REQUIRED,
         notes=(

@@ -19,6 +19,8 @@ export type SourceStatus =
   | "DISABLED"
   | "AWAITING_PERMISSION"
   | "BLOCKED_BY_TERMS"
+  // Terms forbid storing it, so it is shown live on the map only (TomTom, decision 0054).
+  | "LIVE_LAYER_ONLY"
   | "BLOCKED"
   | "REMOVED"
   | "NEEDS_CREDENTIALS"
@@ -75,6 +77,7 @@ export const SOURCE_GROUPS: { key: string; label: string; statuses: SourceStatus
     statuses: [
       "AWAITING_PERMISSION",
       "NEEDS_CREDENTIALS",
+      "LIVE_LAYER_ONLY",
       "BLOCKED_BY_TERMS",
       "BLOCKED",
       "REMOVED",

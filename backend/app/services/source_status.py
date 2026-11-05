@@ -21,8 +21,8 @@ RECENT_DAYS = 7
 @dataclass(frozen=True)
 class SourceState:
     # COLLECTING, NO_RECENT_EVENTS, FAILING, NOT_POLLED_YET, NOT_SCHEDULED,
-    # DISABLED, AWAITING_PERMISSION, BLOCKED_BY_TERMS, BLOCKED, REMOVED,
-    # NEEDS_CREDENTIALS, RESEARCHED, MANUAL_ONLY
+    # DISABLED, AWAITING_PERMISSION, BLOCKED_BY_TERMS, LIVE_LAYER_ONLY, BLOCKED,
+    # REMOVED, NEEDS_CREDENTIALS, RESEARCHED, MANUAL_ONLY
     code: str
     label: str
     reason: str | None
@@ -43,9 +43,21 @@ def _last_sentences(text: str | None, limit: int = 260) -> str | None:
     return out[:limit]
 
 
+def _sentence(text: str) -> str | None:
+    """Text cut from after a "Prefix: ", read on its own: it starts with a capital."""
+    text = text.strip()
+    return f"{text[0].upper()}{text[1:]}" if text else None
+
+
 def _not_accessed(source: Source) -> str | None:
     access = source.access_method or ""
-    return access.removeprefix("Not accessed: ").strip() or None if access.startswith("Not accessed") else None
+    return _sentence(access.removeprefix("Not accessed:")) if access.startswith("Not accessed") else None
+
+
+def _live_only(source: Source) -> str | None:
+    """Why a source whose terms forbid storing is shown live on the map only (TomTom, decision 0054)."""
+    access = source.access_method or ""
+    return _sentence(access.removeprefix("Live only:")) if access.startswith("Live only:") else None
 
 
 def source_state(source: Source, counts: Counter | None = None) -> SourceState:
@@ -88,6 +100,11 @@ def source_state(source: Source, counts: Counter | None = None) -> SourceState:
         )
     if status == IntegrationStatus.TERMS_REVIEW_REQUIRED.value:
         if source.terms_status == TermsStatus.RESTRICTED.value:
+            if live := _live_only(source):
+                # Used, but never stored: "blocked" alone would hide that it works.
+                return SourceState(
+                    "LIVE_LAYER_ONLY", "Live map layer only: never stored", live, polled=False
+                )  # fmt: skip
             return SourceState(
                 "BLOCKED_BY_TERMS", "Blocked by the source's terms",
                 _not_accessed(source) or source.licence, polled=False,

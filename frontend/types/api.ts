@@ -331,7 +331,8 @@ export interface ApiSource {
    * The source's state, derived by the API from the registry, its polling and
    * its events (decision 0034): COLLECTING, NO_RECENT_EVENTS, FAILING,
    * NOT_POLLED_YET, NOT_SCHEDULED, DISABLED, AWAITING_PERMISSION,
-   * BLOCKED_BY_TERMS, BLOCKED, REMOVED, NEEDS_CREDENTIALS, RESEARCHED or MANUAL_ONLY.
+   * BLOCKED_BY_TERMS, LIVE_LAYER_ONLY, BLOCKED, REMOVED, NEEDS_CREDENTIALS, RESEARCHED
+   * or MANUAL_ONLY.
    */
   status: string;
   status_label: string;

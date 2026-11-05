@@ -34,6 +34,8 @@ const LOOK: Record<SourceStatus, { dot: string; text: string }> = {
   AWAITING_PERMISSION: { dot: "bg-amber-300", text: "text-amber-100" },
   NEEDS_CREDENTIALS: { dot: "bg-amber-300/70", text: "text-amber-100" },
   BLOCKED_BY_TERMS: { dot: "bg-rose-300", text: "text-rose-100" },
+  // Violet, as the TomTom live layer is on the map.
+  LIVE_LAYER_ONLY: { dot: "bg-violet-300", text: "text-violet-100" },
   BLOCKED: { dot: "bg-rose-300/70", text: "text-rose-100" },
   REMOVED: { dot: "bg-white/20", text: "text-brand-200" },
   RESEARCHED: { dot: "bg-white/20", text: "text-brand-200" },
