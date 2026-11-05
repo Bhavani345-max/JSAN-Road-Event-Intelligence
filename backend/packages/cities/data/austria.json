@@ -30,6 +30,8 @@
   "discovery": {
     "queries": []
   },
-  "official_sources": [],
+  "official_sources": [
+    "at-salzburg-roadworks"
+  ],
   "gis_sources": []
 }

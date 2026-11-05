@@ -1,0 +1,2391 @@
+{
+ "fetched_at": "2026-11-05T12:38:03+00:00",
+ "request": "https://datarmor.cotesdarmor.fr/data-fair/api/v1/datasets/cd22arreteschantiers/lines?size=1000&sort=-DATEFIN&format=geojson",
+ "next_link": "https://datarmor.cotesdarmor.fr/data-fair/api/v1/datasets/cd22arreteschantiers/lines?size=1000&sort=-DATEFIN&format=geojson&select=NUMDOSSIER%2CROUTE%2CPRDEBUT%2CABSCISSEDEBUT%2CPRFIN%2CABSCISSEFIN%2CCOMMUNE%2CDATEDEBUT%2CDATEFIN%2CTRAVAUX%2CCIRCULATION%2CJOURSETHORAIRES1%2CJOURSETHORAIRES2%2C_geoshape%2C_geopoint%2C_updatedAt%2C_id%2C_i%2C_rand&after=%222026-07-15+00%3A00%3A00.0%22%2C%222026-07-15+00%3A00%3A00.0%22%2C1783735209136%2C104424031491003",
+ "total": 5979,
+ "note": "A trimmed sample (29 of the 1000 features of the first page, in the page's order: latest DATEFIN first), features unchanged. The page's Link header (rel=next) is next_link; the GeoJSON body has no next. No field names a person. 2026T0287 and 2026T0283 are each listed twice on the page (the same line pushed again a day later).",
+ "items": [
+  {
+   "type": "Feature",
+   "id": "HHIolxUwhqlsgLsJmXWol",
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -2.4066712849091214,
+       48.49294831118369
+      ],
+      [
+       -2.406666281729489,
+       48.49294142959063
+      ],
+      [
+       -2.4065838952795198,
+       48.49282811057115
+      ],
+      [
+       -2.4065276692729,
+       48.49271705803194
+      ],
+      [
+       -2.4064502707530027,
+       48.49250597904684
+      ],
+      [
+       -2.40630633828815,
+       48.491820928090924
+      ],
+      [
+       -2.40615668455509,
+       48.49105408188368
+      ],
+      [
+       -2.405916529951544,
+       48.48998552228872
+      ]
+     ],
+     [
+      [
+       -2.408934928038211,
+       48.495606218083836
+      ],
+      [
+       -2.408697137316463,
+       48.49542697851707
+      ],
+      [
+       -2.408351941355987,
+       48.49514515397018
+      ],
+      [
+       -2.4081456176563405,
+       48.49490749270887
+      ],
+      [
+       -2.407652762083837,
+       48.49424646693687
+      ],
+      [
+       -2.406905612458921,
+       48.49325077489182
+      ],
+      [
+       -2.406677173114965,
+       48.49295641007808
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "properties": {
+    "PRDEBUT": 14,
+    "ROUTE": "D52",
+    "ABSCISSEDEBUT": 2930,
+    "PRFIN": 15,
+    "ABSCISSEFIN": 340,
+    "CIRCULATION": "Limitation de vitesse",
+    "TRAVAUX": "Travaux de pose d’équipements routiers",
+    "_geopoint": "48.49295641007808,-2.406677173114965",
+    "JOURSETHORAIRES1": "jour et nuit, y compris le week-end",
+    "NUMDOSSIER": "2026T3115",
+    "JOURSETHORAIRES2": "jour et nuit, y compris le week-end",
+    "_i": 114536432824005,
+    "DATEFIN": "2027-07-31 00:00:00.0",
+    "DATEDEBUT": "2026-11-03 00:00:00.0",
+    "COMMUNE": "Plédéliac",
+    "_rand": 911454,
+    "_updatedAt": "2026-11-05T03:00:10.469Z",
+    "_id": "HHIolxUwhqlsgLsJmXWol"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "RH8d02lQCkWjWegAQGKkP",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.1335805565168156,
+      48.580464936552886
+     ],
+     [
+      -2.1331138791389064,
+      48.58051639517612
+     ],
+     [
+      -2.132024061900135,
+      48.58070744342884
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 33,
+    "ROUTE": "D768",
+    "ABSCISSEDEBUT": 383,
+    "PRFIN": 33,
+    "ABSCISSEFIN": 501,
+    "CIRCULATION": "INTERDICTION",
+    "TRAVAUX": "Travaux sur les ouvrages d’art",
+    "_geopoint": "48.58051639517612,-2.1331138791389064",
+    "JOURSETHORAIRES1": "de jour et de nuit",
+    "NUMDOSSIER": "2026T2024",
+    "JOURSETHORAIRES2": "de jour et de nuit",
+    "_i": 109435231895002,
+    "DATEFIN": "2027-02-25 00:00:00.0",
+    "DATEDEBUT": "2026-09-15 00:00:00.0",
+    "COMMUNE": "Beaussais-sur-Mer",
+    "_rand": 682810,
+    "_updatedAt": "2026-09-07T02:00:09.540Z",
+    "_id": "RH8d02lQCkWjWegAQGKkP"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "ghFEklqA12Bsj3ifE-Cnd",
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -2.1981092038793353,
+       48.49888954274106
+      ],
+      [
+       -2.1918601094353574,
+       48.49590760627517
+      ],
+      [
+       -2.188628702187938,
+       48.49409564143106
+      ],
+      [
+       -2.186700143286519,
+       48.49250210829147
+      ],
+      [
+       -2.1840569994954415,
+       48.490539095385486
+      ]
+     ],
+     [
+      [
+       -2.2215406595223133,
+       48.5787424063488
+      ],
+      [
+       -2.2174726179337867,
+       48.57882092689027
+      ],
+      [
+       -2.2135759701355533,
+       48.57758962350105
+      ],
+      [
+       -2.214039226777092,
+       48.574664457942966
+      ],
+      [
+       -2.213890156582259,
+       48.57316849249759
+      ],
+      [
+       -2.210928106351168,
+       48.569191592236756
+      ],
+      [
+       -2.2052900690974373,
+       48.56713491231182
+      ],
+      [
+       -2.189685583729072,
+       48.56501295041826
+      ]
+     ],
+     [
+      [
+       -2.2246636918233134,
+       48.53614777667523
+      ],
+      [
+       -2.2232704058428516,
+       48.53881352222791
+      ],
+      [
+       -2.2200448295407584,
+       48.541259290593025
+      ],
+      [
+       -2.214476561768908,
+       48.54290632536599
+      ],
+      [
+       -2.209249400128127,
+       48.54343625872316
+      ],
+      [
+       -2.2063559242294706,
+       48.54316248618549
+      ],
+      [
+       -2.2021091348098834,
+       48.54445045751658
+      ],
+      [
+       -2.194935389672748,
+       48.54817021017785
+      ],
+      [
+       -2.189656806075844,
+       48.56492844820615
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "properties": {
+    "PRDEBUT": 2,
+    "ROUTE": "D786",
+    "ABSCISSEDEBUT": 15,
+    "PRFIN": 29,
+    "ABSCISSEFIN": 1363,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau souterrain de communication (fibre)",
+    "_geopoint": "48.54316248618549,-2.2063559242294706",
+    "JOURSETHORAIRES1": "de 8h00 à 18h00",
+    "NUMDOSSIER": "2026T3117",
+    "JOURSETHORAIRES2": "la journée (8h-18h)",
+    "_i": 114536432824009,
+    "DATEFIN": "2027-02-05 00:00:00.0",
+    "DATEDEBUT": "2026-11-03 00:00:00.0",
+    "COMMUNE": "Créhen",
+    "_rand": 394585,
+    "_updatedAt": "2026-11-05T03:00:10.469Z",
+    "_id": "ghFEklqA12Bsj3ifE-Cnd"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "1pfbZSWhw0FE3Bbz4xEso",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.575082078674339,
+      48.26040255753683
+     ],
+     [
+      -2.574697152485231,
+      48.259000083240316
+     ],
+     [
+      -2.5743017312918646,
+      48.25845500426037
+     ],
+     [
+      -2.5730493122900024,
+      48.25810823483724
+     ],
+     [
+      -2.5720629941758943,
+      48.25804204306296
+     ],
+     [
+      -2.571575596431401,
+      48.25822289704612
+     ],
+     [
+      -2.5704766014033917,
+      48.258049260037794
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 4,
+    "ROUTE": "D22",
+    "ABSCISSEDEBUT": 2288,
+    "PRFIN": 4,
+    "ABSCISSEFIN": 2800,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau aérien",
+    "_geopoint": "48.25810823483724,-2.5730493122900024",
+    "JOURSETHORAIRES1": "de 08h00 à 19h00",
+    "NUMDOSSIER": "2026T3004",
+    "JOURSETHORAIRES2": "de 08h00 à 19h00",
+    "_i": 113758831494008,
+    "DATEFIN": "2027-02-01 00:00:00.0",
+    "DATEDEBUT": "2026-11-02 00:00:00.0",
+    "COMMUNE": "Le Mené",
+    "_rand": 582772,
+    "_updatedAt": "2026-10-27T03:00:09.139Z",
+    "_id": "1pfbZSWhw0FE3Bbz4xEso"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "5BHLnfgq9JkT6dryiuvVQ",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.618364615540891,
+      48.170403627407
+     ],
+     [
+      -2.617736835883826,
+      48.17052376459369
+     ],
+     [
+      -2.616172197165996,
+      48.170711101767345
+     ],
+     [
+      -2.6114444402076766,
+      48.171906057135416
+     ],
+     [
+      -2.6106212628451355,
+      48.17224970365288
+     ],
+     [
+      -2.609824396782535,
+      48.17268229981439
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 20,
+    "ROUTE": "D792",
+    "ABSCISSEDEBUT": 2608,
+    "PRFIN": 20,
+    "ABSCISSEFIN": 3236,
+    "CIRCULATION": "INTERDICTION",
+    "TRAVAUX": "Travaux sur le réseau d’électricité",
+    "_geopoint": "48.170711101767345,-2.616172197165996",
+    "JOURSETHORAIRES1": "le jour, la nuit et le week-end",
+    "NUMDOSSIER": "2026T2812",
+    "JOURSETHORAIRES2": "le jour, la nuit et le week-end",
+    "_i": 112027230923001,
+    "DATEFIN": "2027-01-15 00:00:00.0",
+    "DATEDEBUT": "2026-10-15 00:00:00.0",
+    "COMMUNE": "Plémet",
+    "_rand": 468240,
+    "_updatedAt": "2026-10-07T02:00:08.568Z",
+    "_id": "5BHLnfgq9JkT6dryiuvVQ"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "eS8tJC8_atzA_3VxAV8mJ",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.6269341696765736,
+      48.180734386778646
+     ],
+     [
+      -2.6260547383053443,
+      48.17991937852601
+     ],
+     [
+      -2.6254891902132567,
+      48.179833610372484
+     ],
+     [
+      -2.624001017630012,
+      48.17979186595503
+     ],
+     [
+      -2.6227476509871943,
+      48.180054633472366
+     ],
+     [
+      -2.620806515795788,
+      48.18019232119819
+     ],
+     [
+      -2.619341091147922,
+      48.18020581341288
+     ],
+     [
+      -2.617785850285842,
+      48.18000932279106
+     ],
+     [
+      -2.616949684438204,
+      48.17928240006145
+     ],
+     [
+      -2.615631718860225,
+      48.17909712713023
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 2,
+    "ROUTE": "D16",
+    "ABSCISSEDEBUT": 3332,
+    "PRFIN": 3,
+    "ABSCISSEFIN": 807,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau d’électricité",
+    "_geopoint": "48.18019232119819,-2.620806515795788",
+    "JOURSETHORAIRES1": "le jour, la nuit et le week-end",
+    "NUMDOSSIER": "2026T2811",
+    "JOURSETHORAIRES2": "le jour, la nuit et le week-end",
+    "_i": 112027230923000,
+    "DATEFIN": "2027-01-15 00:00:00.0",
+    "DATEDEBUT": "2026-10-15 00:00:00.0",
+    "COMMUNE": "Plémet",
+    "_rand": 713686,
+    "_updatedAt": "2026-10-07T02:00:08.568Z",
+    "_id": "eS8tJC8_atzA_3VxAV8mJ"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "5umADOxNyiOola_XhLJYX",
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -3.039309753546161,
+       48.74978376010822
+      ],
+      [
+       -3.0389148659637595,
+       48.74833794933852
+      ]
+     ],
+     [
+      [
+       -3.0270355707311847,
+       48.73168663950275
+      ],
+      [
+       -3.0265507878359044,
+       48.72896743776717
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "properties": {
+    "PRDEBUT": 33,
+    "ROUTE": "D7",
+    "ABSCISSEDEBUT": 1411,
+    "PRFIN": 34,
+    "ABSCISSEFIN": 2005,
+    "CIRCULATION": "Limitation de vitesse",
+    "TRAVAUX": "Travaux de création de liaison douce",
+    "_geopoint": "48.73168663950275,-3.0270355707311847",
+    "NUMDOSSIER": "2026T2740",
+    "_i": 113409631297005,
+    "DATEFIN": "2026-12-31 00:00:00.0",
+    "DATEDEBUT": "2026-10-31 00:00:00.0",
+    "_rand": 647375,
+    "_updatedAt": "2026-10-23T02:00:08.942Z",
+    "_id": "5umADOxNyiOola_XhLJYX"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "jP-XLxrrNnzxaF-d5dIq8",
+   "geometry": {
+    "coordinates": [
+     [
+      -3.4432543929206436,
+      48.60950675370042
+     ],
+     [
+      -3.442981991674364,
+      48.60978099918529
+     ],
+     [
+      -3.442460875476033,
+      48.60983182048564
+     ],
+     [
+      -3.442066662692005,
+      48.60980807012232
+     ],
+     [
+      -3.441873542427354,
+      48.60989751113286
+     ],
+     [
+      -3.4417542902871654,
+      48.610310107926516
+     ],
+     [
+      -3.441735052546701,
+      48.610706000465825
+     ],
+     [
+      -3.4413384922982178,
+      48.611077223869295
+     ],
+     [
+      -3.4408915476860833,
+      48.61131580009709
+     ],
+     [
+      -3.4377719005627245,
+      48.61098849373155
+     ],
+     [
+      -3.4371890215614673,
+      48.610952386640584
+     ],
+     [
+      -3.436938285583745,
+      48.61098853363974
+     ],
+     [
+      -3.4366492755985787,
+      48.611128285705796
+     ],
+     [
+      -3.4366396636305065,
+      48.611602623001296
+     ],
+     [
+      -3.43651451141451,
+      48.61210578186071
+     ],
+     [
+      -3.4360323548993215,
+      48.61233496412722
+     ],
+     [
+      -3.4351276846830148,
+      48.61258702807971
+     ],
+     [
+      -3.4339515810346124,
+      48.613259909683784
+     ],
+     [
+      -3.432260841763536,
+      48.61472776423267
+     ],
+     [
+      -3.4319504140632486,
+      48.61497019340456
+     ],
+     [
+      -3.432490233066599,
+      48.61589987888299
+     ],
+     [
+      -3.4323512319203346,
+      48.61629096604793
+     ],
+     [
+      -3.4319776720095425,
+      48.616435280736845
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 0,
+    "ROUTE": "D74",
+    "ABSCISSEDEBUT": 260,
+    "PRFIN": 0,
+    "ABSCISSEFIN": 1661,
+    "CIRCULATION": "INTERDICTION",
+    "TRAVAUX": "Travaux sur les ouvrages d’art",
+    "_geopoint": "48.61210578186071,-3.43651451141451",
+    "JOURSETHORAIRES1": "jour et nuit",
+    "NUMDOSSIER": "2026T2627",
+    "JOURSETHORAIRES2": "jour et nuit",
+    "_i": 110299231391006,
+    "DATEFIN": "2026-12-31 00:00:00.0",
+    "DATEDEBUT": "2026-09-16 00:00:00.0",
+    "COMMUNE": "Le Vieux-Marché",
+    "_rand": 690221,
+    "_updatedAt": "2026-09-17T02:00:09.036Z",
+    "_id": "jP-XLxrrNnzxaF-d5dIq8"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "-ORv7T14aIIKQwhsmRcEO",
+   "geometry": {
+    "geometries": [
+     {
+      "coordinates": [
+       [
+        -2.884240816314654,
+        48.60028994965889
+       ],
+       [
+        -2.8810158755713933,
+        48.60143361669282
+       ],
+       [
+        -2.880503062153162,
+        48.60188950277778
+       ],
+       [
+        -2.8800347390611774,
+        48.60246618701957
+       ],
+       [
+        -2.8799807139064653,
+        48.60253548656522
+       ],
+       [
+        -2.878143049115489,
+        48.603923044811715
+       ],
+       [
+        -2.877774041444109,
+        48.6041462992834
+       ],
+       [
+        -2.877357434657474,
+        48.60428990545135
+       ],
+       [
+        -2.8768907058048883,
+        48.604400112873655
+       ],
+       [
+        -2.876426501890778,
+        48.60446406799676
+       ],
+       [
+        -2.8757525088282554,
+        48.6045178933178
+       ],
+       [
+        -2.8757530817449415,
+        48.60452299004541
+       ]
+      ],
+      "type": "LineString"
+     },
+     {
+      "coordinates": [
+       [
+        -2.875761339443363,
+        48.60452770682644
+       ],
+       [
+        -2.8757294534552975,
+        48.60451903320558
+       ]
+      ],
+      "type": "LineString"
+     },
+     {
+      "coordinates": [
+       -2.87575365466175,
+       48.60452808677309
+      ],
+      "type": "Point"
+     }
+    ],
+    "type": "GeometryCollection"
+   },
+   "properties": {
+    "PRDEBUT": 18,
+    "ROUTE": "D4",
+    "ABSCISSEDEBUT": 2252,
+    "PRFIN": 19,
+    "ABSCISSEFIN": 28,
+    "CIRCULATION": "Limitation de vitesse",
+    "TRAVAUX": "Travaux de pose d’équipements routiers",
+    "_geopoint": "48.60246618701957,-2.8800347390611774",
+    "NUMDOSSIER": "2026T1692",
+    "_i": 101313663338005,
+    "DATEFIN": "2026-12-31 00:00:00.0",
+    "DATEDEBUT": "2026-06-12 00:00:00.0",
+    "COMMUNE": "Lantic",
+    "_rand": 111535,
+    "_updatedAt": "2026-06-05T02:00:40.983Z",
+    "_id": "-ORv7T14aIIKQwhsmRcEO"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "mUYPhxO6BvJfjGf1mw5YR",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.2039243511829234,
+      48.54396445286571
+     ],
+     [
+      -2.195255428742896,
+      48.54838830763823
+     ],
+     [
+      -2.1949131063349174,
+      48.54869469605385
+     ],
+     [
+      -2.189889293638063,
+      48.56329895632536
+     ],
+     [
+      -2.189345154124078,
+      48.564850255253866
+     ],
+     [
+      -2.1893760587747795,
+      48.56516192292025
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 28,
+    "ROUTE": "D768",
+    "ABSCISSEDEBUT": 1289,
+    "PRFIN": 30,
+    "ABSCISSEFIN": 0,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau souterrain de communication (fibre)",
+    "_geopoint": "48.54869469605385,-2.1949131063349174",
+    "JOURSETHORAIRES1": "de 8h00 à 18h00",
+    "NUMDOSSIER": "2026T2983",
+    "JOURSETHORAIRES2": "la semaine (lundi au vendredi)",
+    "_i": 114190831176001,
+    "DATEFIN": "2026-12-11 00:00:00.0",
+    "DATEDEBUT": "2026-11-09 00:00:00.0",
+    "COMMUNE": "Créhen",
+    "_rand": 353340,
+    "_updatedAt": "2026-11-01T03:00:08.821Z",
+    "_id": "mUYPhxO6BvJfjGf1mw5YR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "jTa3eIbsHHN0pXIsT12yv",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.9820145809689267,
+      48.73338126696308
+     ],
+     [
+      -2.981288528450865,
+      48.73646198398401
+     ],
+     [
+      -2.9807704723976545,
+      48.73987049284389
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 35,
+    "ROUTE": "D786",
+    "ABSCISSEDEBUT": 3343,
+    "PRFIN": 36,
+    "ABSCISSEFIN": 415,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau souterrain de communication (fibre)",
+    "_geopoint": "48.73646198398401,-2.981288528450865",
+    "JOURSETHORAIRES1": "de 8h00 à 18h00 sauf le week-end",
+    "NUMDOSSIER": "2026T3021",
+    "JOURSETHORAIRES2": "de 8h00 à 18h00 sauf le week-end",
+    "_i": 114190831176016,
+    "DATEFIN": "2026-12-04 00:00:00.0",
+    "DATEDEBUT": "2026-11-09 00:00:00.0",
+    "COMMUNE": "Plouézec",
+    "_rand": 724884,
+    "_updatedAt": "2026-11-01T03:00:08.821Z",
+    "_id": "jTa3eIbsHHN0pXIsT12yv"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "UOS-j07-cBOuFeKNBu5yf",
+   "geometry": {
+    "coordinates": [
+     [
+      -3.023634702989605,
+      48.71503084713932
+     ],
+     [
+      -3.0235807497383096,
+      48.717514227623866
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 32,
+    "ROUTE": "D7",
+    "ABSCISSEDEBUT": 833,
+    "PRFIN": 33,
+    "ABSCISSEFIN": 106,
+    "CIRCULATION": "Limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau souterrain de communication (fibre)",
+    "_geopoint": "48.71627253738159,-3.0236077263639576",
+    "NUMDOSSIER": "2026T2888",
+    "_i": 114190831176011,
+    "DATEFIN": "2026-12-04 00:00:00.0",
+    "DATEDEBUT": "2026-11-09 00:00:00.0",
+    "COMMUNE": "Yvias",
+    "_rand": 524002,
+    "_updatedAt": "2026-11-01T03:00:08.821Z",
+    "_id": "UOS-j07-cBOuFeKNBu5yf"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2qbdir6SG2ttGRpeU3WmG",
+   "geometry": {
+    "coordinates": [
+     [
+      -3.389905706975829,
+      48.5411525380555
+     ],
+     [
+      -3.386938607906448,
+      48.540660475056015
+     ],
+     [
+      -3.382867540401611,
+      48.541330801262234
+     ],
+     [
+      -3.380046499937028,
+      48.54064268965275
+     ],
+     [
+      -3.378796705722986,
+      48.54014581927012
+     ],
+     [
+      -3.3780745241345027,
+      48.539796063152544
+     ],
+     [
+      -3.3764050483436976,
+      48.53957242459981
+     ],
+     [
+      -3.3744496146740874,
+      48.539790308411504
+     ],
+     [
+      -3.374093302149638,
+      48.53980945054281
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 33,
+    "ROUTE": "D22",
+    "ABSCISSEDEBUT": 3367,
+    "PRFIN": 34,
+    "ABSCISSEFIN": 1230,
+    "CIRCULATION": "Circulation interdite",
+    "_geopoint": "48.541330801262234,-3.382867540401611",
+    "JOURSETHORAIRES1": "du lundi au vendredi, de 8h00 à 18h00",
+    "NUMDOSSIER": "2026T3034",
+    "JOURSETHORAIRES2": "du lundi au vendredi, de 8h00 à 18h00",
+    "_i": 114018031076002,
+    "DATEFIN": "2026-12-04 00:00:00.0",
+    "DATEDEBUT": "2026-10-30 00:00:00.0",
+    "COMMUNE": "Belle-Isle-en-Terre",
+    "_rand": 521965,
+    "_updatedAt": "2026-10-30T03:00:08.721Z",
+    "_id": "2qbdir6SG2ttGRpeU3WmG"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "Oy-NWltfGBYhTykTuu8h1",
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -2.9559140321378528,
+       48.360410250451984
+      ],
+      [
+       -2.955181850169918,
+       48.36022155893329
+      ],
+      [
+       -2.9522993494907577,
+       48.357186238381374
+      ],
+      [
+       -2.951445862254831,
+       48.35562769759946
+      ],
+      [
+       -2.9502679958377804,
+       48.35449148821661
+      ],
+      [
+       -2.9497371611575676,
+       48.353390383213195
+      ],
+      [
+       -2.949690147774941,
+       48.35237771428997
+      ],
+      [
+       -2.950203764411014,
+       48.351833073653566
+      ],
+      [
+       -2.951011971502171,
+       48.35149916766403
+      ]
+     ],
+     [
+      [
+       -2.9186348923930225,
+       48.391337195673785
+      ],
+      [
+       -2.9186038738854685,
+       48.39226350189953
+      ],
+      [
+       -2.9181552833534927,
+       48.39339113011795
+      ],
+      [
+       -2.9180417268863983,
+       48.39418623212727
+      ],
+      [
+       -2.916781486965232,
+       48.39562509512527
+      ],
+      [
+       -2.915950530465339,
+       48.39636583653651
+      ],
+      [
+       -2.9150614819459024,
+       48.39749290597169
+      ],
+      [
+       -2.915481774876615,
+       48.39911840145981
+      ]
+     ]
+    ],
+    "type": "MultiLineString"
+   },
+   "properties": {
+    "PRDEBUT": 8,
+    "ROUTE": "D63",
+    "ABSCISSEDEBUT": 1561,
+    "PRFIN": 12,
+    "ABSCISSEFIN": 180,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau souterrain de communication (fibre)",
+    "_geopoint": "48.391337195673785,-2.9186348923930225",
+    "JOURSETHORAIRES1": "de 08h30 à 17h30",
+    "NUMDOSSIER": "2026T2914",
+    "JOURSETHORAIRES2": "la semaine (lundi au vendredi) | de 08h30 à 17h30 | la semaine (lundi au vendredi) | de 08h30 à 17h30 | la semaine (lundi au vendredi) | de 08h30 à 17h30 | la semaine (lundi au vendredi)",
+    "_i": 113586031065009,
+    "DATEFIN": "2026-11-27 00:00:00.0",
+    "DATEDEBUT": "2026-11-02 00:00:00.0",
+    "COMMUNE": "La Harmoye",
+    "_rand": 764133,
+    "_updatedAt": "2026-10-25T03:00:08.710Z",
+    "_id": "Oy-NWltfGBYhTykTuu8h1"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SQyB3JMjo6UgpxYhDih6e",
+   "geometry": {
+    "coordinates": [
+     [
+      -3.0004248450162545,
+      48.547939417706345
+     ],
+     [
+      -2.9787577149610507,
+      48.54382284623887
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 0,
+    "ROUTE": "D131",
+    "ABSCISSEDEBUT": 0,
+    "PRFIN": 0,
+    "ABSCISSEFIN": 1781,
+    "CIRCULATION": "INTERDICTION",
+    "TRAVAUX": "Travaux sur le réseau d’électricité",
+    "_geopoint": "48.54588113197261,-2.9895912799886526",
+    "JOURSETHORAIRES1": "du lundi 2 novembre 9h00 au vendredi 20 novembre 18h00",
+    "NUMDOSSIER": "2026T2802",
+    "JOURSETHORAIRES2": "du lundi 2 novembre 9h00 au vendredi 20 novembre 18h00",
+    "_i": 113586031065007,
+    "DATEFIN": "2026-11-20 00:00:00.0",
+    "DATEDEBUT": "2026-11-02 00:00:00.0",
+    "COMMUNE": "Châtelaudren-Plouagat",
+    "_rand": 113202,
+    "_updatedAt": "2026-10-25T03:00:08.710Z",
+    "_id": "SQyB3JMjo6UgpxYhDih6e"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "JVXi87RjSu8-cDLG7F7a4",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.3603646505271683,
+      48.62688571251653
+     ],
+     [
+      -2.3570211320890464,
+      48.62485755486606
+     ],
+     [
+      -2.355666687288699,
+      48.62454290070673
+     ],
+     [
+      -2.3536978418615813,
+      48.6241306749292
+     ],
+     [
+      -2.3487589458937697,
+      48.62275011402557
+     ],
+     [
+      -2.347702873124168,
+      48.62239691030586
+     ],
+     [
+      -2.346861576374644,
+      48.621558213041546
+     ],
+     [
+      -2.347150234521682,
+      48.62031809661272
+     ],
+     [
+      -2.347238780765776,
+      48.619337412806594
+     ],
+     [
+      -2.346690079642881,
+      48.61951234707857
+     ],
+     [
+      -2.3451618574367896,
+      48.62008192033717
+     ],
+     [
+      -2.3417860515035165,
+      48.62068439259055
+     ],
+     [
+      -2.339707203045107,
+      48.62030192978802
+     ],
+     [
+      -2.338983193018382,
+      48.620609914692835
+     ],
+     [
+      -2.3384160415866493,
+      48.62023468120333
+     ],
+     [
+      -2.3367898344287887,
+      48.619105588362444
+     ],
+     [
+      -2.336394871494791,
+      48.61819670670421
+     ],
+     [
+      -2.3379285180506617,
+      48.61588743525031
+     ],
+     [
+      -2.3379165804719895,
+      48.614660837562425
+     ],
+     [
+      -2.337236711855522,
+      48.61429065995664
+     ],
+     [
+      -2.3363242119546634,
+      48.61423144123789
+     ],
+     [
+      -2.334903169548446,
+      48.61437033857294
+     ],
+     [
+      -2.331091164937801,
+      48.61476670101178
+     ],
+     [
+      -2.3278587992459703,
+      48.61380967150476
+     ],
+     [
+      -2.326073478238577,
+      48.61333870161771
+     ],
+     [
+      -2.3213287086776124,
+      48.613476011785615
+     ],
+     [
+      -2.3197994751857602,
+      48.61329400823987
+     ],
+     [
+      -2.318745428233084,
+      48.61221421926823
+     ],
+     [
+      -2.3164494979151797,
+      48.61006301558545
+     ],
+     [
+      -2.315020493407782,
+      48.6097512573864
+     ],
+     [
+      -2.309545390470635,
+      48.60864356150794
+     ],
+     [
+      -2.3081638118463608,
+      48.6080541326003
+     ],
+     [
+      -2.2997018805785174,
+      48.60429955079595
+     ],
+     [
+      -2.298525254221681,
+      48.60274924990294
+     ],
+     [
+      -2.296907738722162,
+      48.60131875597775
+     ],
+     [
+      -2.295007275455772,
+      48.60007614787033
+     ],
+     [
+      -2.294058929854992,
+      48.59854068203076
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 5,
+    "ROUTE": "D786",
+    "ABSCISSEDEBUT": 155,
+    "PRFIN": 7,
+    "ABSCISSEFIN": 14,
+    "CIRCULATION": "Limitation catégorielle",
+    "TRAVAUX": "Travaux sur le réseau souterrain de communication (fibre)",
+    "_geopoint": "48.61333870161771,-2.326073478238577",
+    "JOURSETHORAIRES1": "de 8h00 à 18h00",
+    "NUMDOSSIER": "2026T2980",
+    "JOURSETHORAIRES2": "de 8h00 à 18h00",
+    "_i": 113236830304008,
+    "DATEFIN": "2026-11-20 00:00:00.0",
+    "DATEDEBUT": "2026-10-19 00:00:00.0",
+    "COMMUNE": "Fréhel",
+    "_rand": 749140,
+    "_updatedAt": "2026-10-21T02:00:07.949Z",
+    "_id": "JVXi87RjSu8-cDLG7F7a4"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "sHiqWCB5oASJiLUzUwwfT",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.3063687995603948,
+      48.65501813396776
+     ],
+     [
+      -2.3063496152891068,
+      48.65594554367909
+     ],
+     [
+      -2.3064932499691406,
+      48.65661527332025
+     ],
+     [
+      -2.3051263296566673,
+      48.656926635925075
+     ],
+     [
+      -2.303579519456492,
+      48.658072382722395
+     ],
+     [
+      -2.3025540678745458,
+      48.658769165295865
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 4,
+    "ROUTE": "D117",
+    "ABSCISSEDEBUT": 2339,
+    "PRFIN": 4,
+    "ABSCISSEFIN": 2894,
+    "CIRCULATION": "INTERDICTION",
+    "TRAVAUX": "Travaux sur le réseau d’eau potable",
+    "_geopoint": "48.656926635925075,-2.3051263296566673",
+    "JOURSETHORAIRES1": "de jour et de nuit",
+    "NUMDOSSIER": "2026T3037",
+    "JOURSETHORAIRES2": "de jour et de nuit",
+    "_i": 114536432824003,
+    "DATEFIN": "2026-11-13 00:00:00.0",
+    "DATEDEBUT": "2026-11-09 00:00:00.0",
+    "COMMUNE": "Plévenon",
+    "_rand": 647199,
+    "_updatedAt": "2026-11-05T03:00:10.469Z",
+    "_id": "sHiqWCB5oASJiLUzUwwfT"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "g19SIASC_vyy0b2zcL6AQ",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.8261058414150133,
+      48.61570418627653
+     ],
+     [
+      -2.8259133328873403,
+      48.61591861251103
+     ],
+     [
+      -2.825809657907294,
+      48.616097936188645
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 26,
+    "ROUTE": "D786",
+    "ABSCISSEDEBUT": 559,
+    "PRFIN": 26,
+    "ABSCISSEFIN": 610,
+    "CIRCULATION": "Limitation catégorielle et de vitesse",
+    "TRAVAUX": "Travaux sur le réseau d’électricité",
+    "_geopoint": "48.61591861251103,-2.8259133328873403",
+    "NUMDOSSIER": "2026T3073",
+    "_i": 114190831176008,
+    "DATEFIN": "2026-11-13 00:00:00.0",
+    "DATEDEBUT": "2026-11-09 00:00:00.0",
+    "COMMUNE": "Binic-Étables-sur-Mer",
+    "_rand": 517,
+    "_updatedAt": "2026-11-01T03:00:08.821Z",
+    "_id": "g19SIASC_vyy0b2zcL6AQ"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "OYMXHi8d0FXgYUhBkVIAo",
+   "geometry": {
+    "coordinates": [
+     [
+      -3.4072879508451734,
+      48.63676490880466
+     ],
+     [
+      -3.406270821938564,
+      48.63721455224568
+     ],
+     [
+      -3.4055757716439103,
+      48.63737609403763
+     ],
+     [
+      -3.405143973830334,
+      48.63760241310926
+     ],
+     [
+      -3.404562324461638,
+      48.637994733740015
+     ],
+     [
+      -3.4040487199111618,
+      48.63824801684438
+     ],
+     [
+      -3.402810223204174,
+      48.63828088512382
+     ],
+     [
+      -3.402007244153071,
+      48.63825644568724
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 2,
+    "ROUTE": "D74",
+    "ABSCISSEDEBUT": 674,
+    "PRFIN": 2,
+    "ABSCISSEFIN": 1116,
+    "CIRCULATION": "Circulation interdite",
+    "_geopoint": "48.63760241310926,-3.405143973830334",
+    "JOURSETHORAIRES1": "du lundi au vendredi de 8h30 à 18h30",
+    "NUMDOSSIER": "2026T3071",
+    "JOURSETHORAIRES2": "du lundi au vendredi de 8h30 à 18h30",
+    "_i": 114104430789007,
+    "DATEFIN": "2026-11-11 00:00:00.0",
+    "DATEDEBUT": "2026-10-30 00:00:00.0",
+    "COMMUNE": "Pluzunet",
+    "_rand": 665951,
+    "_updatedAt": "2026-10-31T03:00:08.434Z",
+    "_id": "OYMXHi8d0FXgYUhBkVIAo"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "CvULJPWaXq6fU0IgYoxuV",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.6116173374914884,
+      48.48188443213863
+     ],
+     [
+      -2.6113193807849373,
+      48.48168713703529
+     ],
+     [
+      -2.6107643069766975,
+      48.48131747850681
+     ],
+     [
+      -2.6105446476434295,
+      48.48117906222439
+     ],
+     [
+      -2.6103303834693867,
+      48.48105301662387
+     ],
+     [
+      -2.6101475161405143,
+      48.48095484849107
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 19,
+    "ROUTE": "D712",
+    "ABSCISSEDEBUT": 575,
+    "PRFIN": 19,
+    "ABSCISSEFIN": 725,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau d’électricité",
+    "_geopoint": "48.48131747850681,-2.6107643069766975",
+    "JOURSETHORAIRES1": "de 8:00 à 18:00",
+    "NUMDOSSIER": "2026T2950",
+    "JOURSETHORAIRES2": "de 8:00 à 18:00",
+    "_i": 113845231182003,
+    "DATEFIN": "2026-11-05 00:00:00.0",
+    "DATEDEBUT": "2026-11-05 00:00:00.0",
+    "COMMUNE": "Pommeret",
+    "_rand": 275112,
+    "_updatedAt": "2026-10-28T03:00:08.827Z",
+    "_id": "CvULJPWaXq6fU0IgYoxuV"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "oWhhtqvN4N4f-PAaUKA0x",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.9808722414228166,
+      48.54990971605489
+     ],
+     [
+      -2.9803960341430256,
+      48.54708068058776
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 21,
+    "ROUTE": "D7",
+    "ABSCISSEDEBUT": 719,
+    "PRFIN": 21,
+    "ABSCISSEFIN": 1047,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau d’électricité",
+    "_geopoint": "48.54990971605489,-2.9808722414228166",
+    "NUMDOSSIER": "2026T3090",
+    "_i": 114450030854007,
+    "DATEFIN": "2026-11-04 00:00:00.0",
+    "DATEDEBUT": "2026-11-03 00:00:00.0",
+    "COMMUNE": "Châtelaudren-Plouagat",
+    "_rand": 310824,
+    "_updatedAt": "2026-11-04T03:00:08.499Z",
+    "_id": "oWhhtqvN4N4f-PAaUKA0x"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "YKLeB6xCsPSiWK5WoIDkU",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.320478827459342,
+      48.37203034690807
+     ],
+     [
+      -2.320459548784653,
+      48.3719960359933
+     ],
+     [
+      -2.3204141555801394,
+      48.37189528011734
+     ],
+     [
+      -2.320388971448093,
+      48.37179361561669
+     ],
+     [
+      -2.3203812688545065,
+      48.37166411333969
+     ],
+     [
+      -2.32037355763439,
+      48.3716013391939
+     ],
+     [
+      -2.32037083022611,
+      48.37157441002755
+     ],
+     [
+      -2.320354209540876,
+      48.371423667257865
+     ],
+     [
+      -2.3203530276718936,
+      48.37141199795077
+     ],
+     [
+      -2.320346780778597,
+      48.37114987637714
+     ],
+     [
+      -2.320324036333921,
+      48.370911941395036
+     ],
+     [
+      -2.3203015056985272,
+      48.370849833508416
+     ],
+     [
+      -2.3202081841225106,
+      48.37070344088303
+     ],
+     [
+      -2.320130153504871,
+      48.37057439525868
+     ],
+     [
+      -2.3199578940623318,
+      48.370289980303866
+     ],
+     [
+      -2.3199539269593075,
+      48.37027753448001
+     ],
+     [
+      -2.3198261205671105,
+      48.36991086710172
+     ],
+     [
+      -2.319701068708507,
+      48.36951792564
+     ],
+     [
+      -2.3196307377891108,
+      48.36929114700069
+     ],
+     [
+      -2.31946378013536,
+      48.368778355953864
+     ],
+     [
+      -2.3193833163182216,
+      48.368638598516704
+     ],
+     [
+      -2.3193114462806506,
+      48.36854420307873
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 0,
+    "ROUTE": "D60",
+    "ABSCISSEDEBUT": 350,
+    "PRFIN": 0,
+    "ABSCISSEFIN": 750,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux d’abattage et d’élagage",
+    "_geopoint": "48.37027753448001,-2.3199539269593075",
+    "JOURSETHORAIRES1": "le 04/11/2026 de 7h30 à 18h30",
+    "NUMDOSSIER": "2026T3103",
+    "JOURSETHORAIRES2": "le 04/11/2026 de 7h30 à 18h30",
+    "_i": 114450030854001,
+    "DATEFIN": "2026-11-04 00:00:00.0",
+    "DATEDEBUT": "2026-11-04 00:00:00.0",
+    "COMMUNE": "Jugon-les-Lacs",
+    "_rand": 287314,
+    "_updatedAt": "2026-11-04T03:00:08.499Z",
+    "_id": "YKLeB6xCsPSiWK5WoIDkU"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "u6pd4Ncp2XqTRIWZcH11a",
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -3.2856094187172427,
+       48.64329818621035
+      ],
+      [
+       -3.2870479096661143,
+       48.642522815596735
+      ],
+      [
+       -3.2861797156334145,
+       48.64124903813732
+      ],
+      [
+       -3.284403826229415,
+       48.64162489942921
+      ],
+      [
+       -3.2837015767598507,
+       48.64356821500211
+      ],
+      [
+       -3.2856094187172427,
+       48.64329818621035
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   },
+   "properties": {
+    "PRDEBUT": 4,
+    "ROUTE": "D74",
+    "ABSCISSEDEBUT": 0,
+    "PRFIN": -1,
+    "ABSCISSEFIN": -1,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux sur le réseau d’eau potable",
+    "_geopoint": "48.64240862656972,-3.2853747432129827",
+    "JOURSETHORAIRES1": "Du lundi au mercredi de 8h00 à 18h00",
+    "NUMDOSSIER": "2026T2930",
+    "JOURSETHORAIRES2": "Du lundi au mercredi de 8h00 à 18h00",
+    "_i": 113586031065006,
+    "DATEFIN": "2026-11-04 00:00:00.0",
+    "DATEDEBUT": "2026-11-02 00:00:00.0",
+    "COMMUNE": "Bégard",
+    "_rand": 313180,
+    "_updatedAt": "2026-10-25T03:00:08.710Z",
+    "_id": "u6pd4Ncp2XqTRIWZcH11a"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "Z3XPIWuw-AAgiVzb6uHgx",
+   "properties": {
+    "PRDEBUT": 2,
+    "ROUTE": "D786",
+    "ABSCISSEDEBUT": 1830,
+    "PRFIN": 2,
+    "ABSCISSEFIN": 1890,
+    "CIRCULATION": "Limitation catégorielle",
+    "TRAVAUX": "Travaux sur le réseau d'assainissement",
+    "JOURSETHORAIRES1": "de 8h00 à 18h00",
+    "NUMDOSSIER": "2026T2715",
+    "JOURSETHORAIRES2": "de 8h00 à 18h00",
+    "_i": 111076829419002,
+    "DATEFIN": "2026-10-02 00:00:00.0",
+    "DATEDEBUT": "2026-10-01 00:00:00.0",
+    "COMMUNE": "Créhen",
+    "_rand": 717866,
+    "_updatedAt": "2026-09-26T02:00:07.064Z",
+    "_id": "Z3XPIWuw-AAgiVzb6uHgx"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "KdIHodkjQcVhw-Bgs_R3G",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.2589782828435125,
+      48.346929826648015
+     ],
+     [
+      -2.2583512061524185,
+      48.34636596818718
+     ],
+     [
+      -2.2576736460079676,
+      48.34593115180068
+     ],
+     [
+      -2.257115334456826,
+      48.3456319215893
+     ],
+     [
+      -2.256651015082377,
+      48.34542713457072
+     ],
+     [
+      -2.256204935346811,
+      48.34519335733114
+     ],
+     [
+      -2.255897731350901,
+      48.34508020818785
+     ],
+     [
+      -2.2520556209363174,
+      48.34449007564661
+     ],
+     [
+      -2.2511508470410915,
+      48.34453024884623
+     ],
+     [
+      -2.250042663992031,
+      48.344649888770455
+     ],
+     [
+      -2.2496007957519852,
+      48.34466950159216
+     ],
+     [
+      -2.2472807142649818,
+      48.34429343167511
+     ],
+     [
+      -2.244976108311537,
+      48.3438602759542
+     ],
+     [
+      -2.2436407726727605,
+      48.343609530128994
+     ],
+     [
+      -2.2431162523134622,
+      48.34322420683351
+     ],
+     [
+      -2.2424164187595443,
+      48.34277620809849
+     ],
+     [
+      -2.241957835084494,
+      48.34241613520604
+     ],
+     [
+      -2.241304238396475,
+      48.34221968033361
+     ],
+     [
+      -2.2403883721810134,
+      48.34193622128456
+     ],
+     [
+      -2.2394065985586136,
+      48.34162749763519
+     ],
+     [
+      -2.238823131844398,
+      48.3414983670705
+     ],
+     [
+      -2.2384360194638666,
+      48.34143098095209
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 7,
+    "ROUTE": "D52",
+    "ABSCISSEDEBUT": 0,
+    "PRFIN": 7,
+    "ABSCISSEFIN": 1718,
+    "CIRCULATION": "Limitation de vitesse",
+    "TRAVAUX": "Travaux d’entretien de chaussée",
+    "_geopoint": "48.34466950159216,-2.2496007957519852",
+    "NUMDOSSIER": "2026T0287",
+    "_i": 90517232270014,
+    "DATEFIN": "2026-07-31 00:00:00.0",
+    "DATEDEBUT": "2026-01-30 00:00:00.0",
+    "COMMUNE": "Trémeur",
+    "_rand": 182435,
+    "_updatedAt": "2026-01-31T03:00:09.915Z",
+    "_id": "KdIHodkjQcVhw-Bgs_R3G"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SA-0Sy152N7DlK-XXT-Ds",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.292444413197766,
+      48.266063319659125
+     ],
+     [
+      -2.292545590829437,
+      48.26654489790446
+     ],
+     [
+      -2.2925513769804633,
+      48.26681235278788
+     ],
+     [
+      -2.292520079993925,
+      48.26713078532987
+     ],
+     [
+      -2.2923843667577297,
+      48.267355265773205
+     ],
+     [
+      -2.2919240612436664,
+      48.2681297194531
+     ],
+     [
+      -2.291424682053035,
+      48.26914545416962
+     ],
+     [
+      -2.2913233649131626,
+      48.26950224819445
+     ],
+     [
+      -2.291271048176709,
+      48.26982162115888
+     ],
+     [
+      -2.291285923591323,
+      48.27007457780169
+     ],
+     [
+      -2.2913533264879806,
+      48.27032518097792
+     ],
+     [
+      -2.2916016507804753,
+      48.270905841964215
+     ],
+     [
+      -2.291767203348063,
+      48.27129294886469
+     ],
+     [
+      -2.291924439250186,
+      48.27180723964926
+     ],
+     [
+      -2.292397359225775,
+      48.27304711781127
+     ],
+     [
+      -2.292866069699109,
+      48.27424491217416
+     ],
+     [
+      -2.293156528229733,
+      48.27492935777263
+     ],
+     [
+      -2.293338402404994,
+      48.27558344368681
+     ],
+     [
+      -2.293500529831988,
+      48.27604115228675
+     ],
+     [
+      -2.293526629745312,
+      48.276300650098996
+     ],
+     [
+      -2.2934344089928906,
+      48.27664294632206
+     ],
+     [
+      -2.2932665234553595,
+      48.27696749803457
+     ],
+     [
+      -2.293235856262919,
+      48.27718726928964
+     ],
+     [
+      -2.2932437632378035,
+      48.27747576244951
+     ],
+     [
+      -2.2932413111442838,
+      48.277976071527036
+     ],
+     [
+      -2.2931875130600625,
+      48.27817574397291
+     ],
+     [
+      -2.293029349366746,
+      48.278387138180506
+     ],
+     [
+      -2.2927479204919674,
+      48.27863223568161
+     ],
+     [
+      -2.2923817264086885,
+      48.2788740852495
+     ],
+     [
+      -2.291828514743961,
+      48.27914544719454
+     ],
+     [
+      -2.2914314962264033,
+      48.279395719351776
+     ],
+     [
+      -2.2912243109581083,
+      48.27964453164721
+     ],
+     [
+      -2.2910535817440536,
+      48.279941025723446
+     ],
+     [
+      -2.2909242445310976,
+      48.28033429585082
+     ],
+     [
+      -2.2907311550157696,
+      48.28072337605885
+     ],
+     [
+      -2.290500830828457,
+      48.28095208776154
+     ],
+     [
+      -2.290171068427105,
+      48.28124161238572
+     ],
+     [
+      -2.289477761906179,
+      48.281589685347534
+     ],
+     [
+      -2.2861314337976575,
+      48.283056893317486
+     ],
+     [
+      -2.285955674135372,
+      48.28319861291373
+     ],
+     [
+      -2.285747215744149,
+      48.28375040440798
+     ],
+     [
+      -2.2857837305991424,
+      48.28390376020082
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 6,
+    "ROUTE": "D52",
+    "ABSCISSEDEBUT": 1381,
+    "PRFIN": 7,
+    "ABSCISSEFIN": 0,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux d’entretien de chaussée",
+    "_geopoint": "48.27424491217416,-2.292866069699109",
+    "NUMDOSSIER": "2026T0283",
+    "_i": 90517232270003,
+    "DATEFIN": "2026-07-31 00:00:00.0",
+    "DATEDEBUT": "2026-01-30 00:00:00.0",
+    "COMMUNE": "Lanrelas",
+    "_rand": 976176,
+    "_updatedAt": "2026-01-31T03:00:09.915Z",
+    "_id": "SA-0Sy152N7DlK-XXT-Ds"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "Csc7dthAk6S0qZqPLKROA",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.2589782828435125,
+      48.346929826648015
+     ],
+     [
+      -2.2583512061524185,
+      48.34636596818718
+     ],
+     [
+      -2.2576736460079676,
+      48.34593115180068
+     ],
+     [
+      -2.257115334456826,
+      48.3456319215893
+     ],
+     [
+      -2.256651015082377,
+      48.34542713457072
+     ],
+     [
+      -2.256204935346811,
+      48.34519335733114
+     ],
+     [
+      -2.255897731350901,
+      48.34508020818785
+     ],
+     [
+      -2.2520556209363174,
+      48.34449007564661
+     ],
+     [
+      -2.2511508470410915,
+      48.34453024884623
+     ],
+     [
+      -2.250042663992031,
+      48.344649888770455
+     ],
+     [
+      -2.2496007957519852,
+      48.34466950159216
+     ],
+     [
+      -2.2472807142649818,
+      48.34429343167511
+     ],
+     [
+      -2.244976108311537,
+      48.3438602759542
+     ],
+     [
+      -2.2436407726727605,
+      48.343609530128994
+     ],
+     [
+      -2.2431162523134622,
+      48.34322420683351
+     ],
+     [
+      -2.2424164187595443,
+      48.34277620809849
+     ],
+     [
+      -2.241957835084494,
+      48.34241613520604
+     ],
+     [
+      -2.241304238396475,
+      48.34221968033361
+     ],
+     [
+      -2.2403883721810134,
+      48.34193622128456
+     ],
+     [
+      -2.2394065985586136,
+      48.34162749763519
+     ],
+     [
+      -2.238823131844398,
+      48.3414983670705
+     ],
+     [
+      -2.2384360194638666,
+      48.34143098095209
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 7,
+    "ROUTE": "D52",
+    "ABSCISSEDEBUT": 0,
+    "PRFIN": 7,
+    "ABSCISSEFIN": 1718,
+    "CIRCULATION": "Limitation de vitesse",
+    "TRAVAUX": "Travaux d’entretien de chaussée",
+    "_geopoint": "48.34466950159216,-2.2496007957519852",
+    "NUMDOSSIER": "2026T0287",
+    "_i": 90517232062014,
+    "DATEFIN": "2026-07-31 00:00:00.0",
+    "DATEDEBUT": "2026-01-30 00:00:00.0",
+    "COMMUNE": "Trémeur",
+    "_rand": 232547,
+    "_updatedAt": "2026-01-31T03:00:09.707Z",
+    "_id": "Csc7dthAk6S0qZqPLKROA"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "gVxCxAgF6EGJXX5HrmBb4",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.292444413197766,
+      48.266063319659125
+     ],
+     [
+      -2.292545590829437,
+      48.26654489790446
+     ],
+     [
+      -2.2925513769804633,
+      48.26681235278788
+     ],
+     [
+      -2.292520079993925,
+      48.26713078532987
+     ],
+     [
+      -2.2923843667577297,
+      48.267355265773205
+     ],
+     [
+      -2.2919240612436664,
+      48.2681297194531
+     ],
+     [
+      -2.291424682053035,
+      48.26914545416962
+     ],
+     [
+      -2.2913233649131626,
+      48.26950224819445
+     ],
+     [
+      -2.291271048176709,
+      48.26982162115888
+     ],
+     [
+      -2.291285923591323,
+      48.27007457780169
+     ],
+     [
+      -2.2913533264879806,
+      48.27032518097792
+     ],
+     [
+      -2.2916016507804753,
+      48.270905841964215
+     ],
+     [
+      -2.291767203348063,
+      48.27129294886469
+     ],
+     [
+      -2.291924439250186,
+      48.27180723964926
+     ],
+     [
+      -2.292397359225775,
+      48.27304711781127
+     ],
+     [
+      -2.292866069699109,
+      48.27424491217416
+     ],
+     [
+      -2.293156528229733,
+      48.27492935777263
+     ],
+     [
+      -2.293338402404994,
+      48.27558344368681
+     ],
+     [
+      -2.293500529831988,
+      48.27604115228675
+     ],
+     [
+      -2.293526629745312,
+      48.276300650098996
+     ],
+     [
+      -2.2934344089928906,
+      48.27664294632206
+     ],
+     [
+      -2.2932665234553595,
+      48.27696749803457
+     ],
+     [
+      -2.293235856262919,
+      48.27718726928964
+     ],
+     [
+      -2.2932437632378035,
+      48.27747576244951
+     ],
+     [
+      -2.2932413111442838,
+      48.277976071527036
+     ],
+     [
+      -2.2931875130600625,
+      48.27817574397291
+     ],
+     [
+      -2.293029349366746,
+      48.278387138180506
+     ],
+     [
+      -2.2927479204919674,
+      48.27863223568161
+     ],
+     [
+      -2.2923817264086885,
+      48.2788740852495
+     ],
+     [
+      -2.291828514743961,
+      48.27914544719454
+     ],
+     [
+      -2.2914314962264033,
+      48.279395719351776
+     ],
+     [
+      -2.2912243109581083,
+      48.27964453164721
+     ],
+     [
+      -2.2910535817440536,
+      48.279941025723446
+     ],
+     [
+      -2.2909242445310976,
+      48.28033429585082
+     ],
+     [
+      -2.2907311550157696,
+      48.28072337605885
+     ],
+     [
+      -2.290500830828457,
+      48.28095208776154
+     ],
+     [
+      -2.290171068427105,
+      48.28124161238572
+     ],
+     [
+      -2.289477761906179,
+      48.281589685347534
+     ],
+     [
+      -2.2861314337976575,
+      48.283056893317486
+     ],
+     [
+      -2.285955674135372,
+      48.28319861291373
+     ],
+     [
+      -2.285747215744149,
+      48.28375040440798
+     ],
+     [
+      -2.2857837305991424,
+      48.28390376020082
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 6,
+    "ROUTE": "D52",
+    "ABSCISSEDEBUT": 1381,
+    "PRFIN": 7,
+    "ABSCISSEFIN": 0,
+    "CIRCULATION": "Circulation alternée et limitation de vitesse",
+    "TRAVAUX": "Travaux d’entretien de chaussée",
+    "_geopoint": "48.27424491217416,-2.292866069699109",
+    "NUMDOSSIER": "2026T0283",
+    "_i": 90517232062003,
+    "DATEFIN": "2026-07-31 00:00:00.0",
+    "DATEDEBUT": "2026-01-30 00:00:00.0",
+    "COMMUNE": "Lanrelas",
+    "_rand": 813746,
+    "_updatedAt": "2026-01-31T03:00:09.707Z",
+    "_id": "gVxCxAgF6EGJXX5HrmBb4"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "M_684sd0Mo4ubSx-grLjZ",
+   "geometry": {
+    "coordinates": [
+     [
+      -2.708528417806908,
+      48.460082367475984
+     ],
+     [
+      -2.706690246166629,
+      48.458457140851664
+     ],
+     [
+      -2.704332787928691,
+      48.455797065630634
+     ],
+     [
+      -2.7040064273442193,
+      48.45497844769614
+     ],
+     [
+      -2.7040539100023504,
+      48.45448007547671
+     ],
+     [
+      -2.7047470045845414,
+      48.45399572311648
+     ],
+     [
+      -2.70654560027688,
+      48.453390485248484
+     ],
+     [
+      -2.7070509749083547,
+      48.453050454109636
+     ],
+     [
+      -2.7071756366291417,
+      48.45263855928595
+     ],
+     [
+      -2.706972388105615,
+      48.45201696225286
+     ],
+     [
+      -2.705231723626016,
+      48.45097330923595
+     ],
+     [
+      -2.704366741073838,
+      48.450812008109544
+     ],
+     [
+      -2.7015967588694823,
+      48.4509002261439
+     ],
+     [
+      -2.700989360531635,
+      48.45061375938955
+     ],
+     [
+      -2.699882643462076,
+      48.44978757502643
+     ],
+     [
+      -2.6981324436350396,
+      48.44865408762601
+     ],
+     [
+      -2.6961572155702904,
+      48.448568665408715
+     ],
+     [
+      -2.6950392111119545,
+      48.448261617432905
+     ],
+     [
+      -2.6942100774317397,
+      48.44780538152094
+     ],
+     [
+      -2.692398613007574,
+      48.44766692975629
+     ],
+     [
+      -2.691907067649926,
+      48.44751014968455
+     ],
+     [
+      -2.6916007957635206,
+      48.447186623153236
+     ]
+    ],
+    "type": "LineString"
+   },
+   "properties": {
+    "PRDEBUT": 13,
+    "ROUTE": "D1",
+    "ABSCISSEDEBUT": 3298,
+    "PRFIN": 14,
+    "ABSCISSEFIN": 1705,
+    "CIRCULATION": "Circulation alternée",
+    "_geopoint": "48.45448007547671,-2.7040539100023504",
+    "JOURSETHORAIRES1": "la journée (08h-18h30)",
+    "NUMDOSSIER": "2026T2102",
+    "JOURSETHORAIRES2": "la journée (08h-18h30)",
+    "_i": 104424031491003,
+    "DATEFIN": "2026-07-15 00:00:00.0",
+    "DATEDEBUT": "2026-07-09 00:00:00.0",
+    "COMMUNE": "Quessoy",
+    "_rand": 200452,
+    "_updatedAt": "2026-07-11T02:00:09.136Z",
+    "_id": "M_684sd0Mo4ubSx-grLjZ"
+   }
+  }
+ ]
+}

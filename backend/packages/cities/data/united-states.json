@@ -47,7 +47,10 @@
     "wzdx-austin",
     "wzdx-sfmta",
     "seattle-sdot-street-closures",
-    "baton-rouge-road-closures"
+    "baton-rouge-road-closures",
+    "dc-ddot-construction-permits",
+    "louisville-row-construction-permits",
+    "us-cambridge-ma-street-excavations"
   ],
   "gis_sources": [],
   "source_time_zones": {

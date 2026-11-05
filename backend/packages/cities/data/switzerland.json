@@ -36,6 +36,11 @@
   "discovery": {
     "queries": []
   },
-  "official_sources": [],
+  "official_sources": [
+    "ch-zh-canton-roadworks",
+    "ch-zurich-city-civil-works",
+    "ch-sz-canton-roadworks",
+    "ch-ge-infomobilite-works"
+  ],
   "gis_sources": []
 }

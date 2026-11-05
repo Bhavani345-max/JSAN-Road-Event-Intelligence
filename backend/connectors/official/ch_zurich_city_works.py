@@ -31,9 +31,13 @@ Friedhof, Gartenareal, Schulhaus, Schulsport, Kindergarten, Sportanlage,
 Spielplatz, Planschbecken, Velostation). On 5 November 2026 that keeps 100 of
 the 133 (95 under way, 5 to come). Among those left out are two whole-area
 programmes that name no street, "Niederdorf und Oberdorf" (whose streets the
-layer also lists one by one) and "Energieverbund Höngg" (Gesamtperimeter). Every kept
+layer also lists one by one) and "Energieverbund Höngg" (Gesamtperimeter). A
+project marked not for publication (`publish_internet` "0"; none on 5 November
+2026) or without a project or works number is not kept either. Every kept
 project is road works (ROAD_WORKS); the layer does not say whether traffic is
-closed, and REI does not say so either.
+closed, and REI does not say so either. The affected road is the title when it
+names a street, square, quay or bridge ("Seefeldstrasse", "Zähringerplatz");
+a title such as "Elektrifizierung Buslinie 80" names none, and none is given.
 
 Days are whole days, Zürich time: from the start of the first to the end of
 the last.
@@ -102,6 +106,11 @@ ROAD_WORDS = re.compile(
     r"|haltestelle|knoten|kreuzung|einmündung|trottoir",
     re.IGNORECASE,
 )
+# A name that ends as a street, square, quay or bridge does ("Seefeldstrasse",
+# "Zähringerplatz", "Rathausbruecke"): a title naming one names the road. A
+# junction or a stop inside a longer word ("Fahrleitungskreuzungsbauwerk", an
+# overhead-line structure) does not.
+STREET_NAME = re.compile(r"(strasse|gasse|quai|platz|allee|brücke|bruecke|graben|weg)\b", re.IGNORECASE)
 # Words with which a title names a facility off the road.
 OFF_ROAD_WORDS = re.compile(
     r"park\b|freibad|friedhof|gartenareal|schulhaus|schulsport|kindergarten|sportanlage"
@@ -194,7 +203,7 @@ def to_record(feature: dict[str, Any], retrieved_at: datetime) -> RawSourceRecor
         end=end,
         geometry=geometry,
         locations=[SourceLocation(name=place, kind="location", geometry=geometry)] if place else [],
-        affected_road=title if ROAD_WORDS.search(title) else None,
+        affected_road=title if STREET_NAME.search(title) else None,
         attribution=ATTRIBUTION,
         stated_period=f"{first} – {last}" if first or last else None,
         covers_city=True,

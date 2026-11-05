@@ -14,21 +14,26 @@ Straßensperrung", "Vollsperre" …), its kind (`art`), a link for more
 information, a public contact and a first and a last day
 (`beginn_datum_kombiniert`, written dd.mm.yyyy, or "Beginn vor mehr als einem
 Jahr"; `ende_datum_kombiniert`, dd.mm.yyyy or "dd.mm.yyyy 23:59"). Fetched
-without a key on 5 November 2026: 5,963 features, 3,148 works
-("Baumaßnahme") and 2,815 temporary no-parking zones ("Vorübergehendes
-Haltverbot"). A request asking the server to filter (CQL_FILTER) was answered
-503 "Temporarily Not available" that day, so REI asks for the whole layer and
-filters itself.
+without a key on 5 November 2026 (12:33 UTC): 5,963 features (5,065 polygons,
+898 multi-polygons), 3,148 works ("Baumaßnahme") and 2,815 temporary
+no-parking zones ("Vorübergehendes Haltverbot"). A request asking the server
+to filter (CQL_FILTER) was answered 503 "Temporarily Not available" that day,
+so REI asks for the whole layer and filters itself.
 
 Only works on the carriageway are road events: a feature is kept when it is a
-"Baumaßnahme" whose `betroffene_bereiche` include "Fahrbahn" (1,130 on 5
-November 2026; 5 of them listed twice, identical, are one record each, so
-1,125 records: 970 in force, 132 coming, 23 begun "more than a year ago",
-none ended). No-parking zones and works on the pavement, cycle path or
-parking bays only are left out. The city's impairment words are free text (635
-different phrasings that day), so every kept works is road works, its words
-kept as stated in the summary and on its location; REI does not read a
-closure out of them.
+"Baumaßnahme" whose `betroffene_bereiche` include "Fahrbahn" (however the
+list is written: "Gehweg,Fahrbahn", "Parkbucht;Fahrbahn", "GehwegFahrbahn").
+On 5 November 2026 that was 1,130 features; 5 of them listed twice,
+identical, are one record each, so 1,125 records: 970 begun, 131 coming and
+24 whose start is not read (23 "Beginn vor mehr als einem Jahr", one of the
+year 0226), every one with an end and none ended. No-parking zones (2 of them
+on the carriageway), works naming no surface (558) and works on the pavement,
+cycle path, pedestrian zone or parking bays only are left out. The city's
+impairment words are free text (607 different phrasings among the kept
+works), so every kept works is road works, its words kept as stated in the
+summary and on its location; REI does not read a closure out of them (a
+"Vollsperre" may close only the parking bays). A works naming no street (2
+kept) keeps no place; its title says München.
 
 A day runs from its start to its end, Munich time; "23:59" is read as written.
 A start stated only as "Beginn vor mehr als einem Jahr" stays unstated. A
@@ -36,12 +41,13 @@ date before the year 2000 cannot be a day of works listed for the coming four
 weeks (one record of 5 November 2026 begins "07.11.0226"): it is read as
 unstated and never corrected.
 
-The feature ids are a running number and `fachliche_id` is empty, so a
-record's id is made from what it states: the street and house numbers, the
-description, its kind, its first day and its area. A changed end, impairment
-or surface is a revision of the same record; a redrawn area is a new one. The
-public contact (`kontakt_oeffentlich`: e-mail addresses and telephone numbers)
-is not kept.
+The feature ids are a running number, and `fachliche_id` is empty but for 298
+works (136 of those kept, each the Stadtwerke München's), so every record's
+id is made the same way, from what it states: the street and house numbers,
+the description, its kind, its first day and its area. A changed end,
+impairment or surface is a revision of the same record; a redrawn area is a
+new one. The public contact (`kontakt_oeffentlich`: an e-mail address and a
+telephone number) is not kept.
 
 Licence: Datenlizenz Deutschland – Namensnennung – Version 2.0, as the city's
 open-data portal states for the dataset (opendata.muenchen.de/dataset/
@@ -139,7 +145,8 @@ def muenchen_source(*, scheduled: bool) -> SourceDefinition:
         notes=(
             "Munich's works in force or starting within four weeks, each an area with a first and a last "
             "day. Fetched without a key on 5 November 2026: 5,963 features; the 1,130 works on the "
-            "carriageway are kept (1,125 records), no-parking zones and pavement-only works are not."
+            "carriageway are kept (1,125 records: 994 in force, 131 coming), no-parking zones and "
+            "works off the carriageway are not."
         ),
     )
 
@@ -209,7 +216,7 @@ def to_record(feature: dict[str, Any], retrieved_at: datetime) -> RawSourceRecor
         source_id=SOURCE_ID,
         external_id=record_id(properties, geometry),
         url=SOURCE_URL,
-        title=f"Road works: {place or 'München'} (München)",
+        title=f"Road works: {place} (München)" if place else "Road works (München)",
         summary=sentences(
             clean(properties.get("beschreibung")),
             f"Impact: {impact}" if impact else "",

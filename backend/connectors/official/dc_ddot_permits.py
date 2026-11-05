@@ -46,8 +46,9 @@ number, and others name people with neither ("Designer Name: ...", "per site
 discussions with UFD (a name)"), which no pattern removes reliably. It is not
 kept, in the evidence or the summary; the work is described by the permit's
 own work flags. `OBJECTID` (also the feature id) is a row number of the
-automated reload (around 436.7 million on 5 November), not content, and is not
-kept, so a reload is no revision.
+automated reload (around 436.7 million on 5 November) and `GLOBALID` the
+server's row id beside it: neither is content, neither is kept, so a reload
+is no revision (the permit number is the id).
 
 Licence: "This work is licensed under a Creative Commons Attribution 4.0
 International License" (the licenseInfo of ArcGIS item
@@ -101,8 +102,8 @@ PERSONAL = frozenset(
 )
 # Free text naming staff with their e-mail addresses and phone numbers: not kept.
 FREE_TEXT = frozenset({"WORKDETAIL"})
-# The layer's row number, renumbered on reload: not content.
-ROW_NUMBERS = frozenset({"OBJECTID"})
+# The layer's row number and row id, renewed on reload: not content.
+ROW_NUMBERS = frozenset({"OBJECTID", "GLOBALID"})
 # The permit's work flags, in the layer's own words (field aliases "Is Excavation" ...).
 WORKS = (
     ("ISEXCAVATION", "Excavation"),
@@ -152,7 +153,7 @@ def dc_ddot_source(*, scheduled: bool) -> SourceDefinition:
         real_time=False,
         evidence_retention=(
             "Each permit as the service returns it, less the permittee, owner, contractor and applicant "
-            "company, the account fields, the free-text work detail and the row number, and the "
+            "company, the account fields, the free-text work detail and the row ids, and the "
             "structured event."
         ),
         notes=(
@@ -183,7 +184,7 @@ def _located(geometry: Any, properties: dict[str, Any]) -> bool:
 
 
 def _kept(feature: dict[str, Any]) -> dict[str, Any]:
-    """The feature as REI keeps it: no people, no free text, no row number."""
+    """The feature as REI keeps it: no people, no free text, no row ids."""
     properties = feature.get("properties") or {}
     left_out = PERSONAL | FREE_TEXT | ROW_NUMBERS
     return {

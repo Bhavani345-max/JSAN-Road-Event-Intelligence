@@ -1,16 +1,21 @@
-"""Brazil and Malaysia: country entries with no source yet (4 November 2026).
+"""Brazil and Malaysia: country entries with no official source (4 November 2026).
 
 Researched live on 4 November 2026 (docs/data-sources/brazil-malaysia-sources-2026-11-04.md):
 no official feed of either country is both keyless and licensed for REI's
 commercial reuse with current events, locations and start times, so neither
 entry lists a source. Each covers its whole territory and its own time zone
-and language.
+and language. Since 5 November 2026 (decision 0057) Brazil also has nine city
+entries, each with a place list and a Google News search of its own.
 """
 
 import pytest
 
 from packages.cities import cities_within, get_city, load_cities
 
+BRAZIL_CITIES = {
+    "sao-paulo", "rio-de-janeiro", "brasilia", "belo-horizonte", "curitiba",
+    "porto-alegre", "salvador", "recife", "fortaleza",
+}
 # Well-known places that must fall inside each country's area (latitude, longitude).
 INSIDE = {
     "brazil": {
@@ -44,7 +49,10 @@ def test_each_is_the_single_country_entry_of_its_country(city_id, country, timez
     entry = get_city(city_id)
     assert (entry.level, entry.country, entry.timezone, entry.language) == ("country", country, timezone, language)
     assert [c.id for c in load_cities().values() if c.level == "country" and c.country == country] == [city_id]
-    assert cities_within(entry) == ()
+    if city_id == "brazil":
+        assert {c.id for c in cities_within(entry)} == BRAZIL_CITIES
+    else:
+        assert cities_within(entry) == ()
     assert entry.official_sources == () and entry.gis_sources == ()
 
 
@@ -60,5 +68,8 @@ def test_the_area_covers_the_country_and_not_its_neighbours(city_id):
 
 
 def test_scope_terms_name_the_country_in_english_and_the_local_language():
-    assert get_city("brazil").scope_terms == ("Brazil", "Brasil")
+    # Brazil's also name its nine searched cities (decision 0057).
+    brazil = get_city("brazil").scope_terms
+    assert brazil[:2] == ("Brazil", "Brasil")
+    assert set(brazil[2:]) == {get_city(city_id).name for city_id in BRAZIL_CITIES}
     assert get_city("malaysia").scope_terms == ("Malaysia",)

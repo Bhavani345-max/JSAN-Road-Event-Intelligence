@@ -1,0 +1,1184 @@
+{
+ "RoadWorksAndLocks": {
+  "type": "FeatureCollection",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.122",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.1437,
+      46.6719
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 122,
+     "BEGIN_DATE": "2026-11-02Z",
+     "END_DATE": "2026-11-06Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3155812,
+     "MESSAGE_HEADER_I": "Variante di Merano",
+     "MESSAGE_HEADER_D": "Umfahrung Meran",
+     "MSG_LOCATION_I": "Sulla circonvallazione di Merano CHIUSURA al traffico ininterrotta per lavori di manutenzione all'impianto tecnico.",
+     "MSG_LOCATION_D": "Auf der Umfahrung Meran durchgehende SPERRE wegen Instandhaltung der technischen Anlagen.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP185",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 3,
+     "ZONE_I": "Burgraviato",
+     "ZONE_D": "Burggrafenamt",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.1437,
+     46.6719,
+     11.1437,
+     46.6719
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.127",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.5501,
+      46.6294
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 127,
+     "BEGIN_DATE": "2026-11-02Z",
+     "END_DATE": "2026-11-06Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 2784912,
+     "MESSAGE_HEADER_I": "dell'Abetone e del Brennero",
+     "MESSAGE_HEADER_D": "Brenner Staatsstraße",
+     "MSG_LOCATION_I": "A Chiusa (km 465,200 - km 465,400) senso unico alternato con attese fino a 5 minuti dalle ore 08:00 alle ore 16:30 per riparazione reti paramassi.",
+     "MSG_LOCATION_D": "Bei Klausen (km 465,200 - km 465,400) Einbahnregelung mit Wartezeiten bis zu 5 Minuten von 08:00 bis 16:30 wegen Reparaturen der Steinschlagnetze.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "SS12",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "BAUSTELLE",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 6,
+     "ZONE_I": "Val d'Isarco",
+     "ZONE_D": "Eisacktal-Wipptal",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Baustelle",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 12,
+     "MAP_SUBT_D": "Baustelle",
+     "MAP_SUBT_I": "Cantiere",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.5501,
+     46.6294,
+     11.5501,
+     46.6294
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.153",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.2631,
+      46.4817
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 153,
+     "BEGIN_DATE": "2026-11-08Z",
+     "END_DATE": "2026-11-27Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3163312,
+     "MESSAGE_HEADER_I": "S. Paolo - Riva di sotto",
+     "MESSAGE_HEADER_D": "St. Pauls - Unterrain",
+     "MSG_LOCATION_I": "Da lunedì 09.11.2026: Tra S. Paolo e Riva di Sotto (km 1,400 - km 2,880, km 2,880 - km 3,170) CHIUSURA al traffico per lavori di asfaltatura (anche nel fine settimana).",
+     "MSG_LOCATION_D": "Ab Montag, 09.11.2026: Zwischen St. Pauls und Unterrain (km 1,400 - km 2,880, km 2,880 - km 3,170) SPERRE wegen Asphaltierungsarbeiten (auch am Wochenende).",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP13",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 4,
+     "ZONE_I": "Bolzano-Bassa Atesina",
+     "ZONE_D": "Bozen-Unterland",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.2631,
+     46.4817,
+     11.2631,
+     46.4817
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.155",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.8936,
+      46.6102
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 155,
+     "BEGIN_DATE": "2026-11-08Z",
+     "END_DATE": "2026-11-08Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 2892812,
+     "MESSAGE_HEADER_I": "di Val Badia",
+     "MESSAGE_HEADER_D": "Gadertal",
+     "MSG_LOCATION_I": "In Badia dalla Cassa Raiffeisen di Pedraces/Badia fino all’altezza del parcheggio Sponata ( km 25,180 - km 26,500) CHIUSURA dalle ore 10.30 alle ore 11.30 in occasione della manifestazione “Leonardiritt”.\n",
+     "MSG_LOCATION_D": "In Abtei von der Raiffeisenkasse Pedratsches/Abtei bis zur Höhe beim\nParkplatz Sponata (km 25,180 - km 26,500) SPERRE von\n10.30 bis 11.30 Uhr wegen der Veranstaltng „Leonardiritt”.\n",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "SS244",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "VERANSTALTUNG",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 7,
+     "ZONE_I": "Val Pusteria",
+     "ZONE_D": "Pustertal",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Veranstaltung",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 14,
+     "MAP_SUBT_D": "Vorsicht!",
+     "MAP_SUBT_I": "Attenzione!",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.8936,
+     46.6102,
+     11.8936,
+     46.6102
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.157",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.894,
+      46.6041
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 157,
+     "BEGIN_DATE": "2026-11-08Z",
+     "END_DATE": "2026-11-08Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 2896712,
+     "MESSAGE_HEADER_I": "Comune di Badia",
+     "MESSAGE_HEADER_D": "Gemeinde Abtei",
+     "MSG_LOCATION_I": "Sulla SS 244 Val Badia a Badia CHIUSURA al traffico dalle ore 10:30 alle ore 12:30 circa per la manifestazione \"Cavalcata di S. Leonardo\".",
+     "MSG_LOCATION_D": "Auf der SS 244 Gadertaler Staatsstraße in Abtei SPERRE von 10:30 bis ca. 12:30 Uhr wegen der Veranstaltung \"Leonhardiritt\".",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": " ",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "VERANSTALTUNG",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 7,
+     "ZONE_I": "Val Pusteria",
+     "ZONE_D": "Pustertal",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Veranstaltung",
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 14,
+     "MAP_SUBT_D": "Vorsicht!",
+     "MAP_SUBT_I": "Attenzione!",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.894,
+     46.6041,
+     11.894,
+     46.6041
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.175",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.1437,
+      46.6719
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 175,
+     "BEGIN_DATE": "2026-11-16Z",
+     "END_DATE": "2026-11-20Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3155912,
+     "MESSAGE_HEADER_I": "Variante di Merano",
+     "MESSAGE_HEADER_D": "Umfahrung Meran",
+     "MSG_LOCATION_I": "Sulla circonvallazione di Merano CHIUSURA al traffico ininterrotta per lavori di manutenzione all'impianto tecnico.",
+     "MSG_LOCATION_D": "Auf der Umfahrung Meran durchgehende SPERRE wegen Instandhaltung der technischen Anlagen.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP185",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 3,
+     "ZONE_I": "Burgraviato",
+     "ZONE_D": "Burggrafenamt",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.1437,
+     46.6719,
+     11.1437,
+     46.6719
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.96",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      10.5425,
+      46.7844
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 96,
+     "BEGIN_DATE": "2026-10-27Z",
+     "END_DATE": null,
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3111912,
+     "MESSAGE_HEADER_I": "del Passo Resia",
+     "MESSAGE_HEADER_D": "Reschenpass",
+     "MSG_LOCATION_I": "A Curon (km 23,000 - km 24,400) senso unico alternato per lavori.",
+     "MSG_LOCATION_D": "In Graun (km 23,000 - km 24,400) Einbahnregelung wegen Arbeiten.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "SS40",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "BAUSTELLE",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 2,
+     "ZONE_I": "Val Venosta",
+     "ZONE_D": "Vinschgau",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Baustelle",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 12,
+     "MAP_SUBT_D": "Baustelle",
+     "MAP_SUBT_I": "Cantiere",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     10.5425,
+     46.7844,
+     10.5425,
+     46.7844
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.110",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.7872,
+      46.941
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 110,
+     "BEGIN_DATE": "2026-10-31Z",
+     "END_DATE": null,
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 2720912,
+     "MESSAGE_HEADER_I": "Comune di Selva Dei Molini",
+     "MESSAGE_HEADER_D": "Gemeinde Mühlwald",
+     "MSG_LOCATION_I": "La strada portante al bacino artificiale di Neves da \"Hainzgatter\" (dalla sbarra) a Lappago di Sopra in poi ha CHIUSURA INVERNALE.",
+     "MSG_LOCATION_D": "Die Straße zum Stausee Neves hat ab \"Hainzgatter\" (ab der Schranke) in Oberlappach WINTERSPERRE.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": " ",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 7,
+     "ZONE_I": "Val Pusteria",
+     "ZONE_D": "Pustertal",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.7872,
+     46.941,
+     11.7872,
+     46.941
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.112",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.6087,
+      46.6037
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 112,
+     "BEGIN_DATE": "2026-11-01Z",
+     "END_DATE": "2026-11-05Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 2842312,
+     "MESSAGE_HEADER_I": "Laion - S. Pietro",
+     "MESSAGE_HEADER_D": "Lajen - St. Peter",
+     "MSG_LOCATION_I": "Tra San Pietro e l'incrocio con la SS 242dir Chiusa-Pontives (km 6,550 - km 8,400) CHIUSURA al traffico dalle ore 08:30 alle ore 12:30 e dalle ore 13:30 alle ore 17:30 a causa di lavori. La deviazione avviene attraverso la SS 242dir Chiusa – Pontives.",
+     "MSG_LOCATION_D": "Zwischen St. Peter und der Kreuzung mit der SS 242dir Klausen-Pontives (km 6,550 - km 8,400) SPERRE von 08:30 bis 12:30 und von 13:30 bis 17:30 Uhr wegen Arbeiten. Die Umleitung erfolgt über die SS 242dir Klausen - Pontives.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP139",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 5,
+     "ZONE_I": "Salto-Sciliar",
+     "ZONE_D": "Salten-Schlern",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.6087,
+     46.6037,
+     11.6087,
+     46.6037
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.44",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.7855,
+      46.7215
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 44,
+     "BEGIN_DATE": "2026-09-02Z",
+     "END_DATE": null,
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3138512,
+     "MESSAGE_HEADER_I": "Comune di Luson",
+     "MESSAGE_HEADER_D": "Gemeinde Lüsen",
+     "MSG_LOCATION_I": "La strada comunale del Passo delle Erbe è CHIUSA al traffico per motivi di sicurezza a causa di danni dovuti al maltempo.",
+     "MSG_LOCATION_D": "Die Gemeindestraße Würzjoch ist wegen Unwetterschäden aus Sicherheitsgründen GESPERRT.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": " ",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 6,
+     "ZONE_I": "Val d'Isarco",
+     "ZONE_D": "Eisacktal-Wipptal",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.7855,
+     46.7215,
+     11.7855,
+     46.7215
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.52",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.3531,
+      46.3687
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 52,
+     "BEGIN_DATE": "2026-09-14Z",
+     "END_DATE": "2026-11-30Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3008812,
+     "MESSAGE_HEADER_I": "Aldino - Nova Ponente",
+     "MESSAGE_HEADER_D": "Aldein -  Deutschnofen",
+     "MSG_LOCATION_I": "Ad Aldino (km 5,450 - km 5,700) senso unico alternato per lavori di ampliamento dei marciapiedi (giorni feriali).",
+     "MSG_LOCATION_D": "Bei Aldein (km 5,450 - km 5,700) Einbahnregelung für den Ausbau der Gehsteige (werktags).",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP72",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "BAUSTELLE",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 4,
+     "ZONE_I": "Bolzano-Bassa Atesina",
+     "ZONE_D": "Bozen-Unterland",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": null,
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 12,
+     "MAP_SUBT_D": "Baustelle",
+     "MAP_SUBT_I": "Cantiere",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.3531,
+     46.3687,
+     11.3531,
+     46.3687
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.57",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.2939,
+      46.5049
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 57,
+     "BEGIN_DATE": "2026-09-21Z",
+     "END_DATE": "2026-12-11Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 1707312,
+     "MESSAGE_HEADER_I": "Merano - Bolzano",
+     "MESSAGE_HEADER_D": "Meran - Bozen",
+     "MSG_LOCATION_I": "A S. Maurizio (km 222,500 - km 223,700) senso unico alternato con chiusure temporanee fino a 5 minuti per la realizzazione pista pedo-ciclabile (anche nel fine settimana).",
+     "MSG_LOCATION_D": "Bei Moritzing (km 222,500 - km 223,700) Einbahnregelung mit zeitweilgen Sperren bis zu 5 Minuten wegen Bau eines Fußgänger- und Fahrradweges (auch am Wochenende).",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP165",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "BAUSTELLE",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 4,
+     "ZONE_I": "Bolzano-Bassa Atesina",
+     "ZONE_D": "Bozen-Unterland",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": null,
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 12,
+     "MAP_SUBT_D": "Baustelle",
+     "MAP_SUBT_I": "Cantiere",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.2939,
+     46.5049,
+     11.2939,
+     46.5049
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.146",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      10.7817,
+      46.5624
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 146,
+     "BEGIN_DATE": "2026-11-06Z",
+     "END_DATE": "2026-12-11Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3124112,
+     "MESSAGE_HEADER_I": "Ganda - Valle",
+     "MESSAGE_HEADER_D": "Gand - Tal",
+     "MSG_LOCATION_I": "A Danda (km 1,150 - km 1,200) senso unico alteranto a causa di lavori. ",
+     "MSG_LOCATION_D": "Bei Gand (km 1,150 - km 1,200) Einbahnregelung wegen Arbeiten.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP78",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "BAUSTELLE",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 2,
+     "ZONE_I": "Val Venosta",
+     "ZONE_D": "Vinschgau",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Baustelle",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 12,
+     "MAP_SUBT_D": "Baustelle",
+     "MAP_SUBT_I": "Cantiere",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     10.7817,
+     46.5624,
+     10.7817,
+     46.5624
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-RoadWorksAndLocks.161",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.3173,
+      46.3974
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 161,
+     "BEGIN_DATE": "2026-11-08Z",
+     "END_DATE": "2026-11-17Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 12,
+     "MESSAGE_ID": 3160612,
+     "MESSAGE_HEADER_I": "dell'Abetone e del Brennero",
+     "MESSAGE_HEADER_D": "Brenner Staatsstraße",
+     "MSG_LOCATION_I": "A Bronzolo (km 425,600 - km 426,200) senso unico alternato dalle ore 07:00 alle ore 19:00 per l'esecuzione della variante (anche il fine settimana).",
+     "MSG_LOCATION_D": "Bei Branzoll (km 425,600 - km 426,200) Einbahnregelung von 07:00 bis 19:00 Uhr wegen Durchführung der Variante (auch am Wochenende).",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "SS12",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "BAUSTELLE",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 4,
+     "ZONE_I": "Bolzano-Bassa Atesina",
+     "ZONE_D": "Bozen-Unterland",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Baustelle",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 12,
+     "MAP_SUBT_D": "Baustelle",
+     "MAP_SUBT_I": "Cantiere",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.3173,
+     46.3974,
+     11.3173,
+     46.3974
+    ]
+   }
+  ],
+  "totalFeatures": 14,
+  "numberMatched": 14,
+  "numberReturned": 14,
+  "timeStamp": "2026-11-05T12:35:46.044Z",
+  "crs": {
+   "type": "name",
+   "properties": {
+    "name": "urn:ogc:def:crs:EPSG::4326"
+   }
+  }
+ },
+ "CurrentSituation": {
+  "type": "FeatureCollection",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.121",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.1437,
+      46.6719
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 121,
+     "BEGIN_DATE": "2026-11-02Z",
+     "END_DATE": "2026-11-06Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 3155801,
+     "MESSAGE_HEADER_I": "Variante di Merano",
+     "MESSAGE_HEADER_D": "Umfahrung Meran",
+     "MSG_LOCATION_I": "Sulla circonvallazione di Merano CHIUSURA al traffico ininterrotta per lavori di manutenzione all'impianto tecnico.",
+     "MSG_LOCATION_D": "Auf der Umfahrung Meran durchgehende SPERRE wegen Instandhaltung der technischen Anlagen.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP185",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 3,
+     "ZONE_I": "Burgraviato",
+     "ZONE_D": "Burggrafenamt",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.1437,
+     46.6719,
+     11.1437,
+     46.6719
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.126",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.5501,
+      46.6294
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 126,
+     "BEGIN_DATE": "2026-11-02Z",
+     "END_DATE": "2026-11-06Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 2784901,
+     "MESSAGE_HEADER_I": "dell'Abetone e del Brennero",
+     "MESSAGE_HEADER_D": "Brenner Staatsstraße",
+     "MSG_LOCATION_I": "A Chiusa (km 465,200 - km 465,400) senso unico alternato con attese fino a 5 minuti dalle ore 08:00 alle ore 16:30 per riparazione reti paramassi.",
+     "MSG_LOCATION_D": "Bei Klausen (km 465,200 - km 465,400) Einbahnregelung mit Wartezeiten bis zu 5 Minuten von 08:00 bis 16:30 wegen Reparaturen der Steinschlagnetze.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "SS12",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "BAUSTELLE",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 6,
+     "ZONE_I": "Val d'Isarco",
+     "ZONE_D": "Eisacktal-Wipptal",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Baustelle",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 12,
+     "MAP_SUBT_D": "Baustelle",
+     "MAP_SUBT_I": "Cantiere",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.5501,
+     46.6294,
+     11.5501,
+     46.6294
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.144",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.4842,
+      46.8684
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 144,
+     "BEGIN_DATE": "2026-11-05Z",
+     "END_DATE": null,
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 3162001,
+     "MESSAGE_HEADER_I": "Autostrada del Brennero",
+     "MESSAGE_HEADER_D": "Brennerautobahn",
+     "MSG_LOCATION_I": "In direzione sud tra Brennero e Bolzano Nord coda di mezzi pesanti per lavori. ",
+     "MSG_LOCATION_D": "In Richtung Süden zwischen Brenner und Bozen Nord Lkw-Stau wegen Arbeiten. ",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "A22",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "STAU",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 6,
+     "ZONE_I": "Val d'Isarco",
+     "ZONE_D": "Eisacktal-Wipptal",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Stau - Rückstau",
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 3,
+     "MAP_SUBT_D": "Stau",
+     "MAP_SUBT_I": "Coda",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.4842,
+     46.8684,
+     11.4842,
+     46.8684
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.145",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.0013,
+      45.842
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 145,
+     "BEGIN_DATE": "2026-11-05Z",
+     "END_DATE": null,
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 3099301,
+     "MESSAGE_HEADER_I": "Autostrada del Brennero",
+     "MESSAGE_HEADER_D": "Brennerautobahn",
+     "MSG_LOCATION_I": "In direzione sud tra Trento Nord e Trento Sud coda di mezzi pesanti per lavori.",
+     "MSG_LOCATION_D": "In Richtung Süden zwischen Trient Nord und Trient Süd Lkw-Stau wegen Arbeiten.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "A22",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "STAU",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 8,
+     "ZONE_I": "Fuori Alto Adige",
+     "ZONE_D": "Ausserhalb Südtirol",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Stau - Rückstau",
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 3,
+     "MAP_SUBT_D": "Stau",
+     "MAP_SUBT_I": "Coda",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.0013,
+     45.842,
+     11.0013,
+     45.842
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.149",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.5986,
+      46.6681
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 149,
+     "BEGIN_DATE": "2026-11-07Z",
+     "END_DATE": "2026-11-08Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 2709601,
+     "MESSAGE_HEADER_I": "Chiusa - Velturno - Bressanone",
+     "MESSAGE_HEADER_D": "Klausen - Feldthurns - Brixen",
+     "MSG_LOCATION_I": "A Velturno la SP 74 Chiusa - Velturno (km 4,000 - km 4,200) e la SP 142 Velturno - Latzfons (km 0,000 - km 0,300) sono CHIUSE al traffico dalle ore 08:00 alle ore 18:00 per la manifestazione “Keschtnigl”. Il traffico viene deviato localmente.",
+     "MSG_LOCATION_D": "In Feldthurns sind die LS 74 Klausen - Feldthurns (km 4,000 - km 4,200) und die LS 142 Feldthurns - Latzfons (km 0,000 - km 0,300) von 08:00 bis 18:00 Uhr wegen der Veranstaltung “Keschtnigl” GESPERRT. Der Verkehr wird örtlich umgeleitet.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP74",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "VERANSTALTUNG",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 6,
+     "ZONE_I": "Val d'Isarco",
+     "ZONE_D": "Eisacktal-Wipptal",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Veranstaltung",
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 14,
+     "MAP_SUBT_D": "Vorsicht!",
+     "MAP_SUBT_I": "Attenzione!",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.5986,
+     46.6681,
+     11.5986,
+     46.6681
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.150",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.2327,
+      46.4114
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 150,
+     "BEGIN_DATE": "2026-11-07Z",
+     "END_DATE": "2026-12-12Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 2731601,
+     "MESSAGE_HEADER_I": "Comune di Caldaro Sulla Strada Del Vino",
+     "MESSAGE_HEADER_D": "Gemeinde Kaltern A.D. Weinstrasse",
+     "MSG_LOCATION_I": "Da lunedì 09.11.2026: la funicolare della Mendola è FUORI SERVIZIO per lavori di manutenzione. Nei giorni feriali escluso il sabato viene effettuato un servizio bus sostitutivo quadro orario 134. Sugli autobus non è consentito il trasporto delle biciclette. Ulteriori informazioni: www.altoadigemobilita.info",
+     "MSG_LOCATION_D": "Ab Montag, 09.11.2026: Die Mendelbahn ist wegen Wartungsarbeiten AUSSER BETRIEB. Werktags außer samstags gibt es einen Busersatzdienst Fahrplan 134. In den Bussen ist keine Fahrradmitnahme möglich. Weitere Informationen: www.suedtirolmobil.info\n\n",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": " ",
+     "TIPO_CODE": "SONDER",
+     "TIPO_SUBCODE": "ÖFFENTLICHE VERKEHRSMITTEL",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 4,
+     "ZONE_I": "Bolzano-Bassa Atesina",
+     "ZONE_D": "Bozen-Unterland",
+     "CODE_TOOLTIP_I": "Speciale",
+     "CODE_TOOLTIP_D": "Sonder",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "öffentliche Verkehrsmittel",
+     "MAP_TYPE": 0,
+     "MAP_SUBTYP": 0,
+     "MAP_SUBT_D": "Andere",
+     "MAP_SUBT_I": "Altri",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.2327,
+     46.4114,
+     11.2327,
+     46.4114
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.154",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.8936,
+      46.6102
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 154,
+     "BEGIN_DATE": "2026-11-08Z",
+     "END_DATE": "2026-11-08Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 2892801,
+     "MESSAGE_HEADER_I": "di Val Badia",
+     "MESSAGE_HEADER_D": "Gadertal",
+     "MSG_LOCATION_I": "In Badia dalla Cassa Raiffeisen di Pedraces/Badia fino all’altezza del parcheggio Sponata ( km 25,180 - km 26,500) CHIUSURA dalle ore 10.30 alle ore 11.30 in occasione della manifestazione “Leonardiritt”.\n",
+     "MSG_LOCATION_D": "In Abtei von der Raiffeisenkasse Pedratsches/Abtei bis zur Höhe beim\nParkplatz Sponata (km 25,180 - km 26,500) SPERRE von\n10.30 bis 11.30 Uhr wegen der Veranstaltng „Leonardiritt”.\n",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "SS244",
+     "TIPO_CODE": "BEHIND",
+     "TIPO_SUBCODE": "VERANSTALTUNG",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 7,
+     "ZONE_I": "Val Pusteria",
+     "ZONE_D": "Pustertal",
+     "CODE_TOOLTIP_I": "intralci viabilità in e fuori Alto Adige",
+     "CODE_TOOLTIP_D": "Verkehrsbehinderung für Zonen und aus. Südt.",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Veranstaltung",
+     "MAP_TYPE": 4,
+     "MAP_SUBTYP": 14,
+     "MAP_SUBT_D": "Vorsicht!",
+     "MAP_SUBT_I": "Attenzione!",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.8936,
+     46.6102,
+     11.8936,
+     46.6102
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.171",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      10.534,
+      46.6801
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 171,
+     "BEGIN_DATE": "2026-11-13Z",
+     "END_DATE": "2026-11-15Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 2902501,
+     "MESSAGE_HEADER_I": "Laudes",
+     "MESSAGE_HEADER_D": "Laatsch",
+     "MSG_LOCATION_I": "A Laces (km 1,000 - km 1,500) CHIUSURA al traffico da venerdì 13.11.2026 - ore 15:00 fino domenica 15.11.2026 - ore 22:00 in occasione di un corteo Krampus. Il traffico viene deviato attraverso la SS 40 Spondigna - Resia, SS 41 Sluderno - Tubre e la SP 85 Glorenza - Malles.",
+     "MSG_LOCATION_D": "Bei Laatsch (km 1,000 - km 1,500) SPERRE ab Freitag, 13.11.2025 - 15:00 Uhr bis Sonntag, 15.11.2026 - 22:00 Uhr anlässlich des Krampusumzugs. Die Umleitung erfolgt über die SS 40 Spondinig - Reschen, SS 41 Schluderns - Taufers und die LS 85 Glurns - Mals.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP104",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 2,
+     "ZONE_I": "Val Venosta",
+     "ZONE_D": "Vinschgau",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     10.534,
+     46.6801,
+     10.534,
+     46.6801
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.172",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.6102,
+      46.7891
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 172,
+     "BEGIN_DATE": "2026-11-14Z",
+     "END_DATE": "2026-11-15Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 2878801,
+     "MESSAGE_HEADER_I": "Ferrovia",
+     "MESSAGE_HEADER_D": "Eisenbahn",
+     "MSG_LOCATION_I": "Domenica 15.11.2026: La linea ferroviaria della Val Pusteria nel tratto Fortezza - San Candido dalle ore 07:30 alle ore 13:15 e nel tratto San Candido - Confine di Stato dalle ore 09:00 alle ore 12:00 è INTERROTTA per lavori di manutenzione straordinaria. C’è un servizio autobus sostitutivo.\n\n\n",
+     "MSG_LOCATION_D": "Sonntag, 15.11.2026: Die Pustertaler Bahnlinie ist im Abschnitt Franzensfeste - Innichen von 07:30 bis 13:15 sowie im Abschnitt zwischen Innichen und der Staatsgrenze von 09:00 bis 12:00 Uhr wegen außerordentlicher Wartungsarbeiten UNTERBROCHEN. Es gibt einen Schienenersatzverkehr mit Bussen.\n",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": null,
+     "TIPO_CODE": "SONDER",
+     "TIPO_SUBCODE": "VORSICHT",
+     "MESSAGEGRAD_ID": 4,
+     "ZONE_ID": 6,
+     "ZONE_I": "Val d'Isarco",
+     "ZONE_D": "Eisacktal-Wipptal",
+     "CODE_TOOLTIP_I": "Speciale",
+     "CODE_TOOLTIP_D": "Sonder",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "Vorsicht",
+     "MAP_TYPE": 0,
+     "MAP_SUBTYP": 14,
+     "MAP_SUBT_D": "Vorsicht!",
+     "MAP_SUBT_I": "Attenzione!",
+     "MAP_NOTE": 1
+    },
+    "bbox": [
+     11.6102,
+     46.7891,
+     11.6102,
+     46.7891
+    ]
+   },
+   {
+    "type": "Feature",
+    "id": "TrafficReport-CurrentSituation.111",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      11.6087,
+      46.6037
+     ]
+    },
+    "geometry_name": "SHAPE",
+    "properties": {
+     "ID": 111,
+     "BEGIN_DATE": "2026-11-01Z",
+     "END_DATE": "2026-11-05Z",
+     "CURRENT_DATE": "2026-11-05Z",
+     "TYPE_ID": 1,
+     "MESSAGE_ID": 2842301,
+     "MESSAGE_HEADER_I": "Laion - S. Pietro",
+     "MESSAGE_HEADER_D": "Lajen - St. Peter",
+     "MSG_LOCATION_I": "Tra San Pietro e l'incrocio con la SS 242dir Chiusa-Pontives (km 6,550 - km 8,400) CHIUSURA al traffico dalle ore 08:30 alle ore 12:30 e dalle ore 13:30 alle ore 17:30 a causa di lavori. La deviazione avviene attraverso la SS 242dir Chiusa – Pontives.",
+     "MSG_LOCATION_D": "Zwischen St. Peter und der Kreuzung mit der SS 242dir Klausen-Pontives (km 6,550 - km 8,400) SPERRE von 08:30 bis 12:30 und von 13:30 bis 17:30 Uhr wegen Arbeiten. Die Umleitung erfolgt über die SS 242dir Klausen - Pontives.",
+     "MESSAGE_BODY_I": null,
+     "MESSAGE_BODY_D": null,
+     "STREETNUMBER": "LS/SP139",
+     "TIPO_CODE": "AKTUELLES",
+     "TIPO_SUBCODE": "SPERRE",
+     "MESSAGEGRAD_ID": 3,
+     "ZONE_ID": 5,
+     "ZONE_I": "Salto-Sciliar",
+     "ZONE_D": "Salten-Schlern",
+     "CODE_TOOLTIP_I": "Situazione attuale",
+     "CODE_TOOLTIP_D": "Aktuelle Lage",
+     "SUBCODE_I": null,
+     "SUBCODE_D": "kurzfristige oder zeitweilige Sperre",
+     "MAP_TYPE": 1,
+     "MAP_SUBTYP": 7,
+     "MAP_SUBT_D": "Sperren",
+     "MAP_SUBT_I": "Chiusure",
+     "MAP_NOTE": 0
+    },
+    "bbox": [
+     11.6087,
+     46.6037,
+     11.6087,
+     46.6037
+    ]
+   }
+  ],
+  "totalFeatures": 10,
+  "numberMatched": 10,
+  "numberReturned": 10,
+  "timeStamp": "2026-11-05T12:35:47.564Z",
+  "crs": {
+   "type": "name",
+   "properties": {
+    "name": "urn:ogc:def:crs:EPSG::4326"
+   }
+  }
+ }
+}

@@ -34,6 +34,8 @@
   "discovery": {
     "queries": []
   },
-  "official_sources": [],
+  "official_sources": [
+    "it-south-tyrol-traffic-reports"
+  ],
   "gis_sources": []
 }

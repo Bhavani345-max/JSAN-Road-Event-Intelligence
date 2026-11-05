@@ -1,4 +1,4 @@
-"""City of Cambridge (Massachusetts) street excavation permits (5 November 2026).
+"""City of Cambridge (Massachusetts) excavation permits in the public roadway (5 November 2026).
 
     GET https://data.cambridgema.gov/resource/nuxx-d95m.json?$select=<the columns below>
         &$where=status='Active' AND public_roadway=true AND end_date>='<today>'&$limit=5000
@@ -27,7 +27,9 @@ Service 5 ...), `other_utility` (what "Other" is, in the applicant's words),
 address ("Excavation (Eversource Gas): 112 Thorndike St, Cambridge, MA 02141";
 the permit type, then the utility unless it is "Other"). Every permit is
 road works (ROAD_WORKS); a permit does not say whether traffic is closed, and
-REI does not say so either.
+REI does not say so either. The title's first word is the permit's own type
+(`permit_type`, "Excavation" for all 91), not "Street excavation": one of the
+91 cuts only the sidewalk ("Yes - Sidewalk").
 
 Personal data: the `$select` names only the columns REI reads, so the
 applicant's name (`applicant_name`), the company, contractor, subcontractor
@@ -105,7 +107,7 @@ def cambridge_ma_source(*, scheduled: bool) -> SourceDefinition:
     country = get_city("united-states")
     return SourceDefinition(
         source_id=SOURCE_ID,
-        source_name="City of Cambridge (Massachusetts) street excavation permits",
+        source_name="City of Cambridge (Massachusetts) excavation permits (public roadway)",
         organization="City of Cambridge, Massachusetts (Public Works)",
         authority_type="MUNICIPAL_ROAD_AUTHORITY",
         source_tier=1,
@@ -215,7 +217,7 @@ def to_record(row: dict[str, Any], retrieved_at: datetime) -> RawSourceRecord | 
         external_id=permit,
         url=SOURCE_URL,
         # The permit's own type ("Excavation"): a cut may be in the street, the sidewalk or both.
-        title=f"{kind}{f' ({named})' if named else ''}: {address or 'permit ' + permit}",
+        title=f"{kind}{f' ({named})' if named else ''}: {address or f'permit {permit} (Cambridge, MA)'}",
         summary=sentences(
             f"City of Cambridge excavation permit {permit}",
             f"Cutting the street and/or sidewalk: {cutting}" if cutting else "",

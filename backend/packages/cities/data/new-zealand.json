@@ -32,6 +32,8 @@
   "discovery": {
     "queries": []
   },
-  "official_sources": [],
+  "official_sources": [
+    "nz-new-plymouth-corridor-access"
+  ],
   "gis_sources": []
 }

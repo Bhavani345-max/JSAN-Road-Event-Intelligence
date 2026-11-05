@@ -10,27 +10,36 @@ aktiv", "Baustelle geplant"), what is dug or laid (`GRABUNGSART`: "01 - Strom",
 "07 - Kanal" …), the measure (`MASSNAHME`), sometimes where (`LAGE`,
 `BAUBEREICH`) and what it does to traffic in the city's words (`BEHINDERUNG`),
 a comment (who carries it out, or "wurde bis aufweiteres zurückgestellt"), the
-office in charge and, when stated, a first and a last day (`BEGINN`, `ENDE`,
-written dd.mm.yyyy). Fetched without a key on 5 November 2026: 204 features of
-203 works (one works is drawn as a line and a marker point); 90 active, 114
-planned. Of the active, 80 state both days, 7 a first day only (6 of them from
-2008) and 3 neither; 111 planned works state no day, 3 state both.
+office in charge (`ZUSTAENDIGE_ORGEINHEIT`) and, when stated, a first and a
+last day (`BEGINN`, `ENDE`, written dd.mm.yyyy). `VORAUSSICHTL_DAUER_BIS`
+("expected to last until") equalled `ENDE` on every feature of 5 November
+2026; REI reads `ENDE`. `KATEGORIE` repeats the status ("aktuell",
+"geplant"), `VORANKUENDIGUNG` says whether the works was announced ahead
+("Ja", "Nein") and `LINK_WEITERE_INFO` was empty. Fetched without a key on
+5 November 2026 (12:33 UTC): 205 features (198 lines, 7 points) of 204 works
+(number 195606 is drawn as a line and a multi-point, its words the same); 90
+active, 114 planned. Of the active, 80 state both days, 7 a first day only (6
+of them from 2008) and 3 neither; 111 planned works state no day, 3 state
+both.
 
 REI keeps one record per works number: its lines as drawn (several become one
 multi-line), else its first point. Every record is road works; the city's
-hindrance words are free text (11 works state any), kept as stated in the
+hindrance words are free text (12 works state any), kept as stated in the
 summary and on the location, and REI does not read a closure out of them. A
 period stated in days runs from the start of the first to the end of the last,
 Salzburg time. A works that states no day keeps no time: REI never supplies
 one (as for Kitchener's closures without a start or an end); such a record is
-stored and shown as unconfirmed. On 5 November 2026 one planned works had
-ended (4 September 2026) and is dropped by the run; 202 are kept (86 in force,
-2 coming, 114 without a stated period). Many works name no street: their
-title then says what is done, not where, and their place is their geometry.
+stored and shown as unconfirmed, as is an active works stated only to begin
+(the six of 2008 are kept as stated, without an end). On 5 November 2026 one
+planned works had ended (4 September 2026) and is dropped by the run; 203 are
+kept (86 in force, 3 coming, 114 without a stated period). Most works name no
+street (19 do): their title then says what is done, not where, and their
+place is their geometry.
 
 The case officer and their telephone number (`SACHBEARBEITER`,
-`SACHBEARBEITER_TELEFON`, empty on 5 November 2026) are not kept. The
-feature ids repeat `ID`, which is not content.
+`SACHBEARBEITER_TELEFON`, empty on 5 November 2026) are not kept; the office
+in charge and the comment name bodies, not people. The feature ids repeat
+`ID`, which is not content.
 
 Licence: CC BY 3.0 AT, credit "Datenquelle: Stadt Salzburg –
 data.stadt-salzburg.at", as the service's own capabilities state
@@ -41,7 +50,7 @@ names the same licence, docs/data-sources/worldwide-sources-2026-11-05.md).
 
 import json
 from collections import defaultdict
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -122,13 +131,13 @@ def salzburg_source(*, scheduled: bool) -> SourceDefinition:
         evidence_retention="Each works' shapes as received, less the case officer and their telephone number.",
         notes=(
             "The City of Salzburg's active and planned works sites, mostly lines. Fetched without a key "
-            "on 5 November 2026: 204 shapes of 203 works; 114 planned works state no day and are kept "
-            "without times; one ended works is dropped."
+            "on 5 November 2026: 205 shapes of 204 works; 203 kept (86 in force, 3 coming, 114 that "
+            "state no day, kept without times); one ended works is dropped."
         ),
     )
 
 
-def _day(value: Any):
+def _day(value: Any) -> date | None:
     """A day written dd.mm.yyyy ('08.12.2026')."""
     try:
         return datetime.strptime(clean(value), "%d.%m.%Y").date()
@@ -186,7 +195,7 @@ def to_record(item: dict[str, Any], retrieved_at: datetime) -> RawSourceRecord |
         else [],
         affected_road=place or None,
         attribution=ATTRIBUTION,
-        stated_period=f"{first} – {last}" if first or last else None,
+        stated_period=f"{first} – {last}".strip() if first or last else None,
         covers_city=True,
     )
     file_number = clean(properties.get("AKTENZAHL"))
@@ -219,6 +228,12 @@ def _kept(feature: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _content_order(shape: dict[str, Any]) -> str:
+    """A shape's place in its works: by its content, so a renumbered shape keeps its place."""
+    properties = {key: value for key, value in shape["properties"].items() if key not in SHAPE_IDS}
+    return json.dumps([shape["geometry"], properties], sort_keys=True, ensure_ascii=False)
+
+
 def works(features: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """The shapes grouped by works number, each works' shapes in a fixed order."""
     by_number: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -226,13 +241,7 @@ def works(features: list[dict[str, Any]]) -> list[dict[str, Any]]:
         number = clean((feature.get("properties") or {}).get("NUMMER"))
         if number:
             by_number[number].append(_kept(feature))
-    return [
-        {
-            "nummer": number,
-            "features": sorted(shapes, key=lambda shape: json.dumps(shape, sort_keys=True, ensure_ascii=False)),
-        }
-        for number, shapes in by_number.items()
-    ]
+    return [{"nummer": number, "features": sorted(shapes, key=_content_order)} for number, shapes in by_number.items()]
 
 
 def _first_position(geometry: Any) -> Any:

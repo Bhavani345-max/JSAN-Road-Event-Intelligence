@@ -17,23 +17,34 @@ Wasserversorgung, Fernwärmeversorgung, Bauliche Sondernutzung …), what it
 does to traffic (`sperrung`: "mit Vollsperrung", "mit Sperrung in eine
 Fahrtrichtung", "mit Verkehrsbehinderung", "keine Verkehrsbehinderung"), who
 causes it (`verursacher`: Stadtwerke Karlsruhe, Tiefbauamt, "Privat" …), a
-note in HTML (`zusatzinfo`), the date of the information (`stand`) and the
-period (`vorgangszeitraum_von`, `_bis`, UTC instants: the local days the city
-states, "2026-11-04T23:00:00Z" to "2026-11-06T22:59:59Z"). Fetched without a
-key on 5 November 2026: 848 current and 471 coming features, 1,244 of them in
-501 works of the seven cities and 75 of Alsace.
+note in HTML (`zusatzinfo`), a project number (`projektnummer`), the date of
+the information (`stand`) and the period (`vorgangszeitraum_von`, `_bis`).
+The period is two UTC instants, read as such: mostly the start and the end of
+the local days the city states ("2026-11-04T23:00:00Z" to
+"2026-11-06T22:59:59Z"), sometimes hours (Baden-Baden's night closure of the
+Michaelstunnel from 22:00 to 04:00:59 local time); Rheinstetten, Ettlingen
+and Stutensee write some ends a minute past midnight ("…T23:00:59Z"), kept as
+written. Every shape of one works states the same words and period. Fetched
+without a key on 5 November 2026 (12:33 UTC): 848 current and 472 coming
+features, 1,246 of them in 502 works of the seven cities (318 current, 184
+coming; no works in both layers) and 74 of Alsace.
 
 REI keeps one record per works: its areas as drawn (the polygons; else the
 lines; else the point; several become one multi-shape), with the period as
 stated. A full closure and a closure in one direction are planned road
 closures; a works "mit Verkehrsbehinderung" is road works. A works the city
-states hinders no traffic ("keine Verkehrsbehinderung", 41 works) is not a
-road event and is left out; 460 works are kept (338 in force, 122 coming, none
-ended). The Alsace rows lie in France, are written in French, carry no works
-number and no stated hindrance; they are not Germany's and are left out (REI
-covers France through its own sources). The feature ids and the per-shape `id`
-are the server's row numbers, not content; a new `stand` alone is not a
-revision.
+states hinders no traffic ("keine Verkehrsbehinderung", 33 works) is not a
+road event and is left out; 469 works are kept (220 closures, 249 road works:
+288 in force, 180 coming, and one night closure that had ended that morning,
+dropped by the run). The Alsace rows lie in France, are written in French,
+carry no works number and no stated hindrance (27 of the 74 no end); they are
+not Germany's and are left out (REI covers France through its own sources).
+The feature ids and the per-shape `id` are the server's row numbers, not
+content; a new `stand` alone is not a revision.
+
+No field names a person: `verursacher` names a body or a kind of developer
+("Privat" for a private one), and the notes of 5 November 2026 hold no names,
+telephone numbers or e-mail addresses, so nothing is removed.
 
 Licence: Creative Commons Namensnennung 4.0 International (CC BY 4.0), as the
 dataset's MobiData BW page "Baustellen" states (mobidata-bw.de/dataset/
@@ -46,6 +57,7 @@ import html
 import json
 from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import httpx
 
@@ -75,6 +87,7 @@ ENDPOINT = "https://mobil.trk.de/geoserver/TBA/ows"
 CURRENT, PREVIEW = "baustellen_aktuell", "baustellen_vorschau"
 SOURCE_URL = "https://www.mobidata-bw.de/dataset/baustellen"
 ATTRIBUTION = "Stadt Karlsruhe, Baustellen (mobil.trk.de, MobiData BW), CC BY 4.0"
+BERLIN = ZoneInfo("Europe/Berlin")
 # The Collectivité européenne d'Alsace: works in France (its name is written with ’).
 FRANCE = "Collectivité européenne"
 FULL_CLOSURE = "mit Vollsperrung"
@@ -134,19 +147,19 @@ def trk_source(*, scheduled: bool) -> SourceDefinition:
         notes=(
             "Current and coming works of Karlsruhe, Bruchsal, Rheinstetten, Stutensee, Rastatt, "
             "Baden-Baden and Ettlingen, one record per works. Fetched without a key on 5 November 2026: "
-            "501 works; 41 that hinder no traffic are left out, 460 kept (338 in force, 122 coming). "
-            "The Alsace rows (France) are left out."
+            "502 works; 33 that hinder no traffic are left out, 469 kept (288 in force, 180 coming, "
+            "1 ended). The Alsace rows (France) are left out."
         ),
     )
 
 
 def _instant(value: Any) -> datetime | None:
-    """'2026-11-04T23:00:00Z': an instant in UTC."""
+    """'2026-11-04T23:00:00Z': an instant in UTC; one written without an offset is Karlsruhe time."""
     try:
         moment = datetime.fromisoformat(clean(value))
     except ValueError:
         return None
-    return moment if moment.tzinfo else None
+    return moment if moment.tzinfo else moment.replace(tzinfo=BERLIN)
 
 
 def _geometry(features: list[dict[str, Any]]) -> dict[str, Any] | None:

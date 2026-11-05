@@ -100,7 +100,8 @@ def test_the_netherlands_and_luxembourg_are_country_entries_listing_their_feeds(
     assert (netherlands.level, netherlands.country, netherlands.timezone) == ("country", "NL", "Europe/Amsterdam")
     assert (luxembourg.level, luxembourg.country, luxembourg.timezone) == ("country", "LU", "Europe/Luxembourg")
     assert netherlands.official_sources == ("nl-ndw-actueel-beeld", "nl-ndw-planningsfeed-wegwerkzaamheden")
-    assert luxembourg.official_sources == ("lu-cita-datex2-v36",)
+    # Plus CITA's current and future works since 5 November 2026 (decision 0059).
+    assert luxembourg.official_sources == ("lu-cita-datex2-v36", "lu-cita-roadworks-datex2")
     assert netherlands.covers(52.37, 4.90) and netherlands.covers(53.45, 6.84)  # Amsterdam, Delfzijl
     assert luxembourg.covers(49.61, 6.13) and not luxembourg.covers(50.85, 4.35)  # Luxembourg City, not Brussels
 

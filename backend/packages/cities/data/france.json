@@ -44,7 +44,9 @@
     ]
   },
   "official_sources": [
-    "france-bison-fute-road-events"
+    "france-bison-fute-road-events",
+    "fr-cotes-darmor-works-orders",
+    "fr-brest-traffic-orders"
   ],
   "gis_sources": []
 }

@@ -33,7 +33,8 @@ traffic arrangements are kept in the source's words, not read as a closure.
 
 Personal data: each works names a contact person and a telephone number
 (`ansprechperson`, `telefonnummer`); both are dropped before anything is
-stored, evidence included.
+stored, evidence included. `link1` is sometimes the works' page on www.zh.ch
+(1 of 55), which is then the record's address, and sometimes a video (3).
 
 Licence: opendata.swiss terms "Freie Nutzung" (terms_open, as the catalogue
 entry states): "Sie dürfen diesen Datensatz für kommerzielle Zwecke nutzen.
@@ -163,6 +164,7 @@ def to_record(feature: dict[str, Any], retrieved_at: datetime) -> RawSourceRecor
     traffic = clean(properties.get("verkehrsfuehrung"))
     others = clean(properties.get("weiteregemeinden"))
     place = ", ".join(part for part in (street, commune) if part)
+    page = clean(properties.get("link1"))
     structured = SourceEvent(
         event_type=EventType.ROAD_WORKS.value,
         status=status or None,
@@ -178,12 +180,14 @@ def to_record(feature: dict[str, Any], retrieved_at: datetime) -> RawSourceRecor
     return item_record(
         source_id=SOURCE_ID,
         external_id=record_id(properties, geometry),
-        url=SOURCE_URL,
+        # The works' own page on zh.ch when the canton links one (a video link is not one).
+        url=page if page.startswith("https://www.zh.ch/") else SOURCE_URL,
         title=f"Road works: {street or 'cantonal road'} ({commune or 'Kanton Zürich'})",
         summary=sentences(
             clean(properties.get("beschreibung")),
             f"Verkehrsführung: {traffic}" if traffic else "",
-            f"Staatsstrasse {road}, km {start_km} – {end_km}" if road else "",
+            # The road number (strassenbez) and stationing as stated, without a name for the road class.
+            f"Strasse {road}, km {start_km} – {end_km}" if road else "",
             f"Weitere Gemeinden: {others}" if others else "",
         ),
         categories=[part for part in ("Baustelle Kantonsstrasse", status) if part],

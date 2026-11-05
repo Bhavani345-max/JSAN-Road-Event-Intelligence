@@ -18,11 +18,13 @@ swisstopo's own PDF on 5 November 2026:
 
 swisstopo states their precision as better than 0.12" in longitude and 0.08"
 in latitude everywhere in Switzerland (about 2.5 m), enough to place a road
-works site; tests/unit/test_ch_fr_sources_2026_11_05.py checks the formulas
-against swisstopo's worked example (E 2,700,000, N 1,100,000) and against the
-Schwyz server's own WGS 84 output for the same features. Heights are not
-converted: REI keeps positions in two dimensions. Pure Python: REI adds no
-projection library.
+works site. tests/unit/test_ch_sources_2026_11_05.py checks the formulas
+against swisstopo's worked example (E 2,700,000 m, N 1,100,000 m: λ' 3.14297976,
+φ' 16.57588564, λ 8° 43' 49.80", φ 46° 02' 38.86"; rigorous reference 8° 43'
+49.79", 46° 02' 38.87") and against the Schwyz server's own WGS 84 output for
+the same features: on 5 November 2026 the two agreed within 0.7 m at every
+position of all 27 works lines. Heights are not converted: REI keeps positions
+in two dimensions. Pure Python: REI adds no projection library.
 """
 
 import math

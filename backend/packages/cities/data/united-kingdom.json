@@ -30,7 +30,8 @@
     "queries": []
   },
   "official_sources": [
-    "scotland-srwr-disruptions"
+    "scotland-srwr-disruptions",
+    "gb-national-highways-roadworks"
   ],
   "gis_sources": []
 }

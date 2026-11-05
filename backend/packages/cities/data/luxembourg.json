@@ -32,7 +32,8 @@
     "queries": []
   },
   "official_sources": [
-    "lu-cita-datex2-v36"
+    "lu-cita-datex2-v36",
+    "lu-cita-roadworks-datex2"
   ],
   "gis_sources": []
 }

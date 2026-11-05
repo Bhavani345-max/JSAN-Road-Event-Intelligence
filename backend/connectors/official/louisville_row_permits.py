@@ -19,8 +19,9 @@ general type, comma-separated: "Excavation ,Lane Closure", "Road Closure",
 "Lane Closure ,Utility Cut" ...), `STREET_ADDRESS` ("nearest street address to
 the location of work"), `CITY` (Louisville or a city within the Metro:
 Shively, Lyndon ...), `FROM_DATE`/`TO_DATE` (days, served as milliseconds at
-the Louisville midnight, so a permit runs from the start of its first day to
-the end of its last, Louisville time). Every permit affects roadway traffic,
+the Louisville midnight: all 281 on 5 November, though the layer's
+dateFieldsTimeReference says UTC; so a permit runs from the start of its
+first day to the end of its last, Louisville time). Every permit affects roadway traffic,
 by the layer's own description: a permit naming a road closure is a planned
 road closure (26), one naming a lane closure a lane restriction (252), the
 rest road works (3: an excavation or a utility cut only).

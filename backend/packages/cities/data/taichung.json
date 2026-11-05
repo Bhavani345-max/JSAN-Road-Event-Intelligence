@@ -34,7 +34,8 @@
     "queries": []
   },
   "official_sources": [
-    "taichung-traffic-maintenance-plans"
+    "taichung-traffic-maintenance-plans",
+    "taichung-road-excavation-today"
   ],
   "gis_sources": []
 }

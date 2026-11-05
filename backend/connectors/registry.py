@@ -98,6 +98,30 @@ from .official.cita import CitaTrafficEventsConnector, cita_source
 from .official.norway_vegvesen import VegvesenSituationsConnector, vegvesen_source
 from .official.copenhagen_excavation import CopenhagenExcavationPermitsConnector, copenhagen_source
 from .official.tallinn_opinfo import TallinnStreetClosuresConnector, tallinn_source
+# 5 November 2026 (decision 0059): the worldwide search's new official feeds.
+from .official.mobidata_bw import MobiDataBwRoadworksConnector, mobidata_bw_source
+from .official.trk_karlsruhe import TrkRoadworksConnector, trk_source
+from .official.muenchen import MuenchenRoadworksConnector, muenchen_source
+from .official.salzburg import SalzburgRoadworksConnector, salzburg_source
+from .official.ch_zh_canton_roadworks import ZhCantonRoadworksConnector, zh_canton_roadworks_source
+from .official.ch_zurich_city_works import ZurichCityWorksConnector, zurich_city_works_source
+from .official.ch_sz_canton_roadworks import SzCantonRoadworksConnector, sz_canton_roadworks_source
+from .official.ch_ge_infomobilite_works import GeInfomobiliteWorksConnector, ge_infomobilite_source
+from .official.dc_ddot_permits import DcDdotConstructionPermitsConnector, dc_ddot_source
+from .official.louisville_row_permits import LouisvilleRowConstructionPermitsConnector, louisville_source
+from .official.cambridge_ma_excavations import CambridgeMaStreetExcavationsConnector, cambridge_ma_source
+from .official.cotes_darmor_works_orders import CotesDarmorWorksOrdersConnector, cotes_darmor_source
+from .official.brest_traffic_orders import BrestTrafficOrdersConnector, brest_source
+from .official.taichung_excavation import TaichungRoadExcavationConnector, taichung_excavation_source
+from .official.new_plymouth_car import NewPlymouthCorridorAccessConnector, new_plymouth_source
+from .official.south_tyrol_traffic import SouthTyrolTrafficReportsConnector, south_tyrol_source
+from .official.quebec_city_entraves import QuebecCityEntravesConnector, quebec_city_source
+from .official.longueuil import LongueuilEntravesConnector, longueuil_source
+from .official.saguenay import SaguenayChantiersConnector, saguenay_source
+from .official.waterloo_region import WaterlooRegionRoadClosuresConnector, waterloo_region_source
+from .official.burlington import BurlingtonRoadClosuresConnector, burlington_source
+from .official.national_highways import NationalHighwaysRoadworksConnector, national_highways_source
+from .official.cita_roadworks import CitaRoadworksConnector, cita_roadworks_source
 from .official.trafikverket import TrafikverketSituationsConnector, trafikverket_source
 from .restricted import RESTRICTED_PUBLISHERS
 from .rss import create_rss_connector
@@ -346,6 +370,37 @@ def _official_sources(
             (copenhagen_source, CopenhagenExcavationPermitsConnector),
             # 5 November 2026 (decision 0058): Estonia (Tallinn).
             (tallinn_source, TallinnStreetClosuresConnector),
+            # 5 November 2026 (decision 0059): the worldwide search's new official feeds.
+            # Germany and Austria.
+            (mobidata_bw_source, MobiDataBwRoadworksConnector),
+            (trk_source, TrkRoadworksConnector),
+            (muenchen_source, MuenchenRoadworksConnector),
+            (salzburg_source, SalzburgRoadworksConnector),
+            # Switzerland.
+            (zh_canton_roadworks_source, ZhCantonRoadworksConnector),
+            (zurich_city_works_source, ZurichCityWorksConnector),
+            (sz_canton_roadworks_source, SzCantonRoadworksConnector),
+            (ge_infomobilite_source, GeInfomobiliteWorksConnector),
+            # United States.
+            (dc_ddot_source, DcDdotConstructionPermitsConnector),
+            (louisville_source, LouisvilleRowConstructionPermitsConnector),
+            (cambridge_ma_source, CambridgeMaStreetExcavationsConnector),
+            # France.
+            (cotes_darmor_source, CotesDarmorWorksOrdersConnector),
+            (brest_source, BrestTrafficOrdersConnector),
+            # Taiwan (Taichung), New Zealand and Italy (South Tyrol).
+            (taichung_excavation_source, TaichungRoadExcavationConnector),
+            (new_plymouth_source, NewPlymouthCorridorAccessConnector),
+            (south_tyrol_source, SouthTyrolTrafficReportsConnector),
+            # Canada.
+            (quebec_city_source, QuebecCityEntravesConnector),
+            (longueuil_source, LongueuilEntravesConnector),
+            (saguenay_source, SaguenayChantiersConnector),
+            (waterloo_region_source, WaterlooRegionRoadClosuresConnector),
+            (burlington_source, BurlingtonRoadClosuresConnector),
+            # United Kingdom (England) and Luxembourg.
+            (national_highways_source, NationalHighwaysRoadworksConnector),
+            (cita_roadworks_source, CitaRoadworksConnector),
         )
         if (definition := _scheduled_if_chosen(make, scheduled, chosen))
     )

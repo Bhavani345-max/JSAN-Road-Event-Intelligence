@@ -1,0 +1,1974 @@
+{
+ "fetched_at": "2026-11-05T12:40:15+00:00",
+ "request": "https://geo.brest-metropole.fr/arcgis/rest/services/public/GPB_DEP/MapServer/1718004/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+ "note": "A trimmed sample (21 of the 56 features, every area of 14 of the 45 orders, in the layer's order; no exceededTransferLimit), features unchanged but for EMETTEUR (the applicant, a company or a private person: placeholder) and the firm allowed to park named in PARAMMESUR ('entreprise autorisée : ...': placeholder).",
+ "items": [
+  {
+   "type": "Feature",
+   "id": 9,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.5144321912175105,
+       48.38260773249265
+      ],
+      [
+       -4.514449538637995,
+       48.382636563887054
+      ],
+      [
+       -4.514574903746332,
+       48.38260309115044
+      ],
+      [
+       -4.514548339093966,
+       48.38255894414855
+      ],
+      [
+       -4.514517225987979,
+       48.38253591536441
+      ],
+      [
+       -4.513757103808821,
+       48.38226814985451
+      ],
+      [
+       -4.513654921622093,
+       48.38218829650035
+      ],
+      [
+       -4.513661505408205,
+       48.38206796953227
+      ],
+      [
+       -4.515176321621318,
+       48.38213151295267
+      ],
+      [
+       -4.51518480754526,
+       48.38204172307998
+      ],
+      [
+       -4.513600792039511,
+       48.381975276170415
+      ],
+      [
+       -4.5135290622634106,
+       48.38201853291194
+      ],
+      [
+       -4.5135189944061445,
+       48.38220251457421
+      ],
+      [
+       -4.513535086215596,
+       48.38223333464244
+      ],
+      [
+       -4.513662707830043,
+       48.38233306939418
+      ],
+      [
+       -4.513682532094704,
+       48.382343653711594
+      ],
+      [
+       -4.5144321912175105,
+       48.38260773249265
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE PAUL BERT, DE LA RUE ANATOLE FRANCE JUSQU'À LA RUE DE LA MARNE;RUE DE LA MARNE, DE LA RUE PAUL B",
+    "MESURES": "BZH - Circulation interdite totale ou partielle;BZH - Interdiction de stationnement",
+    "ARRETEDEB": 1774310400000,
+    "ARRETEFIN": 1774396800000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 03/03/2026 00:00:00 ; Date de début de l'arrêté : 24/03/2026 00:00:00 ; Date de fin de l'arrêté : 25/03/2026 00:00:00 ; Description des travaux : sur réseaux ou ouvrages électriques ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 24/03/2026 00:00:00 au 25/03/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0008",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1006711,
+    "OBJECTID": 9,
+    "IDARRETE": 850955314,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1774310400000,
+    "EMPR_FIN": 1774396800000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 24/03/2026 00:00:00 au 25/03/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : interdiction totale ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : la circulation des véhicules liée à la desserte riveraine sera maintenue et gérée par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N ; BZH - Interdiction de stationnement 2 | interdiction statio : de part et d’autre de l’emprise des travaux ; BZH - Interdiction de stationnement 2 | distance : 30 ; BZH - Interdiction de stationnement 2 | autorisation statio : O ; BZH - Interdiction de stationnement 2 | entreprise autorisée : [entreprise] ; BZH - Interdiction de stationnement 2 | période statio : Du 24/03/2026 00:00:00 au 25/03/2026 00:00:00",
+    "DTCREATION": 1775606400000,
+    "DTMODIF": 1775606400000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 2208.847982445,
+    "SHAPE.LEN": 461.283340906015,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 10,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.515266252534269,
+       48.382691123343335
+      ],
+      [
+       -4.514643494481441,
+       48.382677210702965
+      ],
+      [
+       -4.514638967060589,
+       48.3827671274023
+      ],
+      [
+       -4.515329270931821,
+       48.382782548795724
+      ],
+      [
+       -4.515399027459759,
+       48.382739063073
+      ],
+      [
+       -4.515463145691287,
+       48.381435409668214
+      ],
+      [
+       -4.515400216767777,
+       48.38138905563314
+      ],
+      [
+       -4.513713648604782,
+       48.38131295573078
+      ],
+      [
+       -4.513704519982718,
+       48.38140271757133
+      ],
+      [
+       -4.5153260257250905,
+       48.381475882447255
+      ],
+      [
+       -4.515266252534269,
+       48.382691123343335
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "DEVIATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE ANATOLE FRANCE, DE LA RUE MESNY JUSQU'À AV DE KERBONNE;AV DE KERBONNE, DE LA RUE ANATOLE FRANCE ",
+    "MESURES": "BZH - Déviation",
+    "ARRETEDEB": 1774310400000,
+    "ARRETEFIN": 1774396800000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 03/03/2026 00:00:00 ; Date de début de l'arrêté : 24/03/2026 00:00:00 ; Date de fin de l'arrêté : 25/03/2026 00:00:00 ; Description des travaux : sur réseaux ou ouvrages électriques ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 24/03/2026 00:00:00 au 25/03/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0008",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1006712,
+    "OBJECTID": 10,
+    "IDARRETE": 850955314,
+    "EMPRISENO": 2,
+    "EMPR_DEB": 1774310400000,
+    "EMPR_FIN": 1774396800000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 24/03/2026 00:00:00 au 25/03/2026 00:00:00",
+    "PARAMMESUR": "BZH - Déviation | sens de circulation : dans un sens comme un autre",
+    "DTCREATION": 1775606400000,
+    "DTMODIF": 1775606400000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 3188.678646095,
+    "SHAPE.LEN": 656.924766332431,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 1,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.5233447999217695,
+       48.391210599507986
+      ],
+      [
+       -4.523416600504701,
+       48.39103339926788
+      ],
+      [
+       -4.523286200299185,
+       48.3910099986295
+      ],
+      [
+       -4.52321439996496,
+       48.39118709933773
+      ],
+      [
+       -4.5233447999217695,
+       48.391210599507986
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "CIRCULATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": " RUE JEAN-SÉBASTIEN BACH",
+    "MESURES": "BZH - Circulation alternée",
+    "ARRETEDEB": 1792972800000,
+    "ARRETEFIN": 1793318400000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 16/10/2026 00:00:00 ; Date de début de l'arrêté : 26/10/2026 00:00:00 ; Date de fin de l'arrêté : 30/10/2026 00:00:00 ; Description des travaux : de réfection de tampons de voirie ; titre : Alternat ; travaux nuit : N ; Période des travaux : Du 26/10/2026 00:00:00 au 30/10/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0036",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1222807,
+    "OBJECTID": 1,
+    "IDARRETE": 851134833,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1792972800000,
+    "EMPR_FIN": 1793318400000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 26/10/2026 00:00:00 au 30/10/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation alternée | type d'alternat : par feux tricolores ; BZH - Circulation alternée | etendue alternat : 50",
+    "DTCREATION": 1793577600000,
+    "DTMODIF": 1793577600000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 203.9366892,
+    "SHAPE.LEN": 60.7891744884519,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 2,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.508105200029252,
+       48.37952609890904
+      ],
+      [
+       -4.50813109983996,
+       48.3795146991383
+      ],
+      [
+       -4.5080569003532105,
+       48.37943959888492
+      ],
+      [
+       -4.508030999903454,
+       48.379450899268704
+      ],
+      [
+       -4.508105200029252,
+       48.37952609890904
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "43 RUE BÉRANGER",
+    "MESURES": "BZH - Interdiction de stationnement;BZH - Circulation interdite totale ou partielle",
+    "ARRETEDEB": 1793750400000,
+    "ARRETEFIN": 1793750400000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 19/10/2026 00:00:00 ; Date de début de l'arrêté : 04/11/2026 00:00:00 ; Date de fin de l'arrêté : 04/11/2026 00:00:00 ; Description des travaux : de livraison de béton ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 04/11/2026 00:00:00 au 04/11/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0037",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1222820,
+    "OBJECTID": 2,
+    "IDARRETE": 851134849,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1793750400000,
+    "EMPR_FIN": 1793750400000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 04/11/2026 00:00:00 au 04/11/2026 00:00:00",
+    "PARAMMESUR": "BZH - Interdiction de stationnement 2 | interdiction statio : de part et d’autre de l’emprise des travaux ; BZH - Interdiction de stationnement 2 | distance : 30 ; BZH - Interdiction de stationnement 2 | autorisation statio : N ; BZH - Circulation interdite totale ou partielle | type interdiction : voie réduite ; BZH - Circulation interdite totale ou partielle | section : entre les habitations numérotées 45 et 41 ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : le passage des véhicules s’écoulera sur la bande de chaussée restante et sera géré manuellement par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N",
+    "DTCREATION": 1793577600000,
+    "DTMODIF": 1793577600000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 22.95059735,
+    "SHAPE.LEN": 24.5869384483834,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 3,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.500931200176438,
+       48.38611429879307
+      ],
+      [
+       -4.501220499998701,
+       48.386121798838914
+      ],
+      [
+       -4.501225800618884,
+       48.38603189944748
+      ],
+      [
+       -4.5009364999457295,
+       48.38602439949941
+      ],
+      [
+       -4.500931200176438,
+       48.38611429879307
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "PL JOSEPH GOEZ, DE LA RUE DU 18 JUIN 1940 JUSQU'À LA RUE JEAN BART",
+    "MESURES": "BZH - Interdiction de stationnement",
+    "ARRETEDEB": 1792972800000,
+    "ARRETEFIN": 1808611200000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 19/10/2026 00:00:00 ; Date de début de l'arrêté : 26/10/2026 00:00:00 ; Date de fin de l'arrêté : 25/04/2027 00:00:00 ; Description des travaux : de dépollution du 2eme dépôt ; titre : Réglementation du stationnement ; travaux nuit : N ; Période des travaux : Du 26/10/2026 00:00:00 au 25/04/2027 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0038",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1222834,
+    "OBJECTID": 3,
+    "IDARRETE": 851134863,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1792972800000,
+    "EMPR_FIN": 1808611200000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 26/10/2026 00:00:00 au 25/04/2027 00:00:00",
+    "PARAMMESUR": "BZH - Interdiction de stationnement | interdiction statio : au droit et le long de l’emprise des travaux ; BZH - Interdiction de stationnement | distance : 20 ; BZH - Interdiction de stationnement | autorisation statio : N",
+    "DTCREATION": 1793577600000,
+    "DTMODIF": 1793577600000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 214.352848785,
+    "SHAPE.LEN": 62.870170720972595,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 5,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.535334599362413,
+       48.39114039871107
+      ],
+      [
+       -4.535360899906473,
+       48.39107499925484
+      ],
+      [
+       -4.535186799441611,
+       48.39108079940318
+      ],
+      [
+       -4.535193299477998,
+       48.3911374993476
+      ],
+      [
+       -4.535334599362413,
+       48.39114039871107
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "CIRCULATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "35 RUE JOHANN STRAUSS",
+    "MESURES": "BZH - Circulation interdite totale ou partielle",
+    "ARRETEDEB": 1793232000000,
+    "ARRETEFIN": 1793318400000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 19/10/2026 00:00:00 ; Date de début de l'arrêté : 29/10/2026 00:00:00 ; Date de fin de l'arrêté : 30/10/2026 00:00:00 ; Description des travaux : renouvellement de tampons de voirie ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 29/10/2026 00:00:00 au 30/10/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0040",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1222852,
+    "OBJECTID": 5,
+    "IDARRETE": 851134878,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1793232000000,
+    "EMPR_FIN": 1793318400000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 29/10/2026 00:00:00 au 30/10/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : interdiction totale ; BZH - Circulation interdite totale ou partielle | section : entre la rue Alfred Dreyfus et la rue Edwige Feuillère ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : la circulation des véhicules liée à la desserte riveraine sera maintenue et gérée par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N",
+    "DTCREATION": 1793577600000,
+    "DTMODIF": 1793577600000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 79.1021261,
+    "SHAPE.LEN": 37.2160784215167,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 6,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.538993299759789,
+       48.39169179870904
+      ],
+      [
+       -4.5379537995528825,
+       48.390679599130245
+      ],
+      [
+       -4.537842299997685,
+       48.39073039867343
+      ],
+      [
+       -4.538874999880659,
+       48.39173599870495
+      ],
+      [
+       -4.539206500484329,
+       48.39261279934263
+      ],
+      [
+       -4.539301100226668,
+       48.3928330988832
+      ],
+      [
+       -4.539201199879883,
+       48.39364629867404
+      ],
+      [
+       -4.5387824998761745,
+       48.394569799501234
+      ],
+      [
+       -4.538227900687768,
+       48.39522349924246
+      ],
+      [
+       -4.537357400203064,
+       48.39567459931932
+      ],
+      [
+       -4.535495400134752,
+       48.395990899216976
+      ],
+      [
+       -4.533534400439891,
+       48.396409198963106
+      ],
+      [
+       -4.53253509993084,
+       48.39676949907623
+      ],
+      [
+       -4.531395099679466,
+       48.39722179864135
+      ],
+      [
+       -4.530649800488922,
+       48.397579299301846
+      ],
+      [
+       -4.528482899517996,
+       48.39608949952136
+      ],
+      [
+       -4.528672999756377,
+       48.394017799055774
+      ],
+      [
+       -4.528538200502114,
+       48.39401229918295
+      ],
+      [
+       -4.528346200487333,
+       48.39610379874102
+      ],
+      [
+       -4.528365099993167,
+       48.39613789901686
+      ],
+      [
+       -4.53059339978184,
+       48.39766979867172
+      ],
+      [
+       -4.530681399729629,
+       48.397674999201286
+      ],
+      [
+       -4.5314668003172915,
+       48.3972980990946
+      ],
+      [
+       -4.532603100464586,
+       48.396847299082694
+      ],
+      [
+       -4.533581599846804,
+       48.3964935994535
+      ],
+      [
+       -4.535534600000308,
+       48.39607689902709
+      ],
+      [
+       -4.537429200045516,
+       48.39575139917492
+      ],
+      [
+       -4.538338799491227,
+       48.39527559938445
+      ],
+      [
+       -4.538909700642773,
+       48.394600599353076
+      ],
+      [
+       -4.539332600173544,
+       48.393667699209225
+      ],
+      [
+       -4.539434299794194,
+       48.39281619871151
+      ],
+      [
+       -4.539337200368958,
+       48.392590099135965
+      ],
+      [
+       -4.538993299759789,
+       48.39169179870904
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "DEVIATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": " BD TANGUY PRIGENT;À L'INTERSECTION  DE BD TANGUY PRIGENT ET DE LA RUE PIERRE MAXIMIN AUDEMAR;RUE MO",
+    "MESURES": "BZH - Déviation",
+    "ARRETEDEB": 1793232000000,
+    "ARRETEFIN": 1793318400000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 19/10/2026 00:00:00 ; Date de début de l'arrêté : 29/10/2026 00:00:00 ; Date de fin de l'arrêté : 30/10/2026 00:00:00 ; Description des travaux : renouvellement de tampons de voirie ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 29/10/2026 00:00:00 au 30/10/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0040",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1222853,
+    "OBJECTID": 6,
+    "IDARRETE": 851134878,
+    "EMPRISENO": 2,
+    "EMPR_DEB": 1793232000000,
+    "EMPR_FIN": 1793318400000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 29/10/2026 00:00:00 au 30/10/2026 00:00:00",
+    "PARAMMESUR": null,
+    "DTCREATION": 1793577600000,
+    "DTMODIF": 1793577600000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 16410.989084865,
+    "SHAPE.LEN": 3320.2893433909003,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 7,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.529229560388364,
+       48.38488113624865
+      ],
+      [
+       -4.529214563838044,
+       48.38472031647919
+      ],
+      [
+       -4.529079758612628,
+       48.384725893054984
+      ],
+      [
+       -4.529089510682844,
+       48.38483047772855
+      ],
+      [
+       -4.528013472442441,
+       48.38471386614592
+      ],
+      [
+       -4.528001362607126,
+       48.38476344499872
+      ],
+      [
+       -4.527931239980533,
+       48.38477308837841
+      ],
+      [
+       -4.528044340499456,
+       48.38513796682351
+      ],
+      [
+       -4.528176616484622,
+       48.385119775029914
+      ],
+      [
+       -4.528081330473759,
+       48.38481237086041
+      ],
+      [
+       -4.52915131194944,
+       48.38492832485176
+      ],
+      [
+       -4.529229560388364,
+       48.38488113624865
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "CIRCULATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE AMIRAL GRIVEL, DU 20 JUSQU'À LA RUE AMIRAL MORARD DE GALLE;RUE AMIRAL MORARD DE GALLE, DE LA RUE",
+    "MESURES": "BZH - Circulation interdite totale ou partielle;BZH - Circulation interdite totale ou partielle",
+    "ARRETEDEB": 1776643200000,
+    "ARRETEFIN": 1778112000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 08/04/2026 00:00:00 ; Date de début de l'arrêté : 20/04/2026 00:00:00 ; Date de fin de l'arrêté : 07/05/2026 00:00:00 ; titre : Chaussée rétrécie ; travaux nuit : N ; Période des travaux : Du 20/04/2026 00:00:00 au 07/05/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0030",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1130616,
+    "OBJECTID": 7,
+    "IDARRETE": 851060135,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1776643200000,
+    "EMPR_FIN": 1778112000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 20/04/2026 00:00:00 au 07/05/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : interdiction totale ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : la circulation des véhicules liée à la desserte riveraine sera maintenue et gérée par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N ; BZH - Circulation interdite totale ou partielle 2 | type interdiction : voie réduite ; BZH - Circulation interdite totale ou partielle 2 | precision distance : O ; BZH - Circulation interdite totale ou partielle 2 | distance : 50 ; BZH - Circulation interdite totale ou partielle 2 | impact mesure : autre choix ; BZH - Circulation interdite totale ou partielle 2 | impact autre choix : la circulation se fera sur la bande centrale de la voie dans le sens bd Plymouth vers Anatole France\nla circulation se fera dans la voie la plus à droite de la voie, dans le sens ",
+    "DTCREATION": 1787184000000,
+    "DTMODIF": 1787184000000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 1413.717966035,
+    "SHAPE.LEN": 305.53388841148904,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 15,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.511434479173539,
+       48.405492918417224
+      ],
+      [
+       -4.512437186316922,
+       48.40542390396186
+      ],
+      [
+       -4.512423291078992,
+       48.40533441510481
+      ],
+      [
+       -4.51140480768605,
+       48.40540451585985
+      ],
+      [
+       -4.511375625182557,
+       48.40541125001741
+      ],
+      [
+       -4.511096855788391,
+       48.40552871752626
+      ],
+      [
+       -4.511169114117038,
+       48.40560473833562
+      ],
+      [
+       -4.511434479173539,
+       48.405492918417224
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "DU 8 AU 2 RUE DU DAUPHINÉ",
+    "MESURES": "BZH - Interdiction de stationnement;BZH - Circulation interdite totale ou partielle",
+    "ARRETEDEB": 1775520000000,
+    "ARRETEFIN": 1777248000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 01/04/2026 00:00:00 ; Date de début de l'arrêté : 07/04/2026 00:00:00 ; Date de fin de l'arrêté : 27/04/2026 00:00:00 ; Description des travaux : sur réseaux ou ouvrages d'eaux pluviales ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 07/04/2026 00:00:00 au 27/04/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0012",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1006848,
+    "OBJECTID": 15,
+    "IDARRETE": 850955448,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1775520000000,
+    "EMPR_FIN": 1777248000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 07/04/2026 00:00:00 au 27/04/2026 00:00:00",
+    "PARAMMESUR": "BZH - Interdiction de stationnement 2 | interdiction statio : de part et d’autre de l’emprise des travaux ; BZH - Interdiction de stationnement 2 | distance : 50 ; BZH - Interdiction de stationnement 2 | autorisation statio : O ; BZH - Interdiction de stationnement 2 | entreprise autorisée : [entreprise] ; BZH - Interdiction de stationnement 2 | période statio : Du 07/04/2026 00:00:00 au 27/04/2026 00:00:00 ; BZH - Circulation interdite totale ou partielle | type interdiction : sur une voie précise ; BZH - Circulation interdite totale ou partielle | voie précise : dans la voie la plus à droite ; BZH - Circulation interdite totale ou partielle | section : entre la rue d'Anjou et l'avenue de Tarente ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : autre choix ; BZH - Circulation interdite totale ou partielle | impact autre choix : dans le sens rue d'Anjou vers Tarente ; BZH - Circulation interd",
+    "DTCREATION": 1775606400000,
+    "DTMODIF": 1775606400000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 1001.63781029,
+    "SHAPE.LEN": 220.327091876273,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 16,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.51703175361663,
+       48.40508330361447
+      ],
+      [
+       -4.512604321074582,
+       48.40532695961776
+      ],
+      [
+       -4.512615446335773,
+       48.405416619054634
+      ],
+      [
+       -4.51701629464924,
+       48.40517442735238
+      ],
+      [
+       -4.517192078215852,
+       48.40526711479105
+      ],
+      [
+       -4.517499616150274,
+       48.40724741341512
+      ],
+      [
+       -4.5135408883089845,
+       48.40745134010681
+      ],
+      [
+       -4.513551307180146,
+       48.40754103800274
+      ],
+      [
+       -4.517579163357844,
+       48.40733354953358
+      ],
+      [
+       -4.51764115394938,
+       48.4072840737031
+      ],
+      [
+       -4.5173235508013825,
+       48.40523899806275
+      ],
+      [
+       -4.517298292001882,
+       48.405208360025696
+      ],
+      [
+       -4.517079262300751,
+       48.40509286963452
+      ],
+      [
+       -4.51703175361663,
+       48.40508330361447
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "DEVIATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE DU DAUPHINÉ, DE LA RUE D'' ANJOU JUSQU'AU 9;RUE DE GASCOGNE, DU 1 JUSQU'À AV DE PROVENCE;AV DE P",
+    "MESURES": "BZH - Déviation",
+    "ARRETEDEB": 1775520000000,
+    "ARRETEFIN": 1777248000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 01/04/2026 00:00:00 ; Date de début de l'arrêté : 07/04/2026 00:00:00 ; Date de fin de l'arrêté : 27/04/2026 00:00:00 ; Description des travaux : sur réseaux ou ouvrages d'eaux pluviales ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 07/04/2026 00:00:00 au 27/04/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0012",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1006849,
+    "OBJECTID": 16,
+    "IDARRETE": 850955448,
+    "EMPRISENO": 2,
+    "EMPR_DEB": 1775520000000,
+    "EMPR_FIN": 1777248000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 07/04/2026 00:00:00 au 27/04/2026 00:00:00",
+    "PARAMMESUR": "BZH - Déviation | sens de circulation :   ",
+    "DTCREATION": 1775606400000,
+    "DTMODIF": 1775606400000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 8753.641939534999,
+    "SHAPE.LEN": 1770.23767728719,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 19,
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -4.554667959255817,
+        48.375939685361644
+       ],
+       [
+        -4.554802384674857,
+        48.375931090822945
+       ],
+       [
+        -4.554789484042974,
+        48.375841534542296
+       ],
+       [
+        -4.5546550588506705,
+        48.375850129066926
+       ],
+       [
+        -4.554667959255817,
+        48.375939685361644
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -4.541951694772115,
+        48.38053518670019
+       ],
+       [
+        -4.542086134011183,
+        48.38052660661347
+       ],
+       [
+        -4.542073253902353,
+        48.38043704925831
+       ],
+       [
+        -4.541938814890078,
+        48.380445629331014
+       ],
+       [
+        -4.541951694772115,
+        48.38053518670019
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -4.539821430547389,
+        48.38201656847444
+       ],
+       [
+        -4.539955873920151,
+        48.382007990813335
+       ],
+       [
+        -4.539942997075596,
+        48.3819184333263
+       ],
+       [
+        -4.539808553929639,
+        48.38192701097337
+       ],
+       [
+        -4.539821430547389,
+        48.38201656847444
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -4.535109327760406,
+        48.38518122908424
+       ],
+       [
+        -4.5352437799906875,
+        48.3851726567879
+       ],
+       [
+        -4.535230910394764,
+        48.38508309900202
+       ],
+       [
+        -4.5350964583913225,
+        48.38509167128435
+       ],
+       [
+        -4.535109327760406,
+        48.38518122908424
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -4.527884320661785,
+        48.3867462796753
+       ],
+       [
+        -4.52801877806996,
+        48.38673771558354
+       ],
+       [
+        -4.528005920393744,
+        48.386648157119055
+       ],
+       [
+        -4.5278714632124295,
+        48.38665672119679
+       ],
+       [
+        -4.527884320661785,
+        48.3867462796753
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -4.527252588738062,
+        48.3868714461432
+       ],
+       [
+        -4.5273870465690855,
+        48.38686288276876
+       ],
+       [
+        -4.5273741899379845,
+        48.38677332424417
+       ],
+       [
+        -4.5272397323338245,
+        48.38678188760465
+       ],
+       [
+        -4.527252588738062,
+        48.3868714461432
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        -4.522188406375982,
+        48.388744708611036
+       ],
+       [
+        -4.522322869820463,
+        48.38873615099241
+       ],
+       [
+        -4.522310021355064,
+        48.388646592045035
+       ],
+       [
+        -4.522175558137468,
+        48.38865514964968
+       ],
+       [
+        -4.522188406375982,
+        48.388744708611036
+       ]
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "CIRCULATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "27 RUE DU PANIER FLEURI;52 BD DE PLYMOUTH;133 BD DE PLYMOUTH;855 AV DE TALLINN;31 BD DE PLYMOUTH;19 ",
+    "MESURES": "BZH - Circulation interdite totale ou partielle;BZH - Circulation alternée;BZH - Circulation interdi",
+    "ARRETEDEB": 1783555200000,
+    "ARRETEFIN": 1787529600000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 15/06/2026 00:00:00 ; Date de début de l'arrêté : 09/07/2026 00:00:00 ; Date de fin de l'arrêté : 24/08/2026 00:00:00 ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 09/07/2026 00:00:00 au 24/07/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0015",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1074130,
+    "OBJECTID": 19,
+    "IDARRETE": 851012911,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1783555200000,
+    "EMPR_FIN": 1787529600000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 09/07/2026 00:00:00 au 24/08/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : interdiction totale ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : la circulation des véhicules liée à la desserte riveraine sera maintenue et gérée par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N ; BZH - Circulation alternée 2 | type d'alternat : B15 C18 ; BZH - Circulation alternée 2 | etendue alternat : 30 ; BZH - Circulation interdite totale ou partielle 3 | type interdiction : sur une voie précise ; BZH - Circulation interdite totale ou partielle 3 | voie précise : dans la voie la plus à droite ; BZH - Circulation interdite totale ou partielle 3 | precision distance : O ; BZH - Circulation interdite totale ou partielle 3 | distance : 30 ; BZH - Circulation interdite totale ou partielle 3 | impact mesure : le passage des véhicules s'effectuera sur une",
+    "DTCREATION": 1781740800000,
+    "DTMODIF": 1781740800000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 700,
+    "SHAPE.LEN": 280,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 20,
+   "geometry": null,
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "37 RTE DE LA CORNICHE",
+    "MESURES": "BZH - Circulation alternée;BZH - Interdiction de stationnement",
+    "ARRETEDEB": 1782691200000,
+    "ARRETEFIN": 1782691200000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 12/06/2026 00:00:00 ; Date de début de l'arrêté : 29/06/2026 00:00:00 ; Date de fin de l'arrêté : 29/06/2026 00:00:00 ; Description des travaux : Déménagement ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 29/06/2026 00:00:00 au 29/06/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0016",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1074133,
+    "OBJECTID": 20,
+    "IDARRETE": 851012914,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1782691200000,
+    "EMPR_FIN": 1782691200000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 29/06/2026 00:00:00 au 29/06/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation alternée | type d'alternat : manuellement par l'entreprise ; BZH - Circulation alternée | etendue alternat : 30 ; BZH - Interdiction de stationnement 2 | interdiction statio : de part et d’autre de l’emprise des travaux ; BZH - Interdiction de stationnement 2 | distance : 30 ; BZH - Interdiction de stationnement 2 | autorisation statio : N",
+    "DTCREATION": 1781740800000,
+    "DTMODIF": 1781740800000,
+    "INTERNET": "false",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE": null,
+    "SHAPE.AREA": null,
+    "SHAPE.LEN": null,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 33,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.52680489986131,
+       48.37389169883299
+      ],
+      [
+       -4.526884699876621,
+       48.373958399297706
+      ],
+      [
+       -4.526982300608263,
+       48.3739639989661
+      ],
+      [
+       -4.52737019982259,
+       48.37373439929286
+      ],
+      [
+       -4.527280600604345,
+       48.373667098754574
+      ],
+      [
+       -4.526945900292697,
+       48.373865198999965
+      ],
+      [
+       -4.526900899541841,
+       48.37382749935686
+      ],
+      [
+       -4.527824100502211,
+       48.373290498893006
+      ],
+      [
+       -4.527735300570338,
+       48.37322269858492
+      ],
+      [
+       -4.526782800229864,
+       48.373776798923274
+      ],
+      [
+       -4.526528599934199,
+       48.37395519918522
+      ],
+      [
+       -4.526234799874681,
+       48.374057598793264
+      ],
+      [
+       -4.525946500148325,
+       48.374096898685615
+      ],
+      [
+       -4.525973499569092,
+       48.37418499944068
+      ],
+      [
+       -4.5262889994605215,
+       48.37414029944921
+      ],
+      [
+       -4.526601200385374,
+       48.37403139894064
+      ],
+      [
+       -4.52680489986131,
+       48.37389169883299
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "CIRCULATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE D' YPRES, DE LA RUE DE LIÈGE JUSQU'À AV DE L'ECOLE NAVALE;RUE DE LIÈGE, DU 1 JUSQU'À LA RUE D' Y",
+    "MESURES": "BZH - Circulation interdite totale ou partielle",
+    "ARRETEDEB": 1787788800000,
+    "ARRETEFIN": 1788393600000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 05/08/2026 00:00:00 ; Date de début de l'arrêté : 27/08/2026 00:00:00 ; Date de fin de l'arrêté : 03/09/2026 00:00:00 ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 27/08/2026 00:00:00 au 03/09/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0044",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1223847,
+    "OBJECTID": 33,
+    "IDARRETE": 851135560,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1787788800000,
+    "EMPR_FIN": 1788393600000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 27/08/2026 00:00:00 au 03/09/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : interdiction totale ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : la circulation des véhicules liée à la desserte riveraine sera maintenue et gérée par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N",
+    "DTCREATION": 1793664000000,
+    "DTMODIF": 1793664000000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 2165.668633255,
+    "SHAPE.LEN": 453.377538625224,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 34,
+   "geometry": null,
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "DEVIATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": " RUE D' YPRES",
+    "MESURES": "BZH - Déviation",
+    "ARRETEDEB": 1787788800000,
+    "ARRETEFIN": 1788393600000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 05/08/2026 00:00:00 ; Date de début de l'arrêté : 27/08/2026 00:00:00 ; Date de fin de l'arrêté : 03/09/2026 00:00:00 ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 27/08/2026 00:00:00 au 03/09/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0044",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1223848,
+    "OBJECTID": 34,
+    "IDARRETE": 851135560,
+    "EMPRISENO": 2,
+    "EMPR_DEB": 1787788800000,
+    "EMPR_FIN": 1788393600000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 27/08/2026 00:00:00 au 03/09/2026 00:00:00",
+    "PARAMMESUR": "BZH - Déviation | sens de circulation : dans un sens comme un autre",
+    "DTCREATION": 1793664000000,
+    "DTMODIF": 1793664000000,
+    "INTERNET": "false",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE": null,
+    "SHAPE.AREA": null,
+    "SHAPE.LEN": null,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 37,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.515478600650911,
+       48.37558179934788
+      ],
+      [
+       -4.5156130997357105,
+       48.37557329914381
+      ],
+      [
+       -4.515600200598564,
+       48.37548369935768
+      ],
+      [
+       -4.515465800103083,
+       48.375492299032565
+      ],
+      [
+       -4.515478600650911,
+       48.37558179934788
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "85 CHE DE KERASTEL MONTAGNE",
+    "MESURES": "BZH - Circulation interdite totale ou partielle;BZH - Interdiction de stationnement",
+    "ARRETEDEB": 1788220800000,
+    "ARRETEFIN": 1801699200000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 24/08/2026 00:00:00 ; Date de début de l'arrêté : 01/09/2026 00:00:00 ; Date de fin de l'arrêté : 04/02/2027 00:00:00 ; titre : Chaussée rétrécie ; travaux nuit : N ; Période des travaux : Du 01/09/2026 00:00:00 au 04/09/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0048",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1223907,
+    "OBJECTID": 37,
+    "IDARRETE": 851135615,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1788220800000,
+    "EMPR_FIN": 1801699200000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 01/09/2026 00:00:00 au 04/02/2027 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : voie réduite ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : le passage des véhicules s’écoulera sur la bande de chaussée restante et sera géré manuellement par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N ; BZH - Interdiction de stationnement 2 | interdiction statio : au droit et le long de l’emprise des travaux ; BZH - Interdiction de stationnement 2 | distance : 20 ; BZH - Interdiction de stationnement 2 | autorisation statio : N",
+    "DTCREATION": 1793664000000,
+    "DTMODIF": 1793664000000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 100.003498335,
+    "SHAPE.LEN": 40.0007045536137,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 40,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.52754749973903,
+       48.38217279890235
+      ],
+      [
+       -4.52754530004964,
+       48.38216309869189
+      ],
+      [
+       -4.527411700451225,
+       48.38217649871346
+      ],
+      [
+       -4.527422799707304,
+       48.38222559887881
+      ],
+      [
+       -4.527491599508819,
+       48.38226389932446
+      ],
+      [
+       -4.527858899988449,
+       48.38225669906612
+      ],
+      [
+       -4.527854900452494,
+       48.38216679935158
+      ],
+      [
+       -4.52754749973903,
+       48.38217279890235
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "3 RUE EMILE ROUSSE",
+    "MESURES": "BZH - Circulation interdite totale ou partielle;BZH - Cheminement piétonnier interdit;BZH - Interdic",
+    "ARRETEDEB": 1788739200000,
+    "ARRETEFIN": 1790467200000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 28/08/2026 00:00:00 ; Date de début de l'arrêté : 07/09/2026 00:00:00 ; Date de fin de l'arrêté : 27/09/2026 00:00:00 ; titre : Alternat ; travaux nuit : N ; Période des travaux : Du 07/09/2026 00:00:00 au 27/09/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0050",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1223963,
+    "OBJECTID": 40,
+    "IDARRETE": 851135666,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1788739200000,
+    "EMPR_FIN": 1790467200000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 07/09/2026 00:00:00 au 27/09/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : voie réduite ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : le passage des véhicules s’écoulera sur la bande de chaussée restante et sera géré manuellement par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N ; BZH - Interdiction de stationnement 3 | interdiction statio : de part et d’autre de l’emprise des travaux ; BZH - Interdiction de stationnement 3 | distance : 50 ; BZH - Interdiction de stationnement 3 | autorisation statio : O ; BZH - Interdiction de stationnement 3 | entreprise autorisée : [entreprise] ; BZH - Interdiction de stationnement 3 | période statio : Du 07/09/2026 00:00:00 au 27/09/2026 00:00:00",
+    "DTCREATION": 1793664000000,
+    "DTMODIF": 1793664000000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 317.510991315,
+    "SHAPE.LEN": 83.2260675945296,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 51,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.535207821273328,
+       48.37650598135403
+      ],
+      [
+       -4.535162988453949,
+       48.37657422487451
+      ],
+      [
+       -4.535286704441821,
+       48.376610296902484
+      ],
+      [
+       -4.535331535658347,
+       48.37654205252715
+      ],
+      [
+       -4.535207821273328,
+       48.37650598135403
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "CIRCULATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "65 RUE DU CRUGUEL",
+    "MESURES": "BZH - Circulation interdite totale ou partielle;BZH - Cheminement piétonnier interdit;BZH - Circulat",
+    "ARRETEDEB": 1783728000000,
+    "ARRETEFIN": 1783728000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 19/06/2026 00:00:00 ; Date de début de l'arrêté : 11/07/2026 00:00:00 ; Date de fin de l'arrêté : 11/07/2026 00:00:00 ; Description des travaux : Déménagement ; titre : Chaussée rétrécie ; travaux nuit : N ; Période des travaux : Du 11/07/2026 00:00:00 au 11/07/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0018",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1083687,
+    "OBJECTID": 51,
+    "IDARRETE": 851020752,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1783728000000,
+    "EMPR_FIN": 1783728000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 11/07/2026 00:00:00 au 11/07/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : voie réduite ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : le passage des véhicules s’écoulera sur la bande de chaussée restante et sera géré manuellement par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N ; BZH - Circulation interdite aux cyclistes 3 | preciser distance : N",
+    "DTCREATION": 1782432000000,
+    "DTMODIF": 1782432000000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 82.800513615,
+    "SHAPE.LEN": 36.56010732319609,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 53,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.500003249384967,
+       48.384079784395446
+      ],
+      [
+       -4.499941179000465,
+       48.384217382725886
+      ],
+      [
+       -4.5000705312475215,
+       48.38424327247462
+      ],
+      [
+       -4.500138142163639,
+       48.38409338849596
+      ],
+      [
+       -4.500138663758783,
+       48.384068719291015
+      ],
+      [
+       -4.499756884694116,
+       48.383126761232866
+      ],
+      [
+       -4.500367709926454,
+       48.38214995281659
+      ],
+      [
+       -4.503445030452192,
+       48.38236672029956
+      ],
+      [
+       -4.503728054644058,
+       48.383957351684856
+      ],
+      [
+       -4.503862179767105,
+       48.38394676176195
+      ],
+      [
+       -4.50357280458495,
+       48.382320467694335
+      ],
+      [
+       -4.503512845185643,
+       48.382281027435035
+      ],
+      [
+       -4.500331837747619,
+       48.38205695640517
+      ],
+      [
+       -4.500262398139195,
+       48.38208439352023
+      ],
+      [
+       -4.499623337292011,
+       48.38310635212936
+      ],
+      [
+       -4.499620479027247,
+       48.38313537474194
+      ],
+      [
+       -4.500003249384967,
+       48.384079784395446
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "DEVIATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE BOUILLON, DE LA RUE DE LA PORTE JUSQU'À LA RUE SAINT-SAUVEUR;RUE DE LA COMMUNAUTÉ, DE LA RUE SAI",
+    "MESURES": "BZH - Déviation",
+    "ARRETEDEB": 1785110400000,
+    "ARRETEFIN": 1785456000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 30/06/2026 00:00:00 ; Date de début de l'arrêté : 27/07/2026 00:00:00 ; Date de fin de l'arrêté : 31/07/2026 00:00:00 ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0024",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1125829,
+    "OBJECTID": 53,
+    "IDARRETE": 851055989,
+    "EMPRISENO": 2,
+    "EMPR_DEB": 1785110400000,
+    "EMPR_FIN": 1785456000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00",
+    "PARAMMESUR": "BZH - Déviation | sens de circulation : dans un sens comme un autre",
+    "DTCREATION": 1786492800000,
+    "DTMODIF": 1786492800000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 6678.89424071,
+    "SHAPE.LEN": 1355.43667038246,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 54,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.502530919828078,
+       48.38403515671241
+      ],
+      [
+       -4.5021216212330994,
+       48.382249311974554
+      ],
+      [
+       -4.501988108246351,
+       48.38226288979911
+      ],
+      [
+       -4.502386772517139,
+       48.38400235431007
+      ],
+      [
+       -4.500229606569044,
+       48.38416016120438
+      ],
+      [
+       -4.500244349875192,
+       48.38424959110196
+      ],
+      [
+       -4.502471534659528,
+       48.384086660679635
+      ],
+      [
+       -4.502530919828078,
+       48.38403515671241
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "DEVIATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE DU REMPART, DE LA RUE DE L'EGLISE JUSQU'À LA RUE DE LA PORTE;RUE DE LA PORTE, DE LA RUE DU REMPA",
+    "MESURES": "BZH - Déviation",
+    "ARRETEDEB": 1785110400000,
+    "ARRETEFIN": 1785456000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 30/06/2026 00:00:00 ; Date de début de l'arrêté : 27/07/2026 00:00:00 ; Date de fin de l'arrêté : 31/07/2026 00:00:00 ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0024",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1125831,
+    "OBJECTID": 54,
+    "IDARRETE": 851055989,
+    "EMPRISENO": 4,
+    "EMPR_DEB": 1785110400000,
+    "EMPR_FIN": 1785456000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00",
+    "PARAMMESUR": "BZH - Déviation | sens de circulation :   ",
+    "DTCREATION": 1786492800000,
+    "DTMODIF": 1786492800000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 3653.31297026,
+    "SHAPE.LEN": 750.166679715134,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 55,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.500392389712515,
+       48.38215789213196
+      ],
+      [
+       -4.501994544326544,
+       48.38226650202585
+      ],
+      [
+       -4.502008216343489,
+       48.38217699716908
+      ],
+      [
+       -4.500406065771915,
+       48.38206838736736
+      ],
+      [
+       -4.500392389712515,
+       48.38215789213196
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "STATIONNEMENT",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "RUE DE L'EGLISE, DE LA RUE DU REMPART JUSQU'À LA RUE DE LA COMMUNAUTÉ",
+    "MESURES": "BZH - Circulation interdite totale ou partielle;BZH - Interdiction de stationnement",
+    "ARRETEDEB": 1785110400000,
+    "ARRETEFIN": 1785456000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 30/06/2026 00:00:00 ; Date de début de l'arrêté : 27/07/2026 00:00:00 ; Date de fin de l'arrêté : 31/07/2026 00:00:00 ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0024",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1125830,
+    "OBJECTID": 55,
+    "IDARRETE": 851055989,
+    "EMPRISENO": 3,
+    "EMPR_DEB": 1785110400000,
+    "EMPR_FIN": 1785456000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : sur une voie précise ; BZH - Circulation interdite totale ou partielle | voie précise : dans le sens rue de l'Eglise vers recouvrance  ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : la circulation des véhicules liée à la desserte riveraine sera maintenue et gérée par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N ; BZH - Interdiction de stationnement 2 | interdiction statio : au droit et le long de l’emprise des travaux ; BZH - Interdiction de stationnement 2 | distance : 50 ; BZH - Interdiction de stationnement 2 | autorisation statio : N",
+    "DTCREATION": 1786492800000,
+    "DTMODIF": 1786492800000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 1192.3851287,
+    "SHAPE.LEN": 258.47754277661903,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 56,
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -4.500213372792,
+       48.38428536605452
+      ],
+      [
+       -4.500092079643895,
+       48.384286323204385
+      ],
+      [
+       -4.500093679674406,
+       48.384376283506676
+      ],
+      [
+       -4.500214971813458,
+       48.384375327336215
+      ],
+      [
+       -4.500213372792,
+       48.38428536605452
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "NOMMODELE": "BZH - Arrêté temporaire travaux",
+    "EMPR_TYPE": "CIRCULATION",
+    "EMETTEUR": "[demandeur]",
+    "LOCALISATIO": "31 RUE DE LA PORTE",
+    "MESURES": "BZH - Circulation interdite totale ou partielle",
+    "ARRETEDEB": 1785110400000,
+    "ARRETEFIN": 1785456000000,
+    "CATEGMODEL": "Travaux",
+    "PARAMARR": "Date de réception de la demande : 30/06/2026 00:00:00 ; Date de début de l'arrêté : 27/07/2026 00:00:00 ; Date de fin de l'arrêté : 31/07/2026 00:00:00 ; titre : Route barrée ; travaux nuit : N ; Période des travaux : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00 ; cheminement piétons : N ; MEP signa : le demandeur ; dispositif particulier : A l’achèvement des travaux en cause, le Domaine Public sera rétabli à son état initial. ; indemnites statio : N ; ajout annexe : N",
+    "ARRETESRCID": "26-AT-0024",
+    "COLLECTIVITE": "Brest-metropole",
+    "COLLECT_ID": 254514,
+    "DOCTYPE": "ARRETE TEMPORAIRE",
+    "IDEMPRISE": 1125828,
+    "OBJECTID": 56,
+    "IDARRETE": 851055989,
+    "EMPRISENO": 1,
+    "EMPR_DEB": 1785110400000,
+    "EMPR_FIN": 1785456000000,
+    "IDAGENCE": 254514,
+    "FOURNISSEUR": "LIEX",
+    "EMETT_ID": null,
+    "PARAMEMP": "Dates de l'emprise : Du 27/07/2026 00:00:00 au 31/07/2026 00:00:00",
+    "PARAMMESUR": "BZH - Circulation interdite totale ou partielle | type interdiction : interdiction totale ; BZH - Circulation interdite totale ou partielle | precision distance : N ; BZH - Circulation interdite totale ou partielle | impact mesure : la circulation des véhicules liée à la desserte riveraine sera maintenue et gérée par le personnel chargé des travaux ; BZH - Circulation interdite totale ou partielle | déviation voie proximité : N",
+    "DTCREATION": 1786492800000,
+    "DTMODIF": 1786492800000,
+    "INTERNET": "true",
+    "CREATED_USER": "SIG",
+    "CREATED_DATE": 1793740451000,
+    "LAST_EDITED_USER": "SIG",
+    "LAST_EDITED_DATE": 1793740451000,
+    "SHAPE.AREA": 89.80967036,
+    "SHAPE.LEN": 37.9619324513801,
+    "PARA_ARR": null,
+    "PARA_EMP": null,
+    "PARA_MESUR": null,
+    "PARA_MESU2": null,
+    "PARAMMESUR2": null
+   }
+  }
+ ]
+}

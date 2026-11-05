@@ -40,7 +40,12 @@
     "halifax-street-closures",
     "cambridge-on-road-closures",
     "kitchener-traffic-closures",
-    "sherbrooke-travaux"
+    "sherbrooke-travaux",
+    "ca-quebec-city-entraves-wzdx",
+    "ca-longueuil-entraves",
+    "ca-saguenay-chantiers-511",
+    "ca-waterloo-region-road-closures",
+    "ca-burlington-road-closures"
   ],
   "gis_sources": [],
   "source_time_zones": {

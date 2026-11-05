@@ -1,0 +1,2153 @@
+{
+ "layers": {
+  "2": {
+   "type": "FeatureCollection",
+   "features": [
+    {
+     "type": "Feature",
+     "id": 104,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       175.285491999692,
+       -40.6239119988801
+      ]
+     },
+     "properties": {
+      "OBJECTID": 104,
+      "CAR_ID": "E1184479",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Asset Inspections/Maintenance",
+      "LocationInRoad": "Carriageway, Berm",
+      "StreetName": "Corbett Road",
+      "Postcode": "4373",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "KIWIRAIL LIMITED",
+      "EstimatedStartDate": 1785456000000,
+      "EstimatedCompletionDate": 1816905600000,
+      "DateWorkStart": 1785456000000,
+      "DateWorkComplete": 1816905600000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 105,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.169435999505,
+       -39.0423949992488
+      ]
+     },
+     "properties": {
+      "OBJECTID": 105,
+      "CAR_ID": "E1184479",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Asset Inspections/Maintenance",
+      "LocationInRoad": "Carriageway, Berm",
+      "StreetName": "Corbett Road",
+      "Postcode": "4373",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "KIWIRAIL LIMITED",
+      "EstimatedStartDate": 1785456000000,
+      "EstimatedCompletionDate": 1816905600000,
+      "DateWorkStart": 1785456000000,
+      "DateWorkComplete": 1816905600000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 106,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.169435999505,
+       -39.0423949992488
+      ]
+     },
+     "properties": {
+      "OBJECTID": 106,
+      "CAR_ID": "E1184479",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Asset Inspections/Maintenance",
+      "LocationInRoad": "Carriageway, Berm",
+      "StreetName": "Corbett Road",
+      "Postcode": "4373",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "KIWIRAIL LIMITED",
+      "EstimatedStartDate": 1785456000000,
+      "EstimatedCompletionDate": 1816905600000,
+      "DateWorkStart": 1785456000000,
+      "DateWorkComplete": 1816905600000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 107,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.169435999505,
+       -39.0423949992488
+      ]
+     },
+     "properties": {
+      "OBJECTID": 107,
+      "CAR_ID": "E1184479",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Asset Inspections/Maintenance",
+      "LocationInRoad": "Carriageway, Berm",
+      "StreetName": "Corbett Road",
+      "Postcode": "4373",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "KIWIRAIL LIMITED",
+      "EstimatedStartDate": 1785456000000,
+      "EstimatedCompletionDate": 1816905600000,
+      "DateWorkStart": 1785456000000,
+      "DateWorkComplete": 1816905600000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 108,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.169435999505,
+       -39.0423949992488
+      ]
+     },
+     "properties": {
+      "OBJECTID": 108,
+      "CAR_ID": "E1184479",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Asset Inspections/Maintenance",
+      "LocationInRoad": "Carriageway, Berm",
+      "StreetName": "Corbett Road",
+      "Postcode": "4373",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "KIWIRAIL LIMITED",
+      "EstimatedStartDate": 1785456000000,
+      "EstimatedCompletionDate": 1816905600000,
+      "DateWorkStart": 1785456000000,
+      "DateWorkComplete": 1816905600000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 337,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.059680000058,
+       -39.1883479995067
+      ]
+     },
+     "properties": {
+      "OBJECTID": 337,
+      "CAR_ID": "R1206182",
+      "CAR_Type": "Excavation",
+      "WorkType": "Minor",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "New",
+      "Activity": "Vehicle Crossing, Minor Earthworks/Filling",
+      "LocationInRoad": "Berm, Carriageway",
+      "StreetName": "Mangorei Road",
+      "Postcode": "4371",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "private",
+      "EstimatedStartDate": 1794182400000,
+      "EstimatedCompletionDate": 1795910400000,
+      "DateWorkStart": 1794182400000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 490,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.098197000099,
+       -39.0569029989232
+      ]
+     },
+     "properties": {
+      "OBJECTID": 490,
+      "CAR_ID": "R1205849",
+      "CAR_Type": "Retrospective",
+      "WorkType": "Emergency",
+      "CAR_Step": "Work Completion",
+      "CAR_Status": "Work Completion Notified",
+      "Activity": "Other (Specify Detail)",
+      "LocationInRoad": "Footpath, Carriageway",
+      "StreetName": "Rimu Street",
+      "Postcode": "4312",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "TRICKY TREE SPECIALIST LIMITED",
+      "EstimatedStartDate": 1793232000000,
+      "EstimatedCompletionDate": 1793232000000,
+      "DateWorkStart": 1793232000000,
+      "DateWorkComplete": 1793232000000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Actual",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 819,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.075489000067,
+       -39.069323998838
+      ]
+     },
+     "properties": {
+      "OBJECTID": 819,
+      "CAR_ID": "E1204084",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Demolition",
+      "LocationInRoad": "Berm, Footpath",
+      "StreetName": "Various",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "SPARK NEW ZEALAND TRADING LIMITED",
+      "EstimatedStartDate": 1795305600000,
+      "EstimatedCompletionDate": 1796256000000,
+      "DateWorkStart": 1792972800000,
+      "DateWorkComplete": 1795046400000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Revised",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 820,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.085482999755,
+       -39.0807549993985
+      ]
+     },
+     "properties": {
+      "OBJECTID": 820,
+      "CAR_ID": "E1204084",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Demolition",
+      "LocationInRoad": "Berm, Footpath",
+      "StreetName": "Various",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "SPARK NEW ZEALAND TRADING LIMITED",
+      "EstimatedStartDate": 1795305600000,
+      "EstimatedCompletionDate": 1796256000000,
+      "DateWorkStart": 1792972800000,
+      "DateWorkComplete": 1795046400000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Revised",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 920,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.147634000087,
+       -39.0228979993206
+      ]
+     },
+     "properties": {
+      "OBJECTID": 920,
+      "CAR_ID": "E1177045",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Other (Specify Detail)",
+      "LocationInRoad": "Footpath, Carriageway",
+      "StreetName": "Various Road",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "TRAINING AND MENTORING NZ LIMITED",
+      "EstimatedStartDate": 1780272000000,
+      "EstimatedCompletionDate": 1811721600000,
+      "DateWorkStart": 1780444800000,
+      "DateWorkComplete": 1811894400000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 921,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.147668999466,
+       -39.021892998701
+      ]
+     },
+     "properties": {
+      "OBJECTID": 921,
+      "CAR_ID": "E1177045",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Other (Specify Detail)",
+      "LocationInRoad": "Footpath, Carriageway",
+      "StreetName": "Various Road",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "TRAINING AND MENTORING NZ LIMITED",
+      "EstimatedStartDate": 1780272000000,
+      "EstimatedCompletionDate": 1811721600000,
+      "DateWorkStart": 1780444800000,
+      "DateWorkComplete": 1811894400000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 922,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.147668999466,
+       -39.021892998701
+      ]
+     },
+     "properties": {
+      "OBJECTID": 922,
+      "CAR_ID": "E1177045",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Other (Specify Detail)",
+      "LocationInRoad": "Footpath, Carriageway",
+      "StreetName": "Various Road",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "TRAINING AND MENTORING NZ LIMITED",
+      "EstimatedStartDate": 1780272000000,
+      "EstimatedCompletionDate": 1811721600000,
+      "DateWorkStart": 1780444800000,
+      "DateWorkComplete": 1811894400000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 923,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.147668999466,
+       -39.021892998701
+      ]
+     },
+     "properties": {
+      "OBJECTID": 923,
+      "CAR_ID": "E1177045",
+      "CAR_Type": "Non Excavation",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Other (Specify Detail)",
+      "LocationInRoad": "Footpath, Carriageway",
+      "StreetName": "Various Road",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "TRAINING AND MENTORING NZ LIMITED",
+      "EstimatedStartDate": 1780272000000,
+      "EstimatedCompletionDate": 1811721600000,
+      "DateWorkStart": 1780444800000,
+      "DateWorkComplete": 1811894400000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793802948282,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802948282,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 1295,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.072564999445,
+       -39.0572839987766
+      ]
+     },
+     "properties": {
+      "OBJECTID": 1295,
+      "CAR_ID": "E1204695",
+      "CAR_Type": "Event",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Sport Event",
+      "LocationInRoad": null,
+      "StreetName": "Various Roads-Coastal 5",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "WORLD MULTISPORT EVENTS LIMITED",
+      "EstimatedStartDate": 1794528000000,
+      "EstimatedCompletionDate": 1794614400000,
+      "DateWorkStart": 1794528000000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "Yes",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793803531115,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803531115,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 1296,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.082273999536,
+       -39.0632989992273
+      ]
+     },
+     "properties": {
+      "OBJECTID": 1296,
+      "CAR_ID": "E1204695",
+      "CAR_Type": "Event",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Sport Event",
+      "LocationInRoad": null,
+      "StreetName": "Various Roads-Coastal 5",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "WORLD MULTISPORT EVENTS LIMITED",
+      "EstimatedStartDate": 1794528000000,
+      "EstimatedCompletionDate": 1794614400000,
+      "DateWorkStart": 1794528000000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "Yes",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793803531115,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803531115,
+      "Editor": "NPDC.GeoHUB"
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 1297,
+     "geometry": {
+      "type": "Point",
+      "coordinates": [
+       174.082273999536,
+       -39.0632989992273
+      ]
+     },
+     "properties": {
+      "OBJECTID": 1297,
+      "CAR_ID": "E1204695",
+      "CAR_Type": "Event",
+      "WorkType": "Not Applicable",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Sport Event",
+      "LocationInRoad": null,
+      "StreetName": "Various Roads-Coastal 5",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "WORLD MULTISPORT EVENTS LIMITED",
+      "EstimatedStartDate": 1794528000000,
+      "EstimatedCompletionDate": 1794614400000,
+      "DateWorkStart": 1794528000000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "Yes",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CreationDate": 1793803531115,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803531115,
+      "Editor": "NPDC.GeoHUB"
+     }
+    }
+   ]
+  },
+  "3": {
+   "type": "FeatureCollection",
+   "features": [
+    {
+     "type": "Feature",
+     "id": 21,
+     "geometry": {
+      "type": "MultiLineString",
+      "coordinates": [
+       [
+        [
+         174.076515472251,
+         -39.0571136202727
+        ],
+        [
+         174.076552999816,
+         -39.0571029992101
+        ],
+        [
+         174.07649223,
+         -39.0570093129955
+        ],
+        [
+         174.076480999446,
+         -39.0570129994271
+        ],
+        [
+         174.076515472251,
+         -39.0571136202727
+        ]
+       ],
+       [
+        [
+         174.078321000505,
+         -39.0564089993001
+        ],
+        [
+         174.07649223,
+         -39.0570093129955
+        ],
+        [
+         174.076480999534,
+         -39.0569919994362
+        ],
+        [
+         174.07612699991,
+         -39.0571129991132
+        ],
+        [
+         174.075743000149,
+         -39.056414999056
+        ],
+        [
+         174.076256000286,
+         -39.0562399994437
+        ],
+        [
+         174.076115999868,
+         -39.0560969992738
+        ],
+        [
+         174.075627999574,
+         -39.0562319988023
+        ],
+        [
+         174.075436999447,
+         -39.0558719990881
+        ],
+        [
+         174.075348999819,
+         -39.0559179986556
+        ],
+        [
+         174.075520999575,
+         -39.0563089992735
+        ],
+        [
+         174.073653999825,
+         -39.0568649989741
+        ],
+        [
+         174.072503000289,
+         -39.0571979991
+        ],
+        [
+         174.071440999921,
+         -39.0575399993463
+        ],
+        [
+         174.071253000309,
+         -39.0572069989238
+        ],
+        [
+         174.071129999738,
+         -39.0572689994816
+        ],
+        [
+         174.071400999942,
+         -39.0578129991438
+        ],
+        [
+         174.070753999671,
+         -39.0579129988105
+        ],
+        [
+         174.070128999453,
+         -39.0581089992088
+        ],
+        [
+         174.069807999842,
+         -39.0575609993652
+        ],
+        [
+         174.06974300013,
+         -39.0576169994181
+        ]
+       ],
+       [
+        [
+         174.069715999623,
+         -39.0575979988294
+        ],
+        [
+         174.069978999642,
+         -39.0581609990752
+        ],
+        [
+         174.069456000074,
+         -39.058310998927
+        ],
+        [
+         174.069504000365,
+         -39.0584149991065
+        ],
+        [
+         174.070041000444,
+         -39.0582519993454
+        ],
+        [
+         174.070301000479,
+         -39.0588599990009
+        ],
+        [
+         174.068385999854,
+         -39.0594459993616
+        ],
+        [
+         174.068213999577,
+         -39.0591189992833
+        ],
+        [
+         174.068069000133,
+         -39.0591579994718
+        ],
+        [
+         174.068225000045,
+         -39.0594749991182
+        ],
+        [
+         174.067838999762,
+         -39.0596059986563
+        ],
+        [
+         174.067899999535,
+         -39.0597289989508
+        ],
+        [
+         174.068323999587,
+         -39.0595919994284
+        ],
+        [
+         174.068507000303,
+         -39.0599729992865
+        ],
+        [
+         174.06864100041,
+         -39.059932999115
+        ],
+        [
+         174.068436999769,
+         -39.0595499995154
+        ],
+        [
+         174.070717000556,
+         -39.0588629986951
+        ],
+        [
+         174.071091999806,
+         -39.0596189994476
+        ],
+        [
+         174.070659999486,
+         -39.0597479987539
+        ],
+        [
+         174.070714000425,
+         -39.059872999159
+        ],
+        [
+         174.07129900022,
+         -39.059674998629
+        ],
+        [
+         174.071233999803,
+         -39.0595729990338
+        ],
+        [
+         174.071032999683,
+         -39.0592349987017
+        ],
+        [
+         174.07082399992,
+         -39.0588229988376
+        ],
+        [
+         174.072910999908,
+         -39.0581609989976
+        ],
+        [
+         174.073304999469,
+         -39.0589349991754
+        ],
+        [
+         174.072947999461,
+         -39.0590669993783
+        ],
+        [
+         174.073010000085,
+         -39.0591769993969
+        ],
+        [
+         174.073374999941,
+         -39.059057999337
+        ],
+        [
+         174.073500999704,
+         -39.0593539994395
+        ],
+        [
+         174.073621999977,
+         -39.0592919994917
+        ],
+        [
+         174.073465999471,
+         -39.0590329988612
+        ],
+        [
+         174.073409999538,
+         -39.0588689989764
+        ],
+        [
+         174.073224999749,
+         -39.0585229994075
+        ],
+        [
+         174.073037000064,
+         -39.0581439993294
+        ],
+        [
+         174.074177000507,
+         -39.0577939987868
+        ],
+        [
+         174.074560000552,
+         -39.058582999222
+        ],
+        [
+         174.074220000565,
+         -39.0586829993033
+        ],
+        [
+         174.074298000435,
+         -39.0587899992912
+        ],
+        [
+         174.074774999666,
+         -39.0586309988242
+        ],
+        [
+         174.074611000504,
+         -39.0583769988087
+        ],
+        [
+         174.074290000393,
+         -39.0577629991805
+        ],
+        [
+         174.075941999824,
+         -39.0572649986891
+        ],
+        [
+         174.076271999563,
+         -39.0577879993623
+        ],
+        [
+         174.076416000552,
+         -39.0577379994644
+        ],
+        [
+         174.076129000302,
+         -39.0572229987944
+        ],
+        [
+         174.076515472251,
+         -39.0571136202727
+        ],
+        [
+         174.076518000238,
+         -39.0571209990674
+        ],
+        [
+         174.078922000195,
+         -39.0564379991439
+        ],
+        [
+         174.07902399974,
+         -39.0566509993658
+        ],
+        [
+         174.079189999633,
+         -39.0565919987241
+        ],
+        [
+         174.079119999672,
+         -39.0564219991877
+        ],
+        [
+         174.079339999883,
+         -39.0562879988955
+        ],
+        [
+         174.079206000357,
+         -39.0561379994939
+        ],
+        [
+         174.079018000103,
+         -39.0562379989408
+        ],
+        [
+         174.078938000551,
+         -39.056079998858
+        ],
+        [
+         174.078820000221,
+         -39.0561299992167
+        ],
+        [
+         174.078899999702,
+         -39.0562589994816
+        ],
+        [
+         174.078401000122,
+         -39.0563879993369
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 21,
+      "CAR_ID": "E1202802",
+      "CAR_Type": "Event",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Parade",
+      "WorkType": "Not Applicable",
+      "WorkDescription": null,
+      "LocationInRoad": null,
+      "StreetName": "Ariki Street",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "TRAFFIC SAFE NEW ZEALAND LIMITED",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1795737600000,
+      "EstimatedCompletionDate": 1795824000000,
+      "DateWorkStart": 1795737600000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "Yes",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 4159.806537039303
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 87,
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        174.041482999903,
+        -39.0732689987041
+       ],
+       [
+        174.04198800047,
+        -39.0728779989735
+       ],
+       [
+        174.042502999581,
+        -39.0720699987202
+       ],
+       [
+        174.042535000062,
+        -39.0714039990719
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 87,
+      "CAR_ID": "R1199652",
+      "CAR_Type": "Excavation",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Other (Specify Detail)",
+      "WorkType": "Minor",
+      "WorkDescription": null,
+      "LocationInRoad": "Carriageway",
+      "StreetName": "Blagdon Road",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "New Plymouth District Council",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1794700800000,
+      "EstimatedCompletionDate": 1795046400000,
+      "DateWorkStart": 1794096000000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "Yes",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 235.67685545274597
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 172,
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        174.211471000092,
+        -39.1532499989932
+       ],
+       [
+        174.211711999842,
+        -39.1545689988504
+       ],
+       [
+        174.211519000426,
+        -39.1545689988815
+       ],
+       [
+        174.211390000228,
+        -39.1539119989289
+       ],
+       [
+        174.210296000517,
+        -39.1540449993281
+       ],
+       [
+        174.210418999562,
+        -39.1547939990925
+       ],
+       [
+        174.210257999433,
+        -39.1548139991068
+       ],
+       [
+        174.21013500016,
+        -39.1540529987094
+       ],
+       [
+        174.20901399985,
+        -39.1541789994453
+       ],
+       [
+        174.209163999511,
+        -39.1550769990094
+       ],
+       [
+        174.208977000371,
+        -39.155072999401
+       ],
+       [
+        174.208852999466,
+        -39.1542039993605
+       ],
+       [
+        174.20778599999,
+        -39.1542999991234
+       ],
+       [
+        174.207849999426,
+        -39.15457399926
+       ],
+       [
+        174.207635999754,
+        -39.1546029988365
+       ],
+       [
+        174.207586999957,
+        -39.1543329988787
+       ],
+       [
+        174.206878999691,
+        -39.1544239990048
+       ],
+       [
+        174.206964999534,
+        -39.1551559986904
+       ],
+       [
+        174.206782999859,
+        -39.1551479988899
+       ],
+       [
+        174.206669999465,
+        -39.154436998778
+       ],
+       [
+        174.205558999961,
+        -39.1545619986353
+       ],
+       [
+        174.205672000166,
+        -39.1552559993685
+       ],
+       [
+        174.20549500047,
+        -39.1552109992181
+       ],
+       [
+        174.205403999706,
+        -39.1545659989404
+       ],
+       [
+        174.204326000091,
+        -39.1546949987691
+       ],
+       [
+        174.204384999693,
+        -39.1551479989056
+       ],
+       [
+        174.204255999761,
+        -39.1551479994283
+       ],
+       [
+        174.204078999659,
+        -39.1541619987926
+       ],
+       [
+        174.20421800041,
+        -39.1541619987506
+       ],
+       [
+        174.204299000218,
+        -39.1545489988495
+       ],
+       [
+        174.205371999958,
+        -39.1544409990943
+       ],
+       [
+        174.205274999793,
+        -39.1537879987974
+       ],
+       [
+        174.205440999591,
+        -39.1537959988873
+       ],
+       [
+        174.205553999676,
+        -39.1543869993224
+       ],
+       [
+        174.206648000103,
+        -39.1542789994419
+       ],
+       [
+        174.20655700052,
+        -39.153650998707
+       ],
+       [
+        174.206670000366,
+        -39.1536509991397
+       ],
+       [
+        174.206787999824,
+        -39.1542579991467
+       ],
+       [
+        174.207592999723,
+        -39.1541789986703
+       ],
+       [
+        174.207474999758,
+        -39.1536049994319
+       ],
+       [
+        174.20769499968,
+        -39.1535879988107
+       ],
+       [
+        174.207754000246,
+        -39.1541329992359
+       ],
+       [
+        174.208836999792,
+        -39.154020999283
+       ],
+       [
+        174.20875100011,
+        -39.1535009994783
+       ],
+       [
+        174.208907000366,
+        -39.1535049993829
+       ],
+       [
+        174.208998000413,
+        -39.1540499987556
+       ],
+       [
+        174.210098000394,
+        -39.1539249992908
+       ],
+       [
+        174.209995999567,
+        -39.1532969993696
+       ],
+       [
+        174.210205000241,
+        -39.1533099994461
+       ],
+       [
+        174.210275000058,
+        -39.1538919993864
+       ],
+       [
+        174.211369000074,
+        -39.1537629990428
+       ],
+       [
+        174.21128300018,
+        -39.1532179991768
+       ],
+       [
+        174.211422999848,
+        -39.1531969987328
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 172,
+      "CAR_ID": "R1155350",
+      "CAR_Type": "Excavation",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Utility construction / maintenance",
+      "WorkType": "Major",
+      "WorkDescription": null,
+      "LocationInRoad": "Carriageway",
+      "StreetName": "Carrington Street",
+      "Postcode": "4347",
+      "Township": "Inglewood",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "New Plymouth District Council",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1772323200000,
+      "EstimatedCompletionDate": 1785369600000,
+      "DateWorkStart": 1772323200000,
+      "DateWorkComplete": 1801267200000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Revised",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 3175.1638641740956
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 179,
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        174.059891000463,
+        -39.0742359987607
+       ],
+       [
+        174.060396000171,
+        -39.0740769987983
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 179,
+      "CAR_ID": "E1167524",
+      "CAR_Type": "Non Excavation",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Construction Loading Zone, Building Site",
+      "WorkType": "Not Applicable",
+      "WorkDescription": null,
+      "LocationInRoad": "Carriageway, Footpath",
+      "StreetName": "Clawton Street",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "Private Party",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1776297600000,
+      "EstimatedCompletionDate": 1797465600000,
+      "DateWorkStart": 1776297600000,
+      "DateWorkComplete": 1797465600000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Revised",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 47.11696302622802
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 244,
+     "geometry": {
+      "type": "MultiLineString",
+      "coordinates": [
+       [
+        [
+         174.083180999709,
+         -39.0560549995214
+        ],
+        [
+         174.083556626902,
+         -39.0568062525366
+        ],
+        [
+         174.083905000156,
+         -39.0567169990256
+        ]
+       ],
+       [
+        [
+         174.083583000343,
+         -39.0568589986592
+        ],
+        [
+         174.083556626902,
+         -39.0568062525366
+        ],
+        [
+         174.083058000363,
+         -39.0569339988691
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 244,
+      "CAR_ID": "R1205803",
+      "CAR_Type": "Retrospective",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Work in Progress",
+      "Activity": "Utility Repair",
+      "WorkType": "Emergency",
+      "WorkDescription": null,
+      "LocationInRoad": "Carriageway, Footpath, Berm",
+      "StreetName": "Courtenay Street",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": "POWERCO LIMITED",
+      "PrincipalOrganisation": null,
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1793404800000,
+      "EstimatedCompletionDate": 1794700800000,
+      "DateWorkStart": 1793404800000,
+      "DateWorkComplete": 1794700800000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Revised",
+      "RoadClosureRequired": "Yes",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 172.9198589415576
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 345,
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        174.076159000515,
+        -39.0571839992439
+       ],
+       [
+        174.078926999679,
+        -39.0563009992611
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 345,
+      "CAR_ID": "E1192550",
+      "CAR_Type": "Event",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "Ready for Approval",
+      "Activity": "Festival",
+      "WorkType": "Not Applicable",
+      "WorkDescription": null,
+      "LocationInRoad": null,
+      "StreetName": "Devon Street East",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "CROWDED HOUSE BAR & CAFE (2007) LIMITED",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1794960000000,
+      "EstimatedCompletionDate": 1802822400000,
+      "DateWorkStart": 1794960000000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "Yes",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 258.7925987217544
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 762,
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        174.232214999678,
+        -39.0038039988505
+       ],
+       [
+        174.235277999964,
+        -39.0022989989017
+       ],
+       [
+        174.236307999996,
+        -39.0018159987176
+       ],
+       [
+        174.237235999808,
+        -39.0013529987316
+       ],
+       [
+        174.237933999632,
+        -39.0010109988093
+       ],
+       [
+        174.238878000193,
+        -39.0005689988735
+       ],
+       [
+        174.238947999811,
+        -39.0004769992496
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 762,
+      "CAR_ID": "E1192608",
+      "CAR_Type": "Event",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "On-hold",
+      "Activity": "Other (Specify Detail)",
+      "WorkType": "Not Applicable",
+      "WorkDescription": null,
+      "LocationInRoad": null,
+      "StreetName": "McLean Street",
+      "Postcode": "4320",
+      "Township": "Waitara - Taranaki",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "Waitara Alive",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1803427200000,
+      "EstimatedCompletionDate": 1803427200000,
+      "DateWorkStart": 1803427200000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 691.5211303984711
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 774,
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        174.535803999447,
+        -38.9365629994813
+       ],
+       [
+        174.53331500021,
+        -38.9407519993181
+       ],
+       [
+        174.532434999691,
+        -38.9416529991636
+       ],
+       [
+        174.530997000015,
+        -38.9421369992304
+       ],
+       [
+        174.529580999708,
+        -38.9429889993066
+       ],
+       [
+        174.528723000482,
+        -38.9438059991049
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 774,
+      "CAR_ID": "R1195126",
+      "CAR_Type": "Excavation",
+      "CAR_Step": "Audit Works",
+      "CAR_Status": "Approved",
+      "Activity": "Other (Specify Detail)",
+      "WorkType": "Minor",
+      "WorkDescription": null,
+      "LocationInRoad": "Carriageway",
+      "StreetName": "Mokau Road",
+      "Postcode": "4310",
+      "Township": "Taranaki",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "NZ Transport Agency",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1803427200000,
+      "EstimatedCompletionDate": 1803772800000,
+      "DateWorkStart": 1803427200000,
+      "DateWorkComplete": 1803772800000,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Revised",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 1046.3083234323333
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 795,
+     "geometry": {
+      "type": "LineString",
+      "coordinates": [
+       [
+        174.216384999901,
+        -39.1198059994761
+       ],
+       [
+        174.216428000387,
+        -39.1213209987804
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 795,
+      "CAR_ID": "E1196737",
+      "CAR_Type": "Non Excavation",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "Declined",
+      "Activity": "Asset Inspections/Maintenance, Installing other structure/s (Specify Detail), Other (Specify Detail)",
+      "WorkType": "Not Applicable",
+      "WorkDescription": null,
+      "LocationInRoad": "Carriageway, Berm",
+      "StreetName": "Mountain Road",
+      "Postcode": "4347",
+      "Township": "Inglewood - Taranaki",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": null,
+      "PrincipalOrganisation": "NZ Transport Agency",
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1793491200000,
+      "EstimatedCompletionDate": 1805328000000,
+      "DateWorkStart": 1793491200000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": "Level 1 - Low to moderate volume roads (AADT between 500 to 10000vpd)",
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 168.18857879111857
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 857,
+     "geometry": {
+      "type": "MultiLineString",
+      "coordinates": [
+       [
+        [
+         174.041978000191,
+         -39.074383999159
+        ],
+        [
+         174.0345510005,
+         -39.0778489990973
+        ],
+        [
+         174.034161000408,
+         -39.0771469992488
+        ]
+       ],
+       [
+        [
+         174.034295999791,
+         -39.0772489995133
+        ],
+        [
+         174.033887999835,
+         -39.0730549986803
+        ]
+       ],
+       [
+        [
+         174.047389999876,
+         -39.0660539992853
+        ],
+        [
+         174.068468999959,
+         -39.059556998869
+        ],
+        [
+         174.069198999924,
+         -39.0609889986528
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 857,
+      "CAR_ID": "2663452",
+      "CAR_Type": "Excavation",
+      "CAR_Step": "Warranty Period",
+      "CAR_Status": "Work in Warranty",
+      "Activity": "Minor Earthworks/Filling",
+      "WorkType": "Project",
+      "WorkDescription": null,
+      "LocationInRoad": "Berm, Carriageway, Footpath",
+      "StreetName": "Omata Rd",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": "DOWNER NEW ZEALAND LIMITED",
+      "PrincipalOrganisation": null,
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1759881600000,
+      "EstimatedCompletionDate": 1764374400000,
+      "DateWorkStart": 1759881600000,
+      "DateWorkComplete": 1764374400000,
+      "DateWorkSignedOff": 1767744000000,
+      "DateWarrantyStarted": 1764374400000,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": null,
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793803518148,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793803518148,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Length": 3432.7139754260074
+     }
+    }
+   ]
+  },
+  "4": {
+   "type": "FeatureCollection",
+   "features": [
+    {
+     "type": "Feature",
+     "id": 52,
+     "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+       [
+        [
+         174.225466802158,
+         -38.9967281583741
+        ],
+        [
+         174.225684062685,
+         -38.9968907534294
+        ],
+        [
+         174.225981791951,
+         -38.9972784812069
+        ],
+        [
+         174.225823539984,
+         -38.9973618624566
+        ],
+        [
+         174.225941557711,
+         -38.9975703174077
+        ],
+        [
+         174.225295138734,
+         -38.9978809128886
+        ],
+        [
+         174.225142251517,
+         -38.9977078967152
+        ],
+        [
+         174.225102017309,
+         -38.9976557828273
+        ],
+        [
+         174.224774837339,
+         -38.9972367895127
+        ],
+        [
+         174.224954545213,
+         -38.99713464711
+        ],
+        [
+         174.225069880159,
+         -38.9970929562309
+        ],
+        [
+         174.225166439096,
+         -38.9970387570146
+        ],
+        [
+         174.225378287705,
+         -38.9968719924544
+        ],
+        [
+         174.225305867094,
+         -38.9967948644524
+        ],
+        [
+         174.225466802158,
+         -38.9967281583741
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 52,
+      "CAR_ID": "2876568",
+      "CAR_Type": "Excavation",
+      "CAR_Step": "CAR Approval",
+      "CAR_Status": "TMP Outstanding",
+      "Activity": "Open Trenching",
+      "WorkType": "Project",
+      "WorkDescription": null,
+      "StreetName": "Blake St",
+      "LocationInRoad": "Carriageway, Berm, Footpath",
+      "Postcode": "4320",
+      "Township": "Waitara",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": "New Plymouth District Council",
+      "PrincipalOrganisation": null,
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1793318400000,
+      "EstimatedCompletionDate": 1806364800000,
+      "DateWorkStart": 1793318400000,
+      "DateWorkComplete": null,
+      "DateWorkSignedOff": null,
+      "DateWarrantyStarted": null,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Proposed",
+      "DateWorkCompleteStatus": "Unknown",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": null,
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793802979539,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802979539,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Area": 7293.09765625,
+      "Shape__Length": 361.3683835622188
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 123,
+     "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+       [
+        [
+         174.05769039044,
+         -39.0748610594614
+        ],
+        [
+         174.057765456682,
+         -39.0749460660661
+        ],
+        [
+         174.057784759037,
+         -39.0750160716238
+        ],
+        [
+         174.057585298143,
+         -39.0750660758639
+        ],
+        [
+         174.057510231925,
+         -39.0750510740977
+        ],
+        [
+         174.057467336891,
+         -39.0750427405567
+        ],
+        [
+         174.05769039044,
+         -39.0748610594614
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 123,
+      "CAR_ID": "2479666",
+      "CAR_Type": "Excavation",
+      "CAR_Step": "Warranty Period",
+      "CAR_Status": "Work in Warranty",
+      "Activity": "Horizontal Drilling",
+      "WorkType": "Major",
+      "WorkDescription": null,
+      "StreetName": "Clawton St",
+      "LocationInRoad": "Carriageway, Footpath, Berm",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": "omexom, POWERCO LIMITED",
+      "PrincipalOrganisation": null,
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1729987200000,
+      "EstimatedCompletionDate": 1731801600000,
+      "DateWorkStart": 1730592000000,
+      "DateWorkComplete": 1732406400000,
+      "DateWorkSignedOff": 1739232000000,
+      "DateWarrantyStarted": 1738800000000,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Actual",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": null,
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793802979539,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802979539,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Area": 316.21484375,
+      "Shape__Length": 75.96328165554263
+     }
+    },
+    {
+     "type": "Feature",
+     "id": 747,
+     "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+       [
+        [
+         174.053499656562,
+         -39.0805904466004
+        ],
+        [
+         174.053446011551,
+         -39.0807653420867
+        ],
+        [
+         174.052877376732,
+         -39.0805821177658
+        ],
+        [
+         174.05267352669,
+         -39.080298953
+        ],
+        [
+         174.051783023362,
+         -39.0783334224233
+        ],
+        [
+         174.050184409072,
+         -39.0775921706699
+        ],
+        [
+         174.049476297938,
+         -39.0775588559869
+        ],
+        [
+         174.048145907666,
+         -39.0772173775997
+        ],
+        [
+         174.048221010855,
+         -39.0770757878037
+        ],
+        [
+         174.049401195502,
+         -39.0773672947084
+        ],
+        [
+         174.050259511233,
+         -39.0773922807266
+        ],
+        [
+         174.051268033512,
+         -39.0778503606261
+        ],
+        [
+         174.051911770456,
+         -39.0782251508585
+        ],
+        [
+         174.052394573808,
+         -39.0791995953708
+        ],
+        [
+         174.052920293124,
+         -39.0802156689249
+        ],
+        [
+         174.053499656562,
+         -39.0805904466004
+        ]
+       ]
+      ]
+     },
+     "properties": {
+      "OBJECTID": 747,
+      "CAR_ID": "2663452",
+      "CAR_Type": "Excavation",
+      "CAR_Step": "Warranty Period",
+      "CAR_Status": "Work in Warranty",
+      "Activity": "Minor Earthworks/Filling",
+      "WorkType": "Project",
+      "WorkDescription": null,
+      "StreetName": "Omata Rd",
+      "LocationInRoad": "Berm, Carriageway, Footpath",
+      "Postcode": "4310",
+      "Township": "New Plymouth",
+      "ApplicantOrganisation": null,
+      "UtilityOperatorOrganisation": "DOWNER NEW ZEALAND LIMITED",
+      "PrincipalOrganisation": null,
+      "ContractorOrganisation": null,
+      "EstimatedStartDate": 1759881600000,
+      "EstimatedCompletionDate": 1764374400000,
+      "DateWorkStart": 1759881600000,
+      "DateWorkComplete": 1764374400000,
+      "DateWorkSignedOff": 1767744000000,
+      "DateWarrantyStarted": 1764374400000,
+      "DateWarrantyEnded": null,
+      "DateWorkStartStatus": "Actual",
+      "DateWorkCompleteStatus": "Proposed",
+      "RoadClosureRequired": "No",
+      "TTM_RoadLevel": null,
+      "TrafficDisruption": "No",
+      "CauseOfDisruption": null,
+      "CreationDate": 1793802979539,
+      "Creator": "NPDC.GeoHUB",
+      "EditDate": 1793802979539,
+      "Editor": "NPDC.GeoHUB",
+      "Shape__Area": 13425.0986328125,
+      "Shape__Length": 1355.543169210012
+     }
+    }
+   ]
+  }
+ }
+}

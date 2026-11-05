@@ -76,7 +76,8 @@ def test_vienna_lies_within_a_new_austria_entry():
     austria, wien = get_city("austria"), get_city("vienna")
     assert (austria.level, austria.country, wien.level, wien.country) == ("country", "AT", "city", "AT")
     assert country_entry(wien) == austria and cities_within(austria) == (wien,)
-    assert wien.official_sources == ("vienna-roadworks",) and austria.official_sources == ()
+    # Salzburg's road works are the country entry's own since 5 November 2026 (decision 0059).
+    assert wien.official_sources == ("vienna-roadworks",) and austria.official_sources == ("at-salzburg-roadworks",)
     assert wien.timezone == austria.timezone == "Europe/Vienna"
 
 

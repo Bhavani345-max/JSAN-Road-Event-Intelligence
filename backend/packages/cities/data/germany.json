@@ -30,6 +30,10 @@
   "discovery": {
     "queries": []
   },
-  "official_sources": [],
+  "official_sources": [
+    "de-mobidata-bw-roadworks",
+    "de-trk-karlsruhe-roadworks",
+    "de-muenchen-roadworks"
+  ],
   "gis_sources": []
 }
