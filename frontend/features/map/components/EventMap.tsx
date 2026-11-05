@@ -27,7 +27,7 @@ import {
   toEventMapData,
   type StackedEvent,
 } from "../geojson";
-import { getBoundingBox } from "../geometry";
+import { getBoundingBox, type BoundingBox } from "../geometry";
 import { DEFAULT_MAP_LAYERS, type MapLayers } from "../layers";
 import {
   describeIncident,
@@ -35,6 +35,7 @@ import {
   liveBbox,
   type LiveIncidentProperties,
 } from "../liveIncidents";
+import type { PlaceArea } from "../placeArea";
 import type { FocusedPlace } from "../placeSearch";
 
 interface EventMapProps {
@@ -66,6 +67,14 @@ interface EventMapProps {
   layers?: MapLayers;
   /** A place found with "Find place": the map moves there and pins it. */
   focusPlace?: FocusedPlace | null;
+  /**
+   * What counts as in that place (decision 0056): outlined, framed by the map,
+   * and its events (`placeEventIds`) ringed while the others are drawn faint.
+   */
+  placeArea?: PlaceArea | null;
+  placeEventIds?: ReadonlySet<string> | null;
+  /** The pin's second line: "4 events within 1 km". */
+  placeNote?: string | null;
 }
 
 type MapStatus = "loading" | "ready" | "error";
@@ -77,6 +86,8 @@ const PLACE_SOURCE = "rei-event-places";
 const LEADER_SOURCE = "rei-event-leaders";
 // The overview's bubbles, one per city.
 const CITY_SOURCE = "rei-city-bubbles";
+// The area of a place found with "Find place" (decision 0056).
+const PLACE_AREA_SOURCE = "rei-place-area";
 // Nearby markers drawn as one numbered circle while zoomed out (in pixels).
 const CLUSTER_RADIUS = 46;
 
@@ -103,6 +114,9 @@ const LAYERS = {
   locationPoints: "rei-event-location-points",
   places: "rei-event-places",
   placeLabels: "rei-event-place-labels",
+  placeAreaFill: "rei-place-area-fill",
+  placeAreaLine: "rei-place-area-line",
+  placeRing: "rei-event-place-ring",
 } as const;
 
 /** Layers a click or hover can hit, and how forgiving the hit test is: a
@@ -112,7 +126,12 @@ const INTERACTIVE_LAYERS = [LAYERS.anchor, LAYERS.line, LAYERS.lineDashed, LAYER
 // The selected event's places and GIS points stay, as they belong to the details.
 const MARKER_LAYERS = [
   LAYERS.fill, LAYERS.halo, LAYERS.casing, LAYERS.line, LAYERS.lineDashed,
-  LAYERS.leaders, LAYERS.anchorHalo, LAYERS.anchor, LAYERS.clusters, LAYERS.clusterCount,
+  LAYERS.leaders, LAYERS.anchorHalo, LAYERS.placeRing, LAYERS.anchor, LAYERS.clusters, LAYERS.clusterCount,
+];
+// How faint an event outside the chosen place is drawn.
+const DIMMED_OPACITY = 0.3;
+const dimmed = (faint: number, normal: number): ExpressionSpecification => [
+  "case", ["get", "dimmed"], faint, normal,
 ];
 const HIT_TOLERANCE_PX = 6;
 const TOUCH_HIT_TOLERANCE_PX = 18;
@@ -281,6 +300,24 @@ function labelFont(map: MapLibreMap): SymbolLayout["text-font"] | undefined {
   return layer?.type === "symbol" ? layer.layout?.["text-font"] : undefined;
 }
 
+/** The chosen place's area: a light fill and a dashed outline, under the events and never clicked. */
+function addPlaceAreaLayers(map: MapLibreMap) {
+  map.addSource(PLACE_AREA_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
+  map.addLayer({
+    id: LAYERS.placeAreaFill,
+    type: "fill",
+    source: PLACE_AREA_SOURCE,
+    paint: { "fill-color": BRAND_COLOR, "fill-opacity": 0.07 },
+  });
+  map.addLayer({
+    id: LAYERS.placeAreaLine,
+    type: "line",
+    source: PLACE_AREA_SOURCE,
+    layout: { "line-join": "round" },
+    paint: { "line-color": BRAND_COLOR, "line-width": 2, "line-opacity": 0.85, "line-dasharray": [2, 1.5] },
+  });
+}
+
 function addEventLayers(map: MapLibreMap) {
   const font = labelFont(map);
   map.addSource(GEOMETRY_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
@@ -290,6 +327,8 @@ function addEventLayers(map: MapLibreMap) {
     cluster: true,
     clusterMaxZoom: CLUSTER_MAX_ZOOM,
     clusterRadius: CLUSTER_RADIUS,
+    // How many of a numbered circle's events are outside the chosen place: all of them draws it faint.
+    clusterProperties: { dimmedCount: ["+", ["case", ["get", "dimmed"], 1, 0]] },
   });
 
   map.addLayer({
@@ -299,7 +338,7 @@ function addEventLayers(map: MapLibreMap) {
     filter: ["in", ["geometry-type"], ["literal", ["Polygon", "MultiPolygon"]]],
     paint: {
       "fill-color": ["get", "color"],
-      "fill-opacity": ["case", ["get", "selected"], 0.3, 0.16],
+      "fill-opacity": ["case", ["get", "selected"], 0.3, ["get", "dimmed"], 0.05, 0.16],
     },
   });
   map.addLayer({
@@ -316,7 +355,11 @@ function addEventLayers(map: MapLibreMap) {
     source: GEOMETRY_SOURCE,
     filter: ["in", ["geometry-type"], ["literal", ["LineString", "MultiLineString"]]],
     layout: { "line-cap": "round", "line-join": "round" },
-    paint: { "line-color": "#ffffff", "line-width": ["case", ["get", "selected"], 9, 7] },
+    paint: {
+      "line-color": "#ffffff",
+      "line-width": ["case", ["get", "selected"], 9, 7],
+      "line-opacity": dimmed(DIMMED_OPACITY, 1),
+    },
   });
   map.addLayer({
     id: LAYERS.line,
@@ -327,7 +370,7 @@ function addEventLayers(map: MapLibreMap) {
     paint: {
       "line-color": ["get", "color"],
       "line-width": ["case", ["get", "selected"], 6, 4],
-      "line-opacity": ["get", "opacity"],
+      "line-opacity": ["*", ["get", "opacity"], dimmed(DIMMED_OPACITY, 1)],
     },
   });
   map.addLayer({
@@ -339,7 +382,7 @@ function addEventLayers(map: MapLibreMap) {
     paint: {
       "line-color": ["get", "color"],
       "line-width": ["case", ["get", "selected"], 6, 4],
-      "line-opacity": ["get", "opacity"],
+      "line-opacity": ["*", ["get", "opacity"], dimmed(DIMMED_OPACITY, 1)],
       "line-dasharray": [1.6, 1.1],
     },
   });
@@ -387,7 +430,7 @@ function addEventLayers(map: MapLibreMap) {
     paint: {
       "line-color": ["get", "color"],
       "line-width": ["case", ["get", "selected"], 2, 1.2],
-      "line-opacity": 0.75,
+      "line-opacity": dimmed(0.25, 0.75),
     },
   });
   map.addLayer({
@@ -396,6 +439,19 @@ function addEventLayers(map: MapLibreMap) {
     source: ANCHOR_SOURCE,
     filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "selected"], true]],
     paint: { "circle-color": ["get", "color"], "circle-radius": 17, "circle-opacity": 0.22 },
+  });
+  // Events in the chosen place: a ring in the theme's colour around the marker.
+  map.addLayer({
+    id: LAYERS.placeRing,
+    type: "circle",
+    source: ANCHOR_SOURCE,
+    filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "inPlace"], true]],
+    paint: {
+      "circle-color": "rgba(255, 255, 255, 0)",
+      "circle-radius": ["case", ["get", "selected"], 12.5, 10.5],
+      "circle-stroke-color": BRAND_COLOR,
+      "circle-stroke-width": 2.5,
+    },
   });
   map.addLayer({
     id: LAYERS.anchor,
@@ -406,9 +462,12 @@ function addEventLayers(map: MapLibreMap) {
     // solid dot with a white ring; GIS-resolved a solid dot with a teal ring;
     // corrected by a reviewer a solid dot with a black ring; approximate (a
     // named place's position, not the event's) a hollow ring, never read as exact.
-    // Markers sharing a spot are spread around it; the selected one is on top.
-    layout: { "circle-sort-key": ["case", ["get", "selected"], 1, 0] },
+    // Markers sharing a spot are spread around it; the selected one is on top,
+    // then those in the chosen place.
+    layout: { "circle-sort-key": ["case", ["get", "selected"], 2, ["get", "inPlace"], 1, 0] },
     paint: {
+      "circle-opacity": dimmed(DIMMED_OPACITY, 1),
+      "circle-stroke-opacity": dimmed(DIMMED_OPACITY, 1),
       "circle-color": ["case", ["get", "approximate"], "#ffffff", ["get", "color"]],
       "circle-radius": ["case", ["get", "selected"], 8.5, 6.5],
       "circle-stroke-color": [
@@ -475,6 +534,11 @@ function bubbleColor(accent: string): ExpressionSpecification {
   return ["case", [">", ["get", "count"], 0], accent, "#94a3b8"];
 }
 
+/** A numbered circle all of whose events are outside the chosen place. */
+const ALL_DIMMED: ExpressionSpecification = [
+  "all", [">", ["get", "dimmedCount"], 0], ["==", ["get", "dimmedCount"], ["get", "point_count"]],
+];
+
 /** Numbered circles for nearby markers while zoomed out, and the overview's city bubbles. */
 function addGroupLayers(map: MapLibreMap) {
   const font = labelFont(map);
@@ -489,8 +553,9 @@ function addGroupLayers(map: MapLibreMap) {
     filter: ["has", "point_count"],
     paint: {
       "circle-color": BRAND_COLOR,
-      "circle-opacity": 0.92,
+      "circle-opacity": ["case", ALL_DIMMED, DIMMED_OPACITY, 0.92],
       "circle-stroke-color": "#ffffff",
+      "circle-stroke-opacity": ["case", ALL_DIMMED, DIMMED_OPACITY, 1],
       "circle-stroke-width": 2,
       "circle-radius": ["step", ["get", "point_count"], 13, 10, 16, 50, 20, 250, 25, 1000, 30],
     },
@@ -506,7 +571,7 @@ function addGroupLayers(map: MapLibreMap) {
       "text-allow-overlap": true,
       "text-ignore-placement": true,
     },
-    paint: { "text-color": "#ffffff" },
+    paint: { "text-color": "#ffffff", "text-opacity": ["case", ALL_DIMMED, 0.6, 1] },
   });
   map.addSource(CITY_SOURCE, { type: "geojson", data: EMPTY_COLLECTION });
   map.addLayer({
@@ -559,6 +624,8 @@ function addLocationPointLayer(map: MapLibreMap) {
     source: GEOMETRY_SOURCE,
     filter: ["==", ["geometry-type"], "Point"],
     paint: {
+      "circle-opacity": dimmed(DIMMED_OPACITY, 1),
+      "circle-stroke-opacity": dimmed(DIMMED_OPACITY, 1),
       "circle-color": ["case", ["get", "candidate"], "#ffffff", ["get", "color"]],
       "circle-radius": 5,
       "circle-stroke-color": ["case", ["get", "candidate"], "#64748b", "#0f766e"],
@@ -640,6 +707,15 @@ function fitToEvents(
     east = Math.max(east, box[2]);
     north = Math.max(north, box[3]);
   }
+  fitBox(map, [west, south, east, north], { detailsPanelOpen, maxZoom: 15 });
+}
+
+/** Frames a box clear of the toolbar and legend (top left) and, when open, the details panel (right). */
+function fitBox(
+  map: MapLibreMap,
+  [west, south, east, north]: BoundingBox,
+  { detailsPanelOpen, maxZoom }: { detailsPanelOpen: boolean; maxZoom: number },
+) {
   const { clientWidth, clientHeight } = map.getContainer();
   // On wide layouts the legend covers the top-left of the map and the details
   // panel, when open, its right edge.
@@ -654,10 +730,27 @@ function fitToEvents(
     ],
     {
       padding: { top: verticalPadding, bottom: verticalPadding, left: leftPadding, right: rightPadding },
-      maxZoom: 15,
+      maxZoom,
       duration: 700,
     },
   );
+}
+
+/** A found place's pin: its name and, below, how many events are in it. */
+function placePopupContent(name: string, note: string | null): HTMLElement {
+  const box = document.createElement("div");
+  box.className = "text-xs";
+  const title = document.createElement("p");
+  title.className = "font-semibold text-slate-900";
+  title.textContent = name;
+  box.append(title);
+  if (note) {
+    const line = document.createElement("p");
+    line.className = "mt-0.5 text-[11px] text-slate-600";
+    line.textContent = note;
+    box.append(line);
+  }
+  return box;
 }
 
 /**
@@ -679,6 +772,9 @@ export default function EventMap({
   accent = BRAND_COLOR,
   layers = DEFAULT_MAP_LAYERS,
   focusPlace = null,
+  placeArea = null,
+  placeEventIds = null,
+  placeNote = null,
 }: EventMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -749,6 +845,7 @@ export default function EventMap({
       labelLayersRef.current = getTextLabelLayers(map);
       addSatelliteLayer(map);
       addLiveLayers(map);
+      addPlaceAreaLayers(map);
       addEventLayers(map);
       addHeatLayer(map);
       addLocationPointLayer(map);
@@ -758,6 +855,7 @@ export default function EventMap({
       // otherwise paint over the selected event marker.
       map.moveLayer(LAYERS.leaders);
       map.moveLayer(LAYERS.anchorHalo);
+      map.moveLayer(LAYERS.placeRing);
       map.moveLayer(LAYERS.anchor);
       for (const id of [LAYERS.clusters, LAYERS.clusterCount, LAYERS.cityBubble, LAYERS.cityCount, LAYERS.cityName]) {
         map.moveLayer(id);
@@ -904,8 +1002,8 @@ export default function EventMap({
   }, []);
 
   const mapData = useMemo(
-    () => toEventMapData(events, selectedEventId),
-    [events, selectedEventId],
+    () => toEventMapData(events, selectedEventId, placeEventIds),
+    [events, selectedEventId, placeEventIds],
   );
   const markers = useMemo(() => markersAtZoom(mapData.anchors, spreadZoom), [mapData, spreadZoom]);
 
@@ -933,6 +1031,9 @@ export default function EventMap({
     if (!map || map !== mapRef.current) return;
     map.setPaintProperty(LAYERS.clusters, "circle-color", accent);
     map.setPaintProperty(LAYERS.cityBubble, "circle-color", bubbleColor(accent));
+    map.setPaintProperty(LAYERS.placeRing, "circle-stroke-color", accent);
+    map.setPaintProperty(LAYERS.placeAreaFill, "fill-color", accent);
+    map.setPaintProperty(LAYERS.placeAreaLine, "line-color", accent);
   }, [loadedMap, accent]);
 
   // Push event data into the map whenever events or the selection change.
@@ -1046,33 +1147,58 @@ export default function EventMap({
     };
   }, [loadedMap, tomtomLive]);
 
-  // A place found with "Find place" (decision 0055): move there and pin it until
-  // another is chosen or the city changes.
+  // A place found with "Find place" (decisions 0055, 0056): its area drawn,
+  // and the map framing it each time the place or the distance changes.
+  useEffect(() => {
+    const map = loadedMap;
+    if (!map || map !== mapRef.current) return;
+    map
+      .getSource<GeoJSONSource>(PLACE_AREA_SOURCE)
+      ?.setData(
+        placeArea
+          ? { type: "FeatureCollection", features: [{ type: "Feature", geometry: placeArea.outline, properties: {} }] }
+          : EMPTY_COLLECTION,
+      );
+  }, [loadedMap, placeArea]);
+  const placeFrameKey = focusPlace && placeArea ? `${focusPlace.key}|${placeArea.range}` : "";
+  const placeAreaRef = useRef(placeArea);
+  useEffect(() => {
+    placeAreaRef.current = placeArea;
+  });
+  useEffect(() => {
+    const map = loadedMap;
+    const area = placeAreaRef.current;
+    if (!map || map !== mapRef.current || !placeFrameKey || !area) return;
+    fitBox(map, area.bounds, { detailsPanelOpen: false, maxZoom: 16 });
+  }, [loadedMap, placeFrameKey]);
+
+  // Its pin, named, until another place is chosen or the city changes; the
+  // popup's second line says how many events are in it.
+  const placePopupRef = useRef<Popup | null>(null);
+  const placeNoteRef = useRef(placeNote);
+  useEffect(() => {
+    placeNoteRef.current = placeNote;
+  });
   useEffect(() => {
     const map = loadedMap;
     if (!map || map !== mapRef.current || !focusPlace) return;
-    const { latitude, longitude, box, name } = focusPlace;
-    const hasArea = box !== null && box[2] - box[0] > 0.0005 && box[3] - box[1] > 0.0005;
-    if (hasArea) {
-      map.fitBounds(
-        [
-          [box[0], box[1]],
-          [box[2], box[3]],
-        ],
-        { padding: 60, maxZoom: 16, duration: 700 },
-      );
-    } else {
-      map.flyTo({ center: [longitude, latitude], zoom: Math.max(map.getZoom(), 15), duration: 700 });
-    }
+    const popup = new Popup({ offset: 28, closeButton: false }).setDOMContent(
+      placePopupContent(focusPlace.name, placeNoteRef.current),
+    );
     const pin = new Marker({ color: accent })
-      .setLngLat([longitude, latitude])
-      .setPopup(new Popup({ offset: 28, closeButton: false }).setText(name))
+      .setLngLat([focusPlace.longitude, focusPlace.latitude])
+      .setPopup(popup)
       .addTo(map);
     pin.togglePopup();
+    placePopupRef.current = popup;
     return () => {
+      placePopupRef.current = null;
       pin.remove();
     };
   }, [loadedMap, focusPlace, accent]);
+  useEffect(() => {
+    if (focusPlace) placePopupRef.current?.setDOMContent(placePopupContent(focusPlace.name, placeNote));
+  }, [focusPlace, placeNote]);
 
   // The overview's city bubbles (none once a city is open).
   useEffect(() => {
@@ -1147,11 +1273,12 @@ export default function EventMap({
     if (!map || map !== mapRef.current) return;
     const previousKey = framedIdsKeyRef.current;
     framedIdsKeyRef.current = visibleIdsKey;
-    // The selection effect above owns the camera while an event is selected.
+    // The selection effect above owns the camera while an event is selected,
+    // and a place found with "Find place" while it is shown.
     // With no located event, the initial Hyderabad view stays.
-    if (previousKey === visibleIdsKey || selectedEventId) return;
+    if (previousKey === visibleIdsKey || selectedEventId || focusPlace) return;
     fitToEvents(map, events, { detailsPanelOpen: false });
-  }, [loadedMap, visibleIdsKey, events, selectedEventId]);
+  }, [loadedMap, visibleIdsKey, events, selectedEventId, focusPlace]);
 
   return (
     <div className="relative h-full w-full bg-slate-100">

@@ -28,6 +28,8 @@ interface EventListItemProps {
   isSelected: boolean;
   /** The search matched the article's text rather than anything shown on the card. */
   matchedInArticle: boolean;
+  /** The place found with "Find place" that the event is in (decision 0056), if any. */
+  nearPlace: string | null;
   /** When the events were loaded; decides what is upcoming, ongoing or ended. */
   now: Date;
   onSelect: (eventId: string) => void;
@@ -78,6 +80,7 @@ function EventListItem({
   event,
   isSelected,
   matchedInArticle,
+  nearPlace,
   now,
   onSelect,
 }: EventListItemProps) {
@@ -153,6 +156,11 @@ function EventListItem({
             Search matched the article text
           </span>
         )}
+        {nearPlace && (
+          <span className="mt-1 block truncate text-[11px] font-medium leading-4 text-brand-600" title={`Near ${nearPlace}`}>
+            Near {nearPlace}
+          </span>
+        )}
         <span className="mt-2.5 flex flex-wrap items-center gap-1.5 border-t border-slate-100 pt-2">
           <SourceBadge event={event} className="max-w-[9.5rem]" />
           {gis && <GisStatusBadge status={gis} />}
@@ -226,6 +234,8 @@ interface EventListProps {
   selectedEventId: string | null;
   /** Events the search found only through their article text. */
   articleMatchIds: ReadonlySet<string>;
+  /** The events in a place found with "Find place", tagged with its name. */
+  nearPlace?: { name: string; ids: ReadonlySet<string> } | null;
   onSelect: (eventId: string) => void;
   onClearFilters: () => void;
   onRetry: () => void;
@@ -235,6 +245,7 @@ export default function EventList({
   state,
   selectedEventId,
   articleMatchIds,
+  nearPlace = null,
   onSelect,
   onClearFilters,
   onRetry,
@@ -294,6 +305,7 @@ export default function EventList({
           event={event}
           isSelected={event.id === selectedEventId}
           matchedInArticle={articleMatchIds.has(event.id)}
+          nearPlace={nearPlace?.ids.has(event.id) ? nearPlace.name : null}
           now={state.now}
           onSelect={onSelect}
         />

@@ -97,15 +97,24 @@ class PlaceSearch:
         self._cache: OrderedDict[tuple[str, str], tuple[float, list[dict[str, Any]]]] = OrderedDict()
 
     def search(self, query: str, city: City | None) -> list[dict[str, Any]]:
-        """The city's own places first (if it has a list), then OSM's geocoder."""
+        """The city's own places first (if it has a list), then OSM's geocoder.
+
+        A geocoder answer at the same spot as one of the city's places is the
+        same OSM place: it is not listed twice, and its area (the box OSM gives
+        it, such as a suburb's) is kept on the city's entry, which has only a
+        point (decision 0056: the events in that area are the ones highlighted).
+        """
         text = " ".join(query.split())
         found = local_results(text, city)
-        seen = {(round(r["latitude"], 4), round(r["longitude"], 4)) for r in found}
+        seen = {(round(r["latitude"], 4), round(r["longitude"], 4)): r for r in found}
         for result in self._nominatim(text, city):
             key = (round(result["latitude"], 4), round(result["longitude"], 4))
-            if key not in seen:
-                seen.add(key)
+            same = seen.get(key)
+            if same is None:
+                seen[key] = result
                 found.append(result)
+            elif same["source"] == "place_list" and same["box"] is None and result["box"] is not None:
+                same["box"] = list(result["box"])
         return found[: LIMIT * 2]
 
     def _nominatim(self, text: str, city: City | None) -> list[dict[str, Any]]:

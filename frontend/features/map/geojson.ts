@@ -30,6 +30,10 @@ export interface EventFeatureProperties {
   dashed: boolean;
   opacity: number;
   selected: boolean;
+  /** In the place found with "Find place" (decision 0056): drawn with a ring. */
+  inPlace: boolean;
+  /** A place is chosen and the event is outside it (and not selected): drawn faint. */
+  dimmed: boolean;
   /** The marker is a named place's position, not the event's: drawn hollow. */
   approximate: boolean;
   /** How the location was obtained; styles the marker. */
@@ -115,21 +119,30 @@ export function selectedEventPlaces(event: RoadEvent | undefined): PlaceFeatureC
 /**
  * Converts events into the GeoJSON the map renders. Events that have not
  * been located yet (GIS resolution pending) are left out: no geometry is
- * ever made up for them.
+ * ever made up for them. With a place chosen (`placeEventIds`, decision 0056)
+ * the events in it are marked and the others drawn faint.
  */
-export function toEventMapData(events: RoadEvent[], selectedEventId: string | null): EventMapData {
+export function toEventMapData(
+  events: RoadEvent[],
+  selectedEventId: string | null,
+  placeEventIds: ReadonlySet<string> | null = null,
+): EventMapData {
   const geometries: EventFeature[] = [];
   const anchors: EventFeature<PointGeometry>[] = [];
 
   for (const event of events) {
     if (!isLocated(event)) continue;
+    const selected = event.id === selectedEventId;
+    const inPlace = placeEventIds?.has(event.id) ?? false;
     const properties: EventFeatureProperties = {
       eventId: event.id,
       title: event.title,
       detail: describeForStack(event),
       color: getEventTypeColor(event.eventType),
       ...getStatusMapStyle(event.status),
-      selected: event.id === selectedEventId,
+      selected,
+      inPlace,
+      dimmed: placeEventIds !== null && !inPlace && !selected,
       approximate: event.detection?.locationClass === "APPROXIMATE",
       locationClass: event.detection?.locationClass ?? "UNRESOLVED",
       candidate: false,
@@ -233,7 +246,7 @@ function degreesPerPixel(zoom: number): number {
 export interface LeaderFeature {
   type: "Feature";
   geometry: { type: "LineString"; coordinates: Position[] };
-  properties: { eventId: string; color: string; selected: boolean };
+  properties: { eventId: string; color: string; selected: boolean; dimmed: boolean };
 }
 
 export interface SpreadMarkers {
@@ -289,6 +302,7 @@ export function spreadStacks(
           eventId: anchor.properties.eventId,
           color: anchor.properties.color,
           selected: anchor.properties.selected,
+          dimmed: anchor.properties.dimmed,
         },
       });
     });

@@ -69,6 +69,25 @@ def test_the_citys_own_place_list_answers_first_and_alone_while_typing():
     assert local_results("Gachibowli", get_city("india")) == []
 
 
+def test_the_geocoders_answer_for_a_listed_place_gives_it_its_area():
+    # REI's list has Gachibowli as a point; OSM's geocoder answers the same
+    # place, at the same spot, with the suburb's box (decision 0056).
+    listed = local_results("Gachibowli", get_city("hyderabad"))[0]
+    suburb = {
+        "lat": str(listed["latitude"]), "lon": str(listed["longitude"]), "name": "Gachibowli", "type": "suburb",
+        "display_name": "Gachibowli, Ward 105 Gachibowli, Greater Hyderabad, Telangana, India",
+        "boundingbox": ["17.42", "17.46", "78.329", "78.369"],
+    }
+    seen: list[httpx.Request] = []
+    search = PlaceSearch(client=nominatim(seen, rows=[suburb]))
+    for _ in range(2):  # asked, then remembered: the same both times
+        results = search.search("Gachibowli", get_city("hyderabad"))
+        same_spot = [r for r in results if (r["latitude"], r["longitude"]) == (listed["latitude"], listed["longitude"])]
+        assert len(same_spot) == 1 and same_spot[0]["source"] == "place_list"
+        assert same_spot[0]["box"] == [78.329, 17.42, 78.369, 17.46]
+    assert len(seen) == 1
+
+
 def test_at_most_one_request_a_second_and_answers_are_remembered():
     seen: list[httpx.Request] = []
     clock = Clock()

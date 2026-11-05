@@ -57,12 +57,21 @@ import { computeEventStats } from "@/features/events/stats";
 import MapLegend from "@/features/map/components/MapLegend";
 import MapToolbar from "@/features/map/components/MapToolbar";
 import { DEFAULT_MAP_LAYERS, type MapLayers } from "@/features/map/layers";
+import {
+  defaultRange,
+  describeCount,
+  eventsInArea,
+  hasOwnArea,
+  placeAreaOf,
+  type PlaceRange,
+} from "@/features/map/placeArea";
 import type { FocusedPlace } from "@/features/map/placeSearch";
 import AddEventPanel from "@/features/qc/components/AddEventPanel";
 import ReviewActions from "@/features/qc/components/ReviewActions";
 import { themeStyle, useTheme } from "@/features/theme/themes";
 import type { Basemap } from "@/lib/config";
 import CoverageSummary from "./components/CoverageSummary";
+import PlaceEventsBar from "./components/PlaceEventsBar";
 import SourceStatusBar from "./components/SourceStatusBar";
 import { count, emptyListMessage, partialListNote, sourcesForCity, useCoverage, useSources } from "./sources";
 
@@ -143,6 +152,9 @@ export default function Dashboard() {
   const [mapLayers, setMapLayers] = useState<MapLayers>(DEFAULT_MAP_LAYERS);
   // A place found with "Find place": the map moves there and pins it (decision 0055).
   const [focusPlace, setFocusPlace] = useState<FocusedPlace | null>(null);
+  // What counts as in that place, and whether the list shows only its events (decision 0056).
+  const [placeRange, setPlaceRange] = useState<PlaceRange>(1000);
+  const [placeListOnly, setPlaceListOnly] = useState(false);
   // Whether the form for entering an event by hand is open.
   const [isAdding, setIsAdding] = useState(false);
   // While a reviewer corrects an event's location, map clicks choose the spot.
@@ -254,6 +266,37 @@ export default function Dashboard() {
     return options;
   }, [sources, allEvents]);
 
+  // The events in a place found with "Find place": ringed on the map, tagged
+  // in the list, and the list's only events when asked (decision 0056).
+  const placeArea = useMemo(
+    () => (focusPlace ? placeAreaOf(focusPlace, placeRange) : null),
+    [focusPlace, placeRange],
+  );
+  const placeEventIds = useMemo(
+    () => (placeArea ? eventsInArea(visibleEvents, placeArea) : null),
+    [placeArea, visibleEvents],
+  );
+  const placeOnMapCount = useMemo(
+    () => (placeEventIds ? mapEvents.filter((event) => placeEventIds.has(event.id)).length : 0),
+    [placeEventIds, mapEvents],
+  );
+  const listOnlyPlace = placeListOnly && placeEventIds !== null && placeEventIds.size > 0;
+  const listedEvents = useMemo(
+    () => (listOnlyPlace && placeEventIds ? visibleEvents.filter((event) => placeEventIds.has(event.id)) : visibleEvents),
+    [listOnlyPlace, placeEventIds, visibleEvents],
+  );
+  const placeNote = !placeArea
+    ? null
+    : overview
+      ? "Open a country to see its events here"
+      : state.status !== "ready"
+        ? "Loading the events…"
+        : `${describeCount(placeOnMapCount, placeArea.range)} on the map`;
+  const nearPlace = useMemo(
+    () => (focusPlace && placeEventIds ? { name: focusPlace.name, ids: placeEventIds } : null),
+    [focusPlace, placeEventIds],
+  );
+
   // An event hidden by the filters is no longer selected.
   const selectedEvent = visibleEvents.find((event) => event.id === selectedEventId) ?? null;
 
@@ -272,7 +315,7 @@ export default function Dashboard() {
   );
   const listState: EventListState =
     state.status === "ready"
-      ? { status: "ready", events: visibleEvents, now: state.loadedAt, empty: emptyList }
+      ? { status: "ready", events: listedEvents, now: state.loadedAt, empty: emptyList }
       : state;
 
   // After a source check or a review decision, reload without a loading flash.
@@ -289,6 +332,18 @@ export default function Dashboard() {
     setIsAdding(false);
     setFilters(DEFAULT_FILTERS);
     setFocusPlace(null);
+    setPlaceListOnly(false);
+  }, []);
+
+  const choosePlace = useCallback((place: FocusedPlace) => {
+    setFocusPlace(place);
+    setPlaceRange(defaultRange(place));
+    setPlaceListOnly(false);
+  }, []);
+
+  const clearPlace = useCallback(() => {
+    setFocusPlace(null);
+    setPlaceListOnly(false);
   }, []);
 
   const selectEvent = useCallback((eventId: string | null) => {
@@ -379,6 +434,22 @@ export default function Dashboard() {
           {/* Event list continues in the same scrollable blue sidebar. */}
           <div className="p-4">
             <div>
+              {focusPlace && placeArea && (
+                <PlaceEventsBar
+                  name={focusPlace.name}
+                  range={placeArea.range}
+                  onRangeChange={setPlaceRange}
+                  hasArea={hasOwnArea(focusPlace)}
+                  count={placeEventIds?.size ?? 0}
+                  offMap={(placeEventIds?.size ?? 0) - placeOnMapCount}
+                  listOnly={listOnlyPlace}
+                  onListOnlyChange={setPlaceListOnly}
+                  checkedOfLoaded={partial && !serverSearch ? allEvents.length : null}
+                  overview={overview}
+                  loading={state.status !== "ready"}
+                  onClear={clearPlace}
+                />
+              )}
               {overview ? (
                 <CityOverviewList
                   state={countsState}
@@ -398,6 +469,7 @@ export default function Dashboard() {
                     state={listState}
                     selectedEventId={selectedEvent?.id ?? null}
                     articleMatchIds={articleMatchIds}
+                    nearPlace={nearPlace}
                     onSelect={selectEvent}
                     onClearFilters={() => setFilters(DEFAULT_FILTERS)}
                     onRetry={() => {
@@ -439,6 +511,9 @@ export default function Dashboard() {
             accent={theme.palette[600]}
             layers={mapLayers}
             focusPlace={focusPlace}
+            placeArea={placeArea}
+            placeEventIds={placeEventIds}
+            placeNote={placeNote}
           />
           {/* Above the map's own controls (attribution, scale), below the details panel. */}
           <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-col items-start gap-2">
@@ -464,7 +539,7 @@ export default function Dashboard() {
               }
               filtersDisabled={overview}
               placeScope={{ cityId: overview ? null : city.id, label: overview ? null : city.name }}
-              onPlaceChosen={(place) => setFocusPlace({ ...place, key: Date.now() })}
+              onPlaceChosen={(place) => choosePlace({ ...place, key: Date.now() })}
             />
             <div className="hidden wide:block sideways:hidden">
               <MapLegend eventTypes={visibleTypes} overview={overview} />

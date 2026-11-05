@@ -15,9 +15,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteName = "JSAN Road Event Intelligence";
+const siteDescription =
+  "REI collects road events from official feeds, detects them in local news and places each one on an interactive map.";
+
 export const metadata: Metadata = {
-  title: "JSAN Road Event Intelligence — Hyderabad PoC",
-  description: "Road Event Intelligence proof of concept: road events for Hyderabad from live sources on an interactive map.",
+  // The public address: link previews need full URLs, and without it Next.js
+  // would point the preview image at localhost.
+  metadataBase: new URL("https://jsan-rei.up.railway.app"),
+  title: siteName,
+  description: siteDescription,
+  // The link preview chat apps and social sites show. Its image is
+  // app/opengraph-image.jpg (made by scripts/render-share-image.mjs).
+  openGraph: {
+    type: "website",
+    siteName,
+    title: siteName,
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
