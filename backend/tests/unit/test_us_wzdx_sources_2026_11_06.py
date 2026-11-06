@@ -66,7 +66,7 @@ def test_an_upcoming_washington_closure_is_kept_before_it_starts():
 
 def test_the_other_new_registry_feeds_are_recorded_but_never_fetched():
     registry = {s.definition.source_id: s for s in registered_sources()}
-    assert len(DISCOVERED_2026_11_06) == 13
+    assert len([d for d in DISCOVERED_2026_11_06 if d.country == "US"]) == 13
     for definition in DISCOVERED_2026_11_06:
         source = registry[definition.source_id]
         assert source.create_connector is None, definition.source_id

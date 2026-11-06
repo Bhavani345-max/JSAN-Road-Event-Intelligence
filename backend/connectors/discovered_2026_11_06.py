@@ -1,4 +1,12 @@
-"""US WZDx feeds checked on 6 November 2026, NOT connected (decision 0060).
+"""Sources checked on 6 November 2026, NOT connected.
+
+1. US WZDx feeds (decision 0060), below first.
+2. A second search of the countries with no or few events (Poland, Latvia, Brazil,
+   Ireland, Malaysia, South Africa): the notable finds, at the end. Full record:
+   docs/data-sources/zero-event-countries-recheck-2026-11-06.md. None is connectable
+   without permission; nothing else found was worth recording on its own.
+
+US WZDx feeds (decision 0060).
 
 USDOT's WZDx feed registry (data.transportation.gov 69qe-yiui) listed 42 active
 feeds that day: 15 REI already read, 13 need a key, and 14 needed no key and were
@@ -190,6 +198,113 @@ DISCOVERED_2026_11_06: tuple[SourceDefinition, ...] = (
         notes=(
             "A company's traffic-control diary in the CWZ 1.0 format, not a road authority's feed: "
             "1 work zone on 6 November 2026 (I-80 E). Not connected."
+        ),
+    ),
+    # --- Second search of the zero-event countries, 6 November 2026 -------------------
+    _feed(
+        source_id="pl-bialystok-road-disruptions", source_name="Białystok road disruptions (Utrudnienia drogowe)",
+        organization="Urząd Miejski w Białymstoku", authority_type="MUNICIPAL_ROAD_AUTHORITY",
+        country="PL", region="Podlaskie (Białystok)", city="poland", language="pl",
+        source_url="https://www.arcgis.com/home/item.html?id=ef4d165fde7f497b97d469a74bafafa1",
+        endpoint="https://services6.arcgis.com/jN5LJsqeW33UjdlH/arcgis/rest/services/Utrudnienia_drogowe/FeatureServer/0",
+        access_method="ArcGIS feature service (lines); no key",
+        integration_status=S.TERMS_REVIEW_REQUIRED,
+        terms_status=TermsStatus.REVIEW_REQUIRED,
+        cost_category=CostCategory.FREE_PUBLIC,
+        provides_segments=True,
+        notes=(
+            "On 6 November 2026: 13 closure and disruption lines, 10 in force, each with a start and an "
+            "end (dates only) and the street; edited that day; it backs the city's public map. No licence "
+            "on the layer, its web map, the city's ArcGIS organisation or dane.gov.pl. Ask Urząd Miejski "
+            "w Białymstoku for an open licence (CC BY 4.0). Not connected."
+        ),
+    ),
+    _feed(
+        source_id="ie-galway-county-severe-weather-closures",
+        source_name="Galway County Council severe-weather road closures",
+        organization="Galway County Council", authority_type="MUNICIPAL_ROAD_AUTHORITY",
+        country="IE", region="Galway (county)", city="ireland",
+        source_url="https://opendata-galwaycoco.hub.arcgis.com/",
+        endpoint="https://services1.arcgis.com/mJI7JYqAOKXPG7Hh/arcgis/rest/services/Severe_Weather_Road_Closures_View_Only/FeatureServer/0",
+        access_method="ArcGIS feature service (lines); no key",
+        integration_status=S.TERMS_REVIEW_REQUIRED,
+        terms_status=TermsStatus.REVIEW_REQUIRED,
+        cost_category=CostCategory.FREE_PUBLIC,
+        provides_segments=True,
+        notes=(
+            "On 6 November 2026: 3 road lines from the storm of 24 October 2026, all reopened; a logged "
+            "date and a status but no start or end; staff user names in Creator/Editor (to be dropped). "
+            "Its licence field holds a disclaimer and '(c) Galway County Council'; the council's open-data "
+            "hub publishes its other 77 datasets under CC BY 4.0, not this one. Ask the council to add it "
+            "there. Not connected."
+        ),
+    ),
+    _feed(
+        source_id="ie-kilkenny-road-notices", source_name="Kilkenny County Council road notices",
+        organization="Kilkenny County Council", authority_type="MUNICIPAL_ROAD_AUTHORITY",
+        country="IE", region="Kilkenny (county)", city="ireland",
+        source_url="https://www.kilkennycoco.ie/eng/your_council/reuse_of_information/",
+        endpoint="https://www.kilkennycoco.ie/eng/rss_roads_notices/",
+        access_method="Web page (an HTML list, no feed despite the path)",
+        integration_status=S.NOT_USABLE,
+        provides_geometry=False,
+        notes=(
+            "On 6 November 2026: 14 items, about 4 of them closures, mixed with planning lists and filming "
+            "notices; dates written without a year, no coordinates. The council's re-use page allows PSI "
+            "re-use of downloads but reserves the rights to text and maps. Not connected."
+        ),
+    ),
+    _feed(
+        source_id="lv-riga-amd-street-repairs", source_name="Riga street surface repairs (ĀMD ielu seguma remontdarbi)",
+        organization="Rīgas valstspilsētas pašvaldība, Ārtelpas un mobilitātes departaments",
+        authority_type="MUNICIPAL_ROAD_AUTHORITY",
+        country="LV", region="Rīga", city="latvia", language="lv",
+        source_url="https://data.gov.lv/dati/lv/dataset/amd-ielu-seguma-remontdarbi",
+        endpoint="https://data.gov.lv/dati/lv/dataset/amd-ielu-seguma-remontdarbi",
+        access_method="File on data.gov.lv (CKAN); no key",
+        integration_status=S.NOT_USABLE,
+        cost_category=CostCategory.FREE_PUBLIC,
+        terms_status=TermsStatus.PERMITS_TESTING,
+        licence="CC BY 4.0 (data.gov.lv license_id CC-BY-4.0)",
+        commercial_use=CommercialUse.PERMITTED_WITH_ATTRIBUTION,
+        provides_segments=True,
+        notes=(
+            "File dated 15 October 2026, read 6 November 2026: 70 asphalt and 334 gravel street lines; "
+            "notes say 31 done, 4 ongoing, 35 planned in 2026, but no record has a start or an end, so REI "
+            "would show none. Not connected."
+        ),
+    ),
+    _feed(
+        source_id="br-artesp-programacao-de-obras",
+        source_name="ARTESP works programme on São Paulo's concession highways (Programação de Obras)",
+        organization="ARTESP (Agência de Transporte do Estado de São Paulo)", authority_type="STATE_ROAD_AUTHORITY",
+        country="BR", region="São Paulo (state)", city="brazil", language="pt",
+        source_url="https://dadosabertos.artesp.sp.gov.br/dataset/programacao-de-obras",
+        endpoint="https://dadosabertos.artesp.sp.gov.br/dataset/programacao-de-obras",
+        access_method="Files on ARTESP's open-data portal (CKAN); no key; robots.txt Crawl-Delay 10",
+        integration_status=S.DISCOVERED,
+        terms_status=TermsStatus.PERMITS_TESTING,
+        licence="Creative Commons Atribuição (dataset page)",
+        commercial_use=CommercialUse.PERMITTED_WITH_ATTRIBUTION,
+        notes=(
+            "On 4 and 6 November 2026 the dataset held only two 2026 circulars, XLSX templates, JSON "
+            "schemas and example GeoJSON (road, km range, data_inicial/data_final, EPSG:4674): no works "
+            "programme yet. Connectable once real files appear. Not connected."
+        ),
+    ),
+    _feed(
+        source_id="br-mt-sinfra-road-works", source_name="Mato Grosso SINFRA road works (Obras Viárias)",
+        organization="SINFRA Mato Grosso (layer on a personal ArcGIS account)", authority_type="STATE_ROAD_AUTHORITY",
+        country="BR", region="Mato Grosso", city="brazil", language="pt",
+        source_url="https://services8.arcgis.com/WzZQ8WIosCQHAmSB/arcgis/rest/services",
+        endpoint="https://services8.arcgis.com/WzZQ8WIosCQHAmSB/arcgis/rest/services/Obras_Vi%C3%A1rias_SINFRA/FeatureServer/0",
+        access_method="ArcGIS feature service (lines); no key",
+        integration_status=S.NOT_USABLE,
+        provides_segments=True,
+        notes=(
+            "On 6 November 2026: 830 works lines (157 in progress, 24 to start), but the dates are contract "
+            "dates, not traffic dates; a March 2026 snapshot on a personal account; no licence; inspectors "
+            "named; outside REI's Brazilian cities. Not connected."
         ),
     ),
 )
