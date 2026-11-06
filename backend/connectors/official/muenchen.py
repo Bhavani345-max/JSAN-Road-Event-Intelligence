@@ -57,6 +57,7 @@ never fetches; geoportal.muenchen.de has no robots.txt)
 """
 
 import json
+import re
 from datetime import date, datetime
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -81,6 +82,7 @@ from packages.source_models import (
     TermsStatus,
 )
 
+from . import common
 from .common import content_key, fetch_json
 from .feature_feed import FeatureFeedConnector, clean, item_record, local_time, whole_days
 from .feed_text import sentences
@@ -96,6 +98,14 @@ PARAMS = {
     "outputFormat": "application/json",
     "srsName": "EPSG:4326",
 }
+# The server republishes this layer every hour from 20 minutes past (UTC) and, for
+# about three minutes, answers HTTP 404 or an empty 200 now and then (decision 0061:
+# REI's 3-hourly poll drifted onto that minute on 6 November 2026 and failed at 08:20
+# and 11:20 UTC; a probe every 15 s on 6 November saw 404s from 12:20:03 to 12:22:40
+# and the layer before and after). Such an answer is asked again after each pause, in
+# the same run, the last at least 3.5 minutes after the first; then the run fails as before.
+REPUBLISH_PAUSES_SECONDS = (60.0, 150.0)
+_REPUBLISH_ANSWER = re.compile(r"HTTP 404\b|did not return JSON")
 SOURCE_URL = "https://opendata.muenchen.de/dataset/baustellen_4_weeks_opendata"
 ATTRIBUTION = (
     "Landeshauptstadt München, Baustellen (nächste 4 Wochen); Datenlizenz Deutschland – Namensnennung – "
@@ -244,8 +254,27 @@ def _first_position(geometry: Any) -> Any:
     return position
 
 
+def _mid_republish(error: ConnectorError) -> bool:
+    """Whether the server answered as it does while the layer is being republished:
+    HTTP 404, or a body that is not JSON (an empty 200)."""
+    return bool(_REPUBLISH_ANSWER.search(str(error)))
+
+
+def _fetch_layer(user_agent: str, client: httpx.Client | None) -> Any:
+    """The layer, asked again after each pause in REPUBLISH_PAUSES_SECONDS while the
+    server answers as it does mid-republish; any other failure fails at once."""
+    for pause in (*REPUBLISH_PAUSES_SECONDS, None):
+        try:
+            return fetch_json(ENDPOINT, user_agent, client=client, params=PARAMS)
+        except ConnectorError as error:
+            if pause is None or not _mid_republish(error):
+                raise
+        common._sleep(pause)
+    raise AssertionError("unreachable")
+
+
 def fetch_works(user_agent: str, *, client: httpx.Client | None = None, now=None) -> list[dict]:
-    body = fetch_json(ENDPOINT, user_agent, client=client, params=PARAMS)
+    body = _fetch_layer(user_agent, client)
     features = body.get("features") if isinstance(body, dict) else None
     if not isinstance(features, list):
         raise ConnectorError(f"{ENDPOINT} ({LAYER}) did not return a GeoJSON feature collection")

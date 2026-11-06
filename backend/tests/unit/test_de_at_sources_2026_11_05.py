@@ -18,7 +18,7 @@ from app.models import Event, EventVersion, Source, SourceArtifact
 from app.repositories.ingestion_store import SqlIngestionStore
 from app.repositories.sources import SourceRepository
 from connectors.base import ConnectorError
-from connectors.official import mobidata_bw, muenchen, salzburg, trk_karlsruhe
+from connectors.official import common, mobidata_bw, muenchen, salzburg, trk_karlsruhe
 from packages.cities import get_city
 from packages.event_schema import EventDirection, EventType
 from packages.source_models import CommercialUse, IntegrationStatus, SourceClass, TermsStatus
@@ -446,6 +446,38 @@ def test_muenchen_refuses_a_cut_list_and_latitude_first_coordinates():
         muenchen.fetch_works("ua", client=_serving(cut))
     with pytest.raises(ConnectorError, match="latitude-longitude"):
         muenchen.fetch_works("ua", client=_serving(_swap_first_feature(MUC)))
+
+
+def _answers(*responses):
+    """A client answering each request with the next response in turn."""
+    queue = list(responses)
+    return _client(lambda request: queue.pop(0))
+
+
+def test_muenchen_waits_out_the_layer_being_republished(monkeypatch):
+    pauses = []
+    monkeypatch.setattr(common, "_sleep", pauses.append)
+    # As on 6 November 2026 at 08:20 and 11:20 UTC: an empty 200, then a 404; then the layer.
+    client, requests = _answers(httpx.Response(200, content=b""), httpx.Response(404), httpx.Response(200, json=MUC))
+    features = muenchen.fetch_works("ua", client=client)
+    assert len(features) == len(MUC["features"]) - 1
+    assert len(requests) == 3 and pauses == list(muenchen.REPUBLISH_PAUSES_SECONDS)
+
+
+def test_muenchen_still_fails_when_the_layer_stays_away_or_the_server_refuses(monkeypatch):
+    pauses = []
+    monkeypatch.setattr(common, "_sleep", pauses.append)
+    client, requests = _answers(*[httpx.Response(404) for _ in range(3)])
+    with pytest.raises(ConnectorError, match="HTTP 404"):
+        muenchen.fetch_works("ua", client=client)
+    assert len(requests) == 3 and pauses == list(muenchen.REPUBLISH_PAUSES_SECONDS)
+    # A refusal is not a republish: REI does not ask again sooner (decision 0041).
+    for status in (403, 429, 503):
+        pauses.clear()
+        client, requests = _answers(httpx.Response(status))
+        with pytest.raises(ConnectorError):
+            muenchen.fetch_works("ua", client=client)
+        assert len(requests) == 1 and pauses == [], status
 
 
 # --- Salzburg ----------------------------------------------------------------------------
