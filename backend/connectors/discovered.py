@@ -556,18 +556,23 @@ DISCOVERED_SOURCES: tuple[SourceDefinition, ...] = (
         source_url="https://www.data.qld.gov.au/dataset/131940-traffic-and-travel-information-geojson-api",
         endpoint="https://qldtraffic.qld.gov.au/",
         access_method="GeoJSON API; API access key described in the developer specification",
-        integration_status=S.REQUIRES_ACCESS,
+        integration_status=S.TERMS_REVIEW_REQUIRED,
+        terms_status=TermsStatus.REVIEW_REQUIRED,
         cost_category=CostCategory.REGISTRATION_REQUIRED,
-        licence="Creative Commons Attribution 4.0 (dataset listing)",
+        licence=(
+            "Creative Commons Attribution 4.0 (dataset listing); the QLDTraffic Terms of Use conflict"
+        ),
         attribution="State of Queensland (Department of Transport and Main Roads)",
-        commercial_use=CommercialUse.PERMITTED_WITH_ATTRIBUTION,
+        commercial_use=CommercialUse.CONTRACT_REQUIRED,
         provides_geometry=True,
         real_time=True,
         notes=(
             "The Queensland Open Data listing documents GeoJSON feeds for hazards, crashes, "
             "congestion, flooding, roadworks and special events, and lists CC BY 4.0. The "
-            "developer guide specifies API access keys; the public endpoint and its current "
-            "key conditions need validation before integration."
+            "QLDTraffic website's Terms of Use (read 6 November 2026) say they prevail over any "
+            "other terms, allow personal use only and forbid use for commercial gain, and each "
+            "feed's copyright field points to that website. Same service as qldtraffic-events. "
+            "Awaiting written confirmation from copyright@tmr.qld.gov.au. Not connected."
         ),
     ),
     SourceDefinition(

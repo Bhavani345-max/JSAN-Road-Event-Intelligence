@@ -133,14 +133,21 @@ DISCOVERED_2026_10_15: tuple[SourceDefinition, ...] = (
         authority_type="STATE_ROAD_AUTHORITY",
         source_url="https://www.data.qld.gov.au/dataset/131940-traffic-and-travel-information-geojson-api",
         access_method="GeoJSON API with a key; the specification prints a shared public key",
-        integration_status=S.REQUIRES_ACCESS,
-        terms_status=TermsStatus.PERMITS_TESTING,
+        integration_status=S.TERMS_REVIEW_REQUIRED,
+        terms_status=TermsStatus.REVIEW_REQUIRED,
+        commercial_use=CommercialUse.CONTRACT_REQUIRED,
         cost_category=CostCategory.FREE_WITH_LIMITS,
         provides_geometry=True,
         notes=(
-            "529 events on 15 October 2026 (459 in force), CC BY 4.0. The specification offers a "
-            "public key 'for developers who do not wish to register' (100 requests a minute, shared). "
-            "Using a key is the user's decision. Not connected."
+            "529 events on 15 October 2026 (459 in force). The specification offers a public key "
+            "'for developers who do not wish to register' (100 requests a minute, shared). Terms "
+            "conflict (read 6 November 2026): the data.qld.gov.au listing says CC BY 4.0, but each "
+            "feed's copyright field points to the QLDTraffic website, whose Terms of Use 'take "
+            "precedence and prevail over any other terms', allow personal use only, forbid copying "
+            "or distributing the content and say 'use of the Site for commercial gain is strictly "
+            "prohibited'; its copyright page allows only personal or non-commercial use outside "
+            "Creative Commons content. Awaiting written confirmation from copyright@tmr.qld.gov.au "
+            "that commercial reuse is permitted. Not connected."
         ),
     ),
     _researched(

@@ -16,7 +16,7 @@ DU-portal copy (the same data is already connected without a key).
 
 | # | Source | Country | What it has | Where to register | Licence / terms | Notes |
 |---|---|---|---|---|---|---|
-| 1 | QLDTraffic events (hazards, crashes, flooding, roadworks, special events) | AU (Queensland) | 529 events on 15 Oct (459 in force), GeoJSON | No registration: the specification prints a shared public key "for developers who do not wish to register" (100 requests a minute, shared); a personal key is optional (data.qld.gov.au dataset 131940) | CC BY 4.0 | Only the user's go-ahead to use the public key is needed |
+| 1 | QLDTraffic events (hazards, crashes, flooding, roadworks, special events) | AU (Queensland) | 529 events on 15 Oct (459 in force), GeoJSON | No registration: the specification prints a shared public key "for developers who do not wish to register" (100 requests a minute, shared); a personal key is optional (data.qld.gov.au dataset 131940) | Conflicting: the data.qld.gov.au listing says CC BY 4.0, but each feed's copyright field points to the QLDTraffic website, whose Terms of Use "take precedence and prevail over any other terms", allow personal use only and say "use of the Site for commercial gain is strictly prohibited" (read 6 November 2026) | **Not connectable yet** (corrected 6 November 2026; this row first said only the user's go-ahead was needed). Needs written confirmation of commercial reuse from copyright@tmr.qld.gov.au |
 | 2 | Transport for NSW Live Traffic (incidents, roadworks, floods, major events) | AU (NSW) | GeoJSON with planned start/end, lanes, roads | opendata.transport.nsw.gov.au: create an account, create an application, copy its API key | CC BY 4.0 | No page states the key is free; check at sign-up |
 | 3 | Victoria DTP disruptions | AU (Victoria) | Road disruptions | opendata.transport.vic.gov.au: account, then a KeyID | CC BY 4.0 | HTTP 401 without the key |
 | 4 | LTA DataMall traffic incidents and road works | SG | Incidents and road works with coordinates | datamall.lta.gov.sg: "Request for API access" form (free AccountKey by e-mail) | Singapore Open Data Licence v1.0 (commercial use with attribution) | |
@@ -29,7 +29,8 @@ DU-portal copy (the same data is already connected without a key).
 | 16–17 | Göteborgs Stad traffic impact (Trafikpåverkan); start permits (Starttillstånd) | SE | City street works and their traffic impact | data.goteborg.se: free account, application key (APPID) | Shown at registration | Whether records carry locations and periods is seen only with the key |
 | 18 | Tark Tee DATEX II (Estonia: traffic restrictions, SRTI) | EE | National traffic restrictions | tarktee.ee/en/datex-registration: form; key valid after staff review | Terms require credit; silent on commercial use ("for free use") | Ask about commercial use in the form |
 
-Sources 1–5 and 12–13 have the clearest terms. If all 18 were connected, REI would
+Sources 2–5 and 12–13 have the clearest terms; source 1 waits on Queensland's written
+confirmation (see its row). If all 18 were connected, REI would
 gain 18 working sources; registry entries `qld-traffic-geojson`/`qldtraffic-events`
 and `tfnsw-live-traffic-hazards`/`transport-nsw-live-traffic` describe the same
 two services and would be one source each.

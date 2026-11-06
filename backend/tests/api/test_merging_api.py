@@ -30,7 +30,14 @@ from packages.event_schema import (
     ReiEvent,
 )
 from packages.geo_models import Point
-from tests.support import ingest_each, SOURCE_FIXTURES, FakeConnector, parse_fixture, sign_in
+from tests.support import (
+    RETRIEVED_AT,
+    SOURCE_FIXTURES,
+    FakeConnector,
+    ingest_each,
+    parse_fixture,
+    sign_in,
+)
 
 T0 = datetime(2026, 9, 26, tzinfo=timezone.utc)
 KHAJAGUDA = (78.3817, 17.4227)
@@ -269,8 +276,13 @@ def merging_client(engine, session):
         yield sign_in(client)
 
 
-def test_the_same_articles_from_four_sources_are_listed_once_with_every_source(merging_client):
+def test_the_same_articles_from_four_sources_are_listed_once_with_every_source(
+    merging_client, monkeypatch
+):
     """The fixture feeds carry the same articles under four publishers: duplicate ingestion."""
+    # Only current events are matched (decision 0014): judge them on the day the
+    # fixture articles were retrieved, not today, or the test ages out.
+    monkeypatch.setattr(merge_service, "utc_now", lambda: RETRIEVED_AT)
     ingest_each(merging_client, *(source.source_id for source, _ in SOURCE_FIXTURES))
     every = merging_client.get("/api/events", params={"view": "validation", "include_hidden": "true", "include_merged": "true"}).json()
     listed = merging_client.get("/api/events?view=validation&include_hidden=true").json()
