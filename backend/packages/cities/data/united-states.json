@@ -46,6 +46,7 @@
     "wzdx-stcharles",
     "wzdx-austin",
     "wzdx-sfmta",
+    "wzdx-wsdot",
     "seattle-sdot-street-closures",
     "baton-rouge-road-closures",
     "dc-ddot-construction-permits",
@@ -67,6 +68,7 @@
     "wzdx-stcharles": "America/Chicago",
     "wzdx-austin": "America/Chicago",
     "wzdx-sfmta": "America/Los_Angeles",
+    "wzdx-wsdot": "America/Los_Angeles",
     "seattle-sdot-street-closures": "America/Los_Angeles",
     "baton-rouge-road-closures": "America/Chicago"
   }

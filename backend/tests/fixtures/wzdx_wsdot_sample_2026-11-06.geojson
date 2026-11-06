@@ -1,0 +1,506 @@
+{
+ "road_event_feed_info": {
+  "$id": "1",
+  "publisher": "Washington State DOT IT",
+  "update_frequency": 60,
+  "update_date": "2026-11-06T07:04:22.30371+00:00",
+  "version": "4.2",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "data_sources": [
+   {
+    "data_source_id": "WSDOT-CIA",
+    "organization_name": "Unknown",
+    "update_frequency": 86400,
+    "update_date": "2022-06-14T23:09:35.4369671+00:00",
+    "lrs_type": "Use of milemarkers posted by the roadways. These are registered to a dynamic segmentation of statewide LRS basemap.",
+    "lrs_url": "https://www.wsdot.wa.gov/data/tools/geoportal/",
+    "location_verify_method": ""
+   },
+   {
+    "data_source_id": "WSDOT-WZDB",
+    "organization_name": "Unknown",
+    "update_frequency": 3600,
+    "update_date": "2025-02-28T19:00:03.5890462+00:00",
+    "lrs_type": "Use of milemarkers posted by the roadways. These are registered to a dynamic segmentation of statewide LRS basemap.",
+    "lrs_url": "https://www.wsdot.wa.gov/data/tools/geoportal/",
+    "location_verify_method": ""
+   }
+  ]
+ },
+ "feed_info": {
+  "publisher": "Washington State DOT IT",
+  "update_frequency": 60,
+  "update_date": "2026-11-06T07:04:22.30371+00:00",
+  "version": "4.2",
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "data_sources": [
+   {
+    "data_source_id": "WSDOT-CIA",
+    "organization_name": "Unknown",
+    "update_frequency": 86400,
+    "update_date": "2022-06-14T23:09:35.4369671+00:00",
+    "lrs_type": "Use of milemarkers posted by the roadways. These are registered to a dynamic segmentation of statewide LRS basemap.",
+    "lrs_url": "https://www.wsdot.wa.gov/data/tools/geoportal/",
+    "location_verify_method": ""
+   },
+   {
+    "data_source_id": "WSDOT-WZDB",
+    "organization_name": "Unknown",
+    "update_frequency": 3600,
+    "update_date": "2025-02-28T19:00:03.5890462+00:00",
+    "lrs_type": "Use of milemarkers posted by the roadways. These are registered to a dynamic segmentation of statewide LRS basemap.",
+    "lrs_url": "https://www.wsdot.wa.gov/data/tools/geoportal/",
+    "location_verify_method": ""
+   }
+  ]
+ },
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "properties": {
+    "beginning_accuracy": "estimated",
+    "is_start_position_verified": false,
+    "ending_accuracy": "estimated",
+    "is_end_position_verified": false,
+    "start_date": "2025-05-15T00:00:00+00:00",
+    "end_date": "2026-12-15T00:00:00+00:00",
+    "start_date_accuracy": "verified",
+    "is_start_date_verified": true,
+    "end_date_accuracy": "verified",
+    "is_end_date_verified": true,
+    "event_status": "pending",
+    "vehicle_impact": "unknown",
+    "location_method": "unknown",
+    "worker_presence": {
+     "are_workers_present": false
+    },
+    "reduced_speed_limit_kph": 0.0,
+    "core_details": {
+     "data_source_id": "WSDOT-CIA",
+     "event_type": "work-zone",
+     "road_names": [
+      "531"
+     ],
+     "direction": "northbound",
+     "description": "SR 531/43rd Ave NE to 67th Ave. NE - Widening",
+     "creation_date": "2024-05-31T21:31:39.9921685+00:00",
+     "update_date": "2024-05-31T21:31:39.9921943+00:00"
+    }
+   },
+   "id": "40804-N",
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.174891,
+      48.152289
+     ],
+     [
+      -122.174795,
+      48.152288
+     ],
+     [
+      -122.172492,
+      48.152249
+     ],
+     [
+      -122.172281,
+      48.152284
+     ],
+     [
+      -122.161602,
+      48.152118
+     ],
+     [
+      -122.160105,
+      48.152097
+     ],
+     [
+      -122.158609,
+      48.152098
+     ],
+     [
+      -122.150806,
+      48.152047
+     ],
+     [
+      -122.144827,
+      48.151961
+     ],
+     [
+      -122.14365,
+      48.151937
+     ],
+     [
+      -122.141029,
+      48.151914
+     ],
+     [
+      -122.140593,
+      48.151908
+     ],
+     [
+      -122.139724,
+      48.151892
+     ],
+     [
+      -122.139005,
+      48.151881
+     ],
+     [
+      -122.138704,
+      48.151889
+     ],
+     [
+      -122.138663,
+      48.151894
+     ]
+    ]
+   },
+   "bbox": [
+    -122.174891,
+    48.152289,
+    -122.138663,
+    48.151894
+   ]
+  },
+  {
+   "properties": {
+    "beginning_accuracy": "estimated",
+    "is_start_position_verified": false,
+    "ending_accuracy": "estimated",
+    "is_end_position_verified": false,
+    "start_date": "2025-03-17T00:00:00+00:00",
+    "end_date": "2028-09-30T00:00:00+00:00",
+    "start_date_accuracy": "verified",
+    "is_start_date_verified": true,
+    "end_date_accuracy": "verified",
+    "is_end_date_verified": true,
+    "event_status": "pending",
+    "vehicle_impact": "unknown",
+    "location_method": "unknown",
+    "worker_presence": {
+     "are_workers_present": false
+    },
+    "reduced_speed_limit_kph": 0.0,
+    "core_details": {
+     "data_source_id": "WSDOT-CIA",
+     "event_type": "work-zone",
+     "road_names": [
+      "005"
+     ],
+     "direction": "southbound",
+     "description": "I-5 & SR 539/Baker Creek & Spring Creek - Fish Passage",
+     "creation_date": "2024-05-31T21:31:23.957957+00:00",
+     "update_date": "2024-05-31T21:31:23.958003+00:00"
+    }
+   },
+   "id": "40630-S",
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.476335,
+      48.781344
+     ],
+     [
+      -122.476552,
+      48.781405
+     ],
+     [
+      -122.477121,
+      48.781549
+     ],
+     [
+      -122.477747,
+      48.781676
+     ],
+     [
+      -122.478381,
+      48.78179
+     ],
+     [
+      -122.478994,
+      48.781884
+     ],
+     [
+      -122.479603,
+      48.781969
+     ],
+     [
+      -122.483286,
+      48.782471
+     ],
+     [
+      -122.485815,
+      48.782822
+     ],
+     [
+      -122.486573,
+      48.782929
+     ],
+     [
+      -122.487213,
+      48.783013
+     ],
+     [
+      -122.487856,
+      48.783086
+     ],
+     [
+      -122.488544,
+      48.783149
+     ],
+     [
+      -122.489333,
+      48.783189
+     ],
+     [
+      -122.492372,
+      48.783327
+     ],
+     [
+      -122.495874,
+      48.783495
+     ],
+     [
+      -122.497805,
+      48.783582
+     ],
+     [
+      -122.498019,
+      48.783591
+     ]
+    ]
+   },
+   "bbox": [
+    -122.476335,
+    48.781344,
+    -122.498019,
+    48.783591
+   ]
+  },
+  {
+   "properties": {
+    "beginning_accuracy": "estimated",
+    "is_start_position_verified": false,
+    "ending_accuracy": "estimated",
+    "is_end_position_verified": false,
+    "start_date": "2026-04-01T00:00:00+00:00",
+    "end_date": "2027-04-15T00:00:00+00:00",
+    "start_date_accuracy": "verified",
+    "is_start_date_verified": true,
+    "end_date_accuracy": "verified",
+    "is_end_date_verified": true,
+    "event_status": "pending",
+    "vehicle_impact": "unknown",
+    "location_method": "unknown",
+    "worker_presence": {
+     "are_workers_present": false
+    },
+    "reduced_speed_limit_kph": 0.0,
+    "core_details": {
+     "data_source_id": "WSDOT-CIA",
+     "event_type": "work-zone",
+     "road_names": [
+      "005"
+     ],
+     "direction": "northbound",
+     "description": "I-5/Steamboat Slough Bridge - Special Bridge Repair",
+     "creation_date": "2024-05-31T21:29:17.0231957+00:00",
+     "update_date": "2024-05-31T21:29:17.0232284+00:00"
+    }
+   },
+   "id": "14637-N",
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.177855,
+      48.034985
+     ],
+     [
+      -122.178422,
+      48.037793
+     ]
+    ]
+   },
+   "bbox": [
+    -122.177855,
+    48.034985,
+    -122.178422,
+    48.037793
+   ]
+  },
+  {
+   "properties": {
+    "beginning_accuracy": "estimated",
+    "is_start_position_verified": false,
+    "ending_accuracy": "estimated",
+    "is_end_position_verified": false,
+    "start_date": "2028-04-01T00:00:00+00:00",
+    "end_date": "2028-06-28T00:00:00+00:00",
+    "start_date_accuracy": "verified",
+    "is_start_date_verified": true,
+    "end_date_accuracy": "verified",
+    "is_end_date_verified": true,
+    "event_status": "pending",
+    "vehicle_impact": "unknown",
+    "location_method": "unknown",
+    "worker_presence": {
+     "are_workers_present": false
+    },
+    "reduced_speed_limit_kph": 0.0,
+    "core_details": {
+     "data_source_id": "WSDOT-CIA",
+     "event_type": "work-zone",
+     "road_names": [
+      "167"
+     ],
+     "direction": "southbound",
+     "description": "SR 167/BNRR Bridges - Painting",
+     "creation_date": "2024-05-31T21:30:34.2542922+00:00",
+     "update_date": "2024-05-31T21:30:34.2543328+00:00"
+    }
+   },
+   "id": "40748-S",
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -122.233651,
+      47.394633
+     ],
+     [
+      -122.232758,
+      47.39523
+     ]
+    ]
+   },
+   "bbox": [
+    -122.233651,
+    47.394633,
+    -122.232758,
+    47.39523
+   ]
+  },
+  {
+   "properties": {
+    "beginning_milepost": 22.0,
+    "ending_milepost": 22.8999996,
+    "beginning_accuracy": "estimated",
+    "is_start_position_verified": false,
+    "ending_accuracy": "estimated",
+    "is_end_position_verified": false,
+    "start_date": "2026-11-09T00:00:00+00:00",
+    "end_date": "2026-11-24T00:00:00+00:00",
+    "start_date_accuracy": "verified",
+    "is_start_date_verified": true,
+    "end_date_accuracy": "verified",
+    "is_end_date_verified": true,
+    "event_status": "pending",
+    "vehicle_impact": "unknown",
+    "location_method": "unknown",
+    "worker_presence": {
+     "are_workers_present": false
+    },
+    "core_details": {
+     "data_source_id": "WSDOT-WZDB",
+     "event_type": "work-zone",
+     "road_names": [
+      "090"
+     ],
+     "direction": "eastbound",
+     "description": "Contract - C9572 I-90 and SR 18 Interchange Improvements and Widening Project",
+     "creation_date": "2022-03-13T17:13:44.342+00:00",
+     "update_date": "2026-11-05T08:15:13.599+00:00"
+    }
+   },
+   "id": "9281-E",
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -121.805942,
+      47.493619
+     ],
+     [
+      -121.805595,
+      47.49351
+     ],
+     [
+      -121.803391,
+      47.492767
+     ],
+     [
+      -121.801807,
+      47.492073
+     ],
+     [
+      -121.800541,
+      47.491448
+     ],
+     [
+      -121.799383,
+      47.490753
+     ],
+     [
+      -121.798919,
+      47.490449
+     ],
+     [
+      -121.7985,
+      47.490166
+     ],
+     [
+      -121.797942,
+      47.489767
+     ],
+     [
+      -121.797324,
+      47.489283
+     ],
+     [
+      -121.796572,
+      47.488668
+     ],
+     [
+      -121.796125,
+      47.488242
+     ],
+     [
+      -121.795895,
+      47.488007
+     ],
+     [
+      -121.794691,
+      47.486794
+     ],
+     [
+      -121.792585,
+      47.484708
+     ],
+     [
+      -121.792306,
+      47.484431
+     ],
+     [
+      -121.791397,
+      47.483522
+     ]
+    ]
+   },
+   "bbox": [
+    -121.805942,
+    47.493619,
+    -121.791397,
+    47.483522
+   ]
+  }
+ ]
+}

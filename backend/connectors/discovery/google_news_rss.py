@@ -185,7 +185,7 @@ class GoogleNewsRssConnector:
 
     def feed_url(self, query: str) -> str:
         lang, country = self.city.language, self.city.country
-        params = {
+        params = {          
             "q": f"{query} when:{self.window_days}d",
             "hl": f"{lang}-{country}",
             "gl": country,

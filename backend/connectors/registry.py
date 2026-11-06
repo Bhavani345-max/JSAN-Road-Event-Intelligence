@@ -23,6 +23,7 @@ from .discovered import DISCOVERED_SOURCES
 from .discovered_2026_10_15 import DISCOVERED_2026_10_15
 from .discovered_2026_11_04 import DISCOVERED_2026_11_04
 from .discovered_2026_11_05 import DISCOVERED_2026_11_05
+from .discovered_2026_11_06 import DISCOVERED_2026_11_06
 from .discovery.gdelt import GdeltConnector, gdelt_source
 from .discovery.google_news_rss import GoogleNewsRssConnector, google_news_rss_source
 from .official import (
@@ -554,7 +555,11 @@ def _registered_rest(
         + tuple(
             RegisteredSource(definition)
             for definition in (
-                DISCOVERED_SOURCES + DISCOVERED_2026_10_15 + DISCOVERED_2026_11_04 + DISCOVERED_2026_11_05
+                DISCOVERED_SOURCES
+                + DISCOVERED_2026_10_15
+                + DISCOVERED_2026_11_04
+                + DISCOVERED_2026_11_05
+                + DISCOVERED_2026_11_06
             )
         )
     )

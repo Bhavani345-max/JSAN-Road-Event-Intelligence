@@ -102,6 +102,9 @@ FEEDS: tuple[WzdxFeed, ...] = (
         "https://data.sfgov.org/download/4ftp-yz2f", "America/Los_Angeles", 4279, "21 October 2026",
         "CC0 1.0 Universal, stated in the dataset's licence on DataSF (dataset 4ftp-yz2f, attribution SFMTA)",
     ),
+    # 6 November 2026 (decision 0060). WSDOT: CC0 1.0 in its feed_info.license; the
+    # registry's other new feeds are recorded, not connected, in discovered_2026_11_06.py.
+    WzdxFeed("wsdot", "Washington", "Washington State DOT", "https://wzdx.wsdot.wa.gov/api/v4/WorkZoneFeed", "America/Los_Angeles", 434, "6 November 2026"),
 )  # fmt: skip
 
 
