@@ -81,24 +81,8 @@ DISCOVERED_2026_10_15: tuple[SourceDefinition, ...] = (
             "undocumented; reading them would mean guessing the times. Ask the City first."
         ),
     ),
-    _researched(
-        source_id="quebec-mtmd-road-works",
-        source_class=SourceClass.AUTHORITATIVE_OFFICIAL, country="CA", region="Quebec", city="canada",
-        source_name="Transports Québec road works and warnings",
-        organization="Ministère des Transports et de la Mobilité durable du Québec",
-        authority_type="PROVINCIAL_ROAD_AUTHORITY",
-        source_url="https://ws.mapserver.transports.gouv.qc.ca/swtq",
-        access_method="WFS (lines); no key",
-        integration_status=S.BLOCKED,
-        terms_status=TermsStatus.PERMITS_TESTING,
-        provides_geometry=True,
-        language="fr",
-        notes=(
-            "526 road works and 19 warnings with lines on 15 October 2026, CC BY 4.0. Its "
-            "robots.txt sits behind a Cloudflare challenge and could not be read: whether to use "
-            "it is the user's decision. Not connected."
-        ),
-    ),
+    # quebec-mtmd-road-works: connected on 6 November 2026 once its robots.txt could be
+    # read (connectors/official/quebec_mtmd_roadworks.py, decision 0062).
     _researched(
         source_id="brampton-road-closures",
         source_class=SourceClass.GOVERNMENT_OPEN_DATA, country="CA", region="Ontario", city="canada",

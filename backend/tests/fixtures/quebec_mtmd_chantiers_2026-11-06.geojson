@@ -1,0 +1,1213 @@
+{
+ "type": "FeatureCollection",
+ "numberMatched": 361,
+ "name": "chantiers_mtmdet",
+ "bbox": [
+  -79.239394,
+  45.008858,
+  -59.253992,
+  52.799751
+ ],
+ "features": [
+  {
+   "type": "Feature",
+   "id": 149555,
+   "properties": {
+    "identifiant": "149555",
+    "identifiantChantier": "247978",
+    "routeAutoroute": "25",
+    "entraveType": "Majeure (semaine et fin de semaine)",
+    "debut": "2025/05/05 05:00:00",
+    "fin": "2026/12/31 23:59:00",
+    "miseAJour": "2026/04/01 11:59:00",
+    "identificationDesTravaux": "Réfection des structures",
+    "urlFrancais": "https://tempslafontaine.transnomis.com",
+    "texteUrlFrancais": "Temps de parcours -- page web du projet",
+    "detoursEtItinerairesFacultatifs": "",
+    "entrave": "Tunnel fermé en direction NORD, circulation à contresens dans le tunnel SUD, en tout temps\n",
+    "entravesLieesAuxChargesEtDimensions": "Hauteur libre : 4,3 mètres",
+    "localisation": "Entre Longueuil et Montréal, le tunnel Louis-Hippolyte-La Fontaine",
+    "direction": "Sud et nord",
+    "descriptionFrancais": "Réfection des structures\nEntre Longueuil et Montréal, le tunnel Louis-Hippolyte-La Fontaine\nDans les deux directions\nTunnel fermé en direction NORD, circulation à contresens dans le tunnel SUD, en tout temps\nHauteur libre : 4,3 mètres",
+    "descriptionAnglais": "Refurbishment of structures\nBetween Longueuil and Montreal, the Louis-Hippolyte-La Fontaine Tunnel\nIn both directions\nNORTHBOUND tunnel closed, contraflow traffic in the SOUTHBOUND tunnel, at all times\nClearance height: 4.3 meters",
+    "couleurLigne": "#FF0000",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -73.510112,
+    45.578583,
+    -73.47642,
+    45.585879
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -73.510112,
+      45.585879
+     ],
+     [
+      -73.509631,
+      45.585777
+     ],
+     [
+      -73.509087,
+      45.585662
+     ],
+     [
+      -73.508597,
+      45.585558
+     ],
+     [
+      -73.507859,
+      45.585401
+     ],
+     [
+      -73.506982,
+      45.585214
+     ],
+     [
+      -73.505882,
+      45.58498
+     ],
+     [
+      -73.504998,
+      45.584794
+     ],
+     [
+      -73.504098,
+      45.584602
+     ],
+     [
+      -73.50341,
+      45.584456
+     ],
+     [
+      -73.502801,
+      45.584326
+     ],
+     [
+      -73.502317,
+      45.584223
+     ],
+     [
+      -73.501343,
+      45.584015
+     ],
+     [
+      -73.500408,
+      45.583816
+     ],
+     [
+      -73.499764,
+      45.583678
+     ],
+     [
+      -73.498514,
+      45.583412
+     ],
+     [
+      -73.497676,
+      45.583233
+     ],
+     [
+      -73.497276,
+      45.583148
+     ],
+     [
+      -73.496051,
+      45.582887
+     ],
+     [
+      -73.49507,
+      45.582677
+     ],
+     [
+      -73.494035,
+      45.582456
+     ],
+     [
+      -73.492742,
+      45.582181
+     ],
+     [
+      -73.492041,
+      45.582032
+     ],
+     [
+      -73.491275,
+      45.581869
+     ],
+     [
+      -73.490529,
+      45.58171
+     ],
+     [
+      -73.490132,
+      45.581625
+     ],
+     [
+      -73.489746,
+      45.581543
+     ],
+     [
+      -73.489233,
+      45.581434
+     ],
+     [
+      -73.488726,
+      45.581326
+     ],
+     [
+      -73.488314,
+      45.581238
+     ],
+     [
+      -73.487938,
+      45.581158
+     ],
+     [
+      -73.487493,
+      45.581066
+     ],
+     [
+      -73.486989,
+      45.580962
+     ],
+     [
+      -73.486332,
+      45.580827
+     ],
+     [
+      -73.485969,
+      45.58075
+     ],
+     [
+      -73.48563,
+      45.580676
+     ],
+     [
+      -73.485293,
+      45.580602
+     ],
+     [
+      -73.484559,
+      45.580441
+     ],
+     [
+      -73.484126,
+      45.580346
+     ],
+     [
+      -73.483585,
+      45.580228
+     ],
+     [
+      -73.483227,
+      45.580149
+     ],
+     [
+      -73.48277,
+      45.580048
+     ],
+     [
+      -73.482457,
+      45.579976
+     ],
+     [
+      -73.482162,
+      45.579909
+     ],
+     [
+      -73.481922,
+      45.579856
+     ],
+     [
+      -73.48159,
+      45.579781
+     ],
+     [
+      -73.481216,
+      45.579697
+     ],
+     [
+      -73.480635,
+      45.579564
+     ],
+     [
+      -73.480338,
+      45.579489
+     ],
+     [
+      -73.480091,
+      45.579426
+     ],
+     [
+      -73.479818,
+      45.579357
+     ],
+     [
+      -73.479554,
+      45.579286
+     ],
+     [
+      -73.479277,
+      45.579219
+     ],
+     [
+      -73.479003,
+      45.579152
+     ],
+     [
+      -73.478649,
+      45.579071
+     ],
+     [
+      -73.478079,
+      45.578945
+     ],
+     [
+      -73.477511,
+      45.578822
+     ],
+     [
+      -73.477109,
+      45.578735
+     ],
+     [
+      -73.476851,
+      45.578678
+     ],
+     [
+      -73.476794,
+      45.578665
+     ],
+     [
+      -73.476659,
+      45.578636
+     ],
+     [
+      -73.47642,
+      45.578583
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 168663,
+   "properties": {
+    "identifiant": "168663",
+    "identifiantChantier": "318342",
+    "routeAutoroute": "73",
+    "entraveType": "Majeure (semaine)",
+    "debut": "2026/11/11 07:30:00",
+    "fin": "2026/11/11 17:00:00",
+    "miseAJour": "2026/11/06 09:36:00",
+    "identificationDesTravaux": "Éléments de signalisation",
+    "urlFrancais": "",
+    "texteUrlFrancais": "",
+    "detoursEtItinerairesFacultatifs": "Sortie 61 (Beauceville), accès A-73 SUD",
+    "entrave": "Autoroute fermée",
+    "entravesLieesAuxChargesEtDimensions": "",
+    "localisation": "À Beauceville, de part et d'autre de la route du Golf",
+    "direction": "Sud",
+    "descriptionFrancais": "Éléments de signalisation\nÀ Beauceville, de part et d'autre de la route du Golf\nEn direction SUD\nAutoroute fermée\nDétour: sortie 61 (Beauceville), accès A-73 SUD",
+    "descriptionAnglais": "Signaling elements\nIn Beauceville, on both sides of route du Golf\nSOUTHBOUND\nHighway closed\nDetour: Exit 61 (Beauceville), access A-73 SOUTH",
+    "couleurLigne": "#FF0000",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -70.789568,
+    46.245419,
+    -70.776349,
+    46.254668
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -70.789568,
+      46.254668
+     ],
+     [
+      -70.789064,
+      46.254378
+     ],
+     [
+      -70.788713,
+      46.254178
+     ],
+     [
+      -70.788257,
+      46.25392
+     ],
+     [
+      -70.787805,
+      46.253663
+     ],
+     [
+      -70.787074,
+      46.253249
+     ],
+     [
+      -70.786636,
+      46.252999
+     ],
+     [
+      -70.786094,
+      46.25269
+     ],
+     [
+      -70.785539,
+      46.252374
+     ],
+     [
+      -70.785004,
+      46.252069
+     ],
+     [
+      -70.784361,
+      46.251703
+     ],
+     [
+      -70.783745,
+      46.251352
+     ],
+     [
+      -70.783587,
+      46.251262
+     ],
+     [
+      -70.783476,
+      46.251198
+     ],
+     [
+      -70.783256,
+      46.251072
+     ],
+     [
+      -70.782889,
+      46.250863
+     ],
+     [
+      -70.782533,
+      46.250662
+     ],
+     [
+      -70.782353,
+      46.250557
+     ],
+     [
+      -70.782082,
+      46.250397
+     ],
+     [
+      -70.781826,
+      46.250242
+     ],
+     [
+      -70.781503,
+      46.250037
+     ],
+     [
+      -70.781079,
+      46.249753
+     ],
+     [
+      -70.780834,
+      46.249581
+     ],
+     [
+      -70.780663,
+      46.249458
+     ],
+     [
+      -70.780437,
+      46.24929
+     ],
+     [
+      -70.780272,
+      46.249165
+     ],
+     [
+      -70.780046,
+      46.248987
+     ],
+     [
+      -70.77997,
+      46.248927
+     ],
+     [
+      -70.779892,
+      46.248864
+     ],
+     [
+      -70.779686,
+      46.248693
+     ],
+     [
+      -70.779612,
+      46.248631
+     ],
+     [
+      -70.779392,
+      46.248439
+     ],
+     [
+      -70.779235,
+      46.248299
+     ],
+     [
+      -70.779037,
+      46.248117
+     ],
+     [
+      -70.778838,
+      46.247927
+     ],
+     [
+      -70.778626,
+      46.247717
+     ],
+     [
+      -70.778426,
+      46.247517
+     ],
+     [
+      -70.778172,
+      46.24726
+     ],
+     [
+      -70.777769,
+      46.246854
+     ],
+     [
+      -70.777379,
+      46.24646
+     ],
+     [
+      -70.776844,
+      46.24592
+     ],
+     [
+      -70.776349,
+      46.245419
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 166812,
+   "properties": {
+    "identifiant": "166812",
+    "identifiantChantier": "316118",
+    "routeAutoroute": "73",
+    "entraveType": "Majeure (semaine et fin de semaine)",
+    "debut": "2026/11/08 22:00:00",
+    "fin": "2026/11/09 05:30:00",
+    "miseAJour": "2026/11/04 08:44:00",
+    "identificationDesTravaux": "Réfection d'un pont",
+    "urlFrancais": "",
+    "texteUrlFrancais": "",
+    "detoursEtItinerairesFacultatifs": "A-20 EST, échangeur 318 (avenue Taniata)",
+    "entrave": "Fermeture de l'accès à la sortie 314 (R-175)",
+    "entravesLieesAuxChargesEtDimensions": "",
+    "localisation": "À Lévis (Saint-Romuald), vers l'A-20 EST",
+    "direction": "Sud",
+    "descriptionFrancais": "Réfection d'un pont\nÀ Lévis (Saint-Romuald), vers l'A-20 EST\nEn direction SUD\nFermeture de l'accès à la sortie 314 (R-175)\nDétour: A-20 EST, échangeur 318 (avenue Taniata)",
+    "descriptionAnglais": "Bridge repair\nIn Lévis (Saint-Romuald), to A-20 EAST\nSOUTHBOUND\nClosure of access to exit 314 (R-175)\nDetour: A-20 EAST, interchange 318 (avenue Taniata)",
+    "couleurLigne": "#FF0000",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -71.281579,
+    46.729415,
+    -71.281297,
+    46.730982
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.281297,
+      46.730982
+     ],
+     [
+      -71.281315,
+      46.730934
+     ],
+     [
+      -71.281382,
+      46.73055
+     ],
+     [
+      -71.281434,
+      46.730198
+     ],
+     [
+      -71.281454,
+      46.730065
+     ],
+     [
+      -71.2815,
+      46.72983
+     ],
+     [
+      -71.281564,
+      46.729497
+     ],
+     [
+      -71.281579,
+      46.729415
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 163457,
+   "properties": {
+    "identifiant": "163457",
+    "identifiantChantier": "309474",
+    "routeAutoroute": "137",
+    "entraveType": "Mineure (semaine)",
+    "debut": "2026/11/06 09:00:00",
+    "fin": "2026/11/06 14:00:00",
+    "miseAJour": "2026/11/06 09:36:00",
+    "identificationDesTravaux": "Èlèment èlectrique",
+    "urlFrancais": "",
+    "texteUrlFrancais": "",
+    "detoursEtItinerairesFacultatifs": "",
+    "entrave": "Fermeture de 1 voie sur 2",
+    "entravesLieesAuxChargesEtDimensions": "",
+    "localisation": "À Saint-Hyacinthe, boulevard Laframboise, entre la sortie 130 (A-20) et l'accès suivant",
+    "direction": "Sud",
+    "descriptionFrancais": "Èlèment èlectrique\nÀ Saint-Hyacinthe, boulevard Laframboise, entre la sortie 130 (A-20) et l'accès suivant\nEn direction SUD\nFermeture de 1 voie sur 2",
+    "descriptionAnglais": "Electrical component\nIn Saint-Hyacinthe, on Laframboise Boulevard, between exit 130 (A-20) and the next access point\nSOUTHBOUND\nClosure of 1 out of 2 lanes",
+    "couleurLigne": "#FF6A33",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -72.972044,
+    45.639128,
+    -72.970977,
+    45.639967
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -72.972044,
+      45.639967
+     ],
+     [
+      -72.971941,
+      45.639888
+     ],
+     [
+      -72.971724,
+      45.639722
+     ],
+     [
+      -72.971622,
+      45.639644
+     ],
+     [
+      -72.971464,
+      45.639525
+     ],
+     [
+      -72.971241,
+      45.639327
+     ],
+     [
+      -72.97107,
+      45.639202
+     ],
+     [
+      -72.970977,
+      45.639128
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 165172,
+   "properties": {
+    "identifiant": "165172",
+    "identifiantChantier": "313894",
+    "routeAutoroute": "265",
+    "entraveType": "Majeure (semaine et fin de semaine)",
+    "debut": "2026/04/13 07:00:00",
+    "fin": "2026/12/21 18:00:00",
+    "miseAJour": "2026/11/05 12:48:00",
+    "identificationDesTravaux": "Réfection d'un pont",
+    "urlFrancais": "",
+    "texteUrlFrancais": "",
+    "detoursEtItinerairesFacultatifs": "",
+    "entrave": "Véhicules :\nCirculation en alternance en tout temps\n\nPiétons et cyclistes :\nPont fermé, navette en fonction de 7 h à 22 h",
+    "entravesLieesAuxChargesEtDimensions": "Lundi 9 novembre:\nLargeur de la voie réduite à 3,4 mètres en tout temps\n\nEn tout temps:\n- Largeur de la voie réduite à 3,6 mètres\n- Véhicule en surcharge interdit\n- Virage à gauche vers le rang Saint-Louis Est interdit",
+    "localisation": "À Notre-Dame-de-Lourdes, sur le pont de la rivière Bécancour",
+    "direction": "Dans une direction à la fois",
+    "descriptionFrancais": "Réfection d'un pont\nÀ Notre-Dame-de-Lourdes, sur le pont de la rivière Bécancour\nDans une direction à la fois\nVéhicules :\nCirculation en alternance en tout temps\n\nLundi 9 novembre:\nLargeur de la voie réduite à 3,4 mètres en tout temps\n\nEn tout temps:\n- Largeur de la voie réduite à 3,6 mètres\n- Véhicule en surcharge interdit\n- Virage à gauche vers le rang Saint-Louis Est interdit\n\nPiétons et cyclistes :\nPont fermé, navette en fonction de 7 h à 22 h",
+    "descriptionAnglais": "Bridge repair\nIn Notre-Dame-de-Lourdes, on rivière Bécancour bridge\nIn one direction at a time\nVehicles :\nAlternating traffic at all times\n\nMonday, November 9:\nLane width reduced to 3.4 meters at all times\n\nAt all times:\n- Lane width reduced to 3.6 meters\n- Overloaded vehicle prohibited\n- Left turn towards Rang Saint-Louis Est prohibited\n\nPedestrians and cyclists :\nBridge closed, shuttle running from 7 a.m. to 10 p.m.",
+    "couleurLigne": "#FF0000",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -71.827332,
+    46.321081,
+    -71.827134,
+    46.323452
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.827134,
+      46.321081
+     ],
+     [
+      -71.827147,
+      46.321223
+     ],
+     [
+      -71.827151,
+      46.321287
+     ],
+     [
+      -71.827176,
+      46.321561
+     ],
+     [
+      -71.827196,
+      46.321801
+     ],
+     [
+      -71.827227,
+      46.322196
+     ],
+     [
+      -71.827237,
+      46.322308
+     ],
+     [
+      -71.827259,
+      46.322571
+     ],
+     [
+      -71.827278,
+      46.322804
+     ],
+     [
+      -71.827281,
+      46.322848
+     ],
+     [
+      -71.827285,
+      46.32288
+     ],
+     [
+      -71.827315,
+      46.323246
+     ],
+     [
+      -71.827332,
+      46.323452
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 168938,
+   "properties": {
+    "identifiant": "168938",
+    "identifiantChantier": "318664",
+    "routeAutoroute": "132",
+    "entraveType": "Mineure (semaine)",
+    "debut": "2026/08/17 09:00:00",
+    "fin": "2026/12/15 15:00:00",
+    "miseAJour": "2026/08/14 10:20:00",
+    "identificationDesTravaux": "Stabilisation de talus",
+    "urlFrancais": "",
+    "texteUrlFrancais": "",
+    "detoursEtItinerairesFacultatifs": "",
+    "entrave": "Au besoin: \nCirculation en alternance, du lundi au vendredi entre 9 h et 15 h \n",
+    "entravesLieesAuxChargesEtDimensions": "",
+    "localisation": "À Gaspé, de part et d'autre de la rue Berchevaise",
+    "direction": "Ouest et est",
+    "descriptionFrancais": "Stabilisation de talus\nÀ Gaspé, de part et d'autre de la rue Berchevaise\nDans les deux directions\nAu besoin: \nCirculation en alternance, du lundi au vendredi entre 9 h et 15 h",
+    "descriptionAnglais": "Slope stabilization\nIn Gaspé, on both sides of Berchevaise Street\nIn both directions\nIf necessary:\nAlternating traffic, Monday to Friday between 9 a.m. and 3 p.m.",
+    "couleurLigne": "#FF6A33",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -64.509827,
+    48.848184,
+    -64.505999,
+    48.851748
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -64.505999,
+      48.848184
+     ],
+     [
+      -64.506173,
+      48.848267
+     ],
+     [
+      -64.506419,
+      48.848387
+     ],
+     [
+      -64.506824,
+      48.848598
+     ],
+     [
+      -64.507192,
+      48.848792
+     ],
+     [
+      -64.507569,
+      48.848992
+     ],
+     [
+      -64.507658,
+      48.84904
+     ],
+     [
+      -64.507836,
+      48.849149
+     ],
+     [
+      -64.507914,
+      48.849198
+     ],
+     [
+      -64.50802,
+      48.849269
+     ],
+     [
+      -64.508128,
+      48.849348
+     ],
+     [
+      -64.508216,
+      48.849412
+     ],
+     [
+      -64.508322,
+      48.849498
+     ],
+     [
+      -64.508414,
+      48.849579
+     ],
+     [
+      -64.508492,
+      48.849652
+     ],
+     [
+      -64.508559,
+      48.849718
+     ],
+     [
+      -64.508698,
+      48.84987
+     ],
+     [
+      -64.508749,
+      48.849931
+     ],
+     [
+      -64.508799,
+      48.849992
+     ],
+     [
+      -64.508854,
+      48.850064
+     ],
+     [
+      -64.508922,
+      48.850155
+     ],
+     [
+      -64.509003,
+      48.850275
+     ],
+     [
+      -64.509099,
+      48.850428
+     ],
+     [
+      -64.50919,
+      48.850582
+     ],
+     [
+      -64.509326,
+      48.850828
+     ],
+     [
+      -64.509387,
+      48.850937
+     ],
+     [
+      -64.509595,
+      48.851323
+     ],
+     [
+      -64.509783,
+      48.851668
+     ],
+     [
+      -64.509827,
+      48.851748
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 155134,
+   "properties": {
+    "identifiant": "155134",
+    "identifiantChantier": "292830",
+    "routeAutoroute": "239",
+    "entraveType": "Mineure (semaine)",
+    "debut": "2026/11/10 07:00:00",
+    "fin": "2026/11/10 18:00:00",
+    "miseAJour": "2026/11/04 07:08:00",
+    "identificationDesTravaux": "Forage",
+    "urlFrancais": "",
+    "texteUrlFrancais": "",
+    "detoursEtItinerairesFacultatifs": "",
+    "entrave": "Circulation en alternance",
+    "entravesLieesAuxChargesEtDimensions": "",
+    "localisation": "Entre la R-224 à Saint-Guillaume et la route Ross à Saint-Eugène-de-Grantham ",
+    "direction": "Sud et nord",
+    "descriptionFrancais": "Forage\nEntre la R-224 à Saint-Guillaume et la route Ross à Saint-Eugène-de-Grantham \nDans les deux directions\nCirculation en alternance",
+    "descriptionAnglais": "Drilling\nBetween R-224 in Saint-Guillaume and route Ross in Saint-Eugène-de-Grantham \nIn both directions\nAlternating traffic",
+    "couleurLigne": "#FF6A33",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -72.780536,
+    45.840566,
+    -72.745146,
+    45.874935
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -72.780536,
+      45.874935
+     ],
+     [
+      -72.780468,
+      45.874861
+     ],
+     [
+      -72.779951,
+      45.874332
+     ],
+     [
+      -72.779819,
+      45.874207
+     ],
+     [
+      -72.766984,
+      45.86175
+     ],
+     [
+      -72.766093,
+      45.860914
+     ],
+     [
+      -72.765816,
+      45.86065
+     ],
+     [
+      -72.765408,
+      45.860257
+     ],
+     [
+      -72.764394,
+      45.859272
+     ],
+     [
+      -72.764129,
+      45.859012
+     ],
+     [
+      -72.763114,
+      45.858026
+     ],
+     [
+      -72.762834,
+      45.857753
+     ],
+     [
+      -72.760125,
+      45.85511
+     ],
+     [
+      -72.759565,
+      45.854559
+     ],
+     [
+      -72.758239,
+      45.853261
+     ],
+     [
+      -72.757997,
+      45.85302
+     ],
+     [
+      -72.757319,
+      45.852356
+     ],
+     [
+      -72.756711,
+      45.851769
+     ],
+     [
+      -72.756008,
+      45.85108
+     ],
+     [
+      -72.75016,
+      45.845382
+     ],
+     [
+      -72.745247,
+      45.840671
+     ],
+     [
+      -72.745146,
+      45.840566
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 168170,
+   "properties": {
+    "identifiant": "168170",
+    "identifiantChantier": "314584",
+    "routeAutoroute": "20",
+    "entraveType": "Majeure (semaine)",
+    "debut": "2026/11/05 21:00:00",
+    "fin": "2026/11/06 05:00:00",
+    "miseAJour": "2026/11/05 08:24:00",
+    "identificationDesTravaux": "Réaménagement de la route",
+    "urlFrancais": "",
+    "texteUrlFrancais": "",
+    "detoursEtItinerairesFacultatifs": "Échangeur 314 (chemin du Sault)",
+    "entrave": "Sortie fermée\n- Jeudi entre 21 h et 5 h le lendemain",
+    "entravesLieesAuxChargesEtDimensions": "",
+    "localisation": "À Lévis (Saint-Romuald), sortie 318 (avenue Taniata)",
+    "direction": "Ouest",
+    "descriptionFrancais": "Réaménagement de la route\nÀ Lévis (Saint-Romuald), sortie 318 (avenue Taniata)\nEn direction OUEST\nSortie fermée\n- Jeudi entre 21 h et 5 h le lendemain\nDétour: échangeur 314 (chemin du Sault)",
+    "descriptionAnglais": "Road redevelopment\nIn Lévis (Saint-Romuald), exit 318 (avenue Taniata)\nWESTBOUND\nExit closed\n- Thursday between 9 p.m. and 5 a.m. the next day\nDetour: interchange 314 (Chemin du Sault)",
+    "couleurLigne": "#FF0000",
+    "source": "https://www.quebec511.info"
+   },
+   "bbox": [
+    -71.223035,
+    46.741804,
+    -71.213668,
+    46.742624
+   ],
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.213668,
+      46.742593
+     ],
+     [
+      -71.214698,
+      46.742327
+     ],
+     [
+      -71.215051,
+      46.742241
+     ],
+     [
+      -71.215426,
+      46.742154
+     ],
+     [
+      -71.215899,
+      46.742045
+     ],
+     [
+      -71.216329,
+      46.741954
+     ],
+     [
+      -71.216562,
+      46.741912
+     ],
+     [
+      -71.216731,
+      46.741886
+     ],
+     [
+      -71.216884,
+      46.741868
+     ],
+     [
+      -71.21702,
+      46.741858
+     ],
+     [
+      -71.217285,
+      46.741853
+     ],
+     [
+      -71.217583,
+      46.741867
+     ],
+     [
+      -71.217771,
+      46.741888
+     ],
+     [
+      -71.217952,
+      46.741921
+     ],
+     [
+      -71.218084,
+      46.741953
+     ],
+     [
+      -71.218197,
+      46.74199
+     ],
+     [
+      -71.218307,
+      46.742032
+     ],
+     [
+      -71.218446,
+      46.742093
+     ],
+     [
+      -71.21891,
+      46.742315
+     ],
+     [
+      -71.219046,
+      46.742376
+     ],
+     [
+      -71.219189,
+      46.742433
+     ],
+     [
+      -71.219319,
+      46.742476
+     ],
+     [
+      -71.219481,
+      46.742522
+     ],
+     [
+      -71.219675,
+      46.742565
+     ],
+     [
+      -71.219844,
+      46.742591
+     ],
+     [
+      -71.220014,
+      46.74261
+     ],
+     [
+      -71.220196,
+      46.742622
+     ],
+     [
+      -71.220375,
+      46.742624
+     ],
+     [
+      -71.220591,
+      46.742622
+     ],
+     [
+      -71.220854,
+      46.742606
+     ],
+     [
+      -71.22103,
+      46.742587
+     ],
+     [
+      -71.221216,
+      46.742559
+     ],
+     [
+      -71.221353,
+      46.742534
+     ],
+     [
+      -71.221505,
+      46.7425
+     ],
+     [
+      -71.22166,
+      46.742461
+     ],
+     [
+      -71.221819,
+      46.742415
+     ],
+     [
+      -71.22196,
+      46.742368
+     ],
+     [
+      -71.222107,
+      46.742313
+     ],
+     [
+      -71.222257,
+      46.742251
+     ],
+     [
+      -71.222402,
+      46.742183
+     ],
+     [
+      -71.222588,
+      46.742087
+     ],
+     [
+      -71.222732,
+      46.742002
+     ],
+     [
+      -71.222849,
+      46.741924
+     ],
+     [
+      -71.223035,
+      46.741804
+     ]
+    ]
+   }
+  }
+ ]
+}

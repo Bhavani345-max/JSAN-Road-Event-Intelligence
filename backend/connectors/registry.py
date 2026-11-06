@@ -119,6 +119,7 @@ from .official.south_tyrol_traffic import SouthTyrolTrafficReportsConnector, sou
 from .official.quebec_city_entraves import QuebecCityEntravesConnector, quebec_city_source
 from .official.longueuil import LongueuilEntravesConnector, longueuil_source
 from .official.saguenay import SaguenayChantiersConnector, saguenay_source
+from .official.quebec_mtmd_roadworks import QuebecMtmdRoadWorksConnector, quebec_mtmd_source
 from .official.waterloo_region import WaterlooRegionRoadClosuresConnector, waterloo_region_source
 from .official.burlington import BurlingtonRoadClosuresConnector, burlington_source
 from .official.national_highways import NationalHighwaysRoadworksConnector, national_highways_source
@@ -397,6 +398,8 @@ def _official_sources(
             (quebec_city_source, QuebecCityEntravesConnector),
             (longueuil_source, LongueuilEntravesConnector),
             (saguenay_source, SaguenayChantiersConnector),
+            # Québec province (decision 0062).
+            (quebec_mtmd_source, QuebecMtmdRoadWorksConnector),
             (waterloo_region_source, WaterlooRegionRoadClosuresConnector),
             (burlington_source, BurlingtonRoadClosuresConnector),
             # United Kingdom (England) and Luxembourg.
